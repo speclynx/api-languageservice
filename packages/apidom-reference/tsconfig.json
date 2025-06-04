@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#buffer": ["./src/util/polyfills/buffer/protocol-import.ts"],
+      "#fs": ["./src/util/polyfills/fs/protocol-import.ts"],
+      "#util": ["./src/util/polyfills/util/protocol-import.ts"]
+    },
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

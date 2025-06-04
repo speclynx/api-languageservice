@@ -1,0 +1,7 @@
+{
+  "recursive": true,
+  "spec": "test/**/*.mjs",
+  "loader": "./test/wasm-loader.mjs",
+  "file": ["test/mocha-bootstrap.mjs"],
+  "ignore": ["test/perf/**/*.mjs"]
+}

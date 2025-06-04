@@ -1,0 +1,49 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "deref",
+    "version": "1.0.0",
+    "description": "deref"
+  },
+  "servers": [
+    {
+      "description": "local",
+      "url": "http://localhost:8082/"
+    }
+  ],
+  "paths": {},
+  "components": {
+    "parameters": {
+      "userId": {
+        "name": "userId",
+        "in": "query",
+        "required": true,
+        "description": "override"
+      },
+      "indirection1": {
+        "name": "userId",
+        "in": "query",
+        "description": "ID of the user",
+        "required": true
+      },
+      "indirection2": {
+        "name": "userId",
+        "in": "query",
+        "description": "ID of the user",
+        "required": true
+      },
+      "userIdRef": {
+        "name": "userId",
+        "in": "query",
+        "description": "ID of the user",
+        "required": true
+      },
+      "externalRef": {
+        "name": "externalParameter",
+        "in": "query",
+        "required": true,
+        "description": "another ref"
+      }
+    }
+  }
+}

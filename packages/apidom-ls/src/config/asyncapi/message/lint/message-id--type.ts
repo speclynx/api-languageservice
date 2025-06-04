@@ -1,0 +1,18 @@
+import { DiagnosticSeverity } from 'vscode-languageserver-types';
+
+import ApilintCodes from '../../../codes.ts';
+import { LinterMeta } from '../../../../apidom-language-types.ts';
+
+const messageIdTypeLint: LinterMeta = {
+  code: ApilintCodes.ASYNCAPI2_MESSAGE_FIELD_MESSAGE_ID_TYPE,
+  source: 'apilint',
+  message: "'messageId' value must be a string",
+  severity: DiagnosticSeverity.Error,
+  linterFunction: 'apilintType',
+  linterParams: ['string'],
+  marker: 'value',
+  target: 'messageId',
+  data: {},
+};
+
+export default messageIdTypeLint;

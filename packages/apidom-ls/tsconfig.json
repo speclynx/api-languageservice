@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+  },
+  "ts-node": {
+    "files": true
+  }
+}
