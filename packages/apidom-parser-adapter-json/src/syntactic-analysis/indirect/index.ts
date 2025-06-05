@@ -13,7 +13,7 @@ import JsonAstVisitor, {
 /**
  * @public
  */
-export type { Tree } from 'web-tree-sitter';
+export type { Tree };
 
 /**
  * This version of syntactic analysis does following transformations:
