@@ -1,5 +1,4 @@
-import { Tree as NodeTree } from 'tree-sitter';
-import { Tree as WebTree } from 'web-tree-sitter';
+import { Tree } from 'web-tree-sitter';
 import { ParseResultElement } from '@swagger-api/apidom-core';
 import { visit } from '@swagger-api/apidom-ast';
 
@@ -14,7 +13,7 @@ import JsonAstVisitor, {
 /**
  * @public
  */
-export type Tree = WebTree | NodeTree;
+export type { Tree } from 'web-tree-sitter';
 
 /**
  * This version of syntactic analysis does following transformations:

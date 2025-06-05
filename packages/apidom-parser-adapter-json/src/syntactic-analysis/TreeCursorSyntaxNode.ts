@@ -1,12 +1,11 @@
-import { TreeCursor as NodeTreeCursor, Point as NodePoint } from 'tree-sitter';
-import { TreeCursor as WebTreeCursor, Point as WebPoint } from 'web-tree-sitter';
+import { TreeCursor, Point } from 'web-tree-sitter';
 
 class TreeCursorSyntaxNode {
   public readonly type: string;
 
-  public readonly startPosition: NodePoint | WebPoint;
+  public readonly startPosition: Point;
 
-  public readonly endPosition: NodePoint | WebPoint;
+  public readonly endPosition: Point;
 
   public readonly startIndex: number;
 
@@ -24,7 +23,7 @@ class TreeCursorSyntaxNode {
 
   public readonly children: TreeCursorSyntaxNode[] = [];
 
-  constructor(cursor: NodeTreeCursor | WebTreeCursor) {
+  constructor(cursor: TreeCursor) {
     this.type = cursor.nodeType;
     this.startPosition = cursor.startPosition;
     this.endPosition = cursor.endPosition;
@@ -49,12 +48,12 @@ class TreeCursorSyntaxNode {
     return undefined;
   }
 
-  setFieldName(cursor: NodeTreeCursor | WebTreeCursor) {
+  setFieldName(cursor: TreeCursor) {
     this.fieldName = cursor.currentFieldName;
     return this;
   }
 
-  setHasError(cursor: NodeTreeCursor | WebTreeCursor) {
+  setHasError(cursor: TreeCursor) {
     this.hasError = cursor.currentNode.hasError;
     return this;
   }

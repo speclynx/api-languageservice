@@ -30,7 +30,7 @@
     "build:es": "npm run build:wasm && npm run build:wasm:copy && cross-env BABEL_ENV=es babel src --out-dir src --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward'",
     "build:cjs": "npm run build:wasm && npm run build:wasm:copy && BABEL_ENV=cjs babel src --out-dir src --extensions '.ts' --out-file-extension '.cjs' --root-mode 'upward'",
     "build:umd:browser": "npm run build:wasm && npm run build:wasm:copy && cross-env BABEL_ENV=browser webpack --config config/webpack/browser.config.js --progress",
-    "build:wasm": "node ../../scripts/file-exists.js ../../node_modules/tree-sitter-json/tree-sitter-json.wasm && exit 0 || cd ../../node_modules/tree-sitter-json && tree-sitter generate ./grammar.js && tree-sitter build --wasm && node-gyp rebuild",
+    "build:wasm": "node ../../scripts/file-exists.js ../../node_modules/tree-sitter-json/tree-sitter-json.wasm && exit 0 || cd ../../node_modules/tree-sitter-json && tree-sitter generate ./grammar.js && tree-sitter build --wasm",
     "build:wasm:copy": "copyfiles -u 4 ../../node_modules/tree-sitter-json/tree-sitter-json.wasm wasm",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
@@ -59,7 +59,6 @@
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0",
-    "tree-sitter": "=0.22.1",
     "tree-sitter-json": "=0.24.8",
     "web-tree-sitter": "=0.24.5"
   },

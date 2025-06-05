@@ -1,5 +1,4 @@
-import { Tree as NodeTree } from 'tree-sitter';
-import { Tree as WebTree } from 'web-tree-sitter';
+import { Tree } from 'web-tree-sitter';
 import { visit, getNodeType as getCSTNodeType, isNode as isCSTNode } from '@swagger-api/apidom-ast';
 import {
   ParseResultElement,
@@ -50,7 +49,7 @@ const isNode = (element: any) => isElement(element) || isCSTNode(element);
  * Single traversal pass is needed to get from CST to ApiDOM.
  * @public
  */
-const analyze = (cst: NodeTree | WebTree, { sourceMap = false } = {}): ParseResultElement => {
+const analyze = (cst: Tree, { sourceMap = false } = {}): ParseResultElement => {
   const visitor = new CstVisitor();
   const cursor = cst.walk();
   const iterator = new TreeCursorIterator(cursor);

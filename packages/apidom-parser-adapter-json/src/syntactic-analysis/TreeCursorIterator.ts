@@ -1,12 +1,11 @@
-import { TreeCursor as NodeTreeCursor } from 'tree-sitter';
-import { TreeCursor as WebTreeCursor } from 'web-tree-sitter';
+import { TreeCursor } from 'web-tree-sitter';
 
 import TreeCursorSyntaxNode from './TreeCursorSyntaxNode.ts';
 
 class TreeCursorIterator {
   protected readonly cursor;
 
-  constructor(cursor: NodeTreeCursor | WebTreeCursor) {
+  constructor(cursor: TreeCursor) {
     this.cursor = cursor;
   }
 
