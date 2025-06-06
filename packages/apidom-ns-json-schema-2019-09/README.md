@@ -12,7 +12,7 @@ You can install this package via [npm CLI](https://docs.npmjs.com/cli) by runnin
 
 ## JSON Schema 2019-09 namespace
 
-JSON Schema 2019-09 namespace consists of [number of elements](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-json-schema-2019-09/src/elements) implemented on top
+JSON Schema 2019-09 namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-2019-09/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
@@ -39,7 +39,7 @@ const linkDescriptionElement = new LinkDescriptionElement();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/predicates.ts)
+This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
@@ -53,8 +53,8 @@ isJSONSchemaElement(jsonSchemaElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L4).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
 import { visit } from '@char0n/apidom-core';

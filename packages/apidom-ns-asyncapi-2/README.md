@@ -21,7 +21,7 @@ You can install this package via [npm CLI](https://docs.npmjs.com/cli) by runnin
 
 ## AsyncApi 2.x.y namespace
 
-AsyncApi 2.x.y namespace consists of [number of elements](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-asyncapi-2/src/elements) implemented on top
+AsyncApi 2.x.y namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-asyncapi-2/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/main/lib/primitives).
 
 ```js
@@ -48,7 +48,7 @@ const asyncApiElement = new AsyncApi2Element();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/predicates.ts)
+This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
@@ -62,8 +62,8 @@ isAsyncApi2Element(asyncApiElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-asyncapi-2/src/traversal/visitor.ts#L4).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
 import { visit } from '@char0n/apidom-core';

@@ -4,7 +4,7 @@
   "description": "ApiDOM Monorepo",
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://npm.pkg.github.com"
   },
   "private": true,
   "type": "module",
@@ -33,14 +33,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swagger-api/apidom.git"
+    "url": "git+https://github.com/char0n/apidom.git"
   },
   "author": "Vladimir Gorej",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/swagger-api/apidom/issues"
+    "url": "https://github.com/char0n/apidom/issues"
   },
-  "homepage": "https://github.com/swagger-api/apidom#readme",
+  "homepage": "https://github.com/char0n/apidom#readme",
   "workspaces": [
     "./packages/*"
   ],

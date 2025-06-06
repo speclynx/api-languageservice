@@ -4,18 +4,18 @@
   "version": "1.0.0-beta.40",
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swagger-api/apidom.git"
+    "url": "git+https://github.com/char0n/apidom.git"
   },
   "author": "Francesco Tumanischvili",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/swagger-api/apidom/issues"
+    "url": "https://github.com/char0n/apidom/issues"
   },
-  "homepage": "https://github.com/swagger-api/apidom#readme",
+  "homepage": "https://github.com/char0n/apidom#readme",
   "type": "module",
   "unpkg": "./dist/apidom-ls.browser.min.js",
   "main": "./src/index.cjs",

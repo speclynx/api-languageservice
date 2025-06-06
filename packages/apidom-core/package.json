@@ -4,7 +4,7 @@
   "description": "Tools for manipulating ApiDOM structures.",
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://npm.pkg.github.com"
   },
   "type": "module",
   "sideEffects": [
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swagger-api/apidom.git"
+    "url": "git+https://github.com/char0n/apidom.git"
   },
   "author": "Vladimír Gorej",
   "license": "Apache-2.0",

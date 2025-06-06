@@ -10,7 +10,7 @@ This package is divided into three (3) main components:
 
 ## Installation
 
-After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
+After [prerequisites](https://github.com/char0n/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
@@ -53,7 +53,7 @@ Both of above imports are equivalent. This approach is suitable for **Node.js** 
 
 ## Parse component
 
-Parse component consists of implementation of default [parser plugins](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers).
+Parse component consists of implementation of default [parser plugins](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers).
 Defaults parser plugin is a specialized wrapper that wraps one of the ApiDOM parser adapter into specialized API.
 Standard ApiDOM parser adapter can only parse strings. Parser plugins are capable of parsing local filesystem URIs and network URLs.
 
@@ -101,7 +101,7 @@ so providing it is always a better option.
 
 Parse component comes with number of default parser plugins.
 
-#### [apidom-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/apidom-json)
+#### [apidom-json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/apidom-json)
 
 Parses dehydrated ApiDOM structure and hydrates it.
 This parser plugin is uniquely identified by `apidom-json` name.
@@ -115,9 +115,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-2)
+#### [openapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-2)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
 and is uniquely  identified by `openapi-json-2` name.
 
 Supported media types are:
@@ -129,9 +129,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-0)
+#### [openapi-json-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-0)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
 and is uniquely  identified by `openapi-json-3-0` name.
 
 Supported media types are:
@@ -151,9 +151,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-2)
+#### [openapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-2)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
 and is uniquely  identified by `openapi-yaml-2` name.
 
 Supported media types are:
@@ -165,9 +165,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-0)
+#### [openapi-yaml-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-0)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
 and is uniquely  identified by `openapi-yaml-3-0` name.
 
 Supported media types are:
@@ -187,9 +187,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-1)
+#### [openapi-json-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-1)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
 and is uniquely  identified by `openapi-json-3-1` name.
 
 Supported media types are:
@@ -201,9 +201,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-1)
+#### [openapi-yaml-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-1)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
 and is uniquely  identified by `openapi-yaml-3-1` name.
 
 Supported media types are:
@@ -215,9 +215,9 @@ Supported media types are:
 ]
 ```
 
-#### [asyncapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-json-2)
+#### [asyncapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-json-2)
 
-Wraps [@char0n/apidom-parser-adapter-asyncapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
+Wraps [@char0n/apidom-parser-adapter-asyncapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
 and is uniquely identified by `asyncapi-json-2` name.
 
 Supported media types are:
@@ -241,9 +241,9 @@ Supported media types are:
 ]
 ```
 
-#### [asyncapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-yaml-2)
+#### [asyncapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-yaml-2)
 
-Wraps [@char0n/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
+Wraps [@char0n/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
 and is uniquely  identified by `asyncapi-yaml-2` name.
 
 
@@ -269,9 +269,9 @@ Supported media types are:
 ]
 ```
 
-#### [arazzo-json-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-json-1)
+#### [arazzo-json-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-json-1)
 
-Wraps [@char0n/apidom-parser-adapter-arazzo-json-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
+Wraps [@char0n/apidom-parser-adapter-arazzo-json-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
 and is uniquely identified by `arazzo-json-1` name.
 
 Supported media types are:
@@ -285,9 +285,9 @@ Supported media types are:
 ]
 ```
 
-#### [arazzo-yaml-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-yaml-1)
+#### [arazzo-yaml-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-yaml-1)
 
-Wraps [@char0n/apidom-parser-adapter-arazzo-yaml-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
+Wraps [@char0n/apidom-parser-adapter-arazzo-yaml-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
 and is uniquely identified by `arazzo-yaml-1` name.
 
 Supported media types are:
@@ -301,9 +301,9 @@ Supported media types are:
 ]
 ```
 
-#### [api-design-systems-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-json)
+#### [api-design-systems-json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-json)
 
-Wraps [@char0n/apidom-parser-adapter-api-design-systsems-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
+Wraps [@char0n/apidom-parser-adapter-api-design-systsems-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
 and is uniquely identified by `api-design-systems-json` name.
 
 Supported media types are:
@@ -315,9 +315,9 @@ Supported media types are:
 ]
 ```
 
-#### [api-design-systems-yaml](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-yaml)
+#### [api-design-systems-yaml](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-yaml)
 
-Wraps [@char0n/apidom-parser-adapter-api-design-systems-yaml](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
+Wraps [@char0n/apidom-parser-adapter-api-design-systems-yaml](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
 and is uniquely  identified by `api-design-systems-yaml` name.
 
 
@@ -330,9 +330,9 @@ Supported media types are:
 ]
 ```
 
-#### [json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/json)
+#### [json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/json)
 
-Wraps [@char0n/apidom-parser-adapter-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-json) package
+Wraps [@char0n/apidom-parser-adapter-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-json) package
 and is uniquely  identified by `json` name.
 
 
@@ -344,9 +344,9 @@ Supported media types are:
 ]
 ```
 
-#### [yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/yaml-1-2)
+#### [yaml-1-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/yaml-1-2)
 
-Wraps [@char0n/apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
+Wraps [@char0n/apidom-parser-adapter-yaml-1-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
 and is uniquely  identified by `yaml-1-2` name.
 
 
@@ -359,7 +359,7 @@ Supported media types are:
 ]
 ```
 
-#### [binary](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/binary)
+#### [binary](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/binary)
 
 Can parse any binary or non-binary file and return it's content as `base64` encoded string.
 This parser is uniquely identified by `binary` name.
@@ -370,7 +370,7 @@ This parser is uniquely identified by `binary` name.
 #### Parser plugins execution order
 
 It's important to understand that default parser plugins are run in specific order. The order is determined
-by the [options.parse.parsers](https://github.com/swagger-api/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L22) option.
+by the [options.parse.parsers](https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L22) option.
 Every plugin is pulled from `options.parse.parsers` option, and it's `canParse` method is called to determine
 whether the plugin can parse the URI. If `canParse` returns `true`, `parse` method of plugin is called
 and result from parsing is returned. No subsequent parser plugins are run. If `canParse` returns
@@ -679,14 +679,14 @@ file contents for a Parse component to parse.
 
 ### File resolution
 
-Contains implementation of default [resolver plugins](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/resolvers).
+Contains implementation of default [resolver plugins](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/resolvers).
 Defaults resolver plugin is an object which knows how to obtain contents of a file represented by URI or URL.
 
 #### Resolver plugins
 
 File resolution comes with two (2) default resolver plugins.
 
-##### [FileResolver](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/file)
+##### [FileResolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/file)
 
 This resolver plugin is responsible for resolving a local file.
 It detects if the provided URI represents a filesystem path and if so,
@@ -734,7 +734,7 @@ await resolve('/home/user/oas.json', {
 });
 ```
 
-##### [HTTPResolverAxios](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios)
+##### [HTTPResolverAxios](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios)
 
 This resolver plugin is responsible for resolving a remote file represented by HTTP(s) URL.
 It detects if the provided URI represents an HTTP(s) URL and if so,
@@ -838,7 +838,7 @@ const string = buffer.toString('utf-8');
 ##### Resolver plugins execution order
 
 It's important to understand that default resolver plugins are run in specific order. The order is determined
-by the [options.resolve.resolvers]https://github.com/swagger-api/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L36) option.
+by the [options.resolve.resolvers]https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L36) option.
 Every plugin is pulled from `options.resolve.resolvers` option, and it's `canRead` method is called to determine
 whether the plugin can resolve the URI. If `canRead` returns `true`, `read` method of plugin is called
 and result from reading the file is returned. No subsequent resolver plugins are run.
@@ -915,7 +915,7 @@ await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main
 });
 ```
 
-Both of above examples will be using [HttpResolverAxios](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios) plugin
+Both of above examples will be using [HttpResolverAxios](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios) plugin
 (as we're trying to resolve HTTP(s) URL) and the `timeout` of resolution will increase from **default 3 seconds**
 to 10 seconds.
 
@@ -1053,7 +1053,7 @@ await readFile('/home/user/oas.json', {
   }
 });
 ```
-New resolver plugins can be based on two predefined stamps: [Resolver](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/Resolver.ts) and [HTTPResolver](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/HttpResolver.ts).
+New resolver plugins can be based on two predefined stamps: [Resolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/Resolver.ts) and [HTTPResolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/HttpResolver.ts).
 
 ##### Manipulating resolver plugins
 
@@ -1062,7 +1062,7 @@ Resolver plugins can be added, removed, replaced or reordered. We've already cov
 ### External resolution
 
 External resolution is a process of resolving all external dependencies of a particular
-document using a specific [external resolution strategy](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies). External resolution strategy is determined by
+document using a specific [external resolution strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies). External resolution strategy is determined by
 asserting on `mediaType` option. [File Resolution](#file-resolution) (file content is read/fetched)
 and [Parse component](#parse-component) (file content is parsed) are used under the hood.
 
@@ -1095,7 +1095,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 
 **Externally resolving an ApiDOM fragment:**
 
-When externally resolving an ApiDOM fragment, [baseURI](https://github.com/swagger-api/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
+When externally resolving an ApiDOM fragment, [baseURI](https://github.com/char0n/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
 resolve option needs to be provided to have a starting point for external dependency resolution.
 `mediaType` parse option is unnecessary as we can directly assert the type of ApiDOM fragment.
 
@@ -1125,16 +1125,16 @@ for (const ref of refSet) {
 // /home/user/ex.json
 ```
 
-[ReferenceSet](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/ReferenceSet.ts) is a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-like structure containing list of [Reference](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/Reference.ts) objects.
+[ReferenceSet](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/ReferenceSet.ts) is a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+like structure containing list of [Reference](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/Reference.ts) objects.
 Every Reference object represents single external dependency.
 
-#### [External resolution strategies](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies)
+#### [External resolution strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies)
 
 External resolution strategy determines how a document is externally resolved. Depending on document `mediaType`
 every strategy differs significantly. Resolve component comes with two (2) default external resolution strategies.
 
-##### [apidom](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/apidom)
+##### [apidom](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/apidom)
 
 External resolution strategy for understanding and resolving remote elements referenced with [Ref Element](https://apielements.org/en/latest/element-definitions.html?highlight=referencing#ref-element).
 
@@ -1147,7 +1147,7 @@ Supported media types:
 ]
 ```
 
-##### [asyncapi-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/asyncapi-2)
+##### [asyncapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/asyncapi-2)
 
 External resolution strategy for understanding and resolving external dependencies of [AsyncApi 2.x.y](https://github.com/asyncapi/spec/blob/master/spec/asyncapi.md) definitions.
 
@@ -1179,7 +1179,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-2)
+##### [openapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-2)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) definitions.
 
@@ -1193,7 +1193,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-0)
+##### [openapi-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-0)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
 
@@ -1219,7 +1219,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-1)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -1236,7 +1236,7 @@ Supported media types:
 ##### External resolution strategies execution order
 
 It's important to understand that default external resolution strategies are run in specific order. The order is determined
-by the [options.resolve.strategies](https://github.com/swagger-api/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L41) option.
+by the [options.resolve.strategies](https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L41) option.
 Every strategy is pulled from `options.resolve.strategies` option and its `canResolve` method is called to determine
 whether the strategy can externally resolve the URI. If `canResolve` returns `true`, `resolve` method of strategy is called
 and result from external resolution is returned. No subsequent strategies  are run. If `canResolve` returns
@@ -1408,7 +1408,7 @@ await resolve('/home/user/oas.json', {
   }
 });
 ```
-New strategies can be based on a predefined stamp called [ResolveStrategy](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/resolve/strategies/ResolveStrategy.ts).
+New strategies can be based on a predefined stamp called [ResolveStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/strategies/ResolveStrategy.ts).
 
 ##### Manipulating external resolution strategies
 
@@ -1417,7 +1417,7 @@ External resolution strategies can be added, removed, replaced or reordered. We'
 ## Dereference component
 
 Dereferencing is a process of transcluding referencing element (internal or external) with a referenced element
-using a specific [dereference strategy](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies). Simply put, dereferencing is a process of reference removal.
+using a specific [dereference strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies). Simply put, dereferencing is a process of reference removal.
 Dereferencing strategy is determined by asserting on `mediaType` option. [File Resolution](#file-resolution) (file content is read/fetched)
 and [Parse component](#parse-component) (file content is parsed) are used under the hood.
 
@@ -1450,7 +1450,7 @@ await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/m
 
 **Dereferencing an ApiDOM fragment:**
 
-When dereferencing an ApiDOM fragment, [baseURI](https://github.com/swagger-api/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
+When dereferencing an ApiDOM fragment, [baseURI](https://github.com/char0n/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
 resolve option needs to be provided to have a starting point for external dependency resolution.
 `mediaType` parse option is unnecessary as we can directly assert the type of ApiDOM fragment.
 
@@ -1498,12 +1498,12 @@ const dereferenced = await dereferenceApiDOM(apidom, {
  */
 ```
 
-#### [Dereference strategies](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies)
+#### [Dereference strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies)
 
 Dereference strategy determines how a document is internally or externally dereferenced. Depending on document `mediaType` option,
 every strategy differs significantly. `Dereference component` comes with four (4) default dereference strategies.
 
-#### [apidom](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/apidom)
+#### [apidom](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/apidom)
 
 Dereference strategy for dereferencing ApiDOM using [Ref Element](https://apielements.org/en/latest/element-definitions.html?highlight=referencing#ref-element).
 Ref Element MAY be used to reference elements in remote documents or elements in the local document.
@@ -1518,7 +1518,7 @@ Supported media types:
 ]
 ```
 
-##### [asyncapi-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/asyncapi-2)
+##### [asyncapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/asyncapi-2)
 
 Dereference strategy for dereferencing [AsyncApi 2.x.y](https://github.com/asyncapi/spec/blob/master/spec/asyncapi.md) definitions.
 
@@ -1550,7 +1550,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-2)
+##### [openapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-2)
 
 Dereference strategy for dereferencing [OpenApi 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) definitions.
 
@@ -1564,7 +1564,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-0)
+##### [openapi-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-0)
 
 Dereference strategy for dereferencing [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
 
@@ -1590,7 +1590,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-1)
 
 Dereference strategy for dereferencing [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -1607,7 +1607,7 @@ Supported media types:
 ##### Dereference strategies execution order
 
 It's important to understand that default dereference strategies are run in specific order. The order is determined
-by the [options.dereference.strategies](https://github.com/swagger-api/apidom/blob/b3a391481360004d3d4a56c1467cece557442ec8/apidom/packages/apidom-reference/src/options/index.ts#L88) option.
+by the [options.dereference.strategies](https://github.com/char0n/apidom/blob/b3a391481360004d3d4a56c1467cece557442ec8/apidom/packages/apidom-reference/src/options/index.ts#L88) option.
 Every strategy is pulled from `options.dereference.strategies` option and it's `canDereference` method is called to determine
 whether the strategy can dereference the URI. If `canDereference` returns `true`, `dereference` method of strategy is called
 and result from dereferencing is returned. No subsequent strategies  are run. If `canDereference` returns
@@ -1813,7 +1813,7 @@ await dereference('/home/user/oas.json', {
 });
 ```
 
-New strategies can be based on a predefined stamp called [DereferenceStrategy](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/dereference/strategies/DereferenceStrategy.ts).
+New strategies can be based on a predefined stamp called [DereferenceStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/dereference/strategies/DereferenceStrategy.ts).
 
 ##### Manipulating dereference strategies
 
@@ -1844,7 +1844,7 @@ const dereferenced = await dereference('/home/user/oas.json', {
 ## Bundle component
 
 Bundling is a convenient way to package up resources spread across multiple files in a single file
-(**Compound Document**) using a specific [bundle strategy](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/bundle/strategies).
+(**Compound Document**) using a specific [bundle strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies).
 
 The bundling process for creating a Compound Document is defined as taking references (such as "$ref")
 to an external Resource and embedding the referenced Resources within the referring document.
@@ -1881,12 +1881,12 @@ await bundle('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/e
 }); // Promise<ParseResultElement>
 ```
 
-#### [Bundle strategies](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/bundle/strategies)
+#### [Bundle strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies)
 
 Bundle strategy determines how a document is bundled into a Compound Document. Depending on document `mediaType` option,
 every strategy differs significantly. `Bundle component` comes with single (1) default bundle strategy.
 
-##### [openapi-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/bundle/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies/openapi-3-1)
 
 Bundle strategy for bundling [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -2051,7 +2051,7 @@ await bundle('/home/user/oas.json', {
 });
 ```
 
-New strategies can be based on a predefined stamp called [BundleStrategy](https://github.com/swagger-api/apidom/blob/main/packages/apidom-reference/src/bundle/strategies/BundleStrategy.ts).
+New strategies can be based on a predefined stamp called [BundleStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/bundle/strategies/BundleStrategy.ts).
 
 ##### Manipulating bundle strategies
 

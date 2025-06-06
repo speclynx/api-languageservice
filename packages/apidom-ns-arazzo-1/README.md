@@ -12,7 +12,7 @@ You can install this package via [npm CLI](https://docs.npmjs.com/cli) by runnin
 
 ## Arazzo 1.0.1 namespace
 
-Arazzo 1.0.1 namespace consists of [number of elements](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-arazzo-1/src/elements) implemented on top
+Arazzo 1.0.1 namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-arazzo-1/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
@@ -39,7 +39,7 @@ const arazzoElement = new ArazzoSpecification1Element();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-arazzo-1/src/predicates.ts)
+This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-arazzo-1/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
@@ -53,8 +53,8 @@ isArazzoSpecification1Element(arazzoElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts) and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
 import { visit } from '@char0n/apidom-core';

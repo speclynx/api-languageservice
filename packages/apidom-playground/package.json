@@ -4,11 +4,11 @@
   "private": true,
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swagger-api/apidom.git"
+    "url": "git+https://github.com/char0n/apidom.git"
   },
   "version": "0.1.0",
   "license": "Apache-2.0",

@@ -6,7 +6,7 @@
 
 # ApiDOM
 
-[![Build Status](https://github.com/swagger-api/apidom/actions/workflows/build.yml/badge.svg)](https://github.com/swagger-api/apidom/actions)
+[![Build Status](https://github.com/char0n/apidom/actions/workflows/build.yml/badge.svg)](https://github.com/char0n/apidom/actions)
 [![Dependabot enabled](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
 
 
@@ -116,7 +116,7 @@ of the ApiDOM. ApiDOM Playground is build and deployed whenever the new commit l
 
 ![image](https://user-images.githubusercontent.com/193286/145010522-5d85e34b-8d28-4a07-9ee2-b28807a013cd.png)
 
-ApiDOM Playground is available at [https://swagger-api.github.io/apidom/](https://swagger-api.github.io/apidom/)
+ApiDOM Playground is available at [https://char0n.github.io/apidom/](https://char0n.github.io/apidom/)
 
 ## Development
 
@@ -131,7 +131,7 @@ are the minimum required versions that this repo runs on, but we recommend using
 Run the following commands to setup the repository for local development:
 
 ```shell
- $ git clone https://github.com/swagger-api/apidom.git
+ $ git clone https://github.com/char0n/apidom.git
  $ cd apidom
  $ npm i
  $ npm run build
@@ -148,7 +148,7 @@ inside the `apidom-dev` docker container.
 **Build the ApiDOM docker image:**
 
 ```sh
- $ git clone https://github.com/swagger-api/apidom.git
+ $ git clone https://github.com/char0n/apidom.git
  $ cd apidom
  $ docker-compose up
 ```
@@ -170,7 +170,7 @@ $ docker exec -it apidom-dev npm run test
 
 ### Setting up via GitHub Codespaces
 
-This repository is [configured](https://github.com/swagger-api/apidom/tree/main/.devcontainer) to work with [GitHub Codespaces](https://github.com/codespaces).
+This repository is [configured](https://github.com/char0n/apidom/tree/main/.devcontainer) to work with [GitHub Codespaces](https://github.com/codespaces).
 Create a new codespace by picking this repository from the list of available repositories.
 Once the codespace is created, run following commands inside the codespace terminal:
 
@@ -342,8 +342,7 @@ If you want to just unlink particular monorepo packages, you have to enumerate t
 
 ## Contributing
 
-This project uses [swagger-api](https://github.com/swagger-api) GitHub organizations contributing guide.
-You can obtain copy of this contributing guide at [https://github.com/swagger-api/.github/blob/master/CONTRIBUTING.md](https://github.com/swagger-api/.github/blob/master/CONTRIBUTING.md).
+You can obtain copy of this contributing guide at [https://github.com/char0n/.github/blob/master/CONTRIBUTING.md](https://github.com/char0n/.github/blob/master/CONTRIBUTING.md).
 Read our contributing guide to learn about our development process, how to propose bugfixes and improvements,
 and how to build and test your changes to ApiDOM.
 
@@ -563,8 +562,8 @@ requires 2 traversals instead of a single one. We can find a way in the future h
 
 ## License
 
-ApiDOM is licensed under [Apache 2.0 license](https://github.com/swagger-api/apidom/blob/main/LICENSES/Apache-2.0.txt).
-ApiDOM comes with an explicit [NOTICE](https://github.com/swagger-api/apidom/blob/main/NOTICE) file
+ApiDOM is licensed under [Apache 2.0 license](https://github.com/char0n/apidom/blob/main/LICENSES/Apache-2.0.txt).
+ApiDOM comes with an explicit [NOTICE](https://github.com/char0n/apidom/blob/main/NOTICE) file
 containing additional legal notices and information.
 
 This project uses [REUSE specification](https://reuse.software/spec/) that defines a standardized method
@@ -572,6 +571,6 @@ for declaring copyright and licensing for software projects.
 
 ## Software Bill Of Materials (SBOM)
 
-Software Bill Of materials is available in this repository [dependency graph](https://github.com/swagger-api/apidom/network/dependencies).
+Software Bill Of materials is available in this repository [dependency graph](https://github.com/char0n/apidom/network/dependencies).
 Click on `Export SBOM` button to download the SBOM in [SPDX format](https://spdx.dev/).
 
