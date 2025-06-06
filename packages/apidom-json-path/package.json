@@ -1,6 +1,6 @@
 {
   "name": "@char0n/apidom-json-path",
-  "version": "1.0.0-beta.40",
+  "version": "1.0.0",
   "description": "Evaluate JSONPath expressions against ApiDOM.",
   "publishConfig": {
     "access": "restricted",
@@ -38,9 +38,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.0.0-beta.40",
-    "@char0n/apidom-error": "^1.0.0-beta.40",
-    "@char0n/apidom-json-pointer": "^1.0.0-beta.40",
+    "@char0n/apidom-core": "^1.0.0",
+    "@char0n/apidom-error": "^1.0.0",
+    "@char0n/apidom-json-pointer": "^1.0.0",
     "jsonpath-plus": "^10.0.6"
   },
   "files": [
