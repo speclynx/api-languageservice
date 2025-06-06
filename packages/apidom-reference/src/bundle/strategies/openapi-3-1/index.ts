@@ -1,5 +1,5 @@
-import { ParseResultElement } from '@swagger-api/apidom-core';
-import { mediaTypes, isOpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { ParseResultElement } from '@char0n/apidom-core';
+import { mediaTypes, isOpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 import File from '../../../File.ts';
 import BundleStrategy, { BundleStrategyOptions } from '../BundleStrategy.ts';

@@ -1,6 +1,6 @@
 import { Buffer } from 'node:buffer';
 import { assert } from 'chai';
-import { StringElement, isParseResultElement, isStringElement } from '@swagger-api/apidom-core';
+import { StringElement, isParseResultElement, isStringElement } from '@char0n/apidom-core';
 
 import File from '../../../../src/File.ts';
 import BinaryParser from '../../../../src/parse/parsers/binary/index-node.ts';

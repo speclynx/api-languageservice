@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
-import { isParseResultElement } from '@swagger-api/apidom-core';
+import { isParseResultElement } from '@char0n/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import { ParserError, File } from '../../../../src/index.ts';

@@ -1,5 +1,5 @@
-import { ReferenceElement } from '@swagger-api/apidom-ns-openapi-3-1';
-import { AnnotationElement } from '@swagger-api/apidom-core';
+import { ReferenceElement } from '@char0n/apidom-ns-openapi-3-1';
+import { AnnotationElement } from '@char0n/apidom-core';
 
 type ReferenceSummaryPluginOptions = {
   annotations: AnnotationElement[];

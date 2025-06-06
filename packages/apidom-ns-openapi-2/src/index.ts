@@ -9,12 +9,12 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 export {
   isJSONReferenceElement,
   isJSONReferenceLikeElement,
   JSONReferenceElement,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 export { default as mediaTypes, OpenAPIMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';

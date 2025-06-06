@@ -4,8 +4,8 @@ import {
   SecuritySchemeElement,
   isSecuritySchemeElement,
   isComponentsElement,
-} from '@swagger-api/apidom-ns-openapi-3-1';
-import { AnnotationElement, toValue, isObjectElement, Element } from '@swagger-api/apidom-core';
+} from '@char0n/apidom-ns-openapi-3-1';
+import { AnnotationElement, toValue, isObjectElement, Element } from '@char0n/apidom-core';
 
 import type { Toolbox } from '../toolbox.ts';
 

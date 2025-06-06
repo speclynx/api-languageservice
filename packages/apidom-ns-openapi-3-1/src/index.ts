@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 export { default as mediaTypes, OpenAPIMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -39,24 +39,24 @@ export type {
 } from './refractor/toolbox.ts';
 export { default as specificationObj } from './refractor/specification.ts';
 
-export { AlternatingVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { AlternatingVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { FixedFieldsVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { FixedFieldsVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { MapVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { MapVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { MixedFieldsVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { MixedFieldsVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { PatternedFieldsVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { PatternedFieldsVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { FallbackVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { FallbackVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { SpecificationExtensionVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { SpecificationExtensionVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { SpecificationVisitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { SpecificationVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export { Visitor } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { VisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
+export { AlternatingVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { AlternatingVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { FixedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { FixedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { MapVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { MapVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { MixedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { MixedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { PatternedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { PatternedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { FallbackVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { FallbackVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { SpecificationExtensionVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { SpecificationExtensionVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { SpecificationVisitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { SpecificationVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { Visitor } from '@char0n/apidom-ns-openapi-3-0';
+export type { VisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
 
 export type {
   default as CallbackVisitor,
@@ -66,15 +66,15 @@ export type {
 export type {
   ComponentsCallbacksVisitor,
   ComponentsCallbacksVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ComponentsExamplesVisitor,
   ComponentsExamplesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ComponentsHeadersVisitor,
   ComponentsHeadersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ComponentsVisitor,
   ComponentsVisitorOptions,
@@ -83,19 +83,19 @@ export type {
 export type {
   ComponentsLinksVisitor,
   ComponentsLinksVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ComponentsParametersVisitor,
   ComponentsParametersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ComponentsRequestBodiesVisitor,
   ComponentsRequestBodiesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ComponentsResponsesVisitor,
   ComponentsResponsesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ComponentsPathItemsVisitor,
   PathItemsVisitorOptions as ComponentsPathItemsVisitorOptions,
@@ -107,7 +107,7 @@ export type {
 export type {
   ComponentsSecuritySchemesVisitor,
   ComponentsSecuritySchemesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ContactVisitor,
   ContactVisitorOptions,
@@ -121,11 +121,11 @@ export type {
 export type {
   DiscriminatorMappingVisitor,
   DiscriminatorMappingVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   EncodingHeadersVisitor,
   EncodingHeadersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as EncodingVisitor,
   EncodingVisitorOptions,
@@ -134,7 +134,7 @@ export type {
 export type {
   ExampleExternalValueVisitor,
   ExampleExternalValueVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ExampleVisitor,
   ExampleVisitorOptions,
@@ -148,11 +148,11 @@ export type {
 export type {
   HeaderContentVisitor,
   HeaderContentVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   HeaderExamplesVisitor,
   HeaderExamplesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as HeaderVisitor,
   HeaderVisitorOptions,
@@ -161,16 +161,13 @@ export type {
 export type {
   HeaderSchemaVisitor,
   HeaderSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as InfoVisitor,
   InfoVisitorOptions,
   BaseInfoVisitor,
 } from './refractor/visitors/open-api-3-1/info/index.ts';
-export type {
-  InfoVersionVisitor,
-  InfoVersionVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+export type { InfoVersionVisitor, InfoVersionVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as LicenseVisitor,
   LicenseVisitorOptions,
@@ -184,23 +181,23 @@ export type {
 export type {
   LinkOperationIdVisitor,
   LinkOperationIdVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   LinkOperationRefVisitor,
   LinkOperationRefVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   LinkParametersVisitor,
   LinkParametersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   MediaTypeEncodingVisitor,
   MediaTypeEncodingVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   MediaTypeExamplesVisitor,
   MediaTypeExamplesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as MediaTypeVisitor,
   MediaTypeVisitorOptions,
@@ -209,7 +206,7 @@ export type {
 export type {
   MediaTypeSchemaVisitor,
   MediaTypeSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as OAuthFlowVisitor,
   OAuthFlowVisitorOptions,
@@ -218,7 +215,7 @@ export type {
 export type {
   OAuthFlowScopesVisitor,
   OAuthFlowScopesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as OAuthFlowsVisitor,
   OAuthFlowsVisitorOptions,
@@ -227,7 +224,7 @@ export type {
 export type {
   OperationCallbacksVisitor,
   OperationCallbacksVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as OperationVisitor,
   OperationVisitorOptions,
@@ -236,31 +233,31 @@ export type {
 export type {
   OperationParametersVisitor,
   OperationParametersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   OperationRequestBodyVisitor,
   OperationRequestBodyVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   OperationSecurityVisitor,
   OperationSecurityVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   OperationServersVisitor,
   OperationServersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   OperationTagsVisitor,
   OperationTagsVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ParameterContentVisitor,
   ParameterContentVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ParameterExampleVisitor,
   ParameterExamplesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ParameterVisitor,
   ParameterVisitorOptions,
@@ -269,11 +266,11 @@ export type {
 export type {
   ParameterSchemaVisitor,
   ParameterSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   PathItem$RefVisitor,
   PathItem$RefVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as PathItemVisitor,
   PathItemVisitorOptions,
@@ -282,11 +279,11 @@ export type {
 export type {
   PathItemParametersVisitor,
   PathItemParametersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   PathItemServersVisitor,
   PathItemServersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as PathsVisitor,
   PathsVisitorOptions,
@@ -295,7 +292,7 @@ export type {
 export type {
   Reference$RefVisitor,
   Reference$RefVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ReferenceVisitor,
   ReferenceVisitorOptions,
@@ -304,7 +301,7 @@ export type {
 export type {
   RequestBodyContentVisitor,
   RequestBodyContentVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as RequestBodyVisitor,
   RequestBodyVisitorOptions,
@@ -313,11 +310,11 @@ export type {
 export type {
   ResponseContentVisitor,
   ResponseContentVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ResponseHeadersVisitor,
   ResponseHeadersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ResponseVisitor,
   ResponseVisitorOptions,
@@ -326,11 +323,11 @@ export type {
 export type {
   ResponseLinksVisitor,
   ResponseLinksVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ResponsesDefaultVisitor,
   ResponsesDefaultVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ResponsesVisitor,
   ResponsesVisitorOptions,
@@ -340,15 +337,15 @@ export type {
   default as Schema$defsVisitor,
   $defsVisitorOptions as Schema$defsVisitorOptions,
 } from './refractor/visitors/open-api-3-1/schema/$defsVisitor.ts';
-export type { ParentSchemaAwareVisitorOptions } from '@swagger-api/apidom-ns-json-schema-2020-12';
+export type { ParentSchemaAwareVisitorOptions } from '@char0n/apidom-ns-json-schema-2020-12';
 export type {
   $refVisitor as Schema$refVisitor,
   $refVisitorOptions as Schema$refVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-2020-12';
+} from '@char0n/apidom-ns-json-schema-2020-12';
 export type {
   $vocabularyVisitor as Schema$vocabularyVisitor,
   $vocabularyVisitorOptions as Schema$vocabularyVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-2020-12';
+} from '@char0n/apidom-ns-json-schema-2020-12';
 export type {
   default as SchemaAllOfVisitor,
   AllOfVisitorOptions as SchemaAllOfVisitorOptions,
@@ -360,7 +357,7 @@ export type {
 export type {
   DependentRequiredVisitor as SchemaDependentRequiredVisitor,
   DependentRequiredVisitorOptions as SchemaDependentRequiredVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-2020-12';
+} from '@char0n/apidom-ns-json-schema-2020-12';
 export type {
   default as SchemaDependentSchemasVisitor,
   DependentSchemasVisitorOptions as SchemaDependentSchemasVisitorOptions,
@@ -403,11 +400,11 @@ export type {
 export type {
   ServerVariableUrlVisitor,
   ServerVariableUrlVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   ServerVariableVariablesVisitor,
   ServerVariableVariablesVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as ServerVariableVisitor,
   ServerVariableVisitorOptions,
@@ -423,8 +420,8 @@ export type {
   XmlVisitorOptions,
   BaseXMLVisitor,
 } from './refractor/visitors/open-api-3-1/xml/index.ts';
-export type { ContentVisitor, ContentVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { ExamplesVisitor, ExamplesVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
+export type { ContentVisitor, ContentVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { ExamplesVisitor, ExamplesVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
 export type {
   default as OpenApi3_1Visitor,
   OpenApi3_1VisitorOptions,
@@ -437,16 +434,13 @@ export type {
   default as WebhooksVisitor,
   WebhooksVisitorOptions,
 } from './refractor/visitors/open-api-3-1/WebhooksVisitor.ts';
-export type { OpenapiVisitor, OpenapiVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export type {
-  ParametersVisitor,
-  ParametersVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
-export type { SecurityVisitor, SecurityVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { ServersVisitor, ServersVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
-export type { TagsVisitor, TagsVisitorOptions } from '@swagger-api/apidom-ns-openapi-3-0';
+export type { OpenapiVisitor, OpenapiVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { ParametersVisitor, ParametersVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { SecurityVisitor, SecurityVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { ServersVisitor, ServersVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { TagsVisitor, TagsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
 
-export type { SpecPath } from '@swagger-api/apidom-ns-openapi-3-0';
+export type { SpecPath } from '@char0n/apidom-ns-openapi-3-0';
 
 export {
   isCallbackElement,
@@ -484,7 +478,7 @@ export {
   isOpenApiExtension,
   isServerLikeElement,
   isServersElement,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 export { keyMap, getNodeType } from './traversal/visitor.ts';
 
@@ -559,6 +553,6 @@ export {
   ServersElement,
   ServerVariablesElement,
   TagsElement,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 export { default as ComponentsPathItemsElement } from './elements/nces/ComponentsPathItems.ts';
 export { default as WebhooksElement } from './elements/nces/Webhooks.ts';

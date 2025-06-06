@@ -4,7 +4,7 @@ import {
   dereference,
   refract as baseRefract,
   dispatchRefractorPlugins,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 import { path } from 'ramda';
 
 import type VisitorClass from './visitors/Visitor.ts';

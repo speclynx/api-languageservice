@@ -1,5 +1,5 @@
-import { BooleanElement } from '@swagger-api/apidom-core';
-import { LinkDescriptionElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { BooleanElement } from '@char0n/apidom-core';
+import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 import JSONSchema from './JSONSchema.ts';
 

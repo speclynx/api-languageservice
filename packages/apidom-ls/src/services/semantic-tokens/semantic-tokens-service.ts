@@ -12,7 +12,7 @@ import {
   isStringElement,
   traverse,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {

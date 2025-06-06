@@ -1,9 +1,9 @@
-import { Element } from '@swagger-api/apidom-core';
+import { Element } from '@char0n/apidom-core';
 import {
   specificationObj as JSONSchemaDraft7Specification,
   SchemaOrReferenceVisitorOptions,
   SchemaOrReferenceVisitor as SchemaOrReferenceVisitorType,
-} from '@swagger-api/apidom-ns-json-schema-draft-7';
+} from '@char0n/apidom-ns-json-schema-draft-7';
 
 import { isReferenceElement } from '../../../../predicates.ts';
 import SchemaElement from '../../../../elements/Schema.ts';

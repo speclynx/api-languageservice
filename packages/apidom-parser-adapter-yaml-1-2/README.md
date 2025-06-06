@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-yaml-1-2
+# @char0n/apidom-parser-adapter-yaml-1-2
 
-`@swagger-api/apidom-parser-adapter-yaml-1-2` is a parser adapter for the [YAML 1.2 format](https://yaml.org/spec/1.2/spec.html).
+`@char0n/apidom-parser-adapter-yaml-1-2` is a parser adapter for the [YAML 1.2 format](https://yaml.org/spec/1.2/spec.html).
 
 [CST](https://tree-sitter.github.io/tree-sitter/using-parsers#syntax-nodes) produced by lexical analysis is [syntactically analyzed](https://github.com/swagger-api/apidom/blob/main/packages/apidom-parser-adapter-yaml-1-2/src/syntactic-analysis) and
 ApiDOM structure using [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace) is produced.
@@ -11,7 +11,7 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-yaml-1-2
+ $ npm install @char0n/apidom-parser-adapter-yaml-1-2
 ```
 
 ## Parse phases
@@ -32,7 +32,7 @@ and ApiDOM structure using [base ApiDOM namespace](https://github.com/swagger-ap
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -65,7 +65,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -73,7 +73,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import { parse, detect } from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 // always detecting false in this parser adapter
 await detect('prop: value'); // => false
@@ -86,8 +86,8 @@ const parseResult = await parse('prop: value', { sourceMap: true });
 ### Indirect usage
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as yamlParserAdapter from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as yamlParserAdapter from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 const parser = new ApiDOMParser();
 

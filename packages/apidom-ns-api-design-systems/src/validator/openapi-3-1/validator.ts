@@ -4,13 +4,13 @@ import {
   isArrayElement,
   toValue,
   cloneDeep,
-} from '@swagger-api/apidom-core';
-import { NotImplementedError } from '@swagger-api/apidom-error';
+} from '@char0n/apidom-core';
+import { NotImplementedError } from '@char0n/apidom-error';
 import {
   OpenApi3_1Element,
   OperationElement,
   ResponseElement,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 
 import MainElement from '../../elements/Main.ts';
 import ScenarioElement from '../../elements/Scenario.ts';

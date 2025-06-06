@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Deferred, Event } from 'benchmark';
-import { OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 import { dereferenceApiDOM } from '../../src/configuration/saturated.ts';
 

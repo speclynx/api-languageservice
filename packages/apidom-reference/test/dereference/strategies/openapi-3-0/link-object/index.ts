@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { toValue } from '@swagger-api/apidom-core';
-import { isOperationElement, LinkElement, mediaTypes } from '@swagger-api/apidom-ns-openapi-3-0';
-import { evaluate } from '@swagger-api/apidom-json-pointer/modern';
+import { toValue } from '@char0n/apidom-core';
+import { isOperationElement, LinkElement, mediaTypes } from '@char0n/apidom-ns-openapi-3-0';
+import { evaluate } from '@char0n/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { loadJsonFile } from '../../../../helpers.ts';

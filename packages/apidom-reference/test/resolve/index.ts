@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { mediaTypes } from '@swagger-api/apidom-ns-openapi-3-1';
+import { mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
 import { fileURLToPath } from 'node:url';
 
 import { resolve, resolveApiDOM, parse } from '../../src/index.ts';

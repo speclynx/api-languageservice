@@ -1,4 +1,4 @@
-import { mediaTypes, AsyncAPIMediaTypes } from '@swagger-api/apidom-ns-asyncapi-2';
+import { mediaTypes, AsyncAPIMediaTypes } from '@char0n/apidom-ns-asyncapi-2';
 
 /**
  * @public

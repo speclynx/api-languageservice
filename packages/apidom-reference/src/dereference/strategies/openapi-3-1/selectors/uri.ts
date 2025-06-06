@@ -1,10 +1,10 @@
 import { isUndefined } from 'ramda-adjunct';
-import { Element, filter } from '@swagger-api/apidom-core';
-import { isSchemaElement, SchemaElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { Element, filter } from '@char0n/apidom-core';
+import { isSchemaElement, SchemaElement } from '@char0n/apidom-ns-openapi-3-1';
 import {
   URIFragmentIdentifier,
   evaluate as jsonPointerEvaluate,
-} from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-json-pointer';
 
 import * as url from '../../../../util/url.ts';
 import EvaluationJsonSchemaUriError from '../../../../errors/EvaluationJsonSchemaUriError.ts';

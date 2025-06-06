@@ -1,4 +1,4 @@
-import { MediaTypes, Namespace, ParseResultElement } from '@swagger-api/apidom-core';
+import { MediaTypes, Namespace, ParseResultElement } from '@char0n/apidom-core';
 
 /**
  * @public

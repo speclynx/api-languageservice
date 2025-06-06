@@ -1,5 +1,5 @@
 import { last } from 'ramda';
-import { MediaTypes } from '@swagger-api/apidom-core';
+import { MediaTypes } from '@char0n/apidom-core';
 
 /**
  * @public

@@ -1,4 +1,4 @@
-import { UnsupportedOperationError } from '@swagger-api/apidom-error';
+import { UnsupportedOperationError } from '@char0n/apidom-error';
 import {
   StringElement,
   BooleanElement,
@@ -7,8 +7,8 @@ import {
   Meta,
   ObjectElement,
   ArrayElement,
-} from '@swagger-api/apidom-core';
-import { JSONSchemaElement, MediaElement } from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-core';
+import { JSONSchemaElement, MediaElement } from '@char0n/apidom-ns-json-schema-draft-4';
 
 import ReferenceElement from './Reference.ts';
 import DiscriminatorElement from './Discriminator.ts';

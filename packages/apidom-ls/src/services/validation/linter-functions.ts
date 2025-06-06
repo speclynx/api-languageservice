@@ -10,7 +10,7 @@ import {
   ObjectElement,
   isArrayElement,
   includesClasses,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
   test as testPathTemplate,

@@ -1,6 +1,6 @@
 import { ifElse, always } from 'ramda';
 import { dispatch, stubUndefined } from 'ramda-adjunct';
-import { Element, BREAK } from '@swagger-api/apidom-core';
+import { Element, BREAK } from '@char0n/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
 

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { sexprs } from '@swagger-api/apidom-core';
+import { sexprs } from '@char0n/apidom-core';
 
 import { GooglepubsubMessageBindingElement } from '../../../../../../src/index.ts';
 

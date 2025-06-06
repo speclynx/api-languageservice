@@ -1,4 +1,4 @@
-import { isObjectElement, ObjectElement } from '@swagger-api/apidom-core';
+import { isObjectElement, ObjectElement } from '@char0n/apidom-core';
 
 /**
  * @public

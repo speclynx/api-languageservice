@@ -1,10 +1,10 @@
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 import {
   specificationObj as JSONSchemaDraft4Specification,
   JSONReferenceElement,
   SchemaOrReferenceVisitorOptions,
   SchemaOrReferenceVisitor as JSONSchemaOrJSONReferenceVisitorType,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 import { isReferenceElement } from '../../../../predicates.ts';
 import SchemaElement from '../../../../elements/Schema.ts';

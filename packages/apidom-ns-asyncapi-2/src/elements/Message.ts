@@ -1,10 +1,4 @@
-import {
-  StringElement,
-  ObjectElement,
-  ArrayElement,
-  Attributes,
-  Meta,
-} from '@swagger-api/apidom-core';
+import { StringElement, ObjectElement, ArrayElement, Attributes, Meta } from '@char0n/apidom-core';
 
 import CorrelationIDElement from './CorrelationID.ts';
 import ReferenceElement from './Reference.ts';

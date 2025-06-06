@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 export { default as getLanguageService } from './apidom-language-service.ts';
 

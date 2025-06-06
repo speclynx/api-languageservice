@@ -5,7 +5,7 @@ import {
   NumberElement,
   isParseResultElement,
   isSourceMapElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import File from '../../../../src/File.ts';
 import YAMLParser from '../../../../src/parse/parsers/yaml-1-2/index.ts';

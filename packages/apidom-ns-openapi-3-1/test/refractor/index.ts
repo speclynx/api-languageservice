@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { ObjectElement, toValue, Namespace } from '@swagger-api/apidom-core';
+import { ObjectElement, toValue, Namespace } from '@char0n/apidom-core';
 
 import { OpenApi3_1Element, OpenapiElement, isOpenapiElement } from '../../src/index.ts';
 import * as predicates from '../../src/predicates.ts';

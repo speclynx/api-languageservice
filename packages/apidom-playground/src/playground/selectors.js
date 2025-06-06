@@ -1,24 +1,20 @@
 import { createSelector } from 'swagger-adjust';
 import { isEmptyString, isNonEmptyString, isNull } from 'ramda-adjunct';
-import { from, traverse, createNamespace, sexprs, toValue } from '@swagger-api/apidom-core';
+import { from, traverse, createNamespace, sexprs, toValue } from '@char0n/apidom-core';
 /* eslint-disable camelcase */
-import openApi2NsPlugin, {
-  mediaTypes as openApi2MediaTypes,
-} from '@swagger-api/apidom-ns-openapi-2';
+import openApi2NsPlugin, { mediaTypes as openApi2MediaTypes } from '@char0n/apidom-ns-openapi-2';
 import openApi3_0NsPlugin, {
   mediaTypes as openApi3_0MediaTypes,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 import openApi3_1NsPlugin, {
   mediaTypes as openApi3_1MediaTypes,
-} from '@swagger-api/apidom-ns-openapi-3-1';
-import asyncApi2NsPlugin, {
-  mediaTypes as asyncApi2MediaTypes,
-} from '@swagger-api/apidom-ns-asyncapi-2';
+} from '@char0n/apidom-ns-openapi-3-1';
+import asyncApi2NsPlugin, { mediaTypes as asyncApi2MediaTypes } from '@char0n/apidom-ns-asyncapi-2';
 import arazzoSpecification1NsPlugin, {
   mediaTypes as arazzoSpecification1MediaTypes,
-} from '@swagger-api/apidom-ns-arazzo-1';
-import { mediaTypes as jsonMediaTypes } from '@swagger-api/apidom-parser-adapter-json';
-import { mediaTypes as yamlMediaTypes } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+} from '@char0n/apidom-ns-arazzo-1';
+import { mediaTypes as jsonMediaTypes } from '@char0n/apidom-parser-adapter-json';
+import { mediaTypes as yamlMediaTypes } from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 export const selectSource = (state) => state.source;
 

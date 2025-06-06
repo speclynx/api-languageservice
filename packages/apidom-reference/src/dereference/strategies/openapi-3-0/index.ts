@@ -1,10 +1,10 @@
-import { Element, createNamespace, visit, cloneDeep } from '@swagger-api/apidom-core';
+import { Element, createNamespace, visit, cloneDeep } from '@char0n/apidom-core';
 import openApi3_0Namespace, {
   getNodeType,
   isOpenApi3_0Element,
   keyMap,
   mediaTypes,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import DereferenceStrategy, { DereferenceStrategyOptions } from '../DereferenceStrategy.ts';
 import File from '../../../File.ts';

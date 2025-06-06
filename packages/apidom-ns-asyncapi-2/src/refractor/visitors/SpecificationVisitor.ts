@@ -1,6 +1,6 @@
 import { pathSatisfies, path, pick } from 'ramda';
 import { isFunction } from 'ramda-adjunct';
-import { visit, cloneDeep } from '@swagger-api/apidom-core';
+import { visit, cloneDeep } from '@char0n/apidom-core';
 
 import Visitor, { VisitorOptions } from './Visitor.ts';
 import type specification from '../specification.ts';

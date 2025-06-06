@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ArrayElement, Element, BREAK } from '@swagger-api/apidom-core';
+import { ArrayElement, Element, BREAK } from '@char0n/apidom-core';
 
 import { isReferenceLikeElement } from '../../../predicates.ts';
 import { isReferenceElement } from '../../../../predicates.ts';

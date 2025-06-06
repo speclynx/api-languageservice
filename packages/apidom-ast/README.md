@@ -1,18 +1,18 @@
-# @swagger-api/apidom-ast
+# @char0n/apidom-ast
 
-`@swagger-api/apidom-ast` contains tools necessary for parsing stage of ApiDOM, specifically for syntactic analysis.
+`@char0n/apidom-ast` contains tools necessary for parsing stage of ApiDOM, specifically for syntactic analysis.
 Syntactic analysis will take a stream of tokens and turn it into an AST representation.
 Using the information in the tokens, this phase will reformat them as an AST which represents
 the structure of input string in a way that makes it easier to work with.
 
-`@swagger-api/apidom-ast` currently contains AST nodes for [JSON](https://www.json.org/json-en.html) and [YAML 1.2](https://yaml.org/spec/1.2/spec.html) formats.
+`@char0n/apidom-ast` currently contains AST nodes for [JSON](https://www.json.org/json-en.html) and [YAML 1.2](https://yaml.org/spec/1.2/spec.html) formats.
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ast
+ $ npm install @char0n/apidom-ast
 ```
 
 ## Base AST Nodes
@@ -38,7 +38,7 @@ along with [formatters for canonical block scalars](https://github.com/swagger-a
 
 ## Traversal
 
-`@swagger-api/apidom-ast` comes with its own traversal algorithm convenient for traversing [CST](https://en.wikipedia.org/wiki/Parse_tree) or [AST](https://en.wikipedia.org/wiki/AST).
+`@char0n/apidom-ast` comes with its own traversal algorithm convenient for traversing [CST](https://en.wikipedia.org/wiki/Parse_tree) or [AST](https://en.wikipedia.org/wiki/AST).
 
 ### visit
 
@@ -56,7 +56,7 @@ a new version of the Node Tree with the changes applied will be returned from th
 visit function.
 
 ```js
-import { visit } from '@swagger-api/apidom-ast';
+import { visit } from '@char0n/apidom-ast';
 
 const tree = {
     type: 'root',

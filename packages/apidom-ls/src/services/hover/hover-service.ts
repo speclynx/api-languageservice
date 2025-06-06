@@ -1,18 +1,12 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Hover } from 'vscode-languageserver-protocol';
-import {
-  findAtOffset,
-  toValue,
-  ObjectElement,
-  MemberElement,
-  Element,
-} from '@swagger-api/apidom-core';
+import { findAtOffset, toValue, ObjectElement, MemberElement, Element } from '@char0n/apidom-core';
 import { MarkupContent, Position, Range } from 'vscode-languageserver-types';
-import { dereferenceApiDOM } from '@swagger-api/apidom-reference';
+import { dereferenceApiDOM } from '@char0n/apidom-reference';
 import {
   evaluate as jsonPointerEvaluate,
   URIFragmentIdentifier,
-} from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-json-pointer';
 
 import {
   HoverProvider,

@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { assert } from 'chai';
-import { ApiDOMStructuredError } from '@swagger-api/apidom-error';
+import { ApiDOMStructuredError } from '@char0n/apidom-error';
 
 import { visit, mergeAllVisitors } from '../../src/index.ts';
 

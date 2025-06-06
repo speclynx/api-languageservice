@@ -1,4 +1,4 @@
-import { ObjectElement, Attributes, Meta } from '@swagger-api/apidom-core';
+import { ObjectElement, Attributes, Meta } from '@char0n/apidom-core';
 
 import ResponseElement from './Response.ts';
 import ReferenceElement from './Reference.ts';

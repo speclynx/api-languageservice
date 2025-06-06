@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 import {
   FallbackVisitor,
   FallbackVisitorOptions,
@@ -9,7 +9,7 @@ import {
   ParentSchemaAwareVisitor,
   ParentSchemaAwareVisitorOptions,
   SpecPath,
-} from '@swagger-api/apidom-ns-json-schema-draft-7';
+} from '@char0n/apidom-ns-json-schema-draft-7';
 
 /**
  * @public

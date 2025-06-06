@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { sexprs } from '@swagger-api/apidom-core';
+import { sexprs } from '@char0n/apidom-core';
 
 import { IbmmqOperationBindingElement } from '../../../../../../src/index.ts';
 

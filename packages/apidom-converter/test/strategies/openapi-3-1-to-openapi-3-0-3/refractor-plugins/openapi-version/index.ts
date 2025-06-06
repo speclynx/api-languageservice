@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect } from 'chai';
-import { mediaTypes as openAPI31MediaTypes } from '@swagger-api/apidom-parser-adapter-openapi-json-3-1';
-import { mediaTypes as openAPI30MediaTypes } from '@swagger-api/apidom-parser-adapter-openapi-json-3-0';
-import { toJSON } from '@swagger-api/apidom-core';
+import { mediaTypes as openAPI31MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-1';
+import { mediaTypes as openAPI30MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+import { toJSON } from '@char0n/apidom-core';
 
 import convert from '../../../../../src/index.ts';
 

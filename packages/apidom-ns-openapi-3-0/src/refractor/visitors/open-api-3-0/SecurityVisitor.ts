@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ArrayElement, isObjectElement, BREAK, cloneDeep } from '@swagger-api/apidom-core';
+import { ArrayElement, isObjectElement, BREAK, cloneDeep } from '@char0n/apidom-core';
 
 import SecurityElement from '../../../elements/nces/Security.ts';
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';

@@ -4,7 +4,7 @@ import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Position } from 'vscode-languageserver-types';
-import { toValue, Element } from '@swagger-api/apidom-core';
+import { toValue, Element } from '@char0n/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';

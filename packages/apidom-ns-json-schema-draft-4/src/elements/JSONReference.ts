@@ -1,4 +1,4 @@
-import { ObjectElement, StringElement, Attributes, Meta } from '@swagger-api/apidom-core';
+import { ObjectElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
 
 /**
  * In Draft 4, $ref behaves a little differently. When an object contains a $ref property,

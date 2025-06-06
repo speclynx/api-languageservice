@@ -11,9 +11,9 @@ import {
   createNamespace,
   includesClasses,
   hasElementSourceMap,
-} from '@swagger-api/apidom-core';
-import { compile as compileJSONPointerTokens } from '@swagger-api/apidom-json-pointer/modern';
-import { isServersElement } from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-core';
+import { compile as compileJSONPointerTokens } from '@char0n/apidom-json-pointer';
+import { isServersElement } from '@char0n/apidom-ns-openapi-3-0';
 
 import * as openApi3_1Predicates from '../predicates.ts';
 import openApi3_1Namespace from '../namespace.ts';

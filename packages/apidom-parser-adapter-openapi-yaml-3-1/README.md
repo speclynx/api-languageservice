@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-openapi-yaml-3-1
+# @char0n/apidom-parser-adapter-openapi-yaml-3-1
 
-`@swagger-api/apidom-parser-adapter-openapi-yaml-3-1` is a parser adapter for the [OpenAPI 3.1.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) in [YAML format](https://yaml.org/spec/1.2/spec.html).
+`@char0n/apidom-parser-adapter-openapi-yaml-3-1` is a parser adapter for the [OpenAPI 3.1.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) in [YAML format](https://yaml.org/spec/1.2/spec.html).
 Under the hood this adapter uses [apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace)
 which is then refracted with [OpenAPI 3.1.0 Refractors](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-openapi-3-1#refractors).
@@ -11,12 +11,12 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-openapi-yaml-3-1
+ $ npm install @char0n/apidom-parser-adapter-openapi-yaml-3-1
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -60,7 +60,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-openapi-yaml-3-1';
+import { parse, detect } from '@char0n/apidom-parser-adapter-openapi-yaml-3-1';
 
 // detecting
 await detect('openapi: 3.1.0'); // => true
@@ -75,8 +75,8 @@ const parseResult = await parse('openapi: 3.1.0', { sourceMap: true });
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as openApiYamlAdapter from '@swagger-api/apidom-parser-adapter-openapi-yaml-3-1';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as openApiYamlAdapter from '@char0n/apidom-parser-adapter-openapi-yaml-3-1';
 
 const parser = new ApiDOMParser();
 

@@ -1,5 +1,5 @@
-import { Element } from '@swagger-api/apidom-core';
-import { ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import { Element } from '@char0n/apidom-core';
+import { ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 import JsonPathError from './JsonPathError.ts';
 

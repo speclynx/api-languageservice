@@ -9,11 +9,11 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 /**
  * JSON Schema Draft 6 specification elements.
  */
-import { MediaElement } from '@swagger-api/apidom-ns-json-schema-draft-4';
+import { MediaElement } from '@char0n/apidom-ns-json-schema-draft-4';
 
 import JSONSchemaElement from '../../elements/JSONSchema.ts';
 import LinkDescriptionElement from '../../elements/LinkDescription.ts';

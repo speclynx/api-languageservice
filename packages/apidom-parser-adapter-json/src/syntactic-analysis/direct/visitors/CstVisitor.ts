@@ -11,7 +11,7 @@ import {
   StringElement,
   AnnotationElement,
   isPrimitiveElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
 

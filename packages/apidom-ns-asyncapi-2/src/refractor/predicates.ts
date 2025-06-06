@@ -1,5 +1,5 @@
 import { startsWith } from 'ramda';
-import { MemberElement, isStringElement, isObjectElement, toValue } from '@swagger-api/apidom-core';
+import { MemberElement, isStringElement, isObjectElement, toValue } from '@char0n/apidom-core';
 import { ObjectElement } from 'minim';
 
 /**

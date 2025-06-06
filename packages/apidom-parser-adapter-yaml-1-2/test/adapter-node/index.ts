@@ -2,14 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
-import { YamlTagError } from '@swagger-api/apidom-ast';
+import { YamlTagError } from '@char0n/apidom-ast';
 import {
   toValue,
   isObjectElement,
   isParseResultElement,
   sexprs,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import * as adapter from '../../src/adapter-node.ts';
 

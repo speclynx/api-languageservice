@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.40](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2025-05-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.39](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2025-05-20)
 
@@ -27,19 +27,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.36](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2025-05-06)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.35](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2025-05-02)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.34](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2025-05-02)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.33](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2025-04-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.32](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2025-04-28)
 
@@ -49,7 +49,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.31](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2025-04-24)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.30](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2025-03-17)
 
@@ -65,63 +65,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.28](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.27](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.26](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.25](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.24](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.23](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.22](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.21](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.20](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.19](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.18](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.17](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.16](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2025-03-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.15](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2025-03-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.14](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2025-03-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.13](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2025-03-10)
 
@@ -131,7 +131,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.12](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2025-02-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.11](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2025-01-27)
 
@@ -141,19 +141,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.10](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2025-01-25)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.9](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2025-01-23)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.8](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2025-01-23)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.7](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2025-01-21)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.6](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2024-12-30)
 
@@ -163,11 +163,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.5](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2024-12-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.4](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2024-12-13)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.3](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2024-11-25)
 
@@ -177,7 +177,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.2](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2024-11-22)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-beta.1](https://github.com/swagger-api/apidom/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2024-11-22)
 
@@ -187,15 +187,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-beta.0](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.10...v1.0.0-beta.0) (2024-11-21)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.10](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2024-10-21)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.9](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2024-08-14)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.8](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2024-08-08)
 
@@ -205,11 +205,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-alpha.7](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2024-08-05)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.6](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2024-07-09)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.5](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2024-05-29)
 
@@ -220,7 +220,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-alpha.3](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2024-05-21)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.2](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2024-05-20)
 
@@ -230,7 +230,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-alpha.1](https://github.com/swagger-api/apidom/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2024-05-15)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [1.0.0-alpha.0](https://github.com/swagger-api/apidom/compare/v0.99.2...v1.0.0-alpha.0) (2024-05-14)
 
@@ -259,15 +259,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.99.2](https://github.com/swagger-api/apidom/compare/v0.99.1...v0.99.2) (2024-04-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.99.1](https://github.com/swagger-api/apidom/compare/v0.99.0...v0.99.1) (2024-04-05)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.99.0](https://github.com/swagger-api/apidom/compare/v0.98.3...v0.99.0) (2024-04-03)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.98.3](https://github.com/swagger-api/apidom/compare/v0.98.2...v0.98.3) (2024-03-29)
 
@@ -330,7 +330,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.95.0](https://github.com/swagger-api/apidom/compare/v0.94.0...v0.95.0) (2024-02-09)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.94.0](https://github.com/swagger-api/apidom/compare/v0.93.0...v0.94.0) (2024-02-05)
 
@@ -340,15 +340,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.93.0](https://github.com/swagger-api/apidom/compare/v0.92.0...v0.93.0) (2024-01-23)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.92.0](https://github.com/swagger-api/apidom/compare/v0.91.0...v0.92.0) (2024-01-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.91.0](https://github.com/swagger-api/apidom/compare/v0.90.0...v0.91.0) (2024-01-08)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.90.0](https://github.com/swagger-api/apidom/compare/v0.89.0...v0.90.0) (2024-01-04)
 
@@ -359,15 +359,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.89.0](https://github.com/swagger-api/apidom/compare/v0.88.0...v0.89.0) (2023-12-19)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.88.0](https://github.com/swagger-api/apidom/compare/v0.87.0...v0.88.0) (2023-12-15)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.87.0](https://github.com/swagger-api/apidom/compare/v0.86.0...v0.87.0) (2023-12-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.86.0](https://github.com/swagger-api/apidom/compare/v0.85.0...v0.86.0) (2023-12-05)
 
@@ -403,11 +403,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.82.2](https://github.com/swagger-api/apidom/compare/v0.82.1...v0.82.2) (2023-11-03)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.82.1](https://github.com/swagger-api/apidom/compare/v0.82.0...v0.82.1) (2023-11-03)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.82.0](https://github.com/swagger-api/apidom/compare/v0.81.0...v0.82.0) (2023-11-01)
 
@@ -418,11 +418,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.81.0](https://github.com/swagger-api/apidom/compare/v0.80.0...v0.81.0) (2023-10-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.80.0](https://github.com/swagger-api/apidom/compare/v0.79.0...v0.80.0) (2023-10-26)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.79.0](https://github.com/swagger-api/apidom/compare/v0.78.0...v0.79.0) (2023-10-24)
 
@@ -452,31 +452,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.76.1](https://github.com/swagger-api/apidom/compare/v0.76.0...v0.76.1) (2023-09-07)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.76.0](https://github.com/swagger-api/apidom/compare/v0.75.0...v0.76.0) (2023-09-01)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.75.0](https://github.com/swagger-api/apidom/compare/v0.74.1...v0.75.0) (2023-08-22)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.74.1](https://github.com/swagger-api/apidom/compare/v0.74.0...v0.74.1) (2023-07-28)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.74.0](https://github.com/swagger-api/apidom/compare/v0.73.0...v0.74.0) (2023-07-24)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.73.0](https://github.com/swagger-api/apidom/compare/v0.72.0...v0.73.0) (2023-07-18)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.72.0](https://github.com/swagger-api/apidom/compare/v0.71.1...v0.72.0) (2023-07-17)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.71.1](https://github.com/swagger-api/apidom/compare/v0.71.0...v0.71.1) (2023-07-14)
 
@@ -495,11 +495,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.70.4](https://github.com/swagger-api/apidom/compare/v0.70.3...v0.70.4) (2023-06-28)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.70.3](https://github.com/swagger-api/apidom/compare/v0.70.2...v0.70.3) (2023-06-27)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.70.2](https://github.com/swagger-api/apidom/compare/v0.70.1...v0.70.2) (2023-06-16)
 
@@ -509,15 +509,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.70.1](https://github.com/swagger-api/apidom/compare/v0.70.0...v0.70.1) (2023-06-15)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.70.0](https://github.com/swagger-api/apidom/compare/v0.69.3...v0.70.0) (2023-05-23)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.69.3](https://github.com/swagger-api/apidom/compare/v0.69.2...v0.69.3) (2023-04-27)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.69.2](https://github.com/swagger-api/apidom/compare/v0.69.1...v0.69.2) (2023-04-03)
 
@@ -527,7 +527,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.69.1](https://github.com/swagger-api/apidom/compare/v0.69.0...v0.69.1) (2023-03-28)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.69.0](https://github.com/swagger-api/apidom/compare/v0.68.1...v0.69.0) (2023-02-28)
 
@@ -538,11 +538,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.68.1](https://github.com/swagger-api/apidom/compare/v0.68.0...v0.68.1) (2023-02-20)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.68.0](https://github.com/swagger-api/apidom/compare/v0.67.1...v0.68.0) (2023-02-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.67.1](https://github.com/swagger-api/apidom/compare/v0.67.0...v0.67.1) (2023-02-15)
 
@@ -566,11 +566,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.65.0](https://github.com/swagger-api/apidom/compare/v0.64.0...v0.65.0) (2023-01-20)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.64.0](https://github.com/swagger-api/apidom/compare/v0.63.1...v0.64.0) (2023-01-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.63.1](https://github.com/swagger-api/apidom/compare/v0.63.0...v0.63.1) (2023-01-10)
 
@@ -589,11 +589,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.62.1](https://github.com/swagger-api/apidom/compare/v0.62.0...v0.62.1) (2023-01-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.62.0](https://github.com/swagger-api/apidom/compare/v0.61.0...v0.62.0) (2023-01-03)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.61.0](https://github.com/swagger-api/apidom/compare/v0.60.0...v0.61.0) (2022-12-31)
 
@@ -626,7 +626,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.58.0](https://github.com/swagger-api/apidom/compare/v0.57.0...v0.58.0) (2022-12-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.57.0](https://github.com/swagger-api/apidom/compare/v0.56.3...v0.57.0) (2022-12-08)
 
@@ -643,15 +643,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.56.2](https://github.com/swagger-api/apidom/compare/v0.56.1...v0.56.2) (2022-11-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.56.1](https://github.com/swagger-api/apidom/compare/v0.56.0...v0.56.1) (2022-11-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.56.0](https://github.com/swagger-api/apidom/compare/v0.55.1...v0.56.0) (2022-11-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.55.0](https://github.com/swagger-api/apidom/compare/v0.54.0...v0.55.0) (2022-11-04)
 
@@ -661,15 +661,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.54.0](https://github.com/swagger-api/apidom/compare/v0.53.0...v0.54.0) (2022-10-28)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.53.0](https://github.com/swagger-api/apidom/compare/v0.52.0...v0.53.0) (2022-10-27)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.52.0](https://github.com/swagger-api/apidom/compare/v0.51.1...v0.52.0) (2022-10-25)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.51.1](https://github.com/swagger-api/apidom/compare/v0.51.0...v0.51.1) (2022-10-21)
 
@@ -690,19 +690,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.50.0](https://github.com/swagger-api/apidom/compare/v0.49.0...v0.50.0) (2022-10-13)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.49.0](https://github.com/swagger-api/apidom/compare/v0.48.0...v0.49.0) (2022-10-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.48.0](https://github.com/swagger-api/apidom/compare/v0.47.0...v0.48.0) (2022-10-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.47.0](https://github.com/swagger-api/apidom/compare/v0.46.0...v0.47.0) (2022-09-29)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.46.0](https://github.com/swagger-api/apidom/compare/v0.45.0...v0.46.0) (2022-09-21)
 
@@ -712,7 +712,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.45.0](https://github.com/swagger-api/apidom/compare/v0.44.0...v0.45.0) (2022-09-13)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.44.0](https://github.com/swagger-api/apidom/compare/v0.43.0...v0.44.0) (2022-09-05)
 
@@ -726,19 +726,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.43.0](https://github.com/swagger-api/apidom/compare/v0.42.0...v0.43.0) (2022-08-31)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.42.0](https://github.com/swagger-api/apidom/compare/v0.41.1...v0.42.0) (2022-08-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.41.0](https://github.com/swagger-api/apidom/compare/v0.40.3...v0.41.0) (2022-08-19)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.40.3](https://github.com/swagger-api/apidom/compare/v0.40.2...v0.40.3) (2022-08-08)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.40.2](https://github.com/swagger-api/apidom/compare/v0.40.1...v0.40.2) (2022-08-08)
 
@@ -748,7 +748,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.40.0](https://github.com/swagger-api/apidom/compare/v0.39.0...v0.40.0) (2022-08-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.39.0](https://github.com/swagger-api/apidom/compare/v0.38.0...v0.39.0) (2022-07-29)
 
@@ -762,7 +762,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.38.0](https://github.com/swagger-api/apidom/compare/v0.37.0...v0.38.0) (2022-07-29)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.37.0](https://github.com/swagger-api/apidom/compare/v0.36.0...v0.37.0) (2022-07-29)
 
@@ -772,15 +772,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.36.0](https://github.com/swagger-api/apidom/compare/v0.35.1...v0.36.0) (2022-07-13)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.35.0](https://github.com/swagger-api/apidom/compare/v0.34.0...v0.35.0) (2022-07-05)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.34.0](https://github.com/swagger-api/apidom/compare/v0.33.0...v0.34.0) (2022-07-01)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.33.0](https://github.com/swagger-api/apidom/compare/v0.32.0...v0.33.0) (2022-06-28)
 
@@ -790,7 +790,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.32.0](https://github.com/swagger-api/apidom/compare/v0.31.2...v0.32.0) (2022-06-27)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.31.2](https://github.com/swagger-api/apidom/compare/v0.31.1...v0.31.2) (2022-06-24)
 
@@ -818,11 +818,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.30.1](https://github.com/swagger-api/apidom/compare/v0.30.0...v0.30.1) (2022-06-09)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.30.0](https://github.com/swagger-api/apidom/compare/v0.29.1...v0.30.0) (2022-06-07)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.29.1](https://github.com/swagger-api/apidom/compare/v0.29.0...v0.29.1) (2022-06-03)
 
@@ -832,39 +832,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.29.0](https://github.com/swagger-api/apidom/compare/v0.28.0...v0.29.0) (2022-05-27)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.28.0](https://github.com/swagger-api/apidom/compare/v0.27.0...v0.28.0) (2022-05-22)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.27.0](https://github.com/swagger-api/apidom/compare/v0.26.0...v0.27.0) (2022-05-20)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.26.0](https://github.com/swagger-api/apidom/compare/v0.25.0...v0.26.0) (2022-05-20)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.25.0](https://github.com/swagger-api/apidom/compare/v0.24.1...v0.25.0) (2022-05-13)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.24.1](https://github.com/swagger-api/apidom/compare/v0.24.0...v0.24.1) (2022-05-05)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.24.0](https://github.com/swagger-api/apidom/compare/v0.23.0...v0.24.0) (2022-05-03)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.23.0](https://github.com/swagger-api/apidom/compare/v0.22.0...v0.23.0) (2022-04-25)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.22.0](https://github.com/swagger-api/apidom/compare/v0.21.0...v0.22.0) (2022-04-21)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.21.0](https://github.com/swagger-api/apidom/compare/v0.20.1...v0.21.0) (2022-04-18)
 
@@ -875,7 +875,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.20.0](https://github.com/swagger-api/apidom/compare/v0.19.0...v0.20.0) (2022-04-11)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.19.0](https://github.com/swagger-api/apidom/compare/v0.18.1...v0.19.0) (2022-03-10)
 
@@ -885,7 +885,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.18.1](https://github.com/swagger-api/apidom/compare/v0.18.0...v0.18.1) (2022-02-16)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.18.0](https://github.com/swagger-api/apidom/compare/v0.17.0...v0.18.0) (2022-02-16)
 
@@ -896,63 +896,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.17.0](https://github.com/swagger-api/apidom/compare/v0.16.0...v0.17.0) (2022-01-14)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.16.0](https://github.com/swagger-api/apidom/compare/v0.15.1...v0.16.0) (2022-01-12)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.15.1](https://github.com/swagger-api/apidom/compare/v0.15.0...v0.15.1) (2021-12-29)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.15.0](https://github.com/swagger-api/apidom/compare/v0.14.0...v0.15.0) (2021-12-10)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.14.0](https://github.com/swagger-api/apidom/compare/v0.13.0...v0.14.0) (2021-12-08)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.13.0](https://github.com/swagger-api/apidom/compare/v0.12.0...v0.13.0) (2021-12-06)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.12.0](https://github.com/swagger-api/apidom/compare/v0.11.0...v0.12.0) (2021-12-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.11.0](https://github.com/swagger-api/apidom/compare/v0.10.0...v0.11.0) (2021-12-02)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.10.0](https://github.com/swagger-api/apidom/compare/v0.9.0...v0.10.0) (2021-11-25)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.9.0](https://github.com/swagger-api/apidom/compare/v0.8.0...v0.9.0) (2021-11-17)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.8.0](https://github.com/swagger-api/apidom/compare/v0.7.0...v0.8.0) (2021-11-15)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.7.0](https://github.com/swagger-api/apidom/compare/v0.6.0...v0.7.0) (2021-11-08)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.6.0](https://github.com/swagger-api/apidom/compare/v0.5.1...v0.6.0) (2021-11-04)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 ## [0.5.1](https://github.com/swagger-api/apidom/compare/v0.5.0...v0.5.1) (2021-11-01)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.5.0](https://github.com/swagger-api/apidom/compare/v0.4.0...v0.5.0) (2021-10-26)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # [0.4.0](https://github.com/swagger-api/apidom/compare/v0.3.0...v0.4.0) (2021-10-22)
 
@@ -968,7 +968,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.2.1](https://github.com/swagger-api/apidom/compare/v0.2.0...v0.2.1) (2021-09-30)
 
-**Note:** Version bump only for package @swagger-api/apidom-reference
+**Note:** Version bump only for package @char0n/apidom-reference
 
 # 0.2.0 (2021-09-28)
 

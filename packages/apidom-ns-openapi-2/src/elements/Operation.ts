@@ -5,7 +5,7 @@ import {
   StringElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import ExternalDocumentationElement from './ExternalDocumentation.ts';
 import ResponsesElement from './Responses.ts';

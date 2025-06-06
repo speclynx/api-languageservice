@@ -1,7 +1,7 @@
 import {
   LinkDescriptionVisitor as JSONSchemaDraft4LinkDescriptionVisitor,
   LinkDescriptionVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 import LinkDescriptionElement from '../../../../elements/LinkDescription.ts';
 

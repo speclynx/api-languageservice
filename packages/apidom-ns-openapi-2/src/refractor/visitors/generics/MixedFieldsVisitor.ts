@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { difference } from 'ramda';
-import { ObjectElement, BREAK } from '@swagger-api/apidom-core';
+import { ObjectElement, BREAK } from '@char0n/apidom-core';
 
 import FixedFieldsVisitor, { SpecPath } from './FixedFieldsVisitor.ts';
 import PatternedFieldsVisitor, { PatternedFieldsVisitorOptions } from './PatternedFieldsVisitor.ts';

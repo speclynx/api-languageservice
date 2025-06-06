@@ -7,7 +7,7 @@ import {
   BooleanElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import JSONReferenceElement from './JSONReference.ts';
 import MediaElement from './Media.ts';

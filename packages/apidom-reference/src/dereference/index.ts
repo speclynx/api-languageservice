@@ -4,7 +4,7 @@ import {
   isParseResultElement,
   ParseResultElement,
   cloneShallow,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import File from '../File.ts';
 import * as plugins from '../util/plugins.ts';

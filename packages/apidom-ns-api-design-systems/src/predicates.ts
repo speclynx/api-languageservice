@@ -1,4 +1,4 @@
-import { createPredicate } from '@swagger-api/apidom-core';
+import { createPredicate } from '@char0n/apidom-core';
 
 import MainElement from './elements/Main.ts';
 import InfoElement from './elements/Info.ts';

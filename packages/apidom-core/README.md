@@ -1,4 +1,4 @@
-# @swagger-api/apidom-core
+# @char0n/apidom-core
 
 `apidom-core` is a package that contains tools for manipulating the ApiDOM structures.
 
@@ -7,7 +7,7 @@
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-core
+ $ npm install @char0n/apidom-core
 ```
 
 ---
@@ -18,7 +18,7 @@ Base namespace consists of [four higher order elements](https://github.com/swagg
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
+import { createNamespace } from '@char0n/apidom-core';
 
 const namespace = createNamespace();
 
@@ -29,8 +29,8 @@ const commentElement = new namespace.elements.Comment();
 It's possible to create namespace instances using another namespaces.
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import openApi3_1Namespace from '@swagger-api/apidom-ns-openapi-3-1';
+import { createNamespace } from '@char0n/apidom-core';
+import openApi3_1Namespace from '@char0n/apidom-ns-openapi-3-1';
 
 const namespace = createNamespace(openApi3_1Namespace);
 
@@ -49,7 +49,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all primitive elements and all higher order elements that are part of the base namespace.
 
 ```js
-import { CommentElement, isCommentElement } from '@swagger-api/apidom-core';
+import { CommentElement, isCommentElement } from '@char0n/apidom-core';
 
 const commentElement = new CommentElement();
 
@@ -60,7 +60,7 @@ isCommentElement(commentElement); // => true
 helps in building predicates for this and other packages.
 
 ```js
-import { createPredicate } from '@swagger-api/apidom-core';
+import { createPredicate } from '@char0n/apidom-core';
 
 const isMyElement = createPredicate(
   ({ hasBasicElementProps, isElementType, primitiveEq }) => {
@@ -79,7 +79,7 @@ Transclusion is the inclusion of one ApiDOM fragment into another ApiDOM fragmen
 Our [transcluder](https://github.com/swagger-api/apidom/tree/main/packages/apidom-core/src/transcluder) does exactly that and is based on mutating algorithm.
 
 ```js
-import { transclude, ArrayElement, NumberElement } from '@swagger-api/apidom-core';
+import { transclude, ArrayElement, NumberElement } from '@char0n/apidom-core';
 
 const element = new ArrayElement([1, 2, 3]);
 const search = element.get(1);
@@ -92,7 +92,7 @@ When multiple transclusions are going to be performed use [Transcluder stamp](ht
 for optimal performance.
 
 ```js
-import { Transcluder, ArrayElement, NumberElement } from '@swagger-api/apidom-core';
+import { Transcluder, ArrayElement, NumberElement } from '@char0n/apidom-core';
 
 const element = new ArrayElement([1, 2, 3]);
 const search = element.get(1);
@@ -119,7 +119,7 @@ the value from source will appear in the result. Merging creates a new ApiDOM el
 so that neither target nor source is modified (operation is immutable).
 
 ```js
-import { mergeRight, ObjectElement } from '@swagger-api/apidom-core';
+import { mergeRight, ObjectElement } from '@char0n/apidom-core';
 
 const x = new ObjectElement({
   foo: { bar: 3 },
@@ -145,7 +145,7 @@ const output = mergeRight(x, y);
 Merges shallowly any number of ApiDOM elements into a single ApiDOM element.
 
 ```js
-import { mergeRight, ObjectElement } from '@swagger-api/apidom-core';
+import { mergeRight, ObjectElement } from '@char0n/apidom-core';
 
 const foobar = new ObjectElement({ foo: { bar: 3 } });
 const foobaz = new ObjectElement({ foo: { baz: 4 } });
@@ -163,7 +163,7 @@ the value from source will appear in the result. Merging creates a new ApiDOM el
 so that neither target nor source is modified (operation is immutable).
 
 ```js
-import { mergeLeft, ObjectElement } from '@swagger-api/apidom-core';
+import { mergeLeft, ObjectElement } from '@char0n/apidom-core';
 
 const x = new ObjectElement({
   foo: { bar: 3 },
@@ -189,7 +189,7 @@ const output = mergeLeft(x, y);
 Merges shallowly any number of ApiDOM elements into a single ApiDOM element.
 
 ```js
-import { mergeLeft, ObjectElement } from '@swagger-api/apidom-core';
+import { mergeLeft, ObjectElement } from '@char0n/apidom-core';
 
 const foobar = new ObjectElement({ foo: { bar: 3 } });
 const foobaz = new ObjectElement({ foo: { baz: 4 } });
@@ -220,7 +220,7 @@ the value from source will appear in the result. Merging creates a new ApiDOM el
 so that neither target nor source is modified (operation is immutable).
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const x = new ObjectElement({
   foo: { bar: 3 },
@@ -275,7 +275,7 @@ const output = deepmerge(x, y);
 Merges deeply any number of ApiDOM elements into a single ApiDOM element.
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const foobar = new ObjectElement({ foo: { bar: 3 } });
 const foobaz = new ObjectElement({ foo: { baz: 4 } });
@@ -295,7 +295,7 @@ Your `arrayElementMerge` function will be called with three arguments: a `target
 and an `options` object.
 
 ```js
-import { deepmerge, ArrayElement } from '@swagger-api/apidom-core';
+import { deepmerge, ArrayElement } from '@char0n/apidom-core';
 
 const arrayElementMerge = (destination, source, options) => source;
 
@@ -313,7 +313,7 @@ Your `objectElementMerge` function will be called with three arguments: a `targe
 and an `options` object.
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const objectElementMerge = (destination, source, options) => source;
 
@@ -332,7 +332,7 @@ and you want to copy the whole ObjectElement instead of just copying its member.
 You can accomplish this by passing in a function for the `isMergeableElement` option.
 
 ```js
-import { deepmerge, ObjectElement, isObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement, isObjectElement } from '@char0n/apidom-core';
 
 class CustomObjectElement extends ObjectElement {
   element = 'custom';
@@ -365,7 +365,7 @@ be used to merge the values for that member.
 It may also return undefined, in which case the default merge behaviour will be used.
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const alex = new ObjectElement({
 	name: {
@@ -398,7 +398,7 @@ The `customMetaMerge` function will be passed target and source metadata. If not
 the default behavior is to deep copy metadata from target to new merged element.
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const alex = new ObjectElement({ name: { first: 'Alex' } }, { metaKey: true });
 const tony = new ObjectElement({ name: { first: 'Tony' } }, { metaKey: false });
@@ -416,7 +416,7 @@ The `customAttributesMerge` function will be passed target and source attributes
 the default behavior is to deep copy attributes from target to new merged element.
 
 ```js
-import { deepmerge, ObjectElement } from '@swagger-api/apidom-core';
+import { deepmerge, ObjectElement } from '@char0n/apidom-core';
 
 const alex = new ObjectElement({ name: { first: 'Alex' } }, undefined, { attributeKey: true });
 const tony = new ObjectElement({ name: { first: 'Tony' } }, undefined, { attributeKey: false });
@@ -443,7 +443,7 @@ into generic ApiDOM structures built from elements of this base namespace.
 **Refracting JavaScript structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 
 const object = {
     title: 'my title',
@@ -455,7 +455,7 @@ ObjectElement.refract(object); // => ObjectElement({ title, description, version
 ```
 
 ```js
-import { CommentElement } from '@swagger-api/apidom-core';
+import { CommentElement } from '@char0n/apidom-core';
 
 const comment = 'this is comment';
 
@@ -467,7 +467,7 @@ CommentElement.refract(comment); // => CommentElement('this is comment')
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement, StringElement } from '@swagger-api/apidom-core';
+import { ObjectElement, StringElement } from '@char0n/apidom-core';
 
 const object = { a: 'b' };
 
@@ -497,7 +497,7 @@ If multiple plugins with the same visitor method are defined, they run in parall
 assign unique ID to all elements in ApiDOM tree.
 
 ```js
-import { refractorPluginElementIdentity, ObjectElement } from '@swagger-api/apidom-core';
+import { refractorPluginElementIdentity, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = ObjectElement.refract({ a: 'b' }, {
   plugins: [
@@ -513,7 +513,7 @@ objectElement.getMember('a').value.id; // rFGVFP
 You can configure the plugin to generate unique IDs in the specific length:
 
 ```js
-import { refractorPluginElementIdentity, ObjectElement } from '@swagger-api/apidom-core';
+import { refractorPluginElementIdentity, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = ObjectElement.refract({ a: 'b' }, {
   plugins: [
@@ -533,8 +533,8 @@ assign unique ID to all non-primitive elements in ApiDOM tree. Primitive element
 `ObjectElement`, `ArrayElement`, `StringElement`, `BooleanElement`, `NullElement` and `NumberElement`.
 
 ```js
-import { refractorPluginSemanticElementIdentity, ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { refractorPluginSemanticElementIdentity, ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const infoElement = InfoElement.refract({ title: 'title' });
 const objectElement = ObjectElement.refract({ a: 'b', info: infoElement }, {
@@ -553,8 +553,8 @@ objectElement.getMember('info').value.id; // '8RaWF9'
 You can configure the plugin to generate unique IDs in the specific length:
 
 ```js
-import { refractorPluginSemanticElementIdentity, ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { refractorPluginSemanticElementIdentity, ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const infoElement = InfoElement.refract({ title: 'title' });
 const objectElement = ObjectElement.refract({ a: 'b', info: infoElement }, {
@@ -592,7 +592,7 @@ a new version of the ApiDOM with the changes applied will be returned from the
 visit function.
 
 ```js
-import { visit, ObjectElement, NumberElement } from '@swagger-api/apidom-core';
+import { visit, ObjectElement, NumberElement } from '@char0n/apidom-core';
 
 const visitor = {
     NumberElement(numberElement) {
@@ -604,7 +604,7 @@ const element = new ObjectElement({ a: 1 });
 const newElement = visit(element, visitor); // => ObjectElement<{a: 2}>
 ```
 
-This function originally comes from [@swagger-api/apidom-ast package](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/src/visitor.ts)
+This function originally comes from [@char0n/apidom-ast package](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/src/visitor.ts)
 and is originally designed to work with [CST](https://en.wikipedia.org/wiki/Parse_tree). `apidom` package
 imports it, specializes it to work with ApiDOM and re-export it.
 
@@ -615,7 +615,7 @@ All following algorithms are based on `visit` function.
 Finds all elements matching the predicate.
 
 ```js
-import { ObjectElement, filter, isNumberElement } from '@swagger-api/apidom-core'
+import { ObjectElement, filter, isNumberElement } from '@char0n/apidom-core'
 
 const objElement = new ObjectElement({ a: 'b', c: 2 });
 
@@ -627,7 +627,7 @@ filter(isNumberElement, objElement); // => ArraySlice<[NumberElement<2>]>
 Find first element that satisfies the provided predicate.
 
 ```js
-import { ObjectElement, find, isMemberElement } from '@swagger-api/apidom-core'
+import { ObjectElement, find, isMemberElement } from '@char0n/apidom-core'
 
 const objElement = new ObjectElement({ a: 'b', c: 2 });
 
@@ -640,7 +640,7 @@ ApiDOM nodes can be associated with source maps. This function finds the most in
 If includeRightBound is set, also finds nodes that end at the given offset.
 
 ```js
-import { findAtOffset } from '@swagger-api/apidom-core'
+import { findAtOffset } from '@char0n/apidom-core'
 
 findAtOffset(3, elementWithSourceMaps); // => returns most inner node at offset 3
 ```
@@ -650,7 +650,7 @@ findAtOffset(3, elementWithSourceMaps); // => returns most inner node at offset 
 Complement of [filter](#filter).
 
 ```js
-import { ArrayElement, reject, isNumberElement } from '@swagger-api/apidom-core'
+import { ArrayElement, reject, isNumberElement } from '@char0n/apidom-core'
 
 const arrayElement = new ArrayElement([1, 'a']);
 
@@ -662,7 +662,7 @@ reject(isNumberElement, arrayElement); // => ArraySlice<[StringElement<'a'>]>
 Tests whether at least one element passes the predicate.
 
 ```js
-import { ArrayElement, some, isNumberElement } from '@swagger-api/apidom-core'
+import { ArrayElement, some, isNumberElement } from '@char0n/apidom-core'
 
 const arrayElement = new ArrayElement([1, 'a']);
 
@@ -674,7 +674,7 @@ some(isNumberElement, arrayElement); // => true
 Executes the callback on this element and all descendants.
 
 ```js
-import { ArrayElement, traverse } from '@swagger-api/apidom-core'
+import { ArrayElement, traverse } from '@char0n/apidom-core'
 
 const arrayElement = new ArrayElement([1, 'a']);
 
@@ -684,7 +684,7 @@ traverse(console.dir, arrayElement); // => prints ArrayElement, NumberElement, S
 The execution of the callback can be controlled further by providing a predicate.
 
 ```js
-import { ArrayElement, traverse, isNumberElement } from '@swagger-api/apidom-core'
+import { ArrayElement, traverse, isNumberElement } from '@char0n/apidom-core'
 
 const arrayElement = new ArrayElement([1, 'a']);
 
@@ -698,7 +698,7 @@ Computes upwards edges from every child to its parent.
 #### ObjectElement example
 
 ```js
-import { parents, ObjectElement } from '@swagger-api/apidom-core';
+import { parents, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = new ObjectElement({ key: 'value' });
 const memberElement = objectElement.getMember('key');
@@ -714,7 +714,7 @@ parentEdges.get(valueElement) === memberElement; // => true
 #### ArrayElement example
 
 ```js
-import { parents, ArrayElement, StringElement } from '@swagger-api/apidom-core';
+import { parents, ArrayElement, StringElement } from '@char0n/apidom-core';
 
 const itemElement1 = new StringElement('item1');
 const itemElement2 = new StringElement('item2');
@@ -740,7 +740,7 @@ Transforms data to an Element from a particular namespace.
 From a [refracted string](https://github.com/refractproject/refract-spec) form:
 
 ```js
-import { from } from '@swagger-api/apidom-core';
+import { from } from '@char0n/apidom-core';
 
 const refractedString = '{"element":"number","content":1}';
 
@@ -750,7 +750,7 @@ from(refractedString); // => NumberElement<1>
 From a [refracted](https://github.com/refractproject/refract-spec) form:
 
 ```js
-import { from } from '@swagger-api/apidom-core';
+import { from } from '@char0n/apidom-core';
 
 const refracted = { element: 'number', content: 1 };
 
@@ -760,7 +760,7 @@ from(refracted); // => NumberElement<1>
 From a JavaScript form:
 
 ```js
-import { from } from '@swagger-api/apidom-core';
+import { from } from '@char0n/apidom-core';
 
 const javascriptForm = 1;
 
@@ -773,7 +773,7 @@ Transforms the ApiDOM into JavaScript POJO. This POJO would be the result of int
 into JavaScript structure. This function can handle cycles in ApiDOM structure.
 
 ```js
-import { toValue, ObjectElement } from '@swagger-api/apidom-core';
+import { toValue, ObjectElement } from '@char0n/apidom-core';
 
 const objElement = new ObjectElement({ a: 'b' });
 
@@ -785,7 +785,7 @@ toValue(objElement); // => { a: 'b' }
 Transforms the ApiDOM into JSON string.
 
 ```js
-import { toJSON, ObjectElement } from '@swagger-api/apidom-core';
+import { toJSON, ObjectElement } from '@char0n/apidom-core';
 
 const objElement = new ObjectElement({ a: 'b' });
 
@@ -797,7 +797,7 @@ toJSON(objElement); // => '{"a":"b"}'
 Transforms the ApiDOM into JSON string.
 
 ```js
-import { toYAML, ObjectElement } from '@swagger-api/apidom-core';
+import { toYAML, ObjectElement } from '@char0n/apidom-core';
 
 const objElement = new ObjectElement({ a: 'b' });
 
@@ -815,7 +815,7 @@ toYAML(objElement);
 Creates a [refract representation](https://github.com/refractproject/refract-spec) of the an Element.
 
 ```js
-import { dehyrate, NumberElement } from '@swagger-api/apidom-core';
+import { dehyrate, NumberElement } from '@char0n/apidom-core';
 
 const numberElement = new NumberElement(1);
 
@@ -827,7 +827,7 @@ dehyrate(numberElement); // => { element: 'number', content: 1 }
 Transforms ApiDOM into [symbolic expression](https://en.wikipedia.org/wiki/S-expression).
 
 ```js
-import { sexprs, ObjectElement } from '@swagger-api/apidom-core';
+import { sexprs, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = new ObjectElement({ a: 1 });
 
@@ -846,7 +846,7 @@ sexprs(objectElement);
 Create a [refracted string](https://github.com/refractproject/refract-spec) representation of an Element.
 
 ```js
-import { toString, NumberElement } from '@swagger-api/apidom-core';
+import { toString, NumberElement } from '@char0n/apidom-core';
 
 const numberElement = new NumberElement(1);
 
@@ -862,7 +862,7 @@ Following functions provide mechanism for creating shallow and deep copies of Ap
 Creates shallow clone of ApiDOM element.
 
 ```js
-import { cloneShallow, ObjectElement } from '@swagger-api/apidom-core';
+import { cloneShallow, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = new ObjectElement({ a: 'b' });
 const objectElementShallowClone = cloneShallow(objectElement);
@@ -873,7 +873,7 @@ const objectElementShallowClone = cloneShallow(objectElement);
 Creates deep clone of ApiDOM Element.
 
 ```js
-import { cloneDeep, ObjectElement } from '@swagger-api/apidom-core';
+import { cloneDeep, ObjectElement } from '@char0n/apidom-core';
 
 const objectElement = new ObjectElement({ a: 'b' });
 const objectElementDeepClone = cloneDeep(objectElement);

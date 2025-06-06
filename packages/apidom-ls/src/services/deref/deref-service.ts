@@ -9,8 +9,8 @@ import {
   toString,
   toYAML,
   toValue,
-} from '@swagger-api/apidom-core';
-import { dereferenceApiDOM } from '@swagger-api/apidom-reference';
+} from '@char0n/apidom-core';
+import { dereferenceApiDOM } from '@char0n/apidom-reference';
 
 import { DerefContext, Format, LanguageSettings } from '../../apidom-language-types.ts';
 import { parse } from '../../parser-factory.ts';

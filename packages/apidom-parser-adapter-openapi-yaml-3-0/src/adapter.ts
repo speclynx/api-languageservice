@@ -1,11 +1,8 @@
 import { propOr, omit } from 'ramda';
 import { isNotUndefined } from 'ramda-adjunct';
-import { ParseResultElement, createNamespace } from '@swagger-api/apidom-core';
-import {
-  parse as parseYAML,
-  detect as detectYAML,
-} from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import openApiNamespace, { OpenApi3_0Element } from '@swagger-api/apidom-ns-openapi-3-0';
+import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
+import { parse as parseYAML, detect as detectYAML } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import openApiNamespace, { OpenApi3_0Element } from '@char0n/apidom-ns-openapi-3-0';
 
 export { default as mediaTypes } from './media-types.ts';
 

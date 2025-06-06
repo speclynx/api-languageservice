@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
-import { isParseResultElement, sexprs } from '@swagger-api/apidom-core';
-import { isJSONSchemaElement } from '@swagger-api/apidom-ns-json-schema-2020-12';
+import { isParseResultElement, sexprs } from '@char0n/apidom-core';
+import { isJSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
 
 import * as adapter from '../src/adapter.ts';
 

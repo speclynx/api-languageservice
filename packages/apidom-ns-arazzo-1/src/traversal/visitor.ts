@@ -1,4 +1,4 @@
-import { keyMap as keyMapBase, isElement, Element } from '@swagger-api/apidom-core';
+import { keyMap as keyMapBase, isElement, Element } from '@char0n/apidom-core';
 
 /**
  * @public

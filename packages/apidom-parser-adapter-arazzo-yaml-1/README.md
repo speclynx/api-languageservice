@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-arazzo-yaml-1
+# @char0n/apidom-parser-adapter-arazzo-yaml-1
 
-`@swagger-api/apidom-parser-adapter-arazzo-yaml-1-0` is a parser adapter for the [Arazzo 1.0.1 specification](https://spec.openapis.org/arazzo/latest.html#version-1-0-1) in [YAML format](https://yaml.org/spec/1.2/spec.html).
+`@char0n/apidom-parser-adapter-arazzo-yaml-1-0` is a parser adapter for the [Arazzo 1.0.1 specification](https://spec.openapis.org/arazzo/latest.html#version-1-0-1) in [YAML format](https://yaml.org/spec/1.2/spec.html).
 Under the hood this adapter uses [apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace)
 which is then refracted with [Arazzo 1.x.y Refractors](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-arazzo-1#refractors).
@@ -11,12 +11,12 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-arazzo-yaml-1
+ $ npm install @char0n/apidom-parser-adapter-arazzo-yaml-1
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -54,7 +54,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -62,7 +62,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-arazzo-yaml-1';
+import { parse, detect } from '@char0n/apidom-parser-adapter-arazzo-yaml-1';
 
 // detecting
 await detect('arazzo: 1.0.0'); // => true
@@ -77,8 +77,8 @@ const parseResult = await parse('arazzo: 1.0.0', { sourceMap: true });
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as arazzoYamlAdapter from '@swagger-api/apidom-parser-adapter-arazzo-yaml-1';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as arazzoYamlAdapter from '@char0n/apidom-parser-adapter-arazzo-yaml-1';
 
 const parser = new ApiDOMParser();
 

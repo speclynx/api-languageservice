@@ -1,15 +1,15 @@
 import { Diagnostic, DiagnosticSeverity, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { Element, toValue } from '@swagger-api/apidom-core';
-import { OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { Element, toValue } from '@char0n/apidom-core';
+import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 import {
   MainElement,
   refractPluginOpenApi3_1StandardIdentifierAccessors,
   refractPluginOpenApi3_1StandardIdentifierSelectors,
   validateOpenAPI3_1,
-} from '@swagger-api/apidom-ns-api-design-systems';
-import { parse as parseYAML } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { parse as parseJSON } from '@swagger-api/apidom-parser-adapter-json';
+} from '@char0n/apidom-ns-api-design-systems';
+import { parse as parseYAML } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { parse as parseJSON } from '@char0n/apidom-parser-adapter-json';
 
 import {
   LanguageSettings,

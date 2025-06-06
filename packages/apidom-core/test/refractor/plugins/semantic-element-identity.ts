@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 import {
   ObjectElement,

@@ -8,10 +8,10 @@ import {
   traverse,
   toValue,
   cloneDeep,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
-import { evaluate, evaluateMulti } from '@swagger-api/apidom-json-path';
-import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@swagger-api/apidom-reference';
+import { evaluate, evaluateMulti } from '@char0n/apidom-json-path';
+import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@char0n/apidom-reference';
 
 import {
   APIDOM_LINTER,

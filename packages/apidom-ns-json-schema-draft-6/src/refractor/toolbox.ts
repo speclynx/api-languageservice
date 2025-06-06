@@ -1,4 +1,4 @@
-import { createNamespace, isStringElement } from '@swagger-api/apidom-core';
+import { createNamespace, isStringElement } from '@char0n/apidom-core';
 
 import * as jsonSchemaDraft6Predicates from '../predicates.ts';
 import jsonSchemaDraft6Namespace from '../namespace.ts';

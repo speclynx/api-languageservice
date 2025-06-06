@@ -9,11 +9,11 @@ import {
   MemberElement,
   ArrayElement,
   NumberElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 import {
   compile as compileJsonPointer,
   evaluate as evaluateJsonPointer,
-} from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-json-pointer';
 import { last } from 'ramda';
 
 import EvaluationRelativeJsonPointerError from './errors/EvaluationRelativeJsonPointerError.ts';

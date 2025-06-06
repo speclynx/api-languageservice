@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 // @ts-ignore
-import { traverse, Element } from '@swagger-api/apidom-core';
+import { traverse, Element } from '@char0n/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';

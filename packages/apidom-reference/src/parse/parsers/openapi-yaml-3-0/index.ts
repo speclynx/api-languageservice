@@ -1,10 +1,10 @@
 import { pick } from 'ramda';
-import { ParseResultElement } from '@swagger-api/apidom-core';
+import { ParseResultElement } from '@char0n/apidom-core';
 import {
   parse,
   mediaTypes as OpenAPIYAML3_0MediaTypes,
   detect,
-} from '@swagger-api/apidom-parser-adapter-openapi-yaml-3-0';
+} from '@char0n/apidom-parser-adapter-openapi-yaml-3-0';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

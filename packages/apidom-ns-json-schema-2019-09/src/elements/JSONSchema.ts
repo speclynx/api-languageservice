@@ -6,9 +6,9 @@ import {
   BooleanElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
-import { UnsupportedOperationError } from '@swagger-api/apidom-error';
-import { JSONSchemaElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+} from '@char0n/apidom-core';
+import { UnsupportedOperationError } from '@char0n/apidom-error';
+import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 /* eslint-disable class-methods-use-this */
 

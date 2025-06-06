@@ -1,4 +1,4 @@
-import { RequestBodyElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { RequestBodyElement } from '@char0n/apidom-ns-openapi-3-0';
 
 /**
  * @public

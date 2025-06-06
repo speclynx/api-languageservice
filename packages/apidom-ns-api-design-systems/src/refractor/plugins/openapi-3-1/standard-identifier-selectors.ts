@@ -1,4 +1,4 @@
-import { toValue } from '@swagger-api/apidom-core';
+import { toValue } from '@char0n/apidom-core';
 import {
   PathItemElement,
   ParameterElement,
@@ -7,7 +7,7 @@ import {
   OperationElement,
   isStringElement,
   isObjectElement,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 
 /**
  * @public

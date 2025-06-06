@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   LinkVisitorOptions,
   LinkVisitor as LinkVisitorType,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import LinkElement from '../../../../elements/Link.ts';
 

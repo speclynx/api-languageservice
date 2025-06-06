@@ -1,13 +1,13 @@
-# @swagger-api/apidom-ns-json-schema-draft-7
+# @char0n/apidom-ns-json-schema-draft-7
 
-`@swagger-api/apidom-ns-json-schema-draft-7` contains ApiDOM namespace specific to [JSON Schema Draft 7](https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-01) specification.
+`@char0n/apidom-ns-json-schema-draft-7` contains ApiDOM namespace specific to [JSON Schema Draft 7](https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-01) specification.
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ns-json-schema-draft-7
+ $ npm install @char0n/apidom-ns-json-schema-draft-7
 ```
 
 ## JSON Schema Draft 7 namespace
@@ -16,8 +16,8 @@ JSON Schema Draft 7 namespace consists of [number of elements](https://github.co
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import jsonShemaDraft7Namespace from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { createNamespace } from '@char0n/apidom-core';
+import jsonShemaDraft7Namespace from '@char0n/apidom-ns-json-schema-draft-7';
 
 const namespace = createNamespace(jsonShemaDraft7Namespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { JSONSchemaElement, JSONReferenceElement, LinkDescriptionElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { JSONSchemaElement, JSONReferenceElement, LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const jsonSchemaElement = new JSONSchemaElement();
 const jsonReferenceElement = new JSONReferenceElement();
@@ -44,7 +44,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isJSONSchemaElement, JSONSchemaElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { isJSONSchemaElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const jsonSchemaElement = new JSONSchemaElement();
 
@@ -55,11 +55,11 @@ isJSONSchemaElement(jsonSchemaElement); // => true
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
 This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-json-schema-draft-7/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-json-schema-draft-7/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@swagger-api/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@swagger-api/apidom-core';
-import { JSONSchemaElement, keyMap, getNodeType } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { visit } from '@char0n/apidom-core';
+import { JSONSchemaElement, keyMap, getNodeType } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const element = new JSONSchemaElement();
 
@@ -80,7 +80,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { LinkDescriptionElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const object = {
   anchor: 'nodes/{thisNodeId}',
@@ -93,8 +93,8 @@ LinkDescriptionElement.refract(object); // => LinkDescriptionElement({ anchor, a
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { LinkDescriptionElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { ObjectElement } from '@char0n/apidom-core';
+import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const objectElement = new ObjectElement({
   anchor: 'nodes/{thisNodeId}',
@@ -109,8 +109,8 @@ LinkDescriptionElement.refract(objectElement); // => LinkDescriptionElement({ an
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { LinkDescriptionElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { ObjectElement } from '@char0n/apidom-core';
+import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const objectElement = new ObjectElement({
   anchor: 'nodes/{thisNodeId}',
@@ -145,8 +145,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-7';
 
 const yamlDefinition = `
 $schema: 'https://json-schema.org/draft-07/schema#'

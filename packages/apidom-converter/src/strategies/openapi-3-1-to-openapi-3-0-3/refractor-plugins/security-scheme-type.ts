@@ -7,7 +7,7 @@ import {
   isComponentsElement,
   isReferenceElement,
   mediaTypes,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 import {
   Element,
   ParseResultElement,
@@ -15,8 +15,8 @@ import {
   isObjectElement,
   toValue,
   cloneDeep,
-} from '@swagger-api/apidom-core';
-import { dereferenceApiDOM, ReferenceSet, Reference, url } from '@swagger-api/apidom-reference';
+} from '@char0n/apidom-core';
+import { dereferenceApiDOM, ReferenceSet, Reference, url } from '@char0n/apidom-reference';
 
 import type { Toolbox } from '../toolbox.ts';
 

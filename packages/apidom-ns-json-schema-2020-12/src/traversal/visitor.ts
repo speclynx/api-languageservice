@@ -1,6 +1,6 @@
-import { keyMap as keyMapBase } from '@swagger-api/apidom-core';
+import { keyMap as keyMapBase } from '@char0n/apidom-core';
 
-export { getNodeType } from '@swagger-api/apidom-ns-json-schema-2019-09';
+export { getNodeType } from '@char0n/apidom-ns-json-schema-2019-09';
 /**
  * @public
  */

@@ -1,5 +1,5 @@
-import { NamespacePluginOptions } from '@swagger-api/apidom-core';
-import { JSONReferenceElement } from '@swagger-api/apidom-ns-json-schema-draft-6';
+import { NamespacePluginOptions } from '@char0n/apidom-core';
+import { JSONReferenceElement } from '@char0n/apidom-ns-json-schema-draft-6';
 
 import JSONSchemaElement from './elements/JSONSchema.ts';
 import LinkDescriptionElement from './elements/LinkDescription.ts';

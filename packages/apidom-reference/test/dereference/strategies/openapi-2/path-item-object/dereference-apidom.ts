@@ -5,9 +5,9 @@ import {
   isPathItemElement,
   PathItemElement,
   SwaggerElement,
-} from '@swagger-api/apidom-ns-openapi-2';
-import { toValue } from '@swagger-api/apidom-core';
-import { evaluate, compile } from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-ns-openapi-2';
+import { toValue } from '@char0n/apidom-core';
+import { evaluate, compile } from '@char0n/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { parse, dereferenceApiDOM } from '../../../../../src/index.ts';

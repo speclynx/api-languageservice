@@ -11,7 +11,7 @@ import {
   isNode as isCSTNode,
   YamlScalar,
   YamlStyle,
-} from '@swagger-api/apidom-ast';
+} from '@char0n/apidom-ast';
 import {
   ParseResultElement,
   AnnotationElement,
@@ -27,7 +27,7 @@ import {
   getNodeType as getNodeTypeApiDOM,
   Namespace,
   createNamespace,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 export const keyMap = {
   stream: ['children'],

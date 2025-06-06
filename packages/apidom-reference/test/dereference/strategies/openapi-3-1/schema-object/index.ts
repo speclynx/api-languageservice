@@ -1,9 +1,9 @@
 import path from 'node:path';
 import util from 'node:util';
 import { assert } from 'chai';
-import { Element, toValue } from '@swagger-api/apidom-core';
-import { isSchemaElement, mediaTypes } from '@swagger-api/apidom-ns-openapi-3-1';
-import { evaluate } from '@swagger-api/apidom-json-pointer/modern';
+import { Element, toValue } from '@char0n/apidom-core';
+import { isSchemaElement, mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
+import { evaluate } from '@char0n/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { dereference, parse, Reference, ReferenceSet } from '../../../../../src/index.ts';

@@ -3,7 +3,7 @@ import {
   ParseResultElement,
   isParseResultElement,
   namespace as baseNamespace,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

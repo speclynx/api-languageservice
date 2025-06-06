@@ -1,4 +1,4 @@
-import { ArrayElement, BREAK, cloneDeep } from '@swagger-api/apidom-core';
+import { ArrayElement, BREAK, cloneDeep } from '@char0n/apidom-core';
 
 import SwaggerConsumesElement from '../../../elements/nces/SwaggerConsumes.ts';
 import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';

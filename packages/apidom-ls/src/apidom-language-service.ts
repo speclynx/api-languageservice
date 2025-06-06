@@ -9,8 +9,8 @@ import {
 } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SemanticTokensLegend } from 'vscode-languageserver-protocol';
-import { Element, ParseResultElement } from '@swagger-api/apidom-core';
-import { evaluate } from '@swagger-api/apidom-json-pointer/modern';
+import { Element, ParseResultElement } from '@char0n/apidom-core';
+import { evaluate } from '@char0n/apidom-json-pointer';
 
 import {
   ColorsContext,

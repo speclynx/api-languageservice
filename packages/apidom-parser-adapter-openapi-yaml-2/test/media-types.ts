@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import ApiDOMParser from '@swagger-api/apidom-parser';
+import ApiDOMParser from '@char0n/apidom-parser';
 
 import * as openApiYAMLAdapter from '../src/adapter.ts';
 

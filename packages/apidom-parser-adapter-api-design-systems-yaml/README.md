@@ -1,11 +1,11 @@
-# @swagger-api/apidom-parser-adapter-api-design-systems-yaml
+# @char0n/apidom-parser-adapter-api-design-systems-yaml
 
-`@swagger-api/apidom-parser-adapter-api-design-systems-yaml` is a parser adapter for [API Design Systems](https://apidesign.systems/) specification versions defined in [YAML format](https://yaml.org/spec/1.2/spec.html).
+`@char0n/apidom-parser-adapter-api-design-systems-yaml` is a parser adapter for [API Design Systems](https://apidesign.systems/) specification versions defined in [YAML format](https://yaml.org/spec/1.2/spec.html).
 
 Supported versions:
 - 2021-05-07
 
-Under the hood this adapter uses [@swagger-api/apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2)
+Under the hood this adapter uses [@char0n/apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace)
 which is then refracted with [API Design Systems Refractors](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-api-design-systems#refractors).
 
@@ -15,12 +15,12 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-api-design-systems-yaml
+ $ npm install @char0n/apidom-parser-adapter-api-design-systems-yaml
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -56,7 +56,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -64,7 +64,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-api-design-systems-json';
+import { parse, detect } from '@char0n/apidom-parser-adapter-api-design-systems-json';
 
 // detecting
 await detect('version: "2021-05-07"'); // => true
@@ -79,8 +79,8 @@ const parseResult = await parse('version: "2021-05-07"', { sourceMap: true });
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as apiDesignSystemsYamlAdapter from '@swagger-api/apidom-parser-adapter-api-design-systems-yaml';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as apiDesignSystemsYamlAdapter from '@char0n/apidom-parser-adapter-api-design-systems-yaml';
 
 const parser = new ApiDOMParser();
 

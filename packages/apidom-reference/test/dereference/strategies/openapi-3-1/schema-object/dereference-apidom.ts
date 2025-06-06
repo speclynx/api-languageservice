@@ -1,13 +1,13 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { toValue } from '@swagger-api/apidom-core';
+import { toValue } from '@char0n/apidom-core';
 import {
   SchemaElement,
   PathItemElement,
   mediaTypes,
   isSchemaElement,
-} from '@swagger-api/apidom-ns-openapi-3-1';
-import { evaluate } from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-ns-openapi-3-1';
+import { evaluate } from '@char0n/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { parse, dereferenceApiDOM } from '../../../../../src/index.ts';

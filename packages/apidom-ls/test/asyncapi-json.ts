@@ -10,7 +10,7 @@ import {
   Position,
   SymbolInformation,
 } from 'vscode-languageserver-types';
-import { Element, traverse, toValue } from '@swagger-api/apidom-core';
+import { Element, traverse, toValue } from '@char0n/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';

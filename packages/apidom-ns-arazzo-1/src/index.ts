@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 export { default as mediaTypes, ArazzoMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -71,7 +71,7 @@ export type {
 export type {
   default as JSONSchemaVisitor,
   JSONSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-2020-12';
+} from '@char0n/apidom-ns-json-schema-2020-12';
 export type {
   default as ParameterVisitor,
   ParameterVisitorOptions,

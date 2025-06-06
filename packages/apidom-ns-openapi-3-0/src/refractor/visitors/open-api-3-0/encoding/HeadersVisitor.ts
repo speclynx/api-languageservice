@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { Element, ObjectElement, StringElement, toValue } from '@swagger-api/apidom-core';
+import { Element, ObjectElement, StringElement, toValue } from '@char0n/apidom-core';
 
 import MapVisitor, { MapVisitorOptions, SpecPath } from '../../generics/MapVisitor.ts';
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';

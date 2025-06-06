@@ -5,8 +5,8 @@ import {
   dereference,
   refract as baseRefract,
   dispatchRefractorPlugins,
-} from '@swagger-api/apidom-core';
-import type { Visitor as VisitorClass } from '@swagger-api/apidom-ns-json-schema-draft-6';
+} from '@char0n/apidom-core';
+import type { Visitor as VisitorClass } from '@char0n/apidom-ns-json-schema-draft-6';
 
 import specification from './specification.ts';
 import { keyMap, getNodeType } from '../traversal/visitor.ts';

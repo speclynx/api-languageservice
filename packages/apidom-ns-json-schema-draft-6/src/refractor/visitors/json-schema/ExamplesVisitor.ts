@@ -1,8 +1,5 @@
-import { ArrayElement } from '@swagger-api/apidom-core';
-import {
-  FallbackVisitor,
-  FallbackVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+import { ArrayElement } from '@char0n/apidom-core';
+import { FallbackVisitor, FallbackVisitorOptions } from '@char0n/apidom-ns-json-schema-draft-4';
 
 export type { FallbackVisitorOptions as ExamplesVisitorOptions };
 

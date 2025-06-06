@@ -21,7 +21,7 @@ import {
   isStringElement,
   MemberElement,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import {
   ApidomCompletionItem,

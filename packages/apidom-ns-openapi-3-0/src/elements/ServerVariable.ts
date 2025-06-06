@@ -1,10 +1,4 @@
-import {
-  ObjectElement,
-  ArrayElement,
-  StringElement,
-  Attributes,
-  Meta,
-} from '@swagger-api/apidom-core';
+import { ObjectElement, ArrayElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
 
 /**
  * @public

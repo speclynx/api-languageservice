@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import dedent from 'dedent';
-import { sexprs, SourceMapElement } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import { sexprs, SourceMapElement } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '../../../../src/index.ts';
 

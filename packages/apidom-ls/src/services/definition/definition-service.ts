@@ -1,18 +1,12 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import {
-  findAtOffset,
-  toValue,
-  Element,
-  ObjectElement,
-  MemberElement,
-} from '@swagger-api/apidom-core';
+import { findAtOffset, toValue, Element, ObjectElement, MemberElement } from '@char0n/apidom-core';
 import { Location, Range } from 'vscode-languageserver-types';
 import { DefinitionParams, ReferenceParams } from 'vscode-languageserver-protocol';
 import {
   evaluate as jsonPointerEvaluate,
   URIFragmentIdentifier,
-} from '@swagger-api/apidom-json-pointer/modern';
-import { dereferenceApiDOM } from '@swagger-api/apidom-reference';
+} from '@char0n/apidom-json-pointer';
+import { dereferenceApiDOM } from '@char0n/apidom-reference';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {

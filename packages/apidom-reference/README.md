@@ -1,6 +1,6 @@
-# @swagger-api/apidom-reference
+# @char0n/apidom-reference
 
-`@swagger-api/apidom-reference` package contains advanced algorithms for semantic ApiDOM manipulations.
+`@char0n/apidom-reference` package contains advanced algorithms for semantic ApiDOM manipulations.
 This package is divided into three (3) main components:
 
 - **[Parse component](#parse-component)**
@@ -14,7 +14,7 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-reference
+ $ npm install @char0n/apidom-reference
 ```
 
 ## Configurations
@@ -24,8 +24,8 @@ This package has two main exports suitable for different use-cases. **Empty** co
 ### Empty configuration
 
 ```js
-import { parse } from '@swagger-api/apidom-reference/configuration/empty';
-import OpenAPIJSON3_1Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-3-1';
+import { parse } from '@char0n/apidom-reference/configuration/empty';
+import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -41,11 +41,11 @@ This is suitable for creating **web bundles** and gives you total control of the
 ### Saturated configuration
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
+import { parse } from '@char0n/apidom-reference';
 ```
 or
 ```js
-import { parse } from '@swagger-api/apidom-reference/configuration/saturaged';
+import { parse } from '@char0n/apidom-reference/configuration/saturaged';
 ```
 
 Both of above imports are equivalent. This approach is suitable for **Node.js** environments.
@@ -60,7 +60,7 @@ Standard ApiDOM parser adapter can only parse strings. Parser plugins are capabl
 **Parsing a file localed on local filesystem:**
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
+import { parse } from '@char0n/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
@@ -70,7 +70,7 @@ await parse('/home/user/oas.json', {
 **Parsing an HTTP(S) URL located on internet:**
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
+import { parse } from '@char0n/apidom-reference';
 
 await parse('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
@@ -83,7 +83,7 @@ but if not provided, the Parse component will try to identify appropriate parser
 What actually happens if you don't provide `mediaType` parse option?
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
+import { parse } from '@char0n/apidom-reference';
 
 await parse('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json');
 ```
@@ -117,7 +117,7 @@ Supported media types are:
 
 #### [openapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-2)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
 and is uniquely  identified by `openapi-json-2` name.
 
 Supported media types are:
@@ -131,7 +131,7 @@ Supported media types are:
 
 #### [openapi-json-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-0)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-json-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
 and is uniquely  identified by `openapi-json-3-0` name.
 
 Supported media types are:
@@ -153,7 +153,7 @@ Supported media types are:
 
 #### [openapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-2)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
 and is uniquely  identified by `openapi-yaml-2` name.
 
 Supported media types are:
@@ -167,7 +167,7 @@ Supported media types are:
 
 #### [openapi-yaml-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-0)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
 and is uniquely  identified by `openapi-yaml-3-0` name.
 
 Supported media types are:
@@ -189,7 +189,7 @@ Supported media types are:
 
 #### [openapi-json-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-1)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-json-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
+Wraps [@char0n/apidom-parser-adapter-openapi-json-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
 and is uniquely  identified by `openapi-json-3-1` name.
 
 Supported media types are:
@@ -203,7 +203,7 @@ Supported media types are:
 
 #### [openapi-yaml-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-1)
 
-Wraps [@swagger-api/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
+Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
 and is uniquely  identified by `openapi-yaml-3-1` name.
 
 Supported media types are:
@@ -217,7 +217,7 @@ Supported media types are:
 
 #### [asyncapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-json-2)
 
-Wraps [@swagger-api/apidom-parser-adapter-asyncapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
+Wraps [@char0n/apidom-parser-adapter-asyncapi-json-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
 and is uniquely identified by `asyncapi-json-2` name.
 
 Supported media types are:
@@ -243,7 +243,7 @@ Supported media types are:
 
 #### [asyncapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-yaml-2)
 
-Wraps [@swagger-api/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
+Wraps [@char0n/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
 and is uniquely  identified by `asyncapi-yaml-2` name.
 
 
@@ -271,7 +271,7 @@ Supported media types are:
 
 #### [arazzo-json-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-json-1)
 
-Wraps [@swagger-api/apidom-parser-adapter-arazzo-json-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
+Wraps [@char0n/apidom-parser-adapter-arazzo-json-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
 and is uniquely identified by `arazzo-json-1` name.
 
 Supported media types are:
@@ -287,7 +287,7 @@ Supported media types are:
 
 #### [arazzo-yaml-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-yaml-1)
 
-Wraps [@swagger-api/apidom-parser-adapter-arazzo-yaml-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
+Wraps [@char0n/apidom-parser-adapter-arazzo-yaml-1](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
 and is uniquely identified by `arazzo-yaml-1` name.
 
 Supported media types are:
@@ -303,7 +303,7 @@ Supported media types are:
 
 #### [api-design-systems-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-json)
 
-Wraps [@swagger-api/apidom-parser-adapter-api-design-systsems-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
+Wraps [@char0n/apidom-parser-adapter-api-design-systsems-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
 and is uniquely identified by `api-design-systems-json` name.
 
 Supported media types are:
@@ -317,7 +317,7 @@ Supported media types are:
 
 #### [api-design-systems-yaml](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-yaml)
 
-Wraps [@swagger-api/apidom-parser-adapter-api-design-systems-yaml](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
+Wraps [@char0n/apidom-parser-adapter-api-design-systems-yaml](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
 and is uniquely  identified by `api-design-systems-yaml` name.
 
 
@@ -332,7 +332,7 @@ Supported media types are:
 
 #### [json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/json)
 
-Wraps [@swagger-api/apidom-parser-adapter-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-json) package
+Wraps [@char0n/apidom-parser-adapter-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-json) package
 and is uniquely  identified by `json` name.
 
 
@@ -346,7 +346,7 @@ Supported media types are:
 
 #### [yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-reference/src/parse/parsers/yaml-1-2)
 
-Wraps [@swagger-api/apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
+Wraps [@char0n/apidom-parser-adapter-yaml-1-2](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
 and is uniquely  identified by `yaml-1-2` name.
 
 
@@ -402,23 +402,23 @@ Most specific parser plugins are listed first, most generic are listed last.
 It's possible to **change** the parser plugins **order globally** by mutating global `parse` options:
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import OpenAPIJSON2Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-2';
-import OpenAPIYAML2Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-2';
-import OpenAPIJSON3_0Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-3-0';
-import OpenAPIYAML3_0Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-3-0'
-import OpenAPIJSON3_1Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-3-1';
-import OpenAPIYAML3_1Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-3-1'
-import AsyncAPIJSON2Parser from '@swagger-api/apidom-reference/parse/parsers/asyncapi-json-2';
-import AsyncAPIYAML2Parser from '@swagger-api/apidom-reference/parse/parsers/asyncapi-yaml-2';
-import ArazzoJSON1Parser from '@swagger-api/apidom-reference/parse/parsers/arazzo-json-1';
-import ArazzoYAML1Parser from '@swagger-api/apidom-reference/parse/parsers/arazzo-yaml-1';
-import APIDOMJSONParser from '@swagger-api/apidom-reference/parse/parsers/apidom-json';
-import APIDesignSystemsJSONParser from '@swagger-api/apidom-reference/parse/parsers/api-design-systems-json';
-import APIDesignSystemsYAMLParser from '@swagger-api/apidom-reference/parse/parsers/api-design-systems-json';
-import JSONParser from '@swagger-api/apidom-reference/parse/parsers/json';
-import YAMLParser from '@swagger-api/apidom-reference/parse/parsers/yaml';
-import BinaryParser from '@swagger-api/apidom-reference/parse/parsers/binary';
+import { options } from '@char0n/apidom-reference';
+import OpenAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-2';
+import OpenAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-2';
+import OpenAPIJSON3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-0';
+import OpenAPIYAML3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-0'
+import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
+import OpenAPIYAML3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-1'
+import AsyncAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-json-2';
+import AsyncAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-yaml-2';
+import ArazzoJSON1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-json-1';
+import ArazzoYAML1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-yaml-1';
+import APIDOMJSONParser from '@char0n/apidom-reference/parse/parsers/apidom-json';
+import APIDesignSystemsJSONParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
+import APIDesignSystemsYAMLParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
+import JSONParser from '@char0n/apidom-reference/parse/parsers/json';
+import YAMLParser from '@char0n/apidom-reference/parse/parsers/yaml';
+import BinaryParser from '@char0n/apidom-reference/parse/parsers/binary';
 
 
 options.parse.parsers = [
@@ -444,23 +444,23 @@ options.parse.parsers = [
 To **change** the parser plugins **order** on ad-hoc basis:
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
-import OpenAPIJSON2Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-2';
-import OpenAPIYAML2Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-2';
-import OpenAPIJSON3_0Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-3-0';
-import OpenAPIYAML3_0Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-3-0'
-import OpenAPIJSON3_1Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-json-3-1';
-import OpenAPIYAML3_1Parser from '@swagger-api/apidom-reference/parse/parsers/openapi-yaml-3-1'
-import AsyncAPIJSON2Parser from '@swagger-api/apidom-reference/parse/parsers/asyncapi-json-2';
-import AsyncAPIYAML2Parser from '@swagger-api/apidom-reference/parse/parsers/asyncapi-yaml-2';
-import ArazzoJSON1Parser from '@swagger-api/apidom-reference/parse/parsers/arazzo-json-1';
-import ArazzoYAML1Parser from '@swagger-api/apidom-reference/parse/parsers/arazzo-yaml-1';
-import APIDOMJSONParser from '@swagger-api/apidom-reference/parse/parsers/apidom-json';
-import APIDesignSystemsJSONParser from '@swagger-api/apidom-reference/parse/parsers/api-design-systems-json';
-import APIDesignSystemsYAMLParser from '@swagger-api/apidom-reference/parse/parsers/api-design-systems-json';
-import JSONParser from '@swagger-api/apidom-reference/parse/parsers/json';
-import YAMLParser from '@swagger-api/apidom-reference/parse/parsers/yaml';
-import BinaryParser from '@swagger-api/apidom-reference/parse/parsers/binary';
+import { parse } from '@char0n/apidom-reference';
+import OpenAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-2';
+import OpenAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-2';
+import OpenAPIJSON3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-0';
+import OpenAPIYAML3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-0'
+import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
+import OpenAPIYAML3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-1'
+import AsyncAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-json-2';
+import AsyncAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-yaml-2';
+import ArazzoJSON1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-json-1';
+import ArazzoYAML1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-yaml-1';
+import APIDOMJSONParser from '@char0n/apidom-reference/parse/parsers/apidom-json';
+import APIDesignSystemsJSONParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
+import APIDesignSystemsYAMLParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
+import JSONParser from '@char0n/apidom-reference/parse/parsers/json';
+import YAMLParser from '@char0n/apidom-reference/parse/parsers/yaml';
+import BinaryParser from '@char0n/apidom-reference/parse/parsers/binary';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -493,7 +493,7 @@ Parser plugins accept additional options like `allowEmpty` or `sourceMap`. It's 
 **options globally** by mutating global `parse` options:
 
 ```js
-import { options, parse } from '@swagger-api/apidom-reference';
+import { options, parse } from '@char0n/apidom-reference';
 
 options.parser.parserOpts = {
   allowEmpty: false,
@@ -508,7 +508,7 @@ await parse('/home/user/oas.json', {
 To **change** the parser plugins **options** on ad-hoc basis:
 
 ```js
-import { parse } from '@swagger-api/apidom-reference';
+import { parse } from '@char0n/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -543,7 +543,7 @@ interface ParserPlugin {
 New parser plugin is then provided as an option to a `parse` function:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@swagger-api/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -577,7 +577,7 @@ parses it and returns.
 If you want to force execution of your custom plugin, add it as a first parser plugin:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@swagger-api/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -607,7 +607,7 @@ await parse('/home/user/oas.json', {
 To override the default parser plugins entirely, set `myCustomParserPlugin` plugin to be the only one available:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@swagger-api/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -643,7 +643,7 @@ We're using the fact that every parser plugin is uniquely identifiable by its na
 **Removing** parser plugin **globally** for all subsequence `parse` calls is achieved by mutating global options:
 
 ```js
-import { parse, options, mergeOptions } from '@swagger-api/apidom-reference';
+import { parse, options, mergeOptions } from '@char0n/apidom-reference';
 
 options.parse.parsers = options.parse.parsers.filter(parserPlugin => parserPlugin !== 'asyncapi-json-2')
 
@@ -658,7 +658,7 @@ await parse('/home/user/oas.json', {
 **Removing** default parser plugin on **ad-hoc** basis:
 
 ```js
-import { parse, options } from '@swagger-api/apidom-reference';
+import { parse, options } from '@char0n/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -702,9 +702,9 @@ File allow list can be provided **globally** as an option to `FileResolver` in f
 of array of *glob patterns* or *regular expressions*.
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import FileResolver from '@swagger-api/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@swagger-api/apidom-reference/resolve/resolvers/http-axios';
+import { options } from '@char0n/apidom-reference';
+import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
 
 options.resolve.resolvers = [
   new FileResolver({
@@ -720,7 +720,7 @@ options.resolve.resolvers = [
 File allow list can also be provided on ad-hoc basis:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 await resolve('/home/user/oas.json', {
   resolve: {
@@ -746,7 +746,7 @@ HttpResolverAxios plugin supports all the options available in [Axios Request Co
 Config options can be provided in following way:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -767,7 +767,7 @@ HttpResolverAxios plugin supports [Axios Interceptors](https://axios-http.com/do
 Interceptors can be provided in following way:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 const requestInterceptor = (config) => config;
 const responseInterceptor = (response) => response;
@@ -789,7 +789,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 Multiple request and response interceptors can be provided in following way:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 const requestInterceptor1 = (config) => config;
 const requestInterceptor2 = (config) => config;
@@ -813,7 +813,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 **File resolution on local filesystem path**:
 
 ```js
-import { readFile } from '@swagger-api/apidom-reference';
+import { readFile } from '@char0n/apidom-reference';
 
 await readFile('/home/user/oas.json'); // Promise<Buffer>
 ```
@@ -821,7 +821,7 @@ await readFile('/home/user/oas.json'); // Promise<Buffer>
 **File resolution on HTTP(s) URL:**
 
 ```js
-import { readFile } from '@swagger-api/apidom-reference';
+import { readFile } from '@char0n/apidom-reference';
 
 await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json'); // Promise<Buffer>
 ```
@@ -829,7 +829,7 @@ File resolution always returns a [Promise](https://developer.mozilla.org/en-US/d
 It is responsibility of the API consumer to transform `Buffer` into `String` or any other type.
 
 ```js
-import { readFile } from '@swagger-api/apidom-reference';
+import { readFile } from '@char0n/apidom-reference';
 
 const buffer = await readFile('/home/user/oas.json');
 const string = buffer.toString('utf-8');
@@ -855,9 +855,9 @@ of the resolver plugins `canRead` method returns `true` or until entire list of 
 It's possible to **change** resolver plugins **order globally** by mutating global `resolve` option:
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import FileResolver from '@swagger-api/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@swagger-api/apidom-reference/resolve/resolvers/http-axios';
+import { options } from '@char0n/apidom-reference';
+import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
 
 options.resolve.resolvers = [
   new HTTPResolverAxios({ timeout: 5000, redirects: 5, withCredentials: false }),
@@ -868,9 +868,9 @@ options.resolve.resolvers = [
 To **change** resolver plugins **order** on ad-hoc basis:
 
 ```js
-import { readFile } from '@swagger-api/apidom-reference';
-import FileResolver from '@swagger-api/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@swagger-api/apidom-reference/resolve/resolvers/http-axios';
+import { readFile } from '@char0n/apidom-reference';
+import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
 
 await readFile('/home/user/oas.json', {
   resolve: {
@@ -888,7 +888,7 @@ Some resolver plugins accept additional options. It's possible to **change** res
 **options globally** by mutating global `resolve` options:
 
 ```js
-import { options, readFile } from '@swagger-api/apidom-reference';
+import { options, readFile } from '@char0n/apidom-reference';
 
 options.resolve.resolverOpts = {
   axiosConfig: {
@@ -902,7 +902,7 @@ await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main
 To **change** the resolver plugins **options** on ad-hoc basis:
 
 ```js
-import { readFile } from '@swagger-api/apidom-reference';
+import { readFile } from '@char0n/apidom-reference';
 
 await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -925,7 +925,7 @@ Some resolver strategy plugins accept additional options. It's possible to **cha
 **options globally** by mutating global `resolve` options:
 
 ```js
-import { options, resolve } from '@swagger-api/apidom-reference';
+import { options, resolve } from '@char0n/apidom-reference';
 
 options.resolve.strategyOpts = {
   apidom: { clone: true },
@@ -937,7 +937,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 To **change** the resolver strategy plugins **options** on ad-hoc basis:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -968,7 +968,7 @@ interface ResolverPlugin {
 New resolver plugin is then provided as an option to a `readFile` function:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@swagger-api/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1001,7 +1001,7 @@ resolves it and returns its content.
 If you want to force execution of your custom plugin, add it as a first resolver plugin:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@swagger-api/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1029,7 +1029,7 @@ await readFile('/home/user/oas.json', {
 To override the default resolver plugins entirely, set `myCustomResolverPlugin` plugin to be the only one available:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@swagger-api/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1069,7 +1069,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 **Externally resolving a file localed on a local filesystem:**
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1079,7 +1079,7 @@ await resolve('/home/user/oas.json', {
 **Externally resolving an HTTP(S) URL located on an internet:**
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
+import { resolve } from '@char0n/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1100,8 +1100,8 @@ resolve option needs to be provided to have a starting point for external depend
 `mediaType` parse option is unnecessary as we can directly assert the type of ApiDOM fragment.
 
 ```js
-import { OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
-import { resolveApiDOM } from '@swagger-api/apidom-reference';
+import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { resolveApiDOM } from '@char0n/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
   openapi: '3.1.0',
@@ -1256,11 +1256,11 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `resolve` option:
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import AsyncAPI2ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/asyncapi-2';
-import OpenAPI2ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-2';
-import OpenAPI3_0ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-3-0';
-import OpenAPI3_1ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-3-1';
+import { options } from '@char0n/apidom-reference';
+import AsyncAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/asyncapi-2';
+import OpenAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-2';
+import OpenAPI3_0ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-0';
+import OpenAPI3_1ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-1';
 
 options.resolve.strategies = [
   new OpenAPI2ResolveStrategy(),
@@ -1273,11 +1273,11 @@ options.resolve.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { resolve } from '@swagger-api/apidom-reference';
-import AsyncAPI2ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/asyncapi-2';
-import OpenAPI2ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-2';
-import OpenAPI3_0ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-3-0';
-import OpenAPI3_1ResolveStrategy from '@swagger-api/apidom-reference/resolve/strategies/openapi-3-1';
+import { resolve } from '@char0n/apidom-reference';
+import AsyncAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/asyncapi-2';
+import OpenAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-2';
+import OpenAPI3_0ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-0';
+import OpenAPI3_1ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-1';
 
 
 await resolve('/home/user/oas.json', {
@@ -1314,7 +1314,7 @@ interface ResolveStrategy {
 New strategy is then provided as an option to a `resolve` function:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@swagger-api/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1350,7 +1350,7 @@ resolves it and returns `ReferenceSet` object.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@swagger-api/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1381,7 +1381,7 @@ await resolve('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomResolverStrategy` strategy to be the only one available:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@swagger-api/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1424,7 +1424,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 **Dereferencing a file localed on a local filesystem:**
 
 ```js
-import { dereference } from '@swagger-api/apidom-reference';
+import { dereference } from '@char0n/apidom-reference';
 
 await dereference('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1434,7 +1434,7 @@ await dereference('/home/user/oas.json', {
 **Dereferencing an HTTP(S) URL located on an internet:**
 
 ```js
-import { dereference } from '@swagger-api/apidom-reference';
+import { dereference } from '@char0n/apidom-reference';
 
 await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1466,8 +1466,8 @@ resolve option needs to be provided to have a starting point for external depend
 ```
 
 ```js
-import { OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
-import { dereferenceApiDOM } from '@swagger-api/apidom-reference';
+import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { dereferenceApiDOM } from '@char0n/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
   openapi: '3.1.0',
@@ -1628,12 +1628,12 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `dereference` option:
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import AsyncAPI2DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/asyncapi-2';
-import OpenAPI2DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-2';
-import OpenAPI3_0DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-3-0';
-import OpenAPI3_1DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-3-1';
-import ApiDOMDereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/apidom';
+import { options } from '@char0n/apidom-reference';
+import AsyncAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/asyncapi-2';
+import OpenAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-2';
+import OpenAPI3_0DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-0';
+import OpenAPI3_1DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-1';
+import ApiDOMDereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/apidom';
 
 options.dereference.strategies = [
   new OpenAPI2DereferenceStrategy(),
@@ -1647,12 +1647,12 @@ options.dereference.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { dereference } from '@swagger-api/apidom-reference';
-import AsyncAPI2DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/asyncapi-2';
-import OpenAPI2DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-2';
-import OpenAPI3_0DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-3-0';
-import OpenAPI3_1DereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/openapi-3-1';
-import ApiDOMDereferenceStrategy from '@swagger-api/apidom-reference/dereference/strategies/apidom';
+import { dereference } from '@char0n/apidom-reference';
+import AsyncAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/asyncapi-2';
+import OpenAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-2';
+import OpenAPI3_0DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-0';
+import OpenAPI3_1DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-1';
+import ApiDOMDereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/apidom';
 
 
 await dereference('/home/user/oas.json', {
@@ -1677,7 +1677,7 @@ Some dereference strategy plugins accept additional options. It's possible to **
 **options globally** by mutating global `dereference` options:
 
 ```js
-import { options, dereference } from '@swagger-api/apidom-reference';
+import { options, dereference } from '@char0n/apidom-reference';
 
 options.dereference.strategyOpts = {
   apidom: { clone: true },
@@ -1689,7 +1689,7 @@ await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/m
 To **change** the dereference strategy plugins **options** on ad-hoc basis:
 
 ```js
-import { dereference } from '@swagger-api/apidom-reference';
+import { dereference } from '@char0n/apidom-reference';
 
 await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   dereference: {
@@ -1720,7 +1720,7 @@ interface DereferenceStrategy {
 New strategy is then provided as an option to the `dereference` function:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@swagger-api/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
   extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1755,7 +1755,7 @@ dereferences it and returns a dereferenced element.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@swagger-api/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
 extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1785,7 +1785,7 @@ await dereference('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomDereferenceStrategy` strategy to be the only one available:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@swagger-api/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
 extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1829,7 +1829,7 @@ and passing its result to dereferencing via an option. External resolution ignor
 so it's theoretically always faster than the dereferencing.
 
 ```js
-import { resolve, dereference } from '@swagger-api/apidom-reference';
+import { resolve, dereference } from '@char0n/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1857,7 +1857,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 **Bundling a file localed on a local filesystem:**
 
 ```js
-import { bundle } from '@swagger-api/apidom-reference';
+import { bundle } from '@char0n/apidom-reference';
 
 await bundle('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1867,7 +1867,7 @@ await bundle('/home/user/oas.json', {
 **Bundling an HTTP(S) URL located on an internet:**
 
 ```js
-import { bundle } from '@swagger-api/apidom-reference';
+import { bundle } from '@char0n/apidom-reference';
 
 await bundle('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1920,8 +1920,8 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `bundle` option:
 
 ```js
-import { options } from '@swagger-api/apidom-reference';
-import OpenAPI3_1BundleStrategy from '@swagger-api/apidom-reference/bundle/strategies/openapi-3-1'
+import { options } from '@char0n/apidom-reference';
+import OpenAPI3_1BundleStrategy from '@char0n/apidom-reference/bundle/strategies/openapi-3-1'
 
 options.dereference.strategies = [
   new OpenAPI3_1DereferenceStrategy(),
@@ -1931,8 +1931,8 @@ options.dereference.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { bundle } from '@swagger-api/apidom-reference';
-import OpenAPI3_1BundleStrategy from '@swagger-api/apidom-reference/bundle/strategies/openapi-3-1'
+import { bundle } from '@char0n/apidom-reference';
+import OpenAPI3_1BundleStrategy from '@char0n/apidom-reference/bundle/strategies/openapi-3-1'
 
 await bundle('/home/user/oas.json', {
   parse: {
@@ -1965,7 +1965,7 @@ interface BundleStrategy {
 New strategy is then provided as an option to the `bundle` function:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@swagger-api/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -1998,7 +1998,7 @@ bundles it and returns a bundled element.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@swagger-api/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -2026,7 +2026,7 @@ await bundle('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomBundleStrategy` strategy to be the only one available:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@swagger-api/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -2067,7 +2067,7 @@ and passing its result to bundling via an option. External resolution is built o
 so it's theoretically always faster on huge amount of external dependencies than the bundling.
 
 ```js
-import { resolve, bundle } from '@swagger-api/apidom-reference';
+import { resolve, bundle } from '@char0n/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },

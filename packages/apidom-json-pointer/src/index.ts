@@ -1,3 +1,15 @@
+import {
+  evaluate as baseEvaluate,
+  EvaluationRealm,
+  JSONPointerIndexError,
+  JSONPointerKeyError,
+  JSONPointer,
+} from '@swaggerexpert/json-pointer';
+import type { EvaluationOptions } from '@swaggerexpert/json-pointer';
+import { isArrayElement, isObjectElement } from '@char0n/apidom-core';
+
+/* eslint-disable class-methods-use-this */
+
 export {
   /**
    * Representation
@@ -46,7 +58,83 @@ export {
 /**
  * Contextual Evaluation for ApiDOM
  */
-export { evaluate } from '@swaggerexpert/json-pointer/evaluate/realms/apidom';
+class ApiDOMEvaluationRealm extends EvaluationRealm {
+  name = 'apidom';
+
+  isArray(node: unknown) {
+    return isArrayElement(node);
+  }
+
+  isObject(node: unknown) {
+    return isObjectElement(node);
+  }
+
+  sizeOf(node: unknown) {
+    if (this.isArray(node) || this.isObject(node)) {
+      return node.length;
+    }
+    return 0;
+  }
+
+  has(node: unknown, referenceToken: string) {
+    if (this.isArray(node)) {
+      const index = Number(referenceToken);
+      const indexUint32 = index >>> 0; // eslint-disable-line no-bitwise
+
+      if (index !== indexUint32) {
+        throw new JSONPointerIndexError(
+          `Invalid array index "${referenceToken}": index must be an unsinged 32-bit integer`,
+          {
+            referenceToken,
+            currentValue: node,
+            realm: this.name,
+          },
+        );
+      }
+
+      return indexUint32 < this.sizeOf(node);
+    }
+    if (this.isObject(node)) {
+      const keys = node.keys();
+      const uniqueKeys = new Set(keys);
+
+      if (keys.length !== uniqueKeys.size) {
+        throw new JSONPointerKeyError(
+          `Object key "${referenceToken}" is not unique — JSON Pointer requires unique member names`,
+          {
+            referenceToken,
+            currentValue: node,
+            realm: this.name,
+          },
+        );
+      }
+
+      return node.hasKey(referenceToken);
+    }
+    return false;
+  }
+
+  evaluate(node: unknown, referenceToken: string) {
+    if (this.isArray(node)) {
+      return node.get(Number(referenceToken));
+    }
+    if (this.isObject(node)) {
+      return node.get(referenceToken);
+    }
+    return undefined;
+  }
+}
+
+export type ApiDOMRealmEvaluationOptions = Omit<EvaluationOptions, 'realm'>;
+
+export const evaluate = <T = unknown>(
+  value: unknown,
+  jsonPointer: JSONPointer,
+  options: ApiDOMRealmEvaluationOptions = {},
+): T => {
+  return baseEvaluate(value, jsonPointer, { ...options, realm: new ApiDOMEvaluationRealm() });
+};
+
 /**
  * Re-export all types
  */

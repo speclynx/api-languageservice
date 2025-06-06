@@ -1,5 +1,5 @@
-import { ParseResultElement } from '@swagger-api/apidom-core';
-import { File } from '@swagger-api/apidom-reference';
+import { ParseResultElement } from '@char0n/apidom-core';
+import { File } from '@char0n/apidom-reference';
 
 import type { ConverterOptions } from '../options/index.ts';
 

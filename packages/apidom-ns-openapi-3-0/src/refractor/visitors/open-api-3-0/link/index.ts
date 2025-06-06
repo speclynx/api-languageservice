@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { isStringElement, ObjectElement } from '@swagger-api/apidom-core';
+import { isStringElement, ObjectElement } from '@char0n/apidom-core';
 
 import LinkElement from '../../../../elements/Link.ts';
 import FixedFieldsVisitor, {

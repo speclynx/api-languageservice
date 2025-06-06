@@ -1,4 +1,4 @@
-import { MediaTypeElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { MediaTypeElement } from '@char0n/apidom-ns-openapi-3-0';
 
 import SchemaElement from './Schema.ts';
 

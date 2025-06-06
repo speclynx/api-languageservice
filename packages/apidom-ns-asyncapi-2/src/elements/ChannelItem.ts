@@ -1,10 +1,4 @@
-import {
-  StringElement,
-  ObjectElement,
-  ArrayElement,
-  Attributes,
-  Meta,
-} from '@swagger-api/apidom-core';
+import { StringElement, ObjectElement, ArrayElement, Attributes, Meta } from '@char0n/apidom-core';
 
 import OperationElement from './Operation.ts';
 import ParametersElement from './Parameters.ts';

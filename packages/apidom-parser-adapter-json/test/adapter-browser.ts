@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, assert } from 'chai';
-import { sexprs, isObjectElement, isParseResultElement } from '@swagger-api/apidom-core';
+import { sexprs, isObjectElement, isParseResultElement } from '@char0n/apidom-core';
 
 import * as adapter from '../src/adapter-browser.ts';
 

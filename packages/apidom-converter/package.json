@@ -1,5 +1,5 @@
 {
-  "name": "@swagger-api/apidom-converter",
+  "name": "@char0n/apidom-converter",
   "version": "0.92.0",
   "description": "Tool for converting API specifications.",
   "private": true,
@@ -39,11 +39,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@swagger-api/apidom-error": "*",
-    "@swagger-api/apidom-core": "*",
-    "@swagger-api/apidom-ns-openapi-3-0": "*",
-    "@swagger-api/apidom-ns-openapi-3-1": "*",
-    "@swagger-api/apidom-reference": "*"
+    "@char0n/apidom-error": "*",
+    "@char0n/apidom-core": "*",
+    "@char0n/apidom-ns-openapi-3-0": "*",
+    "@char0n/apidom-ns-openapi-3-1": "*",
+    "@char0n/apidom-reference": "*"
   },
   "files": [
     "src/**/*.mjs",

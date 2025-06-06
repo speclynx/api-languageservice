@@ -26,7 +26,7 @@ import {
   DefinitionParams,
   ReferenceParams,
 } from 'vscode-languageserver-protocol';
-import { Element, ParseResultElement } from '@swagger-api/apidom-core';
+import { Element, ParseResultElement } from '@char0n/apidom-core';
 
 /**
  * @public

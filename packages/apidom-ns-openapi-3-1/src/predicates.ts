@@ -4,8 +4,8 @@ import {
   isBooleanElement,
   isStringElement,
   toValue,
-} from '@swagger-api/apidom-core';
-import type { ElementPredicate } from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
+import type { ElementPredicate } from '@char0n/apidom-core';
 
 import CallbackElement from './elements/Callback.ts';
 import ComponentsElement from './elements/Components.ts';

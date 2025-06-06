@@ -1,4 +1,4 @@
-# @swagger-api/apidom-error
+# @char0n/apidom-error
 
 `apidom-error` provides several error classes in support of [Joyent's Best Practices for Error Handling in Node.js](http://web.archive.org/web/20150221074228/http://www.joyent.com/developers/node/design/errors).
 These error classes should be used as a superclass for all **operational errors**.
@@ -18,7 +18,7 @@ to form custom error hierarchies.
 Basic error class that can be easily extended and form error chains.
 
 ```js
-import { ApiDOMError } from '@swagger-api/apidom-error';
+import { ApiDOMError } from '@char0n/apidom-error';
 
 const error1 = new ApiDOMError('error message'); // basic error
 const error2 = new ApiDOMError('error message', { cause: new Error('cause') }); // error chain
@@ -29,7 +29,7 @@ const error2 = new ApiDOMError('error message', { cause: new Error('cause') }); 
 Error class that is based on `ApiDOMError` and allows to assign arbitrary data properties to its instances.
 
 ```js
-import { ApiDOMStructuredError } from '@swagger-api/apidom-error';
+import { ApiDOMStructuredError } from '@char0n/apidom-error';
 
 const error1 = new ApiDOMStructuredError('error message', { cause: new Error('cause') }); // just like ApiDOMError
 
@@ -46,7 +46,7 @@ it's highly recommended to extend `ApiDOMStructuredError` class and create publi
 explicitly.
 
 ```typescript
-import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 interface StructuredErrorOptions extends ApiDOMErrorOptions {
   readonly prop1: string;
@@ -74,7 +74,7 @@ several errors need to be wrapped in a single error. It is thrown when multiple 
 need to be reported by an operation. Supports error chaining as well.
 
 ```js
-import { ApiDOMAggregateError } from '@swagger-api/apidom-error';
+import { ApiDOMAggregateError } from '@char0n/apidom-error';
 
 const error1 = new Error('error1');
 const error2 = new Error('error2');
@@ -90,7 +90,7 @@ classes don't support multiple inheritance, it cannot also be based on `ApiDOMEr
 Nevertheless, for convenience, following will work:
 
 ```js
-import { ApiDOMAggregateError, ApiDOMError } from '@swagger-api/apidom-error';
+import { ApiDOMAggregateError, ApiDOMError } from '@char0n/apidom-error';
 
 const aggregateError = new ApiDOMAggregateError([]);
 aggregateError instanceof ApiDOMError; // => true
@@ -108,7 +108,7 @@ particular ApiDOM package.
 This error class that is based on `ApiDOMError`. Thrown to indicate that the requested operation is not supported.
 
 ```js
-import { UnsupportedOperationError } from '@swagger-api/apidom-error';
+import { UnsupportedOperationError } from '@char0n/apidom-error';
 
 const error = new UnsupportedOperationError('error message');
 ```
@@ -120,7 +120,7 @@ of code has not been implemented. This exception provides a more semantically ri
 of the problem than base `ApiDOMError`.
 
 ```js
-import { NotImplementedError } from '@swagger-api/apidom-error';
+import { NotImplementedError } from '@char0n/apidom-error';
 
 const error = new NotImplementedError('error message');
 ```

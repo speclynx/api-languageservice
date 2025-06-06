@@ -2,9 +2,9 @@ import path from 'node:path';
 import sinon from 'sinon';
 import { assert } from 'chai';
 import { identity } from 'ramda';
-import { Element, isParseResultElement, isRefElement, toValue } from '@swagger-api/apidom-core';
-import { isSchemaElement, mediaTypes } from '@swagger-api/apidom-ns-openapi-2';
-import { evaluate } from '@swagger-api/apidom-json-pointer/modern';
+import { Element, isParseResultElement, isRefElement, toValue } from '@char0n/apidom-core';
+import { isSchemaElement, mediaTypes } from '@char0n/apidom-ns-openapi-2';
+import { evaluate } from '@char0n/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { loadJsonFile } from '../../../../helpers.ts';

@@ -1,8 +1,8 @@
 import { propOr, omit } from 'ramda';
 import { isNotUndefined } from 'ramda-adjunct';
-import { ParseResultElement, createNamespace } from '@swagger-api/apidom-core';
-import { parse as parseJSON, detect as detectJSON } from '@swagger-api/apidom-parser-adapter-json';
-import arazzoNamespace, { ArazzoSpecification1Element } from '@swagger-api/apidom-ns-arazzo-1';
+import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
+import { parse as parseJSON, detect as detectJSON } from '@char0n/apidom-parser-adapter-json';
+import arazzoNamespace, { ArazzoSpecification1Element } from '@char0n/apidom-ns-arazzo-1';
 
 export { default as mediaTypes } from './media-types.ts';
 

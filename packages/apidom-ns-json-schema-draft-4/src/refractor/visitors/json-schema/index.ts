@@ -7,7 +7,7 @@ import {
   isStringElement,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import FixedFieldsVisitor, {
   FixedFieldsVisitorOptions,

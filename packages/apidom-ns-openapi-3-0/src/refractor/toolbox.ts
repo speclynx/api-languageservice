@@ -7,7 +7,7 @@ import {
   createNamespace,
   includesClasses,
   hasElementSourceMap,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import * as openApi3_0Predicates from '../predicates.ts';
 import openApi3_0Namespace from '../namespace.ts';

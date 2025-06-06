@@ -1,8 +1,8 @@
-import { ObjectElement, BooleanElement } from '@swagger-api/apidom-core';
+import { ObjectElement, BooleanElement } from '@char0n/apidom-core';
 import {
   JSONSchemaVisitor as JSONSchemaDraft4Visitor,
   JSONSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

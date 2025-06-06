@@ -1,4 +1,4 @@
-import { NotImplementedError } from '@swagger-api/apidom-error';
+import { NotImplementedError } from '@char0n/apidom-error';
 
 /**
  * @public

@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { createSandbox } from 'sinon';
-import * as asyncApiJsonAdapterModule from '@swagger-api/apidom-parser-adapter-asyncapi-json-2';
-import * as asyncApiYamlAdapterModule from '@swagger-api/apidom-parser-adapter-asyncapi-yaml-2';
-import { isAsyncApi2Element } from '@swagger-api/apidom-ns-asyncapi-2';
+import * as asyncApiJsonAdapterModule from '@char0n/apidom-parser-adapter-asyncapi-json-2';
+import * as asyncApiYamlAdapterModule from '@char0n/apidom-parser-adapter-asyncapi-yaml-2';
+import { isAsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
 
 import ApiDOMParser from '../src/parser.ts';
 

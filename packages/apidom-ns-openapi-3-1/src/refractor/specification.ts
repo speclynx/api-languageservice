@@ -1,5 +1,5 @@
-import { specificationObj as OpenApi3_0Specification } from '@swagger-api/apidom-ns-openapi-3-0';
-import { specificationObj as JSONSchema202012Specification } from '@swagger-api/apidom-ns-json-schema-2020-12';
+import { specificationObj as OpenApi3_0Specification } from '@char0n/apidom-ns-openapi-3-0';
+import { specificationObj as JSONSchema202012Specification } from '@char0n/apidom-ns-json-schema-2020-12';
 
 import OpenApi3_1Visitor from './visitors/open-api-3-1/index.ts';
 import InfoVisitor from './visitors/open-api-3-1/info/index.ts';

@@ -1,4 +1,4 @@
-import { parse as parseJsonPointer } from '@swagger-api/apidom-json-pointer/modern';
+import { parse as parseJsonPointer } from '@char0n/apidom-json-pointer';
 
 import InvalidRelativeJsonPointerError from './errors/InvalidRelativeJsonPointerError.ts';
 import { RelativeJsonPointer } from './types.ts';

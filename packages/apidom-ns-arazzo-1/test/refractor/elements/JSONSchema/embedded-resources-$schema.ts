@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { find, toValue, isElement } from '@swagger-api/apidom-core';
+import { find, toValue, isElement } from '@char0n/apidom-core';
 
 import { JSONSchemaElement, isJSONSchemaElement } from '../../../../src/index.ts';
 

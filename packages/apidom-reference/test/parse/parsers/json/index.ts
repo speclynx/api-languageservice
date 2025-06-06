@@ -5,7 +5,7 @@ import {
   ObjectElement,
   isParseResultElement,
   isSourceMapElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import File from '../../../../src/File.ts';
 import JSONParser from '../../../../src/parse/parsers/json/index.ts';

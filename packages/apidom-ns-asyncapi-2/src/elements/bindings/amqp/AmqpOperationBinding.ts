@@ -6,7 +6,7 @@ import {
   BooleanElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 /**
  * @public

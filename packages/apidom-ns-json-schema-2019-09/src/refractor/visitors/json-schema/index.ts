@@ -1,9 +1,9 @@
-import { ObjectElement, isStringElement } from '@swagger-api/apidom-core';
+import { ObjectElement, isStringElement } from '@char0n/apidom-core';
 import {
   FixedFieldsVisitor,
   JSONSchemaVisitor as JSONSchemaDraft7Visitor,
   JSONSchemaVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-draft-7';
+} from '@char0n/apidom-ns-json-schema-draft-7';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

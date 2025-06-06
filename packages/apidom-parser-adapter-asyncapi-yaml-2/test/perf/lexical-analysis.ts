@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Deferred, Event } from 'benchmark';
-import { lexicalAnalysis } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import { lexicalAnalysis } from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixtures/asyncapi.yaml');

@@ -1,6 +1,6 @@
 import { Tree } from 'web-tree-sitter';
-import { ParseResultElement } from '@swagger-api/apidom-core';
-import { visit, YamlJsonSchema as JsonSchema, YamlReferenceManager } from '@swagger-api/apidom-ast';
+import { ParseResultElement } from '@char0n/apidom-core';
+import { visit, YamlJsonSchema as JsonSchema, YamlReferenceManager } from '@char0n/apidom-ast';
 
 import CstVisitor, { keyMap as cstKeyMap, isNode as isCstNode } from './visitors/CstVisitor.ts';
 import YamlAstVisitor, {

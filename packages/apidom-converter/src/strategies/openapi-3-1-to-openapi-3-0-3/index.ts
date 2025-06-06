@@ -1,20 +1,20 @@
 import {
   OpenApi3_0Element,
   mediaTypes as openAPI3_0MediaTypes,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 import {
   isOpenApi3_1Element,
   mediaTypes as openAPI3_1MediaTypes,
   keyMap,
   getNodeType,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 import {
   ParseResultElement,
   AnnotationElement,
   cloneDeep,
   dispatchRefractorPlugins as dispatchPlugins,
-} from '@swagger-api/apidom-core';
-import { File } from '@swagger-api/apidom-reference';
+} from '@char0n/apidom-core';
+import { File } from '@char0n/apidom-reference';
 
 import ConvertStrategy from '../ConvertStrategy.ts';
 import openAPIVersionRefractorPlugin from './refractor-plugins/openapi-version.ts';

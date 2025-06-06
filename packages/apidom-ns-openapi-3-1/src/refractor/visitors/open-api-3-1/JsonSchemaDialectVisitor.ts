@@ -1,11 +1,11 @@
 import { Mixin } from 'ts-mixer';
-import { StringElement, BREAK, toValue } from '@swagger-api/apidom-core';
+import { StringElement, BREAK, toValue } from '@char0n/apidom-core';
 import {
   FallbackVisitor,
   FallbackVisitorOptions,
   SpecificationVisitor,
   SpecificationVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import JsonSchemaDialectElement from '../../../elements/JsonSchemaDialect.ts';
 

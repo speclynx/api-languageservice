@@ -1,4 +1,4 @@
-import { ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import { ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 import RelativeJsonPointerError from './RelativeJsonPointerError.ts';
 

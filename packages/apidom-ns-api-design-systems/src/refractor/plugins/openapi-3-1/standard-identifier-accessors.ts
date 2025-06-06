@@ -1,4 +1,4 @@
-import { StringElement, toValue, cloneDeep } from '@swagger-api/apidom-core';
+import { StringElement, toValue, cloneDeep } from '@char0n/apidom-core';
 import {
   PathItemElement,
   OperationElement,
@@ -8,7 +8,7 @@ import {
   isStringElement,
   isArrayElement,
   isObjectElement,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 
 /**
  * @public

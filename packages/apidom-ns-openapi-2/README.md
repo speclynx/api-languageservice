@@ -1,6 +1,6 @@
-# @swagger-api/apidom-ns-openapi-2
+# @char0n/apidom-ns-openapi-2
 
-`@swagger-api/apidom-ns-openapi-2` contains ApiDOM namespace supports following OpenAPI specification versions:
+`@char0n/apidom-ns-openapi-2` contains ApiDOM namespace supports following OpenAPI specification versions:
 
 - [OpenAPI 2.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md)
 
@@ -9,7 +9,7 @@
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ns-openapi-2
+ $ npm install @char0n/apidom-ns-openapi-2
 ```
 
 ## OpenAPI 2.0 namespace
@@ -18,8 +18,8 @@ OpenAPI 2.0 namespace consists of [number of elements](https://github.com/swagge
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import openApi2Namespace from '@swagger-api/apidom-ns-openapi-2';
+import { createNamespace } from '@char0n/apidom-core';
+import openApi2Namespace from '@char0n/apidom-ns-openapi-2';
 
 const namespace = createNamespace(openApi2Namespace);
 
@@ -33,7 +33,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { SwaggerElement, InfoElement } from '@swagger-api/apidom-ns-openapi-2';
+import { SwaggerElement, InfoElement } from '@char0n/apidom-ns-openapi-2';
 
 const infoElement = new InfoElement();
 const swaggerElement = new SwaggerElement();
@@ -45,7 +45,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isSwaggerElement, SwaggerElement } from '@swagger-api/apidom-ns-openapi-2';
+import { isSwaggerElement, SwaggerElement } from '@char0n/apidom-ns-openapi-2';
 
 const swaggerElement = new SwaggerElement();
 
@@ -56,11 +56,11 @@ isSwaggerElement(swaggerElement); // => true
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
 This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-2/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-2/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@swagger-api/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@swagger-api/apidom-core';
-import { SwaggerElement, keyMap, getNodeType } from '@swagger-api/apidom-ns-openapi-2';
+import { visit } from '@char0n/apidom-core';
+import { SwaggerElement, keyMap, getNodeType } from '@char0n/apidom-ns-openapi-2';
 
 const element = new SwaggerElement();
 
@@ -81,7 +81,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-2';
+import { InfoElement } from '@char0n/apidom-ns-openapi-2';
 
 const object = {
     title: 'my title',
@@ -95,8 +95,8 @@ InfoElement.refract(object); // => InfoElement({ title, description, version })
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-2';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-2';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -112,8 +112,8 @@ InfoElement.refract(objectElement); // => InfoElement({ title = 'my title', desc
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-2';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-2';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -149,8 +149,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, SwaggerElement } from '@swagger-api/apidom-ns-openapi-2';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, SwaggerElement } from '@char0n/apidom-ns-openapi-2';
 
 const yamlDefinition = `
 swagger: 2.0

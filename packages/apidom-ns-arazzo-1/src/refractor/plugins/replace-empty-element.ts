@@ -7,7 +7,7 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 /**
  * Arazzo 1.0.1 specification elements.

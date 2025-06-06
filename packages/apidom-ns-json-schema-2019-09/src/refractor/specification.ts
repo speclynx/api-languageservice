@@ -1,5 +1,5 @@
 import { pipe, assocPath, dissocPath } from 'ramda';
-import { specificationObj } from '@swagger-api/apidom-ns-json-schema-draft-7';
+import { specificationObj } from '@char0n/apidom-ns-json-schema-draft-7';
 
 import JSONSchemaVisitor from './visitors/json-schema/index.ts';
 import JSONSchema$vocabularyVisitor from './visitors/json-schema/$vocabularyVisitor.ts';

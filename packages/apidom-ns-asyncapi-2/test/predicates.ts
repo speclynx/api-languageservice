@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { ArrayElement } from '@swagger-api/apidom-core';
+import { ArrayElement } from '@char0n/apidom-core';
 
 import {
   isAsyncApi2Element,

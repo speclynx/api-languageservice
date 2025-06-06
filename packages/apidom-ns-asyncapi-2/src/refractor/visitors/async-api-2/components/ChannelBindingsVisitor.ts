@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import ComponentsChannelBindingsElement from '../../../../elements/nces/ComponentsChannelBindings.ts';

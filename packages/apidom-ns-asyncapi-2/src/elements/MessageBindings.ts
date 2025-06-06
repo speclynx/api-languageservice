@@ -1,4 +1,4 @@
-import { ObjectElement, Attributes, Meta } from '@swagger-api/apidom-core';
+import { ObjectElement, Attributes, Meta } from '@char0n/apidom-core';
 
 import HttpMessageBindingElement from './bindings/http/HttpMessageBinding.ts';
 import WebSocketMessageBindingElement from './bindings/ws/WebSocketMessageBinding.ts';

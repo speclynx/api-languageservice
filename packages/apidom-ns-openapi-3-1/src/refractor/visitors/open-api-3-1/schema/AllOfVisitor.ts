@@ -1,7 +1,7 @@
 import {
   AllOfVisitor as AllOfJSONSchema202012Options,
   AllOfVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-2020-12';
+} from '@char0n/apidom-ns-json-schema-2020-12';
 
 export type { AllOfVisitorOptions };
 

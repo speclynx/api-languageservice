@@ -1,4 +1,4 @@
-import { ArrayElement } from '@swagger-api/apidom-core';
+import { ArrayElement } from '@char0n/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';
 

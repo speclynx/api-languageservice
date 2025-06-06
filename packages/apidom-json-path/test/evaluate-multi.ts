@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { ObjectElement, NumberElement } from '@swagger-api/apidom-core';
+import { ObjectElement, NumberElement } from '@char0n/apidom-core';
 
 import { evaluateMulti } from '../src/index.ts';
 

@@ -8,7 +8,7 @@ import {
   RefElement,
   isRefElement,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import { dereference, dereferenceApiDOM, DereferenceError } from '../../../../../src/index.ts';
 

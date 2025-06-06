@@ -6,12 +6,9 @@ import {
   ArrayElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
-import { UnsupportedOperationError } from '@swagger-api/apidom-error';
-import {
-  JSONSchemaElement,
-  JSONReferenceElement,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-core';
+import { UnsupportedOperationError } from '@char0n/apidom-error';
+import { JSONSchemaElement, JSONReferenceElement } from '@char0n/apidom-ns-json-schema-draft-4';
 
 /* eslint-disable class-methods-use-this */
 

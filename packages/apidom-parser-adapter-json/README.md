@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-json
+# @char0n/apidom-parser-adapter-json
 
-`@swagger-api/apidom-parser-adapter-json` is a parser adapter for the [JSON format](https://www.json.org/json-en.html).
+`@char0n/apidom-parser-adapter-json` is a parser adapter for the [JSON format](https://www.json.org/json-en.html).
 
 [CST](https://tree-sitter.github.io/tree-sitter/using-parsers#syntax-nodes) produced by lexical analysis is [syntactically analyzed](https://github.com/swagger-api/apidom/blob/main/packages/apidom-parser-adapter-json/src/syntactic-analysis) and
 ApiDOM structure using [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace) is produced.
@@ -11,7 +11,7 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-json
+ $ npm install @char0n/apidom-parser-adapter-json
 ```
 
 ## Parse phases
@@ -36,7 +36,7 @@ This analysis directly turns tree-sitter CST into ApiDOM. Single traversal is re
 it super performant, and it's the default analysis used.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-json';
+import { parse } from '@char0n/apidom-parser-adapter-json';
 
 const parseResult = await parse('{"prop": "value"}', {
   syntacticAnalysis: 'direct',
@@ -50,7 +50,7 @@ Then JSON AST is turned into ApiDOM. Two traversals are required, which makes in
 Thought less performant, having JSON AST representation allows us to do further complex analysis.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-json';
+import { parse } from '@char0n/apidom-parser-adapter-json';
 
 const parseResult = await parse('{"prop": "value"}', {
   syntacticAnalysis: 'indirect',
@@ -59,7 +59,7 @@ const parseResult = await parse('{"prop": "value"}', {
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -91,7 +91,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -99,7 +99,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-json';
+import { parse, detect } from '@char0n/apidom-parser-adapter-json';
 
 // detecting
 await detect('{"prop": "value"}'); // => true
@@ -114,8 +114,8 @@ const parseResult = await parse('{"prop": "value"}', { sourceMap: true });
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonParserAdapter from '@swagger-api/apidom-parser-adapter-json';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonParserAdapter from '@char0n/apidom-parser-adapter-json';
 
 const parser = new ApiDOMParser();
 

@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { mediaTypes } from '@swagger-api/apidom-ns-openapi-3-1';
-import { isParseResultElement } from '@swagger-api/apidom-core';
+import { mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
+import { isParseResultElement } from '@char0n/apidom-core';
 
 import { bundle } from '../../../../../src/index.ts';
 

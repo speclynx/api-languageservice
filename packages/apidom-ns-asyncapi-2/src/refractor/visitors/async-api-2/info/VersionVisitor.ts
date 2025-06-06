@@ -1,4 +1,4 @@
-import { StringElement, BREAK, toValue } from '@swagger-api/apidom-core';
+import { StringElement, BREAK, toValue } from '@char0n/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
 

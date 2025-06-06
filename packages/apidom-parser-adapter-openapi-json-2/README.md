@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-openapi-json-2
+# @char0n/apidom-parser-adapter-openapi-json-2
 
-`@swagger-api/apidom-parser-adapter-openapi-json-2` is a parser adapter for the [OpenAPI 2.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) in [JSON format](https://www.json.org/json-en.html).
+`@char0n/apidom-parser-adapter-openapi-json-2` is a parser adapter for the [OpenAPI 2.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) in [JSON format](https://www.json.org/json-en.html).
 Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-json)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace)
 which is then refracted with [OpenAPI 2.0 Refractors](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-openapi-2#refractors).
@@ -11,12 +11,12 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-openapi-json-2
+ $ npm install @char0n/apidom-parser-adapter-openapi-json-2
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -52,7 +52,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -60,7 +60,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-openapi-json-2';
+import { parse, detect } from '@char0n/apidom-parser-adapter-openapi-json-2';
 
 // detecting
 await detect('{"swagger": "2.0"}'); // => true
@@ -75,8 +75,8 @@ const parseResult = await parse('{"swagger": "2.0"}', { sourceMap: true });
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as openApiJsonAdapter from '@swagger-api/apidom-parser-adapter-openapi-json-2';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as openApiJsonAdapter from '@char0n/apidom-parser-adapter-openapi-json-2';
 
 const parser = new ApiDOMParser();
 

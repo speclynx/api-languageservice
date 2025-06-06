@@ -6,7 +6,7 @@ import {
   cloneDeep,
   toValue,
   ObjectElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
 import { isOpenApiExtension } from '../../predicates.ts';

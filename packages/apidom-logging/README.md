@@ -1,4 +1,4 @@
-# @swagger-api/apidom-error
+# @char0n/apidom-error
 
 `apidom-logging` is a logging facility for ApiDOM heavily inspired by [Python 3 logging module](https://docs.python.org/3/library/logging.html).
 

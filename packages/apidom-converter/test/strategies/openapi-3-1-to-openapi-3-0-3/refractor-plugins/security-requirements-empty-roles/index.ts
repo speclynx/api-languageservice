@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mediaTypes as openAPI31MediaTypes } from '@swagger-api/apidom-parser-adapter-openapi-json-3-1';
-import { mediaTypes as openAPI30MediaTypes } from '@swagger-api/apidom-parser-adapter-openapi-json-3-0';
-import { AnnotationElement, includesClasses, toJSON, toValue } from '@swagger-api/apidom-core';
+import { mediaTypes as openAPI31MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-1';
+import { mediaTypes as openAPI30MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+import { AnnotationElement, includesClasses, toJSON, toValue } from '@char0n/apidom-core';
 import { assert, expect } from 'chai';
 
 import convert from '../../../../../src/index.ts';

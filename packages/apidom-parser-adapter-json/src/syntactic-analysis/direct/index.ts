@@ -1,12 +1,12 @@
 import { Tree } from 'web-tree-sitter';
-import { visit, getNodeType as getCSTNodeType, isNode as isCSTNode } from '@swagger-api/apidom-ast';
+import { visit, getNodeType as getCSTNodeType, isNode as isCSTNode } from '@char0n/apidom-ast';
 import {
   ParseResultElement,
   isElement,
   isParseResultElement,
   keyMap as keyMapApiDOM,
   getNodeType as getNodeTypeApiDOM,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import CstVisitor from './visitors/CstVisitor.ts';
 import TreeCursorIterator from '../TreeCursorIterator.ts';

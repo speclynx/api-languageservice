@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { StringElement, BREAK, toValue } from '@swagger-api/apidom-core';
+import { StringElement, BREAK, toValue } from '@char0n/apidom-core';
 
 import SwaggerVersionElement from '../../../elements/SwaggerVersion.ts';
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';

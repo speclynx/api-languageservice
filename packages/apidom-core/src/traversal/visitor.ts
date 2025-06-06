@@ -6,7 +6,7 @@ import {
   BREAK,
   mergeAllVisitors,
   cloneNode as cloneNodeDefault,
-} from '@swagger-api/apidom-ast';
+} from '@char0n/apidom-ast';
 
 import {
   isElement,

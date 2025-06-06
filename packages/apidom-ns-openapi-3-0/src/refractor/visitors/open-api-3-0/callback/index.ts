@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement, StringElement, toValue } from '@swagger-api/apidom-core';
+import { ObjectElement, StringElement, toValue } from '@char0n/apidom-core';
 
 import CallbackElement from '../../../../elements/Callback.ts';
 import PathItemElement from '../../../../elements/PathItem.ts';

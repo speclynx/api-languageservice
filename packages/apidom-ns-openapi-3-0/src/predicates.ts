@@ -1,5 +1,5 @@
-import { BooleanElement, createPredicate, isBooleanElement } from '@swagger-api/apidom-core';
-import type { ElementPredicate } from '@swagger-api/apidom-core';
+import { BooleanElement, createPredicate, isBooleanElement } from '@char0n/apidom-core';
+import type { ElementPredicate } from '@char0n/apidom-core';
 
 import CallbackElement from './elements/Callback.ts';
 import ComponentsElement from './elements/Components.ts';

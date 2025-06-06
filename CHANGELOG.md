@@ -893,7 +893,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **deps:** add missing @swagger-api/apidom-ast dep ([#2875](https://github.com/swagger-api/apidom/issues/2875)) ([a7f0d15](https://github.com/swagger-api/apidom/commit/a7f0d15847e40c2eac831190844dfa28d3881c8c)), closes [#2871](https://github.com/swagger-api/apidom/issues/2871)
+- **deps:** add missing @char0n/apidom-ast dep ([#2875](https://github.com/swagger-api/apidom/issues/2875)) ([a7f0d15](https://github.com/swagger-api/apidom/commit/a7f0d15847e40c2eac831190844dfa28d3881c8c)), closes [#2871](https://github.com/swagger-api/apidom/issues/2871)
 - **ls:** fix OpenAPI 3.x.y Server.url field linting ([#2876](https://github.com/swagger-api/apidom/issues/2876)) ([a8cc07f](https://github.com/swagger-api/apidom/commit/a8cc07f9abad786a0fecb4a474b9f84501978abf)), closes [#2858](https://github.com/swagger-api/apidom/issues/2858)
 - **parser-adapter-yaml-1-2:** enable maximum error recovery ([#2881](https://github.com/swagger-api/apidom/issues/2881)) ([b7d0803](https://github.com/swagger-api/apidom/commit/b7d080310d7c6b019414d12aadffc62dd4c28e8a)), closes [#194](https://github.com/swagger-api/apidom/issues/194)
 

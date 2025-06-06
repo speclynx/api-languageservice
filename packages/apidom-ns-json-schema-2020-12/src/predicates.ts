@@ -1,4 +1,4 @@
-import { createPredicate } from '@swagger-api/apidom-core';
+import { createPredicate } from '@char0n/apidom-core';
 
 import JSONSchemaElement from './elements/JSONSchema.ts';
 import LinkDescriptionElement from './elements/LinkDescription.ts';

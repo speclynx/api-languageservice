@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   TagVisitorOptions,
   TagVisitor as TagVisitorType,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import TagElement from '../../../../elements/Tag.ts';
 

@@ -1,5 +1,5 @@
-import { StringElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { StringElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-0';
 
 import LicenseElement from './License.ts';
 

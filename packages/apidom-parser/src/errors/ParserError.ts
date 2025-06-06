@@ -1,4 +1,4 @@
-import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 import type { ApiDOMParserOptions } from '../types.d.ts';
 

@@ -1,13 +1,13 @@
-# @swagger-api/apidom-ns-arazzo-1
+# @char0n/apidom-ns-arazzo-1
 
-`@swagger-api/apidom-ns-arazzo-1` contains ApiDOM namespace specific to [Arazzo 1.0.1 specification](https://spec.openapis.org/arazzo/latest.html#version-1-0-1).
+`@char0n/apidom-ns-arazzo-1` contains ApiDOM namespace specific to [Arazzo 1.0.1 specification](https://spec.openapis.org/arazzo/latest.html#version-1-0-1).
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ns-arazzo-1
+ $ npm install @char0n/apidom-ns-arazzo-1
 ```
 
 ## Arazzo 1.0.1 namespace
@@ -16,8 +16,8 @@ Arazzo 1.0.1 namespace consists of [number of elements](https://github.com/swagg
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import arazzo1Namespace from '@swagger-api/apidom-ns-arazzo-1';
+import { createNamespace } from '@char0n/apidom-core';
+import arazzo1Namespace from '@char0n/apidom-ns-arazzo-1';
 
 const namespace = createNamespace(arazzo1Namespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { ArazzoSpecification1Element, InfoElement } from '@swagger-api/apidom-ns-arazzo-1';
+import { ArazzoSpecification1Element, InfoElement } from '@char0n/apidom-ns-arazzo-1';
 
 const infoElement = new InfoElement();
 const arazzoElement = new ArazzoSpecification1Element();
@@ -43,7 +43,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isArazzoSpecification1Element, ArazzoSpecification1Element } from '@swagger-api/apidom-ns-arazzo-1';
+import { isArazzoSpecification1Element, ArazzoSpecification1Element } from '@char0n/apidom-ns-arazzo-1';
 
 const arazzoElement = new ArazzoSpecification1Element();
 
@@ -54,11 +54,11 @@ isArazzoSpecification1Element(arazzoElement); // => true
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
 This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-arazzo-1/src/traversal/visitor.ts).
-To learn more about these `visit` configuration options please refer to [@swagger-api/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@swagger-api/apidom-core';
-import { ArazzoSpecification1Element, keyMap, getNodeType } from '@swagger-api/apidom-ns-arazzo-1';
+import { visit } from '@char0n/apidom-core';
+import { ArazzoSpecification1Element, keyMap, getNodeType } from '@char0n/apidom-ns-arazzo-1';
 
 const element = new ArazzoSpecification1Element();
 
@@ -79,7 +79,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { InfoElement } from '@swagger-api/apidom-ns-arazzo-1';
+import { InfoElement } from '@char0n/apidom-ns-arazzo-1';
 
 const object = {
     title: 'my title',
@@ -94,8 +94,8 @@ InfoElement.refract(object); // => InfoElement({ title, summary, description, ve
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-arazzo-1';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-arazzo-1';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -112,8 +112,8 @@ InfoElement.refract(objectElement); // => InfoElement({ title = 'my title', summ
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-arazzo-1';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-arazzo-1';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -150,8 +150,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, ArazzoSpecification1Element } from '@swagger-api/apidom-ns-arazzo-1';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, ArazzoSpecification1Element } from '@char0n/apidom-ns-arazzo-1';
 
 const yamlDefinition = `
 arazzo: 1.0.1

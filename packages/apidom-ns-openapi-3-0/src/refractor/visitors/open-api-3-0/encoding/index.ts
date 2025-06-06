@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { isObjectElement, ObjectElement, StringElement, toValue } from '@swagger-api/apidom-core';
+import { isObjectElement, ObjectElement, StringElement, toValue } from '@char0n/apidom-core';
 
 import EncodingElement from '../../../../elements/Encoding.ts';
 import HeaderElement from '../../../../elements/Header.ts';

@@ -1,15 +1,15 @@
-import * as openapi2AdapterJson from '@swagger-api/apidom-parser-adapter-openapi-json-2';
-import * as openapi2AdapterYaml from '@swagger-api/apidom-parser-adapter-openapi-yaml-2';
-import * as openapi30xAdapterJson from '@swagger-api/apidom-parser-adapter-openapi-json-3-0';
-import * as openapi30xAdapterYaml from '@swagger-api/apidom-parser-adapter-openapi-yaml-3-0';
-import * as openapi31xAdapterJson from '@swagger-api/apidom-parser-adapter-openapi-json-3-1';
-import * as openapi31xAdapterYaml from '@swagger-api/apidom-parser-adapter-openapi-yaml-3-1';
-import * as asyncapi2AdapterJson from '@swagger-api/apidom-parser-adapter-asyncapi-json-2';
-import * as asyncapi2AdapterYaml from '@swagger-api/apidom-parser-adapter-asyncapi-yaml-2';
-import * as adsAdapterJson from '@swagger-api/apidom-parser-adapter-api-design-systems-json';
-import * as adsAdapterYaml from '@swagger-api/apidom-parser-adapter-api-design-systems-yaml';
-import * as adapterJson from '@swagger-api/apidom-parser-adapter-json';
-import * as adapterYaml from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import * as openapi2AdapterJson from '@char0n/apidom-parser-adapter-openapi-json-2';
+import * as openapi2AdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-2';
+import * as openapi30xAdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+import * as openapi30xAdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-0';
+import * as openapi31xAdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-1';
+import * as openapi31xAdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-1';
+import * as asyncapi2AdapterJson from '@char0n/apidom-parser-adapter-asyncapi-json-2';
+import * as asyncapi2AdapterYaml from '@char0n/apidom-parser-adapter-asyncapi-yaml-2';
+import * as adsAdapterJson from '@char0n/apidom-parser-adapter-api-design-systems-json';
+import * as adsAdapterYaml from '@char0n/apidom-parser-adapter-api-design-systems-yaml';
+import * as adapterJson from '@char0n/apidom-parser-adapter-json';
+import * as adapterYaml from '@char0n/apidom-parser-adapter-yaml-1-2';
 import {
   ArrayElement,
   BooleanElement,
@@ -28,8 +28,8 @@ import {
   StringElement,
   traverse,
   toValue,
-} from '@swagger-api/apidom-core';
-import { compile, URIFragmentIdentifier } from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-core';
+import { compile, URIFragmentIdentifier } from '@char0n/apidom-json-pointer';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range } from 'vscode-languageserver-types';
 

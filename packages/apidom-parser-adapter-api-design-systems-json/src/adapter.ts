@@ -1,8 +1,8 @@
 import { propOr, omit } from 'ramda';
 import { isNotUndefined } from 'ramda-adjunct';
-import { ParseResultElement, createNamespace } from '@swagger-api/apidom-core';
-import { parse as parseJSON, detect as detectJSON } from '@swagger-api/apidom-parser-adapter-json';
-import apiDesignSystemsNamespace, { MainElement } from '@swagger-api/apidom-ns-api-design-systems';
+import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
+import { parse as parseJSON, detect as detectJSON } from '@char0n/apidom-parser-adapter-json';
+import apiDesignSystemsNamespace, { MainElement } from '@char0n/apidom-ns-api-design-systems';
 
 export { default as mediaTypes } from './media-types.ts';
 

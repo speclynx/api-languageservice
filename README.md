@@ -64,44 +64,44 @@ Assuming [prerequisites](#prerequisites) are already installed, ApiDOM npm packa
 You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 
 ```sh
- $ npm install @swagger-api/apidom-ast
- $ npm install @swagger-api/apidom-converter
- $ npm install @swagger-api/apidom-core
- $ npm install @swagger-api/apidom-error
- $ npm install @swagger-api/apidom-json-path
- $ npm install @swagger-api/apidom-json-pointer
- $ npm install @swagger-api/apidom-json-pointer-relative
- $ npm install @swagger-api/apidom-logging
- $ npm install @swagger-api/apidom-ls
- $ npm install @swagger-api/apidom-ns-api-design-systems
- $ npm install @swagger-api/apidom-ns-arazzo-1
- $ npm install @swagger-api/apidom-ns-asyncapi-2
- $ npm install @swagger-api/apidom-ns-json-schema-2019-09
- $ npm install @swagger-api/apidom-ns-json-schema-2020-12
- $ npm install @swagger-api/apidom-ns-json-schema-draft-4
- $ npm install @swagger-api/apidom-ns-json-schema-draft-6
- $ npm install @swagger-api/apidom-ns-json-schema-draft-7
- $ npm install @swagger-api/apidom-ns-openapi-2
- $ npm install @swagger-api/apidom-ns-openapi-3-0
- $ npm install @swagger-api/apidom-ns-openapi-3-1
- $ npm install @swagger-api/apidom-parser
- $ npm install @swagger-api/apidom-parser-adapter-api-design-systems-json
- $ npm install @swagger-api/apidom-parser-adapter-api-design-systems-yaml
- $ npm install @swagger-api/apidom-parser-adapter-arazzo-json-1
- $ npm install @swagger-api/apidom-parser-adapter-arazzo-yaml-1
- $ npm install @swagger-api/apidom-parser-adapter-asyncapi-json-2
- $ npm install @swagger-api/apidom-parser-adapter-asyncapi-yaml-2
- $ npm install @swagger-api/apidom-parser-adapter-json
- $ npm install @swagger-api/apidom-parser-adapter-json-schema-json-2020-12
- $ npm install @swagger-api/apidom-parser-adapter-json-schema-yaml-2020-12
- $ npm install @swagger-api/apidom-parser-adapter-openapi-json-2
- $ npm install @swagger-api/apidom-parser-adapter-openapi-json-3-0
- $ npm install @swagger-api/apidom-parser-adapter-openapi-json-3-1
- $ npm install @swagger-api/apidom-parser-adapter-openapi-yaml-2
- $ npm install @swagger-api/apidom-parser-adapter-openapi-yaml-3-0
- $ npm install @swagger-api/apidom-parser-adapter-openapi-yaml-3-1
- $ npm install @swagger-api/apidom-parser-adapter-yaml-1-2
- $ npm install @swagger-api/apidom-reference
+ $ npm install @char0n/apidom-ast
+ $ npm install @char0n/apidom-converter
+ $ npm install @char0n/apidom-core
+ $ npm install @char0n/apidom-error
+ $ npm install @char0n/apidom-json-path
+ $ npm install @char0n/apidom-json-pointer
+ $ npm install @char0n/apidom-json-pointer-relative
+ $ npm install @char0n/apidom-logging
+ $ npm install @char0n/apidom-ls
+ $ npm install @char0n/apidom-ns-api-design-systems
+ $ npm install @char0n/apidom-ns-arazzo-1
+ $ npm install @char0n/apidom-ns-asyncapi-2
+ $ npm install @char0n/apidom-ns-json-schema-2019-09
+ $ npm install @char0n/apidom-ns-json-schema-2020-12
+ $ npm install @char0n/apidom-ns-json-schema-draft-4
+ $ npm install @char0n/apidom-ns-json-schema-draft-6
+ $ npm install @char0n/apidom-ns-json-schema-draft-7
+ $ npm install @char0n/apidom-ns-openapi-2
+ $ npm install @char0n/apidom-ns-openapi-3-0
+ $ npm install @char0n/apidom-ns-openapi-3-1
+ $ npm install @char0n/apidom-parser
+ $ npm install @char0n/apidom-parser-adapter-api-design-systems-json
+ $ npm install @char0n/apidom-parser-adapter-api-design-systems-yaml
+ $ npm install @char0n/apidom-parser-adapter-arazzo-json-1
+ $ npm install @char0n/apidom-parser-adapter-arazzo-yaml-1
+ $ npm install @char0n/apidom-parser-adapter-asyncapi-json-2
+ $ npm install @char0n/apidom-parser-adapter-asyncapi-yaml-2
+ $ npm install @char0n/apidom-parser-adapter-json
+ $ npm install @char0n/apidom-parser-adapter-json-schema-json-2020-12
+ $ npm install @char0n/apidom-parser-adapter-json-schema-yaml-2020-12
+ $ npm install @char0n/apidom-parser-adapter-openapi-json-2
+ $ npm install @char0n/apidom-parser-adapter-openapi-json-3-0
+ $ npm install @char0n/apidom-parser-adapter-openapi-json-3-1
+ $ npm install @char0n/apidom-parser-adapter-openapi-yaml-2
+ $ npm install @char0n/apidom-parser-adapter-openapi-yaml-3-0
+ $ npm install @char0n/apidom-parser-adapter-openapi-yaml-3-1
+ $ npm install @char0n/apidom-parser-adapter-yaml-1-2
+ $ npm install @char0n/apidom-reference
 ```
 
 ### Usage
@@ -280,13 +280,13 @@ global `node_modules`.
 Now that we have monorepo packages globally linked we can use them in `dependent project`.
 Let's say `dependent project` needs to directly use following packages:
 
-- @swagger-api/apidom-ast
-- @swagger-api/apidom-core
+- @char0n/apidom-ast
+- @char0n/apidom-core
 
 Issuing following command from inside the `dependent project` will link these packages:
 
 ```sh
- $ npm link @swagger-api/apidom-ast @swagger-api/apidom-core
+ $ npm link @char0n/apidom-ast @char0n/apidom-core
 ```
 
 If more packages (or all of them) need to be used in `dependent project`, they need to be explicitly
@@ -299,8 +299,8 @@ multiple package names as argument.
 **Don't ever do this!**
 
 ```sh
- $ npm link @swagger-api/apidom-ast
- $ npm link @swagger-api/apidom-core
+ $ npm link @char0n/apidom-ast
+ $ npm link @char0n/apidom-core
 ```
 
 > Setting up npm script in `dependent project` can help keep things DRY.
@@ -337,7 +337,7 @@ Running above npm script will unlink all monorepo packages from global `node_mod
 If you want to just unlink particular monorepo packages, you have to enumerate them explicitly:
 
 ```shell
- $ npm unlink --global @swagger-api/apidom-ast @swagger-api/apidom-core
+ $ npm unlink --global @char0n/apidom-ast @char0n/apidom-core
 ```
 
 ## Contributing

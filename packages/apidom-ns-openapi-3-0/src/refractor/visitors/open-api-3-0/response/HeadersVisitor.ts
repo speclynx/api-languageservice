@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement, Element, StringElement, toValue } from '@swagger-api/apidom-core';
+import { ObjectElement, Element, StringElement, toValue } from '@char0n/apidom-core';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import ResponseHeadersElement from '../../../../elements/nces/ResponseHeaders.ts';

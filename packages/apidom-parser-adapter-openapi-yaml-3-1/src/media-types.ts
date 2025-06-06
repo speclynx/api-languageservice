@@ -1,4 +1,4 @@
-import { mediaTypes, OpenAPIMediaTypes } from '@swagger-api/apidom-ns-openapi-3-1';
+import { mediaTypes, OpenAPIMediaTypes } from '@char0n/apidom-ns-openapi-3-1';
 
 /**
  * @public

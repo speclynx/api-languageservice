@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Event } from 'benchmark';
-import { ObjectElement, toValue } from '@swagger-api/apidom-core';
-import { AsyncApi2Element } from '@swagger-api/apidom-ns-asyncapi-2';
+import { ObjectElement, toValue } from '@char0n/apidom-core';
+import { AsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
 
 import { parse } from '../../src/adapter.ts';
 

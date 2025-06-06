@@ -1,13 +1,13 @@
-# @swagger-api/apidom-ns-openapi-3-1
+# @char0n/apidom-ns-openapi-3-1
 
-`@swagger-api/apidom-ns-openapi-3-1` contains ApiDOM namespace specific to [OpenApi 3.1.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md).
+`@char0n/apidom-ns-openapi-3-1` contains ApiDOM namespace specific to [OpenApi 3.1.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md).
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ns-openapi-3-1
+ $ npm install @char0n/apidom-ns-openapi-3-1
 ```
 
 ## OpenAPI 3.1.0 namespace
@@ -16,8 +16,8 @@ OpenAPI 3.1.0 namespace consists of [number of elements](https://github.com/swag
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import openApi3_1Namespace from '@swagger-api/apidom-ns-openapi-3-1';
+import { createNamespace } from '@char0n/apidom-core';
+import openApi3_1Namespace from '@char0n/apidom-ns-openapi-3-1';
 
 const namespace = createNamespace(openApi3_1Namespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { OpenApi3_1Element, InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { OpenApi3_1Element, InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const infoElement = new InfoElement();
 const openApiElement = new OpenApi3_1Element();
@@ -43,7 +43,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isOpenApi3_1Element, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { isOpenApi3_1Element, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const openApiElement = new OpenApi3_1Element();
 
@@ -54,11 +54,11 @@ isOpenApi3_1Element(openApiElement); // => true
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
 This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-3-1/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-3-1/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@swagger-api/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@swagger-api/apidom-core';
-import { OpenApi3_1Element, keyMap, getNodeType } from '@swagger-api/apidom-ns-openapi-3-1';
+import { visit } from '@char0n/apidom-core';
+import { OpenApi3_1Element, keyMap, getNodeType } from '@char0n/apidom-ns-openapi-3-1';
 
 const element = new OpenApi3_1Element();
 
@@ -79,7 +79,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const object = {
     title: 'my title',
@@ -93,8 +93,8 @@ InfoElement.refract(object); // => InfoElement({ title, description, version })
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -110,8 +110,8 @@ InfoElement.refract(objectElement); // => InfoElement({ title = 'my title', desc
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -147,8 +147,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0
@@ -187,9 +187,9 @@ This plugin also guarantees the uniqueness of all defined Operation.operationId 
 and make sure Link.operationId fields are pointing to correct and normalized Operation.operationId fields.
 
 ```js
-import { toValue } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginNormalizeOperationIds, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { toValue } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginNormalizeOperationIds, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0
@@ -220,9 +220,9 @@ This plugin also accepts custom normalization function that will determine how n
 should look like.
 
 ```typescript
-import { toValue } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginNormalizeOperationIds, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { toValue } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginNormalizeOperationIds, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0
@@ -265,9 +265,9 @@ Duplicates Parameters from Path Items to Operation Objects using following rules
 - A unique parameter is defined by a combination of a name and location.
 
 ```js
-import { toValue } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginNormalizeParameters, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { toValue } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginNormalizeParameters, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0
@@ -323,9 +323,9 @@ toValue(openApiElement);
 If Operation.security field is not defined, this field will inherit security from OpenAPI.security field.
 
 ```js
-import { toValue } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginNormalizeSecurityRequirements, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { toValue } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginNormalizeSecurityRequirements, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0
@@ -383,9 +383,9 @@ If an alternative server object is specified at the Path Item Object level, it w
 If an alternative server object is specified at the Operation Object level, it will override PathItem.servers and OpenAPI.servers respectively.
 
 ```js
-import { toValue } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginNormalizeServers, OpenApi3_1Element } from '@swagger-api/apidom-ns-openapi-3-1';
+import { toValue } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginNormalizeServers, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
 
 const yamlDefinition = `
 openapi: 3.1.0

@@ -9,7 +9,7 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 /**
  * JSON Schema Draft 4 specification elements.

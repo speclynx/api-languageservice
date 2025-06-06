@@ -6,7 +6,7 @@ import {
   isStringElement,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import PathItemElement from '../../../../elements/PathItem.ts';
 import OperationElement from '../../../../elements/Operation.ts';

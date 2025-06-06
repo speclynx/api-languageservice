@@ -1,3 +1,6 @@
-import { mediaTypes, ApiDesignSystemsMediaTypes } from '@swagger-api/apidom-ns-api-design-systems';
-const jsonMediaTypes = new ApiDesignSystemsMediaTypes(...mediaTypes.filterByFormat('generic'), ...mediaTypes.filterByFormat('json'));
+import { mediaTypes, ApiDesignSystemsMediaTypes } from '@char0n/apidom-ns-api-design-systems';
+const jsonMediaTypes = new ApiDesignSystemsMediaTypes(
+  ...mediaTypes.filterByFormat('generic'),
+  ...mediaTypes.filterByFormat('json'),
+);
 export default jsonMediaTypes;

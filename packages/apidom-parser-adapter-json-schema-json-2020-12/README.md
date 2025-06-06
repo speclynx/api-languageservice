@@ -1,6 +1,6 @@
-# @swagger-api/apidom-parser-adapter-json-schema-json-2020-12
+# @char0n/apidom-parser-adapter-json-schema-json-2020-12
 
-`@swagger-api/apidom-parser-adapter-json-schema-json-2020-12` is a parser adapter for the [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01) in [JSON format](https://www.json.org/json-en.html).
+`@char0n/apidom-parser-adapter-json-schema-json-2020-12` is a parser adapter for the [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01) in [JSON format](https://www.json.org/json-en.html).
 Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser-adapter-json)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace)
 which is then refracted with [JSON Schema 2020-12 Refractors](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#refractors).
@@ -11,12 +11,12 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser-adapter-json-schema-json-2020-12
+ $ npm install @char0n/apidom-parser-adapter-json-schema-json-2020-12
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -52,7 +52,7 @@ All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@swagger-api/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -60,7 +60,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@swagger-api/apidom-parser-adapter-json-schema-json-2020-12';
+import { parse, detect } from '@char0n/apidom-parser-adapter-json-schema-json-2020-12';
 
 // detecting
 await detect('{"$schema": "https://json-schema.org/draft/2020-12/schema"}'); // => true
@@ -77,8 +77,8 @@ const parseResult = await parse('{"$schema": "https://json-schema.org/draft/2020
 You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/swagger-api/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonSchemaJsonAdapter from '@swagger-api/apidom-parser-adapter-json-schema-json-2020-12';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonSchemaJsonAdapter from '@char0n/apidom-parser-adapter-json-schema-json-2020-12';
 
 const parser = new ApiDOMParser();
 

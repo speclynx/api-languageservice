@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 import {
   isReferenceLikeElement,
   MapVisitor,
@@ -7,7 +7,7 @@ import {
   FallbackVisitor,
   SpecPath,
   FallbackVisitorOptions,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import ComponentsPathItemsElement from '../../../../elements/nces/ComponentsPathItems.ts';

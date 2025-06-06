@@ -1,6 +1,6 @@
 import Benchmark from 'benchmark';
 import type { Event } from 'benchmark';
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 
 import { AsyncApi2Element } from '../../src/index.ts';
 

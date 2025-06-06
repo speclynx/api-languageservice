@@ -1,5 +1,5 @@
-import { ApiDOMStructuredError } from '@swagger-api/apidom-error';
-import type { ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import { ApiDOMStructuredError } from '@char0n/apidom-error';
+import type { ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 /**
  * @public

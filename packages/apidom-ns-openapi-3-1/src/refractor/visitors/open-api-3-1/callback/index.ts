@@ -1,11 +1,11 @@
-import { ObjectElement } from '@swagger-api/apidom-core';
+import { ObjectElement } from '@char0n/apidom-core';
 import {
   isReferenceLikeElement,
   specificationObj as OpenApi3_1Specification,
   SpecPath,
   CallbackVisitorOptions,
   CallbackVisitor as CallbackVisitorType,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 import CallbackElement from '../../../../elements/Callback.ts';
 import ReferenceElement from '../../../../elements/Reference.ts';

@@ -1,4 +1,4 @@
-import { createNamespace, isStringElement } from '@swagger-api/apidom-core';
+import { createNamespace, isStringElement } from '@char0n/apidom-core';
 
 import * as workflowsPredicates from '../predicates.ts';
 import * as refractorPredicates from './predicates.ts';

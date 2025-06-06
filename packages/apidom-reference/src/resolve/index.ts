@@ -4,7 +4,7 @@ import {
   isParseResultElement,
   ParseResultElement,
   cloneShallow,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import { merge as mergeOptions } from '../options/util.ts';
 import parse from '../parse/index.ts';

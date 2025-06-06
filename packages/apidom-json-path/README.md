@@ -1,4 +1,4 @@
-# @swagger-api/apidom-json-path
+# @char0n/apidom-json-path
 
 `apidom-json-path` is a package that evaluates [JSONPath](https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html) expressions against ApiDOM.
 
@@ -7,7 +7,7 @@
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-json-path
+ $ npm install @char0n/apidom-json-path
 ```
 
 ## Evaluating
@@ -19,8 +19,8 @@ Package contains JSONPath evaluation functions for evaluating single or multiple
 Suited for evaluating single JSONPath expression against ApiDOM.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { evaluate } from '@swagger-api/apidom-json-path';
+import { ObjectElement } from '@char0n/apidom-core';
+import { evaluate } from '@char0n/apidom-json-path';
 
 const apidom = new ObjectElement({
   a: {
@@ -41,8 +41,8 @@ Use this function in cases when you have multiple JSONPath expressions that need
 to be evaluated against single ApiDOM fragment.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { evaluateMulti } from '@swagger-api/apidom-json-path';
+import { ObjectElement } from '@char0n/apidom-core';
+import { evaluateMulti } from '@char0n/apidom-json-path';
 
 const apidom = new ObjectElement({
   a: {
@@ -63,8 +63,8 @@ If either `evaluate` or `evaluateMulti` functions are provided with invalid JSON
 they don't throw errors, but they rather return empty list of end point values.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { evaluate, evaluateMulti } from '@swagger-api/apidom-json-path';
+import { ObjectElement } from '@char0n/apidom-core';
+import { evaluate, evaluateMulti } from '@char0n/apidom-json-path';
 
 const apidom = new ObjectElement({
   a: {

@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { toValue } from '@swagger-api/apidom-core';
-import { mediaTypes } from '@swagger-api/apidom-ns-openapi-2';
+import { toValue } from '@char0n/apidom-core';
+import { mediaTypes } from '@char0n/apidom-ns-openapi-2';
 import { fileURLToPath } from 'node:url';
 
 import { loadJsonFile } from '../../../../helpers.ts';

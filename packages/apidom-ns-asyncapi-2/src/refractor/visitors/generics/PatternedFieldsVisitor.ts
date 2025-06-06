@@ -6,7 +6,7 @@ import {
   BREAK,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
 import { SpecPath } from './FixedFieldsVisitor.ts';

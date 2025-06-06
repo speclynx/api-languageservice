@@ -5,7 +5,7 @@ import {
   isStringElement,
   Attributes,
   Meta,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import ServerElement from './Server.ts';
 import OperationElement from './Operation.ts';

@@ -8,7 +8,7 @@ import {
   isParseResultElement,
   sexprs,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 import * as adapter from '../src/adapter-browser.ts';
 

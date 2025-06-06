@@ -1,7 +1,7 @@
 import './browser-patch.ts';
 
 import Parser, { Tree } from 'web-tree-sitter';
-import { ApiDOMError } from '@swagger-api/apidom-error';
+import { ApiDOMError } from '@char0n/apidom-error';
 
 // @ts-ignore
 import treeSitterJson from '../../wasm/tree-sitter-json.wasm';

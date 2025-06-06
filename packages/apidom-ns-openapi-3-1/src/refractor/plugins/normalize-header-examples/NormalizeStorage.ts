@@ -1,9 +1,4 @@
-import {
-  ArrayElement,
-  ObjectElement,
-  isObjectElement,
-  isArrayElement,
-} from '@swagger-api/apidom-core';
+import { ArrayElement, ObjectElement, isObjectElement, isArrayElement } from '@char0n/apidom-core';
 
 import OpenApi3_1Element from '../../../elements/OpenApi3-1.ts';
 

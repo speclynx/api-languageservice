@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import dedent from 'dedent';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
 
 import { OpenApi3_1Element, refractorPluginNormalizeOperationIds } from '../../../../src/index.ts';
 

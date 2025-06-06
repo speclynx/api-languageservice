@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { sexprs } from '@swagger-api/apidom-core';
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
+import { sexprs } from '@char0n/apidom-core';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
 import dedent from 'dedent';
 
 import {

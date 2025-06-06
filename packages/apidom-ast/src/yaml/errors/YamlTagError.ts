@@ -1,4 +1,4 @@
-import type { ApiDOMErrorOptions } from '@swagger-api/apidom-error';
+import type { ApiDOMErrorOptions } from '@char0n/apidom-error';
 
 import YamlSchemaError from './YamlSchemaError.ts';
 import Position from '../../Position.ts';

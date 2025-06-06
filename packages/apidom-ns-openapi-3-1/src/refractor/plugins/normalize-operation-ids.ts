@@ -1,5 +1,5 @@
 import { last, defaultTo, groupBy } from 'ramda';
-import { toValue, Element, StringElement, cloneDeep } from '@swagger-api/apidom-core';
+import { toValue, Element, StringElement, cloneDeep } from '@char0n/apidom-core';
 
 import LinkElement from '../../elements/Link.ts';
 import PathItemElement from '../../elements/PathItem.ts';

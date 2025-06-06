@@ -1,4 +1,4 @@
-import { Element, cloneDeep } from '@swagger-api/apidom-core';
+import { Element, cloneDeep } from '@char0n/apidom-core';
 
 import ParameterElement from '../../elements/Parameter.ts';
 import ExampleElement from '../../elements/Example.ts';

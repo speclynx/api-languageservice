@@ -1,4 +1,4 @@
-import { ObjectElement, hasElementSourceMap, deepmerge, Element } from '@swagger-api/apidom-core';
+import { ObjectElement, hasElementSourceMap, deepmerge, Element } from '@char0n/apidom-core';
 
 /**
  * @public

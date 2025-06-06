@@ -1,5 +1,5 @@
 import { Buffer } from '#buffer'; // eslint-disable-line import/order
-import { ParseResultElement, StringElement } from '@swagger-api/apidom-core';
+import { ParseResultElement, StringElement } from '@char0n/apidom-core';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

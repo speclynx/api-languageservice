@@ -2,7 +2,7 @@ import url from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 import Parser, { Tree } from 'web-tree-sitter';
-import { ApiDOMError } from '@swagger-api/apidom-error';
+import { ApiDOMError } from '@char0n/apidom-error';
 
 let parser: Parser | null = null;
 let parserInitLock: Promise<Parser> | null = null;

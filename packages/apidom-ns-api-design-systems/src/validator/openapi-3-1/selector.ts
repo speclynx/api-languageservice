@@ -1,12 +1,12 @@
 import { includes } from 'ramda';
-import { visit, toValue } from '@swagger-api/apidom-core';
+import { visit, toValue } from '@char0n/apidom-core';
 import {
   OperationElement,
   OpenApi3_1Element,
   ResponseElement,
   getNodeType,
   keyMap,
-} from '@swagger-api/apidom-ns-openapi-3-1';
+} from '@char0n/apidom-ns-openapi-3-1';
 
 import StandardIdentifierElement from '../../elements/StandardIdentifier.ts';
 

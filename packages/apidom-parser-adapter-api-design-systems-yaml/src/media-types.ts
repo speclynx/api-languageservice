@@ -1,4 +1,4 @@
-import { mediaTypes, ApiDesignSystemsMediaTypes } from '@swagger-api/apidom-ns-api-design-systems';
+import { mediaTypes, ApiDesignSystemsMediaTypes } from '@char0n/apidom-ns-api-design-systems';
 
 /**
  * @public

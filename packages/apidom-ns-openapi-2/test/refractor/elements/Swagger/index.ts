@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai';
-import { includesClasses, sexprs } from '@swagger-api/apidom-core';
+import { includesClasses, sexprs } from '@char0n/apidom-core';
 
 import { SwaggerElement } from '../../../../src/index.ts';
 

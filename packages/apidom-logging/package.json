@@ -1,5 +1,5 @@
 {
-  "name": "@swagger-api/apidom-logging",
+  "name": "@char0n/apidom-logging",
   "version": "0.77.0",
   "description": "Logging facility for ApiDOM.",
   "publishConfig": {
@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@swagger-api/apidom-error": "*"
+    "@char0n/apidom-error": "*"
   },
   "files": [
     "src/**/*.mjs",

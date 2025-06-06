@@ -1,4 +1,4 @@
-import { Element, isElement } from '@swagger-api/apidom-core';
+import { Element, isElement } from '@char0n/apidom-core';
 
 /**
  * @public

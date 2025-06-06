@@ -21,7 +21,7 @@ import {
   YamlStyle,
   YamlStyleGroup,
   YamlTag,
-} from '@swagger-api/apidom-ast';
+} from '@char0n/apidom-ast';
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
 

@@ -1,4 +1,4 @@
-import { Element, isElement, cloneDeep, visit } from '@swagger-api/apidom-core';
+import { Element, isElement, cloneDeep, visit } from '@char0n/apidom-core';
 
 import DereferenceStrategy, { DereferenceStrategyOptions } from '../DereferenceStrategy.ts';
 import File from '../../../File.ts';

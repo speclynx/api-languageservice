@@ -4,7 +4,7 @@ import {
   StringElement,
   cloneDeep,
   toValue,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 import {
   ServersElement,
   SecurityElement,
@@ -39,7 +39,7 @@ import {
   ResponseLinksElement,
   DiscriminatorMappingElement,
   OAuthFlowScopesElement,
-} from '@swagger-api/apidom-ns-openapi-3-0';
+} from '@char0n/apidom-ns-openapi-3-0';
 
 /**
  * OpenAPI 3.1.0 specification elements.

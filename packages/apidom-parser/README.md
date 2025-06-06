@@ -1,13 +1,13 @@
-# @swagger-api/apidom-parser
+# @char0n/apidom-parser
 
-`@swagger-api/apidom-parser` consumes parser adapters and provides unified API for parsing.
+`@char0n/apidom-parser` consumes parser adapters and provides unified API for parsing.
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-parser
+ $ npm install @char0n/apidom-parser
 ```
 
 ## Mounting parser adapters
@@ -26,9 +26,9 @@ Property | Type | Default | Description
 Now, let's mount some adapters:
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonParserAdapter from '@swagger-api/apidom-parser-adapter-json';
-import * as yamlParserAdapter from '@swagger-api/apidom-parser-adapter-yaml';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonParserAdapter from '@char0n/apidom-parser-adapter-json';
+import * as yamlParserAdapter from '@char0n/apidom-parser-adapter-yaml';
 
 const parser = new ApiDOMParser();
 
@@ -42,9 +42,9 @@ ApiDOM parser contains logic of mapping a `source string` + `mediaType` to appro
 It will return either [base namespace instance](https://github.com/swagger-api/apidom/tree/main/packages/apidom#base-namespace) or a specific one like [OpenApi 3.1.0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-openapi-3-1#openapi-310-namespace) or [AsyncApi 2.6.0](https://github.com/swagger-api/apidom/tree/main/packages/apidom-ns-asyncapi-2#asyncapi-2xy-namespace).
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonParserAdapter from '@swagger-api/apidom-parser-adapter-json';
-import * as yamlParserAdapter from '@swagger-api/apidom-parser-adapter-yaml';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonParserAdapter from '@char0n/apidom-parser-adapter-json';
+import * as yamlParserAdapter from '@char0n/apidom-parser-adapter-yaml';
 
 const parser = new ApiDOMParser();
 
@@ -59,9 +59,9 @@ const namespace = await parser.findNamespace('{"prop", "value"}', { mediaType: '
 ApiDOM parser contains logic of mapping a `source string` to appropriate media type.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonParserAdapter from '@swagger-api/apidom-parser-adapter-json';
-import * as yamlParserAdapter from '@swagger-api/apidom-parser-adapter-yaml';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonParserAdapter from '@char0n/apidom-parser-adapter-json';
+import * as yamlParserAdapter from '@char0n/apidom-parser-adapter-yaml';
 
 const parser = new ApiDOMParser();
 
@@ -78,9 +78,9 @@ await parser.findMediaType('key: value'); // => 'application/yaml'
 ApiDOM parser doesn't contain any parsing logic. It uses parser adapter to provide the parsing logic for it.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
-import * as jsonParserAdapter from '@swagger-api/apidom-parser-adapter-json';
-import * as yamlParserAdapter from '@swagger-api/apidom-parser-adapter-yaml';
+import ApiDOMParser from '@char0n/apidom-parser';
+import * as jsonParserAdapter from '@char0n/apidom-parser-adapter-json';
+import * as yamlParserAdapter from '@char0n/apidom-parser-adapter-yaml';
 
 const parser = new ApiDOMParser();
 
@@ -104,7 +104,7 @@ All unrecognized arbitrary options will be further passed to underlying parser a
 If no parser adapter was mounted before the parsing, calling `parse` method will result in Error.
 
 ```js
-import ApiDOMParser from '@swagger-api/apidom-parser';
+import ApiDOMParser from '@char0n/apidom-parser';
 
 const parser = new ApiDOMParser();
 const parseResult = await parser.parse('{"prop", "value"}', { mediaType: 'application/json' });

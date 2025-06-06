@@ -1,9 +1,9 @@
-import { BooleanElement, StringElement } from '@swagger-api/apidom-core';
-import { UnsupportedOperationError } from '@swagger-api/apidom-error';
+import { BooleanElement, StringElement } from '@char0n/apidom-core';
+import { UnsupportedOperationError } from '@char0n/apidom-error';
 import {
   LinkDescriptionElement,
   JSONReferenceElement,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 import JSONSchema from './JSONSchema.ts';
 

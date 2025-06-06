@@ -1,6 +1,6 @@
-# @swagger-api/apidom-ns-openapi-3-0
+# @char0n/apidom-ns-openapi-3-0
 
-`@swagger-api/apidom-ns-openapi-3-0` contains ApiDOM namespace supports following OpenAPI specification versions:
+`@char0n/apidom-ns-openapi-3-0` contains ApiDOM namespace supports following OpenAPI specification versions:
 
 - [OpenAPI 3.0.4 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md)
 - [OpenAPI 3.0.3 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md)
@@ -13,7 +13,7 @@
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ns-openapi-3-0
+ $ npm install @char0n/apidom-ns-openapi-3-0
 ```
 
 ## OpenAPI 3.0.x namespace
@@ -22,8 +22,8 @@ OpenAPI 3.0.x namespace consists of [number of elements](https://github.com/swag
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@swagger-api/apidom-core';
-import openApi3_0Namespace from '@swagger-api/apidom-ns-openapi-3-0';
+import { createNamespace } from '@char0n/apidom-core';
+import openApi3_0Namespace from '@char0n/apidom-ns-openapi-3-0';
 
 const namespace = createNamespace(openApi3_0Namespace);
 
@@ -37,7 +37,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { OpenApi3_0Element, InfoElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { OpenApi3_0Element, InfoElement } from '@char0n/apidom-ns-openapi-3-0';
 
 const infoElement = new InfoElement();
 const openApiElement = new OpenApi3_0Element();
@@ -49,7 +49,7 @@ This package exposes [predicates](https://github.com/swagger-api/apidom/blob/mai
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isOpenApi3_0Element, OpenApi3_0Element } from '@swagger-api/apidom-ns-openapi-3-0';
+import { isOpenApi3_0Element, OpenApi3_0Element } from '@char0n/apidom-ns-openapi-3-0';
 
 const openApiElement = new OpenApi3_0Element();
 
@@ -60,11 +60,11 @@ isOpenApi3_0Element(openApiElement); // => true
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
 This package comes with its own [keyMap](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-3-0/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ns-openapi-3-0/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@swagger-api/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
+To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/swagger-api/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@swagger-api/apidom-core';
-import { OpenApi3_0Element, keyMap, getNodeType } from '@swagger-api/apidom-ns-openapi-3-0';
+import { visit } from '@char0n/apidom-core';
+import { OpenApi3_0Element, keyMap, getNodeType } from '@char0n/apidom-ns-openapi-3-0';
 
 const element = new OpenApi3_0Element();
 
@@ -85,7 +85,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-0';
 
 const object = {
     title: 'my title',
@@ -99,8 +99,8 @@ InfoElement.refract(object); // => InfoElement({ title, description, version })
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-0';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -116,8 +116,8 @@ InfoElement.refract(objectElement); // => InfoElement({ title = 'my title', desc
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@swagger-api/apidom-core';
-import { InfoElement } from '@swagger-api/apidom-ns-openapi-3-0';
+import { ObjectElement } from '@char0n/apidom-core';
+import { InfoElement } from '@char0n/apidom-ns-openapi-3-0';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -153,8 +153,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@swagger-api/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, OpenApi3_0Element } from '@swagger-api/apidom-ns-openapi-3-0';
+import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, OpenApi3_0Element } from '@char0n/apidom-ns-openapi-3-0';
 
 const yamlDefinition = `
 openapi: 3.0.4

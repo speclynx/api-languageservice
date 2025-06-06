@@ -1,4 +1,4 @@
-import { OpenapiElement } from '@swagger-api/apidom-ns-openapi-3-1';
+import { OpenapiElement } from '@char0n/apidom-ns-openapi-3-1';
 
 const openAPIVersionRefractorPlugin = () => () => ({
   visitor: {

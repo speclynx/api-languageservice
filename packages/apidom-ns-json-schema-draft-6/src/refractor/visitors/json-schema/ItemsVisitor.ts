@@ -1,8 +1,8 @@
-import { BooleanElement, BREAK } from '@swagger-api/apidom-core';
+import { BooleanElement, BREAK } from '@char0n/apidom-core';
 import {
   ItemsVisitor as JSONSchemaDraft4ItemsVisitor,
   ItemsVisitorOptions,
-} from '@swagger-api/apidom-ns-json-schema-draft-4';
+} from '@char0n/apidom-ns-json-schema-draft-4';
 
 export type { ItemsVisitorOptions };
 

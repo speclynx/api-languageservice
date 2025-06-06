@@ -13,9 +13,9 @@ import {
   Element,
   BooleanElement,
   RefElement,
-} from '@swagger-api/apidom-core';
-import { ApiDOMError } from '@swagger-api/apidom-error';
-import { evaluate, URIFragmentIdentifier } from '@swagger-api/apidom-json-pointer/modern';
+} from '@char0n/apidom-core';
+import { ApiDOMError } from '@char0n/apidom-error';
+import { evaluate, URIFragmentIdentifier } from '@char0n/apidom-json-pointer';
 import {
   ChannelItemElement,
   getNodeType,
@@ -25,7 +25,7 @@ import {
   isReferenceElement,
   keyMap,
   ReferenceElement,
-} from '@swagger-api/apidom-ns-asyncapi-2';
+} from '@char0n/apidom-ns-asyncapi-2';
 
 import MaximumDereferenceDepthError from '../../../errors/MaximumDereferenceDepthError.ts';
 import MaximumResolveDepthError from '../../../errors/MaximumResolveDepthError.ts';

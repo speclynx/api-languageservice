@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@swagger-api/apidom-core';
+} from '@char0n/apidom-core';
 
 export { default as mediaTypes, JSONSchemaDraft7MediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -38,7 +38,7 @@ export {
   AlternatingVisitor,
   ParentSchemaAwareVisitor,
   Visitor,
-} from '@swagger-api/apidom-ns-json-schema-draft-6';
+} from '@char0n/apidom-ns-json-schema-draft-6';
 export type {
   SpecificationVisitorOptions,
   FallbackVisitorOptions,
@@ -67,7 +67,7 @@ export type {
   SchemaOrReferenceVisitorOptions,
   SpecPath,
   JSONSchemaDraft4ItemsVisitor,
-} from '@swagger-api/apidom-ns-json-schema-draft-6';
+} from '@char0n/apidom-ns-json-schema-draft-6';
 
 export { default as JSONSchemaVisitor } from './refractor/visitors/json-schema/index.ts';
 export type { JSONSchemaVisitorOptions } from './refractor/visitors/json-schema/index.ts';
@@ -81,4 +81,4 @@ export { keyMap, getNodeType } from './traversal/visitor.ts';
  * JSON Schema Draft 7 specification elements.
  */
 export { JSONSchemaElement, LinkDescriptionElement } from './refractor/registration.ts';
-export { JSONReferenceElement } from '@swagger-api/apidom-ns-json-schema-draft-6';
+export { JSONReferenceElement } from '@char0n/apidom-ns-json-schema-draft-6';

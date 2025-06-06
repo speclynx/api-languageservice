@@ -1,4 +1,4 @@
-import { createNamespace } from '@swagger-api/apidom-core';
+import { createNamespace } from '@char0n/apidom-core';
 
 export { default as mediaTypes } from './media-types.ts';
 

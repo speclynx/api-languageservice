@@ -1,4 +1,4 @@
-import { NamespacePluginOptions } from '@swagger-api/apidom-core';
+import { NamespacePluginOptions } from '@char0n/apidom-core';
 
 /**
  * AsyncApi >= 2.0.0 <=2.6.0 specification elements.

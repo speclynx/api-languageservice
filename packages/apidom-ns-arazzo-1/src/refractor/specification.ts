@@ -1,4 +1,4 @@
-import { specificationObj as jsonSchemaSpecificationObj } from '@swagger-api/apidom-ns-json-schema-2020-12';
+import { specificationObj as jsonSchemaSpecificationObj } from '@char0n/apidom-ns-json-schema-2020-12';
 
 import ArazzoSpecificationVisitor from './visitors/arazzo-1/index.ts';
 import ArazzoSpecVisitor from './visitors/arazzo-1/ArazzoSpecVisitor.ts';

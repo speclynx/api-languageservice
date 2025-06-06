@@ -10,7 +10,7 @@ After [prerequisites](https://github.com/swagger-api/apidom/blob/main/README.md#
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @swagger-api/apidom-ls
+ $ npm install @char0n/apidom-ls
 ```
 
 ## Project current status
@@ -22,7 +22,7 @@ Please note that ApiDOM Language Service is still in unstable status, with plann
 ### Validation
 
 ```
-import { getLanguageService } from '@swagger-api/apidom-ls';
+import { getLanguageService } from '@char0n/apidom-ls';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 ...
 

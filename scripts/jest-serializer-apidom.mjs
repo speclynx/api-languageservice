@@ -1,4 +1,4 @@
-import { isElement, dehydrate } from '@swagger-api/apidom-core';
+import { isElement, dehydrate } from '@char0n/apidom-core';
 
 export { isElement as test };
 
