@@ -3,7 +3,7 @@
   "version": "0.77.0",
   "description": "Logging facility for ApiDOM.",
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "private": true,

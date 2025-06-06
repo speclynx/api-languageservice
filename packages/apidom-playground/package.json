@@ -3,7 +3,7 @@
   "description": "ApiDOM Playground demonstrates various features of ApiDOM visually.",
   "private": true,
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {

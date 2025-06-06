@@ -3,7 +3,7 @@
   "description": "ApiDOM based language service library.",
   "version": "1.0.0-beta.40",
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {

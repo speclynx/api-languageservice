@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.40",
   "description": "JSON Schema Draft 4 namespace for ApiDOM.",
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "type": "module",

@@ -4,7 +4,7 @@
   "description": "Tool for converting API specifications.",
   "private": true,
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "type": "module",

@@ -3,7 +3,7 @@
   "version": "0.0.0-ignore",
   "description": "ApiDOM Monorepo",
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "private": true,

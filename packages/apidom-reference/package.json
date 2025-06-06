@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.40",
   "description": "Advanced algorithms for semantic ApiDOM manipulations like dereferencing or resolution.",
   "publishConfig": {
-    "access": "public",
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "type": "module",
