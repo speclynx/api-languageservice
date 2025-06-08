@@ -1,4 +1,3 @@
-import url from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 import Parser, { Tree } from 'web-tree-sitter';
@@ -7,8 +6,8 @@ import { ApiDOMError } from '@char0n/apidom-error';
 let parser: Parser | null = null;
 let parserInitLock: Promise<Parser> | null = null;
 
-const dirname = typeof __dirname === 'undefined' ? url.fileURLToPath(import.meta.url) : __dirname;
-const treeSitterYamlPath = path.resolve(dirname, '../../../wasm/tree-sitter-yaml.wasm');
+const dirname = import.meta.dirname; // eslint-disable-line prefer-destructuring
+const treeSitterYamlPath = path.resolve(dirname, '../../wasm/tree-sitter-yaml.wasm');
 const treeSitterYaml = fs.readFileSync(treeSitterYamlPath);
 
 /**

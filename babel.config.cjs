@@ -37,6 +37,7 @@ module.exports = {
             version: '^7.22.15',
           },
         ],
+        'babel-plugin-transform-import-meta',
         process.env.NODE_ENV !== 'test'
           ? [
               path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
