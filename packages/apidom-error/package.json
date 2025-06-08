@@ -1,6 +1,6 @@
 {
   "name": "@char0n/apidom-error",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Backward compatible custom ApiDOM errors with causes.",
   "publishConfig": {
     "access": "restricted",

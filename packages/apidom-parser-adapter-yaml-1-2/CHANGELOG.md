@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/char0n/apidom/compare/v1.1.0...v1.1.1) (2025-06-08)
+
+### Bug Fixes
+
+- add deterministic parser grammar loading ([03081b7](https://github.com/char0n/apidom/commit/03081b72005b8688261d14cbcdd23ecbb22cd31f))
+
 # 1.1.0 (2025-06-06)
 
 ### Bug Fixes
