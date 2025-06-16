@@ -1,6 +1,6 @@
 {
   "name": "@char0n/apidom-parser-adapter-asyncapi-yaml-2",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Parser adapter for parsing YAML documents into AsyncAPI 2.x.y namespace.",
   "publishConfig": {
     "access": "restricted",
@@ -43,9 +43,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.1.1",
-    "@char0n/apidom-ns-asyncapi-2": "^1.1.1",
-    "@char0n/apidom-parser-adapter-yaml-1-2": "^1.1.1",
+    "@char0n/apidom-core": "^1.2.0",
+    "@char0n/apidom-ns-asyncapi-2": "^1.2.0",
+    "@char0n/apidom-parser-adapter-yaml-1-2": "^1.2.0",
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0"

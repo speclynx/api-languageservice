@@ -1,7 +1,7 @@
 {
   "name": "@char0n/apidom-ns-api-design-systems",
   "description": "API Design Systems 2021-05-07 namespace for ApiDOM.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
@@ -42,9 +42,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.1.1",
-    "@char0n/apidom-error": "^1.1.1",
-    "@char0n/apidom-ns-openapi-3-1": "^1.1.1",
+    "@char0n/apidom-core": "^1.2.0",
+    "@char0n/apidom-error": "^1.2.0",
+    "@char0n/apidom-ns-openapi-3-1": "^1.2.0",
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0",
