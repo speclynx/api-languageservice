@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Deferred } from 'benchmark';
 
-import analyze from '../../src/lexical-analysis/node.ts';
+import analyze from '../../src/lexical-analysis/index.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixtures/data.json');
@@ -14,7 +14,7 @@ const source = fs.readFileSync(fixturePath).toString();
 const options = {
   name: 'lexical-analysis',
   defer: true,
-  minSamples: 600,
+  minSamples: 20,
   expected: '814 ops/sec ±0.48% (677 runs sampled)',
   async fn(deferred: Deferred) {
     await analyze(source);

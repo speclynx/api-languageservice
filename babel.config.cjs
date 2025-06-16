@@ -38,6 +38,7 @@ module.exports = {
           },
         ],
         'babel-plugin-transform-import-meta',
+        path.join(__dirname, './scripts/babel-plugin-inline-wasm.cjs'),
         process.env.NODE_ENV !== 'test'
           ? [
               path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
@@ -79,6 +80,7 @@ module.exports = {
             version: '^7.22.15',
           },
         ],
+        path.join(__dirname, './scripts/babel-plugin-inline-wasm.cjs'),
         [
           path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
           { extension: 'mjs' },
@@ -107,6 +109,7 @@ module.exports = {
         ],
       ],
       plugins: [
+        path.join(__dirname, './scripts/babel-plugin-inline-wasm.cjs'),
         [
           '@babel/plugin-transform-runtime',
           {

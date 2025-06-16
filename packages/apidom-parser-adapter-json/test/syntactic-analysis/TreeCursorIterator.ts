@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { lexicalAnalysis } from '../../src/adapter-node.ts';
+import { lexicalAnalysis } from '../../src/adapter.ts';
 import TreeCursorIterator from '../../src/syntactic-analysis/TreeCursorIterator.ts';
 
 describe('syntactic-analysis', function () {

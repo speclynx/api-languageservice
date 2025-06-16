@@ -3,6 +3,5 @@
 /test/**/*.mjs
 /dist
 /types
-/wasm
 /NOTICE
 /char0n-apidom-parser-adapter-json-*.tgz

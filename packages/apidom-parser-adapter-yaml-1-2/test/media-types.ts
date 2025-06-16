@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import ApiDOMParser from '@char0n/apidom-parser';
 
-import * as jsonAdapter from '../src/adapter-node.ts';
+import * as jsonAdapter from '../src/adapter.ts';
 
 describe('given adapter is used in parser', function () {
   const parser = new ApiDOMParser().use(jsonAdapter);

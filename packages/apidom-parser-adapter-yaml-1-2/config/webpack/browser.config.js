@@ -3,11 +3,11 @@ import { nonMinimizeTrait, minimizeTrait } from './traits.config.js';
 
 const browser = {
   mode: 'production',
-  entry: ['./src/adapter-browser.ts'],
+  entry: ['./src/adapter.ts'],
   target: 'web',
   performance: {
-    maxEntrypointSize: 1300000,
-    maxAssetSize: 1300000,
+    maxEntrypointSize: 2_400_000,
+    maxAssetSize: 2_400_000,
   },
   output: {
     path: path.resolve('./dist'),
@@ -24,11 +24,6 @@ const browser = {
   },
   module: {
     rules: [
-      {
-        test: /\.wasm$/,
-        loader: 'file-loader',
-        type: 'javascript/auto',
-      },
       {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,
@@ -47,11 +42,15 @@ const browser = {
 
 const browserMin = {
   mode: 'production',
-  entry: ['./src/adapter-browser.ts'],
+  entry: ['./src/adapter.ts'],
   target: 'web',
+  performance: {
+    maxEntrypointSize: 1_300_000,
+    maxAssetSize: 1_300_000,
+  },
   output: {
     path: path.resolve('./dist'),
-    filename: 'apidom-parser-adapter-yaml1-2.browser.min.js',
+    filename: 'apidom-parser-adapter-yaml-1-2.browser.min.js',
     libraryTarget: 'umd',
     library: 'apidomParserAdapterYaml1_2',
   },
@@ -64,11 +63,6 @@ const browserMin = {
   },
   module: {
     rules: [
-      {
-        test: /\.wasm$/,
-        loader: 'file-loader',
-        type: 'javascript/auto',
-      },
       {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,

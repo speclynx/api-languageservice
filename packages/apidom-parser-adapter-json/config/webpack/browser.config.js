@@ -3,11 +3,11 @@ import { nonMinimizeTrait, minimizeTrait } from './traits.config.js';
 
 const browser = {
   mode: 'production',
-  entry: ['./src/adapter-browser.ts'],
+  entry: ['./src/adapter.ts'],
   target: 'web',
   performance: {
-    maxEntrypointSize: 1300000,
-    maxAssetSize: 1300000,
+    maxEntrypointSize: 1400000,
+    maxAssetSize: 1400000,
   },
   output: {
     path: path.resolve('./dist'),
@@ -24,11 +24,6 @@ const browser = {
   },
   module: {
     rules: [
-      {
-        test: /\.wasm$/,
-        loader: 'file-loader',
-        type: 'javascript/auto',
-      },
       {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,
@@ -47,8 +42,12 @@ const browser = {
 
 const browserMin = {
   mode: 'production',
-  entry: ['./src/adapter-browser.ts'],
+  entry: ['./src/adapter.ts'],
   target: 'web',
+  performance: {
+    maxEntrypointSize: 800000,
+    maxAssetSize: 800000,
+  },
   output: {
     path: path.resolve('./dist'),
     filename: 'apidom-parser-adapter-json.browser.min.js',
@@ -64,11 +63,6 @@ const browserMin = {
   },
   module: {
     rules: [
-      {
-        test: /\.wasm$/,
-        loader: 'file-loader',
-        type: 'javascript/auto',
-      },
       {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,
