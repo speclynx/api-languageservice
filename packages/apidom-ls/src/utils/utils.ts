@@ -197,6 +197,14 @@ interface FoundNode {
   isRef: boolean;
 }
 
+export function buildPointer(traverseNode: Element, nodePath: string[]): void {
+  if (!traverseNode) return;
+  if (traverseNode.parent && isMember(traverseNode.parent)) {
+    nodePath.unshift(toValue(traverseNode.parent.key as Element));
+    buildPointer(traverseNode.parent?.parent, nodePath);
+  }
+}
+
 export function localReferencePointers(
   doc: Element,
   nodeElement: string,
@@ -206,13 +214,6 @@ export function localReferencePointers(
   // traverse all doc to find nodes of the same type which are not a ref
   const foundNodes: FoundNode[] = [];
   let nodePath: string[] = [];
-  function buildPointer(traverseNode: Element): void {
-    if (!traverseNode) return;
-    if (traverseNode.parent && isMember(traverseNode.parent)) {
-      nodePath.unshift(toValue(traverseNode.parent.key as Element));
-      buildPointer(traverseNode.parent?.parent);
-    }
-  }
 
   // TODO check for reference-element class or type instead
   function findRefNodes(traversedNode: Element): void {
@@ -237,7 +238,36 @@ export function localReferencePointers(
   traverse(findRefNodes, doc);
   for (const foundNode of foundNodes) {
     nodePath = [];
-    buildPointer(foundNode.element);
+    buildPointer(foundNode.element, nodePath);
+    pointers.push({
+      node: foundNode.element,
+      ref: buildJsonPointer(nodePath),
+      isRef: foundNode.isRef,
+    });
+  }
+  // TODO better sorting, NS plugin..
+  pointers.sort((a, b) => (a.ref.split('/').length > b.ref.split('/').length ? 1 : -1));
+  return pointers;
+}
+
+export function findLocalReferences(doc: Element, targetJsonPointer: string): Pointer[] {
+  const pointers: Pointer[] = [];
+  const foundNodes: FoundNode[] = [];
+  let nodePath: string[] = [];
+
+  function findRefNodes(traversedNode: Element): void {
+    if (
+      isObject(traversedNode) &&
+      traversedNode.get('$ref') &&
+      toValue(traversedNode.get('$ref')) === targetJsonPointer
+    ) {
+      foundNodes.push({ element: traversedNode, isRef: true });
+    }
+  }
+  traverse(findRefNodes, doc);
+  for (const foundNode of foundNodes) {
+    nodePath = [];
+    buildPointer(foundNode.element, nodePath);
     pointers.push({
       node: foundNode.element,
       ref: buildJsonPointer(nodePath),

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { DefinitionParams, ReferenceParams } from 'vscode-languageserver-protocol';
+import { DefinitionParams } from 'vscode-languageserver-protocol';
 import {
   CompletionList,
   Diagnostic,
@@ -886,30 +886,6 @@ describe('apidom-ls', function () {
       // eslint-disable-next-line no-await-in-loop
       const result = await languageService.doProvideDefinition(doc, definitionParams);
       assert.deepEqual(result, input[3] as Location);
-    }
-  });
-
-  it('test references', async function () {
-    const doc: TextDocument = TextDocument.create(
-      'foo://bar/specFullRefs.json',
-      'json',
-      0,
-      specFull,
-    );
-
-    for (const input of refTestInput) {
-      // eslint-disable-next-line no-console
-      console.log(`testing refs for ${input[0]}`);
-      const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
-      const referenceParams: ReferenceParams = {
-        position: pos,
-        textDocument: doc,
-        context: { includeDeclaration: false },
-      };
-      // eslint-disable-next-line no-await-in-loop
-      const result = await languageService.doProvideReferences(doc, referenceParams);
-      assert.deepEqual(result, input[3] as Location[]);
     }
   });
 

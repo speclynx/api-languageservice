@@ -17,6 +17,9 @@ import {
   isMember,
   isObject,
   debug,
+  buildPointer,
+  buildJsonPointer,
+  findLocalReferences,
 } from '../../utils/utils.ts';
 
 export interface DefinitionService {
@@ -158,34 +161,26 @@ export class DefaultDefinitionService implements DefinitionService {
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
     const node = findAtOffset({ offset, includeRightBound: true }, api);
     if (node && node.parent && isMember(node.parent)) {
-      let el: Element;
-      if (!isObject(node) && isArray(node)) {
-        el = node;
-      } else {
-        el = (<MemberElement>node.parent).key as ObjectElement;
-      }
-      if (toValue(el) !== '$ref') {
+      const nodePath: string[] = [];
+      buildPointer(node, nodePath);
+      const jsonPointer = buildJsonPointer(nodePath);
+      const pointers = findLocalReferences(api, jsonPointer);
+      if (pointers.length === 0) {
         return null;
       }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const ref = toValue(node);
-      // TODO (francesco.tumanischvili@smartbear.com): handle by URL parsing
-      if (!ref.startsWith('#')) {
-        return null;
-      }
-      // TODO (francesco.tumanischvili@smartbear.com): replace with fragment deref
-      const refTarget = jsonPointerEvaluate<Element>(api, URIFragmentIdentifier.from(ref));
-      const nodeSourceMap = getSourceMap(refTarget);
-      const range = Range.create(
-        textDocument.positionAt(nodeSourceMap.offset),
-        textDocument.positionAt(nodeSourceMap.endOffset || nodeSourceMap.offset + 1),
-      );
-      return [
-        {
+      const locations: Location[] = [];
+      for (const pointer of pointers) {
+        const nodeSourceMap = getSourceMap(pointer.node);
+        const range = Range.create(
+          textDocument.positionAt(nodeSourceMap.offset),
+          textDocument.positionAt(nodeSourceMap.endOffset || nodeSourceMap.offset + 1),
+        );
+        locations.push({
           uri: textDocument.uri,
           range,
-        },
-      ];
+        });
+      }
+      return locations;
     }
     return null;
   }
