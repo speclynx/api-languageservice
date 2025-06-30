@@ -37,7 +37,6 @@ module.exports = {
             version: '^7.22.15',
           },
         ],
-        'babel-plugin-transform-import-meta',
         path.join(__dirname, './scripts/babel-plugin-inline-wasm.cjs'),
         process.env.NODE_ENV !== 'test'
           ? [
