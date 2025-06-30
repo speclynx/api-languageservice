@@ -51,7 +51,6 @@
     "web-tree-sitter": "=0.24.5"
   },
   "devDependencies": {
-    "tree-sitter-cli": "=0.24.5",
     "tree-sitter-json": "=0.24.8"
   },
   "files": [

@@ -50,8 +50,7 @@
     "web-tree-sitter": "=0.24.5"
   },
   "devDependencies": {
-    "@tree-sitter-grammars/tree-sitter-yaml": "=0.7.1",
-    "tree-sitter-cli": "=0.24.5"
+    "@tree-sitter-grammars/tree-sitter-yaml": "=0.7.1"
   },
   "files": [
     "src/**/*.mjs",
