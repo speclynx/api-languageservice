@@ -437,29 +437,6 @@ const defTestInput = [
   ],
 ];
 
-const refTestInput = [
-  [
-    'def value',
-    42,
-    33,
-    [
-      {
-        range: {
-          end: {
-            character: 7,
-            line: 54,
-          },
-          start: {
-            character: 13,
-            line: 52,
-          },
-        },
-        uri: 'foo://bar/specFullRefs.json',
-      },
-    ],
-  ],
-];
-
 describe('apidom-ls', function () {
   const metadataOas = JSON.parse(JSON.stringify(metadata()));
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
