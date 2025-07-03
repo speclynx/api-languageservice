@@ -58,5 +58,10 @@ export function compileAjv(
     ajv(ajv2020);
   }
   const ajvInst = ajv2020 ? ajv2020Instance : ajvInstance;
+  const schemaId = jsonSchema.$id || jsonSchema.id;
+  if (schemaId && ajvInst.getSchema(schemaId as string)) {
+    // @ts-ignore
+    return ajvInst.getSchema(schemaId as string);
+  }
   return ajvInst.compile(jsonSchema);
 }

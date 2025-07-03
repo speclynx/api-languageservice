@@ -591,7 +591,7 @@ describe('apidom-ls', function () {
         message: "must have required property 'title'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -655,7 +655,7 @@ describe('apidom-ls', function () {
         message: "must have required property 'version'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {

@@ -45,6 +45,14 @@ class RefValidationProvider implements ValidationProvider {
   }
 
   /*
+  returning `true` makes this validation override default one
+   */
+  // eslint-disable-next-line class-methods-use-this
+  overrideDefaultValidation(): boolean {
+    return false;
+  }
+
+  /*
   optional, if returning `ProviderMode.REF` only `doRefValidation` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doValidation` will be called once for the whole doc
    */
@@ -201,6 +209,14 @@ class FullValidationProvider implements ValidationProvider {
   }
 
   /*
+returning `true` makes this validation override default one
+ */
+  // eslint-disable-next-line class-methods-use-this
+  overrideDefaultValidation(): boolean {
+    return false;
+  }
+
+  /*
   method called once for the whole document; invoked if `providerMode` is not defined or returning ProviderMode.FULL
   In this case method `doRefValidation` is NOT invoked.
   it is expected to return a list of diagnostics, and a `mergeStrategy` to integrate into diagnostics resolved by
@@ -215,17 +231,17 @@ class FullValidationProvider implements ValidationProvider {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     textDocument: TextDocument,
     /*
-     the whole parsed doc as ApiDOM root element
-    */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    api: Element,
-    /*
      diagnostics related to this ref processed so far
      */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     currentDiagnostics: [],
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validationContext?: ValidationContext,
+    /*
+     the whole parsed doc as ApiDOM root element
+    */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    api?: Element,
   ): Promise<ValidationProviderResult> {
     const quickFixes = {};
     const diagnostics = this.legacyValidation(textDocument.getText(), textDocument, quickFixes);
@@ -234,7 +250,7 @@ class FullValidationProvider implements ValidationProvider {
     /*
     we can also semantically access elements in the apidom tree:
     */
-    if (isOpenApi31(api)) {
+    if (isOpenApi31(api!)) {
       const contactName = toValue(api.info?.contact?.name);
       // eslint-disable-next-line no-console
       console.log({ contactName });

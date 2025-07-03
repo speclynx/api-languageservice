@@ -169,13 +169,18 @@ export interface ValidationProvider {
 
   break(): boolean;
 
+  /**
+   * Indicates whether the provider is run instead of the default validation service.
+   */
+  overrideDefaultValidation(): boolean;
+
   providerMode?(): ProviderMode;
 
   doValidation?(
     textDocument: TextDocument,
-    api: Element,
     currentDiagnostics: Diagnostic[],
     validationContext?: ValidationContext,
+    api?: Element,
   ): Promise<ValidationProviderResult>;
 
   configure?(settings: LanguageSettings): void;
@@ -328,6 +333,13 @@ export enum ReferenceValidationMode {
   APIDOM_INDIRECT_EXTERNAL,
 }
 
+export enum ValidationMode {
+  SEMANTIC = 'Semantic',
+  SEMANTIC_REF = 'SemanticRef',
+  JSON_SCHEMA = 'JSONSchema',
+  SPECTRAL = 'Spectral',
+}
+
 /**
  * @public
  */
@@ -338,6 +350,7 @@ export interface ValidationContext {
   baseURI?: string;
   referenceValidationMode?: ReferenceValidationMode;
   referenceValidationSequentialProcessing?: boolean;
+  validationModes?: ValidationMode[];
 }
 
 /**
@@ -477,6 +490,14 @@ export enum LinterGivenFormat {
 /**
  * @public
  */
+export enum DiagnosticCategory {
+  VALIDATION = 'Validation',
+  LINT = 'Lint',
+}
+
+/**
+ * @public
+ */
 export interface LinterMeta {
   code?: number;
   message?: string;
@@ -506,6 +527,7 @@ export interface LinterMeta {
   recommended?: boolean;
   given?: string[] | string;
   givenFormat?: LinterGivenFormat;
+  category?: DiagnosticCategory;
 }
 
 /**

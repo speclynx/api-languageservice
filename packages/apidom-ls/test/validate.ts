@@ -152,7 +152,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property 'title'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -168,7 +168,7 @@ describe('apidom-ls-validate', function () {
         message: 'must be equal to one of the allowed values',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -184,7 +184,7 @@ describe('apidom-ls-validate', function () {
         message: 'must be array',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -200,7 +200,7 @@ describe('apidom-ls-validate', function () {
         message: 'must match a schema in anyOf',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -216,7 +216,7 @@ describe('apidom-ls-validate', function () {
         message: 'must be number',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -232,7 +232,7 @@ describe('apidom-ls-validate', function () {
         message: 'must match "else" schema',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -479,7 +479,7 @@ describe('apidom-ls-validate', function () {
           },
           end: {
             line: 46,
-            character: 4,
+            character: 0,
           },
         },
         message:
@@ -609,7 +609,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property 'title'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -625,7 +625,7 @@ describe('apidom-ls-validate', function () {
         message: 'must be number',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -641,7 +641,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property '$ref'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -657,7 +657,7 @@ describe('apidom-ls-validate', function () {
         message: 'must NOT have additional properties',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -673,7 +673,7 @@ describe('apidom-ls-validate', function () {
         message: 'must NOT have additional properties',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -689,7 +689,7 @@ describe('apidom-ls-validate', function () {
         message: 'must match exactly one schema in oneOf',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -705,7 +705,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property '$ref'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -721,7 +721,7 @@ describe('apidom-ls-validate', function () {
         message: 'must NOT have additional properties',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -737,7 +737,7 @@ describe('apidom-ls-validate', function () {
         message: 'must NOT have additional properties',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -753,7 +753,7 @@ describe('apidom-ls-validate', function () {
         message: 'must match exactly one schema in oneOf',
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -769,7 +769,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property 'responses'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -785,7 +785,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property 'responses'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -801,7 +801,7 @@ describe('apidom-ls-validate', function () {
         message: "must have required property 'responses'",
         severity: 1,
         code: 0,
-        source: 'openapi schema',
+        source: 'OpenAPI 3.1 Schema',
       },
       {
         range: {
@@ -1015,7 +1015,7 @@ describe('apidom-ls-validate', function () {
           },
           end: {
             line: 46,
-            character: 4,
+            character: 0,
           },
         },
         message:
@@ -1152,7 +1152,7 @@ describe('apidom-ls-validate', function () {
           },
           end: {
             line: 46,
-            character: 4,
+            character: 0,
           },
         },
         message:

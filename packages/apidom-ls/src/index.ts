@@ -11,7 +11,11 @@ export {
   isStringElement,
 } from '@speclynx/apidom-core';
 
-export { default as getLanguageService } from './apidom-language-service.ts';
+export { OpenAPi30JsonSchemaValidationProvider } from './services/validation/providers/openapi-30-json-schema-validation-provider.ts';
+export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/providers/openapi-31-json-schema-validation-provider.ts';
+
+export { default as ApilintCodes } from './config/codes.ts';
+export { OpenAPI3 } from './config/openapi/target-specs.ts';
 
 export {
   perfStart,
@@ -22,6 +26,8 @@ export {
   getText,
   findNamespace,
 } from './utils/utils.ts';
+
+export { default as getLanguageService } from './apidom-language-service.ts';
 
 export type {
   LanguageService,
@@ -71,6 +77,8 @@ export {
   LogLevel,
   MergeStrategy,
   ProviderMode,
+  ValidationMode,
+  DiagnosticCategory,
 } from './apidom-language-types.ts';
 
 export { config } from './config/config.ts';

@@ -92,11 +92,11 @@ export class AdsValidationProvider implements ValidationProvider {
   public async doValidation(
     textDocument: TextDocument,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    api: Element,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     currentDiagnostics: Diagnostic[],
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validationContext?: ValidationContext,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    api?: Element,
   ): Promise<ValidationProviderResult> {
     if (!this.adsDoc) {
       return this.ignoreResult;
@@ -157,6 +157,11 @@ export class AdsValidationProvider implements ValidationProvider {
 
   // eslint-disable-next-line class-methods-use-this
   break(): boolean {
+    return false;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  overrideDefaultValidation(): boolean {
     return false;
   }
 

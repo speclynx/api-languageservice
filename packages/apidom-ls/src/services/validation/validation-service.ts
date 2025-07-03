@@ -28,6 +28,8 @@ import {
   ValidationProvider,
   ContentLanguage,
   ReferenceValidationMode,
+  ValidationMode,
+  DiagnosticCategory,
 } from '../../apidom-language-types.ts';
 import {
   checkConditions,
@@ -42,6 +44,7 @@ import {
   perfEnd,
   perfStart,
   processPath,
+  error,
   SourceMap,
 } from '../../utils/utils.ts';
 import { standardLinterfunctions } from './linter-functions.ts';
@@ -142,7 +145,12 @@ export class DefaultValidationService implements ValidationService {
     }
   }
 
-  private getLintingRulesSemantic(doc: Element, symbol: string, docNs: string): LinterMeta[] {
+  private getLintingRulesSemantic(
+    doc: Element,
+    symbol: string,
+    docNs: string,
+    lintingOnly?: boolean,
+  ): LinterMeta[] {
     let meta: LinterMeta[] = [];
     const elementMeta = toValue(doc.meta.get('metadataMap')?.get(symbol)?.get('lint'));
     if (elementMeta) {
@@ -162,6 +170,7 @@ export class DefaultValidationService implements ValidationService {
         rules[docNs]!.lint!.filter((r) => {
           const matchesArray =
             r.given !== undefined &&
+            (lintingOnly ? r.category === DiagnosticCategory.LINT : true) &&
             Array.isArray(r.given) &&
             r.given.includes(symbol) &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
@@ -171,13 +180,14 @@ export class DefaultValidationService implements ValidationService {
           const matchesString =
             r.given !== undefined &&
             typeof r.given === 'string' &&
+            (lintingOnly ? r.category === DiagnosticCategory.LINT : true) &&
             r.given === symbol &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
           return matchesString;
         }),
       );
     } catch (e) {
-      console.log('error in retrieving semantic rules', e);
+      error('error in retrieving semantic rules', e);
     }
     return meta;
   }
@@ -185,18 +195,14 @@ export class DefaultValidationService implements ValidationService {
   private static buildReferenceErrorMessageFromResult(
     result: PromiseSettledResult<Element | { error: Error; refEl: Element }>,
   ): string | boolean {
-    // console.log('ERRR', JSON.stringify(result));
-    // console.log('ERRR', result);
     // @ts-ignore
     if (!result.value) {
       return false;
     }
     // @ts-ignore
     let errorCause = result.value?.error.cause;
-    // console.log('ERRR', JSON.stringify(errorCause));
     while (errorCause?.cause) {
       errorCause = errorCause.cause;
-      // console.log('ERRR', JSON.stringify(errorCause));
     }
     const pointerString = errorCause.jsonPointer ? ` at "${errorCause.jsonPointer}"` : '';
     // @ts-ignore
@@ -264,7 +270,7 @@ export class DefaultValidationService implements ValidationService {
         });
         derefPromises.push(promise);
       } catch (ex) {
-        console.error('error preparing dereferencing', ex);
+        error('error preparing dereferencing', ex);
       }
     }
     try {
@@ -318,7 +324,7 @@ export class DefaultValidationService implements ValidationService {
         }
       }
     } catch (ex) {
-      console.error('error dereferencing', ex);
+      error('error dereferencing', ex);
     }
     return diagnostics;
   }
@@ -421,6 +427,21 @@ export class DefaultValidationService implements ValidationService {
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
     const context = !validationContext ? this.settings?.validationContext : validationContext;
+
+    const semanticValidationEnabled =
+      !context ||
+      !context.validationModes ||
+      context.validationModes.length === 0 ||
+      context.validationModes.includes(ValidationMode.SEMANTIC);
+    const semanticRefValidationEnabled =
+      !context ||
+      !context.validationModes ||
+      context.validationModes.length === 0 ||
+      context.validationModes.includes(ValidationMode.SEMANTIC_REF);
+    const jsonSchemaValidationEnabled = context?.validationModes?.includes(
+      ValidationMode.JSON_SCHEMA,
+    );
+
     const refValidationMode =
       !context || !context.referenceValidationMode
         ? ReferenceValidationMode.LEGACY
@@ -432,6 +453,39 @@ export class DefaultValidationService implements ValidationService {
         : context.referenceValidationSequentialProcessing;
     const text: string = textDocument.getText();
     const diagnostics: Diagnostic[] = [];
+    const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
+    let docNs: string = nameSpace.namespace;
+
+    try {
+      for (const provider of this.validationProviders) {
+        if (
+          provider.overrideDefaultValidation() &&
+          provider
+            .namespaces()
+            .some(
+              (ns) => ns.namespace === nameSpace.namespace && ns.version === nameSpace.version,
+            ) &&
+          provider.doValidation &&
+          (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
+        ) {
+          // eslint-disable-next-line no-await-in-loop
+          await this.executeValidationProvider(
+            provider,
+            docNs,
+            nameSpace.version!,
+            textDocument,
+            diagnostics,
+            context,
+          );
+          return diagnostics;
+        }
+      }
+    } catch (e) {
+      error('error in overriding validation provider', e);
+    }
+    if (!semanticValidationEnabled && !semanticRefValidationEnabled) {
+      return diagnostics;
+    }
     this.quickFixesMap = {};
     let result = await this.settings!.documentCache?.get(
       textDocument,
@@ -441,8 +495,6 @@ export class DefaultValidationService implements ValidationService {
     if (!result) return diagnostics;
 
     let processedText;
-    const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
-    let docNs: string = nameSpace.namespace;
     // no API document has been parsed
     if (result.annotations) {
       for (const annotation of result.annotations) {
@@ -624,7 +676,7 @@ export class DefaultValidationService implements ValidationService {
           }
         }
       } catch (e) {
-        console.log('error in validation provider', e);
+        error('error in validation provider', e);
       }
       return refDiagnostics;
     };
@@ -646,8 +698,10 @@ export class DefaultValidationService implements ValidationService {
       if (referencedElement.length > 0) {
         // legacy lint local references
         if (isObject(element) && element.hasKey('$ref')) {
-          // TODO get ref value from metadata or in adapter
-          diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')));
+          if (semanticRefValidationEnabled) {
+            // TODO get ref value from metadata or in adapter
+            diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')));
+          }
         }
       }
       if (element.classes) {
@@ -664,27 +718,38 @@ export class DefaultValidationService implements ValidationService {
         set.unshift('*');
 
         set.forEach((s) => {
-          // get linter meta from meta
-          const semanticLintingRules = this.getLintingRulesSemantic(api, s, docNs);
-          if (semanticLintingRules && semanticLintingRules.length > 0) {
-            for (const meta of semanticLintingRules) {
-              this.processRule(
-                meta,
-                diagnostics,
-                textDocument,
-                api,
-                element,
-                sm,
-                docNs,
-                specVersion,
-              );
+          if (semanticValidationEnabled) {
+            const semanticLintingRules = this.getLintingRulesSemantic(
+              api,
+              s,
+              docNs,
+              jsonSchemaValidationEnabled,
+            );
+            if (semanticLintingRules && semanticLintingRules.length > 0) {
+              for (const meta of semanticLintingRules) {
+                if (
+                  !jsonSchemaValidationEnabled ||
+                  (jsonSchemaValidationEnabled && meta.category === DiagnosticCategory.LINT)
+                ) {
+                  this.processRule(
+                    meta,
+                    diagnostics,
+                    textDocument,
+                    api,
+                    element,
+                    sm,
+                    docNs,
+                    specVersion,
+                  );
+                }
+              }
             }
           }
         });
       }
     };
     traverse(lint, api);
-    if (refValidationMode !== ReferenceValidationMode.LEGACY) {
+    if (refValidationMode !== ReferenceValidationMode.LEGACY && semanticRefValidationEnabled) {
       if (refValidationSerialProcessing) {
         diagnostics.push(
           ...(await this.validateReferencesSequential(
@@ -713,7 +778,11 @@ export class DefaultValidationService implements ValidationService {
       const rules = this.settings?.metadata?.rules;
       if (rules && rules[docNs]?.lint) {
         for (const r of rules[docNs]!.lint!) {
-          if (r.givenFormat !== undefined && r.givenFormat === LinterGivenFormat.JSONPATH) {
+          if (
+            r.givenFormat !== undefined &&
+            r.givenFormat === LinterGivenFormat.JSONPATH &&
+            (jsonSchemaValidationEnabled ? r.category === DiagnosticCategory.LINT : true)
+          ) {
             const matchesArray = r.given !== undefined && Array.isArray(r.given);
             if (matchesArray) {
               const elementsTuples = evaluateMulti(r.given as string[], api);
@@ -762,55 +831,25 @@ export class DefaultValidationService implements ValidationService {
         }
       }
     } catch (e) {
-      console.log('error in retrieving jsonpath rules', e);
+      error('error in retrieving jsonpath rules', e);
     }
     perfEnd(PerfLabels.START);
     if (!hasSyntaxErrors) {
-      try {
-        // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
-        for (const provider of this.validationProviders) {
-          if (
-            provider
-              .namespaces()
-              .some((ns) => ns.namespace === docNs && ns.version === specVersion) &&
-            provider.doValidation &&
-            (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
-          ) {
-            // eslint-disable-next-line no-await-in-loop
-            const validationProviderResult = await provider.doValidation(
-              textDocument,
-              api,
-              diagnostics,
-              context,
-            );
-            switch (validationProviderResult.mergeStrategy) {
-              case MergeStrategy.APPEND:
-                diagnostics.push(...validationProviderResult.diagnostics);
-                break;
-              case MergeStrategy.PREPEND:
-                diagnostics.unshift(...validationProviderResult.diagnostics);
-                break;
-              case MergeStrategy.REPLACE:
-                diagnostics.splice(0, diagnostics.length, ...validationProviderResult.diagnostics);
-                break;
-              case MergeStrategy.IGNORE:
-                break;
-              default:
-                diagnostics.push(...validationProviderResult.diagnostics);
-            }
-            if (validationProviderResult.quickFixes) {
-              // eslint-disable-next-line guard-for-in
-              for (const fix in validationProviderResult.quickFixes) {
-                this.quickFixesMap[fix] = validationProviderResult.quickFixes[fix];
-              }
-            }
-            if (provider.break()) {
-              break;
-            }
-          }
+      // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
+      for (const provider of this.validationProviders) {
+        // eslint-disable-next-line no-await-in-loop
+        await this.executeValidationProvider(
+          provider,
+          docNs,
+          specVersion,
+          textDocument,
+          diagnostics,
+          context,
+          api,
+        );
+        if (provider.break()) {
+          break;
         }
-      } catch (e) {
-        console.log('error in validation provider');
       }
     }
 
@@ -933,15 +972,58 @@ export class DefaultValidationService implements ValidationService {
             }
           }
         } catch (e) {
-          // eslint-disable-next-line no-console
-          console.log('validation lint error', JSON.stringify(e), e);
+          error('validation lint error', JSON.stringify(e), e);
         }
       }
     }
   }
 
   // try to retrieve data from diagnostic from client, if not present use metadata
-  // e.g Monaco doesn't support `data` property
+  // e.g. Monaco doesn't support `data` property
+  private async executeValidationProvider(
+    provider: ValidationProvider,
+    docNs: string,
+    specVersion: string,
+    textDocument: TextDocument,
+    diagnostics: Diagnostic[],
+    context?: ValidationContext,
+    api?: Element,
+  ): Promise<void> {
+    if (
+      provider.namespaces().some((ns) => ns.namespace === docNs && ns.version === specVersion) &&
+      provider.doValidation &&
+      (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
+    ) {
+      const validationProviderResult = await provider.doValidation(
+        textDocument,
+        diagnostics,
+        context,
+        api,
+      );
+      switch (validationProviderResult.mergeStrategy) {
+        case MergeStrategy.APPEND:
+          diagnostics.push(...validationProviderResult.diagnostics);
+          break;
+        case MergeStrategy.PREPEND:
+          diagnostics.unshift(...validationProviderResult.diagnostics);
+          break;
+        case MergeStrategy.REPLACE:
+          diagnostics.splice(0, diagnostics.length, ...validationProviderResult.diagnostics);
+          break;
+        case MergeStrategy.IGNORE:
+          break;
+        default:
+          diagnostics.push(...validationProviderResult.diagnostics);
+      }
+      if (validationProviderResult.quickFixes) {
+        // eslint-disable-next-line guard-for-in
+        for (const fix in validationProviderResult.quickFixes) {
+          this.quickFixesMap[fix] = validationProviderResult.quickFixes[fix];
+        }
+      }
+    }
+  }
+
   private findQuickFix(
     diagnostic: Diagnostic,
     lang: string,

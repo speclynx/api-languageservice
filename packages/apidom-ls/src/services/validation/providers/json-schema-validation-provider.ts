@@ -73,6 +73,8 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
 
   protected ajv2020: boolean;
 
+  protected override = false;
+
   protected constructor(ajv2020: boolean, jsonSchema: Record<string, unknown>) {
     this.validationEnabled = true;
     this.jsonSchema = jsonSchema;
@@ -80,11 +82,15 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     this.ajv = AjvUtils.ajv(ajv2020);
   }
 
+  public setOverrideDefaultValidation(override: boolean): void {
+    this.override = override;
+  }
+
   public async doValidation(
     textDocument: TextDocument,
-    api: Element,
     currentDiagnostics: Diagnostic[],
     validationContext?: ValidationContext,
+    api?: Element,
   ): Promise<ValidationProviderResult> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const text = textDocument.getText();
@@ -196,6 +202,10 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
   }
 
   public abstract break(): boolean;
+
+  public overrideDefaultValidation(): boolean {
+    return this.override;
+  }
 
   public abstract namespaces(): NamespaceVersion[];
 
