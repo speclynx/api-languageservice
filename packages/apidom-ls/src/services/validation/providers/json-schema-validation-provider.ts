@@ -1,5 +1,6 @@
 import type { Ajv2020 } from 'ajv/dist/2020.d.ts';
 import type { Ajv } from 'ajv';
+import betterAjvErrors from '@stoplight/better-ajv-errors';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import jsonSourceMap from 'json-source-map';
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -121,6 +122,66 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     }
   }
 
+  private buildError(
+    originalDocument: string,
+    message: string,
+    path: string,
+    isYaml: boolean,
+    diagnostics: Diagnostic[],
+    errorPointer: any,
+    keyword?: string,
+  ): void {
+    let range: Range;
+    const errorOnValue =
+      (keyword && keyword === 'pattern') || keyword === 'format' || keyword === 'errorMessage';
+    // if errors are related to root, mark only the first char
+    if (!path || path.length === 0) {
+      const endChar = !originalDocument || originalDocument.length === 0 ? 0 : 1;
+      range = Range.create(Position.create(0, 0), Position.create(0, endChar));
+    }
+    // TODO fix and solve with consistent YAML / JSON / Adapter
+    else if (isYaml) {
+      // eslint-disable-next-line prefer-template
+      const position = positionRangeForPath(
+        originalDocument,
+        path.replace(/\/$/, '').replace(/^"/, '').replace(/^\//, '').split('/'),
+      );
+      if (errorOnValue || !position.key_start) {
+        range = Range.create(
+          Position.create(position.start.line, position.start.column),
+          Position.create(position.end.line, position.end.column),
+        );
+      } else {
+        range = Range.create(
+          Position.create(position.key_start.line, position.key_start.column),
+          Position.create(position.key_end.line, position.key_end.column),
+        );
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (errorOnValue || !errorPointer.key) {
+        range = Range.create(
+          Position.create(errorPointer.value.line, errorPointer.value.column),
+          Position.create(errorPointer.valueEnd.line, errorPointer.valueEnd.column),
+        );
+      } else {
+        range = Range.create(
+          Position.create(errorPointer.key.line, errorPointer.key.column),
+          Position.create(errorPointer.keyEnd.line, errorPointer.keyEnd.column),
+        );
+      }
+    }
+
+    const diagnostic = Diagnostic.create(
+      range,
+      message || '',
+      DiagnosticSeverity.Error,
+      0,
+      this.name(),
+    );
+    diagnostics.push(diagnostic);
+  }
+
   public validate(
     jsonDocument: string,
     originalDocument: string,
@@ -137,66 +198,49 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     const valid = validateFunction(jsonDoc);
     if (!valid) {
       const sourceMap = jsonSourceMap.parse(jsonDocument, null, 2);
+      let betterErrors: betterAjvErrors.IOutputError[];
       if (validateFunction.errors) {
-        validateFunction.errors.forEach((error) => {
-          if (
-            validationContext &&
-            validationContext.maxNumberOfProblems &&
-            diagnostics.length > validationContext.maxNumberOfProblems
-          ) {
-            return;
-          }
-          let range: Range;
-          const errorOnValue =
-            error.keyword === 'pattern' ||
-            error.keyword === 'format' ||
-            error.keyword === 'errorMessage';
-          // if errors are related to root, mark only the first char
-          if (!error.instancePath || error.instancePath.length === 0) {
-            const endChar = !originalDocument || originalDocument.length === 0 ? 0 : 1;
-            range = Range.create(Position.create(0, 0), Position.create(0, endChar));
-          }
-          // TODO fix and solve with consistent YAML / JSON / Adapter
-          else if (isYaml) {
-            // eslint-disable-next-line prefer-template
-            const position = positionRangeForPath(
+        if (validationContext?.betterAjvErrors) {
+          betterErrors = betterAjvErrors(this.jsonSchema, validateFunction.errors, {
+            propertyPath: [],
+            targetValue: jsonDoc,
+          });
+          betterErrors.forEach((error) => {
+            if (
+              validationContext &&
+              validationContext.maxNumberOfProblems &&
+              diagnostics.length > validationContext.maxNumberOfProblems
+            ) {
+              return;
+            }
+            this.buildError(
               originalDocument,
-              error.instancePath.replace(/\/$/, '').replace(/^"/, '').replace(/^\//, '').split('/'),
+              error.error,
+              error.path,
+              isYaml,
+              diagnostics,
+              sourceMap.pointers[error.path],
             );
-            if (errorOnValue || !position.key_start) {
-              range = Range.create(
-                Position.create(position.start.line, position.start.column),
-                Position.create(position.end.line, position.end.column),
-              );
-            } else {
-              range = Range.create(
-                Position.create(position.key_start.line, position.key_start.column),
-                Position.create(position.key_end.line, position.key_end.column),
-              );
+          });
+        } else {
+          validateFunction.errors.forEach((error) => {
+            if (
+              validationContext &&
+              validationContext.maxNumberOfProblems &&
+              diagnostics.length > validationContext.maxNumberOfProblems
+            ) {
+              return;
             }
-          } else {
-            const errorPointer = sourceMap.pointers[error.instancePath];
-            if (errorOnValue || !errorPointer.key) {
-              range = Range.create(
-                Position.create(errorPointer.value.line, errorPointer.value.column),
-                Position.create(errorPointer.valueEnd.line, errorPointer.valueEnd.column),
-              );
-            } else {
-              range = Range.create(
-                Position.create(errorPointer.key.line, errorPointer.key.column),
-                Position.create(errorPointer.keyEnd.line, errorPointer.keyEnd.column),
-              );
-            }
-          }
-          const diagnostic = Diagnostic.create(
-            range,
-            error.message || '',
-            DiagnosticSeverity.Error,
-            0,
-            this.name(),
-          );
-          diagnostics.push(diagnostic);
-        });
+            this.buildError(
+              originalDocument,
+              error.message || '',
+              error.instancePath,
+              isYaml,
+              diagnostics,
+              sourceMap.pointers[error.instancePath],
+            );
+          });
+        }
       }
     }
   }

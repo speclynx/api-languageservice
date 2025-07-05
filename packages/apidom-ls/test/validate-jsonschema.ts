@@ -331,6 +331,227 @@ describe('apidom-ls-validate-jsonschema', function () {
     languageService.terminate();
   });
 
+  it('test validation for openapi with schema and better errors', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+      betterAjvErrors: true,
+    };
+
+    // valid spec
+    const docOpenapi: TextDocument = TextDocument.create(
+      'foo://bar/openapi.json',
+      'specOpenapiSimple',
+      0,
+      specOpenapiSimple,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const result = await languageService.doValidation(docOpenapi, validationContext);
+    const expected = [
+      {
+        range: {
+          start: {
+            line: 2,
+            character: 2,
+          },
+          end: {
+            line: 2,
+            character: 8,
+          },
+        },
+        message: '"info" property must have required property "title"',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 13,
+            character: 10,
+          },
+          end: {
+            line: 13,
+            character: 15,
+          },
+        },
+        message: '"200" property must match "else" schema',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 18,
+            character: 18,
+          },
+          end: {
+            line: 18,
+            character: 24,
+          },
+        },
+        message: '"type" property must be equal to one of the allowed values',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 18,
+            character: 18,
+          },
+          end: {
+            line: 18,
+            character: 24,
+          },
+        },
+        message: '"type" property type must be array',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 18,
+            character: 18,
+          },
+          end: {
+            line: 18,
+            character: 24,
+          },
+        },
+        message: '"type" property must match a schema in anyOf',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 19,
+            character: 18,
+          },
+          end: {
+            line: 19,
+            character: 36,
+          },
+        },
+        message: '"exclusiveMaximum" property type must be number',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 3.1 Schema',
+      },
+      {
+        range: {
+          start: {
+            line: 2,
+            character: 2,
+          },
+          end: {
+            line: 2,
+            character: 8,
+          },
+        },
+        message: "should always have a 'title'",
+        severity: 1,
+        code: 5020101,
+        source: 'apilint',
+        data: {
+          quickFix: [
+            {
+              message: "add 'title' field",
+              action: 'addChild',
+              snippetYaml: 'title: \n  ',
+              snippetJson: '"title": "",\n    ',
+            },
+          ],
+        },
+      },
+      {
+        range: {
+          start: {
+            line: 19,
+            character: 38,
+          },
+          end: {
+            line: 19,
+            character: 42,
+          },
+        },
+        message: "'exclusiveMaximum' value must be a number",
+        severity: 1,
+        code: 10016,
+        source: 'apilint',
+        data: {},
+      },
+      {
+        range: {
+          start: {
+            line: 18,
+            character: 26,
+          },
+          end: {
+            line: 18,
+            character: 35,
+          },
+        },
+        message: 'type must be one of allowed values',
+        severity: 1,
+        code: 10001,
+        source: 'apilint',
+        data: {
+          quickFix: [
+            {
+              message: "update to 'null'",
+              action: 'updateValue',
+              functionParams: ['null'],
+            },
+            {
+              message: "update to 'boolean'",
+              action: 'updateValue',
+              functionParams: ['boolean'],
+            },
+            {
+              message: "update to 'object'",
+              action: 'updateValue',
+              functionParams: ['object'],
+            },
+            {
+              message: "update to 'array'",
+              action: 'updateValue',
+              functionParams: ['array'],
+            },
+            {
+              message: "update to 'number'",
+              action: 'updateValue',
+              functionParams: ['null'],
+            },
+            {
+              message: "update to 'string'",
+              action: 'updateValue',
+              functionParams: ['string'],
+            },
+            {
+              message: "update to 'integer'",
+              action: 'updateValue',
+              functionParams: ['integer'],
+            },
+          ],
+        },
+      },
+    ];
+    // console.log('result', JSON.stringify(result, null, 2));
+    assert.deepEqual(result, expected as Diagnostic[]);
+
+    languageService.terminate();
+  });
+
   it('test validation for openapi with schema only', async function () {
     // valid spec
     const docOpenapi: TextDocument = TextDocument.create(

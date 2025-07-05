@@ -351,6 +351,7 @@ export interface ValidationContext {
   referenceValidationMode?: ReferenceValidationMode;
   referenceValidationSequentialProcessing?: boolean;
   validationModes?: ValidationMode[];
+  betterAjvErrors?: boolean;
 }
 
 /**
