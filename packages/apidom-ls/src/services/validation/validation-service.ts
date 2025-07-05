@@ -45,6 +45,8 @@ import {
   perfStart,
   processPath,
   error,
+  debug,
+  info,
   SourceMap,
 } from '../../utils/utils.ts';
 import { standardLinterfunctions } from './linter-functions.ts';
@@ -426,6 +428,9 @@ export class DefaultValidationService implements ValidationService {
     validationContext?: ValidationContext,
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
+    debug(`doValidation ${JSON.stringify(this.settings?.validationContext)}`);
+    debug(`doValidation ${JSON.stringify(validationContext)}`);
+    info(`doValidation: ${JSON.stringify(validationContext?.validationModes)}`);
     const context = !validationContext ? this.settings?.validationContext : validationContext;
 
     const semanticValidationEnabled =
@@ -441,7 +446,9 @@ export class DefaultValidationService implements ValidationService {
     const jsonSchemaValidationEnabled = context?.validationModes?.includes(
       ValidationMode.JSON_SCHEMA,
     );
-
+    info(`semanticValidationEnabled: ${semanticValidationEnabled}`);
+    info(`semanticRefValidationEnabled: ${semanticRefValidationEnabled}`);
+    info(`jsonSchemaValidationEnabled: ${jsonSchemaValidationEnabled}`);
     const refValidationMode =
       !context || !context.referenceValidationMode
         ? ReferenceValidationMode.LEGACY
