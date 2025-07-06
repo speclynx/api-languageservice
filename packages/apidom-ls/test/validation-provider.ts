@@ -52,6 +52,11 @@ class RefValidationProvider implements ValidationProvider {
     return false;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  jsonSchemaValidation(): boolean {
+    return false;
+  }
+
   /*
   optional, if returning `ProviderMode.REF` only `doRefValidation` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doValidation` will be called once for the whole doc
@@ -213,6 +218,11 @@ returning `true` makes this validation override default one
  */
   // eslint-disable-next-line class-methods-use-this
   overrideDefaultValidation(): boolean {
+    return false;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  jsonSchemaValidation(): boolean {
     return false;
   }
 

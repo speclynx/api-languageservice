@@ -174,6 +174,8 @@ export interface ValidationProvider {
    */
   overrideDefaultValidation(): boolean;
 
+  jsonSchemaValidation(): boolean;
+
   providerMode?(): ProviderMode;
 
   doValidation?(
@@ -333,13 +335,6 @@ export enum ReferenceValidationMode {
   APIDOM_INDIRECT_EXTERNAL,
 }
 
-export enum ValidationMode {
-  SEMANTIC = 'Semantic',
-  SEMANTIC_REF = 'SemanticRef',
-  JSON_SCHEMA = 'JSONSchema',
-  SPECTRAL = 'Spectral',
-}
-
 /**
  * @public
  */
@@ -350,7 +345,10 @@ export interface ValidationContext {
   baseURI?: string;
   referenceValidationMode?: ReferenceValidationMode;
   referenceValidationSequentialProcessing?: boolean;
-  validationModes?: ValidationMode[];
+  jsonSchemaValidation?: boolean;
+  semanticValidation?: boolean;
+  referenceValidation?: boolean;
+  semanticLinting?: boolean;
   betterAjvErrors?: boolean;
 }
 

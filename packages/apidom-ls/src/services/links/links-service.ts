@@ -18,6 +18,7 @@ import {
   isMember,
   perfEnd,
   perfStart,
+  error,
 } from '../../utils/utils.ts';
 
 enum PerfLabels {
@@ -207,7 +208,7 @@ export class DefaultLinksService implements LinksService {
         }
       }
     } catch (e) {
-      console.log('error in validation provider');
+      error('error in links provider', e);
     }
     links.push(...refLinks);
     if (context?.maxNumberOfLinks && links.length > context?.maxNumberOfLinks) {

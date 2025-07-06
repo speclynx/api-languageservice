@@ -28,7 +28,6 @@ import {
   ValidationProvider,
   ContentLanguage,
   ReferenceValidationMode,
-  ValidationMode,
   DiagnosticCategory,
 } from '../../apidom-language-types.ts';
 import {
@@ -45,7 +44,6 @@ import {
   perfStart,
   processPath,
   error,
-  debug,
   info,
   SourceMap,
 } from '../../utils/utils.ts';
@@ -82,6 +80,18 @@ export class DefaultValidationService implements ValidationService {
   public constructor() {
     this.validationEnabled = true;
     this.commentSeverity = undefined;
+  }
+
+  private static matchesCategory(validation: boolean, linting: boolean, r: LinterMeta): boolean {
+    let matchesCategory = false;
+    if (validation && !linting) {
+      matchesCategory = !r.category || r.category === DiagnosticCategory.VALIDATION;
+    } else if (linting && !validation) {
+      matchesCategory = r.category === DiagnosticCategory.LINT;
+    } else if (validation && linting) {
+      matchesCategory = true;
+    }
+    return matchesCategory;
   }
 
   private static createCachedParser(parser: any) {
@@ -151,13 +161,17 @@ export class DefaultValidationService implements ValidationService {
     doc: Element,
     symbol: string,
     docNs: string,
-    lintingOnly?: boolean,
+    validation: boolean,
+    linting: boolean,
   ): LinterMeta[] {
     let meta: LinterMeta[] = [];
     const elementMeta = toValue(doc.meta.get('metadataMap')?.get(symbol)?.get('lint'));
     if (elementMeta) {
       meta = meta.concat(elementMeta);
-      meta = meta.filter((r) => !r.given);
+      meta = meta.filter((r) => {
+        const matchesCategory = DefaultValidationService.matchesCategory(validation, linting, r);
+        return !r.given && matchesCategory;
+      });
     }
     // get namespace rules with `given` populated as array
     try {
@@ -170,22 +184,21 @@ export class DefaultValidationService implements ValidationService {
       }
       meta = meta.concat(
         rules[docNs]!.lint!.filter((r) => {
+          const matchesCategory = DefaultValidationService.matchesCategory(validation, linting, r);
           const matchesArray =
             r.given !== undefined &&
-            (lintingOnly ? r.category === DiagnosticCategory.LINT : true) &&
             Array.isArray(r.given) &&
             r.given.includes(symbol) &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
-          if (matchesArray) {
+          if (matchesArray && matchesCategory) {
             return true;
           }
           const matchesString =
             r.given !== undefined &&
             typeof r.given === 'string' &&
-            (lintingOnly ? r.category === DiagnosticCategory.LINT : true) &&
             r.given === symbol &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
-          return matchesString;
+          return matchesString && matchesCategory;
         }),
       );
     } catch (e) {
@@ -422,33 +435,75 @@ export class DefaultValidationService implements ValidationService {
     return diagnostics;
   }
 
+  private static resolveValidationMode(
+    context?: ValidationContext,
+    settingsContext?: ValidationContext,
+  ): {
+    semanticValidationEnabled: boolean;
+    semanticRefValidationEnabled: boolean;
+    semanticLintingEnabled: boolean;
+    jsonSchemaValidationEnabled: boolean;
+    betterAjvErrors: boolean;
+  } {
+    let semanticValidationEnabled =
+      !settingsContext || !(settingsContext.semanticValidation === false);
+    if (context && context.semanticValidation !== undefined) {
+      semanticValidationEnabled = context.semanticValidation;
+    }
+    let semanticRefValidationEnabled =
+      !settingsContext || !(settingsContext.referenceValidation === false);
+    if (context && context.referenceValidation !== undefined) {
+      semanticRefValidationEnabled = context.referenceValidation;
+    }
+    let semanticLintingEnabled = !settingsContext || !(settingsContext.semanticLinting === false);
+    if (context && context.semanticLinting !== undefined) {
+      semanticLintingEnabled = context.semanticLinting;
+    }
+    let jsonSchemaValidationEnabled = settingsContext?.jsonSchemaValidation || false;
+    if (context && context.jsonSchemaValidation !== undefined) {
+      jsonSchemaValidationEnabled = context.jsonSchemaValidation;
+    }
+    let betterAjvErrors = settingsContext?.betterAjvErrors || false;
+    if (context && context.betterAjvErrors !== undefined) {
+      betterAjvErrors = context.betterAjvErrors;
+    }
+    return {
+      semanticValidationEnabled,
+      semanticRefValidationEnabled,
+      semanticLintingEnabled,
+      jsonSchemaValidationEnabled,
+      betterAjvErrors,
+    };
+  }
+
   public async doValidation(
     textDocument: TextDocument,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validationContext?: ValidationContext,
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
-    debug(`doValidation ${JSON.stringify(this.settings?.validationContext)}`);
-    debug(`doValidation ${JSON.stringify(validationContext)}`);
-    info(`doValidation: ${JSON.stringify(validationContext?.validationModes)}`);
     const context = !validationContext ? this.settings?.validationContext : validationContext;
-
-    const semanticValidationEnabled =
-      !context ||
-      !context.validationModes ||
-      context.validationModes.length === 0 ||
-      context.validationModes.includes(ValidationMode.SEMANTIC);
-    const semanticRefValidationEnabled =
-      !context ||
-      !context.validationModes ||
-      context.validationModes.length === 0 ||
-      context.validationModes.includes(ValidationMode.SEMANTIC_REF);
-    const jsonSchemaValidationEnabled = context?.validationModes?.includes(
-      ValidationMode.JSON_SCHEMA,
-    );
+    const {
+      semanticValidationEnabled,
+      semanticRefValidationEnabled,
+      jsonSchemaValidationEnabled,
+      semanticLintingEnabled,
+      betterAjvErrors,
+    } = DefaultValidationService.resolveValidationMode(context, this.settings?.validationContext);
+    if (validationContext) {
+      // TODO (frantuma) remove this when we have a better way to pass the context
+      // eslint-disable-next-line no-param-reassign
+      validationContext.betterAjvErrors = betterAjvErrors;
+    }
+    const exclusiveJsonSchemaValidation =
+      jsonSchemaValidationEnabled &&
+      !semanticValidationEnabled &&
+      !semanticRefValidationEnabled &&
+      !semanticLintingEnabled;
     info(`semanticValidationEnabled: ${semanticValidationEnabled}`);
     info(`semanticRefValidationEnabled: ${semanticRefValidationEnabled}`);
     info(`jsonSchemaValidationEnabled: ${jsonSchemaValidationEnabled}`);
+    info(`semanticLintingEnabled: ${semanticLintingEnabled}`);
     const refValidationMode =
       !context || !context.referenceValidationMode
         ? ReferenceValidationMode.LEGACY
@@ -466,7 +521,8 @@ export class DefaultValidationService implements ValidationService {
     try {
       for (const provider of this.validationProviders) {
         if (
-          provider.overrideDefaultValidation() &&
+          (provider.overrideDefaultValidation() ||
+            (exclusiveJsonSchemaValidation && provider.jsonSchemaValidation())) &&
           provider
             .namespaces()
             .some(
@@ -490,7 +546,7 @@ export class DefaultValidationService implements ValidationService {
     } catch (e) {
       error('error in overriding validation provider', e);
     }
-    if (!semanticValidationEnabled && !semanticRefValidationEnabled) {
+    if (!semanticValidationEnabled && !semanticRefValidationEnabled && !semanticLintingEnabled) {
       return diagnostics;
     }
     this.quickFixesMap = {};
@@ -725,30 +781,26 @@ export class DefaultValidationService implements ValidationService {
         set.unshift('*');
 
         set.forEach((s) => {
-          if (semanticValidationEnabled) {
+          if (semanticValidationEnabled || semanticLintingEnabled) {
             const semanticLintingRules = this.getLintingRulesSemantic(
               api,
               s,
               docNs,
-              jsonSchemaValidationEnabled,
+              semanticValidationEnabled,
+              semanticLintingEnabled,
             );
             if (semanticLintingRules && semanticLintingRules.length > 0) {
               for (const meta of semanticLintingRules) {
-                if (
-                  !jsonSchemaValidationEnabled ||
-                  (jsonSchemaValidationEnabled && meta.category === DiagnosticCategory.LINT)
-                ) {
-                  this.processRule(
-                    meta,
-                    diagnostics,
-                    textDocument,
-                    api,
-                    element,
-                    sm,
-                    docNs,
-                    specVersion,
-                  );
-                }
+                this.processRule(
+                  meta,
+                  diagnostics,
+                  textDocument,
+                  api,
+                  element,
+                  sm,
+                  docNs,
+                  specVersion,
+                );
               }
             }
           }
@@ -785,10 +837,15 @@ export class DefaultValidationService implements ValidationService {
       const rules = this.settings?.metadata?.rules;
       if (rules && rules[docNs]?.lint) {
         for (const r of rules[docNs]!.lint!) {
+          const matchesCategory = DefaultValidationService.matchesCategory(
+            semanticValidationEnabled,
+            semanticLintingEnabled,
+            r,
+          );
           if (
             r.givenFormat !== undefined &&
             r.givenFormat === LinterGivenFormat.JSONPATH &&
-            (jsonSchemaValidationEnabled ? r.category === DiagnosticCategory.LINT : true)
+            matchesCategory
           ) {
             const matchesArray = r.given !== undefined && Array.isArray(r.given);
             if (matchesArray) {
@@ -842,20 +899,22 @@ export class DefaultValidationService implements ValidationService {
     }
     perfEnd(PerfLabels.START);
     if (!hasSyntaxErrors) {
-      // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
+      // TODO try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.validationProviders) {
-        // eslint-disable-next-line no-await-in-loop
-        await this.executeValidationProvider(
-          provider,
-          docNs,
-          specVersion,
-          textDocument,
-          diagnostics,
-          context,
-          api,
-        );
-        if (provider.break()) {
-          break;
+        if (!(provider.jsonSchemaValidation() && !jsonSchemaValidationEnabled)) {
+          // eslint-disable-next-line no-await-in-loop
+          await this.executeValidationProvider(
+            provider,
+            docNs,
+            specVersion,
+            textDocument,
+            diagnostics,
+            context,
+            api,
+          );
+          if (provider.break()) {
+            break;
+          }
         }
       }
     }

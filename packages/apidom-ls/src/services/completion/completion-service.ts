@@ -57,6 +57,7 @@ import {
   perfEnd,
   debug,
   trace,
+  error,
   findNamespace,
 } from '../../utils/utils.ts';
 import { standardLinterfunctions } from '../validation/linter-functions.ts';
@@ -912,7 +913,7 @@ export class DefaultCompletionService implements CompletionService {
         }
       }
     } catch (e) {
-      console.log('error in validation provider');
+      error('error in validation provider', e);
     }
     return completionList;
   }
@@ -1014,7 +1015,7 @@ export class DefaultCompletionService implements CompletionService {
         }
       }
     } catch (e) {
-      console.log('error in validation provider');
+      error('error in validation provider', e);
     }
     return result;
   }
@@ -1188,8 +1189,7 @@ export class DefaultCompletionService implements CompletionService {
               }
             }
           } catch (e) {
-            // eslint-disable-next-line no-console
-            console.log('completion function error', JSON.stringify(e), e);
+            error('completion function error', JSON.stringify(e), e);
           }
           item.label = DefaultCompletionService.DELETEME;
         }

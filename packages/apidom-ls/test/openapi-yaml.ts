@@ -399,6 +399,12 @@ describe('apidom-ls-yaml', function () {
     metadata: metadataOas,
     validatorProviders: [oasJsonSchemavalidationProvider],
     performanceLogs: logPerformance,
+    validationContext: {
+      semanticValidation: true,
+      semanticLinting: true,
+      jsonSchemaValidation: true,
+      referenceValidation: true,
+    },
     logLevel,
   };
 

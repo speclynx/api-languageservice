@@ -166,6 +166,11 @@ export class AdsValidationProvider implements ValidationProvider {
   }
 
   // eslint-disable-next-line class-methods-use-this
+  jsonSchemaValidation(): boolean {
+    return false;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
     return [
       { namespace: 'openapi', version: '3.1.0' },

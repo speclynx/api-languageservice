@@ -69,6 +69,12 @@ describe('apidom-ls-validate', function () {
       async21JsonSchemavalidationProvider,
       async22JsonSchemavalidationProvider,
     ],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };
@@ -84,6 +90,12 @@ describe('apidom-ls-validate', function () {
       async21JsonSchemavalidationProvider,
       async22JsonSchemavalidationProvider,
     ],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };
@@ -96,6 +108,12 @@ describe('apidom-ls-validate', function () {
       async21JsonSchemavalidationProvider,
       async22JsonSchemavalidationProvider,
     ],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };

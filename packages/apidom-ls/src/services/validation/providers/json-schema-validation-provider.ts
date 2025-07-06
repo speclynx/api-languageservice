@@ -238,6 +238,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
               isYaml,
               diagnostics,
               sourceMap.pointers[error.instancePath],
+              error.keyword,
             );
           });
         }
@@ -249,6 +250,11 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
 
   public overrideDefaultValidation(): boolean {
     return this.override;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  jsonSchemaValidation(): boolean {
+    return true;
   }
 
   public abstract namespaces(): NamespaceVersion[];

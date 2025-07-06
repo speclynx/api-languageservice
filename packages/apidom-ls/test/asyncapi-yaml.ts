@@ -300,6 +300,12 @@ describe('apidom-ls-async-yaml', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validatorProviders: [asyncJsonSchemavalidationProvider],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };

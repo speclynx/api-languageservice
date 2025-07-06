@@ -443,6 +443,12 @@ describe('apidom-ls', function () {
   const context: LanguageServiceContext = {
     metadata: metadataOas,
     validatorProviders: [oasJsonSchemavalidationProvider],
+    validationContext: {
+      semanticValidation: true,
+      semanticLinting: true,
+      jsonSchemaValidation: true,
+      referenceValidation: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };

@@ -12,7 +12,6 @@ import {
   LanguageServiceContext,
   LinterMeta,
   ValidationContext,
-  ValidationMode,
 } from '../src/apidom-language-types.ts';
 import { metadata } from './metadata.ts';
 import { OpenAPi31JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-31-json-schema-validation-provider.ts';
@@ -64,6 +63,12 @@ describe('apidom-ls-validate-jsonschema', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validatorProviders: [oasJsonSchemavalidationProvider],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };
@@ -81,7 +86,10 @@ describe('apidom-ls-validate-jsonschema', function () {
       oasJsonSchemavalidationProvider30Override,
     ],
     validationContext: {
-      validationModes: [ValidationMode.JSON_SCHEMA],
+      jsonSchemaValidation: true,
+      semanticValidation: false,
+      referenceValidation: false,
+      semanticLinting: false,
     },
     performanceLogs: logPerformance,
     logLevel,
@@ -91,11 +99,10 @@ describe('apidom-ls-validate-jsonschema', function () {
     metadata: metadataLint,
     validatorProviders: [oasJsonSchemavalidationProvider, oasJsonSchemavalidationProvider30],
     validationContext: {
-      validationModes: [
-        ValidationMode.JSON_SCHEMA,
-        ValidationMode.SEMANTIC,
-        ValidationMode.SEMANTIC_REF,
-      ],
+      jsonSchemaValidation: true,
+      semanticValidation: false,
+      referenceValidation: true,
+      semanticLinting: true,
     },
     performanceLogs: logPerformance,
     logLevel,
@@ -107,6 +114,12 @@ describe('apidom-ls-validate-jsonschema', function () {
   const context30: LanguageServiceContext = {
     metadata: metadata(),
     validatorProviders: [oasJsonSchemavalidationProvider30],
+    validationContext: {
+      jsonSchemaValidation: true,
+      semanticValidation: true,
+      referenceValidation: true,
+      semanticLinting: true,
+    },
     performanceLogs: logPerformance,
     logLevel,
   };

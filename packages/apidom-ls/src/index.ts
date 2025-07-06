@@ -77,8 +77,8 @@ export {
   LogLevel,
   MergeStrategy,
   ProviderMode,
-  ValidationMode,
   DiagnosticCategory,
 } from './apidom-language-types.ts';
 
 export { config } from './config/config.ts';
+export { default as isValidLinterMeta } from './utils/guards.ts';

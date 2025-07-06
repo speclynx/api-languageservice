@@ -117,9 +117,9 @@ export async function parse(
   const { api } = result;
   if (api === undefined) return result;
   const docNs = contentLanguage.namespace;
-  // TODO  (francesco@tumanischvili@smartbear.com) use the type related metadata at root level defining the tokenTypes and modifiers
+  // TODO use the type related metadata at root level defining the tokenTypes and modifiers
   if (setMetadata) {
-    setMetadataMap(api, docNs, metadataMaps); // TODO (francesco@tumanischvili@smartbear.com)  move to parser/adapter, extending the one standard
+    setMetadataMap(api, docNs, metadataMaps); // TODO move to parser/adapter, extending the one standard
   }
   if (freeze) {
     api.freeze(); // !! freeze and add parent !!

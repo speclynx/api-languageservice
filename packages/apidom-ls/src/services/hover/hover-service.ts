@@ -32,6 +32,7 @@ import {
   isJsonDoc,
   findNamespace,
   debug,
+  error,
 } from '../../utils/utils.ts';
 
 const CONTROL_CODES = '\\u0000-\\u0020\\u007f-\\u009f';
@@ -283,7 +284,7 @@ export class DefaultHoverService implements HoverService {
               }
             }
           } catch (e) {
-            console.log('error in hover provider');
+            error('error in hover provider', e);
           }
         } else if (this.settings?.hoverFollowLinkEntry) {
           // check if we have a "URL like" value, and add a link in case
@@ -333,7 +334,7 @@ export class DefaultHoverService implements HoverService {
           }
         }
       } catch (e) {
-        console.log('error in hover provider');
+        error('error in hover provider', e);
       }
       (<MarkupContent>hover.contents).value = contents.join('\n');
       hover.range = Range.create(
