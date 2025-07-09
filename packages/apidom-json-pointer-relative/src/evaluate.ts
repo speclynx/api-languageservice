@@ -9,11 +9,11 @@ import {
   MemberElement,
   ArrayElement,
   NumberElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import {
   compile as compileJsonPointer,
   evaluate as evaluateJsonPointer,
-} from '@char0n/apidom-json-pointer';
+} from '@speclynx/apidom-json-pointer';
 import { last } from 'ramda';
 
 import EvaluationRelativeJsonPointerError from './errors/EvaluationRelativeJsonPointerError.ts';

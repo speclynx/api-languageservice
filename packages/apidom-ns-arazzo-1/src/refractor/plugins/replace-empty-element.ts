@@ -7,7 +7,7 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 /**
  * Arazzo 1.0.1 specification elements.

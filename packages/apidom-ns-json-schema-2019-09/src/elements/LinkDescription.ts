@@ -1,5 +1,5 @@
-import { BooleanElement } from '@char0n/apidom-core';
-import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-draft-7';
+import { BooleanElement } from '@speclynx/apidom-core';
+import { LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 import JSONSchema from './JSONSchema.ts';
 

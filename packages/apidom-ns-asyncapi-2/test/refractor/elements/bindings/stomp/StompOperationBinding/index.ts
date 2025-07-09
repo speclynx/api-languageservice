@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { sexprs } from '@char0n/apidom-core';
+import { sexprs } from '@speclynx/apidom-core';
 
 import { StompOperationBindingElement } from '../../../../../../src/index.ts';
 

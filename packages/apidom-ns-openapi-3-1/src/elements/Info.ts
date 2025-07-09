@@ -1,5 +1,5 @@
-import { StringElement } from '@char0n/apidom-core';
-import { InfoElement } from '@char0n/apidom-ns-openapi-3-0';
+import { StringElement } from '@speclynx/apidom-core';
+import { InfoElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 import LicenseElement from './License.ts';
 

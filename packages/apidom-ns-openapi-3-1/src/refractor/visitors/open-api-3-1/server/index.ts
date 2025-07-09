@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ServerVisitorOptions,
   ServerVisitor as ServerVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ServerElement from '../../../../elements/Server.ts';
 

@@ -1,4 +1,4 @@
-import { MediaTypes, Namespace, ParseResultElement } from '@char0n/apidom-core';
+import { MediaTypes, Namespace, ParseResultElement } from '@speclynx/apidom-core';
 
 /**
  * @public

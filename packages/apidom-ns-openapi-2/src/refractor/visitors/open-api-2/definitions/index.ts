@@ -1,10 +1,10 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 import {
   isJSONReferenceLikeElement,
   isJSONReferenceElement,
   JSONReferenceElement,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import DefinitionsElement from '../../../../elements/Definitions.ts';
 import MapVisitor, { MapVisitorOptions, SpecPath } from '../../generics/MapVisitor.ts';

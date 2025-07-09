@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ReferenceVisitorOptions,
   ReferenceVisitor as ReferenceVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 

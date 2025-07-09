@@ -6,7 +6,7 @@
 
 # ApiDOM
 
-[![Build Status](https://github.com/char0n/apidom/actions/workflows/build.yml/badge.svg)](https://github.com/char0n/apidom/actions)
+[![Build Status](https://github.com/speclynx/apidom/actions/workflows/build.yml/badge.svg)](https://github.com/speclynx/apidom/actions)
 [![Dependabot enabled](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
 
 
@@ -64,44 +64,44 @@ Assuming [prerequisites](#prerequisites) are already installed, ApiDOM npm packa
 You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 
 ```sh
- $ npm install @char0n/apidom-ast
- $ npm install @char0n/apidom-converter
- $ npm install @char0n/apidom-core
- $ npm install @char0n/apidom-error
- $ npm install @char0n/apidom-json-path
- $ npm install @char0n/apidom-json-pointer
- $ npm install @char0n/apidom-json-pointer-relative
- $ npm install @char0n/apidom-logging
- $ npm install @char0n/apidom-ls
- $ npm install @char0n/apidom-ns-api-design-systems
- $ npm install @char0n/apidom-ns-arazzo-1
- $ npm install @char0n/apidom-ns-asyncapi-2
- $ npm install @char0n/apidom-ns-json-schema-2019-09
- $ npm install @char0n/apidom-ns-json-schema-2020-12
- $ npm install @char0n/apidom-ns-json-schema-draft-4
- $ npm install @char0n/apidom-ns-json-schema-draft-6
- $ npm install @char0n/apidom-ns-json-schema-draft-7
- $ npm install @char0n/apidom-ns-openapi-2
- $ npm install @char0n/apidom-ns-openapi-3-0
- $ npm install @char0n/apidom-ns-openapi-3-1
- $ npm install @char0n/apidom-parser
- $ npm install @char0n/apidom-parser-adapter-api-design-systems-json
- $ npm install @char0n/apidom-parser-adapter-api-design-systems-yaml
- $ npm install @char0n/apidom-parser-adapter-arazzo-json-1
- $ npm install @char0n/apidom-parser-adapter-arazzo-yaml-1
- $ npm install @char0n/apidom-parser-adapter-asyncapi-json-2
- $ npm install @char0n/apidom-parser-adapter-asyncapi-yaml-2
- $ npm install @char0n/apidom-parser-adapter-json
- $ npm install @char0n/apidom-parser-adapter-json-schema-json-2020-12
- $ npm install @char0n/apidom-parser-adapter-json-schema-yaml-2020-12
- $ npm install @char0n/apidom-parser-adapter-openapi-json-2
- $ npm install @char0n/apidom-parser-adapter-openapi-json-3-0
- $ npm install @char0n/apidom-parser-adapter-openapi-json-3-1
- $ npm install @char0n/apidom-parser-adapter-openapi-yaml-2
- $ npm install @char0n/apidom-parser-adapter-openapi-yaml-3-0
- $ npm install @char0n/apidom-parser-adapter-openapi-yaml-3-1
- $ npm install @char0n/apidom-parser-adapter-yaml-1-2
- $ npm install @char0n/apidom-reference
+ $ npm install @speclynx/apidom-ast
+ $ npm install @speclynx/apidom-converter
+ $ npm install @speclynx/apidom-core
+ $ npm install @speclynx/apidom-error
+ $ npm install @speclynx/apidom-json-path
+ $ npm install @speclynx/apidom-json-pointer
+ $ npm install @speclynx/apidom-json-pointer-relative
+ $ npm install @speclynx/apidom-logging
+ $ npm install @speclynx/apidom-ls
+ $ npm install @speclynx/apidom-ns-api-design-systems
+ $ npm install @speclynx/apidom-ns-arazzo-1
+ $ npm install @speclynx/apidom-ns-asyncapi-2
+ $ npm install @speclynx/apidom-ns-json-schema-2019-09
+ $ npm install @speclynx/apidom-ns-json-schema-2020-12
+ $ npm install @speclynx/apidom-ns-json-schema-draft-4
+ $ npm install @speclynx/apidom-ns-json-schema-draft-6
+ $ npm install @speclynx/apidom-ns-json-schema-draft-7
+ $ npm install @speclynx/apidom-ns-openapi-2
+ $ npm install @speclynx/apidom-ns-openapi-3-0
+ $ npm install @speclynx/apidom-ns-openapi-3-1
+ $ npm install @speclynx/apidom-parser
+ $ npm install @speclynx/apidom-parser-adapter-api-design-systems-json
+ $ npm install @speclynx/apidom-parser-adapter-api-design-systems-yaml
+ $ npm install @speclynx/apidom-parser-adapter-arazzo-json-1
+ $ npm install @speclynx/apidom-parser-adapter-arazzo-yaml-1
+ $ npm install @speclynx/apidom-parser-adapter-asyncapi-json-2
+ $ npm install @speclynx/apidom-parser-adapter-asyncapi-yaml-2
+ $ npm install @speclynx/apidom-parser-adapter-json
+ $ npm install @speclynx/apidom-parser-adapter-json-schema-json-2020-12
+ $ npm install @speclynx/apidom-parser-adapter-json-schema-yaml-2020-12
+ $ npm install @speclynx/apidom-parser-adapter-openapi-json-2
+ $ npm install @speclynx/apidom-parser-adapter-openapi-json-3-0
+ $ npm install @speclynx/apidom-parser-adapter-openapi-json-3-1
+ $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-2
+ $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-3-0
+ $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-3-1
+ $ npm install @speclynx/apidom-parser-adapter-yaml-1-2
+ $ npm install @speclynx/apidom-reference
 ```
 
 ### Usage
@@ -116,7 +116,7 @@ of the ApiDOM. ApiDOM Playground is build and deployed whenever the new commit l
 
 ![image](https://user-images.githubusercontent.com/193286/145010522-5d85e34b-8d28-4a07-9ee2-b28807a013cd.png)
 
-ApiDOM Playground is available at [https://char0n.github.io/apidom/](https://char0n.github.io/apidom/)
+ApiDOM Playground is available at [https://speclynx.github.io/apidom/](https://speclynx.github.io/apidom/)
 
 ## Development
 
@@ -131,7 +131,7 @@ are the minimum required versions that this repo runs on, but we recommend using
 Run the following commands to setup the repository for local development:
 
 ```shell
- $ git clone https://github.com/char0n/apidom.git
+ $ git clone https://github.com/speclynx/apidom.git
  $ cd apidom
  $ npm i
  $ npm run build
@@ -148,7 +148,7 @@ inside the `apidom-dev` docker container.
 **Build the ApiDOM docker image:**
 
 ```sh
- $ git clone https://github.com/char0n/apidom.git
+ $ git clone https://github.com/speclynx/apidom.git
  $ cd apidom
  $ docker-compose up
 ```
@@ -170,7 +170,7 @@ $ docker exec -it apidom-dev npm run test
 
 ### Setting up via GitHub Codespaces
 
-This repository is [configured](https://github.com/char0n/apidom/tree/main/.devcontainer) to work with [GitHub Codespaces](https://github.com/codespaces).
+This repository is [configured](https://github.com/speclynx/apidom/tree/main/.devcontainer) to work with [GitHub Codespaces](https://github.com/codespaces).
 Create a new codespace by picking this repository from the list of available repositories.
 Once the codespace is created, run following commands inside the codespace terminal:
 
@@ -280,13 +280,13 @@ global `node_modules`.
 Now that we have monorepo packages globally linked we can use them in `dependent project`.
 Let's say `dependent project` needs to directly use following packages:
 
-- @char0n/apidom-ast
-- @char0n/apidom-core
+- @speclynx/apidom-ast
+- @speclynx/apidom-core
 
 Issuing following command from inside the `dependent project` will link these packages:
 
 ```sh
- $ npm link @char0n/apidom-ast @char0n/apidom-core
+ $ npm link @speclynx/apidom-ast @speclynx/apidom-core
 ```
 
 If more packages (or all of them) need to be used in `dependent project`, they need to be explicitly
@@ -299,8 +299,8 @@ multiple package names as argument.
 **Don't ever do this!**
 
 ```sh
- $ npm link @char0n/apidom-ast
- $ npm link @char0n/apidom-core
+ $ npm link @speclynx/apidom-ast
+ $ npm link @speclynx/apidom-core
 ```
 
 > Setting up npm script in `dependent project` can help keep things DRY.
@@ -337,12 +337,12 @@ Running above npm script will unlink all monorepo packages from global `node_mod
 If you want to just unlink particular monorepo packages, you have to enumerate them explicitly:
 
 ```shell
- $ npm unlink --global @char0n/apidom-ast @char0n/apidom-core
+ $ npm unlink --global @speclynx/apidom-ast @speclynx/apidom-core
 ```
 
 ## Contributing
 
-You can obtain copy of this contributing guide at [https://github.com/char0n/.github/blob/master/CONTRIBUTING.md](https://github.com/char0n/.github/blob/master/CONTRIBUTING.md).
+You can obtain copy of this contributing guide at [https://github.com/speclynx/.github/blob/master/CONTRIBUTING.md](https://github.com/speclynx/.github/blob/master/CONTRIBUTING.md).
 Read our contributing guide to learn about our development process, how to propose bugfixes and improvements,
 and how to build and test your changes to ApiDOM.
 
@@ -562,8 +562,8 @@ requires 2 traversals instead of a single one. We can find a way in the future h
 
 ## License
 
-ApiDOM is licensed under [Apache 2.0 license](https://github.com/char0n/apidom/blob/main/LICENSES/Apache-2.0.txt).
-ApiDOM comes with an explicit [NOTICE](https://github.com/char0n/apidom/blob/main/NOTICE) file
+ApiDOM is licensed under [Apache 2.0 license](https://github.com/speclynx/apidom/blob/main/LICENSES/Apache-2.0.txt).
+ApiDOM comes with an explicit [NOTICE](https://github.com/speclynx/apidom/blob/main/NOTICE) file
 containing additional legal notices and information.
 
 This project uses [REUSE specification](https://reuse.software/spec/) that defines a standardized method
@@ -571,6 +571,6 @@ for declaring copyright and licensing for software projects.
 
 ## Software Bill Of Materials (SBOM)
 
-Software Bill Of materials is available in this repository [dependency graph](https://github.com/char0n/apidom/network/dependencies).
+Software Bill Of materials is available in this repository [dependency graph](https://github.com/speclynx/apidom/network/dependencies).
 Click on `Export SBOM` button to download the SBOM in [SPDX format](https://spdx.dev/).
 

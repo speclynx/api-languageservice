@@ -1,4 +1,4 @@
-import { ApiDOMError } from '@char0n/apidom-error';
+import { ApiDOMError } from '@speclynx/apidom-error';
 
 /**
  * @public

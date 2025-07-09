@@ -5,7 +5,7 @@ import {
   ObjectElement,
   isParseResultElement,
   isSourceMapElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import File from '../../../../src/File.ts';
 import JSONParser from '../../../../src/parse/parsers/json/index.ts';

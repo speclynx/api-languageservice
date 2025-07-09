@@ -1,7 +1,7 @@
 import {
   LinkDescriptionVisitor as JSONSchemaDraft4LinkDescriptionVisitor,
   LinkDescriptionVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import LinkDescriptionElement from '../../../../elements/LinkDescription.ts';
 

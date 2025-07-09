@@ -1,11 +1,11 @@
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 import {
   specificationObj as JSONSchemaDraft4Specification,
   JSONReferenceElement,
   isJSONReferenceElement,
   PropertiesVisitorOptions,
   PropertiesVisitor as PropertiesVisitorType,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 export type { PropertiesVisitorOptions };
 

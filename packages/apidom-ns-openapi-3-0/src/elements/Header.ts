@@ -5,7 +5,7 @@ import {
   Attributes,
   Meta,
   Element,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import SchemaElement from './Schema.ts';
 import ReferenceElement from './Reference.ts';

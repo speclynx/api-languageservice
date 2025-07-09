@@ -1,4 +1,4 @@
-import { StringElement, toValue, cloneDeep } from '@char0n/apidom-core';
+import { StringElement, toValue, cloneDeep } from '@speclynx/apidom-core';
 import {
   PathItemElement,
   OperationElement,
@@ -8,7 +8,7 @@ import {
   isStringElement,
   isArrayElement,
   isObjectElement,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 /**
  * @public

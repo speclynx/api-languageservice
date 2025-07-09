@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { ObjectElement, find, toValue, isElement } from '@char0n/apidom-core';
+import { ObjectElement, find, toValue, isElement } from '@speclynx/apidom-core';
 
 import { isSchemaElement, OpenApi3_1Element } from '../../../../src/index.ts';
 

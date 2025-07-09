@@ -7,7 +7,7 @@ import {
   isComponentsElement,
   isReferenceElement,
   mediaTypes,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 import {
   Element,
   ParseResultElement,
@@ -15,8 +15,8 @@ import {
   isObjectElement,
   toValue,
   cloneDeep,
-} from '@char0n/apidom-core';
-import { dereferenceApiDOM, ReferenceSet, Reference, url } from '@char0n/apidom-reference';
+} from '@speclynx/apidom-core';
+import { dereferenceApiDOM, ReferenceSet, Reference, url } from '@speclynx/apidom-reference';
 
 import type { Toolbox } from '../toolbox.ts';
 

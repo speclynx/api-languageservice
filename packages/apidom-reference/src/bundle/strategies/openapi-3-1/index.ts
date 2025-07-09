@@ -1,5 +1,5 @@
-import { ParseResultElement } from '@char0n/apidom-core';
-import { mediaTypes, isOpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { ParseResultElement } from '@speclynx/apidom-core';
+import { mediaTypes, isOpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 import File from '../../../File.ts';
 import BundleStrategy, { BundleStrategyOptions } from '../BundleStrategy.ts';

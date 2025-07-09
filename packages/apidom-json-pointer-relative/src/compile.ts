@@ -1,4 +1,4 @@
-import { compile as compileJsonPointer } from '@char0n/apidom-json-pointer';
+import { compile as compileJsonPointer } from '@speclynx/apidom-json-pointer';
 
 import { RelativeJsonPointer } from './types.ts';
 import CompilationRelativeJsonPointerError from './errors/CompilationRelativeJsonPointerError.ts';

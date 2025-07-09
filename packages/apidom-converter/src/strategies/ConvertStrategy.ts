@@ -1,5 +1,5 @@
-import { ParseResultElement } from '@char0n/apidom-core';
-import { File } from '@char0n/apidom-reference';
+import { ParseResultElement } from '@speclynx/apidom-core';
+import { File } from '@speclynx/apidom-reference';
 
 import type { ConverterOptions } from '../options/index.ts';
 

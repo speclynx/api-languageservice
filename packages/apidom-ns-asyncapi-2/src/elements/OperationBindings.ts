@@ -1,4 +1,4 @@
-import { ObjectElement, Attributes, Meta } from '@char0n/apidom-core';
+import { ObjectElement, Attributes, Meta } from '@speclynx/apidom-core';
 
 import HttpOperationBindingElement from './bindings/http/HttpOperationBinding.ts';
 import WebSocketOperationBindingElement from './bindings/ws/WebSocketOperationBinding.ts';

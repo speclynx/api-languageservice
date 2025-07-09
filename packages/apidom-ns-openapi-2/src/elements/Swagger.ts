@@ -1,4 +1,10 @@
-import { ObjectElement, ArrayElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
+import {
+  ObjectElement,
+  ArrayElement,
+  StringElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
 
 import SwaggerVersionElement from './SwaggerVersion.ts';
 import InfoElement from './Info.ts';

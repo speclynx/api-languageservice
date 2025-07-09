@@ -1,7 +1,7 @@
 import {
   JSONSchemaVisitor as JSONSchemaDraft6Visitor,
   JSONSchemaVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-6';
+} from '@speclynx/apidom-ns-json-schema-draft-6';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

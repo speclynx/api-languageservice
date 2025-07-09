@@ -11,9 +11,9 @@ import {
   createNamespace,
   includesClasses,
   hasElementSourceMap,
-} from '@char0n/apidom-core';
-import { compile as compileJSONPointerTokens } from '@char0n/apidom-json-pointer';
-import { isServersElement } from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-core';
+import { compile as compileJSONPointerTokens } from '@speclynx/apidom-json-pointer';
+import { isServersElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 import * as openApi3_1Predicates from '../predicates.ts';
 import openApi3_1Namespace from '../namespace.ts';

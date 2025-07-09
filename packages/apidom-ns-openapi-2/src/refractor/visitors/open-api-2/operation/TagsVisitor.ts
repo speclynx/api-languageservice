@@ -1,4 +1,4 @@
-import { ArrayElement, BREAK, cloneDeep } from '@char0n/apidom-core';
+import { ArrayElement, BREAK, cloneDeep } from '@speclynx/apidom-core';
 
 import OperationTagsElement from '../../../../elements/nces/OperationTags.ts';
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';

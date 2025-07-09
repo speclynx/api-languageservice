@@ -1,6 +1,6 @@
 import { head } from 'ramda';
 import { isArray, isFunction, isString, isUndefined } from 'ramda-adjunct';
-import { MediaTypes, Namespace, ParseResultElement } from '@char0n/apidom-core';
+import { MediaTypes, Namespace, ParseResultElement } from '@speclynx/apidom-core';
 
 import ParserError from './errors/ParserError.ts';
 import type { ApiDOMParserOptions, ApiDOMParserAdapter } from './types.d.ts';

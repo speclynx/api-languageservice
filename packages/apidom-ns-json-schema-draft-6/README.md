@@ -1,23 +1,23 @@
-# @char0n/apidom-ns-json-schema-draft-6
+# @speclynx/apidom-ns-json-schema-draft-6
 
-`@char0n/apidom-ns-json-schema-draft-6` contains ApiDOM namespace specific to [JSON Schema Draft 6](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-01) specification.
+`@speclynx/apidom-ns-json-schema-draft-6` contains ApiDOM namespace specific to [JSON Schema Draft 6](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-01) specification.
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-ns-json-schema-draft-6
+ $ npm install @speclynx/apidom-ns-json-schema-draft-6
 ```
 
 ## JSON Schema Draft 6 namespace
 
-JSON Schema Draft 6 namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-draft-6/src/elements) implemented on top
+JSON Schema Draft 6 namespace consists of [number of elements](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-json-schema-draft-6/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@char0n/apidom-core';
-import jsonShemaDraft6Namespace from '@char0n/apidom-ns-json-schema-draft-6';
+import { createNamespace } from '@speclynx/apidom-core';
+import jsonShemaDraft6Namespace from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const namespace = createNamespace(jsonShemaDraft6Namespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { JSONSchemaElement, JSONReferenceElement, LinkDescriptionElement, MediaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { JSONSchemaElement, JSONReferenceElement, LinkDescriptionElement, MediaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const jsonSchemaElement = new JSONSchemaElement();
 const jsonReferenceElement = new JSONReferenceElement();
@@ -41,11 +41,11 @@ const mediaElement = new MediaElement();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/predicates.ts)
+This package exposes [predicates](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isJSONSchemaElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { isJSONSchemaElement, JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const jsonSchemaElement = new JSONSchemaElement();
 
@@ -55,12 +55,12 @@ isJSONSchemaElement(jsonSchemaElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-draft-6/src/traversal/visitor.ts#L4).
+To learn more about these `visit` configuration options please refer to [@speclynx/apidom-ast documentation](https://github.com/speclynx/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@char0n/apidom-core';
-import { JSONSchemaElement, keyMap, getNodeType } from '@char0n/apidom-ns-json-schema-draft-6';
+import { visit } from '@speclynx/apidom-core';
+import { JSONSchemaElement, keyMap, getNodeType } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const element = new JSONSchemaElement();
 
@@ -81,7 +81,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { MediaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { MediaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const object = {
   binaryEncoding: 'base64',
@@ -94,8 +94,8 @@ MediaElement.refract(object); // => MediaElement({ binaryEncoding, type })
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { MediaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { MediaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const objectElement = new ObjectElement({
   binaryEncoding: 'base64',
@@ -110,8 +110,8 @@ MediaElement.refract(objectElement); // => MediaElement({ binaryEncoding = 'base
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { MediaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { MediaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const objectElement = new ObjectElement({
   binaryEncoding: 'base64',
@@ -146,8 +146,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { parse } from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 const yamlDefinition = `
 $schema: 'https://json-schema.org/draft-06/schema#'

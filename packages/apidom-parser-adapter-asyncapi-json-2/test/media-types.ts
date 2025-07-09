@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import ApiDOMParser from '@char0n/apidom-parser';
+import ApiDOMParser from '@speclynx/apidom-parser';
 
 import * as asyncApiJsonAdapter from '../src/adapter.ts';
 

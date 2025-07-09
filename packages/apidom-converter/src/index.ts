@@ -1,5 +1,5 @@
-import { ParseResultElement } from '@char0n/apidom-core';
-import { mergeOptions, bundle, File } from '@char0n/apidom-reference';
+import { ParseResultElement } from '@speclynx/apidom-core';
+import { mergeOptions, bundle, File } from '@speclynx/apidom-reference';
 
 import defaultOptions, { ConverterOptions } from './options/index.ts';
 import ConvertError from './errors/ConvertError.ts';

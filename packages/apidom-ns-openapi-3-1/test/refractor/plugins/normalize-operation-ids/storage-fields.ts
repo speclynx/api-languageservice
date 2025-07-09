@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import dedent from 'dedent';
-import { toValue } from '@char0n/apidom-core';
-import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { toValue } from '@speclynx/apidom-core';
+import { parse } from '@speclynx/apidom-parser-adapter-yaml-1-2';
 
 import { OpenApi3_1Element, refractorPluginNormalizeOperationIds } from '../../../../src/index.ts';
 

@@ -1,6 +1,6 @@
 import { trimCharsStart, isUndefined } from 'ramda-adjunct';
-import { Element, find, toValue } from '@char0n/apidom-core';
-import { isSchemaElement } from '@char0n/apidom-ns-openapi-3-1';
+import { Element, find, toValue } from '@speclynx/apidom-core';
+import { isSchemaElement } from '@speclynx/apidom-ns-openapi-3-1';
 
 import { getHash } from '../../../../util/url.ts';
 import EvaluationJsonSchema$anchorError from '../../../../errors/EvaluationJsonSchema$anchorError.ts';

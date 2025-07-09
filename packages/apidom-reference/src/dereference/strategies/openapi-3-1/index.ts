@@ -1,11 +1,11 @@
 import { propEq } from 'ramda';
-import { createNamespace, visit, Element, cloneDeep } from '@char0n/apidom-core';
+import { createNamespace, visit, Element, cloneDeep } from '@speclynx/apidom-core';
 import openApi3_1Namespace, {
   getNodeType,
   isOpenApi3_1Element,
   keyMap,
   mediaTypes,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 import DereferenceStrategy, { DereferenceStrategyOptions } from '../DereferenceStrategy.ts';
 import File from '../../../File.ts';

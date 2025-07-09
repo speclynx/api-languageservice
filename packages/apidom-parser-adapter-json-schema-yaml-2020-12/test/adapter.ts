@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
 import dedent from 'dedent';
-import { isParseResultElement, SourceMapElement, sexprs } from '@char0n/apidom-core';
-import { isJSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import { isParseResultElement, SourceMapElement, sexprs } from '@speclynx/apidom-core';
+import { isJSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import * as adapter from '../src/adapter.ts';
 

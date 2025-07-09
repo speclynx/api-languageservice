@@ -1,8 +1,8 @@
 import { Buffer } from 'node:buffer';
 import path from 'node:path';
 import { assert } from 'chai';
-import { isParseResultElement, toValue } from '@char0n/apidom-core';
-import { mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
+import { isParseResultElement, toValue } from '@speclynx/apidom-core';
+import { mediaTypes } from '@speclynx/apidom-ns-openapi-3-1';
 import { fileURLToPath } from 'node:url';
 
 import defaultOptions from '../../src/options/index.ts';

@@ -1,5 +1,5 @@
 {
-  "name": "@char0n/apidom-json-pointer",
+  "name": "@speclynx/apidom-json-pointer",
   "version": "1.2.0",
   "description": "Evaluate JSON Pointer expressions against ApiDOM.",
   "publishConfig": {
@@ -34,14 +34,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/char0n/apidom.git"
+    "url": "git+https://github.com/speclynx/apidom.git"
   },
   "author": "Vladimír Gorej",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.2.0",
-    "@char0n/apidom-error": "^1.2.0",
+    "@speclynx/apidom-core": "^1.2.0",
+    "@speclynx/apidom-error": "^1.2.0",
     "@swaggerexpert/json-pointer": "^2.10.1"
   },
   "files": [

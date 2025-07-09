@@ -1,17 +1,17 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement, BooleanElement, isStringElement, toValue } from '@char0n/apidom-core';
+import { ObjectElement, BooleanElement, isStringElement, toValue } from '@speclynx/apidom-core';
 import {
   FallbackVisitor,
   FallbackVisitorOptions,
   FixedFieldsVisitor,
   FixedFieldsVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 import {
   JSONSchemaVisitor,
   ParentSchemaAwareVisitor,
   ParentSchemaAwareVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import { isJsonSchemaDialectElement } from '../../../../predicates.ts';
 import SchemaElement from '../../../../elements/Schema.ts';

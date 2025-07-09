@@ -1,7 +1,7 @@
 import {
   PropertiesVisitor as PropertiesJSONSchema202012Visitor,
   PropertiesVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 export type { PropertiesVisitorOptions };
 

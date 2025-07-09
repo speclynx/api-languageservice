@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement, BooleanElement } from '@char0n/apidom-core';
+import { ObjectElement, BooleanElement } from '@speclynx/apidom-core';
 
 import SchemaElement from '../../../../elements/Schema.ts';
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';

@@ -1,6 +1,6 @@
 import { pick } from 'ramda';
-import { ParseResultElement } from '@char0n/apidom-core';
-import { parse, mediaTypes as JSONMediaTypes, detect } from '@char0n/apidom-parser-adapter-json';
+import { ParseResultElement } from '@speclynx/apidom-core';
+import { parse, mediaTypes as JSONMediaTypes, detect } from '@speclynx/apidom-parser-adapter-json';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import ApiDOMParser from '@char0n/apidom-parser';
+import ApiDOMParser from '@speclynx/apidom-parser';
 
 import * as apiDesignSystemsYamlAdapter from '../src/adapter.ts';
 

@@ -1,4 +1,4 @@
-import { createPredicate } from '@char0n/apidom-core';
+import { createPredicate } from '@speclynx/apidom-core';
 
 import SwaggerElement from './elements/Swagger.ts';
 import SwaggerVersionElement from './elements/SwaggerVersion.ts';

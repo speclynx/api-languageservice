@@ -1,4 +1,4 @@
-import { specificationObj as JSONSchemaDraft4Specification } from '@char0n/apidom-ns-json-schema-draft-4';
+import { specificationObj as JSONSchemaDraft4Specification } from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import OpenApi3_0Visitor from './visitors/open-api-3-0/index.ts';
 import OpenapiVisitor from './visitors/open-api-3-0/OpenapiVisitor.ts';

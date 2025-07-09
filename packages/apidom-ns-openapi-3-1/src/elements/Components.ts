@@ -1,5 +1,5 @@
-import { ObjectElement } from '@char0n/apidom-core';
-import { ComponentsElement } from '@char0n/apidom-ns-openapi-3-0';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { ComponentsElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

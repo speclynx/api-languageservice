@@ -1,4 +1,4 @@
-import { createNamespace, isStringElement } from '@char0n/apidom-core';
+import { createNamespace, isStringElement } from '@speclynx/apidom-core';
 
 import * as openApi2Predicates from '../predicates.ts';
 import * as refractorPredicates from './predicates.ts';

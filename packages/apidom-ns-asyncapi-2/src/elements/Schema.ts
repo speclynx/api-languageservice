@@ -1,5 +1,11 @@
-import { ArrayElement, StringElement, BooleanElement, Attributes, Meta } from '@char0n/apidom-core';
-import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-7';
+import {
+  ArrayElement,
+  StringElement,
+  BooleanElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
+import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 import ReferenceElement from './Reference.ts';
 import ExternalDocumentationElement from './ExternalDocumentation.ts';

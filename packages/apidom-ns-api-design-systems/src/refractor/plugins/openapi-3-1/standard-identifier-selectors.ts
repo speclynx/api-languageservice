@@ -1,4 +1,4 @@
-import { toValue } from '@char0n/apidom-core';
+import { toValue } from '@speclynx/apidom-core';
 import {
   PathItemElement,
   ParameterElement,
@@ -7,7 +7,7 @@ import {
   OperationElement,
   isStringElement,
   isObjectElement,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 /**
  * @public

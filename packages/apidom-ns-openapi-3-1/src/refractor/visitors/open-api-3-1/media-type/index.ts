@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   MediaTypeVisitorOptions,
   MediaTypeVisitor as MediaTypeVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import MediaTypeElement from '../../../../elements/MediaType.ts';
 

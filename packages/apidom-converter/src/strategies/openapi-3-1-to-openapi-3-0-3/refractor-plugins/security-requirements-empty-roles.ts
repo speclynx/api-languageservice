@@ -4,8 +4,8 @@ import {
   SecuritySchemeElement,
   isSecuritySchemeElement,
   isComponentsElement,
-} from '@char0n/apidom-ns-openapi-3-1';
-import { AnnotationElement, toValue, isObjectElement, Element } from '@char0n/apidom-core';
+} from '@speclynx/apidom-ns-openapi-3-1';
+import { AnnotationElement, toValue, isObjectElement, Element } from '@speclynx/apidom-core';
 
 import type { Toolbox } from '../toolbox.ts';
 

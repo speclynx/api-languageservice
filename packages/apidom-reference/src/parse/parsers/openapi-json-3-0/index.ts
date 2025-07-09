@@ -1,10 +1,10 @@
 import { pick } from 'ramda';
-import { ParseResultElement } from '@char0n/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-core';
 import {
   parse,
   mediaTypes as OpenAPI3_0MediaTypes,
   detect,
-} from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+} from '@speclynx/apidom-parser-adapter-openapi-json-3-0';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

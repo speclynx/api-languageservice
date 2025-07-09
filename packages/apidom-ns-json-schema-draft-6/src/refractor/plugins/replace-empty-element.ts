@@ -9,11 +9,11 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 /**
  * JSON Schema Draft 6 specification elements.
  */
-import { MediaElement } from '@char0n/apidom-ns-json-schema-draft-4';
+import { MediaElement } from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import JSONSchemaElement from '../../elements/JSONSchema.ts';
 import LinkDescriptionElement from '../../elements/LinkDescription.ts';

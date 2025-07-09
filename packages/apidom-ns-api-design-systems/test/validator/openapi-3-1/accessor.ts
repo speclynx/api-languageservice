@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { toValue } from '@char0n/apidom-core';
-import { parse } from '@char0n/apidom-parser-adapter-json';
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { toValue } from '@speclynx/apidom-core';
+import { parse } from '@speclynx/apidom-parser-adapter-json';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 import {
   refractPluginOpenApi3_1StandardIdentifierSelectors,

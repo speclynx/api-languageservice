@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { T as stubTrue, always } from 'ramda';
-import { ObjectElement, StringElement, cloneDeep } from '@char0n/apidom-core';
+import { ObjectElement, StringElement, cloneDeep } from '@speclynx/apidom-core';
 
 import PathsElement from '../../../../elements/Paths.ts';
 import PathItemElement from '../../../../elements/PathItem.ts';

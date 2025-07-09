@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { mediaTypes, isPathItemElement, PathItemElement } from '@char0n/apidom-ns-openapi-3-0';
-import { toValue } from '@char0n/apidom-core';
-import { evaluate, compile } from '@char0n/apidom-json-pointer';
+import { mediaTypes, isPathItemElement, PathItemElement } from '@speclynx/apidom-ns-openapi-3-0';
+import { toValue } from '@speclynx/apidom-core';
+import { evaluate, compile } from '@speclynx/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { parse, dereferenceApiDOM } from '../../../../../src/index.ts';

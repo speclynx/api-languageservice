@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import ApiDOMParser from '@char0n/apidom-parser';
-import { mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
-import * as openapi3_1Adapter from '@char0n/apidom-parser-adapter-openapi-json-3-1';
+import ApiDOMParser from '@speclynx/apidom-parser';
+import { mediaTypes } from '@speclynx/apidom-ns-openapi-3-1';
+import * as openapi3_1Adapter from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
 
 import { findAtOffset } from '../../src/index.ts';
 

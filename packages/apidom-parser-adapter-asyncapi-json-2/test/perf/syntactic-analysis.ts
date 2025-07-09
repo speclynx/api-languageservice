@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Benchmark from 'benchmark';
 import type { Deferred, Event } from 'benchmark';
-import { lexicalAnalysis, syntacticAnalysis } from '@char0n/apidom-parser-adapter-json';
+import { lexicalAnalysis, syntacticAnalysis } from '@speclynx/apidom-parser-adapter-json';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

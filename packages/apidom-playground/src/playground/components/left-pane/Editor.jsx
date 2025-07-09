@@ -15,7 +15,7 @@ const Editor = ({ className }) => {
   return (
     <div className={className}>
       <FormControl fullWidth>
-        <OutlinedInput // currently not showing scroll bar due to https://github.com/char0n/apidom/issues/4027
+        <OutlinedInput // currently not showing scroll bar due to https://github.com/swagger-api/apidom/issues/4027
           fullWidth
           multiline
           id="input"

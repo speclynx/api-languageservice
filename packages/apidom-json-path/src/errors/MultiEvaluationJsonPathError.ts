@@ -1,5 +1,5 @@
-import { Element } from '@char0n/apidom-core';
-import { ApiDOMErrorOptions } from '@char0n/apidom-error';
+import { Element } from '@speclynx/apidom-core';
+import { ApiDOMErrorOptions } from '@speclynx/apidom-error';
 
 import JsonPathError from './JsonPathError.ts';
 

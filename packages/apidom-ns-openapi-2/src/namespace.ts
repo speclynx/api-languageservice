@@ -1,4 +1,4 @@
-import { NamespacePluginOptions } from '@char0n/apidom-core';
+import { NamespacePluginOptions } from '@speclynx/apidom-core';
 
 import SwaggerElement from './elements/Swagger.ts';
 import SwaggerVersionElement from './elements/SwaggerVersion.ts';

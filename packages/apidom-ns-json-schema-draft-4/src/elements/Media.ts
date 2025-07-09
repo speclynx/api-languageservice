@@ -1,4 +1,4 @@
-import { ObjectElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
+import { ObjectElement, StringElement, Attributes, Meta } from '@speclynx/apidom-core';
 
 /**
  * URI: https://datatracker.ietf.org/doc/html/draft-wright-json-schema-hyperschema-00#section-4.3

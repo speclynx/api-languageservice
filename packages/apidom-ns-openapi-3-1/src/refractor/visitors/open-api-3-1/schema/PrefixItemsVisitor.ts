@@ -1,7 +1,7 @@
 import {
   PrefixItemsVisitor as PrefixItemsJSONSchema202012Visitor,
   PrefixItemsVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 export type { PrefixItemsVisitorOptions };
 

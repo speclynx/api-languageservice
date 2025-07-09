@@ -1,9 +1,9 @@
-import { ParseResultElement } from '@char0n/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-core';
 import {
   parse,
   mediaTypes as YAMLMediaTypes,
   detect,
-} from '@char0n/apidom-parser-adapter-yaml-1-2';
+} from '@speclynx/apidom-parser-adapter-yaml-1-2';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

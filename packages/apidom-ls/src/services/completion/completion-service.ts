@@ -21,7 +21,7 @@ import {
   isStringElement,
   MemberElement,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import {
   ApidomCompletionItem,
@@ -294,7 +294,7 @@ export class DefaultCompletionService implements CompletionService {
     trace('doCompletion - text', text);
 
     /*
-     process errored YAML input badly handled by YAML parser (see https://github.com/char0n/apidom/issues/194)
+     process errored YAML input badly handled by YAML parser (see https://github.com/swagger-api/apidom/issues/194)
      similarly to what done in swagger-editor: check if we are in a partial "prefix" scenario, in this case add a `:`
      to the line and parse that line instead.
 

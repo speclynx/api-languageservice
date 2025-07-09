@@ -1,6 +1,6 @@
-import { keyMap as keyMapBase } from '@char0n/apidom-core';
+import { keyMap as keyMapBase } from '@speclynx/apidom-core';
 
-export { getNodeType } from '@char0n/apidom-ns-json-schema-draft-7';
+export { getNodeType } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 /**
  * @public

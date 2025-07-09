@@ -1,25 +1,25 @@
 /* eslint-disable camelcase */
 import * as Comlink from 'comlink';
-import { dehydrate, from, sexprs, toValue } from '@char0n/apidom-core';
-import ApiDOMParser from '@char0n/apidom-parser';
-import * as jsonAdapter from '@char0n/apidom-parser-adapter-json';
-import * as yamlAdapter from '@char0n/apidom-parser-adapter-yaml-1-2';
-import * as openapi2AdapterJson from '@char0n/apidom-parser-adapter-openapi-json-2';
-import * as openapi2AdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-2';
-import * as openapi3_0AdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-0';
-import * as openapi3_0AdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-0';
-import * as openapi3_1AdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-1';
-import * as openapi3_1AdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-1';
-import * as asyncapi2AdapterJson from '@char0n/apidom-parser-adapter-asyncapi-json-2';
-import * as asyncapi2AdapterYaml from '@char0n/apidom-parser-adapter-asyncapi-yaml-2';
-import * as arazzo1AdapterJson from '@char0n/apidom-parser-adapter-arazzo-json-1';
-import * as arazzo1AdapterYaml from '@char0n/apidom-parser-adapter-arazzo-yaml-1';
+import { dehydrate, from, sexprs, toValue } from '@speclynx/apidom-core';
+import ApiDOMParser from '@speclynx/apidom-parser';
+import * as jsonAdapter from '@speclynx/apidom-parser-adapter-json';
+import * as yamlAdapter from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import * as openapi2AdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-2';
+import * as openapi2AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-2';
+import * as openapi3_0AdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-3-0';
+import * as openapi3_0AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-0';
+import * as openapi3_1AdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import * as openapi3_1AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
+import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
+import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
+import * as arazzo1AdapterJson from '@speclynx/apidom-parser-adapter-arazzo-json-1';
+import * as arazzo1AdapterYaml from '@speclynx/apidom-parser-adapter-arazzo-yaml-1';
 import {
   readFile,
   resolveApiDOM as resolveApiDOMReferences,
   dereferenceApiDOM as derefereceApiDOMReferences,
   File,
-} from '@char0n/apidom-reference';
+} from '@speclynx/apidom-reference';
 
 const parser = new ApiDOMParser()
   .use(jsonAdapter)

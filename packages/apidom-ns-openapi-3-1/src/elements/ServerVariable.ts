@@ -1,4 +1,4 @@
-import { ServerVariableElement } from '@char0n/apidom-ns-openapi-3-0';
+import { ServerVariableElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

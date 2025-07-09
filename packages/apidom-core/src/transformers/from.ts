@@ -11,7 +11,7 @@ import defaultNamespaceInstance from '../namespace.ts';
  * but it was renamed to `fromFn` to avoid issues with Parcel.js:
  *
  * - https://github.com/parcel-bundler/parcel/issues/9473
- * - https://github.com/char0n/swagger-ui/issues/9466#issuecomment-1881053410
+ * - https://github.com/swagger-api/swagger-ui/issues/9466#issuecomment-1881053410
  * @public
  */
 const fromFn = (data: any, namespace: INamespace = defaultNamespaceInstance): Element => {

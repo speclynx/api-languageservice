@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ExternalDocumentationVisitorOptions,
   ExternalDocumentationVisitor as ExternalDocumentationVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ExternalDocumentationElement from '../../../../elements/ExternalDocumentation.ts';
 

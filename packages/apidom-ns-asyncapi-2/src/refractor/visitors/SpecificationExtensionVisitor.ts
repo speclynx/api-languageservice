@@ -1,4 +1,4 @@
-import { MemberElement, BREAK, cloneDeep } from '@char0n/apidom-core';
+import { MemberElement, BREAK, cloneDeep } from '@speclynx/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from './SpecificationVisitor.ts';
 

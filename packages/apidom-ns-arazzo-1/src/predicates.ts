@@ -1,5 +1,5 @@
-import { createPredicate } from '@char0n/apidom-core';
-import { isJSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import { createPredicate } from '@speclynx/apidom-core';
+import { isJSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import ArazzoSpecification1Element from './elements/ArazzoSpecification1.ts';
 import ArazzoSpecElement from './elements/ArazzoSpec.ts';

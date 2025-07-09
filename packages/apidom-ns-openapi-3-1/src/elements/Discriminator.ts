@@ -1,4 +1,4 @@
-import { DiscriminatorElement } from '@char0n/apidom-ns-openapi-3-0';
+import { DiscriminatorElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

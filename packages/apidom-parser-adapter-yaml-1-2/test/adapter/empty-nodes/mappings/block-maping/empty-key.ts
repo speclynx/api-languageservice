@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { includesClasses, toValue, SourceMapElement } from '@char0n/apidom-core';
+import { includesClasses, toValue, SourceMapElement } from '@speclynx/apidom-core';
 
 import * as adapter from '../../../../../src/adapter.ts';
 

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
-import { NumberElement, isParseResultElement, isSourceMapElement } from '@char0n/apidom-core';
-import { mediaTypes } from '@char0n/apidom-parser-adapter-openapi-yaml-2';
+import { NumberElement, isParseResultElement, isSourceMapElement } from '@speclynx/apidom-core';
+import { mediaTypes } from '@speclynx/apidom-parser-adapter-openapi-yaml-2';
 import { fileURLToPath } from 'node:url';
 
 import File from '../../../../src/File.ts';

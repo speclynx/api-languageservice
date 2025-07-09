@@ -1,10 +1,16 @@
-import { StringElement, BooleanElement, ArrayElement, Attributes, Meta } from '@char0n/apidom-core';
-import { UnsupportedOperationError } from '@char0n/apidom-error';
+import {
+  StringElement,
+  BooleanElement,
+  ArrayElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
+import { UnsupportedOperationError } from '@speclynx/apidom-error';
 import {
   JSONSchemaElement,
   JSONReferenceElement,
   MediaElement,
-} from '@char0n/apidom-ns-json-schema-draft-6';
+} from '@speclynx/apidom-ns-json-schema-draft-6';
 
 /* eslint-disable class-methods-use-this */
 /**

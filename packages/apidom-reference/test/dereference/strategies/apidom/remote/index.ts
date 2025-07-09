@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { toValue } from '@char0n/apidom-core';
+import { toValue } from '@speclynx/apidom-core';
 
 import { dereference } from '../../../../../src/index.ts';
 

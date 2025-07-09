@@ -8,10 +8,10 @@ import {
   traverse,
   toValue,
   cloneDeep,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
-import { evaluate, evaluateMulti } from '@char0n/apidom-json-path';
-import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@char0n/apidom-reference';
+import { evaluate, evaluateMulti } from '@speclynx/apidom-json-path';
+import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@speclynx/apidom-reference';
 
 import {
   APIDOM_LINTER,

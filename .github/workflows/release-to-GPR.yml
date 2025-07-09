@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 22.14.0
           registry-url: https://npm.pkg.github.com/
-          scope: "@char0n"
+          scope: "@speclynx"
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - name: Install monorepo dependencies

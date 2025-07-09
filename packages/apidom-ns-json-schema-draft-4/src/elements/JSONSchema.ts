@@ -7,7 +7,7 @@ import {
   BooleanElement,
   Attributes,
   Meta,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import JSONReferenceElement from './JSONReference.ts';
 import MediaElement from './Media.ts';

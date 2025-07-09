@@ -5,13 +5,13 @@ import {
   BooleanElement,
   ObjectElement,
   StringElement,
-} from '@char0n/apidom-core';
-import { UnsupportedOperationError } from '@char0n/apidom-error';
+} from '@speclynx/apidom-core';
+import { UnsupportedOperationError } from '@speclynx/apidom-error';
 import {
   JSONReferenceElement,
   JSONSchemaElement,
   MediaElement,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 /* eslint-disable class-methods-use-this */
 /**

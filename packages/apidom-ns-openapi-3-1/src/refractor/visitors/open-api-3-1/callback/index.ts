@@ -1,11 +1,11 @@
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 import {
   isReferenceLikeElement,
   specificationObj as OpenApi3_1Specification,
   SpecPath,
   CallbackVisitorOptions,
   CallbackVisitor as CallbackVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import CallbackElement from '../../../../elements/Callback.ts';
 import ReferenceElement from '../../../../elements/Reference.ts';

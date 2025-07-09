@@ -3,7 +3,7 @@ import type { Ajv } from 'ajv';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import jsonSourceMap from 'json-source-map';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { toValue, Element } from '@char0n/apidom-core';
+import { toValue, Element } from '@speclynx/apidom-core';
 
 import { positionRangeForPath } from '../utils/ast.ts';
 import {

@@ -1,22 +1,22 @@
-# @char0n/apidom-parser-adapter-json-schema-json-2020-12
+# @speclynx/apidom-parser-adapter-json-schema-json-2020-12
 
-`@char0n/apidom-parser-adapter-json-schema-json-2020-12` is a parser adapter for the [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01) in [JSON format](https://www.json.org/json-en.html).
-Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-json)
-to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/char0n/apidom/tree/main/packages/apidom#base-namespace)
-which is then refracted with [JSON Schema 2020-12 Refractors](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#refractors).
+`@speclynx/apidom-parser-adapter-json-schema-json-2020-12` is a parser adapter for the [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01) in [JSON format](https://www.json.org/json-en.html).
+Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-json)
+to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom#base-namespace)
+which is then refracted with [JSON Schema 2020-12 Refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#refractors).
 
 ## Installation
 
-After [prerequisites](https://github.com/char0n/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
+After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-parser-adapter-json-schema-json-2020-12
+ $ npm install @speclynx/apidom-parser-adapter-json-schema-json-2020-12
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/char0n/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@speclynx/apidom-parser](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -32,11 +32,11 @@ Defines list of media types that this parser adapter recognizes.
 
 ### detect
 
-[Detection](https://github.com/char0n/apidom/blob/main/packages/apidom-parser-adapter-json-schema-json-2020-12/src/adapter.ts#L13) is based on a regular expression matching required JSON Schema 2020-12 symbols in JSON format.
+[Detection](https://github.com/speclynx/apidom/blob/main/packages/apidom-parser-adapter-json-schema-json-2020-12/src/adapter.ts#L13) is based on a regular expression matching required JSON Schema 2020-12 symbols in JSON format.
 
 ### namespace
 
-This adapter exposes an instance of [JSON Schema 2020-12 ApiDOM namespace](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#json-schema-2020-12-namespace).
+This adapter exposes an instance of [JSON Schema 2020-12 ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#json-schema-2020-12-namespace).
 
 ### parse
 
@@ -44,15 +44,15 @@ This adapter exposes an instance of [JSON Schema 2020-12 ApiDOM namespace](https
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2020-12/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to JSON Schema 2020-12 ApiDOM namespace.
+<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-2020-12/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to JSON Schema 2020-12 ApiDOM namespace.
 <a name="sourceMap"></a>`sourceMap` | `Boolean` | `false` | Indicate whether to generate source maps.
-<a name="refractorOpts"></a>`refractorOpts` | `Object` | `{}` | Refractor options are [passed to refractors](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#refractor-plugins) during refracting phase.
+<a name="refractorOpts"></a>`refractorOpts` | `Object` | `{}` | Refractor options are [passed to refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-json-schema-2020-12#refractor-plugins) during refracting phase.
 
 All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/char0n/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@speclynx/apidom-parser](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -60,7 +60,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@char0n/apidom-parser-adapter-json-schema-json-2020-12';
+import { parse, detect } from '@speclynx/apidom-parser-adapter-json-schema-json-2020-12';
 
 // detecting
 await detect('{"$schema": "https://json-schema.org/draft/2020-12/schema"}'); // => true
@@ -74,11 +74,11 @@ const parseResult = await parse('{"$schema": "https://json-schema.org/draft/2020
 
 ### Indirect usage
 
-You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/char0n/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
+You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@char0n/apidom-parser';
-import * as jsonSchemaJsonAdapter from '@char0n/apidom-parser-adapter-json-schema-json-2020-12';
+import ApiDOMParser from '@speclynx/apidom-parser';
+import * as jsonSchemaJsonAdapter from '@speclynx/apidom-parser-adapter-json-schema-json-2020-12';
 
 const parser = new ApiDOMParser();
 

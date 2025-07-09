@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export { default as getLanguageService } from './apidom-language-service.ts';
 

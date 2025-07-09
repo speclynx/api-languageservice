@@ -1,9 +1,9 @@
-import { createPredicate } from '@char0n/apidom-core';
+import { createPredicate } from '@speclynx/apidom-core';
 
 import JSONSchemaElement from './elements/JSONSchema.ts';
 import LinkDescriptionElement from './elements/LinkDescription.ts';
 
-export { isJSONReferenceElement } from '@char0n/apidom-ns-json-schema-draft-6';
+export { isJSONReferenceElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 /**
  * @public

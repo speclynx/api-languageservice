@@ -4,13 +4,13 @@ import {
   isArrayElement,
   toValue,
   cloneDeep,
-} from '@char0n/apidom-core';
-import { NotImplementedError } from '@char0n/apidom-error';
+} from '@speclynx/apidom-core';
+import { NotImplementedError } from '@speclynx/apidom-error';
 import {
   OpenApi3_1Element,
   OperationElement,
   ResponseElement,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 import MainElement from '../../elements/Main.ts';
 import ScenarioElement from '../../elements/Scenario.ts';

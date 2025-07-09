@@ -1,7 +1,7 @@
 import {
   PatternPropertiesVisitor as PatternPropertiesJSONSchema202012Visitor,
   PatternPropertiesVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 export type { PatternPropertiesVisitorOptions };
 

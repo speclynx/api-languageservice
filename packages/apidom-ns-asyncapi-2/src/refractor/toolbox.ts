@@ -1,4 +1,4 @@
-import { createNamespace, isStringElement } from '@char0n/apidom-core';
+import { createNamespace, isStringElement } from '@speclynx/apidom-core';
 
 import * as asyncApi2Predicates from '../predicates.ts';
 import asyncApi2Namespace from '../namespace.ts';

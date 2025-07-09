@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   HeaderVisitorOptions,
   HeaderVisitor as HeaderVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import HeaderElement from '../../../../elements/Header.ts';
 

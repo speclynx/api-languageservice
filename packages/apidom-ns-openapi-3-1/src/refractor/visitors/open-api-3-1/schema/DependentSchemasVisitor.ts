@@ -1,7 +1,7 @@
 import {
   DependentSchemasVisitor as DependentSchemaJSONSchema202012Visitor,
   DependentSchemasVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 export type { DependentSchemasVisitorOptions };
 

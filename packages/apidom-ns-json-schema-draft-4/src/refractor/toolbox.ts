@@ -1,4 +1,4 @@
-import { createNamespace, isStringElement } from '@char0n/apidom-core';
+import { createNamespace, isStringElement } from '@speclynx/apidom-core';
 
 import * as jsonSchemaDraft4Predicates from '../predicates.ts';
 import jsonSchemaDraft4Namespace from '../namespace.ts';

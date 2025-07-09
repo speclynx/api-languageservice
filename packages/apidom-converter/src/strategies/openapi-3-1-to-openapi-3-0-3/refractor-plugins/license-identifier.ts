@@ -1,5 +1,5 @@
-import { LicenseElement } from '@char0n/apidom-ns-openapi-3-1';
-import { AnnotationElement } from '@char0n/apidom-core';
+import { LicenseElement } from '@speclynx/apidom-ns-openapi-3-1';
+import { AnnotationElement } from '@speclynx/apidom-core';
 
 type LicenseIdentifierPluginOptions = {
   annotations: AnnotationElement[];

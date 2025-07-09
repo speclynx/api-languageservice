@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export { default as mediaTypes, OpenAPIMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';

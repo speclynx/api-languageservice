@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { toValue } from '@char0n/apidom-core';
-import { mediaTypes } from '@char0n/apidom-ns-asyncapi-2';
+import { toValue } from '@speclynx/apidom-core';
+import { mediaTypes } from '@speclynx/apidom-ns-asyncapi-2';
 
 import { loadJsonFile } from '../../../../../helpers.ts';
 import { dereference } from '../../../../../../src/index.ts';

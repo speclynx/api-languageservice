@@ -1,4 +1,4 @@
-import { Element } from '@char0n/apidom-core';
+import { Element } from '@speclynx/apidom-core';
 
 /**
  * @public

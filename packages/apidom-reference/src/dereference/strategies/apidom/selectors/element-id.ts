@@ -1,5 +1,5 @@
 import { isUndefined } from 'ramda-adjunct';
-import { Element, filter, toValue } from '@char0n/apidom-core';
+import { Element, filter, toValue } from '@speclynx/apidom-core';
 
 import EvaluationElementIdError from '../../../../errors/EvaluationElementIdError.ts';
 

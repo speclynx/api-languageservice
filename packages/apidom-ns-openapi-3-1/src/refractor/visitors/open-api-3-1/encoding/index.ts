@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   EncodingVisitorOptions,
   EncodingVisitor as EncodingVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import EncodingElement from '../../../../elements/Encoding.ts';
 

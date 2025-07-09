@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   DiscriminatorVisitorOptions,
   DiscriminatorVisitor as DiscriminatorVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import DiscriminatorElement from '../../../../elements/Discriminator.ts';
 

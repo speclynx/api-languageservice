@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ExampleVisitorOptions,
   ExampleVisitor as ExampleVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ExampleElement from '../../../../elements/Example.ts';
 

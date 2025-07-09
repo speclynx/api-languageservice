@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Event } from 'benchmark';
-import { ObjectElement } from '@char0n/apidom-core';
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixtures/openapi.json');

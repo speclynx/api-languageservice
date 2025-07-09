@@ -1,4 +1,4 @@
-import { isObjectElement, ObjectElement } from '@char0n/apidom-core';
+import { isObjectElement, ObjectElement } from '@speclynx/apidom-core';
 
 /**
  * @public

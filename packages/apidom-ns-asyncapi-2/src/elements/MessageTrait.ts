@@ -1,4 +1,10 @@
-import { ArrayElement, ObjectElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
+import {
+  ArrayElement,
+  ObjectElement,
+  StringElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
 
 import CorrelationIDElement from './CorrelationID.ts';
 import ExternalDocumentationElement from './ExternalDocumentation.ts';

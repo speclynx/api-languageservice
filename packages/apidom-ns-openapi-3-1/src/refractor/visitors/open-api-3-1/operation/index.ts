@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   OperationVisitorOptions,
   OperationVisitor as OperationVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import OperationElement from '../../../../elements/Operation.ts';
 

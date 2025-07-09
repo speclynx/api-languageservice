@@ -1,6 +1,6 @@
 import { startsWith } from 'ramda';
 import { ObjectElement } from 'minim';
-import { MemberElement, isStringElement, isObjectElement, toValue } from '@char0n/apidom-core';
+import { MemberElement, isStringElement, isObjectElement, toValue } from '@speclynx/apidom-core';
 
 /**
  * @public

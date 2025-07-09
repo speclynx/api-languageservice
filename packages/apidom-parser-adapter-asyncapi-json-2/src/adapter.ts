@@ -1,8 +1,8 @@
 import { propOr, omit } from 'ramda';
 import { isNotUndefined } from 'ramda-adjunct';
-import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
-import { parse as parseJSON, detect as detectJSON } from '@char0n/apidom-parser-adapter-json';
-import asyncApiNamespace, { AsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
+import { ParseResultElement, createNamespace } from '@speclynx/apidom-core';
+import { parse as parseJSON, detect as detectJSON } from '@speclynx/apidom-parser-adapter-json';
+import asyncApiNamespace, { AsyncApi2Element } from '@speclynx/apidom-ns-asyncapi-2';
 
 export { default as mediaTypes } from './media-types.ts';
 

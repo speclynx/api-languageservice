@@ -1,12 +1,18 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { findAtOffset, toValue, Element, ObjectElement, MemberElement } from '@char0n/apidom-core';
+import {
+  findAtOffset,
+  toValue,
+  Element,
+  ObjectElement,
+  MemberElement,
+} from '@speclynx/apidom-core';
 import { Location, Range } from 'vscode-languageserver-types';
 import { DefinitionParams, ReferenceParams } from 'vscode-languageserver-protocol';
 import {
   evaluate as jsonPointerEvaluate,
   URIFragmentIdentifier,
-} from '@char0n/apidom-json-pointer';
-import { dereferenceApiDOM } from '@char0n/apidom-reference';
+} from '@speclynx/apidom-json-pointer';
+import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {

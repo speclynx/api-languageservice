@@ -1,4 +1,4 @@
-import { Element, cloneDeep } from '@char0n/apidom-core';
+import { Element, cloneDeep } from '@speclynx/apidom-core';
 
 import HeaderElement from '../../../elements/Header.ts';
 import ExampleElement from '../../../elements/Example.ts';

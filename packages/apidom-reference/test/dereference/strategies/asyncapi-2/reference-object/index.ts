@@ -2,9 +2,9 @@ import path from 'node:path';
 import sinon from 'sinon';
 import { assert } from 'chai';
 import { identity } from 'ramda';
-import { Element, isParseResultElement, isRefElement, toValue } from '@char0n/apidom-core';
-import { isParameterElement, mediaTypes } from '@char0n/apidom-ns-asyncapi-2';
-import { evaluate } from '@char0n/apidom-json-pointer';
+import { Element, isParseResultElement, isRefElement, toValue } from '@speclynx/apidom-core';
+import { isParameterElement, mediaTypes } from '@speclynx/apidom-ns-asyncapi-2';
+import { evaluate } from '@speclynx/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { loadJsonFile } from '../../../../helpers.ts';

@@ -1,10 +1,10 @@
 import { pick } from 'ramda';
-import { ParseResultElement } from '@char0n/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-core';
 import {
   parse,
   mediaTypes as ADSMediaTypes,
   detect,
-} from '@char0n/apidom-parser-adapter-api-design-systems-json';
+} from '@speclynx/apidom-parser-adapter-api-design-systems-json';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';

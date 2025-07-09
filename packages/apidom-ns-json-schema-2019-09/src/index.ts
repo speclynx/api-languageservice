@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export { default as mediaTypes, JSONSchema201909MediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -33,7 +33,7 @@ export {
   AlternatingVisitor,
   ParentSchemaAwareVisitor,
   Visitor,
-} from '@char0n/apidom-ns-json-schema-draft-7';
+} from '@speclynx/apidom-ns-json-schema-draft-7';
 export type {
   SpecificationVisitorOptions,
   FallbackVisitorOptions,
@@ -44,7 +44,7 @@ export type {
   ParentSchemaAwareVisitorOptions,
   VisitorOptions,
   SpecPath,
-} from '@char0n/apidom-ns-json-schema-draft-7';
+} from '@speclynx/apidom-ns-json-schema-draft-7';
 
 export { default as JSONSchemaVisitor } from './refractor/visitors/json-schema/index.ts';
 export type { JSONSchemaVisitorOptions } from './refractor/visitors/json-schema/index.ts';

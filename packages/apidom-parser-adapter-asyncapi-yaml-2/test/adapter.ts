@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
 import dedent from 'dedent';
-import { isParseResultElement, SourceMapElement, sexprs } from '@char0n/apidom-core';
-import { isAsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
+import { isParseResultElement, SourceMapElement, sexprs } from '@speclynx/apidom-core';
+import { isAsyncApi2Element } from '@speclynx/apidom-ns-asyncapi-2';
 
 import * as adapter from '../src/adapter.ts';
 

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: 'https://char0n.github.io/apidom/',
+  base: 'https://speclynx.github.io/apidom/',
   plugins: [react()],
   server: {
     port: 3000,

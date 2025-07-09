@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import dedent from 'dedent';
 import { trim } from 'ramda';
-import { InfoElement } from '@char0n/apidom-ns-openapi-3-1';
+import { InfoElement } from '@speclynx/apidom-ns-openapi-3-1';
 
 import { sexprs, ObjectElement } from '../../src/index.ts';
 

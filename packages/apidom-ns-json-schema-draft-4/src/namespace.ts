@@ -1,4 +1,4 @@
-import { NamespacePluginOptions } from '@char0n/apidom-core';
+import { NamespacePluginOptions } from '@speclynx/apidom-core';
 
 import JSONSchemaElement from './elements/JSONSchema.ts';
 import JSONReferenceElement from './elements/JSONReference.ts';

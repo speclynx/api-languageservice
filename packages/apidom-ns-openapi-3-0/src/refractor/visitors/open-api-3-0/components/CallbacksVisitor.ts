@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import ComponentsCallbacksElement from '../../../../elements/nces/ComponentsCallbacks.ts';

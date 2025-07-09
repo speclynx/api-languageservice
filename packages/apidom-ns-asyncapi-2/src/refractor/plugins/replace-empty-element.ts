@@ -10,7 +10,7 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import mediaTypes from '../../media-types.ts';
 /**

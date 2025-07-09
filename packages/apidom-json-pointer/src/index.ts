@@ -6,7 +6,7 @@ import {
   JSONPointer,
 } from '@swaggerexpert/json-pointer';
 import type { EvaluationOptions } from '@swaggerexpert/json-pointer';
-import { isArrayElement, isObjectElement } from '@char0n/apidom-core';
+import { isArrayElement, isObjectElement } from '@speclynx/apidom-core';
 
 /* eslint-disable class-methods-use-this */
 

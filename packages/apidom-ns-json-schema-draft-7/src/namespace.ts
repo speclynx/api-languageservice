@@ -1,5 +1,5 @@
-import { NamespacePluginOptions } from '@char0n/apidom-core';
-import { JSONReferenceElement } from '@char0n/apidom-ns-json-schema-draft-6';
+import { NamespacePluginOptions } from '@speclynx/apidom-core';
+import { JSONReferenceElement } from '@speclynx/apidom-ns-json-schema-draft-6';
 
 import JSONSchemaElement from './elements/JSONSchema.ts';
 import LinkDescriptionElement from './elements/LinkDescription.ts';

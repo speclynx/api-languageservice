@@ -5,7 +5,7 @@ import {
   NumberElement,
   Attributes,
   Meta,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 /**
  * @public

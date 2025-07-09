@@ -15,7 +15,7 @@ import {
   Point,
   Literal,
   Error,
-} from '@char0n/apidom-ast';
+} from '@speclynx/apidom-ast';
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
 

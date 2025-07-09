@@ -7,7 +7,7 @@ import {
   createNamespace,
   includesClasses,
   hasElementSourceMap,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import * as openApi3_0Predicates from '../predicates.ts';
 import openApi3_0Namespace from '../namespace.ts';

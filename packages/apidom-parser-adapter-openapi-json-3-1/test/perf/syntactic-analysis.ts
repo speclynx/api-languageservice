@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Deferred, Event } from 'benchmark';
-import { lexicalAnalysis, syntacticAnalysis } from '@char0n/apidom-parser-adapter-json';
+import { lexicalAnalysis, syntacticAnalysis } from '@speclynx/apidom-parser-adapter-json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixtures/openapi.json');

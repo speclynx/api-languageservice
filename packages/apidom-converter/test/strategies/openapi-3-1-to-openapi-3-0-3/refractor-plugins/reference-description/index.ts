@@ -1,14 +1,14 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, assert } from 'chai';
-import { mediaTypes as openAPI31MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-1';
-import { mediaTypes as openAPI30MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+import { mediaTypes as openAPI31MediaTypes } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import { mediaTypes as openAPI30MediaTypes } from '@speclynx/apidom-parser-adapter-openapi-json-3-0';
 import {
   AnnotationElement,
   ParseResultElement,
   toJSON,
   includesClasses,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import convert from '../../../../../src/index.ts';
 

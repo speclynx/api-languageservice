@@ -1,6 +1,6 @@
-# @char0n/apidom-reference
+# @speclynx/apidom-reference
 
-`@char0n/apidom-reference` package contains advanced algorithms for semantic ApiDOM manipulations.
+`@speclynx/apidom-reference` package contains advanced algorithms for semantic ApiDOM manipulations.
 This package is divided into three (3) main components:
 
 - **[Parse component](#parse-component)**
@@ -10,11 +10,11 @@ This package is divided into three (3) main components:
 
 ## Installation
 
-After [prerequisites](https://github.com/char0n/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
+After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-reference
+ $ npm install @speclynx/apidom-reference
 ```
 
 ## Configurations
@@ -24,8 +24,8 @@ This package has two main exports suitable for different use-cases. **Empty** co
 ### Empty configuration
 
 ```js
-import { parse } from '@char0n/apidom-reference/configuration/empty';
-import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
+import { parse } from '@speclynx/apidom-reference/configuration/empty';
+import OpenAPIJSON3_1Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-3-1';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -41,11 +41,11 @@ This is suitable for creating **web bundles** and gives you total control of the
 ### Saturated configuration
 
 ```js
-import { parse } from '@char0n/apidom-reference';
+import { parse } from '@speclynx/apidom-reference';
 ```
 or
 ```js
-import { parse } from '@char0n/apidom-reference/configuration/saturaged';
+import { parse } from '@speclynx/apidom-reference/configuration/saturaged';
 ```
 
 Both of above imports are equivalent. This approach is suitable for **Node.js** environments.
@@ -53,14 +53,14 @@ Both of above imports are equivalent. This approach is suitable for **Node.js** 
 
 ## Parse component
 
-Parse component consists of implementation of default [parser plugins](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers).
+Parse component consists of implementation of default [parser plugins](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers).
 Defaults parser plugin is a specialized wrapper that wraps one of the ApiDOM parser adapter into specialized API.
 Standard ApiDOM parser adapter can only parse strings. Parser plugins are capable of parsing local filesystem URIs and network URLs.
 
 **Parsing a file localed on local filesystem:**
 
 ```js
-import { parse } from '@char0n/apidom-reference';
+import { parse } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
@@ -70,7 +70,7 @@ await parse('/home/user/oas.json', {
 **Parsing an HTTP(S) URL located on internet:**
 
 ```js
-import { parse } from '@char0n/apidom-reference';
+import { parse } from '@speclynx/apidom-reference';
 
 await parse('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
@@ -83,7 +83,7 @@ but if not provided, the Parse component will try to identify appropriate parser
 What actually happens if you don't provide `mediaType` parse option?
 
 ```js
-import { parse } from '@char0n/apidom-reference';
+import { parse } from '@speclynx/apidom-reference';
 
 await parse('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json');
 ```
@@ -101,7 +101,7 @@ so providing it is always a better option.
 
 Parse component comes with number of default parser plugins.
 
-#### [apidom-json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/apidom-json)
+#### [apidom-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/apidom-json)
 
 Parses dehydrated ApiDOM structure and hydrates it.
 This parser plugin is uniquely identified by `apidom-json` name.
@@ -115,9 +115,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-2)
+#### [openapi-json-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-2)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-json-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-2) package
 and is uniquely  identified by `openapi-json-2` name.
 
 Supported media types are:
@@ -129,9 +129,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-0)
+#### [openapi-json-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-0)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-json-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-0) package
 and is uniquely  identified by `openapi-json-3-0` name.
 
 Supported media types are:
@@ -151,9 +151,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-2)
+#### [openapi-yaml-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-2)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-yaml-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-2) package
 and is uniquely  identified by `openapi-yaml-2` name.
 
 Supported media types are:
@@ -165,9 +165,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-0)
+#### [openapi-yaml-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-0)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-yaml-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-0) package
 and is uniquely  identified by `openapi-yaml-3-0` name.
 
 Supported media types are:
@@ -187,9 +187,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-json-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-1)
+#### [openapi-json-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-json-3-1)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-json-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-json-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-json-3-1) package
 and is uniquely  identified by `openapi-json-3-1` name.
 
 Supported media types are:
@@ -201,9 +201,9 @@ Supported media types are:
 ]
 ```
 
-#### [openapi-yaml-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-1)
+#### [openapi-yaml-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/openapi-yaml-3-1)
 
-Wraps [@char0n/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
+Wraps [@speclynx/apidom-parser-adapter-openapi-yaml-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-openapi-yaml-3-1) package
 and is uniquely  identified by `openapi-yaml-3-1` name.
 
 Supported media types are:
@@ -215,9 +215,9 @@ Supported media types are:
 ]
 ```
 
-#### [asyncapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-json-2)
+#### [asyncapi-json-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-json-2)
 
-Wraps [@char0n/apidom-parser-adapter-asyncapi-json-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
+Wraps [@speclynx/apidom-parser-adapter-asyncapi-json-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-json-2) package
 and is uniquely identified by `asyncapi-json-2` name.
 
 Supported media types are:
@@ -241,9 +241,9 @@ Supported media types are:
 ]
 ```
 
-#### [asyncapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-yaml-2)
+#### [asyncapi-yaml-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/asyncapi-yaml-2)
 
-Wraps [@char0n/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
+Wraps [@speclynx/apidom-parser-adapter-asyncapi-yaml-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-asyncapi-yaml-2) package
 and is uniquely  identified by `asyncapi-yaml-2` name.
 
 
@@ -269,9 +269,9 @@ Supported media types are:
 ]
 ```
 
-#### [arazzo-json-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-json-1)
+#### [arazzo-json-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-json-1)
 
-Wraps [@char0n/apidom-parser-adapter-arazzo-json-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
+Wraps [@speclynx/apidom-parser-adapter-arazzo-json-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-arazzo-json-1) package
 and is uniquely identified by `arazzo-json-1` name.
 
 Supported media types are:
@@ -285,9 +285,9 @@ Supported media types are:
 ]
 ```
 
-#### [arazzo-yaml-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-yaml-1)
+#### [arazzo-yaml-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/arazzo-yaml-1)
 
-Wraps [@char0n/apidom-parser-adapter-arazzo-yaml-1](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
+Wraps [@speclynx/apidom-parser-adapter-arazzo-yaml-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-arazzo-yaml-1) package
 and is uniquely identified by `arazzo-yaml-1` name.
 
 Supported media types are:
@@ -301,9 +301,9 @@ Supported media types are:
 ]
 ```
 
-#### [api-design-systems-json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-json)
+#### [api-design-systems-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-json)
 
-Wraps [@char0n/apidom-parser-adapter-api-design-systsems-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
+Wraps [@speclynx/apidom-parser-adapter-api-design-systsems-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-json) package
 and is uniquely identified by `api-design-systems-json` name.
 
 Supported media types are:
@@ -315,9 +315,9 @@ Supported media types are:
 ]
 ```
 
-#### [api-design-systems-yaml](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-yaml)
+#### [api-design-systems-yaml](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/api-design-systems-yaml)
 
-Wraps [@char0n/apidom-parser-adapter-api-design-systems-yaml](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
+Wraps [@speclynx/apidom-parser-adapter-api-design-systems-yaml](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-api-design-systems-yaml) package
 and is uniquely  identified by `api-design-systems-yaml` name.
 
 
@@ -330,9 +330,9 @@ Supported media types are:
 ]
 ```
 
-#### [json](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/json)
+#### [json](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/json)
 
-Wraps [@char0n/apidom-parser-adapter-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-json) package
+Wraps [@speclynx/apidom-parser-adapter-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-json) package
 and is uniquely  identified by `json` name.
 
 
@@ -344,9 +344,9 @@ Supported media types are:
 ]
 ```
 
-#### [yaml-1-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/yaml-1-2)
+#### [yaml-1-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/yaml-1-2)
 
-Wraps [@char0n/apidom-parser-adapter-yaml-1-2](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
+Wraps [@speclynx/apidom-parser-adapter-yaml-1-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-yaml-1-2) package
 and is uniquely  identified by `yaml-1-2` name.
 
 
@@ -359,7 +359,7 @@ Supported media types are:
 ]
 ```
 
-#### [binary](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/parse/parsers/binary)
+#### [binary](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/parse/parsers/binary)
 
 Can parse any binary or non-binary file and return it's content as `base64` encoded string.
 This parser is uniquely identified by `binary` name.
@@ -370,7 +370,7 @@ This parser is uniquely identified by `binary` name.
 #### Parser plugins execution order
 
 It's important to understand that default parser plugins are run in specific order. The order is determined
-by the [options.parse.parsers](https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L22) option.
+by the [options.parse.parsers](https://github.com/speclynx/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L22) option.
 Every plugin is pulled from `options.parse.parsers` option, and it's `canParse` method is called to determine
 whether the plugin can parse the URI. If `canParse` returns `true`, `parse` method of plugin is called
 and result from parsing is returned. No subsequent parser plugins are run. If `canParse` returns
@@ -402,23 +402,23 @@ Most specific parser plugins are listed first, most generic are listed last.
 It's possible to **change** the parser plugins **order globally** by mutating global `parse` options:
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import OpenAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-2';
-import OpenAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-2';
-import OpenAPIJSON3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-0';
-import OpenAPIYAML3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-0'
-import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
-import OpenAPIYAML3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-1'
-import AsyncAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-json-2';
-import AsyncAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-yaml-2';
-import ArazzoJSON1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-json-1';
-import ArazzoYAML1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-yaml-1';
-import APIDOMJSONParser from '@char0n/apidom-reference/parse/parsers/apidom-json';
-import APIDesignSystemsJSONParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
-import APIDesignSystemsYAMLParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
-import JSONParser from '@char0n/apidom-reference/parse/parsers/json';
-import YAMLParser from '@char0n/apidom-reference/parse/parsers/yaml';
-import BinaryParser from '@char0n/apidom-reference/parse/parsers/binary';
+import { options } from '@speclynx/apidom-reference';
+import OpenAPIJSON2Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-2';
+import OpenAPIYAML2Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-2';
+import OpenAPIJSON3_0Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-3-0';
+import OpenAPIYAML3_0Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-3-0'
+import OpenAPIJSON3_1Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-3-1';
+import OpenAPIYAML3_1Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-3-1'
+import AsyncAPIJSON2Parser from '@speclynx/apidom-reference/parse/parsers/asyncapi-json-2';
+import AsyncAPIYAML2Parser from '@speclynx/apidom-reference/parse/parsers/asyncapi-yaml-2';
+import ArazzoJSON1Parser from '@speclynx/apidom-reference/parse/parsers/arazzo-json-1';
+import ArazzoYAML1Parser from '@speclynx/apidom-reference/parse/parsers/arazzo-yaml-1';
+import APIDOMJSONParser from '@speclynx/apidom-reference/parse/parsers/apidom-json';
+import APIDesignSystemsJSONParser from '@speclynx/apidom-reference/parse/parsers/api-design-systems-json';
+import APIDesignSystemsYAMLParser from '@speclynx/apidom-reference/parse/parsers/api-design-systems-json';
+import JSONParser from '@speclynx/apidom-reference/parse/parsers/json';
+import YAMLParser from '@speclynx/apidom-reference/parse/parsers/yaml';
+import BinaryParser from '@speclynx/apidom-reference/parse/parsers/binary';
 
 
 options.parse.parsers = [
@@ -444,23 +444,23 @@ options.parse.parsers = [
 To **change** the parser plugins **order** on ad-hoc basis:
 
 ```js
-import { parse } from '@char0n/apidom-reference';
-import OpenAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-2';
-import OpenAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-2';
-import OpenAPIJSON3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-0';
-import OpenAPIYAML3_0Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-0'
-import OpenAPIJSON3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-json-3-1';
-import OpenAPIYAML3_1Parser from '@char0n/apidom-reference/parse/parsers/openapi-yaml-3-1'
-import AsyncAPIJSON2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-json-2';
-import AsyncAPIYAML2Parser from '@char0n/apidom-reference/parse/parsers/asyncapi-yaml-2';
-import ArazzoJSON1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-json-1';
-import ArazzoYAML1Parser from '@char0n/apidom-reference/parse/parsers/arazzo-yaml-1';
-import APIDOMJSONParser from '@char0n/apidom-reference/parse/parsers/apidom-json';
-import APIDesignSystemsJSONParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
-import APIDesignSystemsYAMLParser from '@char0n/apidom-reference/parse/parsers/api-design-systems-json';
-import JSONParser from '@char0n/apidom-reference/parse/parsers/json';
-import YAMLParser from '@char0n/apidom-reference/parse/parsers/yaml';
-import BinaryParser from '@char0n/apidom-reference/parse/parsers/binary';
+import { parse } from '@speclynx/apidom-reference';
+import OpenAPIJSON2Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-2';
+import OpenAPIYAML2Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-2';
+import OpenAPIJSON3_0Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-3-0';
+import OpenAPIYAML3_0Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-3-0'
+import OpenAPIJSON3_1Parser from '@speclynx/apidom-reference/parse/parsers/openapi-json-3-1';
+import OpenAPIYAML3_1Parser from '@speclynx/apidom-reference/parse/parsers/openapi-yaml-3-1'
+import AsyncAPIJSON2Parser from '@speclynx/apidom-reference/parse/parsers/asyncapi-json-2';
+import AsyncAPIYAML2Parser from '@speclynx/apidom-reference/parse/parsers/asyncapi-yaml-2';
+import ArazzoJSON1Parser from '@speclynx/apidom-reference/parse/parsers/arazzo-json-1';
+import ArazzoYAML1Parser from '@speclynx/apidom-reference/parse/parsers/arazzo-yaml-1';
+import APIDOMJSONParser from '@speclynx/apidom-reference/parse/parsers/apidom-json';
+import APIDesignSystemsJSONParser from '@speclynx/apidom-reference/parse/parsers/api-design-systems-json';
+import APIDesignSystemsYAMLParser from '@speclynx/apidom-reference/parse/parsers/api-design-systems-json';
+import JSONParser from '@speclynx/apidom-reference/parse/parsers/json';
+import YAMLParser from '@speclynx/apidom-reference/parse/parsers/yaml';
+import BinaryParser from '@speclynx/apidom-reference/parse/parsers/binary';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -493,7 +493,7 @@ Parser plugins accept additional options like `allowEmpty` or `sourceMap`. It's 
 **options globally** by mutating global `parse` options:
 
 ```js
-import { options, parse } from '@char0n/apidom-reference';
+import { options, parse } from '@speclynx/apidom-reference';
 
 options.parser.parserOpts = {
   allowEmpty: false,
@@ -508,7 +508,7 @@ await parse('/home/user/oas.json', {
 To **change** the parser plugins **options** on ad-hoc basis:
 
 ```js
-import { parse } from '@char0n/apidom-reference';
+import { parse } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -543,7 +543,7 @@ interface ParserPlugin {
 New parser plugin is then provided as an option to a `parse` function:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -577,7 +577,7 @@ parses it and returns.
 If you want to force execution of your custom plugin, add it as a first parser plugin:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -607,7 +607,7 @@ await parse('/home/user/oas.json', {
 To override the default parser plugins entirely, set `myCustomParserPlugin` plugin to be the only one available:
 
 ```ts
-import { parse, options, File, Parser, ParserOptions } from '@char0n/apidom-reference';
+import { parse, options, File, Parser, ParserOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomParserPluginOptions extends Omit<ParserOptions, 'name'> {}
 
@@ -643,7 +643,7 @@ We're using the fact that every parser plugin is uniquely identifiable by its na
 **Removing** parser plugin **globally** for all subsequence `parse` calls is achieved by mutating global options:
 
 ```js
-import { parse, options, mergeOptions } from '@char0n/apidom-reference';
+import { parse, options, mergeOptions } from '@speclynx/apidom-reference';
 
 options.parse.parsers = options.parse.parsers.filter(parserPlugin => parserPlugin !== 'asyncapi-json-2')
 
@@ -658,7 +658,7 @@ await parse('/home/user/oas.json', {
 **Removing** default parser plugin on **ad-hoc** basis:
 
 ```js
-import { parse, options } from '@char0n/apidom-reference';
+import { parse, options } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
@@ -679,14 +679,14 @@ file contents for a Parse component to parse.
 
 ### File resolution
 
-Contains implementation of default [resolver plugins](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/resolvers).
+Contains implementation of default [resolver plugins](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/resolvers).
 Defaults resolver plugin is an object which knows how to obtain contents of a file represented by URI or URL.
 
 #### Resolver plugins
 
 File resolution comes with two (2) default resolver plugins.
 
-##### [FileResolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/file)
+##### [FileResolver](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/file)
 
 This resolver plugin is responsible for resolving a local file.
 It detects if the provided URI represents a filesystem path and if so,
@@ -702,9 +702,9 @@ File allow list can be provided **globally** as an option to `FileResolver` in f
 of array of *glob patterns* or *regular expressions*.
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
+import { options } from '@speclynx/apidom-reference';
+import FileResolver from '@speclynx/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@speclynx/apidom-reference/resolve/resolvers/http-axios';
 
 options.resolve.resolvers = [
   new FileResolver({
@@ -720,7 +720,7 @@ options.resolve.resolvers = [
 File allow list can also be provided on ad-hoc basis:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('/home/user/oas.json', {
   resolve: {
@@ -734,7 +734,7 @@ await resolve('/home/user/oas.json', {
 });
 ```
 
-##### [HTTPResolverAxios](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios)
+##### [HTTPResolverAxios](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios)
 
 This resolver plugin is responsible for resolving a remote file represented by HTTP(s) URL.
 It detects if the provided URI represents an HTTP(s) URL and if so,
@@ -746,7 +746,7 @@ HttpResolverAxios plugin supports all the options available in [Axios Request Co
 Config options can be provided in following way:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -767,7 +767,7 @@ HttpResolverAxios plugin supports [Axios Interceptors](https://axios-http.com/do
 Interceptors can be provided in following way:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 const requestInterceptor = (config) => config;
 const responseInterceptor = (response) => response;
@@ -789,7 +789,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 Multiple request and response interceptors can be provided in following way:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 const requestInterceptor1 = (config) => config;
 const requestInterceptor2 = (config) => config;
@@ -813,7 +813,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 **File resolution on local filesystem path**:
 
 ```js
-import { readFile } from '@char0n/apidom-reference';
+import { readFile } from '@speclynx/apidom-reference';
 
 await readFile('/home/user/oas.json'); // Promise<Buffer>
 ```
@@ -821,7 +821,7 @@ await readFile('/home/user/oas.json'); // Promise<Buffer>
 **File resolution on HTTP(s) URL:**
 
 ```js
-import { readFile } from '@char0n/apidom-reference';
+import { readFile } from '@speclynx/apidom-reference';
 
 await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json'); // Promise<Buffer>
 ```
@@ -829,7 +829,7 @@ File resolution always returns a [Promise](https://developer.mozilla.org/en-US/d
 It is responsibility of the API consumer to transform `Buffer` into `String` or any other type.
 
 ```js
-import { readFile } from '@char0n/apidom-reference';
+import { readFile } from '@speclynx/apidom-reference';
 
 const buffer = await readFile('/home/user/oas.json');
 const string = buffer.toString('utf-8');
@@ -838,7 +838,7 @@ const string = buffer.toString('utf-8');
 ##### Resolver plugins execution order
 
 It's important to understand that default resolver plugins are run in specific order. The order is determined
-by the [options.resolve.resolvers]https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L36) option.
+by the [options.resolve.resolvers]https://github.com/speclynx/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L36) option.
 Every plugin is pulled from `options.resolve.resolvers` option, and it's `canRead` method is called to determine
 whether the plugin can resolve the URI. If `canRead` returns `true`, `read` method of plugin is called
 and result from reading the file is returned. No subsequent resolver plugins are run.
@@ -855,9 +855,9 @@ of the resolver plugins `canRead` method returns `true` or until entire list of 
 It's possible to **change** resolver plugins **order globally** by mutating global `resolve` option:
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
+import { options } from '@speclynx/apidom-reference';
+import FileResolver from '@speclynx/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@speclynx/apidom-reference/resolve/resolvers/http-axios';
 
 options.resolve.resolvers = [
   new HTTPResolverAxios({ timeout: 5000, redirects: 5, withCredentials: false }),
@@ -868,9 +868,9 @@ options.resolve.resolvers = [
 To **change** resolver plugins **order** on ad-hoc basis:
 
 ```js
-import { readFile } from '@char0n/apidom-reference';
-import FileResolver from '@char0n/apidom-reference/resolve/resolvers/file';
-import HTTPResolverAxios from '@char0n/apidom-reference/resolve/resolvers/http-axios';
+import { readFile } from '@speclynx/apidom-reference';
+import FileResolver from '@speclynx/apidom-reference/resolve/resolvers/file';
+import HTTPResolverAxios from '@speclynx/apidom-reference/resolve/resolvers/http-axios';
 
 await readFile('/home/user/oas.json', {
   resolve: {
@@ -888,7 +888,7 @@ Some resolver plugins accept additional options. It's possible to **change** res
 **options globally** by mutating global `resolve` options:
 
 ```js
-import { options, readFile } from '@char0n/apidom-reference';
+import { options, readFile } from '@speclynx/apidom-reference';
 
 options.resolve.resolverOpts = {
   axiosConfig: {
@@ -902,7 +902,7 @@ await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main
 To **change** the resolver plugins **options** on ad-hoc basis:
 
 ```js
-import { readFile } from '@char0n/apidom-reference';
+import { readFile } from '@speclynx/apidom-reference';
 
 await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -915,7 +915,7 @@ await readFile('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main
 });
 ```
 
-Both of above examples will be using [HttpResolverAxios](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios) plugin
+Both of above examples will be using [HttpResolverAxios](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/http-axios) plugin
 (as we're trying to resolve HTTP(s) URL) and the `timeout` of resolution will increase from **default 3 seconds**
 to 10 seconds.
 
@@ -925,7 +925,7 @@ Some resolver strategy plugins accept additional options. It's possible to **cha
 **options globally** by mutating global `resolve` options:
 
 ```js
-import { options, resolve } from '@char0n/apidom-reference';
+import { options, resolve } from '@speclynx/apidom-reference';
 
 options.resolve.strategyOpts = {
   apidom: { clone: true },
@@ -937,7 +937,7 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 To **change** the resolver strategy plugins **options** on ad-hoc basis:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   resolve: {
@@ -968,7 +968,7 @@ interface ResolverPlugin {
 New resolver plugin is then provided as an option to a `readFile` function:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1001,7 +1001,7 @@ resolves it and returns its content.
 If you want to force execution of your custom plugin, add it as a first resolver plugin:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1029,7 +1029,7 @@ await readFile('/home/user/oas.json', {
 To override the default resolver plugins entirely, set `myCustomResolverPlugin` plugin to be the only one available:
 
 ```ts
-import { readFile, options, File, Resolver, ResolverOptions } from '@char0n/apidom-reference';
+import { readFile, options, File, Resolver, ResolverOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverOptions extends Omit<ResolverOptions, 'name'> {}
 
@@ -1053,7 +1053,7 @@ await readFile('/home/user/oas.json', {
   }
 });
 ```
-New resolver plugins can be based on two predefined stamps: [Resolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/Resolver.ts) and [HTTPResolver](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/HttpResolver.ts).
+New resolver plugins can be based on two predefined stamps: [Resolver](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/Resolver.ts) and [HTTPResolver](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/resolvers/HttpResolver.ts).
 
 ##### Manipulating resolver plugins
 
@@ -1062,14 +1062,14 @@ Resolver plugins can be added, removed, replaced or reordered. We've already cov
 ### External resolution
 
 External resolution is a process of resolving all external dependencies of a particular
-document using a specific [external resolution strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies). External resolution strategy is determined by
+document using a specific [external resolution strategy](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies). External resolution strategy is determined by
 asserting on `mediaType` option. [File Resolution](#file-resolution) (file content is read/fetched)
 and [Parse component](#parse-component) (file content is parsed) are used under the hood.
 
 **Externally resolving a file localed on a local filesystem:**
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1079,7 +1079,7 @@ await resolve('/home/user/oas.json', {
 **Externally resolving an HTTP(S) URL located on an internet:**
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
+import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1095,13 +1095,13 @@ await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/
 
 **Externally resolving an ApiDOM fragment:**
 
-When externally resolving an ApiDOM fragment, [baseURI](https://github.com/char0n/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
+When externally resolving an ApiDOM fragment, [baseURI](https://github.com/speclynx/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
 resolve option needs to be provided to have a starting point for external dependency resolution.
 `mediaType` parse option is unnecessary as we can directly assert the type of ApiDOM fragment.
 
 ```js
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
-import { resolveApiDOM } from '@char0n/apidom-reference';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
+import { resolveApiDOM } from '@speclynx/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
   openapi: '3.1.0',
@@ -1125,16 +1125,16 @@ for (const ref of refSet) {
 // /home/user/ex.json
 ```
 
-[ReferenceSet](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/ReferenceSet.ts) is a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-like structure containing list of [Reference](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/Reference.ts) objects.
+[ReferenceSet](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/ReferenceSet.ts) is a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+like structure containing list of [Reference](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/Reference.ts) objects.
 Every Reference object represents single external dependency.
 
-#### [External resolution strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies)
+#### [External resolution strategies](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies)
 
 External resolution strategy determines how a document is externally resolved. Depending on document `mediaType`
 every strategy differs significantly. Resolve component comes with two (2) default external resolution strategies.
 
-##### [apidom](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/apidom)
+##### [apidom](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/apidom)
 
 External resolution strategy for understanding and resolving remote elements referenced with [Ref Element](https://apielements.org/en/latest/element-definitions.html?highlight=referencing#ref-element).
 
@@ -1147,7 +1147,7 @@ Supported media types:
 ]
 ```
 
-##### [asyncapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/asyncapi-2)
+##### [asyncapi-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/asyncapi-2)
 
 External resolution strategy for understanding and resolving external dependencies of [AsyncApi 2.x.y](https://github.com/asyncapi/spec/blob/master/spec/asyncapi.md) definitions.
 
@@ -1179,7 +1179,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-2)
+##### [openapi-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-2)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) definitions.
 
@@ -1193,7 +1193,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-0)
+##### [openapi-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-0)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
 
@@ -1219,7 +1219,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-1)
 
 External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -1236,7 +1236,7 @@ Supported media types:
 ##### External resolution strategies execution order
 
 It's important to understand that default external resolution strategies are run in specific order. The order is determined
-by the [options.resolve.strategies](https://github.com/char0n/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L41) option.
+by the [options.resolve.strategies](https://github.com/speclynx/apidom/blob/ba888d711a4292e8ed0b72e343c4902a4bf0d45a/packages/apidom-reference/src/configuration/saturated.ts#L41) option.
 Every strategy is pulled from `options.resolve.strategies` option and its `canResolve` method is called to determine
 whether the strategy can externally resolve the URI. If `canResolve` returns `true`, `resolve` method of strategy is called
 and result from external resolution is returned. No subsequent strategies  are run. If `canResolve` returns
@@ -1256,11 +1256,11 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `resolve` option:
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import AsyncAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/asyncapi-2';
-import OpenAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-2';
-import OpenAPI3_0ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-0';
-import OpenAPI3_1ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-1';
+import { options } from '@speclynx/apidom-reference';
+import AsyncAPI2ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/asyncapi-2';
+import OpenAPI2ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-2';
+import OpenAPI3_0ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-3-0';
+import OpenAPI3_1ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-3-1';
 
 options.resolve.strategies = [
   new OpenAPI2ResolveStrategy(),
@@ -1273,11 +1273,11 @@ options.resolve.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { resolve } from '@char0n/apidom-reference';
-import AsyncAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/asyncapi-2';
-import OpenAPI2ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-2';
-import OpenAPI3_0ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-0';
-import OpenAPI3_1ResolveStrategy from '@char0n/apidom-reference/resolve/strategies/openapi-3-1';
+import { resolve } from '@speclynx/apidom-reference';
+import AsyncAPI2ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/asyncapi-2';
+import OpenAPI2ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-2';
+import OpenAPI3_0ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-3-0';
+import OpenAPI3_1ResolveStrategy from '@speclynx/apidom-reference/resolve/strategies/openapi-3-1';
 
 
 await resolve('/home/user/oas.json', {
@@ -1314,7 +1314,7 @@ interface ResolveStrategy {
 New strategy is then provided as an option to a `resolve` function:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1350,7 +1350,7 @@ resolves it and returns `ReferenceSet` object.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1381,7 +1381,7 @@ await resolve('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomResolverStrategy` strategy to be the only one available:
 
 ```ts
-import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@char0n/apidom-reference';
+import { resolve, options, File, ResolveStrategy, ResolveStrategyOptions } from '@speclynx/apidom-reference';
 
 interface MyCustomResolverStrategyOptions extends Omit<ResolveStrategyOptions, 'name'> {}
 
@@ -1408,7 +1408,7 @@ await resolve('/home/user/oas.json', {
   }
 });
 ```
-New strategies can be based on a predefined stamp called [ResolveStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/resolve/strategies/ResolveStrategy.ts).
+New strategies can be based on a predefined stamp called [ResolveStrategy](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/resolve/strategies/ResolveStrategy.ts).
 
 ##### Manipulating external resolution strategies
 
@@ -1417,14 +1417,14 @@ External resolution strategies can be added, removed, replaced or reordered. We'
 ## Dereference component
 
 Dereferencing is a process of transcluding referencing element (internal or external) with a referenced element
-using a specific [dereference strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies). Simply put, dereferencing is a process of reference removal.
+using a specific [dereference strategy](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies). Simply put, dereferencing is a process of reference removal.
 Dereferencing strategy is determined by asserting on `mediaType` option. [File Resolution](#file-resolution) (file content is read/fetched)
 and [Parse component](#parse-component) (file content is parsed) are used under the hood.
 
 **Dereferencing a file localed on a local filesystem:**
 
 ```js
-import { dereference } from '@char0n/apidom-reference';
+import { dereference } from '@speclynx/apidom-reference';
 
 await dereference('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1434,7 +1434,7 @@ await dereference('/home/user/oas.json', {
 **Dereferencing an HTTP(S) URL located on an internet:**
 
 ```js
-import { dereference } from '@char0n/apidom-reference';
+import { dereference } from '@speclynx/apidom-reference';
 
 await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1450,7 +1450,7 @@ await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/m
 
 **Dereferencing an ApiDOM fragment:**
 
-When dereferencing an ApiDOM fragment, [baseURI](https://github.com/char0n/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
+When dereferencing an ApiDOM fragment, [baseURI](https://github.com/speclynx/apidom/blob/91763fa4ad876375a413e7049c28c2031c7bbe83/apidom/packages/apidom-reference/src/options/index.ts#L47)
 resolve option needs to be provided to have a starting point for external dependency resolution.
 `mediaType` parse option is unnecessary as we can directly assert the type of ApiDOM fragment.
 
@@ -1466,8 +1466,8 @@ resolve option needs to be provided to have a starting point for external depend
 ```
 
 ```js
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
-import { dereferenceApiDOM } from '@char0n/apidom-reference';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
+import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
   openapi: '3.1.0',
@@ -1498,12 +1498,12 @@ const dereferenced = await dereferenceApiDOM(apidom, {
  */
 ```
 
-#### [Dereference strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies)
+#### [Dereference strategies](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies)
 
 Dereference strategy determines how a document is internally or externally dereferenced. Depending on document `mediaType` option,
 every strategy differs significantly. `Dereference component` comes with four (4) default dereference strategies.
 
-#### [apidom](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/apidom)
+#### [apidom](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/apidom)
 
 Dereference strategy for dereferencing ApiDOM using [Ref Element](https://apielements.org/en/latest/element-definitions.html?highlight=referencing#ref-element).
 Ref Element MAY be used to reference elements in remote documents or elements in the local document.
@@ -1518,7 +1518,7 @@ Supported media types:
 ]
 ```
 
-##### [asyncapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/asyncapi-2)
+##### [asyncapi-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/asyncapi-2)
 
 Dereference strategy for dereferencing [AsyncApi 2.x.y](https://github.com/asyncapi/spec/blob/master/spec/asyncapi.md) definitions.
 
@@ -1550,7 +1550,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-2](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-2)
+##### [openapi-2](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-2)
 
 Dereference strategy for dereferencing [OpenApi 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) definitions.
 
@@ -1564,7 +1564,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-0](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-0)
+##### [openapi-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-0)
 
 Dereference strategy for dereferencing [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
 
@@ -1590,7 +1590,7 @@ Supported media types:
 ]
 ```
 
-##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-1)
 
 Dereference strategy for dereferencing [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -1607,7 +1607,7 @@ Supported media types:
 ##### Dereference strategies execution order
 
 It's important to understand that default dereference strategies are run in specific order. The order is determined
-by the [options.dereference.strategies](https://github.com/char0n/apidom/blob/b3a391481360004d3d4a56c1467cece557442ec8/apidom/packages/apidom-reference/src/options/index.ts#L88) option.
+by the [options.dereference.strategies](https://github.com/speclynx/apidom/blob/b3a391481360004d3d4a56c1467cece557442ec8/apidom/packages/apidom-reference/src/options/index.ts#L88) option.
 Every strategy is pulled from `options.dereference.strategies` option and it's `canDereference` method is called to determine
 whether the strategy can dereference the URI. If `canDereference` returns `true`, `dereference` method of strategy is called
 and result from dereferencing is returned. No subsequent strategies  are run. If `canDereference` returns
@@ -1628,12 +1628,12 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `dereference` option:
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import AsyncAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/asyncapi-2';
-import OpenAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-2';
-import OpenAPI3_0DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-0';
-import OpenAPI3_1DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-1';
-import ApiDOMDereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/apidom';
+import { options } from '@speclynx/apidom-reference';
+import AsyncAPI2DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/asyncapi-2';
+import OpenAPI2DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-2';
+import OpenAPI3_0DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-3-0';
+import OpenAPI3_1DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-3-1';
+import ApiDOMDereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/apidom';
 
 options.dereference.strategies = [
   new OpenAPI2DereferenceStrategy(),
@@ -1647,12 +1647,12 @@ options.dereference.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { dereference } from '@char0n/apidom-reference';
-import AsyncAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/asyncapi-2';
-import OpenAPI2DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-2';
-import OpenAPI3_0DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-0';
-import OpenAPI3_1DereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/openapi-3-1';
-import ApiDOMDereferenceStrategy from '@char0n/apidom-reference/dereference/strategies/apidom';
+import { dereference } from '@speclynx/apidom-reference';
+import AsyncAPI2DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/asyncapi-2';
+import OpenAPI2DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-2';
+import OpenAPI3_0DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-3-0';
+import OpenAPI3_1DereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/openapi-3-1';
+import ApiDOMDereferenceStrategy from '@speclynx/apidom-reference/dereference/strategies/apidom';
 
 
 await dereference('/home/user/oas.json', {
@@ -1677,7 +1677,7 @@ Some dereference strategy plugins accept additional options. It's possible to **
 **options globally** by mutating global `dereference` options:
 
 ```js
-import { options, dereference } from '@char0n/apidom-reference';
+import { options, dereference } from '@speclynx/apidom-reference';
 
 options.dereference.strategyOpts = {
   apidom: { clone: true },
@@ -1689,7 +1689,7 @@ await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/m
 To **change** the dereference strategy plugins **options** on ad-hoc basis:
 
 ```js
-import { dereference } from '@char0n/apidom-reference';
+import { dereference } from '@speclynx/apidom-reference';
 
 await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   dereference: {
@@ -1720,7 +1720,7 @@ interface DereferenceStrategy {
 New strategy is then provided as an option to the `dereference` function:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@speclynx/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
   extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1755,7 +1755,7 @@ dereferences it and returns a dereferenced element.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@speclynx/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
 extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1785,7 +1785,7 @@ await dereference('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomDereferenceStrategy` strategy to be the only one available:
 
 ```ts
-import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@char0n/apidom-reference';
+import { dereference, options, File, DereferenceStrategy, DereferenceStrategyOptions } from '@speclynx/apidom-reference';
 
 export interface MyCustomDereferenceStrategyOptions
 extends Omit<DereferenceStrategyOptions, 'name'> {}
@@ -1813,7 +1813,7 @@ await dereference('/home/user/oas.json', {
 });
 ```
 
-New strategies can be based on a predefined stamp called [DereferenceStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/dereference/strategies/DereferenceStrategy.ts).
+New strategies can be based on a predefined stamp called [DereferenceStrategy](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/dereference/strategies/DereferenceStrategy.ts).
 
 ##### Manipulating dereference strategies
 
@@ -1829,7 +1829,7 @@ and passing its result to dereferencing via an option. External resolution ignor
 so it's theoretically always faster than the dereferencing.
 
 ```js
-import { resolve, dereference } from '@char0n/apidom-reference';
+import { resolve, dereference } from '@speclynx/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1844,7 +1844,7 @@ const dereferenced = await dereference('/home/user/oas.json', {
 ## Bundle component
 
 Bundling is a convenient way to package up resources spread across multiple files in a single file
-(**Compound Document**) using a specific [bundle strategy](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies).
+(**Compound Document**) using a specific [bundle strategy](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/bundle/strategies).
 
 The bundling process for creating a Compound Document is defined as taking references (such as "$ref")
 to an external Resource and embedding the referenced Resources within the referring document.
@@ -1857,7 +1857,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 **Bundling a file localed on a local filesystem:**
 
 ```js
-import { bundle } from '@char0n/apidom-reference';
+import { bundle } from '@speclynx/apidom-reference';
 
 await bundle('/home/user/oas.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1867,7 +1867,7 @@ await bundle('/home/user/oas.json', {
 **Bundling an HTTP(S) URL located on an internet:**
 
 ```js
-import { bundle } from '@char0n/apidom-reference';
+import { bundle } from '@speclynx/apidom-reference';
 
 await bundle('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
   parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
@@ -1881,12 +1881,12 @@ await bundle('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/e
 }); // Promise<ParseResultElement>
 ```
 
-#### [Bundle strategies](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies)
+#### [Bundle strategies](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/bundle/strategies)
 
 Bundle strategy determines how a document is bundled into a Compound Document. Depending on document `mediaType` option,
 every strategy differs significantly. `Bundle component` comes with single (1) default bundle strategy.
 
-##### [openapi-3-1](https://github.com/char0n/apidom/tree/main/packages/apidom-reference/src/bundle/strategies/openapi-3-1)
+##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/bundle/strategies/openapi-3-1)
 
 Bundle strategy for bundling [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
 
@@ -1920,8 +1920,8 @@ Most specific strategies are listed first, most generic are listed last.
 It's possible to **change** strategies **order globally** by mutating global `bundle` option:
 
 ```js
-import { options } from '@char0n/apidom-reference';
-import OpenAPI3_1BundleStrategy from '@char0n/apidom-reference/bundle/strategies/openapi-3-1'
+import { options } from '@speclynx/apidom-reference';
+import OpenAPI3_1BundleStrategy from '@speclynx/apidom-reference/bundle/strategies/openapi-3-1'
 
 options.dereference.strategies = [
   new OpenAPI3_1DereferenceStrategy(),
@@ -1931,8 +1931,8 @@ options.dereference.strategies = [
 To **change** the strategies **order** on ad-hoc basis:
 
 ```js
-import { bundle } from '@char0n/apidom-reference';
-import OpenAPI3_1BundleStrategy from '@char0n/apidom-reference/bundle/strategies/openapi-3-1'
+import { bundle } from '@speclynx/apidom-reference';
+import OpenAPI3_1BundleStrategy from '@speclynx/apidom-reference/bundle/strategies/openapi-3-1'
 
 await bundle('/home/user/oas.json', {
   parse: {
@@ -1965,7 +1965,7 @@ interface BundleStrategy {
 New strategy is then provided as an option to the `bundle` function:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@speclynx/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -1998,7 +1998,7 @@ bundles it and returns a bundled element.
 If you want to force execution of your strategy, add it as a first one:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@speclynx/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -2026,7 +2026,7 @@ await bundle('/home/user/oas.json', {
 To override the default strategies entirely, set `MyCustomBundleStrategy` strategy to be the only one available:
 
 ```ts
-import { bundle, options, File, BundleStrategy } from '@char0n/apidom-reference';
+import { bundle, options, File, BundleStrategy } from '@speclynx/apidom-reference';
 
 interface MyCustomBundleStrategyOptions extends Omit<BundleStrategyOptions, 'name'> {}
 
@@ -2051,7 +2051,7 @@ await bundle('/home/user/oas.json', {
 });
 ```
 
-New strategies can be based on a predefined stamp called [BundleStrategy](https://github.com/char0n/apidom/blob/main/packages/apidom-reference/src/bundle/strategies/BundleStrategy.ts).
+New strategies can be based on a predefined stamp called [BundleStrategy](https://github.com/speclynx/apidom/blob/main/packages/apidom-reference/src/bundle/strategies/BundleStrategy.ts).
 
 ##### Manipulating bundle strategies
 
@@ -2067,7 +2067,7 @@ and passing its result to bundling via an option. External resolution is built o
 so it's theoretically always faster on huge amount of external dependencies than the bundling.
 
 ```js
-import { resolve, bundle } from '@char0n/apidom-reference';
+import { resolve, bundle } from '@speclynx/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
   parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },

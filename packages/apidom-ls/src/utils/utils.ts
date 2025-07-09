@@ -1,15 +1,15 @@
-import * as openapi2AdapterJson from '@char0n/apidom-parser-adapter-openapi-json-2';
-import * as openapi2AdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-2';
-import * as openapi30xAdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-0';
-import * as openapi30xAdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-0';
-import * as openapi31xAdapterJson from '@char0n/apidom-parser-adapter-openapi-json-3-1';
-import * as openapi31xAdapterYaml from '@char0n/apidom-parser-adapter-openapi-yaml-3-1';
-import * as asyncapi2AdapterJson from '@char0n/apidom-parser-adapter-asyncapi-json-2';
-import * as asyncapi2AdapterYaml from '@char0n/apidom-parser-adapter-asyncapi-yaml-2';
-import * as adsAdapterJson from '@char0n/apidom-parser-adapter-api-design-systems-json';
-import * as adsAdapterYaml from '@char0n/apidom-parser-adapter-api-design-systems-yaml';
-import * as adapterJson from '@char0n/apidom-parser-adapter-json';
-import * as adapterYaml from '@char0n/apidom-parser-adapter-yaml-1-2';
+import * as openapi2AdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-2';
+import * as openapi2AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-2';
+import * as openapi30xAdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-3-0';
+import * as openapi30xAdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-0';
+import * as openapi31xAdapterJson from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import * as openapi31xAdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
+import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
+import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
+import * as adsAdapterJson from '@speclynx/apidom-parser-adapter-api-design-systems-json';
+import * as adsAdapterYaml from '@speclynx/apidom-parser-adapter-api-design-systems-yaml';
+import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
+import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
 import {
   ArrayElement,
   BooleanElement,
@@ -28,8 +28,8 @@ import {
   StringElement,
   traverse,
   toValue,
-} from '@char0n/apidom-core';
-import { compile, URIFragmentIdentifier } from '@char0n/apidom-json-pointer';
+} from '@speclynx/apidom-core';
+import { compile, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range } from 'vscode-languageserver-types';
 

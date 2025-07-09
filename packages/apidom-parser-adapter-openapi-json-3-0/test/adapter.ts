@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
-import { isParseResultElement, sexprs } from '@char0n/apidom-core';
-import { isOpenApi3_0Element } from '@char0n/apidom-ns-openapi-3-0';
+import { isParseResultElement, sexprs } from '@speclynx/apidom-core';
+import { isOpenApi3_0Element } from '@speclynx/apidom-ns-openapi-3-0';
 
 import * as adapter from '../src/adapter.ts';
 

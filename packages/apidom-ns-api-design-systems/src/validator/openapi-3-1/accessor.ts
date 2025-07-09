@@ -1,10 +1,10 @@
-import { Element, visit, ArrayElement, toValue } from '@char0n/apidom-core';
+import { Element, visit, ArrayElement, toValue } from '@speclynx/apidom-core';
 import {
   OperationElement,
   ResponseElement,
   getNodeType,
   keyMap,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 import StandardIdentifierElement from '../../elements/StandardIdentifier.ts';
 

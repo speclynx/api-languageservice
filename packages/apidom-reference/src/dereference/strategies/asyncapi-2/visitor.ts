@@ -13,9 +13,9 @@ import {
   Element,
   BooleanElement,
   RefElement,
-} from '@char0n/apidom-core';
-import { ApiDOMError } from '@char0n/apidom-error';
-import { evaluate, URIFragmentIdentifier } from '@char0n/apidom-json-pointer';
+} from '@speclynx/apidom-core';
+import { ApiDOMError } from '@speclynx/apidom-error';
+import { evaluate, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 import {
   ChannelItemElement,
   getNodeType,
@@ -25,7 +25,7 @@ import {
   isReferenceElement,
   keyMap,
   ReferenceElement,
-} from '@char0n/apidom-ns-asyncapi-2';
+} from '@speclynx/apidom-ns-asyncapi-2';
 
 import MaximumDereferenceDepthError from '../../../errors/MaximumDereferenceDepthError.ts';
 import MaximumResolveDepthError from '../../../errors/MaximumResolveDepthError.ts';

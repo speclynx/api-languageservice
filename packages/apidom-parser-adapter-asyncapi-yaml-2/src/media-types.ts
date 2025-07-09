@@ -1,4 +1,4 @@
-import { mediaTypes, AsyncAPIMediaTypes } from '@char0n/apidom-ns-asyncapi-2';
+import { mediaTypes, AsyncAPIMediaTypes } from '@speclynx/apidom-ns-asyncapi-2';
 
 /**
  * @public

@@ -1,5 +1,5 @@
-import { Element, ArrayElement } from '@char0n/apidom-core';
-import { OperationSecurityElement } from '@char0n/apidom-ns-openapi-3-0';
+import { Element, ArrayElement } from '@speclynx/apidom-core';
+import { OperationSecurityElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 import OpenApi3_1Element from '../../elements/OpenApi3-1.ts';
 import OperationElement from '../../elements/Operation.ts';

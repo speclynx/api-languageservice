@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 
 import MapVisitor, { MapVisitorOptions, SpecPath } from '../generics/MapVisitor.ts';
 import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';

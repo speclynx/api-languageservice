@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { mediaTypes } from '@char0n/apidom-ns-asyncapi-2';
+import { mediaTypes } from '@speclynx/apidom-ns-asyncapi-2';
 import { fileURLToPath } from 'node:url';
 
 import { resolve } from '../../../../../src/index.ts';

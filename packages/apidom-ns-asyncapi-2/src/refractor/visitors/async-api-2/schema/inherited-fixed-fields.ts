@@ -1,5 +1,5 @@
 import { map } from 'ramda';
-import { specificationObj as JSONSchemaDraft7Specification } from '@char0n/apidom-ns-json-schema-draft-7';
+import { specificationObj as JSONSchemaDraft7Specification } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 import SchemaOrReferenceVisitor from './SchemaOrReferenceVisitor.ts';
 

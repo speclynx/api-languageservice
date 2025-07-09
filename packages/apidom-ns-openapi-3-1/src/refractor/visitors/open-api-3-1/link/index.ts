@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   LinkVisitorOptions,
   LinkVisitor as LinkVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import LinkElement from '../../../../elements/Link.ts';
 

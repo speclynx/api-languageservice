@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { AnnotationElement, toValue } from '@char0n/apidom-core';
-import { parse as parseJSON } from '@char0n/apidom-parser-adapter-json';
-import { parse as parseYAML } from '@char0n/apidom-parser-adapter-yaml-1-2';
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { AnnotationElement, toValue } from '@speclynx/apidom-core';
+import { parse as parseJSON } from '@speclynx/apidom-parser-adapter-json';
+import { parse as parseYAML } from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 import {
   refractPluginOpenApi3_1StandardIdentifierSelectors,

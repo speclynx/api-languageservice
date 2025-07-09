@@ -1,4 +1,4 @@
-import { NamespacePluginOptions } from '@char0n/apidom-core';
+import { NamespacePluginOptions } from '@speclynx/apidom-core';
 
 import CallbackElement from './elements/Callback.ts';
 import ComponentsElement from './elements/Components.ts';

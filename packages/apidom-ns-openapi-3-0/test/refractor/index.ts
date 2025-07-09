@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { ObjectElement, toValue, Namespace } from '@char0n/apidom-core';
-import { InfoElement as Info31Element, OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { ObjectElement, toValue, Namespace } from '@speclynx/apidom-core';
+import { InfoElement as Info31Element, OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 import {
   OpenApi3_0Element,

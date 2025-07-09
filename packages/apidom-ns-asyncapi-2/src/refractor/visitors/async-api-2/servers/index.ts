@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { test } from 'ramda';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 
 import PatternedFieldsVisitor, {
   PatternedFieldsVisitorOptions,

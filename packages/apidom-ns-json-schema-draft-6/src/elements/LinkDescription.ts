@@ -1,9 +1,9 @@
-import { BooleanElement, StringElement } from '@char0n/apidom-core';
-import { UnsupportedOperationError } from '@char0n/apidom-error';
+import { BooleanElement, StringElement } from '@speclynx/apidom-core';
+import { UnsupportedOperationError } from '@speclynx/apidom-error';
 import {
   LinkDescriptionElement,
   JSONReferenceElement,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import JSONSchema from './JSONSchema.ts';
 

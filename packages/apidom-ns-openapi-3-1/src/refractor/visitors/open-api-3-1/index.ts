@@ -1,13 +1,13 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 import {
   FixedFieldsVisitor,
   FixedFieldsVisitorOptions,
   FallbackVisitor,
   FallbackVisitorOptions,
   SpecPath,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import OpenApi3_1Element from '../../../elements/OpenApi3-1.ts';
 

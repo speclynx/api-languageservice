@@ -1,6 +1,6 @@
 import Benchmark from 'benchmark';
 import type { Event } from 'benchmark';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 
 import { OpenApi3_1Element } from '../../src/index.ts';
 

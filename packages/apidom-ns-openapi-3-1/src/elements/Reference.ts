@@ -1,5 +1,5 @@
-import { StringElement } from '@char0n/apidom-core';
-import { ReferenceElement } from '@char0n/apidom-ns-openapi-3-0';
+import { StringElement } from '@speclynx/apidom-core';
+import { ReferenceElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

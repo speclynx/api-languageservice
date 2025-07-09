@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { find, toValue, isElement } from '@char0n/apidom-core';
+import { find, toValue, isElement } from '@speclynx/apidom-core';
 
 import { JSONSchemaElement, isJSONSchemaElement } from '../../../../src/index.ts';
 

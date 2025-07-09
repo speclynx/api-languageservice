@@ -1,6 +1,6 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range, SymbolInformation } from 'vscode-languageserver-protocol';
-import { ArraySlice, Element, filter, toValue, MemberElement } from '@char0n/apidom-core';
+import { ArraySlice, Element, filter, toValue, MemberElement } from '@speclynx/apidom-core';
 import { SymbolKind } from 'vscode-languageserver-types';
 
 import { buildPath, getSourceMap, isMember, SourceMap } from '../../utils/utils.ts';

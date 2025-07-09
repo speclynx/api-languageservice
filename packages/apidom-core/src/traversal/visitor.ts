@@ -6,7 +6,7 @@ import {
   BREAK,
   mergeAllVisitors,
   cloneNode as cloneNodeDefault,
-} from '@char0n/apidom-ast';
+} from '@speclynx/apidom-ast';
 
 import {
   isElement,

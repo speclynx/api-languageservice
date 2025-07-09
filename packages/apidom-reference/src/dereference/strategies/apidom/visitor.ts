@@ -1,5 +1,5 @@
 import { propEq } from 'ramda';
-import { ApiDOMError } from '@char0n/apidom-error';
+import { ApiDOMError } from '@speclynx/apidom-error';
 import {
   Element,
   RefElement,
@@ -12,8 +12,8 @@ import {
   refract,
   visit,
   cloneDeep,
-} from '@char0n/apidom-core';
-import { URIFragmentIdentifier } from '@char0n/apidom-json-pointer';
+} from '@speclynx/apidom-core';
+import { URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 
 import MaximumResolveDepthError from '../../../errors/MaximumResolveDepthError.ts';
 import * as url from '../../../util/url.ts';

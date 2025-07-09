@@ -1,4 +1,4 @@
-import { options as referenceOptions } from '@char0n/apidom-reference';
+import { options as referenceOptions } from '@speclynx/apidom-reference';
 
 import ConvertStrategy from '../strategies/ConvertStrategy.ts';
 import OpenAPI31ToOpenAPI30ConvertStrategy from '../strategies/openapi-3-1-to-openapi-3-0-3/index.ts';

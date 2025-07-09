@@ -1,6 +1,6 @@
 import { type } from 'ramda';
 import { isString } from 'ramda-adjunct';
-import { ParseResultElement } from '@char0n/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-core';
 
 import * as url from './util/url.ts';
 

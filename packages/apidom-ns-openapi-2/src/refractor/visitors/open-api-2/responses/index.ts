@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { test, always, range } from 'ramda';
-import { Element, ObjectElement, StringElement, cloneDeep, toValue } from '@char0n/apidom-core';
+import { Element, ObjectElement, StringElement, cloneDeep, toValue } from '@speclynx/apidom-core';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import ResponsesElement from '../../../../elements/Responses.ts';

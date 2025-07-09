@@ -1,5 +1,5 @@
 {
-  "name": "@char0n/apidom-logging",
+  "name": "@speclynx/apidom-logging",
   "version": "0.77.0",
   "description": "Logging facility for ApiDOM.",
   "publishConfig": {
@@ -33,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/char0n/apidom.git"
+    "url": "git+https://github.com/speclynx/apidom.git"
   },
   "author": "Vladimír Gorej",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-error": "*"
+    "@speclynx/apidom-error": "*"
   },
   "files": [
     "src/**/*.mjs",

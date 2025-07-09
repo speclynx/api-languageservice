@@ -1,4 +1,4 @@
-import { OpenapiElement } from '@char0n/apidom-ns-openapi-3-0';
+import { OpenapiElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

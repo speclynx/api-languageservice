@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai';
-import { includesClasses, sexprs } from '@char0n/apidom-core';
+import { includesClasses, sexprs } from '@speclynx/apidom-core';
 
 import { ParameterElement } from '../../../../src/index.ts';
 

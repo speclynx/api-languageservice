@@ -1,4 +1,4 @@
-import { NotImplementedError } from '@char0n/apidom-error';
+import { NotImplementedError } from '@speclynx/apidom-error';
 
 /**
  * @public

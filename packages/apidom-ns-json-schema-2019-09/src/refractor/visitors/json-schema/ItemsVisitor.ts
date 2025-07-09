@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ObjectElement, ArrayElement, BooleanElement, Element, BREAK } from '@char0n/apidom-core';
+import { ObjectElement, ArrayElement, BooleanElement, Element, BREAK } from '@speclynx/apidom-core';
 import {
   SpecificationVisitor,
   SpecificationVisitorOptions,
@@ -7,7 +7,7 @@ import {
   FallbackVisitorOptions,
   ParentSchemaAwareVisitor,
   ParentSchemaAwareVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-7';
+} from '@speclynx/apidom-ns-json-schema-draft-7';
 
 /**
  * @public

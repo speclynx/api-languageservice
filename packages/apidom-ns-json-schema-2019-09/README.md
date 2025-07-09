@@ -1,23 +1,23 @@
-# @char0n/apidom-ns-json-schema-2019-09
+# @speclynx/apidom-ns-json-schema-2019-09
 
-`@char0n/apidom-ns-json-schema-2019-09` contains ApiDOM namespace specific to [JSON Schema 2019-09](https://json-schema.org/draft/2019-09/draft-handrews-json-schema-02) specification.
+`@speclynx/apidom-ns-json-schema-2019-09` contains ApiDOM namespace specific to [JSON Schema 2019-09](https://json-schema.org/draft/2019-09/draft-handrews-json-schema-02) specification.
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-ns-json-schema-2019-09
+ $ npm install @speclynx/apidom-ns-json-schema-2019-09
 ```
 
 ## JSON Schema 2019-09 namespace
 
-JSON Schema 2019-09 namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-json-schema-2019-09/src/elements) implemented on top
+JSON Schema 2019-09 namespace consists of [number of elements](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-json-schema-2019-09/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@char0n/apidom-core';
-import jsonShema201909Namespace from '@char0n/apidom-ns-json-schema-2019-09';
+import { createNamespace } from '@speclynx/apidom-core';
+import jsonShema201909Namespace from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const namespace = createNamespace(jsonShema201909Namespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { JSONSchemaElement, LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { JSONSchemaElement, LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const jsonSchemaElement = new JSONSchemaElement();
 const linkDescriptionElement = new LinkDescriptionElement();
@@ -39,11 +39,11 @@ const linkDescriptionElement = new LinkDescriptionElement();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/predicates.ts)
+This package exposes [predicates](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isJSONSchemaElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { isJSONSchemaElement, JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const jsonSchemaElement = new JSONSchemaElement();
 
@@ -53,12 +53,12 @@ isJSONSchemaElement(jsonSchemaElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L4).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L11) and [nodeTypeGetter](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-json-schema-2019-09/src/traversal/visitor.ts#L4).
+To learn more about these `visit` configuration options please refer to [@speclynx/apidom-ast documentation](https://github.com/speclynx/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@char0n/apidom-core';
-import { JSONSchemaElement, keyMap, getNodeType } from '@char0n/apidom-ns-json-schema-2019-09';
+import { visit } from '@speclynx/apidom-core';
+import { JSONSchemaElement, keyMap, getNodeType } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const element = new JSONSchemaElement();
 
@@ -79,7 +79,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const object = {
   anchor: 'nodes/{thisNodeId}',
@@ -92,8 +92,8 @@ LinkDescriptionElement.refract(object); // => LinkDescriptionElement({ anchor, a
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const objectElement = new ObjectElement({
   anchor: 'nodes/{thisNodeId}',
@@ -108,8 +108,8 @@ LinkDescriptionElement.refract(objectElement); // => LinkDescriptionElement({ an
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { LinkDescriptionElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const objectElement = new ObjectElement({
   anchor: 'nodes/{thisNodeId}',
@@ -144,8 +144,8 @@ empty value, or both. If the value is not provided in YAML format, this plugin c
 this missing value with the most appropriate semantic element type.
 
 ```js
-import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
-import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@char0n/apidom-ns-json-schema-2019-09';
+import { parse } from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import { refractorPluginReplaceEmptyElement, JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
 const yamlDefinition = `
 $schema: 'https://json-schema.org/draft/2019-09/schema#'

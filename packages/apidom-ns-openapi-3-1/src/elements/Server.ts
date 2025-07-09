@@ -1,4 +1,4 @@
-import { ServerElement } from '@char0n/apidom-ns-openapi-3-0';
+import { ServerElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

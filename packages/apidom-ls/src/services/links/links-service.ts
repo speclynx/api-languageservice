@@ -1,6 +1,6 @@
 import { Range, DocumentLink } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { Element, traverse, toValue } from '@char0n/apidom-core';
+import { Element, traverse, toValue } from '@speclynx/apidom-core';
 
 import {
   LanguageSettings,

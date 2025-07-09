@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Benchmark from 'benchmark';
 import type { Event } from 'benchmark';
-import { ObjectElement } from '@char0n/apidom-core';
-import { AsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { AsyncApi2Element } from '@speclynx/apidom-ns-asyncapi-2';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixtures/asyncapi.json');

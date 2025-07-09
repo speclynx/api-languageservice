@@ -8,7 +8,7 @@ import {
   RefElement,
   isRefElement,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import { dereference, dereferenceApiDOM, DereferenceError } from '../../../../../src/index.ts';
 

@@ -1,5 +1,5 @@
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
-import { AnnotationElement } from '@char0n/apidom-core';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
+import { AnnotationElement } from '@speclynx/apidom-core';
 
 type WebhooksRefractorPluginOptions = {
   annotations: AnnotationElement[];

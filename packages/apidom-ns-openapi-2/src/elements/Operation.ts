@@ -5,7 +5,7 @@ import {
   StringElement,
   Attributes,
   Meta,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import ExternalDocumentationElement from './ExternalDocumentation.ts';
 import ResponsesElement from './Responses.ts';

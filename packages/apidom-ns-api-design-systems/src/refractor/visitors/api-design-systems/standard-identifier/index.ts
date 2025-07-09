@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ArrayElement, BREAK, Element } from '@char0n/apidom-core';
+import { ArrayElement, BREAK, Element } from '@speclynx/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../../SpecificationVisitor.ts';

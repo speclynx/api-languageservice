@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export { default as mediaTypes, OpenAPIMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -39,24 +39,24 @@ export type {
 } from './refractor/toolbox.ts';
 export { default as specificationObj } from './refractor/specification.ts';
 
-export { AlternatingVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { AlternatingVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { FixedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { FixedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { MapVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { MapVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { MixedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { MixedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { PatternedFieldsVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { PatternedFieldsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { FallbackVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { FallbackVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { SpecificationExtensionVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { SpecificationExtensionVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { SpecificationVisitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { SpecificationVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export { Visitor } from '@char0n/apidom-ns-openapi-3-0';
-export type { VisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export { AlternatingVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { AlternatingVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { FixedFieldsVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { FixedFieldsVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { MapVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { MapVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { MixedFieldsVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { MixedFieldsVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { PatternedFieldsVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { PatternedFieldsVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { FallbackVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { FallbackVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { SpecificationExtensionVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { SpecificationExtensionVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { SpecificationVisitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { SpecificationVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export { Visitor } from '@speclynx/apidom-ns-openapi-3-0';
+export type { VisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
 
 export type {
   default as CallbackVisitor,
@@ -66,15 +66,15 @@ export type {
 export type {
   ComponentsCallbacksVisitor,
   ComponentsCallbacksVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ComponentsExamplesVisitor,
   ComponentsExamplesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ComponentsHeadersVisitor,
   ComponentsHeadersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ComponentsVisitor,
   ComponentsVisitorOptions,
@@ -83,19 +83,19 @@ export type {
 export type {
   ComponentsLinksVisitor,
   ComponentsLinksVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ComponentsParametersVisitor,
   ComponentsParametersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ComponentsRequestBodiesVisitor,
   ComponentsRequestBodiesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ComponentsResponsesVisitor,
   ComponentsResponsesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ComponentsPathItemsVisitor,
   PathItemsVisitorOptions as ComponentsPathItemsVisitorOptions,
@@ -107,7 +107,7 @@ export type {
 export type {
   ComponentsSecuritySchemesVisitor,
   ComponentsSecuritySchemesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ContactVisitor,
   ContactVisitorOptions,
@@ -121,11 +121,11 @@ export type {
 export type {
   DiscriminatorMappingVisitor,
   DiscriminatorMappingVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   EncodingHeadersVisitor,
   EncodingHeadersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as EncodingVisitor,
   EncodingVisitorOptions,
@@ -134,7 +134,7 @@ export type {
 export type {
   ExampleExternalValueVisitor,
   ExampleExternalValueVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ExampleVisitor,
   ExampleVisitorOptions,
@@ -148,11 +148,11 @@ export type {
 export type {
   HeaderContentVisitor,
   HeaderContentVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   HeaderExamplesVisitor,
   HeaderExamplesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as HeaderVisitor,
   HeaderVisitorOptions,
@@ -161,13 +161,16 @@ export type {
 export type {
   HeaderSchemaVisitor,
   HeaderSchemaVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as InfoVisitor,
   InfoVisitorOptions,
   BaseInfoVisitor,
 } from './refractor/visitors/open-api-3-1/info/index.ts';
-export type { InfoVersionVisitor, InfoVersionVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type {
+  InfoVersionVisitor,
+  InfoVersionVisitorOptions,
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as LicenseVisitor,
   LicenseVisitorOptions,
@@ -181,23 +184,23 @@ export type {
 export type {
   LinkOperationIdVisitor,
   LinkOperationIdVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   LinkOperationRefVisitor,
   LinkOperationRefVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   LinkParametersVisitor,
   LinkParametersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   MediaTypeEncodingVisitor,
   MediaTypeEncodingVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   MediaTypeExamplesVisitor,
   MediaTypeExamplesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as MediaTypeVisitor,
   MediaTypeVisitorOptions,
@@ -206,7 +209,7 @@ export type {
 export type {
   MediaTypeSchemaVisitor,
   MediaTypeSchemaVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as OAuthFlowVisitor,
   OAuthFlowVisitorOptions,
@@ -215,7 +218,7 @@ export type {
 export type {
   OAuthFlowScopesVisitor,
   OAuthFlowScopesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as OAuthFlowsVisitor,
   OAuthFlowsVisitorOptions,
@@ -224,7 +227,7 @@ export type {
 export type {
   OperationCallbacksVisitor,
   OperationCallbacksVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as OperationVisitor,
   OperationVisitorOptions,
@@ -233,31 +236,31 @@ export type {
 export type {
   OperationParametersVisitor,
   OperationParametersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   OperationRequestBodyVisitor,
   OperationRequestBodyVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   OperationSecurityVisitor,
   OperationSecurityVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   OperationServersVisitor,
   OperationServersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   OperationTagsVisitor,
   OperationTagsVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ParameterContentVisitor,
   ParameterContentVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ParameterExampleVisitor,
   ParameterExamplesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ParameterVisitor,
   ParameterVisitorOptions,
@@ -266,11 +269,11 @@ export type {
 export type {
   ParameterSchemaVisitor,
   ParameterSchemaVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   PathItem$RefVisitor,
   PathItem$RefVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as PathItemVisitor,
   PathItemVisitorOptions,
@@ -279,11 +282,11 @@ export type {
 export type {
   PathItemParametersVisitor,
   PathItemParametersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   PathItemServersVisitor,
   PathItemServersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as PathsVisitor,
   PathsVisitorOptions,
@@ -292,7 +295,7 @@ export type {
 export type {
   Reference$RefVisitor,
   Reference$RefVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ReferenceVisitor,
   ReferenceVisitorOptions,
@@ -301,7 +304,7 @@ export type {
 export type {
   RequestBodyContentVisitor,
   RequestBodyContentVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as RequestBodyVisitor,
   RequestBodyVisitorOptions,
@@ -310,11 +313,11 @@ export type {
 export type {
   ResponseContentVisitor,
   ResponseContentVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ResponseHeadersVisitor,
   ResponseHeadersVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ResponseVisitor,
   ResponseVisitorOptions,
@@ -323,11 +326,11 @@ export type {
 export type {
   ResponseLinksVisitor,
   ResponseLinksVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ResponsesDefaultVisitor,
   ResponsesDefaultVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ResponsesVisitor,
   ResponsesVisitorOptions,
@@ -337,15 +340,15 @@ export type {
   default as Schema$defsVisitor,
   $defsVisitorOptions as Schema$defsVisitorOptions,
 } from './refractor/visitors/open-api-3-1/schema/$defsVisitor.ts';
-export type { ParentSchemaAwareVisitorOptions } from '@char0n/apidom-ns-json-schema-2020-12';
+export type { ParentSchemaAwareVisitorOptions } from '@speclynx/apidom-ns-json-schema-2020-12';
 export type {
   $refVisitor as Schema$refVisitor,
   $refVisitorOptions as Schema$refVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 export type {
   $vocabularyVisitor as Schema$vocabularyVisitor,
   $vocabularyVisitorOptions as Schema$vocabularyVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 export type {
   default as SchemaAllOfVisitor,
   AllOfVisitorOptions as SchemaAllOfVisitorOptions,
@@ -357,7 +360,7 @@ export type {
 export type {
   DependentRequiredVisitor as SchemaDependentRequiredVisitor,
   DependentRequiredVisitorOptions as SchemaDependentRequiredVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 export type {
   default as SchemaDependentSchemasVisitor,
   DependentSchemasVisitorOptions as SchemaDependentSchemasVisitorOptions,
@@ -400,11 +403,11 @@ export type {
 export type {
   ServerVariableUrlVisitor,
   ServerVariableUrlVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   ServerVariableVariablesVisitor,
   ServerVariableVariablesVisitorOptions,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as ServerVariableVisitor,
   ServerVariableVisitorOptions,
@@ -420,8 +423,8 @@ export type {
   XmlVisitorOptions,
   BaseXMLVisitor,
 } from './refractor/visitors/open-api-3-1/xml/index.ts';
-export type { ContentVisitor, ContentVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export type { ExamplesVisitor, ExamplesVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { ContentVisitor, ContentVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export type { ExamplesVisitor, ExamplesVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
 export type {
   default as OpenApi3_1Visitor,
   OpenApi3_1VisitorOptions,
@@ -434,13 +437,13 @@ export type {
   default as WebhooksVisitor,
   WebhooksVisitorOptions,
 } from './refractor/visitors/open-api-3-1/WebhooksVisitor.ts';
-export type { OpenapiVisitor, OpenapiVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export type { ParametersVisitor, ParametersVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export type { SecurityVisitor, SecurityVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export type { ServersVisitor, ServersVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
-export type { TagsVisitor, TagsVisitorOptions } from '@char0n/apidom-ns-openapi-3-0';
+export type { OpenapiVisitor, OpenapiVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export type { ParametersVisitor, ParametersVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export type { SecurityVisitor, SecurityVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export type { ServersVisitor, ServersVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
+export type { TagsVisitor, TagsVisitorOptions } from '@speclynx/apidom-ns-openapi-3-0';
 
-export type { SpecPath } from '@char0n/apidom-ns-openapi-3-0';
+export type { SpecPath } from '@speclynx/apidom-ns-openapi-3-0';
 
 export {
   isCallbackElement,
@@ -478,7 +481,7 @@ export {
   isOpenApiExtension,
   isServerLikeElement,
   isServersElement,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 export { keyMap, getNodeType } from './traversal/visitor.ts';
 
@@ -553,6 +556,6 @@ export {
   ServersElement,
   ServerVariablesElement,
   TagsElement,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 export { default as ComponentsPathItemsElement } from './elements/nces/ComponentsPathItems.ts';
 export { default as WebhooksElement } from './elements/nces/Webhooks.ts';

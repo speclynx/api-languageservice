@@ -15,7 +15,7 @@ import {
   Literal,
   isNode as isCSTNode,
   getNodeType as getCSTNodeType,
-} from '@char0n/apidom-ast';
+} from '@speclynx/apidom-ast';
 import {
   Element,
   ParseResultElement,
@@ -33,7 +33,7 @@ import {
   isElement,
   keyMap as keyMapApiDOM,
   getNodeType as getNodeTypeApiDOM,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export const keyMap = {
   // @ts-ignore

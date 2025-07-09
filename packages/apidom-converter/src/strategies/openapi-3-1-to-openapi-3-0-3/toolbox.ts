@@ -1,5 +1,5 @@
-import { Element, Meta, Attributes, AnnotationElement } from '@char0n/apidom-core';
-import { createToolbox as createToolboxOpenAPI31 } from '@char0n/apidom-ns-openapi-3-1';
+import { Element, Meta, Attributes, AnnotationElement } from '@speclynx/apidom-core';
+import { createToolbox as createToolboxOpenAPI31 } from '@speclynx/apidom-ns-openapi-3-1';
 
 const createToolbox = () => {
   const openAPI31Toolbox = createToolboxOpenAPI31();

@@ -4,7 +4,7 @@ import {
   StringElement,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import {
   ServersElement,
   SecurityElement,
@@ -39,7 +39,7 @@ import {
   ResponseLinksElement,
   DiscriminatorMappingElement,
   OAuthFlowScopesElement,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * OpenAPI 3.1.0 specification elements.

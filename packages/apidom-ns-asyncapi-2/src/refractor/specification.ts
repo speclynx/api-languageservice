@@ -1,4 +1,4 @@
-import { specificationObj as JSONSchemaDraft7Specification } from '@char0n/apidom-ns-json-schema-draft-7';
+import { specificationObj as JSONSchemaDraft7Specification } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 import FallbackVisitor from './visitors/FallbackVisitor.ts';
 import SpecificationExtensionVisitor from './visitors/SpecificationExtensionVisitor.ts';

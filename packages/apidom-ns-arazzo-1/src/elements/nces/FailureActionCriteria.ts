@@ -1,4 +1,4 @@
-import { ArrayElement, Attributes, Meta } from '@char0n/apidom-core';
+import { ArrayElement, Attributes, Meta } from '@speclynx/apidom-core';
 
 /**
  * @public

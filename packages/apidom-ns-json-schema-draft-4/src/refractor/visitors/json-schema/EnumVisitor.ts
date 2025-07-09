@@ -1,4 +1,4 @@
-import { ArrayElement } from '@char0n/apidom-core';
+import { ArrayElement } from '@speclynx/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';
 

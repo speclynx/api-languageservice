@@ -1,5 +1,5 @@
 import { pipe, assocPath, dissocPath } from 'ramda';
-import { specificationObj } from '@char0n/apidom-ns-json-schema-draft-4';
+import { specificationObj } from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import JSONSchemaVisitor from './visitors/json-schema/index.ts';
 import JSONSchemaItemsVisitor from './visitors/json-schema/ItemsVisitor.ts';

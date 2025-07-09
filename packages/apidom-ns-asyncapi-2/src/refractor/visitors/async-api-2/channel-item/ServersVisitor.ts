@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import { ArrayElement, Element, isStringElement, BREAK, cloneDeep } from '@char0n/apidom-core';
+import { ArrayElement, Element, isStringElement, BREAK, cloneDeep } from '@speclynx/apidom-core';
 
 import ChannelItemServersElement from '../../../../elements/nces/ChannelItemsServers.ts';
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../../SpecificationVisitor.ts';

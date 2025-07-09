@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ComponentsVisitorOptions,
   ComponentsVisitor as ComponentsVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ComponentsElement from '../../../../elements/Components.ts';
 

@@ -1,4 +1,10 @@
-import { StringElement, ObjectElement, ArrayElement, Attributes, Meta } from '@char0n/apidom-core';
+import {
+  StringElement,
+  ObjectElement,
+  ArrayElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
 
 import TagsElement from './Tags.ts';
 import ExternalDocumentationElement from './ExternalDocumentation.ts';

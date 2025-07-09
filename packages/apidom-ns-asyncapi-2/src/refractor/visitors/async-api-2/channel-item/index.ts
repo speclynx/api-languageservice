@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always } from 'ramda';
-import { ObjectElement, isStringElement } from '@char0n/apidom-core';
+import { ObjectElement, isStringElement } from '@speclynx/apidom-core';
 
 import ChannelItemElement from '../../../../elements/ChannelItem.ts';
 import FixedFieldsVisitor, {

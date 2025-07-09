@@ -1,9 +1,9 @@
-import { Element } from '@char0n/apidom-core';
+import { Element } from '@speclynx/apidom-core';
 import {
   PathItemServersElement,
   OperationServersElement,
   ServersElement,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import type OpenApi3_1Element from '../../elements/OpenApi3-1.ts';
 import type PathItemElement from '../../elements/PathItem.ts';

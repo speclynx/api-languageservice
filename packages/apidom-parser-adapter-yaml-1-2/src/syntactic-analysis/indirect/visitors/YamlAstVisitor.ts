@@ -11,7 +11,7 @@ import {
   isNode as isCSTNode,
   YamlScalar,
   YamlStyle,
-} from '@char0n/apidom-ast';
+} from '@speclynx/apidom-ast';
 import {
   ParseResultElement,
   AnnotationElement,
@@ -27,7 +27,7 @@ import {
   getNodeType as getNodeTypeApiDOM,
   Namespace,
   createNamespace,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export const keyMap = {
   stream: ['children'],

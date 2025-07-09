@@ -5,7 +5,7 @@ import {
   isStringElement,
   toValue,
   isObjectElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 /**
  * @public

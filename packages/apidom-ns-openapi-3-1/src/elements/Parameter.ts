@@ -1,4 +1,4 @@
-import { ParameterElement } from '@char0n/apidom-ns-openapi-3-0';
+import { ParameterElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 import SchemaElement from './Schema.ts';
 

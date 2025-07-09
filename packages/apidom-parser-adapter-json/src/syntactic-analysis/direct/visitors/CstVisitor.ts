@@ -11,7 +11,7 @@ import {
   StringElement,
   AnnotationElement,
   isPrimitiveElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
 

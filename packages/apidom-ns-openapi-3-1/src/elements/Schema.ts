@@ -1,5 +1,5 @@
-import { Element, Attributes, Meta } from '@char0n/apidom-core';
-import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import { Element, Attributes, Meta } from '@speclynx/apidom-core';
+import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import XmlElement from './Xml.ts';
 import DiscriminatorElement from './Discriminator.ts';

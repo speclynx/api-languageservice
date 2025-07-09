@@ -5,10 +5,10 @@ import {
   InfoElement as Info30Element,
   isOpenApi3_0Element,
   OpenApi3_0Element,
-} from '@char0n/apidom-ns-openapi-3-0';
-import { InfoElement as Info31Element, isOpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
-import { mediaTypes as openAPI31MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-1';
-import { mediaTypes as openAPI30MediaTypes } from '@char0n/apidom-parser-adapter-openapi-json-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
+import { InfoElement as Info31Element, isOpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
+import { mediaTypes as openAPI31MediaTypes } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import { mediaTypes as openAPI30MediaTypes } from '@speclynx/apidom-parser-adapter-openapi-json-3-0';
 
 import convert from '../../../src/index.ts';
 

@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 export { default as mediaTypes, JSONSchemaDraft6MediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
@@ -39,7 +39,7 @@ export {
   AlternatingVisitor,
   ParentSchemaAwareVisitor,
   Visitor,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 export type {
   SpecificationVisitorOptions,
   FallbackVisitorOptions,
@@ -67,7 +67,7 @@ export type {
   SchemaOrReferenceVisitorOptions,
   SpecPath,
   ItemsVisitor as JSONSchemaDraft4ItemsVisitor,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 export { default as LinkDescriptionVisitor } from './refractor/visitors/json-schema/link-description/index.ts';
 export type { LinkDescriptionVisitorOptions } from './refractor/visitors/json-schema/link-description/index.ts';
@@ -86,4 +86,4 @@ export { keyMap, getNodeType } from './traversal/visitor.ts';
  * JSON Schema Draft 6 specification elements.
  */
 export { JSONSchemaElement, LinkDescriptionElement } from './refractor/registration.ts';
-export { JSONReferenceElement, MediaElement } from '@char0n/apidom-ns-json-schema-draft-4';
+export { JSONReferenceElement, MediaElement } from '@speclynx/apidom-ns-json-schema-draft-4';

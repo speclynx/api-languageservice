@@ -7,7 +7,7 @@ import {
   isStringElement,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import FixedFieldsVisitor, {
   FixedFieldsVisitorOptions,

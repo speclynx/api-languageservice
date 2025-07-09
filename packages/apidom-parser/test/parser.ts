@@ -2,10 +2,10 @@ import { assert } from 'chai';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import * as apiDOM from '@char0n/apidom-core';
-import { isOpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
-import * as openapi3_1Adapter from '@char0n/apidom-parser-adapter-openapi-json-3-1';
-import * as yamlAdapter from '@char0n/apidom-parser-adapter-yaml-1-2';
+import * as apiDOM from '@speclynx/apidom-core';
+import { isOpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
+import * as openapi3_1Adapter from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import * as yamlAdapter from '@speclynx/apidom-parser-adapter-yaml-1-2';
 
 import ApiDOMParser, { ParserError } from '../src/parser.ts';
 

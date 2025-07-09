@@ -1,4 +1,4 @@
-import { ObjectElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
+import { ObjectElement, StringElement, Attributes, Meta } from '@speclynx/apidom-core';
 
 import SchemaElement from '../../Schema.ts';
 import ReferenceElement from '../../Reference.ts';

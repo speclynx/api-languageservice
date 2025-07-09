@@ -17,7 +17,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   traverse,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';

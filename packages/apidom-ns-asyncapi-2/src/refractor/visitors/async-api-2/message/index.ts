@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { always, defaultTo } from 'ramda';
-import { ObjectElement, isObjectElement, toValue } from '@char0n/apidom-core';
+import { ObjectElement, isObjectElement, toValue } from '@speclynx/apidom-core';
 
 import mediaTypes from '../../../../media-types.ts';
 import MessageElement from '../../../../elements/Message.ts';

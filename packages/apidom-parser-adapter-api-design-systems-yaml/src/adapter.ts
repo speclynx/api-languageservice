@@ -1,8 +1,8 @@
 import { propOr, omit } from 'ramda';
 import { isNotUndefined } from 'ramda-adjunct';
-import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
-import { parse as parseYAML, detect as detectYAML } from '@char0n/apidom-parser-adapter-yaml-1-2';
-import apiDesignSystemsNamespace, { MainElement } from '@char0n/apidom-ns-api-design-systems';
+import { ParseResultElement, createNamespace } from '@speclynx/apidom-core';
+import { parse as parseYAML, detect as detectYAML } from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import apiDesignSystemsNamespace, { MainElement } from '@speclynx/apidom-ns-api-design-systems';
 
 export { default as mediaTypes } from './media-types.ts';
 

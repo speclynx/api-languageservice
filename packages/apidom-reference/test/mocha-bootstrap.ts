@@ -1,5 +1,5 @@
 import { propEq } from 'ramda';
-import { options } from '@char0n/apidom-reference';
+import { options } from '@speclynx/apidom-reference';
 import * as chai from 'chai';
 import { jestSnapshotPlugin, addSerializer } from 'mocha-chai-jest-snapshot';
 

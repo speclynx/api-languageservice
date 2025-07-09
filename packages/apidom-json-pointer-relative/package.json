@@ -1,5 +1,5 @@
 {
-  "name": "@char0n/apidom-json-pointer-relative",
+  "name": "@speclynx/apidom-json-pointer-relative",
   "version": "1.2.0",
   "description": "Evaluate Relative JSON Pointer expressions against ApiDOM.",
   "publishConfig": {
@@ -32,15 +32,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/char0n/apidom.git"
+    "url": "git+https://github.com/speclynx/apidom.git"
   },
   "author": "Vladimír Gorej",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.2.0",
-    "@char0n/apidom-error": "^1.2.0",
-    "@char0n/apidom-json-pointer": "^1.2.0",
+    "@speclynx/apidom-core": "^1.2.0",
+    "@speclynx/apidom-error": "^1.2.0",
+    "@speclynx/apidom-json-pointer": "^1.2.0",
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0"

@@ -6,7 +6,7 @@ import {
   cloneDeep,
   toValue,
   ObjectElement,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
 

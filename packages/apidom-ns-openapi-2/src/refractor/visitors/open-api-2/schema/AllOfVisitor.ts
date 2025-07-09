@@ -1,11 +1,11 @@
-import { ArrayElement } from '@char0n/apidom-core';
+import { ArrayElement } from '@speclynx/apidom-core';
 import {
   specificationObj as JSONSchemaDraft4Specification,
   isJSONReferenceElement,
   JSONReferenceElement,
   AllOfVisitorOptions,
   AllOfVisitor as AllOfVisitorType,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 export type { AllOfVisitorOptions };
 

@@ -1,5 +1,5 @@
-import { BooleanElement, createPredicate, isBooleanElement } from '@char0n/apidom-core';
-import type { ElementPredicate } from '@char0n/apidom-core';
+import { BooleanElement, createPredicate, isBooleanElement } from '@speclynx/apidom-core';
+import type { ElementPredicate } from '@speclynx/apidom-core';
 
 import CallbackElement from './elements/Callback.ts';
 import ComponentsElement from './elements/Components.ts';

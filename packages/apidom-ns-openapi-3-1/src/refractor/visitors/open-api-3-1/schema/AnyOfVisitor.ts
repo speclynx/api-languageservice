@@ -1,7 +1,7 @@
 import {
   AnyOfVisitor as AnyOfJSONSchema202012Options,
   AnyOfVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 export type { AnyOfVisitorOptions };
 

@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, expect } from 'chai';
-import { isParseResultElement, sexprs } from '@char0n/apidom-core';
-import { isJSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import { isParseResultElement, sexprs } from '@speclynx/apidom-core';
+import { isJSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import * as adapter from '../src/adapter.ts';
 

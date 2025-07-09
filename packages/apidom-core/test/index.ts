@@ -2,9 +2,9 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import openapi3_1 from '@char0n/apidom-ns-openapi-3-1';
-import ApiDOMParser from '@char0n/apidom-parser';
-import * as openapi3_1Adapter from '@char0n/apidom-parser-adapter-openapi-json-3-1';
+import openapi3_1 from '@speclynx/apidom-ns-openapi-3-1';
+import ApiDOMParser from '@speclynx/apidom-parser';
+import * as openapi3_1Adapter from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
 
 import * as apiDOM from '../src/index.ts';
 

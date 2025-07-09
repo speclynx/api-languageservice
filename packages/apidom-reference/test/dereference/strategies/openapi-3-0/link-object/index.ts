@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { assert } from 'chai';
-import { toValue } from '@char0n/apidom-core';
-import { isOperationElement, LinkElement, mediaTypes } from '@char0n/apidom-ns-openapi-3-0';
-import { evaluate } from '@char0n/apidom-json-pointer';
+import { toValue } from '@speclynx/apidom-core';
+import { isOperationElement, LinkElement, mediaTypes } from '@speclynx/apidom-ns-openapi-3-0';
+import { evaluate } from '@speclynx/apidom-json-pointer';
 import { fileURLToPath } from 'node:url';
 
 import { loadJsonFile } from '../../../../helpers.ts';

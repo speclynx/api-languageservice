@@ -9,7 +9,7 @@ import {
   includesClasses,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 /**
  * OpenAPI 3.0.x specification elements.

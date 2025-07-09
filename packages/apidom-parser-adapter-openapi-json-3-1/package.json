@@ -1,5 +1,5 @@
 {
-  "name": "@char0n/apidom-parser-adapter-openapi-json-3-1",
+  "name": "@speclynx/apidom-parser-adapter-openapi-json-3-1",
   "version": "1.2.0",
   "description": "Parser adapter for parsing JSON documents into OpenAPI 3.1.x namespace.",
   "publishConfig": {
@@ -37,15 +37,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/char0n/apidom.git"
+    "url": "git+https://github.com/speclynx/apidom.git"
   },
   "author": "Vladimir Gorej",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@char0n/apidom-core": "^1.2.0",
-    "@char0n/apidom-ns-openapi-3-1": "^1.2.0",
-    "@char0n/apidom-parser-adapter-json": "^1.2.0",
+    "@speclynx/apidom-core": "^1.2.0",
+    "@speclynx/apidom-ns-openapi-3-1": "^1.2.0",
+    "@speclynx/apidom-parser-adapter-json": "^1.2.0",
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0"

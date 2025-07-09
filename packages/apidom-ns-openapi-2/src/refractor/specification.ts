@@ -1,4 +1,4 @@
-import { specificationObj as JSONSchemaDraft4Specification } from '@char0n/apidom-ns-json-schema-draft-4';
+import { specificationObj as JSONSchemaDraft4Specification } from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import FallbackVisitor from './visitors/FallbackVisitor.ts';
 import SwaggerVisitor from './visitors/open-api-2/index.ts';

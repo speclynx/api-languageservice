@@ -10,7 +10,7 @@ import {
   ObjectElement,
   isArrayElement,
   includesClasses,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
   test as testPathTemplate,

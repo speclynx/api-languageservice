@@ -1,4 +1,4 @@
-import { ParseResultElement, createNamespace } from '@char0n/apidom-core';
+import { ParseResultElement, createNamespace } from '@speclynx/apidom-core';
 
 import lexicalAnalysis from './lexical-analysis/index.ts';
 import syntacticAnalysisDirect from './syntactic-analysis/direct/index.ts';

@@ -1,9 +1,9 @@
-import { ArrayElement } from '@char0n/apidom-core';
+import { ArrayElement } from '@speclynx/apidom-core';
 import {
   specificationObj as JSONSchemaDraft4Specification,
   AnyOfVisitorOptions,
   AnyOfVisitor as AnyOfVisitorType,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import ReferenceElement from '../../../../elements/Reference.ts';
 import { isReferenceElement } from '../../../../predicates.ts';

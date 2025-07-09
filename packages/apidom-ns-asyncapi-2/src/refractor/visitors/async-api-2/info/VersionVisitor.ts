@@ -1,4 +1,4 @@
-import { StringElement, BREAK, toValue } from '@char0n/apidom-core';
+import { StringElement, BREAK, toValue } from '@speclynx/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
 

@@ -1,4 +1,4 @@
-import { mediaTypes, JSONSchema202012MediaTypes } from '@char0n/apidom-ns-json-schema-2020-12';
+import { mediaTypes, JSONSchema202012MediaTypes } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 /**
  * @public

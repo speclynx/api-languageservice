@@ -16,12 +16,12 @@ import {
   RefElement,
   BooleanElement,
   Namespace,
-} from '@char0n/apidom-core';
-import { ApiDOMError } from '@char0n/apidom-error';
+} from '@speclynx/apidom-core';
+import { ApiDOMError } from '@speclynx/apidom-error';
 import {
   evaluate as jsonPointerEvaluate,
   URIFragmentIdentifier,
-} from '@char0n/apidom-json-pointer';
+} from '@speclynx/apidom-json-pointer';
 import {
   getNodeType,
   isReferenceLikeElement,
@@ -37,7 +37,7 @@ import {
   isSchemaElement,
   isOperationElement,
   isBooleanJsonSchemaElement,
-} from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-openapi-3-1';
 
 import { isAnchor, uriToAnchor, evaluate as $anchorEvaluate } from './selectors/$anchor.ts';
 import { evaluate as uriEvaluate } from './selectors/uri.ts';

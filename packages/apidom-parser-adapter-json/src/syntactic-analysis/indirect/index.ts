@@ -1,6 +1,6 @@
 import { Tree } from 'web-tree-sitter';
-import { ParseResultElement } from '@char0n/apidom-core';
-import { visit } from '@char0n/apidom-ast';
+import { ParseResultElement } from '@speclynx/apidom-core';
+import { visit } from '@speclynx/apidom-ast';
 
 import TreeCursorIterator from '../TreeCursorIterator.ts';
 import CstVisitor, { keyMap as cstKeyMap } from './visitors/CstVisitor.ts';

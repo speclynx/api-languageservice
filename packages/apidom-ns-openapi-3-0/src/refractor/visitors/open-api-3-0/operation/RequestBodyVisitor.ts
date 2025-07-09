@@ -1,5 +1,5 @@
 import { T as stubTrue } from 'ramda';
-import { ObjectElement } from '@char0n/apidom-core';
+import { ObjectElement } from '@speclynx/apidom-core';
 
 import { isReferenceElement } from '../../../../predicates.ts';
 import { isReferenceLikeElement } from '../../../predicates.ts';

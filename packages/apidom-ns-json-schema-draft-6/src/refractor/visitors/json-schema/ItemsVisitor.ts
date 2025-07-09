@@ -1,8 +1,8 @@
-import { BooleanElement, BREAK } from '@char0n/apidom-core';
+import { BooleanElement, BREAK } from '@speclynx/apidom-core';
 import {
   ItemsVisitor as JSONSchemaDraft4ItemsVisitor,
   ItemsVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 export type { ItemsVisitorOptions };
 

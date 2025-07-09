@@ -1,4 +1,4 @@
-import { mediaTypes, OpenAPIMediaTypes } from '@char0n/apidom-ns-openapi-2';
+import { mediaTypes, OpenAPIMediaTypes } from '@speclynx/apidom-ns-openapi-2';
 
 /**
  * @public

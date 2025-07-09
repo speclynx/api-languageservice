@@ -1,5 +1,5 @@
 {
-  "name": "@char0n/apidom-error",
+  "name": "@speclynx/apidom-error",
   "version": "1.2.0",
   "description": "Backward compatible custom ApiDOM errors with causes.",
   "publishConfig": {
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/char0n/apidom.git"
+    "url": "git+https://github.com/speclynx/apidom.git"
   },
   "author": "Vladimír Gorej <vladimir.gorej@gmail.com>",
   "license": "Apache-2.0",

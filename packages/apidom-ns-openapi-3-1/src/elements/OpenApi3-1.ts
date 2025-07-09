@@ -1,4 +1,10 @@
-import { ObjectElement, ArrayElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
+import {
+  ObjectElement,
+  ArrayElement,
+  StringElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
 
 import OpenapiElement from './Openapi.ts';
 import InfoElement from './Info.ts';

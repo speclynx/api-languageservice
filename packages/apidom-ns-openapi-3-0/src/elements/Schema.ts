@@ -1,4 +1,4 @@
-import { UnsupportedOperationError } from '@char0n/apidom-error';
+import { UnsupportedOperationError } from '@speclynx/apidom-error';
 import {
   StringElement,
   BooleanElement,
@@ -7,8 +7,8 @@ import {
   Meta,
   ObjectElement,
   ArrayElement,
-} from '@char0n/apidom-core';
-import { JSONSchemaElement, MediaElement } from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-core';
+import { JSONSchemaElement, MediaElement } from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import ReferenceElement from './Reference.ts';
 import DiscriminatorElement from './Discriminator.ts';

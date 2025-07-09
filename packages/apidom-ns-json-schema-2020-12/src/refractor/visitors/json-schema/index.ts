@@ -1,7 +1,7 @@
 import {
   JSONSchemaVisitor as JSONSchema201909Visitor,
   JSONSchemaVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2019-09';
+} from '@speclynx/apidom-ns-json-schema-2019-09';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

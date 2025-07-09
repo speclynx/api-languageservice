@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import dedent from 'dedent';
-import { toValue, dispatchRefractorPlugins } from '@char0n/apidom-core';
-import { parse } from '@char0n/apidom-parser-adapter-yaml-1-2';
+import { toValue, dispatchRefractorPlugins } from '@speclynx/apidom-core';
+import { parse } from '@speclynx/apidom-parser-adapter-yaml-1-2';
 
 import {
   createToolbox,

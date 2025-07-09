@@ -6,7 +6,7 @@ import {
   BREAK,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
 import { SpecPath } from './FixedFieldsVisitor.ts';

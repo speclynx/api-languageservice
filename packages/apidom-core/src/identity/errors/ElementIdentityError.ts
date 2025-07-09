@@ -1,5 +1,5 @@
-import { ApiDOMStructuredError } from '@char0n/apidom-error';
-import type { ApiDOMErrorOptions } from '@char0n/apidom-error';
+import { ApiDOMStructuredError } from '@speclynx/apidom-error';
+import type { ApiDOMErrorOptions } from '@speclynx/apidom-error';
 
 /**
  * @public

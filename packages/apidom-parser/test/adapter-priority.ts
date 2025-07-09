@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { createSandbox } from 'sinon';
-import * as asyncApiJsonAdapterModule from '@char0n/apidom-parser-adapter-asyncapi-json-2';
-import * as asyncApiYamlAdapterModule from '@char0n/apidom-parser-adapter-asyncapi-yaml-2';
-import { isAsyncApi2Element } from '@char0n/apidom-ns-asyncapi-2';
+import * as asyncApiJsonAdapterModule from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
+import * as asyncApiYamlAdapterModule from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
+import { isAsyncApi2Element } from '@speclynx/apidom-ns-asyncapi-2';
 
 import ApiDOMParser from '../src/parser.ts';
 

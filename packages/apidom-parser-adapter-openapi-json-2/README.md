@@ -1,22 +1,22 @@
-# @char0n/apidom-parser-adapter-openapi-json-2
+# @speclynx/apidom-parser-adapter-openapi-json-2
 
-`@char0n/apidom-parser-adapter-openapi-json-2` is a parser adapter for the [OpenAPI 2.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) in [JSON format](https://www.json.org/json-en.html).
-Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/char0n/apidom/tree/main/packages/apidom-parser-adapter-json)
-to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/char0n/apidom/tree/main/packages/apidom#base-namespace)
-which is then refracted with [OpenAPI 2.0 Refractors](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-openapi-2#refractors).
+`@speclynx/apidom-parser-adapter-openapi-json-2` is a parser adapter for the [OpenAPI 2.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md) in [JSON format](https://www.json.org/json-en.html).
+Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-json)
+to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom#base-namespace)
+which is then refracted with [OpenAPI 2.0 Refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-2#refractors).
 
 ## Installation
 
-After [prerequisites](https://github.com/char0n/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
+After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-parser-adapter-openapi-json-2
+ $ npm install @speclynx/apidom-parser-adapter-openapi-json-2
 ```
 
 ## Parser adapter API
 
-This parser adapter is fully compatible with parser adapter interface required by [@char0n/apidom-parser](https://github.com/char0n/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
+This parser adapter is fully compatible with parser adapter interface required by [@speclynx/apidom-parser](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser#mounting-parser-adapters)
 and implements all required properties.
 
 ### mediaTypes
@@ -32,11 +32,11 @@ Defines list of media types that this parser adapter recognizes.
 
 ### detect
 
-[Detection](https://github.com/char0n/apidom/blob/main/packages/apidom-parser-adapter-openapi-json-2/src/adapter.ts#L11) is based on a regular expression matching required OpenAPI 2.0 specification symbols in JSON format.
+[Detection](https://github.com/speclynx/apidom/blob/main/packages/apidom-parser-adapter-openapi-json-2/src/adapter.ts#L11) is based on a regular expression matching required OpenAPI 2.0 specification symbols in JSON format.
 
 ### namespace
 
-This adapter exposes an instance of [OpenAPI 2.0 ApiDOM namespace](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-openapi-2#openapi-20-namespace).
+This adapter exposes an instance of [OpenAPI 2.0 ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-2#openapi-20-namespace).
 
 ### parse
 
@@ -44,15 +44,15 @@ This adapter exposes an instance of [OpenAPI 2.0 ApiDOM namespace](https://githu
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-openapi-2/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to OpenAPI 2.0 ApiDOM namespace.
+<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-openapi-2/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to OpenAPI 2.0 ApiDOM namespace.
 <a name="sourceMap"></a>`sourceMap` | `Boolean` | `false` | Indicate whether to generate source maps.
-<a name="refractorOpts"></a>`refractorOpts` | `Object` | `{}` | Refractor options are [passed to refractors](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-openapi-2#refractor-plugins) during refracting phase.
+<a name="refractorOpts"></a>`refractorOpts` | `Object` | `{}` | Refractor options are [passed to refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-2#refractor-plugins) during refracting phase.
 
 All unrecognized arbitrary options will be ignored.
 
 ## Usage
 
-This parser adapter can be used directly or indirectly via [@char0n/apidom-parser](https://github.com/char0n/apidom/tree/main/packages/apidom-parser).
+This parser adapter can be used directly or indirectly via [@speclynx/apidom-parser](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser).
 
 ### Direct usage
 
@@ -60,7 +60,7 @@ During direct usage you don't need to provide `mediaType` as the `parse` functio
 with [supported media types](#mediatypes).
 
 ```js
-import { parse, detect } from '@char0n/apidom-parser-adapter-openapi-json-2';
+import { parse, detect } from '@speclynx/apidom-parser-adapter-openapi-json-2';
 
 // detecting
 await detect('{"swagger": "2.0"}'); // => true
@@ -72,11 +72,11 @@ const parseResult = await parse('{"swagger": "2.0"}', { sourceMap: true });
 
 ### Indirect usage
 
-You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/char0n/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
+You can omit the `mediaType` option here, but please read [Word on detect vs mediaTypes](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser#word-on-detect-vs-mediatypes) before you do so.
 
 ```js
-import ApiDOMParser from '@char0n/apidom-parser';
-import * as openApiJsonAdapter from '@char0n/apidom-parser-adapter-openapi-json-2';
+import ApiDOMParser from '@speclynx/apidom-parser';
+import * as openApiJsonAdapter from '@speclynx/apidom-parser-adapter-openapi-json-2';
 
 const parser = new ApiDOMParser();
 

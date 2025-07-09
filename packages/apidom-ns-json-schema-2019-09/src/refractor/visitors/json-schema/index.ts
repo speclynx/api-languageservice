@@ -1,9 +1,9 @@
-import { ObjectElement, isStringElement } from '@char0n/apidom-core';
+import { ObjectElement, isStringElement } from '@speclynx/apidom-core';
 import {
   FixedFieldsVisitor,
   JSONSchemaVisitor as JSONSchemaDraft7Visitor,
   JSONSchemaVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-7';
+} from '@speclynx/apidom-ns-json-schema-draft-7';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

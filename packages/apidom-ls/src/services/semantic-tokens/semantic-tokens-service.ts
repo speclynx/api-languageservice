@@ -12,7 +12,7 @@ import {
   isStringElement,
   traverse,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {

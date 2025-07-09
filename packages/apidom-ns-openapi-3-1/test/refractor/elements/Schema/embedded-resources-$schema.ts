@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import { ObjectElement, find, toValue, isElement } from '@char0n/apidom-core';
-import { parse } from '@char0n/apidom-parser-adapter-json';
+import { ObjectElement, find, toValue, isElement } from '@speclynx/apidom-core';
+import { parse } from '@speclynx/apidom-parser-adapter-json';
 
 import {
   isSchemaElement,

@@ -1,4 +1,4 @@
-import { mediaTypes, ArazzoMediaTypes } from '@char0n/apidom-ns-arazzo-1';
+import { mediaTypes, ArazzoMediaTypes } from '@speclynx/apidom-ns-arazzo-1';
 
 /**
  * @public

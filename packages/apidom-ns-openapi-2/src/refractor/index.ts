@@ -4,7 +4,7 @@ import {
   dereference,
   refract as baseRefract,
   dispatchRefractorPlugins,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 import { path } from 'ramda';
 
 import type VisitorClass from './visitors/Visitor.ts';

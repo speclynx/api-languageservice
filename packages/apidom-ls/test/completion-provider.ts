@@ -4,7 +4,7 @@ import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { CompletionItem, Position } from 'vscode-languageserver-types';
-import { toValue, Element } from '@char0n/apidom-core';
+import { toValue, Element } from '@speclynx/apidom-core';
 import { CompletionParams } from 'vscode-languageserver-protocol';
 import { fileURLToPath } from 'node:url';
 

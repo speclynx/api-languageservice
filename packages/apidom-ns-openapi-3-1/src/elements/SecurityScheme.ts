@@ -1,4 +1,4 @@
-import { SecuritySchemeElement } from '@char0n/apidom-ns-openapi-3-0';
+import { SecuritySchemeElement } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
  * @public

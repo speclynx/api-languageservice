@@ -1,23 +1,23 @@
-# @char0n/apidom-ns-api-design-systems
+# @speclynx/apidom-ns-api-design-systems
 
-`@char0n/apidom-ns-api-design-systems` contains ApiDOM namespace specific to [API Design System Specification](https://apidesign.systems/specification/).
+`@speclynx/apidom-ns-api-design-systems` contains ApiDOM namespace specific to [API Design System Specification](https://apidesign.systems/specification/).
 
 ## Installation
 
 You can install this package via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-ns-api-design-systems
+ $ npm install @speclynx/apidom-ns-api-design-systems
 ```
 
 ## API Design Systems 2021-05-07 namespace
 
-API Design Systems 2021-05-07 namespace consists of [number of elements](https://github.com/char0n/apidom/tree/main/packages/apidom-ns-api-design-systems/src/elements) implemented on top
+API Design Systems 2021-05-07 namespace consists of [number of elements](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-api-design-systems/src/elements) implemented on top
 of [primitive ones](https://github.com/refractproject/minim/tree/master/lib/primitives).
 
 ```js
-import { createNamespace } from '@char0n/apidom-core';
-import apiDesignSystemsNamespace from '@char0n/apidom-ns-api-design-systems';
+import { createNamespace } from '@speclynx/apidom-core';
+import apiDesignSystemsNamespace from '@speclynx/apidom-ns-api-design-systems';
 
 const namespace = createNamespace(apiDesignSystemsNamespace);
 
@@ -31,7 +31,7 @@ with the namespace provided as an argument.
 Elements from the namespace can also be used directly by importing them.
 
 ```js
-import { MainElement, InfoElement } from '@char0n/apidom-ns-api-design-systems';
+import { MainElement, InfoElement } from '@speclynx/apidom-ns-api-design-systems';
 
 const infoElement = new InfoElement();
 const mainElement = new MainElement();
@@ -39,11 +39,11 @@ const mainElement = new MainElement();
 
 ## Predicates
 
-This package exposes [predicates](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-api-design-systems/src/predicates.ts)
+This package exposes [predicates](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-api-design-systems/src/predicates.ts)
 for all higher order elements that are part of this namespace.
 
 ```js
-import { isMainElement, MainElement } from '@char0n/apidom-ns-api-design-systems';
+import { isMainElement, MainElement } from '@speclynx/apidom-ns-api-design-systems';
 
 const mainElement = new MainElement();
 
@@ -53,12 +53,12 @@ isMainElement(mainElement); // => true
 ## Traversal
 
 Traversing ApiDOM in this namespace is possible by using `visit` function from `apidom` package.
-This package comes with its own [keyMap](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-api-design-systems/src/traversal/visitor.ts) and  and [nodeTypeGetter](https://github.com/char0n/apidom/blob/main/packages/apidom-ns-api-design-systems/src/traversal/visitor.ts).
-To learn more about these `visit` configuration options please refer to [@char0n/apidom-ast documentation](https://github.com/char0n/apidom/blob/main/packages/apidom-ast/README.md#visit).
+This package comes with its own [keyMap](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-api-design-systems/src/traversal/visitor.ts) and  and [nodeTypeGetter](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-api-design-systems/src/traversal/visitor.ts).
+To learn more about these `visit` configuration options please refer to [@speclynx/apidom-ast documentation](https://github.com/speclynx/apidom/blob/main/packages/apidom-ast/README.md#visit).
 
 ```js
-import { visit } from '@char0n/apidom-core';
-import { MainElement, keyMap, getNodeType } from '@char0n/apidom-ns-api-design-systems';
+import { visit } from '@speclynx/apidom-core';
+import { MainElement, keyMap, getNodeType } from '@speclynx/apidom-ns-api-design-systems';
 
 const element = new MainElement();
 
@@ -79,7 +79,7 @@ or generic ApiDOM structures into structures built from elements of this namespa
 **Refracting JavaScript structures**:
 
 ```js
-import { InfoElement } from '@char0n/apidom-ns-api-design-systems';
+import { InfoElement } from '@speclynx/apidom-ns-api-design-systems';
 
 const object = {
     title: 'my title',
@@ -92,8 +92,8 @@ InfoElement.refract(object); // => InfoElement({ title, description })
 **Refracting generic ApiDOM structures**:
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { InfoElement } from '@char0n/apidom-ns-api-design-systems';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { InfoElement } from '@speclynx/apidom-ns-api-design-systems';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -108,8 +108,8 @@ InfoElement.refract(objectElement); // => InfoElement({ title = 'my title', desc
 Refractors can accept plugins as a second argument of refract static method.
 
 ```js
-import { ObjectElement } from '@char0n/apidom-core';
-import { InfoElement } from '@char0n/apidom-ns-api-design-systems';
+import { ObjectElement } from '@speclynx/apidom-core';
+import { InfoElement } from '@speclynx/apidom-ns-api-design-systems';
 
 const objectElement = new ObjectElement({
     title: 'my title',
@@ -143,12 +143,12 @@ This namespace comes with two refractor plugins specific to OpenAPI 3.1 specific
 OpenAPI 3.1 elements with [Standard Identifiers](https://apidesign.systems/standards/).
 
 ```js
-import { parse } from '@char0n/apidom-parser-adapter-json';
+import { parse } from '@speclynx/apidom-parser-adapter-json';
 import {
   refractPluginOpenApi3_1StandardIdentifierSelectors,
   refractPluginOpenApi3_1StandardIdentifierAccessors,
-} from '@char0n/apidom-ns-api-design-systems';
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+} from '@speclynx/apidom-ns-api-design-systems';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 const jsonDefinition = `
 {
@@ -284,15 +284,15 @@ scenarios:
 **Validation**:
 
 ```js
-import { parse as parseJSON } from '@char0n/apidom-parser-adapter-json';
-import { parse as parseYAML } from '@char0n/apidom-parser-adapter-yaml-1-2';
-import { OpenApi3_1Element } from '@char0n/apidom-ns-openapi-3-1';
+import { parse as parseJSON } from '@speclynx/apidom-parser-adapter-json';
+import { parse as parseYAML } from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 import {
   refractPluginOpenApi3_1StandardIdentifierSelectors,
   refractPluginOpenApi3_1StandardIdentifierAccessors,
   MainElement,
   validateOpenAPI3_1,
-} from '@char0n/apidom-ns-api-design-systems';
+} from '@speclynx/apidom-ns-api-design-systems';
 
 const apiDesignSystemsParseResult = await parseYAML(apiDesignSystemsDefinition);
 const openAPIParseResult = await parseJSON(openAPIDefinition, { sourceMap: true });

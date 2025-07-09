@@ -1,7 +1,7 @@
 import {
   $defsVisitor as $defsJSONSchema202012Visitor,
   $defsVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-2020-12';
+} from '@speclynx/apidom-ns-json-schema-2020-12';
 
 /**
  * @public

@@ -4,8 +4,8 @@ import {
   dereference,
   refract as baseRefract,
   dispatchRefractorPlugins,
-} from '@char0n/apidom-core';
-import type { Visitor as VisitorClass } from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-core';
+import type { Visitor as VisitorClass } from '@speclynx/apidom-ns-openapi-3-0';
 import { path } from 'ramda';
 
 import specification from './specification.ts';

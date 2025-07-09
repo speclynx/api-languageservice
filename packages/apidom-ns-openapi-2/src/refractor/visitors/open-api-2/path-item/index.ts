@@ -6,7 +6,7 @@ import {
   isStringElement,
   cloneDeep,
   toValue,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import PathItemElement from '../../../../elements/PathItem.ts';
 import OperationElement from '../../../../elements/Operation.ts';

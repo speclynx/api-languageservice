@@ -6,9 +6,9 @@ import {
   BooleanElement,
   Attributes,
   Meta,
-} from '@char0n/apidom-core';
-import { UnsupportedOperationError } from '@char0n/apidom-error';
-import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-draft-7';
+} from '@speclynx/apidom-core';
+import { UnsupportedOperationError } from '@speclynx/apidom-error';
+import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-draft-7';
 
 /* eslint-disable class-methods-use-this */
 

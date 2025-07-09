@@ -1,8 +1,8 @@
-import { ObjectElement, BooleanElement } from '@char0n/apidom-core';
+import { ObjectElement, BooleanElement } from '@speclynx/apidom-core';
 import {
   JSONSchemaVisitor as JSONSchemaDraft4Visitor,
   JSONSchemaVisitorOptions,
-} from '@char0n/apidom-ns-json-schema-draft-4';
+} from '@speclynx/apidom-ns-json-schema-draft-4';
 
 import JSONSchemaElement from '../../../elements/JSONSchema.ts';
 

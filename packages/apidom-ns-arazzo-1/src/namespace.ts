@@ -1,5 +1,5 @@
-import { NamespacePluginOptions } from '@char0n/apidom-core';
-import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import { NamespacePluginOptions } from '@speclynx/apidom-core';
+import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 import ArazzoSpecification1Element from './elements/ArazzoSpecification1.ts';
 import ArazzoSpecElement from './elements/ArazzoSpec.ts';

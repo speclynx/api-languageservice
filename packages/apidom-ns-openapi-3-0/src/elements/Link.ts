@@ -5,7 +5,7 @@ import {
   isStringElement,
   Attributes,
   Meta,
-} from '@char0n/apidom-core';
+} from '@speclynx/apidom-core';
 
 import ServerElement from './Server.ts';
 import OperationElement from './Operation.ts';

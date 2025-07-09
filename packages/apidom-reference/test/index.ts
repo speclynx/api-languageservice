@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
-import { isParseResultElement } from '@char0n/apidom-core';
-import { mediaTypes } from '@char0n/apidom-ns-openapi-3-1';
+import { isParseResultElement } from '@speclynx/apidom-core';
+import { mediaTypes } from '@speclynx/apidom-ns-openapi-3-1';
 
 import { parse, resolve, resolveApiDOM } from '../src/index.ts';
 

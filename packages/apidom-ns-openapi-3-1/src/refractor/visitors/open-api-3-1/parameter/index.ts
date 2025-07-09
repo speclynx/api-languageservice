@@ -2,7 +2,7 @@ import {
   specificationObj as OpenApi3_1Specification,
   ParameterVisitorOptions,
   ParameterVisitor as ParameterVisitorType,
-} from '@char0n/apidom-ns-openapi-3-0';
+} from '@speclynx/apidom-ns-openapi-3-0';
 
 import ParameterElement from '../../../../elements/Parameter.ts';
 

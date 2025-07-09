@@ -1,4 +1,4 @@
-import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@char0n/apidom-error';
+import { ApiDOMStructuredError, ApiDOMErrorOptions } from '@speclynx/apidom-error';
 
 import type { ApiDOMParserOptions } from '../types.d.ts';
 

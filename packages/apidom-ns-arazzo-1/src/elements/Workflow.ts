@@ -1,5 +1,11 @@
-import { ObjectElement, ArrayElement, StringElement, Attributes, Meta } from '@char0n/apidom-core';
-import { JSONSchemaElement } from '@char0n/apidom-ns-json-schema-2020-12';
+import {
+  ObjectElement,
+  ArrayElement,
+  StringElement,
+  Attributes,
+  Meta,
+} from '@speclynx/apidom-core';
+import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
 
 /**
  * @public

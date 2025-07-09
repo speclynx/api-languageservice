@@ -6,11 +6,11 @@ ApiDOM Language Service APIs adhere to [LSP Protocol](https://microsoft.github.i
 
 ## Installation
 
-After [prerequisites](https://github.com/char0n/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
+After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
 via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
- $ npm install @char0n/apidom-ls
+ $ npm install @speclynx/apidom-ls
 ```
 
 ## Project current status
@@ -22,7 +22,7 @@ Please note that ApiDOM Language Service is still in unstable status, with plann
 ### Validation
 
 ```
-import { getLanguageService } from '@char0n/apidom-ls';
+import { getLanguageService } from '@speclynx/apidom-ls';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 ...
 

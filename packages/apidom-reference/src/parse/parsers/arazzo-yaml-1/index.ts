@@ -1,10 +1,10 @@
 import { pick } from 'ramda';
-import { ParseResultElement } from '@char0n/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-core';
 import {
   parse,
   mediaTypes as ArazzoYAML1MediaTypes,
   detect,
-} from '@char0n/apidom-parser-adapter-arazzo-yaml-1';
+} from '@speclynx/apidom-parser-adapter-arazzo-yaml-1';
 
 import ParserError from '../../../errors/ParserError.ts';
 import Parser, { ParserOptions } from '../Parser.ts';
