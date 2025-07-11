@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/speclynx/apidom/compare/v1.2.0...v1.3.0) (2025-07-11)
+
+### Features
+
+- use speclynx as publishing scope ([#65](https://github.com/speclynx/apidom/issues/65)) ([0a9b57e](https://github.com/speclynx/apidom/commit/0a9b57ea52ada33b3b0045814ff5fdcfbb0067aa)), closes [#61](https://github.com/speclynx/apidom/issues/61)
+
 # [1.2.0](https://github.com/speclynx/apidom/compare/v1.1.1...v1.2.0) (2025-06-16)
 
 **Note:** Version bump only for package @speclynx/apidom-parser-adapter-api-design-systems-json
