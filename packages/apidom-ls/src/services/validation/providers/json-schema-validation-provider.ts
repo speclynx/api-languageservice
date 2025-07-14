@@ -1,5 +1,6 @@
 import type { Ajv2020 } from 'ajv/dist/2020.d.ts';
 import type { Ajv } from 'ajv';
+import YAML from 'yaml';
 import betterAjvErrors from '@stoplight/better-ajv-errors';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import jsonSourceMap from 'json-source-map';
@@ -104,7 +105,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
       // get the serialized apidom JSON if doc is yaml
       let jsonText = text;
       if (isYaml) {
-        jsonText = JSON.stringify(toValue(api));
+        jsonText = JSON.stringify(api ? toValue(api) : YAML.parse(text));
       }
       this.validate(jsonText, text, isYaml, diagnostics, validationContext);
       const result: ValidationProviderResult = {
