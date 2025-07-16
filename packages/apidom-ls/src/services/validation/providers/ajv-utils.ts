@@ -5,11 +5,13 @@ import type { Ajv as AjvType } from 'ajv';
 import AjvErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
 
-// eslint-disable-next-line import/no-relative-packages
-import draft7MetaSchema from '../../../../../../node_modules/ajv/dist/refs/json-schema-draft-07.json';
-import openapiSchemaJson31Ajv from '../json-schema/open-api-31/openapi-schema-31-ajv.json';
-import openapiSchemaJson31Meta from '../json-schema/open-api-31/openapi-schema-31-meta.json';
-import openapiSchemaJson31Dialect from '../json-schema/open-api-31/openapi-schema-31-dialect.json';
+import { debug } from '../../../utils/utils.ts';
+import openapiSchemaJson31 from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json';
+import openapiSchemaJson31Meta from '../json-schema/open-api-31/spectral/openapi-schema-meta-spectral.json';
+import openapiSchemaJson31Dialect from '../json-schema/open-api-31/spectral/openapi-schema-dialect-spectral.json';
+import draft202012Schema from '../json-schema/open-api-31/spectral/draft-2020-12/index.json';
+import draft202012SchemaValidation from '../json-schema/open-api-31/spectral/draft-2020-12/validation.json';
+import draft4Schema from '../json-schema/open-api-31/spectral/draft-04.json';
 
 let ajvInstance: AjvType;
 let ajv2020Instance: Ajv2020Type;
@@ -20,9 +22,23 @@ export function ajv(ajv2020: boolean): Ajv2020Type | AjvType {
     ajv2020Instance = new Ajv2020({
       strict: false,
       allErrors: true,
-      schemas: [openapiSchemaJson31Ajv, openapiSchemaJson31Meta, openapiSchemaJson31Dialect],
+      messages: true,
+      inlineRefs: false,
+      validateFormats: false,
+      unicodeRegExp: false,
+      schemas: [
+        openapiSchemaJson31,
+        openapiSchemaJson31Meta,
+        openapiSchemaJson31Dialect,
+        draft202012Schema,
+        draft202012SchemaValidation,
+        draft4Schema,
+      ],
+      code: {
+        esm: true,
+        source: true,
+      },
     });
-    ajv2020Instance.addMetaSchema(draft7MetaSchema);
     // @ts-ignore
     addFormats(ajv2020Instance);
     ajv2020Instance.addFormat('media-range', true);
@@ -48,13 +64,30 @@ export function ajv(ajv2020: boolean): Ajv2020Type | AjvType {
   return ajvInstance;
 }
 
-export function compileAjv(
+function getOrCompile(
   jsonSchema: Record<string, unknown>,
   ajv2020: boolean,
 ): Ajv2020Ns.ValidateFunction | AjvNs.ValidateFunction {
+  const ajvInst = ajv2020 ? ajv2020Instance : ajvInstance;
+  const schemaId = jsonSchema.$id || jsonSchema.id;
+  if (schemaId && ajvInst.getSchema(schemaId as string)) {
+    // @ts-ignore
+    return ajvInst.getSchema(schemaId as string);
+  }
+  debug('Compiling JSON Schema', schemaId || 'no-id');
+  return ajvInst.compile(jsonSchema);
+}
+
+export function compileAjv(
+  jsonSchema: Record<string, unknown>,
+  ajv2020: boolean,
+  relatedSchemas?: Record<string, unknown>[],
+): Ajv2020Ns.ValidateFunction | AjvNs.ValidateFunction {
   if (!ajv2020Instance && ajv2020) {
+    debug('Creating new AJV 2020 instance');
     ajv(ajv2020);
   } else if (!ajvInstance && !ajv2020) {
+    debug('Creating new AJV instance');
     ajv(ajv2020);
   }
   const ajvInst = ajv2020 ? ajv2020Instance : ajvInstance;
@@ -63,5 +96,10 @@ export function compileAjv(
     // @ts-ignore
     return ajvInst.getSchema(schemaId as string);
   }
-  return ajvInst.compile(jsonSchema);
+  if (relatedSchemas) {
+    relatedSchemas.forEach((schema) => {
+      getOrCompile(schema, ajv2020);
+    });
+  }
+  return getOrCompile(jsonSchema, ajv2020);
 }

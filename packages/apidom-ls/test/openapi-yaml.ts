@@ -429,112 +429,144 @@ describe('apidom-ls-yaml', function () {
     const result = await languageService.doValidation(doc, validationContext);
     const expected = [
       {
-        range: { start: { line: 12, character: 2 }, end: { line: 12, character: 9 } },
-        message: 'must match exactly one schema in oneOf',
+        range: {
+          start: {
+            line: 12,
+            character: 2,
+          },
+          end: {
+            line: 12,
+            character: 9,
+          },
+        },
+        message: 'must NOT be valid',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
       {
-        range: { start: { line: 3, character: 0 }, end: { line: 3, character: 4 } },
+        range: {
+          start: {
+            line: 3,
+            character: 0,
+          },
+          end: {
+            line: 3,
+            character: 4,
+          },
+        },
         message: 'must NOT have unevaluated properties',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
       {
-        range: { start: { line: 55, character: 9 }, end: { line: 55, character: 45 } },
-        message: 'must match format "uri-reference"',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 127, character: 4 }, end: { line: 127, character: 14 } },
+        range: {
+          start: {
+            line: 127,
+            character: 4,
+          },
+          end: {
+            line: 127,
+            character: 14,
+          },
+        },
         message: 'must be array',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
       {
-        range: { start: { line: 78, character: 6 }, end: { line: 78, character: 16 } },
+        range: {
+          start: {
+            line: 78,
+            character: 6,
+          },
+          end: {
+            line: 78,
+            character: 16,
+          },
+        },
         message: 'must be array',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
       {
-        range: { start: { line: 85, character: 6 }, end: { line: 85, character: 15 } },
+        range: {
+          start: {
+            line: 85,
+            character: 6,
+          },
+          end: {
+            line: 85,
+            character: 15,
+          },
+        },
         message: 'must NOT have unevaluated properties',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
       {
-        range: { start: { line: 25, character: 4 }, end: { line: 25, character: 11 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 25, character: 4 }, end: { line: 25, character: 11 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 30, character: 4 }, end: { line: 30, character: 8 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 30, character: 4 }, end: { line: 30, character: 8 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 41, character: 4 }, end: { line: 41, character: 15 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 41, character: 4 }, end: { line: 41, character: 15 } },
-        message: 'must NOT have unevaluated properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: { start: { line: 3, character: 0 }, end: { line: 3, character: 4 } },
+        range: {
+          start: {
+            line: 3,
+            character: 0,
+          },
+          end: {
+            line: 3,
+            character: 4,
+          },
+        },
         message: 'Object includes not allowed fields',
         severity: 1,
         code: 15000,
         source: 'apilint',
       },
       {
-        range: { start: { line: 15, character: 4 }, end: { line: 15, character: 14 } },
+        range: {
+          start: {
+            line: 15,
+            character: 4,
+          },
+          end: {
+            line: 15,
+            character: 14,
+          },
+        },
         message: 'The identifier field and url field are mutually exclusive.',
         severity: 1,
         code: 7030101,
         source: 'apilint',
       },
       {
-        range: { start: { line: 28, character: 8 }, end: { line: 28, character: 10 } },
+        range: {
+          start: {
+            line: 28,
+            character: 8,
+          },
+          end: {
+            line: 28,
+            character: 10,
+          },
+        },
         message: 'Schema does not include any Schema Object keywords',
         severity: 4,
         code: 10072,
         source: 'apilint',
       },
       {
-        range: { start: { line: 128, character: 6 }, end: { line: 132, character: 0 } },
+        range: {
+          start: {
+            line: 128,
+            character: 6,
+          },
+          end: {
+            line: 132,
+            character: 0,
+          },
+        },
         message: 'parameters must be an array',
         severity: 1,
         code: 3070900,
@@ -542,7 +574,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 65, character: 2 }, end: { line: 65, character: 10 } },
+        range: {
+          start: {
+            line: 65,
+            character: 2,
+          },
+          end: {
+            line: 65,
+            character: 10,
+          },
+        },
         message: 'parameters must be an array of Parameter Objects',
         severity: 1,
         code: 3071000,
@@ -550,7 +591,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 79, character: 8 }, end: { line: 82, character: 22 } },
+        range: {
+          start: {
+            line: 79,
+            character: 8,
+          },
+          end: {
+            line: 82,
+            character: 22,
+          },
+        },
         message: 'parameters must be an array',
         severity: 1,
         code: 3080800,
@@ -558,7 +608,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 68, character: 4 }, end: { line: 68, character: 7 } },
+        range: {
+          start: {
+            line: 68,
+            character: 4,
+          },
+          end: {
+            line: 68,
+            character: 7,
+          },
+        },
         message: 'parameters must be an array of Parameter Objects',
         severity: 1,
         code: 3080900,
@@ -566,7 +625,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 83, character: 6 }, end: { line: 83, character: 17 } },
+        range: {
+          start: {
+            line: 83,
+            character: 6,
+          },
+          end: {
+            line: 83,
+            character: 17,
+          },
+        },
         message:
           'requestBody does not have well-defined semantics for GET, HEAD and DELETE operations',
         severity: 2,
@@ -575,7 +643,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 85, character: 6 }, end: { line: 85, character: 15 } },
+        range: {
+          start: {
+            line: 85,
+            character: 6,
+          },
+          end: {
+            line: 85,
+            character: 15,
+          },
+        },
         message: 'Responses Object values must be of Response Object shape',
         severity: 1,
         code: 5140001,
@@ -583,7 +660,16 @@ describe('apidom-ls-yaml', function () {
         data: {},
       },
       {
-        range: { start: { line: 85, character: 6 }, end: { line: 85, character: 15 } },
+        range: {
+          start: {
+            line: 85,
+            character: 6,
+          },
+          end: {
+            line: 85,
+            character: 15,
+          },
+        },
         message:
           'Responses Object uses HTTP Status Codes outside of allowed IANA HTTP Status code registry',
         severity: 1,

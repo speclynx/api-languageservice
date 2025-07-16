@@ -1,4 +1,4 @@
-import openapiSchemaJson31Ajv from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json';
+import openapiSchemaJson20 from '../json-schema/open-api-20/openapi-schema-draft-2020-12-spectral.json';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -51,11 +51,11 @@ export type {
 /**
  * @public
  */
-export class OpenAPi31JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
+export class OpenAPi20JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
   public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
     // default to OAI provided 3.1 schema
     if (!jsonSchema) {
-      super(true, openapiSchemaJson31Ajv);
+      super(true, openapiSchemaJson20);
     } else {
       super(ajv2020, jsonSchema);
     }
@@ -69,13 +69,12 @@ export class OpenAPi31JsonSchemaValidationProvider extends JsonSchemaValidationP
   // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
     return [
-      { namespace: 'openapi', version: '3.1.1' },
-      { namespace: 'openapi', version: '3.1.0' },
+      { namespace: 'openapi', version: '2.0' },
     ];
   }
 
   // eslint-disable-next-line class-methods-use-this
   name(): string {
-    return 'OpenAPI 3.1 Schema';
+    return 'OpenAPI 2.0 Schema';
   }
 }

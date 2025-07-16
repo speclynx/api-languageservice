@@ -21,6 +21,15 @@ File scripts/babel-plugin-add-import-extension.cjs (the file) was originally cre
 The file has been copied into this project and modified. All modifications are licensed under Apache 2.0 License.
 Copy of the MIT license can be found in `LICENSES/MIT.txt` file.
 
+spectral
+Copyright 2018 Stoplight, Inc.
+Files packages/apidom-ls/src/services/validation/json-schema/open-api-20/openapi-schema-draft-2020-12-spectral.json and
+packages/apidom-ls/src/services/validation/json-schema/open-api-30/openapi-schema-2019-04-02-draft-2020-12-spectral.json
+along with the files in packages/apidom-ls/src/services/validation/json-schema/open-api-31/spectral (the files)
+were originally created under Apache 2.0 license in https://github.com/stoplightio/spectral repository.
+The files have been copied into this project and modified. All modifications are licensed under Apache 2.0 License.
+Copy of the Apache 2.0 license can be found in `LICENSE` file.
+
 refract-spec
 Copyright (c) 2015 refractproject
 Specific texts in README.md (the file) were originally created under MIT license in https://github.com/refractproject/refract-spec repository.

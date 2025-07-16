@@ -16,6 +16,7 @@ import {
 import { metadata } from './metadata.ts';
 import { OpenAPi31JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-31-json-schema-validation-provider.ts';
 import { OpenAPi30JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-30-json-schema-validation-provider.ts';
+import { OpenAPi20JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-20-json-schema-validation-provider.ts';
 import { logLevel, logPerformance } from './test-utils.ts';
 import ApilintCodes from '../src/config/codes.ts';
 import { OpenAPI3 } from '../src/config/openapi/target-specs.ts';
@@ -34,13 +35,20 @@ const specOpenapiSimple30 = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'ajv-simple-api-30.json'))
   .toString();
 
+const specOpenapiSimple20 = fs
+  .readFileSync(path.join(__dirname, 'fixtures', 'ajv-simple-api-20.json'))
+  .toString();
+
 describe('apidom-ls-validate-jsonschema', function () {
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
   const oasJsonSchemavalidationProvider30 = new OpenAPi30JsonSchemaValidationProvider();
+  const oasJsonSchemavalidationProvider20 = new OpenAPi20JsonSchemaValidationProvider();
   const oasJsonSchemavalidationProviderOverride = new OpenAPi31JsonSchemaValidationProvider();
   const oasJsonSchemavalidationProvider30Override = new OpenAPi30JsonSchemaValidationProvider();
+  const oasJsonSchemavalidationProvider20Override = new OpenAPi20JsonSchemaValidationProvider();
   oasJsonSchemavalidationProviderOverride.setOverrideDefaultValidation(true);
   oasJsonSchemavalidationProvider30Override.setOverrideDefaultValidation(true);
+  oasJsonSchemavalidationProvider20Override.setOverrideDefaultValidation(true);
 
   const requestBodyTentativelyAllowedLint: LinterMeta = {
     code: ApilintCodes.OPENAPI3_0_OPERATION_FIELD_REQUEST_BODY_TENTATIVELY_ALLOWED,
@@ -84,6 +92,7 @@ describe('apidom-ls-validate-jsonschema', function () {
     validatorProviders: [
       oasJsonSchemavalidationProviderOverride,
       oasJsonSchemavalidationProvider30Override,
+      oasJsonSchemavalidationProvider20Override,
     ],
     validationContext: {
       jsonSchemaValidation: true,
@@ -97,7 +106,11 @@ describe('apidom-ls-validate-jsonschema', function () {
 
   const contextSchemaAndSemanticLintAndRef: LanguageServiceContext = {
     metadata: metadataLint,
-    validatorProviders: [oasJsonSchemavalidationProvider, oasJsonSchemavalidationProvider30],
+    validatorProviders: [
+      oasJsonSchemavalidationProvider,
+      oasJsonSchemavalidationProvider30,
+      oasJsonSchemavalidationProvider20,
+    ],
     validationContext: {
       jsonSchemaValidation: true,
       semanticValidation: false,
@@ -178,38 +191,6 @@ describe('apidom-ls-validate-jsonschema', function () {
       {
         range: {
           start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must be array',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must match a schema in anyOf',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
             line: 19,
             character: 18,
           },
@@ -219,22 +200,6 @@ describe('apidom-ls-validate-jsonschema', function () {
           },
         },
         message: 'must be number',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must match "else" schema',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
@@ -338,7 +303,47 @@ describe('apidom-ls-validate-jsonschema', function () {
         },
       },
     ];
-    // console.log('result', JSON.stringify(result, null, 2));
+    assert.deepEqual(result, expected as Diagnostic[]);
+
+    languageService.terminate();
+  });
+
+  it('test validation for openapi 2.0 with schema', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    // valid spec
+    const docOpenapi: TextDocument = TextDocument.create(
+      'foo://bar/openapi.json',
+      'specOpenapiSimple',
+      0,
+      specOpenapiSimple20,
+    );
+
+    const languageService: LanguageService = getLanguageService(contextSchemaOnly);
+
+    const result = await languageService.doValidation(docOpenapi, validationContext);
+    const expected = [
+      {
+        range: {
+          start: {
+            line: 5,
+            character: 4,
+          },
+          end: {
+            line: 5,
+            character: 11,
+          },
+        },
+        message: 'must be string',
+        severity: 1,
+        code: 0,
+        source: 'OpenAPI 2.0 Schema',
+      },
+    ];
     assert.deepEqual(result, expected as Diagnostic[]);
 
     languageService.terminate();
@@ -376,70 +381,6 @@ describe('apidom-ls-validate-jsonschema', function () {
           },
         },
         message: '"info" property must have required property "title"',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: '"200" property must match "else" schema',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: '"type" property must be equal to one of the allowed values',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: '"type" property type must be array',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: '"type" property must match a schema in anyOf',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
@@ -559,7 +500,6 @@ describe('apidom-ls-validate-jsonschema', function () {
         },
       },
     ];
-    // console.log('result', JSON.stringify(result, null, 2));
     assert.deepEqual(result, expected as Diagnostic[]);
 
     languageService.terminate();
@@ -613,38 +553,6 @@ describe('apidom-ls-validate-jsonschema', function () {
       {
         range: {
           start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must be array',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must match a schema in anyOf',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
             line: 19,
             character: 18,
           },
@@ -658,24 +566,7 @@ describe('apidom-ls-validate-jsonschema', function () {
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must match "else" schema',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
     ];
-    // console.log('result', JSON.stringify(result, null, 2));
     assert.deepEqual(result, expected as Diagnostic[]);
 
     languageService.terminate();
@@ -729,38 +620,6 @@ describe('apidom-ls-validate-jsonschema', function () {
       {
         range: {
           start: {
-            line: 27,
-            character: 18,
-          },
-          end: {
-            line: 27,
-            character: 24,
-          },
-        },
-        message: 'must be array',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 27,
-            character: 18,
-          },
-          end: {
-            line: 27,
-            character: 24,
-          },
-        },
-        message: 'must match a schema in anyOf',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
             line: 28,
             character: 18,
           },
@@ -770,22 +629,6 @@ describe('apidom-ls-validate-jsonschema', function () {
           },
         },
         message: 'must be number',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 22,
-            character: 10,
-          },
-          end: {
-            line: 22,
-            character: 15,
-          },
-        },
-        message: 'must match "else" schema',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.1 Schema',
@@ -809,7 +652,6 @@ describe('apidom-ls-validate-jsonschema', function () {
         data: {},
       },
     ];
-    // console.log('result', JSON.stringify(result, null, 2));
     assert.deepEqual(result, expected as Diagnostic[]);
 
     languageService.terminate();
@@ -869,38 +711,6 @@ describe('apidom-ls-validate-jsonschema', function () {
       {
         range: {
           start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must be array',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 18,
-            character: 18,
-          },
-          end: {
-            line: 18,
-            character: 24,
-          },
-        },
-        message: 'must match a schema in anyOf',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
-      {
-        range: {
-          start: {
             line: 19,
             character: 18,
           },
@@ -914,24 +724,7 @@ describe('apidom-ls-validate-jsonschema', function () {
         code: 0,
         source: 'OpenAPI 3.1 Schema',
       },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must match "else" schema',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.1 Schema',
-      },
     ];
-    // console.log('result', JSON.stringify(result, null, 2));
     assert.deepEqual(result, expected as Diagnostic[]);
 
     languageService.terminate();
@@ -983,7 +776,7 @@ describe('apidom-ls-validate-jsonschema', function () {
             character: 36,
           },
         },
-        message: 'must be number',
+        message: 'must be boolean',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.0 Schema',
@@ -991,127 +784,15 @@ describe('apidom-ls-validate-jsonschema', function () {
       {
         range: {
           start: {
-            line: 17,
-            character: 16,
+            line: 18,
+            character: 18,
           },
           end: {
-            line: 17,
+            line: 18,
             character: 24,
           },
         },
-        message: "must have required property '$ref'",
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 17,
-            character: 16,
-          },
-          end: {
-            line: 17,
-            character: 24,
-          },
-        },
-        message: 'must NOT have additional properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 17,
-            character: 16,
-          },
-          end: {
-            line: 17,
-            character: 24,
-          },
-        },
-        message: 'must NOT have additional properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 17,
-            character: 16,
-          },
-          end: {
-            line: 17,
-            character: 24,
-          },
-        },
-        message: 'must match exactly one schema in oneOf',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: "must have required property '$ref'",
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must NOT have additional properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must NOT have additional properties',
-        severity: 1,
-        code: 0,
-        source: 'OpenAPI 3.0 Schema',
-      },
-      {
-        range: {
-          start: {
-            line: 13,
-            character: 10,
-          },
-          end: {
-            line: 13,
-            character: 15,
-          },
-        },
-        message: 'must match exactly one schema in oneOf',
+        message: 'must be equal to one of the allowed values',
         severity: 1,
         code: 0,
         source: 'OpenAPI 3.0 Schema',

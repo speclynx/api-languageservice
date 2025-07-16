@@ -183,6 +183,10 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     diagnostics.push(diagnostic);
   }
 
+  protected static isRelevantError(error: { keyword?: string }): boolean {
+    return error.keyword !== 'if';
+  }
+
   public validate(
     jsonDocument: string,
     originalDocument: string,
@@ -201,8 +205,11 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
       const sourceMap = jsonSourceMap.parse(jsonDocument, null, 2);
       let betterErrors: betterAjvErrors.IOutputError[];
       if (validateFunction.errors) {
+        const validationErrors = validateFunction.errors.filter(
+          JsonSchemaValidationProvider.isRelevantError,
+        );
         if (validationContext?.betterAjvErrors) {
-          betterErrors = betterAjvErrors(this.jsonSchema, validateFunction.errors, {
+          betterErrors = betterAjvErrors(this.jsonSchema, validationErrors, {
             propertyPath: [],
             targetValue: jsonDoc,
           });
@@ -224,7 +231,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
             );
           });
         } else {
-          validateFunction.errors.forEach((error) => {
+          validationErrors.forEach((error) => {
             if (
               validationContext &&
               validationContext.maxNumberOfProblems &&
