@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 
 // Import both implementations
-import * as astOriginal from './ast-original-jaml-js.ts';
+import * as astOriginal from './ast-original-yaml-js.ts';
 import * as astYaml from '../src/services/validation/utils/ast.ts';
 
 describe('YAML AST Implementation Comparison', () => {
