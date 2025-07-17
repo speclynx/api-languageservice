@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/speclynx/apidom/compare/v1.3.0...v1.4.0) (2025-07-17)
+
+### Bug Fixes
+
+- **apidom-ls:** enhance and fix issues in JSON Schema validation ([1892ca0](https://github.com/speclynx/apidom/commit/1892ca0b3edb07b30ea84655012772f0f2371824))
+- **apidom-ls:** fix ast-original-yaml-js.ts file name ([801535a](https://github.com/speclynx/apidom/commit/801535aa3ab2a34b70e50c1cb96cd46aaa78043a))
+- **apidom-ls:** fix yaml parsing in json schema validation stand-alone ([baa6e79](https://github.com/speclynx/apidom/commit/baa6e79a90a88b8eecc017725325933d88cd36f2))
+
+### Features
+
+- **apidom-ls:** add support for @spotlight/bettter-ajv-errors ([e910065](https://github.com/speclynx/apidom/commit/e9100650af4f3b7bf8f3ff548e98377fd6df4f26))
+- **apidom-ls:** enhance JSON Schema validation support ([2e1d67a](https://github.com/speclynx/apidom/commit/2e1d67afce0af57d141da2365601bb74c0eb9dea))
+- **apidom-ls:** update config for JSON Schema validation ([a1073db](https://github.com/speclynx/apidom/commit/a1073db8aa03280cca4ef58765625bf986e020e9))
+
 # [1.3.0](https://github.com/speclynx/apidom/compare/v1.2.0...v1.3.0) (2025-07-11)
 
 ### Features
