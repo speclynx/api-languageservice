@@ -74,7 +74,7 @@ export class DefaultSymbolsService implements SymbolsService {
             { line: sm.endLine || sm.line, character: sm.endColumn || sm.column },
           );
 
-          //  TODO (francesco@tumanischvili@smartbear.com) replace with ns plugin/adapter
+          //  TODO (frantuma@yahoo.com) replace with ns plugin/adapter
           if (s === 'operation') {
             const si: SymbolInformation = SymbolInformation.create(
               s,

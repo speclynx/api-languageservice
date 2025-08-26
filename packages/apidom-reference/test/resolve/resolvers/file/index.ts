@@ -41,9 +41,9 @@ describe('resolve', function () {
 
         context('given paths with other known protocols', function () {
           specify('should not consider it a file system path', function () {
-            assert.isFalse(resolver.canRead(new File({ uri: 'https://swagger.io/' })));
-            assert.isFalse(resolver.canRead(new File({ uri: 'http://swagger.io/' })));
-            assert.isFalse(resolver.canRead(new File({ uri: 'ftp://swagger.io/' })));
+            assert.isFalse(resolver.canRead(new File({ uri: 'https://speclynx.com/' })));
+            assert.isFalse(resolver.canRead(new File({ uri: 'http://speclynx.com/' })));
+            assert.isFalse(resolver.canRead(new File({ uri: 'ftp://speclynx.com/' })));
           });
         });
 

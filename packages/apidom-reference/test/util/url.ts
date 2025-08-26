@@ -153,7 +153,7 @@ describe('util', function () {
 
     context('getExtension', function () {
       specify('should return extension from url', function () {
-        const url = 'https://swagger.io/file.json';
+        const url = 'https://speclynx.com/file.json';
         const extension = getExtension(url);
 
         assert.strictEqual(extension, '.json');
@@ -161,7 +161,7 @@ describe('util', function () {
 
       context('given multiple extensions', function () {
         specify('should return last extension from url', function () {
-          const url = 'https://swagger.io/file.yaml.json';
+          const url = 'https://speclynx.com/file.yaml.json';
           const extension = getExtension(url);
 
           assert.strictEqual(extension, '.json');
@@ -181,7 +181,7 @@ describe('util', function () {
 
       context('given absolute url with hash', function () {
         specify('should return hash part', function () {
-          const pointer = 'https://swagger.io/file.json#/path/to/json/value';
+          const pointer = 'https://speclynx.com/file.json#/path/to/json/value';
           const hash = getHash(pointer);
 
           assert.strictEqual(hash, '#/path/to/json/value');
@@ -190,7 +190,7 @@ describe('util', function () {
 
       context('given no hash', function () {
         specify('should return root hash', function () {
-          const pointer = 'https://swagger.io/file.json';
+          const pointer = 'https://speclynx.com/file.json';
           const hash = getHash(pointer);
 
           assert.strictEqual(hash, '#');
@@ -250,8 +250,8 @@ describe('util', function () {
         context('and URL contains hash', function () {
           specify('should strip hash part of URL', function () {
             assert.strictEqual(
-              stripHash('http://swagger.io/petstore.json#hash'),
-              'http://swagger.io/petstore.json',
+              stripHash('http://speclynx.com/petstore.json#hash'),
+              'http://speclynx.com/petstore.json',
             );
           });
         });
@@ -259,8 +259,8 @@ describe('util', function () {
         context('and URL does not contain hash', function () {
           specify('should return original URL', function () {
             assert.strictEqual(
-              stripHash('http://swagger.io/petstore.json'),
-              'http://swagger.io/petstore.json',
+              stripHash('http://speclynx.com/petstore.json'),
+              'http://speclynx.com/petstore.json',
             );
           });
         });

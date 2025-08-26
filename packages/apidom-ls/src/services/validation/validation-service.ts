@@ -255,7 +255,7 @@ export class DefaultValidationService implements ValidationService {
 
     const baseURI = validationContext?.baseURI
       ? validationContext?.baseURI
-      : 'https://smartbear.com/';
+      : 'https://speclynx.com/';
     const apiReference = new Reference({ uri: baseURI, value: cloneDeep(result)! });
     const cachedParsers = options.parse.parsers.map(DefaultValidationService.createCachedParser);
 
@@ -357,7 +357,7 @@ export class DefaultValidationService implements ValidationService {
 
     const baseURI = validationContext?.baseURI
       ? validationContext?.baseURI
-      : 'https://smartbear.com/';
+      : 'https://speclynx.com/';
     const apiReference = new Reference({ uri: baseURI, value: cloneDeep(result) });
     const cachedParsers = options.parse.parsers.map(DefaultValidationService.createCachedParser);
 
@@ -687,7 +687,7 @@ export class DefaultValidationService implements ValidationService {
         }
       }
       try {
-        // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
+        // TODO (frantuma@yahoo.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
         for (const provider of this.validationProviders) {
           if (
             provider
@@ -1115,7 +1115,7 @@ export class DefaultValidationService implements ValidationService {
         if (symbolValue.lint) {
           const linters: LinterMeta[] = symbolValue.lint as LinterMeta[];
           for (const linterMeta of linters) {
-            // TODO (francesco@tumanischvili@smartbear.com)  solve LinterMeta number/string
+            // TODO (frantuma@yahoo.com)  solve LinterMeta number/string
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             if (String(linterMeta.code!) === code) {
               return linterMeta.data?.quickFix;
@@ -1201,18 +1201,18 @@ export class DefaultValidationService implements ValidationService {
                   });
                 }
               } else if (quickFix.action === 'addChild') {
-                // TODO (francesco@tumanischvili@smartbear.com)  functions as linter from client, defined elsewhere
+                // TODO (frantuma@yahoo.com)  functions as linter from client, defined elsewhere
                 // if (quickFix.function === 'addDescription') {
-                // TODO (francesco@tumanischvili@smartbear.com)  use apidom node to add a child  whenroundtrip serialization gets supported
+                // TODO (frantuma@yahoo.com)  use apidom node to add a child  whenroundtrip serialization gets supported
                 const newText = isJsonDocument ? quickFix.snippetJson : quickFix.snippetYaml;
 
                 // get the range of 0 length for the same line + 1
                 const line = diag.range.start.line + 1;
                 // get the char with indent
-                // TODO (francesco@tumanischvili@smartbear.com)  better indent handling
+                // TODO (frantuma@yahoo.com)  better indent handling
                 const character = diag.range.start.character + 2;
                 const range = Range.create({ line, character }, { line, character });
-                // TODO (francesco@tumanischvili@smartbear.com)  caret is not moved to $1 like in completion, use a command or something
+                // TODO (frantuma@yahoo.com)  caret is not moved to $1 like in completion, use a command or something
                 codeActions.push({
                   // @ts-ignore
                   title: quickFix.message,

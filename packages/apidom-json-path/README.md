@@ -1,6 +1,6 @@
 # @speclynx/apidom-json-path
 
-`apidom-json-path` is a package that evaluates [JSONPath](https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html) expressions against ApiDOM.
+`apidom-json-path` is a package that evaluates [JSONPath](https://www.rfc-editor.org/rfc/rfc9535.html) expressions against ApiDOM.
 
 ## Installation
 

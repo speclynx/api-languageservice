@@ -1,9 +1,8 @@
 version: "2021-05-07"
 info:
-  title: SmartBear API Guidelines
+  title: SpecLynx API Guidelines
   description: |
-    A machine and human readable version of the SmartBear API Style Guide aimed at promoting living API Style Governance across various tools and teams, leading to improved API quality.
-    See the [SmartBear Standards and Guidelines](https://github.com/SmartBear/api-standards-and-guidelines) repo for a traditional view of the static guidelines.
+    A machine and human readable version of the SpecLynx API Style Guide aimed at promoting living API Style Governance across various tools and teams, leading to improved API quality.
 scenarios:
   - description: GET Methods - Allowed status codes
     when: [http, transaction]

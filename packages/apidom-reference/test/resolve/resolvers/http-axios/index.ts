@@ -21,13 +21,13 @@ describe('resolve', function () {
       context('canRead', function () {
         context('given valid http URL', function () {
           specify('should consider it a HTTP URL', function () {
-            assert.isTrue(resolver.canRead(new File({ uri: 'http://swagger.io/file.txt' })));
+            assert.isTrue(resolver.canRead(new File({ uri: 'http://speclynx.com/file.txt' })));
           });
         });
 
         context('given valid https URL', function () {
           specify('should consider it a https URL', function () {
-            assert.isTrue(resolver.canRead(new File({ uri: 'https://swagger.io/file.txt' })));
+            assert.isTrue(resolver.canRead(new File({ uri: 'https://speclynx.com/file.txt' })));
           });
         });
 
@@ -40,7 +40,7 @@ describe('resolve', function () {
 
         context('given URLs with other known protocols', function () {
           specify('should not consider it a http/https URL', function () {
-            assert.isFalse(resolver.canRead(new File({ uri: 'ftp://swagger.io/' })));
+            assert.isFalse(resolver.canRead(new File({ uri: 'ftp://speclynx.com/' })));
           });
         });
       });

@@ -12,12 +12,12 @@
             "type": "string"
           },
           "profile": {
-            "$ref": "https://swagger.io/schemas/user-profile#/properties/avatar"
+            "$ref": "https://speclynx.com/schemas/user-profile#/properties/avatar"
           }
         }
       },
       "UserProfile": {
-        "$id": "https://swagger.io/schemas/user-profile",
+        "$id": "https://speclynx.com/schemas/user-profile",
         "type": "object",
         "properties": {
           "avatar": {

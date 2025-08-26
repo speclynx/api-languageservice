@@ -60,7 +60,7 @@ export class DefaultDerefService implements DerefService {
       return toValue(el.classes).includes('servers');
     }, api);
 
-    // TODO (francesco.tumanischvili@smartbear.com): this needs to be replaced by good metadata ('serverURL' to URLS and/or adapter/plugin
+    // TODO (frantuma@yahoo.com): this needs to be replaced by good metadata ('serverURL' to URLS and/or adapter/plugin
     if (servers && !servers.isEmpty) {
       const serversValue = toValue(servers.first);
       // OAS

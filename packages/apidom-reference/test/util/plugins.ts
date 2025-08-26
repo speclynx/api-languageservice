@@ -26,7 +26,7 @@ describe('util', function () {
       context('given HTTP URL', function () {
         specify('should find single http resolver plugin', async function () {
           const { resolvers } = defaultOptions.resolve;
-          const file = new File({ uri: 'http://swagger.io/file.json' });
+          const file = new File({ uri: 'http://speclynx.com/file.json' });
           const suitablePlugins = await filter('canRead', [file], resolvers);
 
           assert.lengthOf(suitablePlugins, 1);
@@ -36,7 +36,7 @@ describe('util', function () {
 
       context('given no defined plugins', function () {
         specify('should not find any suitable plugin', async function () {
-          const file = new File({ uri: 'http://swagger.io/file.json' });
+          const file = new File({ uri: 'http://speclynx.com/file.json' });
           const suitablePlugins = await filter('canRead', [file], []);
 
           assert.lengthOf(suitablePlugins, 0);
@@ -46,7 +46,7 @@ describe('util', function () {
       context('given plugin with foreign interface', function () {
         specify('should not find any suitable plugin', async function () {
           const plugins = [{}];
-          const file = new File({ uri: 'http://swagger.io/file.json' });
+          const file = new File({ uri: 'http://speclynx.com/file.json' });
           const suitablePlugins = await filter('canRead', [file], plugins);
 
           assert.lengthOf(suitablePlugins, 0);

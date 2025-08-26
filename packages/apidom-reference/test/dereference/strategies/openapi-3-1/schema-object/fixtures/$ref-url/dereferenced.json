@@ -13,7 +13,7 @@
               "type": "string"
             },
             "profile": {
-              "$id": "https://swagger.io/schemas/user-profile",
+              "$id": "https://speclynx.com/schemas/user-profile",
               "type": "object",
               "properties": {
                 "avatar": {
@@ -24,7 +24,7 @@
           }
         },
         "UserProfile": {
-          "$id": "https://swagger.io/schemas/user-profile",
+          "$id": "https://speclynx.com/schemas/user-profile",
           "type": "object",
           "properties": {
             "avatar": {

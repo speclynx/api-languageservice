@@ -61,7 +61,7 @@ export class DefaultDefinitionService implements DefinitionService {
 
     // no API document has been parsed
     if (api === undefined) return null;
-    // TODO (francesco.tumanischvili@smartbear.com): handle by predicates and adapters, look for
+    // TODO (frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
     const node = findAtOffset({ offset, includeRightBound: true }, api);
     if (node && node.parent && isMember(node.parent)) {
@@ -76,7 +76,7 @@ export class DefaultDefinitionService implements DefinitionService {
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const ref = toValue(node);
-      // TODO (francesco.tumanischvili@smartbear.com): handle by URL parsing
+      // TODO (frantuma@yahoo.com): handle by URL parsing
       if (!ref.startsWith('#') && node.parent?.parent) {
         try {
           // TODO full multi files support
@@ -134,7 +134,7 @@ export class DefaultDefinitionService implements DefinitionService {
           return null;
         }
       }
-      // TODO (francesco.tumanischvili@smartbear.com): replace with fragment deref
+      // TODO (frantuma@yahoo.com): replace with fragment deref
       const refTarget = jsonPointerEvaluate<Element>(api, URIFragmentIdentifier.from(ref));
       const nodeSourceMap = getSourceMap(refTarget);
       const range = Range.create(
@@ -163,7 +163,7 @@ export class DefaultDefinitionService implements DefinitionService {
     // no API document has been parsed
     if (api === undefined) return null;
 
-    // TODO(francesco.tumanischvili@smartbear.com): handle by predicates and adapters, look for
+    // TODO(frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
     const node = findAtOffset({ offset, includeRightBound: true }, api);
     if (node && node.parent && isMember(node.parent)) {

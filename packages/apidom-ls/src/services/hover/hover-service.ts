@@ -178,7 +178,7 @@ export class DefaultHoverService implements HoverService {
         }
         if (toValue(el) === '$ref') {
           const ref = toValue(node);
-          // TODO (francesco.tumanischvili@smartbear.com): handle by URL parsing
+          // TODO (frantuma@yahoo.com): handle by URL parsing
           if (!ref.startsWith('#') && node.parent?.parent) {
             try {
               // TODO full multi files support
@@ -224,7 +224,7 @@ export class DefaultHoverService implements HoverService {
             }
           } else {
             try {
-              // TODO (francesco.tumanischvili@smartbear.com): replace with fragment deref
+              // TODO (frantuma@yahoo.com): replace with fragment deref
               const refTarget = jsonPointerEvaluate<Element>(api, URIFragmentIdentifier.from(ref));
               const nodeSourceMap = getSourceMap(refTarget);
 

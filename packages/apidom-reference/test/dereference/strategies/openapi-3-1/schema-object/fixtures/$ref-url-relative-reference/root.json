@@ -4,7 +4,7 @@
     "schemas": {
       "User": {
         "type": "object",
-        "$id": "https://swagger.io/schemas/user",
+        "$id": "https://speclynx.com/schemas/user",
         "properties": {
           "login": {
             "type": "string"
@@ -18,7 +18,7 @@
         }
       },
       "UserProfile": {
-        "$id": "https://swagger.io/schemas/user-profile",
+        "$id": "https://speclynx.com/schemas/user-profile",
         "type": "object",
         "properties": {
           "avatar": {

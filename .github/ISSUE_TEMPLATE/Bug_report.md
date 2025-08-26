@@ -10,7 +10,7 @@ about: Report an issue you're experiencing
   Before you submit, please read the following:
 
   If you're here to report a security issue, please STOP writing an issue and
-  contact us at security@swagger.io instead!
+  contact us at info@speclynx.com instead!
 
   Search open/closed issues before submitting!
 

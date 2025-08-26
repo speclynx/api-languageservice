@@ -1,4 +1,5 @@
 ApiDOM
+Copyright 2025 SpecLynx
 Copyright 2020 SmartBear Software Inc.
 ApiDOM is licensed under Apache 2.0 license.
 Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
@@ -87,6 +88,6 @@ Copy of the Academic Free License v3.0 can be found in `LICENSES/AFL-3.0.txt` fi
 If the SPDX-FileCopyrightText and SPDX-License-Identifier tags are not present in the file,
 it is assumed that these tags have following implicit value:
 
-SPDX-FileCopyrightText: Copyright 2020-2021 SmartBear Software Inc.
+SPDX-FileCopyrightText: Copyright 2020-2021 SpecLynx
 SPDX-License-Identifier: Apache-2.0
 

@@ -5,6 +5,6 @@ If you believe you've found an exploitable security issue in ApiDOM monorepo,
 
 ## Reporting a vulnerability
 
-To report a vulnerability please send an email with the details to [security@swagger.io](mailto:security@swagger.io).
+To report a vulnerability please send an email with the details to [info@speclynx.com](mailto:info@speclynx.com).
 
 We'll acknowledge receipt of your report ASAP, and set expectations on how we plan to handle it.

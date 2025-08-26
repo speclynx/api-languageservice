@@ -155,7 +155,7 @@ console.log(
       let foundClasses = false;
       let parentNode = false;
 
-      // TODO (francesco.tumanischvili@smartbear.com) De-duplicate code
+      // TODO (frantuma@yahoo.com) De-duplicate code
       let set: string[] = [];
       if (element.classes) {
         set = Array.from(new Set(toValue(element.classes)));

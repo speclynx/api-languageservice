@@ -870,7 +870,7 @@ export class DefaultCompletionService implements CompletionService {
     }
     perfEnd(PerfLabels.START);
     try {
-      // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
+      // TODO (frantuma@yahoo.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.completionProviders) {
         if (
           provider
@@ -973,7 +973,7 @@ export class DefaultCompletionService implements CompletionService {
     }
     // TODO also add to completion description target fragment so user can preview
     try {
-      // TODO (francesco@tumanischvili@smartbear.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
+      // TODO (frantuma@yahoo.com)  try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.completionProviders) {
         if (
           provider
