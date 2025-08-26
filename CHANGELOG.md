@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/speclynx/apidom/compare/v1.4.0...v1.4.1) (2025-08-26)
+
+### Bug Fixes
+
+- remove SmartBear & Swagger references ([af483d8](https://github.com/speclynx/apidom/commit/af483d8973b836eb66e9702a95ffa1ebff3f4791))
+
 # [1.4.0](https://github.com/speclynx/apidom/compare/v1.3.0...v1.4.0) (2025-07-17)
 
 ### Bug Fixes

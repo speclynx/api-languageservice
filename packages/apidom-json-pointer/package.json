@@ -1,6 +1,6 @@
 {
   "name": "@speclynx/apidom-json-pointer",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Evaluate JSON Pointer expressions against ApiDOM.",
   "publishConfig": {
     "access": "restricted",
@@ -40,8 +40,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@speclynx/apidom-core": "^1.4.0",
-    "@speclynx/apidom-error": "^1.4.0",
+    "@speclynx/apidom-core": "^1.4.1",
+    "@speclynx/apidom-error": "^1.4.1",
     "@swaggerexpert/json-pointer": "^2.10.1"
   },
   "files": [
