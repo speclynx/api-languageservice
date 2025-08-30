@@ -65,7 +65,7 @@ describe('adapter', function () {
       });
     });
 
-    context('given invalid json file', function () {
+    context('given invalid json string', function () {
       specify('should return empty parser result', async function () {
         const parseResult = await adapter.parse(' a ', {
           sourceMap: true,
@@ -73,6 +73,24 @@ describe('adapter', function () {
         });
 
         assert.isTrue(parseResult.isEmpty);
+      });
+    });
+
+    context('given malformed json string', function () {
+      specify('should parse', async function () {
+        const json = `
+        {
+          "openapi": "3.0.4",
+          "info: {
+            "title": "Swagger Petstore - OpenAPI 3.0",
+          }
+        }`;
+
+        try {
+          await adapter.parse(json, { syntacticAnalysis: 'direct' });
+        } catch (error: unknown) {
+          assert.fail('Parsing unexpectedly threw an error.');
+        }
       });
     });
   });
@@ -119,6 +137,24 @@ describe('adapter', function () {
         });
 
         assert.isTrue(parseResult.isEmpty);
+      });
+    });
+
+    context('given malformed json string', function () {
+      specify('should parse', async function () {
+        const json = `
+        {
+          "openapi": "3.0.4",
+          "info: {
+            "title": "Swagger Petstore - OpenAPI 3.0",
+          }
+        }`;
+
+        try {
+          await adapter.parse(json, { syntacticAnalysis: 'indirect' });
+        } catch (error: unknown) {
+          assert.fail('Parsing unexpectedly threw an error.');
+        }
       });
     });
   });

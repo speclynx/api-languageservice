@@ -122,7 +122,21 @@ class CstVisitor {
   }
 
   public string(node: TreeCursorSyntaxNode): StringElement {
-    const element = new StringElement(JSON.parse(node.text));
+    let element: StringElement;
+
+    try {
+      element = new StringElement(JSON.parse(node.text));
+    } catch (error: unknown) {
+      element = new StringElement(node.text);
+      if (error instanceof Error) {
+        element.setMetaProperty('jsonParse', {
+          isError: true,
+          errorType: error.name,
+          errorMessage: error.message,
+        });
+      }
+    }
+
     this.maybeAddSourceMap(node, element);
     return element;
   }

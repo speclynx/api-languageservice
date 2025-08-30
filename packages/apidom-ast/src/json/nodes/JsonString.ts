@@ -1,9 +1,13 @@
 import JsonNode from './JsonNode.ts';
-import JsonStringContent from './JsonStringContent.ts';
-import JsonEscapeSequence from './JsonEscapeSequence.ts';
-import { isEscapeSequence, isStringContent } from './predicates.ts';
+import type { NodeOptions } from '../../Node.ts';
 
-type JsonStringLike = JsonStringContent | JsonEscapeSequence;
+/**
+ * @public
+ */
+export interface JsonStringOptions extends NodeOptions {
+  value: string;
+  parseError?: Error;
+}
 
 /**
  * @public
@@ -11,17 +15,14 @@ type JsonStringLike = JsonStringContent | JsonEscapeSequence;
 class JsonString extends JsonNode {
   public static readonly type: string = 'string';
 
-  public get value() {
-    if (this.children.length === 1) {
-      const onlyChild = this.children[0] as JsonStringLike;
-      return onlyChild.value;
-    }
+  public readonly value: string;
 
-    return this.children
-      .filter(
-        (node: unknown): node is JsonStringLike => isStringContent(node) || isEscapeSequence(node),
-      )
-      .reduce((acc: string, cur): string => acc + cur.value, '');
+  public readonly parseError?: Error;
+
+  constructor({ value, parseError, ...rest }: JsonStringOptions) {
+    super(rest);
+    this.value = value;
+    this.parseError = parseError;
   }
 }
 

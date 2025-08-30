@@ -9,8 +9,7 @@ export { default as JsonValue } from './json/nodes/JsonValue.ts';
 export type { JsonValueOptions } from './json/nodes/JsonValue.ts';
 export { default as JsonKey } from './json/nodes/JsonKey.ts';
 export { default as JsonString } from './json/nodes/JsonString.ts';
-export { default as JsonStringContent } from './json/nodes/JsonStringContent.ts';
-export { default as JsonEscapeSequence } from './json/nodes/JsonEscapeSequence.ts';
+export type { JsonStringOptions } from './json/nodes/JsonString.ts';
 export { default as JsonNumber } from './json/nodes/JsonNumber.ts';
 export { default as JsonTrue } from './json/nodes/JsonTrue.ts';
 export { default as JsonFalse } from './json/nodes/JsonFalse.ts';
@@ -19,8 +18,6 @@ export {
   isDocument as isJsonDocument,
   isFalse as isJsonFalse,
   isProperty as isJsonProperty,
-  isStringContent as isJsonStringContent,
-  isEscapeSequence as isJsonEscapeSequence,
   isArray as isJsonArray,
   isKey as isJsonKey,
   isNull as isJsonNull,

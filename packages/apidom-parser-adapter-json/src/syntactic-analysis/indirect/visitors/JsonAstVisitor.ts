@@ -135,7 +135,17 @@ class JsonAstVisitor {
   }
 
   public key(node: JsonKey): StringElement {
-    const element = new StringElement(node.value);
+    const { value, parseError } = node;
+    const element = new StringElement(value);
+
+    if (parseError instanceof Error) {
+      element.setMetaProperty('jsonParse', {
+        isError: true,
+        errorType: parseError.name,
+        errorMessage: parseError.message,
+      });
+    }
+
     this.maybeAddSourceMap(node, element);
     return element;
   }
@@ -149,7 +159,17 @@ class JsonAstVisitor {
   }
 
   public string(node: JsonString): StringElement {
-    const element = new StringElement(node.value);
+    const { value, parseError } = node;
+    const element = new StringElement(value);
+
+    if (parseError instanceof Error) {
+      element.setMetaProperty('jsonParse', {
+        isError: true,
+        errorType: parseError.name,
+        errorMessage: parseError.message,
+      });
+    }
+
     this.maybeAddSourceMap(node, element);
     return element;
   }

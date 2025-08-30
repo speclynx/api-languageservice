@@ -17,7 +17,7 @@ class JsonValue extends JsonNode {
   public readonly value: string;
 
   constructor({ value, ...rest }: JsonValueOptions) {
-    super({ ...rest });
+    super(rest);
     this.value = value;
   }
 }

@@ -8,13 +8,12 @@ import {
   JsonKey,
   JsonProperty,
   JsonString,
-  JsonStringContent,
   JsonTrue,
   ParseResult,
   Position,
   Point,
   Literal,
-  Error,
+  Error as ErrorNode,
 } from '@speclynx/apidom-ast';
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
@@ -85,8 +84,19 @@ class CstVisitor {
     const position = CstVisitor.toPosition(node);
     const children = node.children.slice(1);
     const { keyNode } = node;
+    let jsonKeyValue: string;
+    let parseError: Error | undefined;
+
+    try {
+      jsonKeyValue = JSON.parse(keyNode?.text ?? '""');
+    } catch (error: unknown) {
+      jsonKeyValue = keyNode?.text ?? '';
+      parseError = error instanceof Error ? error : undefined;
+    }
+
     const key = new JsonKey({
-      children: keyNode?.children || [],
+      value: jsonKeyValue,
+      parseError,
       position: keyNode != null ? CstVisitor.toPosition(keyNode) : undefined,
       isMissing: keyNode != null ? keyNode.isMissing : false,
     });
@@ -102,9 +112,17 @@ class CstVisitor {
 
   public string(node: TreeCursorSyntaxNode): JsonString {
     const position = CstVisitor.toPosition(node);
-    const content = new JsonStringContent({ value: JSON.parse(node.text) });
+    let value: string;
+    let parseError: Error | undefined;
 
-    return new JsonString({ children: [content], position, isMissing: node.isMissing });
+    try {
+      value = JSON.parse(node.text);
+    } catch (error: unknown) {
+      parseError = error instanceof Error ? error : undefined;
+      value = node.text;
+    }
+
+    return new JsonString({ value, parseError, position, isMissing: node.isMissing });
   }
 
   public number(node: TreeCursorSyntaxNode): JsonNumber {
@@ -143,9 +161,9 @@ class CstVisitor {
     key: unknown,
     parent: unknown,
     path: string[],
-  ): ParseResult | Error {
+  ): ParseResult | ErrorNode {
     const position = CstVisitor.toPosition(node);
-    const errorNode = new Error({
+    const errorNode = new ErrorNode({
       children: node.children,
       position,
       isUnexpected: !node.hasError,

@@ -7,8 +7,6 @@ import type JsonNull from './JsonNull.ts';
 import type JsonNumber from './JsonNumber.ts';
 import type JsonArray from './JsonArray.ts';
 import type JsonObject from './JsonObject.ts';
-import type JsonStringContent from './JsonStringContent.ts';
-import type JsonEscapeSequence from './JsonEscapeSequence.ts';
 import type JsonProperty from './JsonProperty.ts';
 import type JsonKey from './JsonKey.ts';
 
@@ -51,18 +49,6 @@ export const isArray = (node: unknown): node is JsonArray => isNodeType('array',
  * @public
  */
 export const isObject = (node: unknown): node is JsonObject => isNodeType('object', node);
-
-/**
- * @public
- */
-export const isStringContent = (node: unknown): node is JsonStringContent =>
-  isNodeType('stringContent', node);
-
-/**
- * @public
- */
-export const isEscapeSequence = (node: unknown): node is JsonEscapeSequence =>
-  isNodeType('escapeSequence', node);
 
 /**
  * @public
