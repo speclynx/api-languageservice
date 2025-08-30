@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/speclynx/apidom/compare/v1.4.1...v1.4.2) (2025-08-30)
+
+### Bug Fixes
+
+- safely parse malformed JSON strings ([#72](https://github.com/speclynx/apidom/issues/72)) ([171fff7](https://github.com/speclynx/apidom/commit/171fff7d27339a9a687c4653d66b5da2763b4bd0))
+
 ## [1.4.1](https://github.com/speclynx/apidom/compare/v1.4.0...v1.4.1) (2025-08-26)
 
 **Note:** Version bump only for package @speclynx/apidom-parser-adapter-json
