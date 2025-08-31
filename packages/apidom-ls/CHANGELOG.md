@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/speclynx/apidom/compare/v1.4.2...v1.5.0) (2025-08-31)
+
+### Features
+
+- **ls:** add initial support for OpenAPI 3.1.1 ([#74](https://github.com/speclynx/apidom/issues/74)) ([db1c26b](https://github.com/speclynx/apidom/commit/db1c26b9b49baa370d3d776aad21c2ee2bca1cfb))
+- **ls:** add OpenAPI 3.x validation for Paramter.style fixed field ([#73](https://github.com/speclynx/apidom/issues/73)) ([4820588](https://github.com/speclynx/apidom/commit/4820588e274f8ddd7a907ae95606d7bed678c1da))
+
 ## [1.4.2](https://github.com/speclynx/apidom/compare/v1.4.1...v1.4.2) (2025-08-30)
 
 **Note:** Version bump only for package @speclynx/apidom-ls
