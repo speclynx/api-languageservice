@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import { difference } from 'ramda';
-import { ObjectElement, BREAK } from '@speclynx/apidom-core';
+import { ObjectElement, MemberElement, BREAK, toValue } from '@speclynx/apidom-core';
 
 import FixedFieldsVisitor, { SpecPath } from './FixedFieldsVisitor.ts';
 import PatternedFieldsVisitor, { PatternedFieldsVisitorOptions } from './PatternedFieldsVisitor.ts';
@@ -47,6 +47,15 @@ class MixedFieldsVisitor extends Mixin(FixedFieldsVisitor, PatternedFieldsVisito
       this.specPath = this.specPathPatternedFields;
       this.ignoredFields = fixedFields;
       PatternedFieldsVisitor.prototype.ObjectElement.call(this, objectElement);
+
+      // reorder this.element members by original objectElement keys
+      const objectElementKeys = objectElement.keys() as string[];
+      this.element.content.sort((a: unknown, b: unknown) => {
+        return (
+          objectElementKeys.indexOf(toValue((a as MemberElement).key)) -
+          objectElementKeys.indexOf(toValue((b as MemberElement).key))
+        );
+      });
     } catch (e) {
       this.specPath = specPath;
       throw e;

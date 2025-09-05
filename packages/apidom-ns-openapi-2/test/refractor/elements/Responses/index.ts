@@ -9,8 +9,8 @@ describe('refractor', function () {
       context('given all fields of type ResponseElement', function () {
         specify('should refract to semantic ApiDOM tree', function () {
           const responsesElement = ResponsesElement.refract({
-            default: {},
             '200': {},
+            default: {},
           });
 
           expect(sexprs(responsesElement)).toMatchSnapshot();
