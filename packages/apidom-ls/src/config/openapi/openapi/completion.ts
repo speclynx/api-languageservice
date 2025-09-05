@@ -60,6 +60,15 @@ const completion: ApidomCompletionItem[] = [
     insertTextFormat: 2,
     targetSpecs: OpenAPI3,
   },
+  {
+    label: '3.1.1',
+    insertText: '3.1.1',
+    kind: 12,
+    format: CompletionFormat.UNQUOTED,
+    type: CompletionType.VALUE,
+    insertTextFormat: 2,
+    targetSpecs: OpenAPI3,
+  },
 ];
 
 export default completion;
