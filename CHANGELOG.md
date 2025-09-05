@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/speclynx/apidom/compare/v1.5.0...v1.6.0) (2025-09-05)
+
+### Features
+
+- **ls:** expose target specs ([#77](https://github.com/speclynx/apidom/issues/77)) ([38f1c0a](https://github.com/speclynx/apidom/commit/38f1c0acfabb561d956e69ac1bc75b80e75a9e7c))
+
 # [1.5.0](https://github.com/speclynx/apidom/compare/v1.4.2...v1.5.0) (2025-08-31)
 
 ### Features
