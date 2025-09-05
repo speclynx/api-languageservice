@@ -11,12 +11,12 @@ export {
   isStringElement,
 } from '@speclynx/apidom-core';
 
+export type { JsonSchemaValidationProvider } from './services/validation/providers/json-schema-validation-provider.ts';
 export { OpenAPi20JsonSchemaValidationProvider } from './services/validation/providers/openapi-20-json-schema-validation-provider.ts';
 export { OpenAPi30JsonSchemaValidationProvider } from './services/validation/providers/openapi-30-json-schema-validation-provider.ts';
 export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/providers/openapi-31-json-schema-validation-provider.ts';
 
 export { default as ApilintCodes } from './config/codes.ts';
-export { OpenAPI3 } from './config/openapi/target-specs.ts';
 
 export {
   perfStart,
@@ -82,4 +82,9 @@ export {
 } from './apidom-language-types.ts';
 
 export { config } from './config/config.ts';
+export {
+  AsyncAPI as AsyncAPITargetSpecs,
+  OpenAPI as OpenAPITargetSpecs,
+  JSONSchema202012 as JSONSchema202012TargetSpecs,
+} from './config/target-specs.ts';
 export { default as isValidLinterMeta } from './utils/guards.ts';

@@ -44,6 +44,9 @@ const isLinterMetaData = (v: unknown): v is LinterMetaData =>
   isObject(v) &&
   (v.quickFix === undefined || (Array.isArray(v.quickFix) && v.quickFix.every(isQuickFixData)));
 
+/**
+ * @public
+ */
 export default function isValidLinterMeta(obj: unknown): obj is LinterMeta {
   if (!isObject(obj)) return false;
 

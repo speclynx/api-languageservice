@@ -1,3 +1,6 @@
+/**
+ * @public
+ */
 enum ApilintCodes {
   SCHEMA_TYPE = 10001,
   SCHEMA_MAXLENGTH,

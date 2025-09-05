@@ -1,5 +1,8 @@
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
+/**
+ * @public
+ */
 export const JSONSchema202012 = [{ namespace: 'json-schema', version: '2020-12' }];
 
 export const assoc =
