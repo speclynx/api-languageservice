@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/speclynx/apidom/compare/v1.6.0...v1.7.0) (2025-09-05)
+
+### Features
+
+- **ls:** add support for OpenAPI 3.1.1 completion ([#78](https://github.com/speclynx/apidom/issues/78)) ([11d4800](https://github.com/speclynx/apidom/commit/11d4800d3c53730e55b3c6205f28e4721c43da43)), closes [#75](https://github.com/speclynx/apidom/issues/75)
+
 # [1.6.0](https://github.com/speclynx/apidom/compare/v1.5.0...v1.6.0) (2025-09-05)
 
 ### Features

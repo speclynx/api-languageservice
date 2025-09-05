@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/speclynx/apidom/compare/v1.6.0...v1.7.0) (2025-09-05)
+
+### Bug Fixes
+
+- fix order of refracting within the mixed fields visitor ([#80](https://github.com/speclynx/apidom/issues/80)) ([3838872](https://github.com/speclynx/apidom/commit/38388725560e3d427e896cd88afd02b6cc77e1ff)), closes [#63](https://github.com/speclynx/apidom/issues/63)
+- **reference:** make isFileSystemPath work in browser ([#79](https://github.com/speclynx/apidom/issues/79)) ([9833e06](https://github.com/speclynx/apidom/commit/9833e063cceb0fff3c37a28df621fc410782185f)), closes [#76](https://github.com/speclynx/apidom/issues/76)
+
+### Features
+
+- **ls:** add support for OpenAPI 3.1.1 completion ([#78](https://github.com/speclynx/apidom/issues/78)) ([11d4800](https://github.com/speclynx/apidom/commit/11d4800d3c53730e55b3c6205f28e4721c43da43)), closes [#75](https://github.com/speclynx/apidom/issues/75)
+
 # [1.6.0](https://github.com/speclynx/apidom/compare/v1.5.0...v1.6.0) (2025-09-05)
 
 ### Features

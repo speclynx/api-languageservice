@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/speclynx/apidom/compare/v1.6.0...v1.7.0) (2025-09-05)
+
+### Bug Fixes
+
+- **reference:** make isFileSystemPath work in browser ([#79](https://github.com/speclynx/apidom/issues/79)) ([9833e06](https://github.com/speclynx/apidom/commit/9833e063cceb0fff3c37a28df621fc410782185f)), closes [#76](https://github.com/speclynx/apidom/issues/76)
+
 # [1.6.0](https://github.com/speclynx/apidom/compare/v1.5.0...v1.6.0) (2025-09-05)
 
 **Note:** Version bump only for package @speclynx/apidom-reference
