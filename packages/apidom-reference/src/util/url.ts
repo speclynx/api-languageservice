@@ -53,15 +53,6 @@ export const getExtension = (url: string): string => {
  * @public
  */
 export const isFileSystemPath = (uri: string): boolean => {
-  // @ts-ignore
-  if (process.browser) {
-    /**
-     * We're running in a browser, so assume that all paths are URLs.
-     * This way, even relative paths will be treated as URLs rather than as filesystem paths.
-     */
-    return false;
-  }
-
   const protocol = getProtocol(uri);
   return isUndefined(protocol) || protocol === 'file' || /^[a-zA-Z]$/.test(protocol);
 };
