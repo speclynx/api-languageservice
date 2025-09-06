@@ -28,7 +28,7 @@ Now, let's mount some adapters:
 ```js
 import ApiDOMParser from '@speclynx/apidom-parser';
 import * as jsonParserAdapter from '@speclynx/apidom-parser-adapter-json';
-import * as yamlParserAdapter from '@speclynx/apidom-parser-adapter-yaml';
+import * as yamlParserAdapter from '@speclynx/apidom-parser-adapter-yaml-1-2';
 
 const parser = new ApiDOMParser();
 
