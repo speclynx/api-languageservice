@@ -1,4 +1,5 @@
 import {
+  Element,
   StringElement,
   ObjectElement,
   ArrayElement,
