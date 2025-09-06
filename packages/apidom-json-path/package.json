@@ -1,6 +1,6 @@
 {
   "name": "@speclynx/apidom-json-path",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Evaluate JSONPath expressions against ApiDOM.",
   "publishConfig": {
     "access": "restricted",
@@ -38,9 +38,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.26.10",
-    "@speclynx/apidom-core": "^1.7.0",
-    "@speclynx/apidom-error": "^1.7.0",
-    "@speclynx/apidom-json-pointer": "^1.7.0",
+    "@speclynx/apidom-core": "^1.7.1",
+    "@speclynx/apidom-error": "^1.7.1",
+    "@speclynx/apidom-json-pointer": "^1.7.1",
     "jsonpath-plus": "^10.0.6"
   },
   "files": [

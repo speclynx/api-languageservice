@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/speclynx/apidom/compare/v1.7.0...v1.7.1) (2025-09-06)
+
+### Bug Fixes
+
+- **apidom-ns-asyncapi-2:** fix TypeScript types ([#81](https://github.com/speclynx/apidom/issues/81)) ([8c79f94](https://github.com/speclynx/apidom/commit/8c79f94fb63d6292d5494db115a743597da9ccab))
+
 # [1.7.0](https://github.com/speclynx/apidom/compare/v1.6.0...v1.7.0) (2025-09-05)
 
 ### Bug Fixes
