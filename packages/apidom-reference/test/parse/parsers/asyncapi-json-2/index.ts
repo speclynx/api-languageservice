@@ -35,7 +35,7 @@ describe('parsers', function () {
           specify('should return false', async function () {
             const file = new File({
               uri: '/path/to/asyncapi.json',
-              mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+              mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
             });
             const parser = new AsyncAPIJSON2Parser();
 

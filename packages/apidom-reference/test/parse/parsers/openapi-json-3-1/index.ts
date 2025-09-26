@@ -69,7 +69,7 @@ describe('parsers', function () {
       });
 
       context('given file with supported extension', function () {
-        context('and file data is buffer and can be detected as OpenAPI 3.1.0', function () {
+        context('and file data is buffer and can be detected as OpenAPI 3.1.2', function () {
           specify('should return true', async function () {
             const url = path.join(__dirname, 'fixtures', 'sample-api.json');
             const file = new File({
@@ -82,7 +82,7 @@ describe('parsers', function () {
           });
         });
 
-        context('and file data is string and can be detected as OpenAPI 3.1.0', function () {
+        context('and file data is string and can be detected as OpenAPI 3.1.2', function () {
           specify('should return true', async function () {
             const url = path.join(__dirname, 'fixtures', 'sample-api.json');
             const file = new File({

@@ -29,7 +29,7 @@ import OpenAPIJSON3_1Parser from '@speclynx/apidom-reference/parse/parsers/opena
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: [new OpenAPIJSON3_1Parser({ allowEmpty: true, sourceMap: false })]
   }
 });
@@ -63,7 +63,7 @@ Standard ApiDOM parser adapter can only parse strings. Parser plugins are capabl
 import { parse } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' }
 });
 ```
 
@@ -73,7 +73,7 @@ await parse('/home/user/oas.json', {
 import { parse } from '@speclynx/apidom-reference';
 
 await parse('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' }
 })
 ```
 
@@ -198,6 +198,10 @@ Supported media types are:
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+json;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+json;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+json;version=3.1.2',
 ]
 ```
 
@@ -212,6 +216,10 @@ Supported media types are:
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+yaml;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+yaml;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+yaml;version=3.1.2'
 ]
 ```
 
@@ -464,7 +472,7 @@ import BinaryParser from '@speclynx/apidom-reference/parse/parsers/binary';
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: [
       new OpenAPIJSON2Parser({ allowEmpty: true, sourceMap: false }),
       new OpenAPIYAML2Parser({ allowEmpty: true, sourceMap: false }),
@@ -501,7 +509,7 @@ options.parser.parserOpts = {
 };
 
 await parse('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' }
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' }
 });
 ```
 
@@ -512,7 +520,7 @@ import { parse } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parserOpts: { allowEmpty: false, sourceMap: true },
   },
 });
@@ -563,7 +571,7 @@ class MyCustomParserPlugin extends Parser {
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: [...options.parse.parsers, new MyCustomParserPlugin()],
   }
 });
@@ -598,7 +606,7 @@ class MyCustomParserPlugin extends Parser {
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: [new MyCustomParserPlugin(), ...options.parse.parsers],
   }
 });
@@ -627,7 +635,7 @@ class MyCustomParserPlugin extends Parser {
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: [new MyCustomParserPlugin()],
   }
 });
@@ -650,7 +658,7 @@ options.parse.parsers = options.parse.parsers.filter(parserPlugin => parserPlugi
 // here you can be sure `asyncapi-json-2` plugin was disabled
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   }
 });
 ```
@@ -662,7 +670,7 @@ import { parse, options } from '@speclynx/apidom-reference';
 
 await parse('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
     parsers: options.parse.parsers.filter(parserPlugin => parserPlugin.name !== 'asyncapi-json-2'),
   }
 });
@@ -1072,7 +1080,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('/home/user/oas.json', {
-  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.2' },
 }); // Promise<ReferenceSet>
 ```
 
@@ -1082,7 +1090,7 @@ await resolve('/home/user/oas.json', {
 import { resolve } from '@speclynx/apidom-reference';
 
 await resolve('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   resolve: {
     resolverOpts: {
       axiosConfig: {
@@ -1104,7 +1112,7 @@ import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 import { resolveApiDOM } from '@speclynx/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
-  openapi: '3.1.0',
+  openapi: '3.1.2',
   components: {
     parameters: {
       externalRef: {
@@ -1195,7 +1203,7 @@ Supported media types:
 
 ##### [openapi-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-0)
 
-External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
+External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.0.x](https://spec.openapis.org/oas/v3.0.4.html) definitions.
 
 Supported media types:
 
@@ -1221,7 +1229,7 @@ Supported media types:
 
 ##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/resolve/strategies/openapi-3-1)
 
-External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
+External resolution strategy for understanding and resolving external dependencies of [OpenApi 3.1.x](https://spec.openapis.org/oas/v3.1.2.html) definitions.
 
 Supported media types:
 
@@ -1229,7 +1237,13 @@ Supported media types:
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+json;version=3.1.0',
-  'application/vnd.oai.openapi+yaml;version=3.1.0'
+  'application/vnd.oai.openapi+yaml;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+json;version=3.1.1',
+  'application/vnd.oai.openapi+yaml;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+json;version=3.1.2',
+  'application/vnd.oai.openapi+yaml;version=3.1.2'
 ]
 ```
 
@@ -1282,7 +1296,7 @@ import OpenAPI3_1ResolveStrategy from '@speclynx/apidom-reference/resolve/strate
 
 await resolve('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   resolve: {
     strategies: [
@@ -1334,7 +1348,7 @@ class MyCustomResolverStrategy extends ResolveStrategy {
 
 await resolve('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   resolve: {
     strategies: [...options.resolve.strategies, new MyCustomResolverStrategy()],
@@ -1370,7 +1384,7 @@ class MyCustomResolverStrategy extends ResolveStrategy {
 
 await resolve('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   resolve: {
     strategies: [new MyCustomResolverStrategy(), ...options.resolve.strategies],
@@ -1401,7 +1415,7 @@ class MyCustomResolverStrategy extends ResolveStrategy {
 
 await resolve('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   resolve: {
     strategies: [new MyCustomResolverPlugin()],
@@ -1427,7 +1441,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 import { dereference } from '@speclynx/apidom-reference';
 
 await dereference('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
 }); // Promise<ParseResultElement>
 ```
 
@@ -1437,7 +1451,7 @@ await dereference('/home/user/oas.json', {
 import { dereference } from '@speclynx/apidom-reference';
 
 await dereference('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   resolve: {
     resolverOpts: {
       axiosConfig: {
@@ -1470,7 +1484,7 @@ import { OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 const apidom = OpenApi3_1Element.refract({
-  openapi: '3.1.0',
+  openapi: '3.1.2',
   components: {
     parameters: {
       externalRef: {
@@ -1485,7 +1499,7 @@ const dereferenced = await dereferenceApiDOM(apidom, {
 });
 /**
  * OpenApi3_1Element {
- *   openapi: '3.1.0',
+ *   openapi: '3.1.2',
  *   components: {
  *     parameters: {
  *       externalRef: {
@@ -1566,7 +1580,7 @@ Supported media types:
 
 ##### [openapi-3-0](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-0)
 
-Dereference strategy for dereferencing [OpenApi 3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md) definitions.
+Dereference strategy for dereferencing [OpenApi 3.0.x](https://spec.openapis.org/oas/v3.0.4.html) definitions.
 
 Supported media types:
 
@@ -1592,7 +1606,7 @@ Supported media types:
 
 ##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/dereference/strategies/openapi-3-1)
 
-Dereference strategy for dereferencing [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
+Dereference strategy for dereferencing [OpenApi 3.1.x](https://spec.openapis.org/oas/v3.1.2.html) definitions.
 
 Supported media types:
 
@@ -1600,7 +1614,13 @@ Supported media types:
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+json;version=3.1.0',
-  'application/vnd.oai.openapi+yaml;version=3.1.0'
+  'application/vnd.oai.openapi+yaml;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+json;version=3.1.1',
+  'application/vnd.oai.openapi+yaml;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+json;version=3.1.2',
+  'application/vnd.oai.openapi+yaml;version=3.1.2'
 ]
 ```
 
@@ -1657,7 +1677,7 @@ import ApiDOMDereferenceStrategy from '@speclynx/apidom-reference/dereference/st
 
 await dereference('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   dereference: {
     strategies: [
@@ -1740,7 +1760,7 @@ class MyCustomDereferenceStrategy extends DereferenceStrategy {
 }
 
 await dereference('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   dereference: {
     strategies: [...options.dereference.strategies, new MyCustomDereferenceStrategy()],
   }
@@ -1775,7 +1795,7 @@ class MyCustomDereferenceStrategy extends DereferenceStrategy {
 }
 
 await dereference('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   dereference: {
     strategies: [new MyCustomDereferenceStrategy(), ...options.dereference.strategies],
   }
@@ -1806,7 +1826,7 @@ class MyCustomDereferenceStrategy extends DereferenceStrategy {
 
 
 await dereference('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   dereference: {
     strategies: [new MyCustomDereferenceStrategy()],
   }
@@ -1832,11 +1852,11 @@ so it's theoretically always faster than the dereferencing.
 import { resolve, dereference } from '@speclynx/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
-  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.2' },
 });
 
 const dereferenced = await dereference('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   dereference: { refSet },
 });
 ```
@@ -1860,7 +1880,7 @@ and [Parse component](#parse-component) (file content is parsed) are used under 
 import { bundle } from '@speclynx/apidom-reference';
 
 await bundle('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
 }); // Promise<ParseResultElement>
 ```
 
@@ -1870,7 +1890,7 @@ await bundle('/home/user/oas.json', {
 import { bundle } from '@speclynx/apidom-reference';
 
 await bundle('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.1/webhook-example.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   resolve: {
     resolverOpts: {
       axiosConfig: {
@@ -1888,7 +1908,7 @@ every strategy differs significantly. `Bundle component` comes with single (1) d
 
 ##### [openapi-3-1](https://github.com/speclynx/apidom/tree/main/packages/apidom-reference/src/bundle/strategies/openapi-3-1)
 
-Bundle strategy for bundling [OpenApi 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) definitions.
+Bundle strategy for bundling [OpenApi 3.1.x](https://spec.openapis.org/oas/v3.1.2.html) definitions.
 
 Supported media types:
 
@@ -1896,7 +1916,13 @@ Supported media types:
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+json;version=3.1.0',
-  'application/vnd.oai.openapi+yaml;version=3.1.0'
+  'application/vnd.oai.openapi+yaml;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+json;version=3.1.1',
+  'application/vnd.oai.openapi+yaml;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+json;version=3.1.2',
+  'application/vnd.oai.openapi+yaml;version=3.1.2'
 ]
 ```
 
@@ -1936,7 +1962,7 @@ import OpenAPI3_1BundleStrategy from '@speclynx/apidom-reference/bundle/strategi
 
 await bundle('/home/user/oas.json', {
   parse: {
-    mediaType: 'application/vnd.oai.openapi+json;version=3.1.0',
+    mediaType: 'application/vnd.oai.openapi+json;version=3.1.2',
   },
   bundle: {
     strategies: [
@@ -1983,7 +2009,7 @@ class MyCustomBundleStrategy extends BundleStrategy {
 }
 
 await bundle('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   bundle: {
     strategies: [...options.bundle.strategies, new MyCustomBundleStrategy()],
   }
@@ -2016,7 +2042,7 @@ class MyCustomBundleStrategy extends BundleStrategy {
 }
 
 await bundle('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   bundle: {
     strategies: [new MyCustomBundleStrategy(), ...options.bundle.strategies],
   }
@@ -2044,7 +2070,7 @@ class MyCustomBundleStrategy extends BundleStrategy {
 }
 
 await bundle('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   bundle: {
     strategies: [new MyCustomBundleStrategy()],
   }
@@ -2070,11 +2096,11 @@ so it's theoretically always faster on huge amount of external dependencies than
 import { resolve, bundle } from '@speclynx/apidom-reference';
 
 const refSet = await resolve('/home/user/oas.json', {
-  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediType: 'application/vnd.oai.openapi+json;version=3.1.2' },
 });
 
 const bundled = await bundle('/home/user/oas.json', {
-  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.0' },
+  parse: { mediaType: 'application/vnd.oai.openapi+json;version=3.1.2' },
   bundle: { refSet },
 });
 ```
