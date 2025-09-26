@@ -1,9 +1,14 @@
 # @speclynx/apidom-parser-adapter-openapi-json-3-1
 
-`@speclynx/apidom-parser-adapter-openapi-json-3-1` is a parser adapter for the [OpenAPI 3.1.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) in [JSON format](https://www.json.org/json-en.html).
+`@speclynx/apidom-parser-adapter-openapi-json-3-1` is a parser adapter for the **OpenAPI 3.1.x specification** in [JSON format](https://www.json.org/json-en.html) supporting the following versions:
+
+- [OpenAPI 3.1.0](https://spec.openapis.org/oas/v3.1.0.html)
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html)
+- [OpenAPI 3.1.2](https://spec.openapis.org/oas/v3.1.2.html)
+
 Under the hood this adapter uses [apidom-parser-adapter-json](https://github.com/speclynx/apidom/tree/main/packages/apidom-parser-adapter-json)
 to parse a source string into generic ApiDOM in [base ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom#base-namespace)
-which is then refracted with [OpenAPI 3.1.0 Refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-3-1#refractors).
+which is then refracted with [OpenAPI 3.1.x Refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-3-1#refractors).
 
 ## Installation
 
@@ -27,16 +32,20 @@ Defines list of media types that this parser adapter recognizes.
 [
   'application/vnd.oai.openapi;version=3.1.0',
   'application/vnd.oai.openapi+json;version=3.1.0',
+  'application/vnd.oai.openapi;version=3.1.1',
+  'application/vnd.oai.openapi+json;version=3.1.1',
+  'application/vnd.oai.openapi;version=3.1.2',
+  'application/vnd.oai.openapi+json;version=3.1.2',
 ]
 ```
 
 ### detect
 
-[Detection](https://github.com/speclynx/apidom/blob/main/packages/apidom-parser-adapter-openapi-json-3-1/src/adapter.ts#L13) is based on a regular expression matching required OpenAPI 3.1.0 specification symbols in JSON format.
+[Detection](https://github.com/speclynx/apidom/blob/main/packages/apidom-parser-adapter-openapi-json-3-1/src/adapter.ts#L13) is based on a regular expression matching required OpenAPI 3.1.x specification symbols in JSON format.
 
 ### namespace
 
-This adapter exposes an instance of [OpenAPI 3.1.0 ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-3-1#openapi-310-namespace).
+This adapter exposes an instance of [OpenAPI 3.1.x ApiDOM namespace](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-3-1#openapi-310-namespace).
 
 ### parse
 
@@ -44,7 +53,7 @@ This adapter exposes an instance of [OpenAPI 3.1.0 ApiDOM namespace](https://git
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-openapi-3-1/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to OpenAPI 3.1.0 ApiDOM namespace.
+<a name="specObj"></a>`specObj` | `Object` | [Specification Object](https://github.com/speclynx/apidom/blob/main/packages/apidom-ns-openapi-3-1/src/refractor/specification.ts) | This specification object drives the JSON AST transformation to OpenAPI 3.1.x ApiDOM namespace.
 <a name="sourceMap"></a>`sourceMap` | `Boolean` | `false` | Indicate whether to generate source maps.
 <a name="refractorOpts"></a>`refractorOpts` | `Object` | `{}` | Refractor options are [passed to refractors](https://github.com/speclynx/apidom/tree/main/packages/apidom-ns-openapi-3-1#refractor-plugins) during refracting phase.
 
@@ -63,11 +72,11 @@ with [supported media types](#mediatypes).
 import { parse, detect } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
 
 // detecting
-await detect('{"openapi": "3.1.0"}'); // => true
+await detect('{"openapi": "3.1.2"}'); // => true
 await detect('test'); // => false
 
 // parsing
-const parseResult = await parse('{"openapi": "3.1.0"}', { sourceMap: true });
+const parseResult = await parse('{"openapi": "3.1.2"}', { sourceMap: true });
 ```
 
 ### Indirect usage
@@ -82,5 +91,5 @@ const parser = new ApiDOMParser();
 
 parser.use(openApiJsonAdapter);
 
-const parseResult = await parser.parse('{"openapi": "3.1.0"}', { mediaType: openApiJsonAdapter.mediaTypes.latest('json') });
+const parseResult = await parser.parse('{"openapi": "3.1.2"}', { mediaType: openApiJsonAdapter.mediaTypes.latest('json') });
 ```

@@ -78,6 +78,7 @@ describe('adapter', function () {
     specify('should detect version ranges in forward compatible way', function () {
       assert.isTrue(adapter.detectionRegExp.test('"openapi": "3.1.0"'));
       assert.isTrue(adapter.detectionRegExp.test('"openapi": "3.1.1"'));
+      assert.isTrue(adapter.detectionRegExp.test('"openapi": "3.1.2"'));
       assert.isTrue(adapter.detectionRegExp.test('"openapi": "3.1.145"'));
     });
 

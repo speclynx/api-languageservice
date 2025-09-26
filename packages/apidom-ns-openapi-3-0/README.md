@@ -1,6 +1,6 @@
 # @speclynx/apidom-ns-openapi-3-0
 
-`@speclynx/apidom-ns-openapi-3-0` contains ApiDOM namespace supports following OpenAPI specification versions:
+`@speclynx/apidom-ns-openapi-3-0` contains ApiDOM namespace specific to **OpenAPI 3.0.x specification**, supporting the following versions:
 
 - [OpenAPI 3.0.4 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md)
 - [OpenAPI 3.0.3 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md)
