@@ -46,7 +46,11 @@ export const OpenAPI311 = [{ namespace: 'openapi', version: '3.1.1' }];
 /**
  * @public
  */
-export const OpenAPI31 = [...OpenAPI310, ...OpenAPI311];
+export const OpenAPI312 = [{ namespace: 'openapi', version: '3.1.2' }];
+/**
+ * @public
+ */
+export const OpenAPI31 = [...OpenAPI310, ...OpenAPI311, ...OpenAPI312];
 
 /**
  * @public

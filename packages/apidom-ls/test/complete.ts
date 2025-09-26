@@ -1296,6 +1296,7 @@ describe('apidom-ls-complete', function () {
         targetSpecs: [
           { namespace: 'openapi', version: '3.1.0' },
           { namespace: 'openapi', version: '3.1.1' },
+          { namespace: 'openapi', version: '3.1.2' },
         ],
         filterText: 'se',
         textEdit: {
@@ -1316,6 +1317,7 @@ describe('apidom-ls-complete', function () {
         targetSpecs: [
           { namespace: 'openapi', version: '3.1.0' },
           { namespace: 'openapi', version: '3.1.1' },
+          { namespace: 'openapi', version: '3.1.2' },
         ],
         preselect: true,
         filterText: 'se',
@@ -1337,6 +1339,7 @@ describe('apidom-ls-complete', function () {
         targetSpecs: [
           { namespace: 'openapi', version: '3.1.0' },
           { namespace: 'openapi', version: '3.1.1' },
+          { namespace: 'openapi', version: '3.1.2' },
         ],
         preselect: true,
         filterText: 'se',
