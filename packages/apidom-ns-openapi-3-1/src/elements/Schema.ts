@@ -17,7 +17,7 @@ class Schema extends JSONSchemaElement {
   /**
    * OAS base vocabulary
    *
-   * URI: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#baseVocabulary
+   * URI: https://spec.openapis.org/oas/v3.1.2.html#base-vocabulary
    */
 
   get discriminator(): DiscriminatorElement | undefined {

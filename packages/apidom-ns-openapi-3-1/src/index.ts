@@ -485,7 +485,7 @@ export {
 
 export { keyMap, getNodeType } from './traversal/visitor.ts';
 
-// OpenAPI 3.1.0 elements
+// OpenAPI 3.1.2 elements
 export {
   CallbackElement,
   ComponentsElement,

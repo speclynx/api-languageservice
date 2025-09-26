@@ -42,7 +42,7 @@ import {
 } from '@speclynx/apidom-ns-openapi-3-0';
 
 /**
- * OpenAPI 3.1.0 specification elements.
+ * OpenAPI 3.1.2 specification elements.
  */
 import InfoElement from '../../elements/Info.ts';
 import ContactElement from '../../elements/Contact.ts';
@@ -88,7 +88,7 @@ import { Predicates } from '../toolbox.ts';
  * @example
  *
  * ```yaml
- * openapi: 3.1.0
+ * openapi: 3.1.2
  * info:
  * ```
  * Refracting result without this plugin:

@@ -37,7 +37,7 @@ describe('refractor', function () {
         visitor: {
           OpenapiElement(element: OpenapiElement) {
             // @ts-ignore
-            element.content = '3.1.1'; // eslint-disable-line no-param-reassign
+            element.content = '3.1.2'; // eslint-disable-line no-param-reassign
           },
         },
         post() {},
@@ -233,7 +233,7 @@ describe('refractor', function () {
             plugins: [plugin1],
           });
 
-          assert.deepEqual(toValue(openApiElement), { openapi: '3.1.1' });
+          assert.deepEqual(toValue(openApiElement), { openapi: '3.1.2' });
         });
       });
 
