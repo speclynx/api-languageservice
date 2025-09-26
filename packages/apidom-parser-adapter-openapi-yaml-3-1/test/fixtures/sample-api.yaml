@@ -1,6 +1,6 @@
 # stream comment
 ---
-openapi: 3.1.0
+openapi: 3.1.2
 x-top-level: value
 info:
   title: Sample API
