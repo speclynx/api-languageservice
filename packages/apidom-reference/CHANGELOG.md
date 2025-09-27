@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/speclynx/apidom/compare/v1.7.1...v1.8.0) (2025-09-27)
+
+### Features
+
+- **reference:** add support for OpenAPI 3.1.2 ([#88](https://github.com/speclynx/apidom/issues/88)) ([d6f487a](https://github.com/speclynx/apidom/commit/d6f487a2f51c1177087c2baa12b5779018ea33bc))
+
 ## [1.7.1](https://github.com/speclynx/apidom/compare/v1.7.0...v1.7.1) (2025-09-06)
 
 **Note:** Version bump only for package @speclynx/apidom-reference

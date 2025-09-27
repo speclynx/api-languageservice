@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/speclynx/apidom/compare/v1.7.1...v1.8.0) (2025-09-27)
+
+### Features
+
+- **ns-openapi-3-1:** add support for OpenAPI 3.1.2 ([#85](https://github.com/speclynx/apidom/issues/85)) ([8ea1767](https://github.com/speclynx/apidom/commit/8ea1767b1be31b1010bd4da839f2150006ec7da6))
+- **parser-adapter-openapi-json-3-1:** add support for OpenAPI 3.1.2 ([#86](https://github.com/speclynx/apidom/issues/86)) ([d435999](https://github.com/speclynx/apidom/commit/d435999bdf05dcec3359425b6e23b08c17fe97b7))
+
 ## [1.7.1](https://github.com/speclynx/apidom/compare/v1.7.0...v1.7.1) (2025-09-06)
 
 **Note:** Version bump only for package @speclynx/apidom-ns-openapi-3-1
