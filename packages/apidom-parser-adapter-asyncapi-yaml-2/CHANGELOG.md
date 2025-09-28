@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/speclynx/apidom/compare/v1.8.0...v1.9.0) (2025-09-28)
+
+**Note:** Version bump only for package @speclynx/apidom-parser-adapter-asyncapi-yaml-2
+
 # [1.8.0](https://github.com/speclynx/apidom/compare/v1.7.1...v1.8.0) (2025-09-27)
 
 **Note:** Version bump only for package @speclynx/apidom-parser-adapter-asyncapi-yaml-2
