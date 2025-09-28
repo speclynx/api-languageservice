@@ -98,19 +98,6 @@ const completion: ApidomCompletionItem[] = [
     targetSpecs: OpenAPI3,
   },
   {
-    label: '$request.header...',
-    insertText: '\\$request.header.',
-    kind: 14,
-    format: CompletionFormat.PARTIAL_KEY_QUOTED,
-    type: CompletionType.PROPERTY,
-    insertTextFormat: 2,
-    documentation: {
-      kind: 'markdown',
-      value: 'Request Header',
-    },
-    targetSpecs: OpenAPI3,
-  },
-  {
     label: '$request.body',
     insertText: "'\\$request.body'",
     kind: 14,
@@ -159,19 +146,6 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value: 'Response Query',
-    },
-    targetSpecs: OpenAPI3,
-  },
-  {
-    label: '$response.header...',
-    insertText: '\\$response.header.',
-    kind: 14,
-    format: CompletionFormat.PARTIAL_KEY_QUOTED,
-    type: CompletionType.PROPERTY,
-    insertTextFormat: 2,
-    documentation: {
-      kind: 'markdown',
-      value: 'Response Header',
     },
     targetSpecs: OpenAPI3,
   },

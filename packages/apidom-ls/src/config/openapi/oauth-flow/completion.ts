@@ -30,7 +30,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        'Applies to `oauth2` (`"implicit"`, `"authorizationCode"`). **REQUIRED**. The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.',
+        'Applies to `oauth2` (`"implicit"`, `"authorizationCode"`). **REQUIRED**. The authorization URI to be used for this flow. This MUST be in the form of a URI. The OAuth2 standard requires the use of TLS.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -58,7 +58,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        'Applies to `oauth2` (`"password"`, `"clientCredentials"`, `"authorizationCode"`). **REQUIRED**. The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.',
+        'Applies to `oauth2` (`"password"`, `"clientCredentials"`, `"authorizationCode"`). **REQUIRED**. The token URI to be used for this flow. This MUST be in the form of a URI. The OAuth2 standard requires the use of TLS.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -86,7 +86,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        'Applies to `oauth2`. The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.',
+        'Applies to `oauth2`. The URI to be used for obtaining refresh tokens. This MUST be in the form of a URI. The OAuth2 standard requires the use of TLS.',
     },
     targetSpecs: OpenAPI31,
   },

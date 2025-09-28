@@ -28,7 +28,7 @@ const httpCode3_1CompletionRule = {
   documentation: {
     kind: 'markdown',
     value:
-      '[Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responseObject) \\| [Reference Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#referenceObject)\n\\\n\\\nThe documentation of responses other than the ones declared for specific HTTP response codes. Use this field to cover undeclared responses.',
+      '[Response Object](https://spec.openapis.org/oas/v3.1.2.html#response-object) \\| [Reference Object](https://spec.openapis.org/oas/v3.1.2.html#reference-object)\n\\\n\\\nThe documentation of responses other than the ones declared for specific HTTP response codes. Use this field to cover undeclared responses.',
   },
   targetSpecs: OpenAPI31,
 };

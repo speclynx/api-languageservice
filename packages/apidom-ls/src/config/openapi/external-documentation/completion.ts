@@ -58,7 +58,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '**REQUIRED**. The URL for the target documentation. This MUST be in the form of a URL.',
+        '**REQUIRED**. The URI for the target documentation. This MUST be in the form of a URI.',
     },
     targetSpecs: OpenAPI3,
   },

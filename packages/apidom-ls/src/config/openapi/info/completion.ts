@@ -95,7 +95,7 @@ const completion: ApidomCompletionItem[] = [
     insertTextFormat: 2,
     documentation: {
       kind: 'markdown',
-      value: 'A URL to the Terms of Service for the API. This MUST be in the form of a URL.',
+      value: 'A URI to the Terms of Service for the API. This MUST be in the form of a URI.',
     },
     targetSpecs: OpenAPI3,
   },
@@ -137,7 +137,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '[Contact Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#contactObject)\n\\\n\\\nThe contact information for the exposed API.',
+        '[Contact Object](https://spec.openapis.org/oas/v3.1.2.html#contact-object)\n\\\n\\\nThe contact information for the exposed API.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -179,7 +179,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '[License Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#licenseObject)\n\\\n\\\nThe license information for the exposed API.',
+        '[License Object](https://spec.openapis.org/oas/v3.1.2.html#license-object)\n\\\n\\\nThe license information for the exposed API.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -221,7 +221,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '**REQUIRED**. The version of the OpenAPI document (which is distinct from the [OpenAPI Specification version](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oasVersion) or the API implementation version).',
+        '**REQUIRED**. The version of the OpenAPI document (which is distinct from the [OpenAPI Specification version](https://spec.openapis.org/oas/v3.1.2.html#oas-version) or the API implementation version).',
     },
     targetSpecs: OpenAPI31,
   },

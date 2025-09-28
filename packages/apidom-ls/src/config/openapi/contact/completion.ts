@@ -3,7 +3,7 @@ import {
   CompletionFormat,
   CompletionType,
 } from '../../../apidom-language-types.ts';
-import { OpenAPI2, OpenAPI3 } from '../target-specs.ts';
+import { OpenAPI2, OpenAPI30, OpenAPI31, OpenAPI3 } from '../target-specs.ts';
 
 const completion: ApidomCompletionItem[] = [
   {
@@ -43,7 +43,20 @@ const completion: ApidomCompletionItem[] = [
       kind: 'markdown',
       value: 'The URL pointing to the contact information. This MUST be in the form of a URL.',
     },
-    targetSpecs: OpenAPI3,
+    targetSpecs: OpenAPI30,
+  },
+  {
+    label: 'url',
+    insertText: 'url',
+    kind: 14,
+    format: CompletionFormat.QUOTED,
+    type: CompletionType.PROPERTY,
+    insertTextFormat: 2,
+    documentation: {
+      kind: 'markdown',
+      value: 'The URI for the contact information. This MUST be in the form of a URI.',
+    },
+    targetSpecs: OpenAPI31,
   },
   {
     label: 'email',
@@ -71,7 +84,7 @@ const completion: ApidomCompletionItem[] = [
       value:
         'The email address of the contact person/organization. This MUST be in the form of an email address.',
     },
-    targetSpecs: OpenAPI3,
+    targetSpecs: [...OpenAPI30, ...OpenAPI31],
   },
 ];
 

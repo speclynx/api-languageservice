@@ -68,9 +68,7 @@ export class OpenAPi20JsonSchemaValidationProvider extends JsonSchemaValidationP
 
   // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
-    return [
-      { namespace: 'openapi', version: '2.0' },
-    ];
+    return [{ namespace: 'openapi', version: '2.0' }];
   }
 
   // eslint-disable-next-line class-methods-use-this

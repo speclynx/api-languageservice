@@ -210,7 +210,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '[OAuth Flows Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oauthFlowsObject)\n\\\nApplies to `oauth2`. **REQUIRED**. An object containing configuration information for the flow types supported.',
+        '[OAuth Flows Object](https://spec.openapis.org/oas/v3.1.2.html#oauth-flows-object)\n\\\nApplies to `oauth2`. **REQUIRED**. An object containing configuration information for the flow types supported.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -266,7 +266,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        'Applies to `openIdConnect`. **REQUIRED**. OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of a URL. The OpenID Connect standard requires the use of TLS.',
+        'Applies to `openIdConnect`. **REQUIRED**. OpenId Connect URI to discover OAuth2 configuration values. This MUST be in the form of a URI. The OpenID Connect standard requires the use of TLS.',
     },
     targetSpecs: OpenAPI31,
   },
@@ -323,6 +323,16 @@ const completion: ApidomCompletionItem[] = [
     type: CompletionType.VALUE,
     insertTextFormat: 2,
     targetSpecs: [...OpenAPI2, ...OpenAPI3],
+  },
+  {
+    target: 'type',
+    label: 'mutualTLS',
+    insertText: 'mutualTLS',
+    kind: 12,
+    format: CompletionFormat.QUOTED,
+    type: CompletionType.VALUE,
+    insertTextFormat: 2,
+    targetSpecs: OpenAPI31,
   },
   {
     target: 'type',

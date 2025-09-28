@@ -69,7 +69,7 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        'A URL to the license used for the API. This MUST be in the form of a URL. The `url` field is mutually exclusive of the `identifier` field.',
+        'A URI to the license used for the API. This MUST be in the form of a URI. The `url` field is mutually exclusive of the `identifier` field.',
     },
     targetSpecs: OpenAPI31,
   },
