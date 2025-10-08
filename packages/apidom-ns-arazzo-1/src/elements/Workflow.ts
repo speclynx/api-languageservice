@@ -1,11 +1,12 @@
-import {
-  ObjectElement,
-  ArrayElement,
-  StringElement,
-  Attributes,
-  Meta,
-} from '@speclynx/apidom-core';
-import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2020-12';
+import { ObjectElement, StringElement, Attributes, Meta } from '@speclynx/apidom-core';
+
+import JSONSchemaElement from './JSONSchema.ts';
+import WorkflowDependsOnElement from './nces/WorkflowDependsOn.ts';
+import WorkflowStepsElement from './nces/WorkflowSteps.ts';
+import WorkflowSuccessActionsElement from './nces/WorkflowSuccessActions.ts';
+import WorkflowFailureActionsElement from './nces/WorkflowFailureActions.ts';
+import WorkflowOutputsElement from './nces/WorkflowOutputs.ts';
+import WorkflowParametersElement from './nces/WorkflowParameters.ts';
 
 /**
  * @public
@@ -48,20 +49,52 @@ class Workflow extends ObjectElement {
     this.set('inputs', inputs);
   }
 
-  get steps(): ArrayElement | undefined {
+  get dependsOn(): WorkflowDependsOnElement | undefined {
+    return this.get('dependsOn');
+  }
+
+  set dependsOn(dependsOn: WorkflowDependsOnElement | undefined) {
+    this.set('dependsOn', dependsOn);
+  }
+
+  get steps(): WorkflowStepsElement | undefined {
     return this.get('steps');
   }
 
-  set steps(steps: ArrayElement | undefined) {
+  set steps(steps: WorkflowStepsElement | undefined) {
     this.set('steps', steps);
   }
 
-  get outputs(): ObjectElement | undefined {
+  get successActions(): WorkflowSuccessActionsElement | undefined {
+    return this.get('successActions');
+  }
+
+  set successActions(successActions: WorkflowSuccessActionsElement | undefined) {
+    this.set('successActions', successActions);
+  }
+
+  get failureActions(): WorkflowFailureActionsElement | undefined {
+    return this.get('failureActions');
+  }
+
+  set failureActions(failureActions: WorkflowFailureActionsElement | undefined) {
+    this.set('failureActions', failureActions);
+  }
+
+  get outputs(): WorkflowOutputsElement | undefined {
     return this.get('outputs');
   }
 
-  set outputs(outputs: ObjectElement | undefined) {
+  set outputs(outputs: WorkflowOutputsElement | undefined) {
     this.set('outputs', outputs);
+  }
+
+  get parameters(): WorkflowParametersElement | undefined {
+    return this.get('parameters');
+  }
+
+  set parameters(parameters: WorkflowParametersElement | undefined) {
+    this.set('parameters', parameters);
   }
 }
 

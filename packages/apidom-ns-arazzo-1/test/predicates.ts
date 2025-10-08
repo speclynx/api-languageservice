@@ -3,13 +3,18 @@ import { ArrayElement } from '@speclynx/apidom-core';
 
 import {
   isArazzoSpecification1Element,
-  isArazzoSpecElement,
+  isArazzoElement,
   isInfoElement,
   isSourceDescriptionElement,
   isSourceDescriptionsElement,
   isWorkflowElement,
   isWorkflowStepsElement,
   isWorkflowOutputsElement,
+  isWorkflowDependsOnElement,
+  isWorkflowFailureActionsElement,
+  isWorkflowParametersElement,
+  isWorkflowsElement,
+  isWorkflowSuccessActionsElement,
   isParameterElement,
   isStepElement,
   isStepParametersElement,
@@ -23,16 +28,30 @@ import {
   isFailureActionElement,
   isFailureActionCriteriaElement,
   isComponentsElement,
+  isComponentsFailureActionsElement,
+  isComponentsInputsElement,
+  isComponentsParametersElement,
+  isComponentsSuccessActionsElement,
   isCriterionElement,
-  isReferenceElement,
+  isCriterionExpressionTypeElement,
+  isJSONSchemaElement,
+  isPayloadReplacementElement,
+  isRequestBodyElement,
+  isRequestBodyReplacementsElement,
+  isReusableElement,
   ArazzoSpecification1Element,
-  ArazzoSpecElement,
+  ArazzoElement,
   InfoElement,
   SourceDescriptionElement,
   SourceDescriptionsElement,
   WorkflowElement,
   WorkflowStepsElement,
   WorkflowOutputsElement,
+  WorkflowDependsOnElement,
+  WorkflowFailureActionsElement,
+  WorkflowParametersElement,
+  WorkflowsElement,
+  WorkflowSuccessActionsElement,
   StepElement,
   StepParametersElement,
   StepDependsOnElement,
@@ -46,8 +65,17 @@ import {
   FailureActionElement,
   FailureActionCriteriaElement,
   ComponentsElement,
+  ComponentsFailureActionsElement,
+  ComponentsInputsElement,
+  ComponentsParametersElement,
+  ComponentsSuccessActionsElement,
   CriterionElement,
-  ReferenceElement,
+  CriterionExpressionTypeElement,
+  JSONSchemaElement,
+  PayloadReplacementElement,
+  RequestBodyElement,
+  RequestBodyReplacementsElement,
+  ReusableElement,
 } from '../src/index.ts';
 
 describe('predicates', function () {
@@ -164,37 +192,37 @@ describe('predicates', function () {
     });
   });
 
-  context('isArazzoSpecElement', function () {
-    context('given ArazzoSpecElement instance value', function () {
+  context('isArazzoElement', function () {
+    context('given ArazzoElement instance value', function () {
       specify('should return true', function () {
-        const element = new ArazzoSpecElement();
+        const element = new ArazzoElement();
 
-        assert.isTrue(isArazzoSpecElement(element));
+        assert.isTrue(isArazzoElement(element));
       });
     });
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        class ArazzoSpecSubElement extends ArazzoSpecElement {}
+        class ArazzoSubElement extends ArazzoElement {}
 
-        assert.isTrue(isArazzoSpecElement(new ArazzoSpecSubElement()));
+        assert.isTrue(isArazzoElement(new ArazzoSubElement()));
       });
     });
 
     context('given non OpenapiElement instance value', function () {
       specify('should return false', function () {
-        assert.isFalse(isArazzoSpecElement(1));
-        assert.isFalse(isArazzoSpecElement(null));
-        assert.isFalse(isArazzoSpecElement(undefined));
-        assert.isFalse(isArazzoSpecElement({}));
-        assert.isFalse(isArazzoSpecElement([]));
-        assert.isFalse(isArazzoSpecElement('string'));
+        assert.isFalse(isArazzoElement(1));
+        assert.isFalse(isArazzoElement(null));
+        assert.isFalse(isArazzoElement(undefined));
+        assert.isFalse(isArazzoElement({}));
+        assert.isFalse(isArazzoElement([]));
+        assert.isFalse(isArazzoElement('string'));
       });
     });
 
     specify('should support duck-typing', function () {
-      const arazzoSpecElementDuck = {
-        _storedElement: 'arazzoSpec',
+      const arazzoElementDuck = {
+        _storedElement: 'arazzo',
         _content: '',
         primitive() {
           return 'string';
@@ -204,7 +232,7 @@ describe('predicates', function () {
         },
       };
 
-      const arazzoSpecElementSwan = {
+      const arazzoElementSwan = {
         _storedElement: undefined,
         _content: undefined,
         primitive() {
@@ -212,8 +240,8 @@ describe('predicates', function () {
         },
       };
 
-      assert.isTrue(isArazzoSpecElement(arazzoSpecElementDuck));
-      assert.isFalse(isArazzoSpecElement(arazzoSpecElementSwan));
+      assert.isTrue(isArazzoElement(arazzoElementDuck));
+      assert.isFalse(isArazzoElement(arazzoElementSwan));
     });
   });
 
@@ -712,38 +740,39 @@ describe('predicates', function () {
     });
   });
 
-  context('isReferenceElement', function () {
-    context('given ReferenceElement instance value', function () {
+  context('isReusableElement', function () {
+    context('given ReusableElement instance value', function () {
       specify('should return true', function () {
-        const element = new ReferenceElement();
+        const element = new ReusableElement();
 
-        assert.isTrue(isReferenceElement(element));
+        assert.isTrue(isReusableElement(element));
       });
     });
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        class ReferenceSubElement extends ReferenceElement {}
+        class ReusableSubElement extends ReusableElement {}
 
-        assert.isTrue(isReferenceElement(new ReferenceSubElement()));
+        assert.isTrue(isReusableElement(new ReusableSubElement()));
       });
     });
 
-    context('given non ReferenceElement instance value', function () {
+    context('given non ReusableElement instance value', function () {
       specify('should return false', function () {
-        assert.isFalse(isReferenceElement(1));
-        assert.isFalse(isReferenceElement(null));
-        assert.isFalse(isReferenceElement(undefined));
-        assert.isFalse(isReferenceElement({}));
-        assert.isFalse(isReferenceElement([]));
-        assert.isFalse(isReferenceElement('string'));
+        assert.isFalse(isReusableElement(1));
+        assert.isFalse(isReusableElement(null));
+        assert.isFalse(isReusableElement(undefined));
+        assert.isFalse(isReusableElement({}));
+        assert.isFalse(isReusableElement([]));
+        assert.isFalse(isReusableElement('string'));
       });
     });
 
     specify('should support duck-typing', function () {
-      const referenceElementDuck = {
-        _storedElement: 'reference',
+      const reusableElementDuck = {
+        _storedElement: 'reusable',
         _content: [],
+        classes: new ArrayElement(['arazzo-reference']),
         primitive() {
           return 'object';
         },
@@ -752,7 +781,7 @@ describe('predicates', function () {
         },
       };
 
-      const referenceElementSwan = {
+      const reusableElementSwan = {
         _storedElement: undefined,
         _content: undefined,
         primitive() {
@@ -760,8 +789,8 @@ describe('predicates', function () {
         },
       };
 
-      assert.isTrue(isReferenceElement(referenceElementDuck));
-      assert.isFalse(isReferenceElement(referenceElementSwan));
+      assert.isTrue(isReusableElement(reusableElementDuck));
+      assert.isFalse(isReusableElement(reusableElementSwan));
     });
   });
 
@@ -1308,6 +1337,734 @@ describe('predicates', function () {
 
       assert.isTrue(isStepOutputsElement(stepOutputsElementDuck));
       assert.isFalse(isStepOutputsElement(stepOutputsElementSwan));
+    });
+  });
+
+  context('isCriterionExpressionTypeElement', function () {
+    context('given CriterionExpressionTypeElement instance value', function () {
+      specify('should return true', function () {
+        const element = new CriterionExpressionTypeElement();
+
+        assert.isTrue(isCriterionExpressionTypeElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class CriterionExpressionTypeSubElement extends CriterionExpressionTypeElement {}
+
+        assert.isTrue(isCriterionExpressionTypeElement(new CriterionExpressionTypeSubElement()));
+      });
+    });
+
+    context('given non CriterionExpressionTypeElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isCriterionExpressionTypeElement(1));
+        assert.isFalse(isCriterionExpressionTypeElement(null));
+        assert.isFalse(isCriterionExpressionTypeElement(undefined));
+        assert.isFalse(isCriterionExpressionTypeElement({}));
+        assert.isFalse(isCriterionExpressionTypeElement([]));
+        assert.isFalse(isCriterionExpressionTypeElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const criterionExpressionTypeElementDuck = {
+        _storedElement: 'criterionExpressionType',
+        _content: [],
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const criterionExpressionTypeElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isCriterionExpressionTypeElement(criterionExpressionTypeElementDuck));
+      assert.isFalse(isCriterionExpressionTypeElement(criterionExpressionTypeElementSwan));
+    });
+  });
+
+  context('isPayloadReplacementElement', function () {
+    context('given PayloadReplacementElement instance value', function () {
+      specify('should return true', function () {
+        const element = new PayloadReplacementElement();
+
+        assert.isTrue(isPayloadReplacementElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class PayloadReplacementSubElement extends PayloadReplacementElement {}
+
+        assert.isTrue(isPayloadReplacementElement(new PayloadReplacementSubElement()));
+      });
+    });
+
+    context('given non PayloadReplacementElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isPayloadReplacementElement(1));
+        assert.isFalse(isPayloadReplacementElement(null));
+        assert.isFalse(isPayloadReplacementElement(undefined));
+        assert.isFalse(isPayloadReplacementElement({}));
+        assert.isFalse(isPayloadReplacementElement([]));
+        assert.isFalse(isPayloadReplacementElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const payloadReplacementElementDuck = {
+        _storedElement: 'payloadReplacement',
+        _content: [],
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const payloadReplacementElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isPayloadReplacementElement(payloadReplacementElementDuck));
+      assert.isFalse(isPayloadReplacementElement(payloadReplacementElementSwan));
+    });
+  });
+
+  context('isRequestBodyElement', function () {
+    context('given RequestBodyElement instance value', function () {
+      specify('should return true', function () {
+        const element = new RequestBodyElement();
+
+        assert.isTrue(isRequestBodyElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class RequestBodySubElement extends RequestBodyElement {}
+
+        assert.isTrue(isRequestBodyElement(new RequestBodySubElement()));
+      });
+    });
+
+    context('given non RequestBodyElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isRequestBodyElement(1));
+        assert.isFalse(isRequestBodyElement(null));
+        assert.isFalse(isRequestBodyElement(undefined));
+        assert.isFalse(isRequestBodyElement({}));
+        assert.isFalse(isRequestBodyElement([]));
+        assert.isFalse(isRequestBodyElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const requestBodyElementDuck = {
+        _storedElement: 'requestBody',
+        _content: [],
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const requestBodyElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isRequestBodyElement(requestBodyElementDuck));
+      assert.isFalse(isRequestBodyElement(requestBodyElementSwan));
+    });
+  });
+
+  context('isJSONSchemaElement', function () {
+    context('given JSONSchemaElement instance value', function () {
+      specify('should return true', function () {
+        const element = new JSONSchemaElement();
+
+        assert.isTrue(isJSONSchemaElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class JSONSchemaSubElement extends JSONSchemaElement {}
+
+        assert.isTrue(isJSONSchemaElement(new JSONSchemaSubElement()));
+      });
+    });
+
+    context('given non JSONSchemaElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isJSONSchemaElement(1));
+        assert.isFalse(isJSONSchemaElement(null));
+        assert.isFalse(isJSONSchemaElement(undefined));
+        assert.isFalse(isJSONSchemaElement({}));
+        assert.isFalse(isJSONSchemaElement([]));
+        assert.isFalse(isJSONSchemaElement('string'));
+      });
+    });
+  });
+
+  context('isComponentsInputsElement', function () {
+    context('given ComponentsInputsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new ComponentsInputsElement();
+
+        assert.isTrue(isComponentsInputsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class ComponentsInputsSubElement extends ComponentsInputsElement {}
+
+        assert.isTrue(isComponentsInputsElement(new ComponentsInputsSubElement()));
+      });
+    });
+
+    context('given non ComponentsInputsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isComponentsInputsElement(1));
+        assert.isFalse(isComponentsInputsElement(null));
+        assert.isFalse(isComponentsInputsElement(undefined));
+        assert.isFalse(isComponentsInputsElement({}));
+        assert.isFalse(isComponentsInputsElement([]));
+        assert.isFalse(isComponentsInputsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const componentsInputsElementDuck = {
+        _storedElement: 'object',
+        _content: [],
+        classes: new ArrayElement(['components-inputs']),
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const componentsInputsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isComponentsInputsElement(componentsInputsElementDuck));
+      assert.isFalse(isComponentsInputsElement(componentsInputsElementSwan));
+    });
+  });
+
+  context('isComponentsParametersElement', function () {
+    context('given ComponentsParametersElement instance value', function () {
+      specify('should return true', function () {
+        const element = new ComponentsParametersElement();
+
+        assert.isTrue(isComponentsParametersElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class ComponentsParametersSubElement extends ComponentsParametersElement {}
+
+        assert.isTrue(isComponentsParametersElement(new ComponentsParametersSubElement()));
+      });
+    });
+
+    context('given non ComponentsParametersElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isComponentsParametersElement(1));
+        assert.isFalse(isComponentsParametersElement(null));
+        assert.isFalse(isComponentsParametersElement(undefined));
+        assert.isFalse(isComponentsParametersElement({}));
+        assert.isFalse(isComponentsParametersElement([]));
+        assert.isFalse(isComponentsParametersElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const componentsParametersElementDuck = {
+        _storedElement: 'object',
+        _content: [],
+        classes: new ArrayElement(['components-parameters', 'parameters']),
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const componentsParametersElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isComponentsParametersElement(componentsParametersElementDuck));
+      assert.isFalse(isComponentsParametersElement(componentsParametersElementSwan));
+    });
+  });
+
+  context('isComponentsSuccessActionsElement', function () {
+    context('given ComponentsSuccessActionsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new ComponentsSuccessActionsElement();
+
+        assert.isTrue(isComponentsSuccessActionsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class ComponentsSuccessActionsSubElement extends ComponentsSuccessActionsElement {}
+
+        assert.isTrue(isComponentsSuccessActionsElement(new ComponentsSuccessActionsSubElement()));
+      });
+    });
+
+    context('given non ComponentsSuccessActionsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isComponentsSuccessActionsElement(1));
+        assert.isFalse(isComponentsSuccessActionsElement(null));
+        assert.isFalse(isComponentsSuccessActionsElement(undefined));
+        assert.isFalse(isComponentsSuccessActionsElement({}));
+        assert.isFalse(isComponentsSuccessActionsElement([]));
+        assert.isFalse(isComponentsSuccessActionsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const componentsSuccessActionsElementDuck = {
+        _storedElement: 'object',
+        _content: [],
+        classes: new ArrayElement(['components-success-actions']),
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const componentsSuccessActionsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isComponentsSuccessActionsElement(componentsSuccessActionsElementDuck));
+      assert.isFalse(isComponentsSuccessActionsElement(componentsSuccessActionsElementSwan));
+    });
+  });
+
+  context('isComponentsFailureActionsElement', function () {
+    context('given ComponentsFailureActionsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new ComponentsFailureActionsElement();
+
+        assert.isTrue(isComponentsFailureActionsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class ComponentsFailureActionsSubElement extends ComponentsFailureActionsElement {}
+
+        assert.isTrue(isComponentsFailureActionsElement(new ComponentsFailureActionsSubElement()));
+      });
+    });
+
+    context('given non ComponentsFailureActionsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isComponentsFailureActionsElement(1));
+        assert.isFalse(isComponentsFailureActionsElement(null));
+        assert.isFalse(isComponentsFailureActionsElement(undefined));
+        assert.isFalse(isComponentsFailureActionsElement({}));
+        assert.isFalse(isComponentsFailureActionsElement([]));
+        assert.isFalse(isComponentsFailureActionsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const componentsFailureActionsElementDuck = {
+        _storedElement: 'object',
+        _content: [],
+        classes: new ArrayElement(['components-failure-actions']),
+        primitive() {
+          return 'object';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const componentsFailureActionsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isComponentsFailureActionsElement(componentsFailureActionsElementDuck));
+      assert.isFalse(isComponentsFailureActionsElement(componentsFailureActionsElementSwan));
+    });
+  });
+
+  context('isRequestBodyReplacementsElement', function () {
+    context('given RequestBodyReplacementsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new RequestBodyReplacementsElement();
+
+        assert.isTrue(isRequestBodyReplacementsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class RequestBodyReplacementsSubElement extends RequestBodyReplacementsElement {}
+
+        assert.isTrue(isRequestBodyReplacementsElement(new RequestBodyReplacementsSubElement()));
+      });
+    });
+
+    context('given non RequestBodyReplacementsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isRequestBodyReplacementsElement(1));
+        assert.isFalse(isRequestBodyReplacementsElement(null));
+        assert.isFalse(isRequestBodyReplacementsElement(undefined));
+        assert.isFalse(isRequestBodyReplacementsElement({}));
+        assert.isFalse(isRequestBodyReplacementsElement([]));
+        assert.isFalse(isRequestBodyReplacementsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const requestBodyReplacementsElementDuck = {
+        _storedElement: 'array',
+        _content: [],
+        classes: new ArrayElement(['request-body-replacements']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const requestBodyReplacementsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isRequestBodyReplacementsElement(requestBodyReplacementsElementDuck));
+      assert.isFalse(isRequestBodyReplacementsElement(requestBodyReplacementsElementSwan));
+    });
+  });
+
+  context('isWorkflowDependsOnElement', function () {
+    context('given WorkflowDependsOnElement instance value', function () {
+      specify('should return true', function () {
+        const element = new WorkflowDependsOnElement();
+
+        assert.isTrue(isWorkflowDependsOnElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class WorkflowDependsOnSubElement extends WorkflowDependsOnElement {}
+
+        assert.isTrue(isWorkflowDependsOnElement(new WorkflowDependsOnSubElement()));
+      });
+    });
+
+    context('given non WorkflowDependsOnElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isWorkflowDependsOnElement(1));
+        assert.isFalse(isWorkflowDependsOnElement(null));
+        assert.isFalse(isWorkflowDependsOnElement(undefined));
+        assert.isFalse(isWorkflowDependsOnElement({}));
+        assert.isFalse(isWorkflowDependsOnElement([]));
+        assert.isFalse(isWorkflowDependsOnElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const workflowDependsOnElementDuck = {
+        _storedElement: 'array',
+        _content: [],
+        classes: new ArrayElement(['workflow-depends-on']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const workflowDependsOnElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isWorkflowDependsOnElement(workflowDependsOnElementDuck));
+      assert.isFalse(isWorkflowDependsOnElement(workflowDependsOnElementSwan));
+    });
+  });
+
+  context('isWorkflowParametersElement', function () {
+    context('given WorkflowParametersElement instance value', function () {
+      specify('should return true', function () {
+        const element = new WorkflowParametersElement();
+
+        assert.isTrue(isWorkflowParametersElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class WorkflowParametersSubElement extends WorkflowParametersElement {}
+
+        assert.isTrue(isWorkflowParametersElement(new WorkflowParametersSubElement()));
+      });
+    });
+
+    context('given non WorkflowParametersElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isWorkflowParametersElement(1));
+        assert.isFalse(isWorkflowParametersElement(null));
+        assert.isFalse(isWorkflowParametersElement(undefined));
+        assert.isFalse(isWorkflowParametersElement({}));
+        assert.isFalse(isWorkflowParametersElement([]));
+        assert.isFalse(isWorkflowParametersElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const workflowParametersElementDuck = {
+        _storedElement: 'array',
+        _content: [],
+        classes: new ArrayElement(['workflow-parameters', 'parameters']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const workflowParametersElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isWorkflowParametersElement(workflowParametersElementDuck));
+      assert.isFalse(isWorkflowParametersElement(workflowParametersElementSwan));
+    });
+  });
+
+  context('isWorkflowSuccessActionsElement', function () {
+    context('given WorkflowSuccessActionsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new WorkflowSuccessActionsElement();
+
+        assert.isTrue(isWorkflowSuccessActionsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class WorkflowSuccessActionsSubElement extends WorkflowSuccessActionsElement {}
+
+        assert.isTrue(isWorkflowSuccessActionsElement(new WorkflowSuccessActionsSubElement()));
+      });
+    });
+
+    context('given non WorkflowSuccessActionsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isWorkflowSuccessActionsElement(1));
+        assert.isFalse(isWorkflowSuccessActionsElement(null));
+        assert.isFalse(isWorkflowSuccessActionsElement(undefined));
+        assert.isFalse(isWorkflowSuccessActionsElement({}));
+        assert.isFalse(isWorkflowSuccessActionsElement([]));
+        assert.isFalse(isWorkflowSuccessActionsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const workflowSuccessActionsElementDuck = {
+        _storedElement: 'array',
+        _content: [],
+        classes: new ArrayElement(['workflow-success-actions']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const workflowSuccessActionsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isWorkflowSuccessActionsElement(workflowSuccessActionsElementDuck));
+      assert.isFalse(isWorkflowSuccessActionsElement(workflowSuccessActionsElementSwan));
+    });
+  });
+
+  context('isWorkflowFailureActionsElement', function () {
+    context('given WorkflowFailureActionsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new WorkflowFailureActionsElement();
+
+        assert.isTrue(isWorkflowFailureActionsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class WorkflowFailureActionsSubElement extends WorkflowFailureActionsElement {}
+
+        assert.isTrue(isWorkflowFailureActionsElement(new WorkflowFailureActionsSubElement()));
+      });
+    });
+
+    context('given non WorkflowFailureActionsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isWorkflowFailureActionsElement(1));
+        assert.isFalse(isWorkflowFailureActionsElement(null));
+        assert.isFalse(isWorkflowFailureActionsElement(undefined));
+        assert.isFalse(isWorkflowFailureActionsElement({}));
+        assert.isFalse(isWorkflowFailureActionsElement([]));
+        assert.isFalse(isWorkflowFailureActionsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const workflowFailureActionsElementDuck = {
+        _storedElement: 'array',
+        _content: [],
+        classes: new ArrayElement(['workflow-failure-actions']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const workflowFailureActionsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isWorkflowFailureActionsElement(workflowFailureActionsElementDuck));
+      assert.isFalse(isWorkflowFailureActionsElement(workflowFailureActionsElementSwan));
+    });
+  });
+
+  context('isWorkflowsElement', function () {
+    context('given WorkflowsElement instance value', function () {
+      specify('should return true', function () {
+        const element = new WorkflowsElement();
+
+        assert.isTrue(isWorkflowsElement(element));
+      });
+    });
+
+    context('given subtype instance value', function () {
+      specify('should return true', function () {
+        class WorkflowsSubElement extends WorkflowsElement {}
+
+        assert.isTrue(isWorkflowsElement(new WorkflowsSubElement()));
+      });
+    });
+
+    context('given non WorkflowsElement instance value', function () {
+      specify('should return false', function () {
+        assert.isFalse(isWorkflowsElement(1));
+        assert.isFalse(isWorkflowsElement(null));
+        assert.isFalse(isWorkflowsElement(undefined));
+        assert.isFalse(isWorkflowsElement({}));
+        assert.isFalse(isWorkflowsElement([]));
+        assert.isFalse(isWorkflowsElement('string'));
+      });
+    });
+
+    specify('should support duck-typing', function () {
+      const workflowsElementDuck = {
+        _storedElement: 'workflows',
+        _content: [],
+        classes: new ArrayElement(['workflows']),
+        primitive() {
+          return 'array';
+        },
+        get element() {
+          return this._storedElement;
+        },
+      };
+
+      const workflowsElementSwan = {
+        _storedElement: undefined,
+        _content: undefined,
+        primitive() {
+          return 'swan';
+        },
+      };
+
+      assert.isTrue(isWorkflowsElement(workflowsElementDuck));
+      assert.isFalse(isWorkflowsElement(workflowsElementSwan));
     });
   });
 });

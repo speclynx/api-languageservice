@@ -1,5 +1,7 @@
 import { StringElement, ObjectElement, Attributes, Meta } from '@speclynx/apidom-core';
 
+import CriterionExpressionTypeElement from './CriterionExpressionType.ts';
+
 /**
  * @public
  */
@@ -25,11 +27,11 @@ class Criterion extends ObjectElement {
     this.set('condition', condition);
   }
 
-  get type(): StringElement | undefined {
+  get type(): StringElement | CriterionExpressionTypeElement | undefined {
     return this.get('type');
   }
 
-  set type(type: StringElement | undefined) {
+  set type(type: StringElement | CriterionExpressionTypeElement | undefined) {
     this.set('type', type);
   }
 }

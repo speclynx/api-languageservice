@@ -5,7 +5,7 @@ exports[`adapter should parse 1`] = `
   (ArazzoSpecification1Element
     (MemberElement
       (StringElement)
-      (ArazzoSpecElement))
+      (ArazzoElement))
     (MemberElement
       (StringElement)
       (InfoElement
@@ -124,9 +124,6 @@ exports[`adapter should parse 1`] = `
                       (StringElement)
                       (StringElement)))))
               (StepElement
-                (MemberElement
-                  (StringElement)
-                  (StringElement))
                 (MemberElement
                   (StringElement)
                   (StringElement))

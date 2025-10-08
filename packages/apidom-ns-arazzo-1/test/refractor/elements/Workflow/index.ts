@@ -11,9 +11,44 @@ describe('refractor', function () {
           workflowId: 'uniqueWorkflowId',
           summary: 'Adopt a pet',
           description: 'Adopt a pet by calling APIs in a chain',
-          inputs: {},
-          steps: [{}],
-          outputs: { key: '$inputs.value' },
+          inputs: {
+            type: 'object',
+            properties: {
+              petId: {
+                type: 'string',
+              },
+            },
+          },
+          dependsOn: ['previousWorkflowId'],
+          steps: [
+            {
+              stepId: 'step1',
+              operationId: 'getPet',
+            },
+          ],
+          successActions: [
+            {
+              name: 'onSuccess',
+              type: 'goto',
+              stepId: 'nextStep',
+            },
+          ],
+          failureActions: [
+            {
+              name: 'onFailure',
+              type: 'end',
+            },
+          ],
+          outputs: {
+            petDetails: '$response.body',
+          },
+          parameters: [
+            {
+              name: 'userId',
+              in: 'header',
+              value: '{$inputs.userId}',
+            },
+          ],
         });
 
         expect(sexprs(workflowElement)).toMatchSnapshot();

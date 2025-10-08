@@ -22,6 +22,7 @@ class InputsVisitor extends Mixin(MapVisitor, FallbackVisitor) {
     super(options);
     this.element = new ComponentsInputsElement();
     this.specPath = always(['document', 'objects', 'JSONSchema']);
+    this.fieldPatternPredicate = (value: unknown) => /^[a-zA-Z0-9.\-_]+$/.test(String(value));
   }
 }
 

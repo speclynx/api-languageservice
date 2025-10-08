@@ -10,11 +10,5 @@ exports[`refractor elements ParameterElement should refract to semantic ApiDOM t
     (StringElement))
   (MemberElement
     (StringElement)
-    (StringElement))
-  (MemberElement
-    (StringElement)
-    (StringElement))
-  (MemberElement
-    (StringElement)
     (StringElement)))
 `;

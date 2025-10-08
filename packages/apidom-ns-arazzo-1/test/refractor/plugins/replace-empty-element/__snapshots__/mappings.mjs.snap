@@ -4,7 +4,7 @@ exports[`given empty value instead of InfoElement should replace empty value wit
 (ArazzoSpecification1Element
   (MemberElement
     (StringElement)
-    (ArazzoSpecElement))
+    (ArazzoElement))
   (MemberElement
     (StringElement)
     (InfoElement)))

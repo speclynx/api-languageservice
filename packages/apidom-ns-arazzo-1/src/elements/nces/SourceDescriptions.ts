@@ -4,7 +4,7 @@ import { ArrayElement, Attributes, Meta } from '@speclynx/apidom-core';
  * @public
  */
 class SourceDescriptions extends ArrayElement {
-  static primaryClass = 'sourceDescriptions';
+  static primaryClass = 'source-descriptions';
 
   constructor(content?: Array<unknown>, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);

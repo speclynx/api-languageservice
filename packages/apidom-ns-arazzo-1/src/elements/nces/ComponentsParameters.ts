@@ -9,6 +9,7 @@ class ComponentsParameters extends ObjectElement {
   constructor(content?: Record<string, unknown>, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);
     this.classes.push(ComponentsParameters.primaryClass);
+    this.classes.push('parameters');
   }
 }
 

@@ -1,24 +1,24 @@
 import { Mixin } from 'ts-mixer';
 import { ArrayElement, Element, BREAK } from '@speclynx/apidom-core';
 
-import FailureActionCriteriaElement from '../../../elements/nces/FailureActionCriteria.ts';
-import SpecificationVisitor, { SpecificationVisitorOptions } from '../SpecificationVisitor.ts';
-import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';
+import FailureActionCriteriaElement from '../../../../elements/nces/FailureActionCriteria.ts';
+import SpecificationVisitor, { SpecificationVisitorOptions } from '../../SpecificationVisitor.ts';
+import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
 
 /**
  * @public
  */
-export interface FailureActionCriteriaVisitorOptions
+export interface CriteriaVisitorOptions
   extends SpecificationVisitorOptions,
     FallbackVisitorOptions {}
 
 /**
  * @public
  */
-class FailureActionCriteriaVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
+class CriteriaVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
   public readonly element: FailureActionCriteriaElement;
 
-  constructor(options: FailureActionCriteriaVisitorOptions) {
+  constructor(options: CriteriaVisitorOptions) {
     super(options);
     this.element = new FailureActionCriteriaElement();
   }
@@ -37,4 +37,4 @@ class FailureActionCriteriaVisitor extends Mixin(SpecificationVisitor, FallbackV
   }
 }
 
-export default FailureActionCriteriaVisitor;
+export default CriteriaVisitor;

@@ -13,6 +13,9 @@ exports[`refractor elements FailureActionElement should refract to semantic ApiD
     (StringElement))
   (MemberElement
     (StringElement)
+    (StringElement))
+  (MemberElement
+    (StringElement)
     (NumberElement))
   (MemberElement
     (StringElement)

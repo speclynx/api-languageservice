@@ -26,7 +26,7 @@ describe('adapter', function () {
     });
 
     specify('should detect patch version bump', async function () {
-      assert.isTrue(await adapter.detect('{"arazzo": "1.0.1"}'));
+      assert.isTrue(await adapter.detect('{"arazzo": "1.0.2"}'));
     });
 
     specify('should not detect major version bump', async function () {

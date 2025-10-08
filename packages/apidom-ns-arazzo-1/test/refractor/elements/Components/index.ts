@@ -9,10 +9,35 @@ describe('refractor', function () {
       specify('should refract to semantic ApiDOM tree', function () {
         const componentsElement = ComponentsElement.refract({
           inputs: {
-            Schema1: {},
+            userInput: {
+              type: 'object',
+              properties: {
+                userId: {
+                  type: 'string',
+                },
+              },
+            },
           },
           parameters: {
-            Parameter1: {},
+            userIdParam: {
+              name: 'userId',
+              in: 'header',
+              value: '{$inputs.userId}',
+            },
+          },
+          successActions: {
+            completeAction: {
+              name: 'complete',
+              type: 'end',
+            },
+          },
+          failureActions: {
+            retryAction: {
+              name: 'retry',
+              type: 'retry',
+              retryAfter: 1000,
+              retryLimit: 3,
+            },
           },
         });
 

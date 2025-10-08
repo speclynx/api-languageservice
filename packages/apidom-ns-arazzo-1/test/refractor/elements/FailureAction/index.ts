@@ -8,6 +8,7 @@ describe('refractor', function () {
     context('FailureActionElement', function () {
       specify('should refract to semantic ApiDOM tree', function () {
         const failureActionElement = FailureActionElement.refract({
+          name: 'failureAction',
           type: 'retry',
           workflowId: 'uniqueWorkflowId',
           stepId: 'getPetStep',

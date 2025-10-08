@@ -7,8 +7,8 @@ import {
   isObjectElement,
 } from '@speclynx/apidom-core';
 
-export interface ReferenceLikeElement extends ObjectElement {
-  hasKey: (value: '$ref') => true;
+export interface ReusableLikeElement extends ObjectElement {
+  hasKey: (value: 'reference') => true;
 }
 
 /**
@@ -18,6 +18,6 @@ export const isArazzoSpecificationExtension = (element: MemberElement): boolean 
   return isStringElement(element.key) && startsWith('x-', toValue(element.key));
 };
 
-export const isReferenceLikeElement = (element: unknown): element is ReferenceLikeElement => {
-  return isObjectElement(element) && element.hasKey('$ref');
+export const isReusableLikeElement = (element: unknown): element is ReusableLikeElement => {
+  return isObjectElement(element) && element.hasKey('reference');
 };

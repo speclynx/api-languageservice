@@ -7,11 +7,62 @@ exports[`refractor elements ComponentsElement should refract to semantic ApiDOM 
     (ObjectElement
       (MemberElement
         (StringElement)
-        (JSONSchema202012Element))))
+        (JSONSchema202012Element
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (ObjectElement
+              (MemberElement
+                (StringElement)
+                (JSONSchema202012Element
+                  (MemberElement
+                    (StringElement)
+                    (StringElement))))))))))
   (MemberElement
     (StringElement)
     (ObjectElement
       (MemberElement
         (StringElement)
-        (ParameterElement)))))
+        (ParameterElement
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (StringElement))))))
+  (MemberElement
+    (StringElement)
+    (ObjectElement
+      (MemberElement
+        (StringElement)
+        (SuccessActionElement
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (StringElement))))))
+  (MemberElement
+    (StringElement)
+    (ObjectElement
+      (MemberElement
+        (StringElement)
+        (FailureActionElement
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (StringElement))
+          (MemberElement
+            (StringElement)
+            (NumberElement))
+          (MemberElement
+            (StringElement)
+            (NumberElement)))))))
 `;

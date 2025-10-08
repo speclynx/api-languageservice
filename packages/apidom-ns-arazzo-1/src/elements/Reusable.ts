@@ -3,19 +3,19 @@ import { StringElement, ObjectElement, Attributes, Meta } from '@speclynx/apidom
 /**
  * @public
  */
-class Reference extends ObjectElement {
+class Reusable extends ObjectElement {
   constructor(content?: Record<string, unknown>, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);
-    this.element = 'reference';
-    this.classes.push('arazzo-spec-reference');
+    this.element = 'reusable';
+    this.classes.push('arazzo-reference');
   }
 
-  get $ref(): StringElement | undefined {
-    return this.get('$ref');
+  get reference(): StringElement | undefined {
+    return this.get('reference');
   }
 
-  set $ref($ref: StringElement | undefined) {
-    this.set('$ref', $ref);
+  set reference(reference: StringElement | undefined) {
+    this.set('reference', reference);
   }
 
   get value(): StringElement | undefined {
@@ -27,4 +27,4 @@ class Reference extends ObjectElement {
   }
 }
 
-export default Reference;
+export default Reusable;

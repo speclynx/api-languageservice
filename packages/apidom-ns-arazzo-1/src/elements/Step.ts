@@ -1,10 +1,11 @@
-import {
-  ObjectElement,
-  ArrayElement,
-  StringElement,
-  Attributes,
-  Meta,
-} from '@speclynx/apidom-core';
+import { ObjectElement, StringElement, Attributes, Meta } from '@speclynx/apidom-core';
+
+import RequestBodyElement from './RequestBody.ts';
+import StepParametersElement from './nces/StepParameters.ts';
+import StepSuccessCriteriaElement from './nces/StepSuccessCriteria.ts';
+import StepOnSuccessElement from './nces/StepOnSuccess.ts';
+import StepOnFailureElement from './nces/StepOnFailure.ts';
+import StepOutputsElement from './nces/StepOutputs.ts';
 
 /**
  * @public
@@ -39,12 +40,12 @@ class Step extends ObjectElement {
     this.set('operationId', operationId);
   }
 
-  get operationRef(): StringElement | undefined {
-    return this.get('operationRef');
+  get operationPath(): StringElement | undefined {
+    return this.get('operationPath');
   }
 
-  set operationRef(operationRef: StringElement | undefined) {
-    this.set('operationRef', operationRef);
+  set operationPath(operationPath: StringElement | undefined) {
+    this.set('operationPath', operationPath);
   }
 
   get workflowId(): StringElement | undefined {
@@ -55,51 +56,51 @@ class Step extends ObjectElement {
     this.set('workflowId', workflowId);
   }
 
-  get parameters(): ArrayElement | undefined {
+  get parameters(): StepParametersElement | undefined {
     return this.get('parameters');
   }
 
-  set parameters(parameters: ArrayElement | undefined) {
+  set parameters(parameters: StepParametersElement | undefined) {
     this.set('parameters', parameters);
   }
 
-  get dependsOn(): ArrayElement | undefined {
-    return this.get('dependsOn');
+  get requestBody(): RequestBodyElement | undefined {
+    return this.get('requestBody');
   }
 
-  set dependsOn(dependsOn: ArrayElement | undefined) {
-    this.set('dependsOn', dependsOn);
+  set requestBody(requestBody: RequestBodyElement | undefined) {
+    this.set('requestBody', requestBody);
   }
 
-  get successCriteria(): ArrayElement | undefined {
+  get successCriteria(): StepSuccessCriteriaElement | undefined {
     return this.get('successCriteria');
   }
 
-  set successCriteria(successCriteria: ArrayElement | undefined) {
+  set successCriteria(successCriteria: StepSuccessCriteriaElement | undefined) {
     this.set('successCriteria', successCriteria);
   }
 
-  get onSuccess(): ArrayElement | undefined {
+  get onSuccess(): StepOnSuccessElement | undefined {
     return this.get('onSuccess');
   }
 
-  set onSuccess(onSuccess: ArrayElement | undefined) {
+  set onSuccess(onSuccess: StepOnSuccessElement | undefined) {
     this.set('onSuccess', onSuccess);
   }
 
-  get onFailure(): ArrayElement | undefined {
+  get onFailure(): StepOnFailureElement | undefined {
     return this.get('onFailure');
   }
 
-  set onFailure(onFailure: ArrayElement | undefined) {
+  set onFailure(onFailure: StepOnFailureElement | undefined) {
     this.set('onFailure', onFailure);
   }
 
-  get outputs(): ObjectElement | undefined {
+  get outputs(): StepOutputsElement | undefined {
     return this.get('outputs');
   }
 
-  set outputs(outputs: ObjectElement | undefined) {
+  set outputs(outputs: StepOutputsElement | undefined) {
     this.set('outputs', outputs);
   }
 }

@@ -1,11 +1,12 @@
 import {
   ObjectElement,
-  ArrayElement,
   StringElement,
   NumberElement,
   Attributes,
   Meta,
 } from '@speclynx/apidom-core';
+
+import FailureActionCriteriaElement from './nces/FailureActionCriteria.ts';
 
 /**
  * @public
@@ -14,6 +15,14 @@ class FailureAction extends ObjectElement {
   constructor(content?: Record<string, unknown>, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);
     this.element = 'failureAction';
+  }
+
+  get name(): StringElement | undefined {
+    return this.get('name');
+  }
+
+  set name(name: StringElement | undefined) {
+    this.set('name', name);
   }
 
   get type(): StringElement | undefined {
@@ -56,11 +65,11 @@ class FailureAction extends ObjectElement {
     this.set('retryLimit', retryLimit);
   }
 
-  get criteria(): ArrayElement | undefined {
+  get criteria(): FailureActionCriteriaElement | undefined {
     return this.get('criteria');
   }
 
-  set criteria(criteria: ArrayElement | undefined) {
+  set criteria(criteria: FailureActionCriteriaElement | undefined) {
     this.set('criteria', criteria);
   }
 }

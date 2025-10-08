@@ -1,18 +1,18 @@
 import { expect } from 'chai';
 import { sexprs } from '@speclynx/apidom-core';
 
-import { ReferenceElement } from '../../../../src/index.ts';
+import { ReusableElement } from '../../../../src/index.ts';
 
 describe('refractor', function () {
   context('elements', function () {
-    context('ReferenceElement', function () {
+    context('ReusableElement', function () {
       specify('should refract to semantic ApiDOM tree', function () {
-        const referenceElement = ReferenceElement.refract({
-          $ref: '#/path/to/somewhere',
+        const reusableElement = ReusableElement.refract({
+          reference: '#/path/to/somewhere',
           value: 'override',
         });
 
-        expect(sexprs(referenceElement)).toMatchSnapshot();
+        expect(sexprs(reusableElement)).toMatchSnapshot();
       });
     });
   });

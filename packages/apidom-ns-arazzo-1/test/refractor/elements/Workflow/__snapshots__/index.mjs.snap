@@ -13,15 +13,73 @@ exports[`refractor elements WorkflowElement should refract to semantic ApiDOM tr
     (StringElement))
   (MemberElement
     (StringElement)
-    (JSONSchema202012Element))
+    (JSONSchema202012Element
+      (MemberElement
+        (StringElement)
+        (StringElement))
+      (MemberElement
+        (StringElement)
+        (ObjectElement
+          (MemberElement
+            (StringElement)
+            (JSONSchema202012Element
+              (MemberElement
+                (StringElement)
+                (StringElement))))))))
   (MemberElement
     (StringElement)
     (ArrayElement
-      (StepElement)))
+      (StringElement)))
+  (MemberElement
+    (StringElement)
+    (ArrayElement
+      (StepElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement)))))
+  (MemberElement
+    (StringElement)
+    (ArrayElement
+      (SuccessActionElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement)))))
+  (MemberElement
+    (StringElement)
+    (ArrayElement
+      (FailureActionElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement)))))
   (MemberElement
     (StringElement)
     (ObjectElement
       (MemberElement
         (StringElement)
-        (StringElement)))))
+        (StringElement))))
+  (MemberElement
+    (StringElement)
+    (ArrayElement
+      (ParameterElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
+          (StringElement))))))
 `;

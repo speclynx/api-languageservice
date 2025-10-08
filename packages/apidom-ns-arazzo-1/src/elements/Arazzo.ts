@@ -3,13 +3,13 @@ import { StringElement, Attributes, Meta } from '@speclynx/apidom-core';
 /**
  * @public
  */
-class ArazzoSpec extends StringElement {
+class Arazzo extends StringElement {
   constructor(content?: string, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);
-    this.element = 'arazzoSpec';
+    this.element = 'arazzo';
     this.classes.push('spec-version');
     this.classes.push('version');
   }
 }
 
-export default ArazzoSpec;
+export default Arazzo;

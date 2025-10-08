@@ -2,19 +2,21 @@ import { StringElement } from '@speclynx/apidom-core';
 
 import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
 
-export type { FallbackVisitorOptions as $RefVisitorOptions };
+export type { FallbackVisitorOptions as VersionVisitorOptions };
 
 /**
  * @public
  */
-export class $RefVisitor extends FallbackVisitor {
+class VersionVisitor extends FallbackVisitor {
   declare public readonly element: StringElement;
 
   StringElement(stringElement: StringElement) {
     const result = super.enter(stringElement);
-    this.element.classes.push('reference-value');
+
+    this.element.classes.push('version');
+
     return result;
   }
 }
 
-export default $RefVisitor;
+export default VersionVisitor;

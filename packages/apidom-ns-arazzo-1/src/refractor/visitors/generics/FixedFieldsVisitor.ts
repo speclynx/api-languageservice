@@ -32,7 +32,7 @@ export interface FixedFieldsVisitorOptions extends SpecificationVisitorOptions {
 class FixedFieldsVisitor extends SpecificationVisitor {
   protected specPath: SpecPath;
 
-  protected ignoredFields: string[] = [];
+  protected ignoredFields: string[];
 
   protected canSupportSpecificationExtensions: boolean = true;
 

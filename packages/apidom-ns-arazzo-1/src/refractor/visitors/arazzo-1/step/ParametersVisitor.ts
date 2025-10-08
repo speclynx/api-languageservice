@@ -1,11 +1,11 @@
 import { Mixin } from 'ts-mixer';
 import { ArrayElement, Element, BREAK } from '@speclynx/apidom-core';
 
-import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
-import SpecificationVisitor, { SpecificationVisitorOptions } from '../../SpecificationVisitor.ts';
-import { isReferenceLikeElement } from '../../../predicates.ts';
-import { isReferenceElement } from '../../../../predicates.ts';
 import StepParametersElement from '../../../../elements/nces/StepParameters.ts';
+import SpecificationVisitor, { SpecificationVisitorOptions } from '../../SpecificationVisitor.ts';
+import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
+import { isReusableLikeElement } from '../../../predicates.ts';
+import { isReusableElement } from '../../../../predicates.ts';
 
 /**
  * @public
@@ -17,7 +17,7 @@ export interface ParametersVisitorOptions
 /**
  * @public
  */
-class ParametersVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
+class ParametersActionsVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
   declare public readonly element: StepParametersElement;
 
   constructor(options: ParametersVisitorOptions) {
@@ -27,12 +27,12 @@ class ParametersVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
 
   ArrayElement(arrayElement: ArrayElement) {
     arrayElement.forEach((item: Element): void => {
-      const specPath = isReferenceLikeElement(item)
-        ? ['document', 'objects', 'Reference']
+      const specPath = isReusableLikeElement(item)
+        ? ['document', 'objects', 'Reusable']
         : ['document', 'objects', 'Parameter'];
       const element = this.toRefractedElement(specPath, item);
 
-      if (isReferenceElement(element)) {
+      if (isReusableElement(element)) {
         element.setMetaProperty('referenced-element', 'parameter');
       }
 
@@ -45,4 +45,4 @@ class ParametersVisitor extends Mixin(SpecificationVisitor, FallbackVisitor) {
   }
 }
 
-export default ParametersVisitor;
+export default ParametersActionsVisitor;

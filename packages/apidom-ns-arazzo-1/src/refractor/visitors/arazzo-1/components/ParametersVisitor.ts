@@ -22,6 +22,7 @@ class ParametersVisitor extends Mixin(MapVisitor, FallbackVisitor) {
     super(options);
     this.element = new ComponentsParametersElement();
     this.specPath = always(['document', 'objects', 'Parameter']);
+    this.fieldPatternPredicate = (value: unknown) => /^[a-zA-Z0-9.\-_]+$/.test(String(value));
   }
 }
 

@@ -1,8 +1,10 @@
-import { ObjectElement, ArrayElement, Attributes, Meta } from '@speclynx/apidom-core';
+import { ObjectElement, Attributes, Meta } from '@speclynx/apidom-core';
 
-import ArazzoSpecElement from './ArazzoSpec.ts';
+import ArazzoElement from './Arazzo.ts';
 import InfoElement from './Info.ts';
 import ComponentsElement from './Components.ts';
+import SourceDescriptions from './nces/SourceDescriptions.ts';
+import Workflows from './nces/Workflows.ts';
 
 /**
  * @public
@@ -15,12 +17,12 @@ class ArazzoSpecification1 extends ObjectElement {
     this.classes.push('arazzo');
   }
 
-  get arazzoSpec(): ArazzoSpecElement | undefined {
-    return this.get('arazzoSpec');
+  get arazzo(): ArazzoElement | undefined {
+    return this.get('arazzo');
   }
 
-  set arazzoSpec(arazzoSpec: ArazzoSpecElement | undefined) {
-    this.set('arazzoSpec', arazzoSpec);
+  set arazzo(arazzo: ArazzoElement | undefined) {
+    this.set('arazzo', arazzo);
   }
 
   get info(): InfoElement | undefined {
@@ -31,19 +33,19 @@ class ArazzoSpecification1 extends ObjectElement {
     this.set('info', info);
   }
 
-  get sourceDescriptions(): ArrayElement | undefined {
+  get sourceDescriptions(): SourceDescriptions | undefined {
     return this.get('sourceDescriptions');
   }
 
-  set sourceDescriptions(sourceDescriptions: ArrayElement | undefined) {
+  set sourceDescriptions(sourceDescriptions: SourceDescriptions | undefined) {
     this.set('sourceDescriptions', sourceDescriptions);
   }
 
-  get workflows(): ArrayElement | undefined {
+  get workflows(): Workflows | undefined {
     return this.get('workflows');
   }
 
-  set workflows(workflows: ArrayElement | undefined) {
+  set workflows(workflows: Workflows | undefined) {
     this.set('workflows', workflows);
   }
 

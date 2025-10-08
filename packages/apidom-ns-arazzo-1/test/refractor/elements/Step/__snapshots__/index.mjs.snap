@@ -30,14 +30,35 @@ exports[`refractor elements StepElement should refract to semantic ApiDOM tree 1
         (MemberElement
           (StringElement)
           (StringElement)))
-      (ReferenceElement
+      (ReusableElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
         (MemberElement
           (StringElement)
           (StringElement)))))
   (MemberElement
     (StringElement)
-    (ArrayElement
-      (StringElement)))
+    (RequestBodyElement
+      (MemberElement
+        (StringElement)
+        (StringElement))
+      (MemberElement
+        (StringElement)
+        (ObjectElement
+          (MemberElement
+            (StringElement)
+            (StringElement))))
+      (MemberElement
+        (StringElement)
+        (ArrayElement
+          (PayloadReplacementElement
+            (MemberElement
+              (StringElement)
+              (StringElement))
+            (MemberElement
+              (StringElement)
+              (StringElement)))))))
   (MemberElement
     (StringElement)
     (ArrayElement
@@ -66,6 +87,9 @@ exports[`refractor elements StepElement should refract to semantic ApiDOM tree 1
           (StringElement))
         (MemberElement
           (StringElement)
+          (StringElement))
+        (MemberElement
+          (StringElement)
           (ArrayElement
             (CriterionElement
               (MemberElement
@@ -81,6 +105,9 @@ exports[`refractor elements StepElement should refract to semantic ApiDOM tree 1
     (StringElement)
     (ArrayElement
       (FailureActionElement
+        (MemberElement
+          (StringElement)
+          (StringElement))
         (MemberElement
           (StringElement)
           (StringElement))

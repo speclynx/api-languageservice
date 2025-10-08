@@ -25,22 +25,6 @@ class Parameter extends ObjectElement {
     this.set('in', val);
   }
 
-  get style(): StringElement | undefined {
-    return this.get('style');
-  }
-
-  set style(style: StringElement | undefined) {
-    this.set('style', style);
-  }
-
-  get target(): StringElement | undefined {
-    return this.get('target');
-  }
-
-  set target(target: StringElement | undefined) {
-    this.set('target', target);
-  }
-
   get value(): Element | undefined {
     return this.get('value');
   }

@@ -58,7 +58,7 @@ class SpecificationVisitor extends Visitor {
 
   toRefractedElement(specPath: string[], element: any, options = {}) {
     /**
-     * This is `Visitor shortcut`: mechanism for short-circuiting the traversal and replacing
+     * This is `Visitor shortcut`: a mechanism for short-circuiting the traversal and replacing
      * it by basic node cloning.
      *
      * Visiting the element is equivalent to cloning it if the prototype of a visitor

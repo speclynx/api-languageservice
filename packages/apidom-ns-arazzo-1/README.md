@@ -1,6 +1,9 @@
 # @speclynx/apidom-ns-arazzo-1
 
-`@speclynx/apidom-ns-arazzo-1` contains ApiDOM namespace specific to [Arazzo 1.0.1 specification](https://spec.openapis.org/arazzo/latest.html#version-1-0-1).
+`@speclynx/apidom-ns-arazzo-1` contains ApiDOM namespace specific to **Arazzo 1.x.y specification**, supporting the following versions:
+
+- [Arazzo 1.0.0](https://spec.openapis.org/arazzo/v1.0.0.html)
+- [Arazzo 1.0.1](https://spec.openapis.org/arazzo/v1.0.1.html)
 
 ## Installation
 
@@ -193,11 +196,11 @@ Only fully implemented specification objects should be checked here.
 - [x] [Parameter Object](https://spec.openapis.org/arazzo/latest.html#parameter-object)
 - [x] [Success Action Object](https://spec.openapis.org/arazzo/latest.html#success-action-object)
 - [x] [Failure Action Object](https://spec.openapis.org/arazzo/latest.html#failure-action-object)
-- [x] [Component Object](https://spec.openapis.org/arazzo/latest.html#components-object)
+- [x] [Components Object](https://spec.openapis.org/arazzo/latest.html#components-object)
 - [x] [Reusable Object](https://spec.openapis.org/arazzo/latest.html#reusable-object)
 - [x] [Criterion Object](https://spec.openapis.org/arazzo/latest.html#criterion-object)
 - [x] [Criterion Expression Type Object](https://spec.openapis.org/arazzo/latest.html#criterion-expression-type-object)
 - [x] [Request Body Object](https://spec.openapis.org/arazzo/latest.html#request-body-object)
-- [x] [Reusable Object](https://spec.openapis.org/arazzo/latest.html#reusable-object)
+- [x] [Payload Replacement Object](https://spec.openapis.org/arazzo/latest.html#payload-replacement-object)
 - [x] [JSON Schema](https://json-schema.org/specification-links#2020-12)
 - [x] [Specification extensions](https://spec.openapis.org/arazzo/latest.html#specification-extensions)

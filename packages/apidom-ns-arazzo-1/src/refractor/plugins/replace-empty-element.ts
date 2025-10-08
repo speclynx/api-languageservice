@@ -30,20 +30,20 @@ import { getNodeType } from '../../traversal/visitor.ts';
  * ```
  * Refracting result without this plugin:
  *
- *  (ArazzoSpecificationElement
+ *  (ArazzoSpecification1Element
  *    (MemberElement
  *      (StringElement)
- *      (ArazzoSpecElement))
+ *      (ArazzoElement))
  *    (MemberElement
  *      (StringElement)
  *      (StringElement))
  *
  * Refracting result with this plugin:
  *
- *  (ArazzoSpecificationElement
+ *  (ArazzoSpecification1Element
  *    (MemberElement
  *      (StringElement)
- *      (ArazzoSpecElement))
+ *      (ArazzoElement))
  *    (MemberElement
  *      (StringElement)
  *      (InfoElement))

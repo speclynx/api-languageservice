@@ -8,11 +8,9 @@ describe('refractor', function () {
     context('ParameterElement', function () {
       specify('should refract to semantic ApiDOM tree', function () {
         const parameterElement = ParameterElement.refract({
-          name: 'session',
-          in: 'body',
-          style: 'form',
-          target: '#/name',
-          value: 'foo',
+          name: 'userId',
+          in: 'header',
+          value: '{$inputs.userId}',
         });
 
         expect(sexprs(parameterElement)).toMatchSnapshot();

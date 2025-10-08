@@ -11,8 +11,7 @@ describe('refractor', function () {
           description: 'Search for available pets',
           stepId: 'searchForPet',
           operationId: 'getPets',
-          operationRef:
-            'https://petstore3.swagger.io/api/v3/openapi.json#/paths/users/~findbystatus~1{status}/get',
+          operationPath: '{$sourceDescriptions.petstore}/pets',
           workflowId: 'uniqueWorkflowId',
           parameters: [
             {
@@ -21,19 +20,32 @@ describe('refractor', function () {
               value: 'available',
             },
             {
-              $ref: '#/json/pointer',
+              reference: '#/components/parameters/userId',
+              value: '{$inputs.userId}',
             },
           ],
-          dependsOn: ['someStepId'],
+          requestBody: {
+            contentType: 'application/json',
+            payload: {
+              status: 'available',
+            },
+            replacements: [
+              {
+                target: '$.status',
+                value: '{$inputs.status}',
+              },
+            ],
+          },
           successCriteria: [
             {
               context: '$statusCode',
-              condition: '^503$',
-              type: 'regex',
+              condition: '200',
+              type: 'simple',
             },
           ],
           onSuccess: [
             {
+              name: 'onSuccessAction',
               type: 'goto',
               workflowId: 'uniqueWorkflowId',
               stepId: 'getPetStep',
@@ -48,6 +60,7 @@ describe('refractor', function () {
           ],
           onFailure: [
             {
+              name: 'onFailureAction',
               type: 'retry',
               workflowId: 'uniqueWorkflowId',
               stepId: 'getPetStep',
@@ -62,7 +75,9 @@ describe('refractor', function () {
               ],
             },
           ],
-          outputs: { key: '$inputs.value' },
+          outputs: {
+            petList: '$response.body',
+          },
         });
 
         expect(sexprs(stepElement)).toMatchSnapshot();

@@ -2,8 +2,8 @@
   "arazzo": "1.0.1",
   "info": {
     "title": "A pet purchasing workflow",
-    "summary": "This workflow showcases how to purchase a pet through a sequence of API calls",
-    "description": "This workflow walks you through the steps of `searching` for, `selecting`, and `purchasing` an available pet.\n",
+    "summary": "This Arazzo Description showcases the workflow for how to purchase a pet through a sequence of API calls",
+    "description": "This Arazzo Description walks you through the workflow and steps of `searching` for, `selecting`, and `purchasing` an available pet.\n",
     "version": "1.0.1"
   },
   "sourceDescriptions": [
@@ -15,9 +15,9 @@
   ],
   "workflows": [
     {
-      "workflowId": "loginUserRetrievePet",
+      "workflowId": "loginUserAndRetrievePet",
       "summary": "Login User and then retrieve pets",
-      "description": "This procedure lays out the steps to login a user and then retrieve pets",
+      "description": "This workflow lays out the steps to login a user and then retrieve pets",
       "inputs": {
         "type": "object",
         "properties": {
@@ -33,7 +33,7 @@
         {
           "stepId": "loginStep",
           "description": "This step demonstrates the user login step",
-          "operationId": "petStoreDescription.loginUser",
+          "operationId": "loginUser",
           "parameters": [
             {
               "name": "username",
@@ -60,8 +60,7 @@
         {
           "stepId": "getPetStep",
           "description": "retrieve a pet by status from the GET pets endpoint",
-          "operationRef": "https://petstore3.swagger.io/api/v3/openapi.json#/paths/users/~findbystatus~1{status}/get",
-          "dependsOn": "loginStep",
+          "operationPath": "{$sourceDescriptions.petstoreDescription.url}#/paths/~1pet~1findByStatus/get",
           "parameters": [
             {
               "name": "status",
@@ -85,7 +84,7 @@
         }
       ],
       "outputs": {
-        "available": "$steps.getPetStep.availablePets"
+        "available": "$steps.getPetStep.outputs.availablePets"
       }
     }
   ]
