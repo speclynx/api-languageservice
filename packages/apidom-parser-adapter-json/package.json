@@ -48,10 +48,11 @@
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0",
-    "web-tree-sitter": "=0.24.5"
+    "web-tree-sitter": "=0.25.10"
   },
   "devDependencies": {
-    "tree-sitter-json": "=0.24.8"
+    "tree-sitter-json": "=0.24.8",
+    "@types/emscripten": "^1.41.2"
   },
   "files": [
     "src/**/*.mjs",

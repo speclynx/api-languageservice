@@ -17,7 +17,7 @@ class TreeCursorSyntaxNode {
 
   public readonly isMissing: boolean;
 
-  public fieldName: string | undefined;
+  public fieldName: string | null = null;
 
   public hasError = false;
 

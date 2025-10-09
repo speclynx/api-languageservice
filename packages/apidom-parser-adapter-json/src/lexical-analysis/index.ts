@@ -1,7 +1,5 @@
-import Parser, { Tree } from 'web-tree-sitter';
-// @ts-ignore
+import { Tree, Parser, Language } from 'web-tree-sitter';
 import treeSitter from 'web-tree-sitter/tree-sitter.wasm';
-// @ts-ignore
 import treeSitterJson from 'tree-sitter-json/tree-sitter-json.wasm';
 import { ApiDOMError } from '@speclynx/apidom-error';
 
@@ -19,8 +17,8 @@ let parserInitLock: Promise<Parser> | null = null;
 const analyze = async (source: string): Promise<Tree> => {
   if (parser === null && parserInitLock === null) {
     // acquire lock
-    parserInitLock = Parser.init({ wasmBinary: treeSitter })
-      .then(() => Parser.Language.load(treeSitterJson))
+    parserInitLock = Parser.init({ wasmBinary: treeSitter } as unknown as EmscriptenModule)
+      .then(() => Language.load(treeSitterJson))
       .then((jsonLanguage) => {
         const parserInstance = new Parser();
         parserInstance.setLanguage(jsonLanguage);
@@ -40,7 +38,7 @@ const analyze = async (source: string): Promise<Tree> => {
     );
   }
 
-  return parser.parse(source);
+  return parser.parse(source) as Tree;
 };
 
 export default analyze;
