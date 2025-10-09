@@ -21,6 +21,7 @@ const browser = {
       fs: false,
       path: false,
       util: false,
+      module: false,
     },
   },
   module: {
@@ -66,6 +67,7 @@ const browserMin = {
       fs: false,
       path: false,
       util: false,
+      module: false,
     },
   },
   module: {

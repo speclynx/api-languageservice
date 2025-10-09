@@ -21,6 +21,7 @@ const browser = {
     fallback: {
       fs: false,
       path: false,
+      module: false,
     },
   },
   module: {
@@ -65,6 +66,7 @@ const browserMin = {
     fallback: {
       fs: false,
       path: false,
+      module: false,
     },
   },
   module: {

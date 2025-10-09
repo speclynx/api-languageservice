@@ -5,7 +5,7 @@ import { nonMinimizeTrait, minimizeTrait } from './traits.config.js';
 
 const browser = {
   mode: 'production',
-  entry: ['./src/index.ts'],
+  entry: ['./src/configuration/saturated.ts'],
   target: 'web',
   performance: {
     maxEntrypointSize: 3500000,
@@ -22,6 +22,7 @@ const browser = {
     fallback: {
       fs: false,
       path: false,
+      module: false,
     },
   },
   module: {
@@ -49,7 +50,7 @@ const browser = {
 
 const browserMin = {
   mode: 'production',
-  entry: ['./src/index.ts'],
+  entry: ['./src/configuration/saturated.ts'],
   target: 'web',
   performance: {
     maxEntrypointSize: 600000,
@@ -66,6 +67,7 @@ const browserMin = {
     fallback: {
       fs: false,
       path: false,
+      module: false,
     },
   },
   module: {
