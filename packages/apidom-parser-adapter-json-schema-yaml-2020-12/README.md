@@ -7,8 +7,7 @@ which is then refracted with [JSON Schema 2020-12 Refractors](https://github.com
 
 ## Installation
 
-After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
-via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
+You can install `@speclynx/apidom-parser-adapter-json-schema-yaml-2020-12` via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
  $ npm install @speclynx/apidom-parser-adapter-json-schema-yaml-2020-12

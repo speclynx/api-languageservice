@@ -11,8 +11,7 @@ which is then refracted with [API Design Systems Refractors](https://github.com/
 
 ## Installation
 
-After [prerequisites](https://github.com/speclynx/apidom/blob/main/README.md#prerequisites) for installing this package are satisfied, you can install it
-via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
+You can install `@speclynx/apidom-parser-adapter-api-design-systems-yaml` via [npm CLI](https://docs.npmjs.com/cli) by running the following command:
 
 ```sh
  $ npm install @speclynx/apidom-parser-adapter-api-design-systems-yaml

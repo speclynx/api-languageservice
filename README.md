@@ -24,12 +24,10 @@ and allows tool builders to consume one structure for all formats.
 ## Table of Contents
 
 - [Getting started](#getting-started)
-  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Usage](#usage)
   - [ApiDOM Playground](#apidom-playground)
 - [Development](#development)
-  - [Prerequisites](#prerequisites)
   - [Setting up](#setting-up)
   - [Setting up via docker](#setting-up-via-docker)
   - [Setting up via GitHub Codespaces](#setting-up-via-github-codespaces)
@@ -48,18 +46,9 @@ and allows tool builders to consume one structure for all formats.
 
 ## Getting started
 
-### Prerequisites
-
-These prerequisites are required both for installing ApiDOM as a npm package and local development setup.
-
-- [node-gyp](https://www.npmjs.com/package/node-gyp) `>=10` with [Python 3.x](https://www.python.org/downloads/)
-- [GLIBC](https://www.gnu.org/software/libc/) `>=2.29`
-- [GCC compiler](https://gcc.gnu.org/)
-- [emscripten](https://emscripten.org/docs/getting_started/downloads.html) or [docker](https://www.docker.com/) needs to be installed, we recommend going with a docker option
-
 ### Installation
 
-Assuming [prerequisites](#prerequisites) are already installed, ApiDOM npm packages are installable and works with `Node.js >=12.20.0 <=22`.
+ApiDOM npm packages are installable and works with `Node.js >=12.20.0 <=24`.
 
 You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 
@@ -123,7 +112,7 @@ ApiDOM Playground is available at [https://speclynx.github.io/apidom/](https://s
 This is a monorepo for all ApiDOM packages. All the code is written in [TypeScript](https://www.typescriptlang.org/).
 All the information necessary for working with monorepo can be found in this [article](https://vladimirgorej.com/blog/things-i-have-learned-maintaining-javascript-monorepo-with-lerna/).
 
-Assuming [prerequisites](#prerequisites) are already installed, [Node.js](https://nodejs.org/) `>=24.10.0` and `npm >=11.6.1`
+[Node.js](https://nodejs.org/) `>=24.10.0` and `npm >=11.6.1`
 are the minimum required versions that this repo runs on, but we recommend using the latest version of Node.js@24.
 
 ### Setting up
@@ -139,7 +128,7 @@ Run the following commands to setup the repository for local development:
 
 ### Setting up via docker
 
-There are situations, when satisfying all the **prerequisites** of this repository on you local
+There are situations when satisfying all setup requirements of this repository on your local
 development machine is just not possible. In that case, you can use **docker** to get around it.
 Repository directory is mounted as volume inside a running container called `apidom-dev`.
 That way you can edit code locally on your development machine and run **npm scripts**
