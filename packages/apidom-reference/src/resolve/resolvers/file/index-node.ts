@@ -1,5 +1,5 @@
-import { readFile } from '#fs'; // eslint-disable-line import/order
-import { promisify } from '#util'; // eslint-disable-line import/order
+import { readFile } from 'node:fs';
+import { promisify } from 'node:util';
 import minimatch from 'minimatch';
 
 import File from '../../../File.ts';

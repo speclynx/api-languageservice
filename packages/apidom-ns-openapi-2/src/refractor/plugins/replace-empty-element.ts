@@ -337,7 +337,7 @@ const findElementFactory = (ancestor: any, keyName: string) => {
 
   return typeof keyMapping === 'undefined'
     ? undefined
-    : Object.prototype.hasOwnProperty.call(keyMapping, '[key: *]')
+    : Object.hasOwn(keyMapping, '[key: *]')
       ? keyMapping['[key: *]']
       : keyMapping[keyName];
 };
@@ -351,7 +351,7 @@ const plugin = () => () => ({
       if (!isEmptyElement(element)) return undefined;
 
       const lineage = [...ancestors, parent].filter(isElement);
-      const parentElement = lineage[lineage.length - 1]; // @TODO(vladimir.gorej@gmail.com): can be replaced by Array.prototype.at in future
+      const parentElement = lineage.at(-1);
       let elementFactory;
       let context;
 
@@ -359,7 +359,7 @@ const plugin = () => () => ({
         context = element;
         elementFactory = findElementFactory(parentElement, '<*>');
       } else if (isMemberElement(parentElement)) {
-        context = lineage[lineage.length - 2]; // @TODO(vladimir.gorej@gmail.com): can be replaced by Array.prototype.at in future
+        context = lineage.at(-2);
         elementFactory = findElementFactory(context, toValue(parentElement.key));
       }
 

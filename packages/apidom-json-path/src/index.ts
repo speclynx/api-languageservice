@@ -1,5 +1,3 @@
-import './polyfills.ts';
-
 export { default as EvaluationJsonPathError } from './errors/EvaluationJsonPathError.ts';
 export type { EvaluationJsonPathErrorOptions } from './errors/EvaluationJsonPathError.ts';
 export { default as MultiEvaluationJsonPathError } from './errors/MultiEvaluationJsonPathError.ts';

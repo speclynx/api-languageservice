@@ -1,4 +1,4 @@
-import { Buffer } from '#buffer'; // eslint-disable-line import/order
+import { Buffer } from 'node:buffer';
 import { ParseResultElement, StringElement } from '@speclynx/apidom-core';
 
 import ParserError from '../../../errors/ParserError.ts';

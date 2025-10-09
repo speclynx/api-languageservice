@@ -48,7 +48,7 @@ and allows tool builders to consume one structure for all formats.
 
 ### Installation
 
-ApiDOM npm packages are installable and works with `Node.js >=12.20.0 <=24`.
+ApiDOM npm packages are installable and works with `Node.js >=16.14.2 <=24`.
 
 You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 

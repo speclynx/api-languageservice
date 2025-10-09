@@ -41,7 +41,7 @@ error2.prop1; // => 'value1'
 error2.prop2; // => 3
 ```
 
-Although structured error class gives convenience by assigning arbitrary properties
+Although structured error class gives convenience by assigning arbitrary properties,
 it's highly recommended to extend `ApiDOMStructuredError` class and create public properties
 explicitly.
 
@@ -99,7 +99,7 @@ aggregateError instanceof AggregateError; // => true
 
 ## Generic custom errors
 
-Generic custom errors represents custom errors that are generic enough
+Generic custom errors represent custom errors that are generic enough
 to be used across ApiDOM monorepo packages and are not specific to any
 particular ApiDOM package.
 

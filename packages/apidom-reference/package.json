@@ -211,29 +211,6 @@
       "types": "./types/bundle/strategies/openapi-3-1/index.d.ts"
     }
   },
-  "imports": {
-    "#buffer": {
-      "node": {
-        "import": "./src/util/polyfills/buffer/protocol-import.mjs",
-        "require": "./src/util/polyfills/buffer/standard-import.cjs"
-      },
-      "default": "./src/util/polyfills/buffer/standard-import.cjs"
-    },
-    "#fs": {
-      "node": {
-        "import": "./src/util/polyfills/fs/protocol-import.mjs",
-        "require": "./src/util/polyfills/fs/standard-import.cjs"
-      },
-      "default": "./src/util/polyfills/fs/standard-import.cjs"
-    },
-    "#util": {
-      "node": {
-        "import": "./src/util/polyfills/util/protocol-import.mjs",
-        "require": "./src/util/polyfills/util/standard-import.cjs"
-      },
-      "default": "./src/util/polyfills/util/standard-import.cjs"
-    }
-  },
   "scripts": {
     "build": "npm run clean && run-p --max-parallel ${CPU_CORES:-2} typescript:declaration build:es build:cjs build:umd:browser",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir src --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward'",

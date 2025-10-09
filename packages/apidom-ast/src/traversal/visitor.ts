@@ -610,7 +610,7 @@ export const visit = (
   } while (stack !== undefined);
 
   if (edits.length !== 0) {
-    return edits[edits.length - 1][1]; // @TODO(vladimir.gorej@gmail.com): can be replaced by Array.prototype.at in future
+    return edits.at(-1)[1];
   }
 
   return root;
@@ -783,7 +783,7 @@ visit[Symbol.for('nodejs.util.promisify.custom')] = async (
   } while (stack !== undefined);
 
   if (edits.length !== 0) {
-    return edits[edits.length - 1][1]; // @TODO(vladimir.gorej@gmail.com): can be replaced by Array.prototype.at in future
+    return edits.at(-1)[1];
   }
 
   return root;
