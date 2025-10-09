@@ -9,8 +9,8 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "=22.14.0",
-    "npm": ">=10.9.2"
+    "node": "=24.10.0",
+    "npm": ">=11.6.1"
   },
   "scripts": {
     "build": "lerna run build",
@@ -52,7 +52,7 @@
     "@types/dedent": "=0.7.2",
     "@types/jsdom-global": "^3.0.7",
     "@types/mocha": "=10.0.10",
-    "@types/node": "=22.14.0",
+    "@types/node": "^24.7.1",
     "@types/sinon": "=17.0.4",
     "@typescript-eslint/eslint-plugin": "=7.17.0",
     "@typescript-eslint/parser": "=7.18.0",
