@@ -14,7 +14,6 @@ export {
 export { default as mediaTypes, ApiDesignSystemsMediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
 
-// eslint-disable-next-line no-restricted-exports
 export { default } from './namespace.ts';
 
 export type { default as specificationObj } from './refractor/specification.ts';

@@ -54,7 +54,7 @@ describe('refractor', function () {
         visitor: {
           OpenapiElement(element: OpenapiElement) {
             // @ts-ignore
-            element.content = '3.0.5'; // eslint-disable-line no-param-reassign
+            element.content = '3.0.5';
           },
         },
         post() {},

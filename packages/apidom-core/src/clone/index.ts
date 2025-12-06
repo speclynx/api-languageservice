@@ -61,7 +61,7 @@ export const cloneDeep = <T extends Element | FinalCloneTypes>(
   }
 
   if (isElement(value)) {
-    const copy = cloneShallow(value); // eslint-disable-line @typescript-eslint/no-use-before-define
+    const copy = cloneShallow(value);
 
     visited.set(value, copy);
 
@@ -116,7 +116,6 @@ const cloneShallowObjectSlice = (objectSlice: ObjectSlice) => {
   return new ObjectSlice(items);
 };
 
-/* eslint-disable no-underscore-dangle */
 const cloneShallowElement = <T extends Element>(element: T): T => {
   // @ts-ignore
   const copy = new element.constructor();
@@ -144,7 +143,6 @@ const cloneShallowElement = <T extends Element>(element: T): T => {
 
   return copy;
 };
-/* eslint-enable */
 
 /**
  * @public

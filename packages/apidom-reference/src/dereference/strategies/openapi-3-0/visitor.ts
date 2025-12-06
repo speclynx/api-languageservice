@@ -57,9 +57,9 @@ export const mutationReplacer = (
   parent: Element | undefined,
 ) => {
   if (isMemberElement(parent)) {
-    parent.value = newElement; // eslint-disable-line no-param-reassign
+    parent.value = newElement;
   } else if (Array.isArray(parent)) {
-    parent[key] = newElement; // eslint-disable-line no-param-reassign
+    parent[key] = newElement;
   }
 };
 

@@ -190,12 +190,12 @@ class ApiDOMDereferenceVisitor {
       /**
        * The Ref Element is substituted by the Element it references.
        */
-      parent.value = referencedElement; // eslint-disable-line no-param-reassign
+      parent.value = referencedElement;
     } else if (Array.isArray(parent)) {
       /**
        * The Ref Element is substituted by the Element it references.
        */
-      parent[key] = referencedElement; // eslint-disable-line no-param-reassign
+      parent[key] = referencedElement;
     }
 
     return !parent ? referencedElement : false;

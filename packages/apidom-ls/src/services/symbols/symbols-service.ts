@@ -29,10 +29,9 @@ export class DefaultSymbolsService implements SymbolsService {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async doFindDocumentSymbols(
     textDocument: TextDocument,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     symbolsContext?: SymbolsContext,
   ): Promise<SymbolInformation[]> {
     // TODO use added metadata instead of classes and stuff
@@ -53,7 +52,6 @@ export class DefaultSymbolsService implements SymbolsService {
       );
     }, api);
 
-    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < res.length; ++index) {
       const e = res.get(index);
       const set: string[] = Array.from(new Set(toValue(e.classes)));

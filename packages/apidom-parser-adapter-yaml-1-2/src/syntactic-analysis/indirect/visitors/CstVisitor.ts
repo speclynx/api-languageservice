@@ -36,8 +36,6 @@ export const keyMap = {
 
 export const isNode = (node: unknown) => Array.isArray(node) || isCSTNode(node);
 
-/* eslint-disable no-param-reassign */
-
 class CstVisitor {
   private static isScalar = this.isKind('scalar');
 
@@ -521,7 +519,6 @@ class CstVisitor {
     this.schema = schema;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public enter(node: TreeCursorSyntaxNode): Literal | undefined {
     // missing anonymous literals from CST transformed into AST literal nodes
     if (node instanceof TreeCursorSyntaxNode && !node.isNamed) {
@@ -535,7 +532,6 @@ class CstVisitor {
     return undefined;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public ERROR(
     node: TreeCursorSyntaxNode,
     key: unknown,

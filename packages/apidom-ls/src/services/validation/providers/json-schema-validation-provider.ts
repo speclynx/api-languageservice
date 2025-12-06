@@ -94,7 +94,6 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     validationContext?: ValidationContext,
     api?: Element,
   ): Promise<ValidationProviderResult> {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const text = textDocument.getText();
     const isYaml = !(await isJsonDoc(text));
 
@@ -112,7 +111,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
         diagnostics,
         mergeStrategy: MergeStrategy.PREPEND,
       };
-      // eslint-disable-next-line no-promise-executor-return
+
       return resolve(result);
     });
   }
@@ -142,7 +141,6 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     }
     // TODO fix and solve with consistent YAML / JSON / Adapter
     else if (isYaml) {
-      // eslint-disable-next-line prefer-template
       const position = positionRangeForPath(
         originalDocument,
         path.replace(/\/$/, '').replace(/^"/, '').replace(/^\//, '').split('/'),
@@ -159,7 +157,6 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
         );
       }
     } else {
-      // eslint-disable-next-line no-lonely-if
       if (errorOnValue || !errorPointer.key) {
         range = Range.create(
           Position.create(errorPointer.value.line, errorPointer.value.column),
@@ -192,7 +189,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     originalDocument: string,
     isYaml: boolean,
     diagnostics: Diagnostic[],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     validationContext?: ValidationContext,
   ): void {
     if (!this.validationEnabled) {
@@ -260,7 +257,6 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     return this.override;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   jsonSchemaValidation(): boolean {
     return true;
   }

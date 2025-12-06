@@ -61,12 +61,10 @@ export class OpenAPi30JsonSchemaValidationProvider extends JsonSchemaValidationP
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   break(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
     return [
       { namespace: 'openapi', version: '3.0.4' },
@@ -77,7 +75,6 @@ export class OpenAPi30JsonSchemaValidationProvider extends JsonSchemaValidationP
     ];
   }
 
-  // eslint-disable-next-line class-methods-use-this
   name(): string {
     return 'OpenAPI 3.0 Schema';
   }

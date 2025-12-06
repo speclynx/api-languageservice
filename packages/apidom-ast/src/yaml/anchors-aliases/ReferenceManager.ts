@@ -5,7 +5,6 @@ import YamlReferenceError from '../errors/YamlReferenceError.ts';
 import { isAnchor } from '../nodes/predicates.ts';
 import { YamlStyle, YamlStyleGroup } from '../nodes/YamlStyle.ts';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */
@@ -26,6 +25,5 @@ class ReferenceManager {
     });
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default ReferenceManager;

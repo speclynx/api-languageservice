@@ -10,7 +10,6 @@ import './index.scss';
 import ApiDOMPlaygroundPlugin from './playground/plugin.js';
 import reportWebVitals from './reportWebVitals.js';
 
-// eslint-disable-next-line react/jsx-no-constructed-context-values
 const system = new System({
   plugins: [ApiDOMPlaygroundPlugin],
   middleware: (sys) => (getDefaultMiddleware) => {

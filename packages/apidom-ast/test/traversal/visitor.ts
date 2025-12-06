@@ -112,7 +112,7 @@ describe('visitor', function () {
         const visitor2 = {
           boolean: {
             enter(node: any) {
-              node.value = false; // eslint-disable-line no-param-reassign
+              node.value = false;
             },
           },
         };
@@ -151,7 +151,7 @@ describe('visitor', function () {
         const visitor2 = {
           boolean: {
             enter(node: any) {
-              node.value = false; // eslint-disable-line no-param-reassign
+              node.value = false;
             },
           },
         };
@@ -189,7 +189,7 @@ describe('visitor', function () {
       const visitor2 = {
         foo: {
           leave(node: any) {
-            node.value = 'foo'; // eslint-disable-line no-param-reassign
+            node.value = 'foo';
           },
         },
       };
@@ -226,7 +226,7 @@ describe('visitor', function () {
       const visitor2 = {
         foo: {
           leave(node: any) {
-            node.value = 'foo'; // eslint-disable-line no-param-reassign
+            node.value = 'foo';
           },
         },
       };

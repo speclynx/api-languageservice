@@ -30,14 +30,12 @@ import referenceSummaryRefractorPlugin from './refractor-plugins/reference-summa
 
 const dispatchPluginsAsync = dispatchPlugins[Symbol.for('nodejs.util.promisify.custom')];
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const openAPI3_0_3MediaTypes = [
   openAPI3_0MediaTypes.findBy('3.0.3', 'generic'),
   openAPI3_0MediaTypes.findBy('3.0.3', 'json'),
   openAPI3_0MediaTypes.findBy('3.0.3', 'yaml'),
 ];
 
-/* eslint-disable class-methods-use-this */
 class OpenAPI31ToOpenAPI30ConvertStrategy extends ConvertStrategy {
   constructor() {
     super({ name: 'openapi-3-1-to-openapi-3-0-3' });
@@ -87,6 +85,5 @@ class OpenAPI31ToOpenAPI30ConvertStrategy extends ConvertStrategy {
     return parseResultElement;
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default OpenAPI31ToOpenAPI30ConvertStrategy;

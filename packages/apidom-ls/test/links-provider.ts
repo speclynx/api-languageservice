@@ -32,7 +32,7 @@ class RefLinksProvider implements LinksProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -41,7 +41,7 @@ class RefLinksProvider implements LinksProvider {
   optional, if returning `ProviderMode.REF` only `doRefValidation` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doValidation` will be called once for the whole doc
    */
-  // eslint-disable-next-line class-methods-use-this
+
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
@@ -49,7 +49,7 @@ class RefLinksProvider implements LinksProvider {
   /*
    optional
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   /*
@@ -58,23 +58,23 @@ class RefLinksProvider implements LinksProvider {
   it is expected to return a list of diagnostics, and a `mergeStrategy` to integrate into diagnostics resolved by
   linter and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   async doRefLinks(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
      the apidom element holding the ref
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      the apidom element holding the ref
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     currentRefLinks: DocumentLink[],
     /*
      the apidom element holding the ref
@@ -96,7 +96,7 @@ class RefLinksProvider implements LinksProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'RefProvider';
   }
@@ -104,7 +104,7 @@ class RefLinksProvider implements LinksProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {

@@ -35,7 +35,6 @@ abstract class HTTPResolver extends Resolver {
     this.withCredentials = withCredentials;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   canRead(file: File): boolean {
     return url.isHttpUrl(file.uri);
   }

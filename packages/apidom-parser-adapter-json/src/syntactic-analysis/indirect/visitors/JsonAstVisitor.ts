@@ -63,8 +63,6 @@ export const getNodeType = (node: unknown) => {
 
 export const isNode = (element: unknown) => isElement(element) || isCSTNode(element);
 
-/* eslint-disable no-underscore-dangle */
-
 class JsonAstVisitor {
   public sourceMap: boolean = false;
 
@@ -92,7 +90,6 @@ class JsonAstVisitor {
     this.annotations = [];
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public document(node: JsonDocument): ParseResultElement {
     const element = new ParseResultElement();
     // @ts-ignore
@@ -180,21 +177,18 @@ class JsonAstVisitor {
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public null(node: JsonNull): NullElement {
     const element = new NullElement();
     this.maybeAddSourceMap(node, element);
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public true(node: JsonTrue): BooleanElement {
     const element = new BooleanElement(true);
     this.maybeAddSourceMap(node, element);
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public false(node: JsonFalse): BooleanElement {
     const element = new BooleanElement(false);
     this.maybeAddSourceMap(node, element);

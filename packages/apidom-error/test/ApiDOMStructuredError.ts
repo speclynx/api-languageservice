@@ -14,9 +14,9 @@ describe('apidom-error', function () {
       assert.instanceOf(error, ApiDOMError);
       assert.strictEqual(error.message, 'msg');
       assert.strictEqual(error.name, 'ApiDOMStructuredError');
-      // @ts-ignore
+      // @ts-expect-error
       assert.strictEqual(error.prop1, 'value1');
-      // @ts-ignore
+      // @ts-expect-error
       assert.strictEqual(error.prop2, 3);
     });
 

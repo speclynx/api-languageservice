@@ -8,8 +8,6 @@ import {
 import type { EvaluationOptions } from '@swaggerexpert/json-pointer';
 import { isArrayElement, isObjectElement } from '@speclynx/apidom-core';
 
-/* eslint-disable class-methods-use-this */
-
 export {
   /**
    * Representation
@@ -79,7 +77,7 @@ class ApiDOMEvaluationRealm extends EvaluationRealm {
   has(node: unknown, referenceToken: string) {
     if (this.isArray(node)) {
       const index = Number(referenceToken);
-      const indexUint32 = index >>> 0; // eslint-disable-line no-bitwise
+      const indexUint32 = index >>> 0;
 
       if (index !== indexUint32) {
         throw new JSONPointerIndexError(

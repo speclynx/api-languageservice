@@ -15,7 +15,6 @@ import DiscriminatorElement from './Discriminator.ts';
 import XmlElement from './Xml.ts';
 import ExternalDocumentationElement from './ExternalDocumentation.ts';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */
@@ -223,6 +222,5 @@ class Schema extends JSONSchemaElement {
     this.set('deprecated', deprecated);
   }
 }
-/* eslint-disable class-methods-use-this */
 
 export default Schema;

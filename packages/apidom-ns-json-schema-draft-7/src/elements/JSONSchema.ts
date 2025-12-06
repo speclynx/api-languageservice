@@ -12,7 +12,6 @@ import {
   MediaElement,
 } from '@speclynx/apidom-ns-json-schema-draft-6';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */

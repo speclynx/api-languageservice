@@ -45,7 +45,6 @@ describe('asyncapi channel test', function () {
 
   const languageService: LanguageService = getLanguageService(context);
 
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(function () {
     languageService.terminate();
   });
@@ -62,7 +61,6 @@ describe('asyncapi channel test', function () {
       specServersEmptyDash,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const completionTestInputValue = [
       'dash space in channel/servers',
       11,
@@ -114,7 +112,6 @@ describe('asyncapi channel test', function () {
       specBindingsEmpty,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const completionTestInputValue = [
       'empty line in channel/bindings',
       4,

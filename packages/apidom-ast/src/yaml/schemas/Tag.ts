@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 class Tag {
   public static readonly uri: string = '';
 
@@ -17,6 +16,5 @@ class Tag {
     return node;
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default Tag;

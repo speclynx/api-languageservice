@@ -88,7 +88,7 @@ describe('adapter', function () {
 
         try {
           await adapter.parse(json, { syntacticAnalysis: 'direct' });
-        } catch (error: unknown) {
+        } catch {
           assert.fail('Parsing unexpectedly threw an error.');
         }
       });
@@ -152,7 +152,7 @@ describe('adapter', function () {
 
         try {
           await adapter.parse(json, { syntacticAnalysis: 'indirect' });
-        } catch (error: unknown) {
+        } catch {
           assert.fail('Parsing unexpectedly threw an error.');
         }
       });

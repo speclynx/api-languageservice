@@ -72,7 +72,8 @@ export const isHttpUrl = (url: string): boolean => {
  */
 export const isURI = (uri: string): boolean => {
   try {
-    return new URL(uri) && true;
+    new URL(uri);
+    return true;
   } catch {
     return false;
   }

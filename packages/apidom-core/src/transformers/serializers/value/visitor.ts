@@ -21,7 +21,6 @@ const keyMapDefault = {
   ...baseKeyMap,
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const visit = (
   root: Element,
   // @ts-ignore

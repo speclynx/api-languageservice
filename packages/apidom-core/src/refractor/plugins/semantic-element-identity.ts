@@ -26,7 +26,7 @@ const plugin =
       visitor: {
         enter<T extends Element>(element: T) {
           if (!predicates.isPrimitiveElement(element)) {
-            (element as Element).id = identityManager!.identify(element); // eslint-disable-line no-param-reassign
+            (element as Element).id = identityManager!.identify(element);
           }
         },
       },

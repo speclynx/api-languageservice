@@ -37,7 +37,7 @@ describe('refractor', function () {
         visitor: {
           MainElement(element: MainElement) {
             // @ts-ignore
-            element.version = 'unknown'; // eslint-disable-line no-param-reassign
+            element.version = 'unknown';
           },
         },
         post() {},

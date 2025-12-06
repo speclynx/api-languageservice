@@ -34,7 +34,7 @@ import { DefaultLinksService } from './services/links/links-service.ts';
 /**
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export default function getLanguageService(context: LanguageServiceContext): LanguageService {
   togglePerformanceLogs(!!context.performanceLogs);
   if (context.logLevel) toggleLogs(context.logLevel);
@@ -91,7 +91,6 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
   configureServices(languageSettings);
 
   return {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     configure: (settings?: LanguageSettings): void => configureServices(settings),
     doValidation: validationService.doValidation.bind(validationService),
     doCompletion: completionService.doCompletion.bind(completionService),
@@ -138,7 +137,6 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
     doLinks: linksService.doLinks.bind(linksService),
     registerLinksProvider: linksService.registerProvider.bind(linksService),
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async getJsonPointerPosition(document: TextDocument, path: string): Promise<Position | null> {
       const result = await documentCache?.get(
         document,
@@ -158,7 +156,7 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
           line: sm.line,
           character: sm.column,
         };
-      } catch (e) {
+      } catch {
         return null;
       }
     },

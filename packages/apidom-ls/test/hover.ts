@@ -65,7 +65,6 @@ describe('apidom-ls-hover', function () {
 
   const languageService: LanguageService = getLanguageService(context);
 
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(function () {
     languageService.terminate();
   });
@@ -74,10 +73,9 @@ describe('apidom-ls-hover', function () {
     const doc: TextDocument = TextDocument.create(specPathYaml, 'apidom', 0, specYaml);
 
     for (const input of defTestInputYaml) {
-      // eslint-disable-next-line no-console
       console.log(`testing hover for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doHover(doc, pos);
       assert.deepEqual(result!.range, input[3] as Range);
       // @ts-ignore
@@ -95,10 +93,9 @@ describe('apidom-ls-hover', function () {
     );
 
     for (const input of defTestInputInternalYaml) {
-      // eslint-disable-next-line no-console
       console.log(`testing hover for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doHover(doc, pos);
       assert.deepEqual(result!.range, input[3] as Range);
       // @ts-ignore

@@ -33,7 +33,6 @@ const asyncYamlInvalid = fs
 
 describe('apidom-ls-detect', function () {
   it('test detect', async function () {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const contentLanguage: ContentLanguage = {
       namespace: 'asyncapi',
       mediaType: 'application/vnd.aai.asyncapi+yaml',
@@ -124,7 +123,6 @@ describe('apidom-ls-detect', function () {
   });
 
   it('test detect invalid YAML', async function () {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const contentLanguage: ContentLanguage = {
       namespace: 'asyncapi',
       mediaType: 'application/vnd.aai.asyncapi+yaml',

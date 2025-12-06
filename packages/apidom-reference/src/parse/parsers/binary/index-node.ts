@@ -28,7 +28,6 @@ class BinaryParser extends Parser {
     return this.fileExtensions.length === 0 ? true : this.fileExtensions.includes(file.extension);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   parse(file: File): ParseResultElement {
     let base64String: string;
 

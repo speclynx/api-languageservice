@@ -1,6 +1,5 @@
 import Tag from '../Tag.ts';
 
-/* eslint-disable class-methods-use-this */
 class Null extends Tag {
   public static readonly uri: string = 'tag:yaml.org,2002:null';
 
@@ -16,6 +15,5 @@ class Null extends Tag {
     return nodeClone;
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default Null;

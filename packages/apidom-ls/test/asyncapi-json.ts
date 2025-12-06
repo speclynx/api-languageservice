@@ -52,7 +52,6 @@ const specError = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'sample-api-error-async.json'))
   .toString();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const specHighlightAsync = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-async.json'))
   .toString();
@@ -462,10 +461,9 @@ describe('apidom-ls-async', function () {
       specCompletion,
     );
     for (const input of completionTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing completion for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doCompletion(
         doc,
         { textDocument: doc, position: pos },
@@ -561,7 +559,6 @@ describe('apidom-ls-async', function () {
     if (tokens.data && tokens.data.length >= 5) {
       const logBase = (n: number) => Math.log(n) / Math.log(2);
       for (let i = 0; i < tokens.data.length; i += 5) {
-        // eslint-disable-next-line no-console
         console.log(
           `[${tokens.data[i]}, ${tokens.data[i + 1]}, ${tokens.data[i + 2]}, ${
             tokens.data[i + 3]
@@ -594,10 +591,9 @@ describe('apidom-ls-async', function () {
     );
 
     for (const input of hoverTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing hover for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doHover(doc, pos);
       assert.deepEqual(result, input[3] as Hover);
     }
@@ -616,14 +612,12 @@ describe('apidom-ls-async', function () {
     assert.equal(result, specDereferenced.substring(0, specDereferenced.length - 1));
   });
 
-  // eslint-disable-next-line consistent-return
   it('test parse json', async function () {
     const doc: TextDocument = TextDocument.create('foo://bar/specFull.json', 'json', 0, specFull);
 
     const text: string = doc.getText();
     const diagnostics: Diagnostic[] = [];
 
-    // eslint-disable-next-line consistent-return
     const result = await parse(text, undefined);
 
     const { api } = result;
@@ -635,13 +629,13 @@ describe('apidom-ls-async', function () {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function printSourceMap(node: Element): void {
       const sm: SourceMap = getSourceMap(node);
-      // eslint-disable-next-line no-console
+
       console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);
     }
 
     function printContent(node: Element): void {
       const sm: SourceMap = getSourceMap(node);
-      // eslint-disable-next-line no-console
+
       console.log(
         node.element,
         toValue(node.getMetaProperty('classes', [])),
@@ -656,7 +650,6 @@ describe('apidom-ls-async', function () {
 
     if (result.annotations) {
       for (const annotation of result.annotations) {
-        // eslint-disable-next-line no-console
         console.log(JSON.stringify(annotation));
       }
     }

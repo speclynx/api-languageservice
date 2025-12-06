@@ -8,8 +8,6 @@ import {
 import { UnsupportedOperationError } from '@speclynx/apidom-error';
 import { JSONSchemaElement } from '@speclynx/apidom-ns-json-schema-2019-09';
 
-/* eslint-disable class-methods-use-this */
-
 /**
  * @public
  */

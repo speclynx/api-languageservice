@@ -16,7 +16,6 @@ import {
 
 import SchemaElement from './Schema.ts';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */
@@ -318,6 +317,5 @@ class Parameter extends JSONSchemaElement {
     this.set('schema', schema);
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default Parameter;

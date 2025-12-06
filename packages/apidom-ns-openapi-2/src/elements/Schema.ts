@@ -13,7 +13,6 @@ import {
   MediaElement,
 } from '@speclynx/apidom-ns-json-schema-draft-4';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */
@@ -154,6 +153,5 @@ class Schema extends JSONSchemaElement {
     throw new UnsupportedOperationError('media setter in Schema class is not not supported.');
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default Schema;

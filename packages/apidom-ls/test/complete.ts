@@ -74,7 +74,6 @@ describe('apidom-ls-complete', function () {
 
   const languageService: LanguageService = getLanguageService(context);
 
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(function () {
     languageService.terminate();
   });
@@ -91,7 +90,6 @@ describe('apidom-ls-complete', function () {
       specCompletion,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const completionTestInputValue = [
       'empty line in openapi 3.1 object value',
       0,
@@ -247,7 +245,6 @@ describe('apidom-ls-complete', function () {
       specCompletionRoot,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const completionTestInputValue = [
       'empty line in root',
       7,
@@ -790,7 +787,6 @@ describe('apidom-ls-complete', function () {
       specCompletionSchemaTypeArray,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const completionTestInputValue = [
       'before schema type defined as array',
       9,

@@ -14,7 +14,6 @@ import {
   MediaElement,
 } from '@speclynx/apidom-ns-json-schema-draft-4';
 
-/* eslint-disable class-methods-use-this */
 /**
  * @public
  */
@@ -257,6 +256,5 @@ class Header extends JSONSchemaElement {
     throw new UnsupportedOperationError('readOnly setter in Header class is not not supported.');
   }
 }
-/* eslint-enable class-methods-use-this */
 
 export default Header;

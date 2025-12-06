@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
@@ -31,7 +30,7 @@ class RefHoverProvider implements HoverProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -40,7 +39,7 @@ class RefHoverProvider implements HoverProvider {
   optional, if returning `ProviderMode.REF` only `doRefCompletion` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doCompletion` will be called once for the whole doc
    */
-  // eslint-disable-next-line class-methods-use-this
+
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
@@ -48,7 +47,7 @@ class RefHoverProvider implements HoverProvider {
   /*
    optional
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   /*
@@ -57,33 +56,33 @@ class RefHoverProvider implements HoverProvider {
   it is expected to return an array of content lines, and a `mergeStrategy` to integrate into items resolved by
   hover service and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   doRefHover(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
       the position of cursor
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     position: Position,
     /*
      the apidom element holding the ref
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     element: Element,
     /*
      the whole parsed doc as ApiDOM root element
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      the content of `$ref` as string
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     refValue: string,
     /*
      hover lines related to this ref processed so far
@@ -109,7 +108,7 @@ class RefHoverProvider implements HoverProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'HoverRefProvider';
   }
@@ -117,7 +116,7 @@ class RefHoverProvider implements HoverProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -151,7 +150,6 @@ class RefHoverProvider implements HoverProvider {
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
   private legacyRefsHover(ref: string): string[] {
     // logic here to get possible refs to add to hover items
     const result = [];
@@ -166,7 +164,7 @@ class AsyncRefHoverProvider implements HoverProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -175,7 +173,7 @@ class AsyncRefHoverProvider implements HoverProvider {
   optional, if returning `ProviderMode.REF` only `doRefCompletion` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doCompletion` will be called once for the whole doc
    */
-  // eslint-disable-next-line class-methods-use-this
+
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
@@ -183,7 +181,7 @@ class AsyncRefHoverProvider implements HoverProvider {
   /*
    optional
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   /*
@@ -192,33 +190,33 @@ class AsyncRefHoverProvider implements HoverProvider {
   it is expected to return an array of content lines, and a `mergeStrategy` to integrate into items resolved by
   hover service and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   async doRefHover(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
       the position of cursor
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     position: Position,
     /*
      the apidom element holding the ref
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     element: Element,
     /*
      the whole parsed doc as ApiDOM root element
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      the content of `$ref` as string
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     refValue: string,
     /*
      hover lines related to this ref processed so far
@@ -244,7 +242,7 @@ class AsyncRefHoverProvider implements HoverProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'HoverRefProvider';
   }
@@ -252,7 +250,7 @@ class AsyncRefHoverProvider implements HoverProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -286,7 +284,6 @@ class AsyncRefHoverProvider implements HoverProvider {
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
   private async legacyRefsHover(ref: string): Promise<string[]> {
     // logic here to get possible refs to add to hover items
     const result = [];
@@ -301,7 +298,7 @@ class FullHoverProvider implements HoverProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -312,18 +309,18 @@ class FullHoverProvider implements HoverProvider {
   it is expected to return an array of content lines, and a `mergeStrategy` to integrate into items resolved by
   hover service and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   async doHover(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
       the position of cursor
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     position: Position,
     /*
      the apidom element holding the ref
@@ -359,7 +356,7 @@ class FullHoverProvider implements HoverProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'FullProvider';
   }
@@ -367,7 +364,7 @@ class FullHoverProvider implements HoverProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -401,7 +398,7 @@ class FullHoverProvider implements HoverProvider {
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private legacyRefsHover(text: string, position: Position): string[] {
     // logic here to get possible refs to add to hover items
     // const line = position.line;

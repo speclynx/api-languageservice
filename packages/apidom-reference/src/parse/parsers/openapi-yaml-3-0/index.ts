@@ -16,7 +16,7 @@ export type { default as File, FileOptions } from '../../../File.ts';
 /**
  * @public
  */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 export interface OpenAPIYAML3_0ParserOptions extends Omit<ParserOptions, 'name'> {}
 
 /**
@@ -55,6 +55,5 @@ class OpenAPIYAML3_0Parser extends Parser {
     }
   }
 }
-/* eslint-enable @typescript-eslint/naming-convention */
 
 export default OpenAPIYAML3_0Parser;

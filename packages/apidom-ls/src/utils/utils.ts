@@ -43,7 +43,6 @@ import {
   MetadataMaps,
   Pointer,
 } from '../apidom-language-types.ts';
-// eslint-disable-next-line import/no-cycle
 import { standardLinterfunctions } from '../services/validation/linter-functions.ts';
 
 let performanceLogs = false;
@@ -173,7 +172,6 @@ export function getSpecVersion(root: Element): string {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function log(label: string, message: unknown, toFile = false): void {
-  // eslint-disable-next-line no-console
   console.log(label, message);
   /*  if (toFile) {
     appendFile('/tmp/lsp.log', `${label} - ${JSON.stringify(message)}`, (err) => {
@@ -183,7 +181,6 @@ export function log(label: string, message: unknown, toFile = false): void {
 }
 
 export function logJson(label: string, message: unknown): void {
-  // eslint-disable-next-line no-console
   console.log(label, JSON.stringify(message, null, 2));
 }
 
@@ -418,7 +415,7 @@ export function buildPath(element: Element): string {
       }
     }
     return `/${path.join('/')}`;
-  } catch (e) {
+  } catch {
     return '';
   }
 }
@@ -632,7 +629,6 @@ export function getIndentation(
   }
 
   if (!position) {
-    // eslint-disable-next-line no-param-reassign
     position = lineContent.length;
   }
 
@@ -737,7 +733,7 @@ export function perfStart(label: string, force = false): string {
       );
       perfLabels[label] = realLabel;
       return realLabel;
-    } catch (e) {
+    } catch {
       // console.error('error in perfStart', label, realLabel, perfLabels[label], e);
     }
   }
@@ -766,7 +762,7 @@ export function perfEnd(label: string, force = false) {
           1000
         ).toFixed(2)}]`,
       );
-    } catch (e) {
+    } catch {
       // console.error('error in perfEnd', label, realLabel, e);
     } finally {
       performance.clearMarks(endMark);
@@ -832,7 +828,7 @@ export async function isYamlDoc(document: TextDocument | string): Promise<boolea
  */
 export async function findNamespace(
   document: TextDocument | string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   defaultContentLanguage?: ContentLanguage,
 ): Promise<ContentLanguage> {
   const text = getText(document, true);

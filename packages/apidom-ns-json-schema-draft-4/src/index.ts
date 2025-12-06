@@ -14,7 +14,6 @@ export {
 export { default as mediaTypes, JSONSchemaDraft4MediaTypes } from './media-types.ts';
 export type { Format } from './media-types.ts';
 
-// eslint-disable-next-line no-restricted-exports
 export { default } from './namespace.ts';
 
 export { default as refractorPluginReplaceEmptyElement } from './refractor/plugins/replace-empty-element.ts';

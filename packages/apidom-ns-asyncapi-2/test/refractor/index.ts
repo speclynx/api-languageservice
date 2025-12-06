@@ -119,7 +119,7 @@ describe('refractor', function () {
         visitor: {
           AsyncApiVersionElement(element: AsyncApiVersionElement) {
             // @ts-ignore
-            element.content = '2.0.1'; // eslint-disable-line no-param-reassign
+            element.content = '2.0.1';
           },
         },
         post() {},

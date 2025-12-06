@@ -22,8 +22,6 @@ import {
   isNullElement,
 } from '../../../predicates/index.ts';
 
-/* eslint-disable class-methods-use-this */
-
 class Visitor {
   public readonly ObjectElement = {
     enter: (element: ObjectElement): EphemeralObject => {

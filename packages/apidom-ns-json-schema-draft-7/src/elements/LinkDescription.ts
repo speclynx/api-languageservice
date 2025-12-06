@@ -7,8 +7,6 @@ import {
 
 import JSONSchema from './JSONSchema.ts';
 
-/* eslint-disable class-methods-use-this */
-
 /**
  * URI: https://datatracker.ietf.org/doc/html/draft-wright-json-schema-hyperschema-01#section-6
  * @public

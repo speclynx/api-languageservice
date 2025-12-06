@@ -6,7 +6,7 @@ import { isPlainObject, isString, trimCharsStart } from 'ramda-adjunct';
  * It doesn't handle circular references of external references and works on objects only (not arrays).
  * @public
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export const dereference = (
   object: Record<string, any>,
   root?: Record<string, any>,

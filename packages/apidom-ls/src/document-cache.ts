@@ -1,13 +1,12 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
-// eslint-disable-next-line import/no-cycle
 import { debug, perfEnd, perfStart } from './utils/utils.ts';
 import { DocumentCache } from './apidom-language-types.ts';
 
 /*
  Adapted from https://github.com/microsoft/vscode/blob/main/extensions/json-language-features/server/src/languageModelCache.ts
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export function getDocumentCache<T>(
   maxEntries: number,
   cleanupIntervalTimeInSec: number,
@@ -35,7 +34,7 @@ export function getDocumentCache<T>(
         if (documentInfo.cTime < cutoffTime) {
           debug(`cache DELETING(timer) ${documentInfo.version}`);
           delete documents[uri];
-          // eslint-disable-next-line no-plusplus
+
           nModels--;
         }
       }
@@ -48,7 +47,7 @@ export function getDocumentCache<T>(
       const { languageId } = document;
       const processedUri =
         // @ts-ignore
-        // eslint-disable-next-line no-underscore-dangle
+
         document.uri && document.uri._formatted ? document.uri._formatted : document.uri;
       const documentInfo = documents[processedUri];
       if (
@@ -95,14 +94,13 @@ export function getDocumentCache<T>(
         `vers: ${documents[processedUri]?.version}`,
       );
       if (!documentInfo) {
-        // eslint-disable-next-line no-plusplus
         nModels++;
       }
 
       if (nModels === maxEntries) {
         let oldestTime = Number.MAX_VALUE;
         let oldestUri = null;
-        // eslint-disable-next-line guard-for-in
+
         for (const uri in documents) {
           const documentInfoInstance = documents[uri];
           if (documentInfoInstance.cTime < oldestTime) {
@@ -113,7 +111,7 @@ export function getDocumentCache<T>(
         if (oldestUri) {
           debug(`cache DELETING ${documents[oldestUri].version}`);
           delete documents[oldestUri];
-          // eslint-disable-next-line no-plusplus
+
           nModels--;
         }
       }
@@ -123,7 +121,7 @@ export function getDocumentCache<T>(
       const { uri } = document;
       if (documents[uri]) {
         delete documents[uri];
-        // eslint-disable-next-line no-plusplus
+
         nModels--;
       }
     },

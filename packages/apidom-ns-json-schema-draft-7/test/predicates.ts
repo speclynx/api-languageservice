@@ -21,7 +21,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class JSONSchemaSubElement extends JSONSchemaElement {}
 
         assert.isTrue(isJSONSchemaElement(new JSONSchemaSubElement()));

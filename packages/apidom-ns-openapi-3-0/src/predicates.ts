@@ -162,7 +162,7 @@ export const isOpenapiElement = createPredicate(
 /**
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 export const isOpenApi3_0Element = createPredicate(
   ({ hasBasicElementProps, isElementType, primitiveEq, hasClass }) => {
     return (element: unknown): element is OpenApi3_0Element =>

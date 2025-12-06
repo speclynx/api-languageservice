@@ -27,13 +27,10 @@ import { OpenAPI31, OpenAPI3 } from '../src/config/openapi/target-specs.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// eslint-disable-next-line import/prefer-default-export
 export function logj(e: unknown, label?: string): void {
-  // eslint-disable-next-line no-console
   console.log((label ? `${label}: ` : '') + JSON.stringify(e));
 }
 export function log(e: unknown, label?: string): void {
-  // eslint-disable-next-line no-console
   console.log((label ? `${label}: ` : '') + e);
 }
 
@@ -56,7 +53,6 @@ const specHighlight = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api.yaml'))
   .toString();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const specHighlightNoQuotes = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-noquotes.yaml'))
   .toString();
@@ -765,10 +761,9 @@ describe('apidom-ls-yaml', function () {
     const doc = TextDocument.create('foo://bar/specCompletion.yaml', 'yaml', 0, specCompletion);
 
     for (const input of completionTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing completion for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doCompletion(
         doc,
         { textDocument: doc, position: pos },
@@ -863,7 +858,6 @@ describe('apidom-ls-yaml', function () {
     if (tokens.data && tokens.data.length >= 5) {
       const logBase = (n: number) => Math.log(n) / Math.log(2);
       for (let i = 0; i < tokens.data.length; i += 5) {
-        // eslint-disable-next-line no-console
         console.log(
           `[${tokens.data[i]}, ${tokens.data[i + 1]}, ${tokens.data[i + 2]}, ${
             tokens.data[i + 3]
@@ -897,10 +891,9 @@ describe('apidom-ls-yaml', function () {
     );
 
     for (const input of hoverTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing hover for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doHover(doc, pos);
       // @ts-ignore
       assert(result?.contents.value.startsWith('***post***: **operation**'));

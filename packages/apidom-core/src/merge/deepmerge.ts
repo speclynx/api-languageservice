@@ -4,8 +4,6 @@ import { isObjectElement, isArrayElement } from '../predicates/index.ts';
 import { cloneDeep, cloneShallow } from '../clone/index.ts';
 import toValue from '../transformers/serializers/value/index.ts';
 
-/* eslint-disable @typescript-eslint/no-use-before-define */
-
 /**
  * @public
  */
@@ -250,4 +248,3 @@ deepmerge.all = (list: ObjectOrArrayElement[], options?: DeepMergeUserOptions) =
 };
 
 export default deepmerge;
-/* eslint-enable @typescript-eslint/no-use-before-define */

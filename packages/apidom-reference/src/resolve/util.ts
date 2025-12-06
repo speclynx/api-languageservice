@@ -10,7 +10,7 @@ import type { ReferenceOptions } from '../options/index.ts';
 /**
  * Reads the given file, using the configured resolver plugins.
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export const readFile = async (file: File, options: ReferenceOptions): Promise<Buffer> => {
   const optsBoundResolvers: Resolver[] = options.resolve.resolvers.map((resolver) => {
     const clonedResolver = Object.create(resolver);

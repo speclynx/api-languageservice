@@ -16,7 +16,7 @@ export type { default as File, FileOptions } from '../../../File.ts';
 /**
  * @public
  */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 export interface OpenAPIJSON3_1ParserOptions extends Omit<ParserOptions, 'name'> {}
 
 /**
@@ -57,6 +57,5 @@ class OpenAPIJSON3_1Parser extends Parser {
     }
   }
 }
-/* eslint-enable @typescript-eslint/naming-convention */
 
 export default OpenAPIJSON3_1Parser;

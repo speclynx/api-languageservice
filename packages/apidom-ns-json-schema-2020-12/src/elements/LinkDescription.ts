@@ -3,8 +3,6 @@ import { LinkDescriptionElement } from '@speclynx/apidom-ns-json-schema-2019-09'
 
 import JSONSchema from './JSONSchema.ts';
 
-/* eslint-disable class-methods-use-this */
-
 /**
  * URI: https://json-schema.org/draft/2019-09/draft-handrews-json-schema-hyperschema-02#rfc.section.6
  * @public

@@ -15,7 +15,7 @@ import ExternalDocumentationElement from './ExternalDocumentation.ts';
 /**
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 class OpenApi3_1 extends ObjectElement {
   constructor(content?: Record<string, unknown>, meta?: Meta, attributes?: Attributes) {
     super(content, meta, attributes);

@@ -24,9 +24,7 @@ const Title = styled(Typography)(({ theme }) => ({
   flex: 1,
 }));
 
-const Transition = React.forwardRef(
-  (props, ref) => <Slide direction="up" ref={ref} {...props} /> // eslint-disable-line react/jsx-props-no-spreading
-);
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
 const ApiDOMInterpreterDialog = ({ open, onClose }) => {
   const inputRef = useRef();

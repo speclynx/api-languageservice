@@ -269,7 +269,6 @@ const mergeAllAsync: MergeAllAsync = (
           const visitFn = visitFnGetter(visitors[i], nodeTypeGetter(currentNode), false);
 
           if (typeof visitFn === 'function') {
-            // eslint-disable-next-line no-await-in-loop
             const result: any = await visitFn.call(
               visitors[i],
               currentNode,
@@ -316,7 +315,6 @@ const mergeAllAsync: MergeAllAsync = (
           const visitFn = visitFnGetter(visitors[i], nodeTypeGetter(currentNode), true);
 
           if (typeof visitFn === 'function') {
-            // eslint-disable-next-line no-await-in-loop
             const result = await visitFn.call(
               visitors[i],
               currentNode,
@@ -344,7 +342,6 @@ const mergeAllAsync: MergeAllAsync = (
 
 mergeAll[Symbol.for('nodejs.util.promisify.custom')] = mergeAllAsync;
 
-/* eslint-disable no-continue, no-param-reassign */
 /**
  * visit() will walk through an AST using a preorder depth first traversal, calling
  * the visitor's enter function at each node in the traversal, and calling the
@@ -543,7 +540,6 @@ export const visit = (
         }
 
         const link = {
-          // eslint-disable-next-line @typescript-eslint/no-loop-func
           replaceWith(newNode: any, replacer?: any) {
             if (typeof replacer === 'function') {
               replacer(newNode, node, key, parent, path, ancestors);
@@ -724,7 +720,6 @@ visit[Symbol.for('nodejs.util.promisify.custom')] = async (
         }
 
         const link = {
-          // eslint-disable-next-line @typescript-eslint/no-loop-func
           replaceWith(newNode: any, replacer?: any) {
             if (typeof replacer === 'function') {
               replacer(newNode, node, key, parent, path, ancestors);
@@ -739,7 +734,7 @@ visit[Symbol.for('nodejs.util.promisify.custom')] = async (
         };
 
         // retrieve result
-        result = await visitFn.call(visitor, node, key, parent, path, ancestors, link); // eslint-disable-line no-await-in-loop
+        result = await visitFn.call(visitor, node, key, parent, path, ancestors, link);
       }
 
       if (result === breakSymbol) {
@@ -788,5 +783,3 @@ visit[Symbol.for('nodejs.util.promisify.custom')] = async (
 
   return root;
 };
-
-/* eslint-enable */

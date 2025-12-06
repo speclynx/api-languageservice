@@ -35,7 +35,7 @@ import XmlElement from './elements/Xml.ts';
 /**
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 const openApi3_0 = {
   namespace: (options: NamespacePluginOptions) => {
     const { base } = options;

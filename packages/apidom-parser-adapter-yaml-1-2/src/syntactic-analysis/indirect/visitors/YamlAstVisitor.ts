@@ -48,8 +48,6 @@ export const getNodeType = (node: unknown) => {
 
 export const isNode = (node: unknown) => isElement(node) || isCSTNode(node) || Array.isArray(node);
 
-/* eslint-disable no-underscore-dangle */
-
 class YamlAstVisitor {
   public sourceMap: boolean = false;
 

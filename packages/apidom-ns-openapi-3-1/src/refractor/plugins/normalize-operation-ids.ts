@@ -56,7 +56,6 @@ export interface PluginOptions {
   operationIdNormalizer?: (operationId: string, path: string, method: string) => string;
 }
 
-/* eslint-disable no-param-reassign */
 /**
  * @public
  */
@@ -198,6 +197,5 @@ const plugin =
       },
     };
   };
-/* eslint-enable */
 
 export default plugin;

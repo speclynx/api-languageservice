@@ -51,7 +51,7 @@ const FileImporter = () => {
 
     reader.onloadend = onloadend;
     reader.readAsText(file);
-    // eslint-disable-next-line no-param-reassign
+
     event.target.value = '';
   };
 

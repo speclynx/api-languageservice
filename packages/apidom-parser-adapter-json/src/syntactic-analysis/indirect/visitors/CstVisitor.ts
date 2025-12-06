@@ -28,8 +28,6 @@ export const keyMap = {
   error: ['children'],
 };
 
-/* eslint-disable class-methods-use-this */
-
 class CstVisitor {
   private static toPosition(node: TreeCursorSyntaxNode): Position {
     const start = new Point({
@@ -132,7 +130,6 @@ class CstVisitor {
     return new JsonNumber({ value, position, isMissing: node.isMissing });
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public null(node: TreeCursorSyntaxNode): JsonNull {
     const position = CstVisitor.toPosition(node);
     const value = node.text;
@@ -140,7 +137,6 @@ class CstVisitor {
     return new JsonNull({ value, position, isMissing: node.isMissing });
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public true(node: TreeCursorSyntaxNode): JsonTrue {
     const position = CstVisitor.toPosition(node);
     const value = node.text;
@@ -148,7 +144,6 @@ class CstVisitor {
     return new JsonTrue({ value, position, isMissing: node.isMissing });
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public false(node: TreeCursorSyntaxNode): JsonFalse {
     const position = CstVisitor.toPosition(node);
     const value = node.text;

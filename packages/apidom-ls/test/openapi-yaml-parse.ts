@@ -14,7 +14,6 @@ import {
   isObjectElement,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isStringElement,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   traverse,
   toValue,
 } from '@speclynx/apidom-core';
@@ -64,7 +63,6 @@ const specSyntaxYamlNoQuotes = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-noquotes-sort.yaml'))
   .toString();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const specSyntaxYamlNoQuotesAsync = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-async-noquotes.yaml'))
   .toString();
@@ -80,7 +78,6 @@ describe('apidom-parse-test', function () {
 
     const diagnostics: Diagnostic[] = [];
 
-    // eslint-disable-next-line consistent-return
     parse(doc, undefined).then((result) => {
       const { api } = result;
       if (!api) {
@@ -91,14 +88,13 @@ describe('apidom-parse-test', function () {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       function printSourceMap(node: Element): void {
         const sm: SourceMap = getSourceMap(node);
-        // eslint-disable-next-line no-console
+
         console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       function printContent(node: Element): void {
         const sm: SourceMap = getSourceMap(node);
-        // eslint-disable-next-line no-console
+
         console.log(
           node.element,
           toValue(node.getMetaProperty('classes', [])),
@@ -112,7 +108,6 @@ describe('apidom-parse-test', function () {
 
       if (result.annotations) {
         for (const annotation of result.annotations) {
-          // eslint-disable-next-line no-console
           console.log(JSON.stringify(annotation));
         }
       }

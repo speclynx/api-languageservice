@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
@@ -34,7 +33,7 @@ class RefCompletionProvider implements CompletionProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -43,7 +42,7 @@ class RefCompletionProvider implements CompletionProvider {
   optional, if returning `ProviderMode.REF` only `doRefCompletion` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doCompletion` will be called once for the whole doc
    */
-  // eslint-disable-next-line class-methods-use-this
+
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
@@ -51,7 +50,7 @@ class RefCompletionProvider implements CompletionProvider {
   /*
    optional
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   /*
@@ -60,33 +59,33 @@ class RefCompletionProvider implements CompletionProvider {
   it is expected to return a list of completion items, and a `mergeStrategy` to integrate into items resolved by
   completion service and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   doRefCompletion(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
      the apidom element holding the ref
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     element: Element,
     /*
      the whole parsed doc as ApiDOM root element
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      the content of `$ref` as string
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     refValue: string,
     /*
      the `element` or `class` referenced by this ref, e.g. `schema` or `path-item`
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     referencedElement: string,
     /*
      cursor position / params
@@ -142,7 +141,7 @@ class RefCompletionProvider implements CompletionProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'RefProvider';
   }
@@ -150,7 +149,7 @@ class RefCompletionProvider implements CompletionProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -164,7 +163,7 @@ class RefCompletionProvider implements CompletionProvider {
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private legacyPotentialRefs(ref: string): string[] {
     // logic here to get possible refs to add to completion items
     return [
@@ -175,17 +174,15 @@ class RefCompletionProvider implements CompletionProvider {
 }
 
 class AsyncRefCompletionProvider implements CompletionProvider {
-  // eslint-disable-next-line class-methods-use-this
   break(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   async doRefCompletion(
@@ -193,7 +190,7 @@ class AsyncRefCompletionProvider implements CompletionProvider {
     element: Element,
     api: Element,
     refValue: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     referencedElement: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     completionParamsOrPosition: CompletionParams | Position,
@@ -240,12 +237,10 @@ class AsyncRefCompletionProvider implements CompletionProvider {
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
   name(): string {
     return 'RefProvider';
   }
 
-  // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -255,7 +250,7 @@ class AsyncRefCompletionProvider implements CompletionProvider {
     ];
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async legacyPotentialRefs(ref: string): Promise<string[]> {
     // logic here to get possible refs to add to completion items
     return [
@@ -269,7 +264,7 @@ class FullCompletionProvider implements CompletionProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -280,28 +275,28 @@ class FullCompletionProvider implements CompletionProvider {
   it is expected to return a list of completion items, and a `mergeStrategy` to integrate into items resolved by
   completion service and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   async doCompletion(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
      the apidom element holding the ref
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     element: Element,
     /*
      the whole parsed doc as ApiDOM root element
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      cursor position / params
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     completionParamsOrPosition: CompletionParams | Position,
     /*
      completion items related to this ref processed so far
@@ -357,7 +352,7 @@ class FullCompletionProvider implements CompletionProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'FullProvider';
   }
@@ -365,7 +360,7 @@ class FullCompletionProvider implements CompletionProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -379,7 +374,7 @@ class FullCompletionProvider implements CompletionProvider {
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private legacyPotentialRefs(text: string, position: Position): string[] {
     // logic here to get possible refs to add to completion items
     // const line = position.line;

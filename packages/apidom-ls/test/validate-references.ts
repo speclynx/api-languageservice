@@ -133,12 +133,10 @@ describe('reference validation', function () {
       ];
       assert.deepEqual(
         valRes.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }),
         exp.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }) as Diagnostic[],
@@ -233,12 +231,10 @@ describe('reference validation', function () {
         ];
         assert.deepEqual(
           valRes.map((value) => {
-            // eslint-disable-next-line no-param-reassign
             value.code = 'test';
             return value;
           }),
           exp.map((value) => {
-            // eslint-disable-next-line no-param-reassign
             value.code = 'test';
             return value;
           }) as Diagnostic[],
@@ -263,12 +259,10 @@ describe('reference validation', function () {
         const exp: Diagnostic[] = [];
         assert.deepEqual(
           valRes.map((value) => {
-            // eslint-disable-next-line no-param-reassign
             value.code = 'test';
             return value;
           }),
           exp.map((value) => {
-            // eslint-disable-next-line no-param-reassign
             value.code = 'test';
             return value;
           }) as Diagnostic[],
@@ -309,12 +303,10 @@ describe('reference validation', function () {
       ];
       assert.deepEqual(
         valRes.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }),
         exp.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }) as Diagnostic[],
@@ -352,12 +344,10 @@ describe('reference validation', function () {
       ];
       assert.deepEqual(
         valRes.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }),
         exp.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }) as Diagnostic[],
@@ -383,12 +373,10 @@ describe('reference validation', function () {
       const exp: Diagnostic[] = [];
       assert.deepEqual(
         valRes.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }),
         exp.map((value) => {
-          // eslint-disable-next-line no-param-reassign
           value.code = 'test';
           return value;
         }) as Diagnostic[],

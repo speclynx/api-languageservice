@@ -75,7 +75,7 @@ export class DefaultLinksService implements LinksService {
   ): DocumentLink[] {
     let match;
     const links: DocumentLink[] = [];
-    // eslint-disable-next-line no-cond-assign
+
     while ((match = TRIVIAL_WEB_LINK_REGEX.exec(value)) != null) {
       const location = { offset: startOffset + match.index, length: match[0].length };
       const range = Range.create(
@@ -93,7 +93,7 @@ export class DefaultLinksService implements LinksService {
 
   public async doLinks(
     textDocument: TextDocument,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     linksContext?: LinksContext,
   ): Promise<DocumentLink[]> {
     perfStart(PerfLabels.START);
@@ -173,11 +173,11 @@ export class DefaultLinksService implements LinksService {
           let linksProviderResult = null;
           if (fullMode) {
             // @ts-ignore
-            // eslint-disable-next-line no-await-in-loop
+
             linksProviderResult = await provider.doLinks(textDocument, api, customLinks, context);
           } else {
             // @ts-ignore
-            // eslint-disable-next-line no-await-in-loop
+
             linksProviderResult = await provider.doRefLinks(
               textDocument,
               api,

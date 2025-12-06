@@ -3,7 +3,7 @@ import { Element, isElement } from '@speclynx/apidom-core';
 /**
  * @public
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export class AncestorLineage<T extends Element> extends Array<Set<T>> {
   includesCycle(element: T) {
     return this.filter((ancestors) => ancestors.has(element)).length > 1;

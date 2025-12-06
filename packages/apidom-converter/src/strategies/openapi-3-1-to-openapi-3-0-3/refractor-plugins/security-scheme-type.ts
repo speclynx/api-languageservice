@@ -70,7 +70,7 @@ const securitySchemeTypeRefractorPlugin =
             value: cloneDeep(parseResultElement!),
           });
           for (const memberElement of element.securitySchemes) {
-            if (!isReferenceElement(memberElement.value)) continue; // eslint-disable-line no-continue
+            if (!isReferenceElement(memberElement.value)) continue;
 
             const { value: referenceElement } = memberElement;
             const reference = new Reference({
@@ -78,7 +78,7 @@ const securitySchemeTypeRefractorPlugin =
               value: new ParseResultElement([referenceElement]),
             });
             const refSet = new ReferenceSet({ refs: [reference, rootReference] });
-            // eslint-disable-next-line no-await-in-loop
+
             const dereferenced = await dereferenceApiDOM(referenceElement, {
               resolve: { baseURI: reference.uri },
               parse: { mediaType: mediaTypes.latest() },

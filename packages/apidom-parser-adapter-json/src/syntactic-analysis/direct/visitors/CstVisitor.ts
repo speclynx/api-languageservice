@@ -15,8 +15,6 @@ import {
 
 import TreeCursorSyntaxNode from '../../TreeCursorSyntaxNode.ts';
 
-/* eslint-disable no-underscore-dangle */
-
 class CstVisitor {
   private static toPosition(node: TreeCursorSyntaxNode): Array<ArrayElement> {
     const start = new ArrayElement([
@@ -147,21 +145,18 @@ class CstVisitor {
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public null(node: TreeCursorSyntaxNode): NullElement {
     const element = new NullElement();
     this.maybeAddSourceMap(node, element);
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public true(node: TreeCursorSyntaxNode): BooleanElement {
     const element = new BooleanElement(true);
     this.maybeAddSourceMap(node, element);
     return element;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public false(node: TreeCursorSyntaxNode): BooleanElement {
     const element = new BooleanElement(false);
     this.maybeAddSourceMap(node, element);
@@ -214,7 +209,5 @@ class CstVisitor {
     element.meta.set('sourceMap', sourceMap);
   }
 }
-
-/* eslint-enable no-underscore-dangle */
 
 export default CstVisitor;

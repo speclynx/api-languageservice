@@ -79,7 +79,6 @@ export class DefaultHoverService implements HoverService {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async computeHover(
     textDocument: TextDocument,
     position: Position,
@@ -219,7 +218,7 @@ export class DefaultHoverService implements HoverService {
                 const targetVal = JSON.stringify(toValue(dereferenced), null, 2);
                 contents.push(`\n\n\n\n\`\`\`json\n${targetVal}\n\`\`\``);
               }
-            } catch (e) {
+            } catch {
               //
             }
           } else {
@@ -240,7 +239,7 @@ export class DefaultHoverService implements HoverService {
                   ? 'json'
                   : 'yaml';
               contents.push(`\n\n\n\n\`\`\`${format}\n${targetVal}\n\`\`\``);
-            } catch (e) {
+            } catch {
               //
             }
           }
@@ -254,7 +253,6 @@ export class DefaultHoverService implements HoverService {
                 provider.providerMode &&
                 provider.providerMode() === ProviderMode.REF
               ) {
-                // eslint-disable-next-line no-await-in-loop
                 const hoverProviderResult = await provider.doRefHover(
                   textDocument,
                   position,
@@ -305,7 +303,6 @@ export class DefaultHoverService implements HoverService {
             provider.doHover &&
             (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
           ) {
-            // eslint-disable-next-line no-await-in-loop
             const hoverProviderResult = await provider.doHover(
               textDocument,
               position,

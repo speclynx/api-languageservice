@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import {
   CompletionItem,
   CompletionItemKind,
@@ -144,7 +143,6 @@ export class DefaultCompletionService implements CompletionService {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private resolveCompletionNode(node: Element, caretContext: CaretContext): Element {
     switch (caretContext) {
       case CaretContext.KEY_INNER:
@@ -158,7 +156,6 @@ export class DefaultCompletionService implements CompletionService {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private isReferenceValue(node: Element): boolean {
     // TODO move to NS adapter plugin
     // TODO replace this with checking metadata refObject in parent
@@ -170,7 +167,6 @@ export class DefaultCompletionService implements CompletionService {
     return parent && isMember(parent) && toValue(parent.key) === '$ref';
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private resolveCaretContext(node: Element, offset: number, textModified: boolean): CaretContext {
     let caretContext: CaretContext = CaretContext.UNDEFINED;
     if (node) {
@@ -178,7 +174,7 @@ export class DefaultCompletionService implements CompletionService {
       const { parent } = node;
       if (parent && isMember(parent) && parent.key === node) {
         // we are in a key node
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
         if (offset > sm.offset && offset < sm.endOffset!) {
           caretContext = CaretContext.KEY_INNER;
         } else if (offset === sm.offset) {
@@ -199,7 +195,7 @@ export class DefaultCompletionService implements CompletionService {
         isNullElement(node)
       ) {
         // we must be in a value primitive node
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
         if (offset > sm.offset && offset < sm.endOffset!) {
           caretContext = CaretContext.PRIMITIVE_VALUE_INNER;
         } else if (offset === sm.offset) {
@@ -216,7 +212,7 @@ export class DefaultCompletionService implements CompletionService {
       }
       if (isObjectElement(node) || isArrayElement(node)) {
         // we are within an object or array
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
         if (offset > sm.offset && offset < sm.endOffset!) {
           caretContext = CaretContext.OBJECT_VALUE_INNER;
         } else if (offset === sm.offset) {
@@ -230,7 +226,6 @@ export class DefaultCompletionService implements CompletionService {
     return caretContext;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private resolveCompletionNodeContext(caretContext: CaretContext): CompletionNodeContext {
     switch (caretContext) {
       case CaretContext.KEY_START:
@@ -252,7 +247,7 @@ export class DefaultCompletionService implements CompletionService {
   public async doCompletion(
     textDocument: TextDocument,
     completionParamsOrPosition: CompletionParams | Position,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     completionContext?: CompletionContext,
   ): Promise<CompletionList> {
     perfStart(PerfLabels.START);
@@ -276,9 +271,9 @@ export class DefaultCompletionService implements CompletionService {
     // commit chars for yaml
     let valueCommitCharacters = ['\n'];
     let propertyCommitCharacters = [':'];
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     let endObjectNodeChar = '\n';
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     let endArrayNodeChar = '\n';
 
     // TODO handle also yaml and others, with specific logic for the format
@@ -476,7 +471,7 @@ export class DefaultCompletionService implements CompletionService {
             } else if (prevLineIndentation < position.character) {
               // check if line has empty value
               // TODO shaky, better regex grouping, consider case with colon in key
-              // eslint-disable-next-line prefer-regex-literals
+
               const regex = new RegExp('^.*\\:{1}\\s*$');
               if (regex.test(prevLine)) {
                 // set the target offset to right after the colon (empty node)
@@ -525,7 +520,7 @@ export class DefaultCompletionService implements CompletionService {
 
         Therefore we look for the offset right after the colon where we found and empty value
          */
-      // eslint-disable-next-line no-lonely-if
+
       if (isEmptyOrCommaValue(textDocument, offset)) {
         const rightAfterColonOffset = getRightAfterColonOffset(textDocument, offset, false);
         if (rightAfterColonOffset !== -1) {
@@ -879,7 +874,6 @@ export class DefaultCompletionService implements CompletionService {
           provider.doCompletion &&
           (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
         ) {
-          // eslint-disable-next-line no-await-in-loop
           const completionProviderResult = await provider.doCompletion(
             textDocument,
             completionNode,
@@ -927,9 +921,9 @@ export class DefaultCompletionService implements CompletionService {
     specVersion: string,
     nodeValue: string,
     completionParamsOrPosition: CompletionParams | Position,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     yaml: boolean,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     completionContext?: CompletionContext,
   ): Promise<CompletionItem[]> {
     const result: CompletionItem[] = [];
@@ -983,7 +977,6 @@ export class DefaultCompletionService implements CompletionService {
           provider.providerMode &&
           provider.providerMode() === ProviderMode.REF
         ) {
-          // eslint-disable-next-line no-await-in-loop
           const completionProviderResult = await provider.doRefCompletion(
             textDocument,
             node,

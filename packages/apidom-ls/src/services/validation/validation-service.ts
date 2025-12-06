@@ -301,7 +301,7 @@ export class DefaultValidationService implements ValidationService {
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
-              // eslint-disable-next-line no-param-reassign
+
               pointersMap[referencedElement] = pointers;
             }
             const lintSm = getSourceMap(refValueElement);
@@ -369,7 +369,6 @@ export class DefaultValidationService implements ValidationService {
       const refSet = new ReferenceSet({ refs: [referenceElementReference, apiReference] });
 
       try {
-        // eslint-disable-next-line no-await-in-loop
         await dereferenceApiDOM(refEl, {
           resolve: {
             baseURI: `${baseURI}#reference${fragmentId}`,
@@ -394,7 +393,7 @@ export class DefaultValidationService implements ValidationService {
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
-              // eslint-disable-next-line no-param-reassign
+
               pointersMap[referencedElement] = pointers;
             }
             const lintSm = getSourceMap(refValueElement);
@@ -478,7 +477,7 @@ export class DefaultValidationService implements ValidationService {
 
   public async doValidation(
     textDocument: TextDocument,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     validationContext?: ValidationContext,
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
@@ -492,7 +491,7 @@ export class DefaultValidationService implements ValidationService {
     } = DefaultValidationService.resolveValidationMode(context, this.settings?.validationContext);
     if (validationContext) {
       // TODO (frantuma) remove this when we have a better way to pass the context
-      // eslint-disable-next-line no-param-reassign
+
       validationContext.betterAjvErrors = betterAjvErrors;
     }
     const exclusiveJsonSchemaValidation =
@@ -507,8 +506,7 @@ export class DefaultValidationService implements ValidationService {
     const refValidationMode =
       !context || !context.referenceValidationMode
         ? ReferenceValidationMode.LEGACY
-        : // eslint-disable-next-line no-bitwise
-          context.referenceValidationMode | ReferenceValidationMode.LEGACY;
+        : context.referenceValidationMode | ReferenceValidationMode.LEGACY;
     const refValidationSerialProcessing =
       !context || !context.referenceValidationSequentialProcessing
         ? false
@@ -531,7 +529,6 @@ export class DefaultValidationService implements ValidationService {
           provider.doValidation &&
           (!provider.providerMode || provider.providerMode() === ProviderMode.FULL)
         ) {
-          // eslint-disable-next-line no-await-in-loop
           await this.executeValidationProvider(
             provider,
             docNs,
@@ -697,7 +694,6 @@ export class DefaultValidationService implements ValidationService {
             provider.providerMode &&
             provider.providerMode() === ProviderMode.REF
           ) {
-            // eslint-disable-next-line no-await-in-loop
             const validationProviderResult = provider.doRefValidation(
               textDocument,
               api,
@@ -728,7 +724,6 @@ export class DefaultValidationService implements ValidationService {
             }
 
             if (validationProviderResult.quickFixes) {
-              // eslint-disable-next-line guard-for-in
               for (const fix in validationProviderResult.quickFixes) {
                 this.quickFixesMap[fix] = validationProviderResult.quickFixes[fix];
               }
@@ -902,7 +897,6 @@ export class DefaultValidationService implements ValidationService {
       // TODO try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.validationProviders) {
         if (!(provider.jsonSchemaValidation() && !jsonSchemaValidationEnabled)) {
-          // eslint-disable-next-line no-await-in-loop
           await this.executeValidationProvider(
             provider,
             docNs,
@@ -936,7 +930,6 @@ export class DefaultValidationService implements ValidationService {
       meta.targetSpecs &&
       !meta.targetSpecs.some((nsv) => nsv.namespace === docNs && nsv.version === specVersion)
     ) {
-      // eslint-disable-next-line no-continue
       return;
     }
     const linterFuncName = meta.linterFunction;
@@ -958,7 +951,6 @@ export class DefaultValidationService implements ValidationService {
             isObject(element) &&
             !element.hasKey(meta.target)
           ) {
-            // eslint-disable-next-line no-continue
             return;
           }
           const targetElement =
@@ -1025,7 +1017,7 @@ export class DefaultValidationService implements ValidationService {
               );
               const diagnostic = Diagnostic.create(
                 range,
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
                 meta.message!,
                 meta.severity,
                 meta.code,
@@ -1082,7 +1074,6 @@ export class DefaultValidationService implements ValidationService {
           diagnostics.push(...validationProviderResult.diagnostics);
       }
       if (validationProviderResult.quickFixes) {
-        // eslint-disable-next-line guard-for-in
         for (const fix in validationProviderResult.quickFixes) {
           this.quickFixesMap[fix] = validationProviderResult.quickFixes[fix];
         }
@@ -1107,7 +1098,6 @@ export class DefaultValidationService implements ValidationService {
     }
 
     if (diagnostic.source === APIDOM_LINTER) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
       const map: MetadataMap = this.settings?.metadata?.metadataMaps[lang]!;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -1116,7 +1106,7 @@ export class DefaultValidationService implements ValidationService {
           const linters: LinterMeta[] = symbolValue.lint as LinterMeta[];
           for (const linterMeta of linters) {
             // TODO (frantuma@yahoo.com)  solve LinterMeta number/string
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             if (String(linterMeta.code!) === code) {
               return linterMeta.data?.quickFix;
             }
@@ -1127,7 +1117,6 @@ export class DefaultValidationService implements ValidationService {
     return undefined;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async doCodeActions(
     textDocument: TextDocument,
     parmsOrDiagnostics: CodeActionParams | Diagnostic[],

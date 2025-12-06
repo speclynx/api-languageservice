@@ -14,7 +14,7 @@ export type { SchemaOrReferenceVisitorOptions };
 /**
  * @public
  */
-// eslint-disable-next-line prefer-destructuring
+
 export const JSONSchemaOrJSONReferenceVisitor: typeof JSONSchemaOrJSONReferenceVisitorType =
   JSONSchemaDraft4Specification.visitors.JSONSchemaOrJSONReferenceVisitor;
 

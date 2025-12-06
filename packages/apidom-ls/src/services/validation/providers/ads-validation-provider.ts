@@ -101,7 +101,7 @@ export class AdsValidationProvider implements ValidationProvider {
     if (!this.adsDoc) {
       return this.ignoreResult;
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const text = textDocument.getText();
     const isOasJson = await isJsonDoc(textDocument);
     const isAdsJson = await isJsonDoc(this.adsDoc);
@@ -144,7 +144,7 @@ export class AdsValidationProvider implements ValidationProvider {
         mergeStrategy: MergeStrategy.PREPEND,
         diagnostics,
       };
-    } catch (e) {
+    } catch {
       return this.ignoreResult;
     }
   }
@@ -155,22 +155,18 @@ export class AdsValidationProvider implements ValidationProvider {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   break(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   overrideDefaultValidation(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   jsonSchemaValidation(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   namespaces(): NamespaceVersion[] {
     return [
       { namespace: 'openapi', version: '3.1.0' },
@@ -178,7 +174,6 @@ export class AdsValidationProvider implements ValidationProvider {
     ];
   }
 
-  // eslint-disable-next-line class-methods-use-this
   name(): string {
     return 'ads';
   }

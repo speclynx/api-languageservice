@@ -44,7 +44,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class OpenApi3_1SubElement extends OpenApi3_1Element {}
 
         assert.isTrue(isOpenApi3_1Element(new OpenApi3_1SubElement()));

@@ -49,7 +49,6 @@ export class DefaultDefinitionService implements DefinitionService {
     this.settings = settings;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async doProvideDefinition(
     textDocument: TextDocument,
     definitionParams: DefinitionParams,
@@ -74,7 +73,7 @@ export class DefaultDefinitionService implements DefinitionService {
       if (toValue(el) !== '$ref') {
         return null;
       }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
       const ref = toValue(node);
       // TODO (frantuma@yahoo.com): handle by URL parsing
       if (!ref.startsWith('#') && node.parent?.parent) {
@@ -130,7 +129,7 @@ export class DefaultDefinitionService implements DefinitionService {
             uri: newUri,
             range,
           };
-        } catch (e) {
+        } catch {
           return null;
         }
       }
@@ -149,7 +148,6 @@ export class DefaultDefinitionService implements DefinitionService {
     return null;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async doProvideReferences(
     textDocument: TextDocument,
     referenceParams: ReferenceParams,

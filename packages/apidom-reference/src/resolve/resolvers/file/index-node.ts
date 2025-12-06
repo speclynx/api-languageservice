@@ -41,7 +41,6 @@ class FileResolver extends Resolver {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async read(file: File): Promise<Buffer> {
     const fileSystemPath = url.toFileSystemPath(file.uri);
 

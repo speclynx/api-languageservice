@@ -18,7 +18,7 @@ const plugin =
       },
       visitor: {
         enter<T extends Element>(element: T) {
-          element.id = identityManager!.identify(element); // eslint-disable-line no-param-reassign
+          element.id = identityManager!.identify(element);
         },
       },
       post() {

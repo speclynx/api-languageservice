@@ -44,7 +44,6 @@ class JSONSchemaVisitor extends Mixin(
     this.specPath = always(['document', 'objects', 'JSONSchema']);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get defaultDialectIdentifier(): string {
     return 'http://json-schema.org/draft-04/schema#';
   }

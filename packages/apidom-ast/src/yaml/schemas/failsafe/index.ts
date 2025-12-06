@@ -24,7 +24,6 @@ class FailsafeSchema {
     this.registerTag(new GenericStringTag());
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public toSpecificTagName(node: any): string {
     let specificTagName = node.tag.explicitName;
 

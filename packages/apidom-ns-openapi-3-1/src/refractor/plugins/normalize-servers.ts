@@ -30,7 +30,6 @@ export interface PluginOptions {
   storageField?: string;
 }
 
-/* eslint-disable no-param-reassign */
 /**
  * @public
  */
@@ -149,6 +148,5 @@ const plugin =
       },
     };
   };
-/* eslint-enable */
 
 export default plugin;

@@ -14,7 +14,7 @@ const baseURIDefault = (baseURI: string) => (isEmptyString(baseURI) ? cwd() : ba
 /**
  * @public
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export const merge = (lObj: ReferenceOptions, rObj: Record<string, any>): ReferenceOptions => {
   const withoutDefaults = mergeDeepRight(lObj, rObj);
   // @ts-ignore

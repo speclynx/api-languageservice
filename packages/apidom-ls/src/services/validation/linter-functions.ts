@@ -18,7 +18,6 @@ import {
   parse as parsePathTemplate,
 } from 'openapi-path-templating';
 
-// eslint-disable-next-line import/no-cycle
 import {
   isObject,
   isString,
@@ -126,7 +125,6 @@ const isType = (element: Element, elementType: string): boolean => {
   return true;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const standardLinterfunctions: FunctionItem[] = [
   {
     functionName: 'hasRequiredField',
@@ -495,7 +493,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         try {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const regex = new RegExp(elKey);
-        } catch (e) {
+        } catch {
           return false;
         }
       }
@@ -552,9 +550,8 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
         try {
-          // eslint-disable-next-line no-new
           new URL(toValue(element), absolute ? undefined : 'http://example.com');
-        } catch (e) {
+        } catch {
           return false;
         }
       }
@@ -858,7 +855,6 @@ export const standardLinterfunctions: FunctionItem[] = [
         return false;
       }
       if (element && isObject(element)) {
-        // eslint-disable-next-line no-plusplus
         for (let i = 0; i++; i < keys.length) {
           if (!apilintElementOrClass(element.get(keys[i]), elementsOrClasses[i])) {
             return false;

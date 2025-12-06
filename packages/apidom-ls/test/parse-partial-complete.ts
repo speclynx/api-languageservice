@@ -23,10 +23,9 @@ describe('apidom-ls-parse-partial', function () {
       }
       api.freeze(); // !! freeze and add parent !!
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       function printSourceMap(node: Element): void {
         const sm: SourceMap = getSourceMap(node);
-        // eslint-disable-next-line no-console
+
         console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);
       }
 

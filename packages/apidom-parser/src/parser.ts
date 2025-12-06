@@ -19,7 +19,6 @@ class ApiDOMParser {
     const candidates = [];
 
     for (const adapter of this.adapters) {
-      // eslint-disable-next-line no-await-in-loop
       if (isFunction(adapter.detect) && (await adapter.detect(source))) {
         candidates.push(adapter);
       }

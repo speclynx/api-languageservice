@@ -27,7 +27,6 @@ describe('refractor', function () {
         pre() {},
         visitor: {
           ObjectElement(element: ObjectElement) {
-            // eslint-disable-next-line no-param-reassign
             element.getMember('a').value = 'c';
           },
         },

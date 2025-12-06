@@ -61,7 +61,6 @@ describe('apidom-ls-definition', function () {
 
   const languageService: LanguageService = getLanguageService(context);
 
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(function () {
     languageService.terminate();
   });
@@ -70,16 +69,15 @@ describe('apidom-ls-definition', function () {
     const doc: TextDocument = TextDocument.create(specPath, 'apidom', 0, spec);
 
     for (const input of defTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing def for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
       const definitionParams: DefinitionParams = {
         position: pos,
         textDocument: doc,
       };
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doProvideDefinition(doc, definitionParams);
-      // eslint-disable-next-line no-console
+
       console.log('external def result', JSON.stringify(result, null, 2));
       assert.deepEqual(result!.range, input[3] as Range);
       assert.isTrue(result!.uri!.endsWith('ex.json'));
@@ -90,16 +88,15 @@ describe('apidom-ls-definition', function () {
     const doc: TextDocument = TextDocument.create(specPathYaml, 'apidom', 0, specYaml);
 
     for (const input of defTestInputYaml) {
-      // eslint-disable-next-line no-console
       console.log(`testing YAML def for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
       const definitionParams: DefinitionParams = {
         position: pos,
         textDocument: doc,
       };
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doProvideDefinition(doc, definitionParams);
-      // eslint-disable-next-line no-console
+
       console.log('external def result', JSON.stringify(result, null, 2));
       assert.deepEqual(result!.range, input[3] as Range);
       assert.isTrue(result!.uri!.endsWith('ex.json'));

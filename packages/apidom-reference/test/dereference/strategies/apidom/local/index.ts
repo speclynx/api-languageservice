@@ -173,7 +173,6 @@ describe('dereference', function () {
             'should transclude the given property of the referenced element',
             async function () {
               class CustomElement extends ObjectElement {
-                // eslint-disable-next-line class-methods-use-this
                 get property() {
                   return new StringElement('propValue');
                 }

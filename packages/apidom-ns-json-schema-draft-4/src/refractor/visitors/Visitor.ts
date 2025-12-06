@@ -15,10 +15,8 @@ class Visitor {
     Object.assign(this, options);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public copyMetaAndAttributes(from: Element, to: Element) {
     if (from.meta.length > 0 || to.meta.length > 0) {
-      // eslint-disable-next-line no-param-reassign
       to.meta = deepmerge(to.meta, from.meta) as ObjectElement;
       if (hasElementSourceMap(from)) {
         // avoid deep merging of source maps
@@ -26,7 +24,6 @@ class Visitor {
       }
     }
     if (from.attributes.length > 0 || from.meta.length > 0) {
-      // eslint-disable-next-line no-param-reassign
       to.attributes = deepmerge(to.attributes, from.attributes) as ObjectElement;
     }
   }

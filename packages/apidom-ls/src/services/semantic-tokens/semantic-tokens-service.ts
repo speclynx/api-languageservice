@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import {
   SemanticTokens,
@@ -62,7 +61,6 @@ export class DefaultSemanticTokensService implements SemanticTokensService {
   private getTokenModifiers(modifiers: string[]): number {
     let bit = 0;
     for (const modifier of modifiers) {
-      // eslint-disable-next-line no-bitwise
       bit |= this.tokenModifiers[modifier];
     }
     return bit;
@@ -91,12 +89,10 @@ export class DefaultSemanticTokensService implements SemanticTokensService {
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public getLegend(): SemanticTokensLegend {
     return this.legend;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async computeSemanticTokens(textDocument: TextDocument): Promise<SemanticTokens> {
     perfStart(PerfLabels.START);
     const tokens: number[][] = [];
@@ -188,7 +184,7 @@ console.log(
           const token = [
             sm.line - lastLine,
             sm.line === lastLine ? sm.column - lastColumn : sm.column,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             sm.endOffset! - sm.offset,
             this.tokens.indexOf(clz),
             modifier,
@@ -228,7 +224,7 @@ console.log(
           const token = [
             sm.line - lastLine,
             sm.line === lastLine ? sm.column - lastColumn : sm.column,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             sm.endOffset! - sm.offset,
             this.tokens.indexOf(clz),
             modifier,
@@ -283,7 +279,7 @@ console.log(
               const token = [
                 sm.line - lastLine,
                 sm.line === lastLine ? sm.column - lastColumn : sm.column,
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
                 sm.endOffset! - sm.offset,
                 this.getTokenType(s),
                 modifier,
@@ -335,7 +331,7 @@ console.log(
               token = [
                 sm.line - lastLine,
                 sm.line === lastLine ? sm.column - lastColumn : sm.column,
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
                 sm.endOffset! - sm.offset,
                 this.getTokenType('value'),
                 this.getTokenModifiers(isStringElement(element) ? ['string'] : ['number']),
@@ -367,7 +363,7 @@ console.log(
               token = [
                 sm.line - lastLine,
                 sm.line === lastLine ? sm.column - lastColumn : sm.column,
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
                 sm.endOffset! - sm.offset,
                 this.getTokenType('key'),
                 this.getTokenModifiers(isStringElement(element) ? ['string'] : ['number']),

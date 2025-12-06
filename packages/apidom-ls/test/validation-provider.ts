@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -39,7 +38,7 @@ class RefValidationProvider implements ValidationProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -47,12 +46,11 @@ class RefValidationProvider implements ValidationProvider {
   /*
   returning `true` makes this validation override default one
    */
-  // eslint-disable-next-line class-methods-use-this
+
   overrideDefaultValidation(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   jsonSchemaValidation(): boolean {
     return false;
   }
@@ -61,7 +59,7 @@ class RefValidationProvider implements ValidationProvider {
   optional, if returning `ProviderMode.REF` only `doRefValidation` function will be executed for each found ref element
   if not implemented or returning `ProviderMode.REF`, only `doValidation` will be called once for the whole doc
    */
-  // eslint-disable-next-line class-methods-use-this
+
   providerMode(): ProviderMode {
     return ProviderMode.REF;
   }
@@ -69,7 +67,7 @@ class RefValidationProvider implements ValidationProvider {
   /*
    optional
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   configure(settings: LanguageSettings): void {}
 
   /*
@@ -78,33 +76,33 @@ class RefValidationProvider implements ValidationProvider {
   it is expected to return a list of diagnostics, and a `mergeStrategy` to integrate into diagnostics resolved by
   linter and/or other providers.
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+
   doRefValidation(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
      the whole parsed doc as ApiDOM root element
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api: Element,
     /*
      the apidom element holding the ref
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     element: Element,
     /*
      the `element` or `class` referenced by this ref, e.g. `schema` or `path-item`
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     referencedElement: string,
     /*
      the content of `$ref` as string
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     refValue: string,
     /*
      diagnostics related to this ref processed so far
@@ -167,7 +165,7 @@ class RefValidationProvider implements ValidationProvider {
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'RefProvider';
   }
@@ -175,7 +173,7 @@ class RefValidationProvider implements ValidationProvider {
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -188,13 +186,13 @@ class RefValidationProvider implements ValidationProvider {
   /*
    Mocks
    */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private isRefAccessible(ref: string): boolean {
     // logic here to check
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private getPotentialRefs(ref: string): string[] {
     // logic here to add a set of existing refs as quick fix for the incorrect one
     return [
@@ -208,7 +206,7 @@ class FullValidationProvider implements ValidationProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
    */
-  // eslint-disable-next-line class-methods-use-this
+
   break(): boolean {
     return false;
   }
@@ -216,12 +214,11 @@ class FullValidationProvider implements ValidationProvider {
   /*
 returning `true` makes this validation override default one
  */
-  // eslint-disable-next-line class-methods-use-this
+
   overrideDefaultValidation(): boolean {
     return false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   jsonSchemaValidation(): boolean {
     return false;
   }
@@ -232,25 +229,25 @@ returning `true` makes this validation override default one
   it is expected to return a list of diagnostics, and a `mergeStrategy` to integrate into diagnostics resolved by
   linter and/or other providers.
  */
-  // eslint-disable-next-line class-methods-use-this
+
   doValidation(
     /*
      the whole document, get content with `textDocument.getText()`
      see https://github.com/microsoft/vscode-languageserver-node/blob/main/textDocument/src/main.ts#L116=
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     textDocument: TextDocument,
     /*
      diagnostics related to this ref processed so far
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     currentDiagnostics: [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     validationContext?: ValidationContext,
     /*
      the whole parsed doc as ApiDOM root element
     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     api?: Element,
   ): Promise<ValidationProviderResult> {
     const quickFixes = {};
@@ -262,7 +259,7 @@ returning `true` makes this validation override default one
     */
     if (isOpenApi31(api!)) {
       const contactName = toValue(api.info?.contact?.name);
-      // eslint-disable-next-line no-console
+
       console.log({ contactName });
     }
 
@@ -276,7 +273,7 @@ returning `true` makes this validation override default one
   /*
   mandatory, name
    */
-  // eslint-disable-next-line class-methods-use-this
+
   name(): string {
     return 'FullProvider';
   }
@@ -284,7 +281,7 @@ returning `true` makes this validation override default one
   /*
     mandatory, the array of ns/version pairs supported
    */
-  // eslint-disable-next-line class-methods-use-this
+
   namespaces(): NamespaceVersion[] {
     return [
       {
@@ -298,7 +295,6 @@ returning `true` makes this validation override default one
    Mocks
    */
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
   private legacyValidation(doc: string, textDocument: TextDocument, quickFixes: any): Diagnostic[] {
     const diagnostics: Diagnostic[] = [];
     // some logic to get errors and location in docs
@@ -350,7 +346,7 @@ returning `true` makes this validation override default one
         });
       }
       // @ts-ignore
-      // eslint-disable-next-line no-param-reassign
+
       quickFixes[code] = diagnostic.data.quickFix;
       diagnostics.push(diagnostic);
     }
@@ -358,7 +354,7 @@ returning `true` makes this validation override default one
     return diagnostics;
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private getPotentialRefs(ref: string): string[] {
     // logic here to add a set of existing refs as quick fix for the incorrect one
     return [

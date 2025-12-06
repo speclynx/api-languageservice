@@ -37,7 +37,7 @@ describe('refractor', function () {
         visitor: {
           SwaggerVersionElement(element: SwaggerVersionElement) {
             // @ts-ignore
-            element.content = '2.1'; // eslint-disable-line no-param-reassign
+            element.content = '2.1';
           },
         },
         post() {},

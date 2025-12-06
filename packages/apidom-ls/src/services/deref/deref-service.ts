@@ -29,10 +29,9 @@ export class DefaultDerefService implements DerefService {
     this.settings = settings;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async doDeref(
     textDocument: TextDocument,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     derefContext?: DerefContext,
   ): Promise<string> {
     const context = !derefContext ? this.settings?.derefContext : derefContext;

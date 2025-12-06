@@ -37,7 +37,7 @@ describe('refractor', function () {
         visitor: {
           MediaElement(element: MediaElement) {
             // @ts-ignore
-            element.binaryEncoding = 'base64'; // eslint-disable-line no-param-reassign
+            element.binaryEncoding = 'base64';
           },
         },
         post() {},

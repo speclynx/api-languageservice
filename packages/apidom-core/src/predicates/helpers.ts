@@ -74,7 +74,7 @@ export const hasBasicElementProps = (element: unknown): element is ElementBasics
   typeof element === 'object' &&
   element != null &&
   '_storedElement' in element &&
-  typeof element._storedElement === 'string' && // eslint-disable-line no-underscore-dangle
+  typeof element._storedElement === 'string' &&
   '_content' in element;
 
 /**

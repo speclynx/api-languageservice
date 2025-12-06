@@ -41,7 +41,7 @@ describe('refractor', function () {
         visitor: {
           LinkDescriptionElement(element: LinkDescriptionElement) {
             // @ts-ignore
-            element.anchor = 'nodes/{thisNodeId}'; // eslint-disable-line no-param-reassign
+            element.anchor = 'nodes/{thisNodeId}';
           },
         },
         post() {},

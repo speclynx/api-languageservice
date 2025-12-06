@@ -1,9 +1,8 @@
 import { config } from '../src/config/config.ts';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { LinterMeta, Metadata } from '../src/apidom-language-types.ts';
 import { deepCopyMetadata } from '../src/utils/utils.ts';
 
-// eslint-disable-next-line import/prefer-default-export
 export function metadata(): Metadata {
   const customConfig = deepCopyMetadata(config() as Metadata);
 

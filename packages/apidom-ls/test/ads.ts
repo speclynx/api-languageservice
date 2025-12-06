@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import fs from 'node:fs';
 import { assert } from 'chai';
 import path from 'node:path';

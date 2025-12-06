@@ -1,11 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable block-scoped-var */
-/* eslint-disable vars-on-top */
-/* eslint-disable no-var */
-/* eslint-disable radix */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-shadow */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import YAML from 'yaml-js';
 import { memoizeWith, identity } from 'ramda';
@@ -106,13 +98,12 @@ export function positionRangeForPath(yaml: any, path: any) {
     };
 
     if (astKeyValue) {
-      // eslint-disable-next-line camelcase
       range.key_start = {
         line: astKeyValue.start_mark.line,
         column: astKeyValue.start_mark.column,
         pointer: astKeyValue.start_mark.pointer,
       };
-      // eslint-disable-next-line camelcase
+
       range.key_end = {
         line: astKeyValue.end_mark.line,
         column: astKeyValue.end_mark.column,
@@ -129,9 +120,7 @@ export function positionRangeForPath(yaml: any, path: any) {
 export const positionRangeForPathAsync = promisifySyncFn(positionRangeForPath);
 
 function promisifySyncFn(fn: any) {
-  // eslint-disable-next-line func-names
   return function (...args: any) {
-    // eslint-disable-next-line no-promise-executor-return
     return new Promise((resolve) => resolve(fn(...args)));
   };
 }

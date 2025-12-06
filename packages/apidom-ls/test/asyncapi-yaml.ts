@@ -42,7 +42,6 @@ const specHighlightAsync = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-async.yaml'))
   .toString();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const specHighlightNoQuotes = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'syntax/sample-api-async-noquotes.yaml'))
   .toString();
@@ -426,10 +425,9 @@ describe('apidom-ls-async-yaml', function () {
     );
 
     for (const input of completionTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing completion for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doCompletion(
         doc,
         { textDocument: doc, position: pos },
@@ -559,7 +557,6 @@ describe('apidom-ls-async-yaml', function () {
     if (tokens.data && tokens.data.length >= 5) {
       const logBase = (n: number) => Math.log(n) / Math.log(2);
       for (let i = 0; i < tokens.data.length; i += 5) {
-        // eslint-disable-next-line no-console
         console.log(
           `[${tokens.data[i]}, ${tokens.data[i + 1]}, ${tokens.data[i + 2]}, ${
             tokens.data[i + 3]
@@ -592,10 +589,9 @@ describe('apidom-ls-async-yaml', function () {
     );
 
     for (const input of hoverTestInput) {
-      // eslint-disable-next-line no-console
       console.log(`testing hover for ${input[0]}`);
       const pos = Position.create(input[1] as number, input[2] as number);
-      // eslint-disable-next-line no-await-in-loop
+
       const result = await languageService.doHover(doc, pos);
       assert.deepEqual(result, input[3] as Hover);
     }

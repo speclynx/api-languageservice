@@ -10,7 +10,6 @@ import { parse } from '../src/parser-factory.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const spec = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'jsonschema/response-content-schema.json'))
   .toString();
@@ -32,7 +31,6 @@ describe('apidom-jsonschema-prototype-test', function () {
 
     const foundElements: string[] = [];
     function printAndCheckContent(node: Element): void {
-      // eslint-disable-next-line no-console
       console.log(node.element, toValue(node));
       foundElements.push(node.element);
     }
@@ -43,7 +41,6 @@ describe('apidom-jsonschema-prototype-test', function () {
 
     if (result.annotations) {
       for (const annotation of result.annotations) {
-        // eslint-disable-next-line no-console
         console.log(JSON.stringify(annotation));
       }
     }

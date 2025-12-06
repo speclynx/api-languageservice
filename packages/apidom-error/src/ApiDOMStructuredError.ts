@@ -9,6 +9,7 @@ class ApiDOMStructuredError extends ApiDOMError {
     super(message, structuredOptions);
 
     if (structuredOptions != null && typeof structuredOptions === 'object') {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { cause, ...causelessOptions } = structuredOptions;
       Object.assign(this, causelessOptions);
     }

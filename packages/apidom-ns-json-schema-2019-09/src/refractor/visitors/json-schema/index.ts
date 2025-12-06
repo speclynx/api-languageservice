@@ -20,7 +20,6 @@ class JSONSchemaVisitor extends JSONSchemaDraft7Visitor {
     this.element = new JSONSchemaElement();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get defaultDialectIdentifier(): string {
     return 'https://json-schema.org/draft/2019-09/schema';
   }

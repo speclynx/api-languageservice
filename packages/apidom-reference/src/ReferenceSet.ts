@@ -34,7 +34,7 @@ class ReferenceSet {
     if (!this.has(reference)) {
       this.refs.push(reference);
       this.rootRef = this.rootRef === undefined ? reference : this.rootRef;
-      reference.refSet = this; // eslint-disable-line no-param-reassign
+      reference.refSet = this;
     }
     return this;
   }
@@ -63,7 +63,7 @@ class ReferenceSet {
 
   clean() {
     this.refs.forEach((ref: Reference) => {
-      ref.refSet = undefined; // eslint-disable-line no-param-reassign
+      ref.refSet = undefined;
     });
     this.rootRef = undefined;
     this.refs.length = 0;

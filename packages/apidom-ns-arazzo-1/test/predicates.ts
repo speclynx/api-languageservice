@@ -90,7 +90,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class WorkflowsSpecificationSubElement extends ArazzoSpecification1Element {}
 
         assert.isTrue(isArazzoSpecification1Element(new WorkflowsSpecificationSubElement()));
@@ -109,7 +108,6 @@ describe('predicates', function () {
     });
 
     specify('should support duck-typing', function () {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       const arazzoSpecificationElementDuck = {
         _storedElement: 'arazzoSpecification1',
         classes: new ArrayElement(['api', 'arazzo']),
@@ -416,7 +414,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class CriterionSubElement extends CriterionElement {}
 
         assert.isTrue(isCriterionElement(new CriterionSubElement()));
@@ -583,7 +580,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class SuccessActionSubElement extends SuccessActionElement {}
 
         assert.isTrue(isSuccessActionElement(new SuccessActionSubElement()));
@@ -694,7 +690,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class FailureActionSubElement extends FailureActionElement {}
 
         assert.isTrue(isFailureActionElement(new FailureActionSubElement()));
@@ -805,7 +800,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class WorkflowSubElement extends WorkflowElement {}
 
         assert.isTrue(isWorkflowElement(new WorkflowSubElement()));
@@ -970,7 +964,6 @@ describe('predicates', function () {
 
     context('given subtype instance value', function () {
       specify('should return true', function () {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         class StepSubElement extends StepElement {}
 
         assert.isTrue(isStepElement(new StepSubElement()));

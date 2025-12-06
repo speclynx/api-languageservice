@@ -23,7 +23,6 @@ describe('apidom-ls-validate', function () {
     logLevel,
   };
 
-  // eslint-disable-next-line mocha/no-skipped-tests
   it('test validation of supposedly valid specs', async function () {
     this.timeout(10000);
 
