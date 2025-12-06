@@ -24,9 +24,7 @@ import { isJSONSchemaElement } from '../../../predicates.ts';
  * @public
  */
 export interface JSONSchemaVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    ParentSchemaAwareVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, ParentSchemaAwareVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

@@ -11,8 +11,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.t
  * @public
  */
 export interface ParametersVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

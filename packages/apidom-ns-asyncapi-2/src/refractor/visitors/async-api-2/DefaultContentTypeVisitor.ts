@@ -9,8 +9,7 @@ import DefaultContentTypeElement from '../../../elements/DefaultContentType.ts';
  * @public
  */
 export interface DefaultContentTypeVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

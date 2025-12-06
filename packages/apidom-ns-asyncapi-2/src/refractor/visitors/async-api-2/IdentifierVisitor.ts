@@ -9,8 +9,7 @@ import IdentifierElement from '../../../elements/Identifier.ts';
  * @public
  */
 export interface IdentifierVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

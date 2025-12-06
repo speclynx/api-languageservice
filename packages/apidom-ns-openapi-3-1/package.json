@@ -44,7 +44,7 @@
   "author": "Vladimir Gorej",
   "license": "Apache-2.0",
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.26.10",
+    "@babel/runtime-corejs3": "^7.28.4",
     "@speclynx/apidom-ast": "^1.9.0",
     "@speclynx/apidom-core": "^1.9.0",
     "@speclynx/apidom-json-pointer": "^1.9.0",
@@ -53,7 +53,7 @@
     "@types/ramda": "~0.30.0",
     "ramda": "~0.30.0",
     "ramda-adjunct": "^5.0.0",
-    "ts-mixer": "^6.0.3"
+    "ts-mixer": "^6.0.4"
   },
   "files": [
     "src/**/*.mjs",

@@ -47,8 +47,10 @@ const visitAsync = visit[Symbol.for('nodejs.util.promisify.custom')];
 /**
  * @public
  */
-export interface OpenAPI3_1DereferenceStrategyOptions
-  extends Omit<DereferenceStrategyOptions, 'name'> {}
+export interface OpenAPI3_1DereferenceStrategyOptions extends Omit<
+  DereferenceStrategyOptions,
+  'name'
+> {}
 
 /**
  * @public

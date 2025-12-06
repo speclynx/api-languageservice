@@ -9,8 +9,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.t
  * @public
  */
 export interface CriteriaVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

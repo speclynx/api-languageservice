@@ -12,8 +12,7 @@ import { isReferenceElement } from '../../../../predicates.ts';
  * @public
  */
 export interface OperationBindingsVisitorOptions
-  extends MapVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MapVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

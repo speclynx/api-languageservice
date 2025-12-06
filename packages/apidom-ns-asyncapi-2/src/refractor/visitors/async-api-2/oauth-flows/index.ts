@@ -12,8 +12,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.t
  * @public
  */
 export interface OAuthFlowsVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

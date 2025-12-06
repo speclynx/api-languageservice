@@ -9,8 +9,7 @@ import StandardIdentifierElement from '../../../../elements/StandardIdentifier.t
  * @public
  */
 export interface StandardIdentifierVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

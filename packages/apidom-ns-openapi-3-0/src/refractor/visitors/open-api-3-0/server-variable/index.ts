@@ -12,8 +12,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.t
  * @public
  */
 export interface ServerVariableVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

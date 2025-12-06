@@ -12,8 +12,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../../../FallbackVis
  * @public
  */
 export interface AmqpServerBindingVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

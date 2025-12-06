@@ -12,8 +12,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../../../FallbackVis
  * @public
  */
 export interface NatsOperationBindingVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

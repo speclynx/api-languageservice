@@ -9,8 +9,7 @@ import MessageTraitExamplesElement from '../../../../elements/nces/MessageTraitE
  * @public
  */
 export interface ExamplesVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

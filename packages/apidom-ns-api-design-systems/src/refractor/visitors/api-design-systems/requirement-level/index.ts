@@ -9,8 +9,7 @@ import RequirementLevelElement from '../../../../elements/RequirementLevel.ts';
  * @public
  */
 export interface RequirementLevelVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

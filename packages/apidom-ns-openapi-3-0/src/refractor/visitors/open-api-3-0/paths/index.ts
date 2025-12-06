@@ -15,8 +15,7 @@ import { isPathItemElement } from '../../../../predicates.ts';
  * @public
  */
 export interface PathsVisitorOptions
-  extends PatternedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends PatternedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

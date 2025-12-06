@@ -12,8 +12,7 @@ import ServerBindingsElement from '../../../../elements/ServerBindings.ts';
  * @public
  */
 export interface ServerBindingsVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

@@ -15,8 +15,7 @@ import { isMediaTypeElement } from '../../../../predicates.ts';
  * @public
  */
 export interface ParameterVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

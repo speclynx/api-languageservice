@@ -12,8 +12,7 @@ import FixedFieldsVisitor, {
  * @public
  */
 export interface OperationTraitVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

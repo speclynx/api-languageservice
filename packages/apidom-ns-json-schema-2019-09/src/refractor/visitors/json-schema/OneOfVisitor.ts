@@ -13,9 +13,7 @@ import {
  * @public
  */
 export interface OneOfVisitorOptions
-  extends SpecificationVisitorOptions,
-    ParentSchemaAwareVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, ParentSchemaAwareVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

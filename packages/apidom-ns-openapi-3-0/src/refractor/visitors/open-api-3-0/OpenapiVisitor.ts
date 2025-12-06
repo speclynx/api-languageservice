@@ -9,8 +9,7 @@ import OpenapiElement from '../../../elements/Openapi.ts';
  * @public
  */
 export interface OpenapiVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

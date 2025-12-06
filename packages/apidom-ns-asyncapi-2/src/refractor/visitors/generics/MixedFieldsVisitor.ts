@@ -11,8 +11,7 @@ export type { SpecPath };
  * @public
  */
 export interface MixedFieldsVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    PatternedFieldsVisitorOptions {
+  extends FixedFieldsVisitorOptions, PatternedFieldsVisitorOptions {
   readonly specPathFixedFields: SpecPath;
   readonly specPathPatternedFields: SpecPath;
 }

@@ -13,8 +13,7 @@ import { isReferenceElement } from '../../../../predicates.ts';
  * @public
  */
 export interface CorrelationIdVisitorOptions
-  extends AlternatingVisitorOptions,
-    FallbackVisitorOptions {}
+  extends AlternatingVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

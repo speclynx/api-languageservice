@@ -14,8 +14,7 @@ import OpenApi3_0Element from '../../../elements/OpenApi3-0.ts';
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export interface OpenApi3_0VisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

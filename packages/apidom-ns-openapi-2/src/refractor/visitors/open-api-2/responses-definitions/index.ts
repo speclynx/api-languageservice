@@ -9,8 +9,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../../FallbackVisitor.t
  * @public
  */
 export interface ResponsesDefinitionsVisitorOptions
-  extends MapVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MapVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

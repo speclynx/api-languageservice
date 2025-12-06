@@ -9,8 +9,7 @@ import SecurityRequirementElement from '../../../../elements/SecurityRequirement
  * @public
  */
 export interface SecurityRequirementVisitorOptions
-  extends MapVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MapVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

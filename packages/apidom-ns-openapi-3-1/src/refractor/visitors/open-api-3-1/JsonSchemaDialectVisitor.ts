@@ -13,8 +13,7 @@ import JsonSchemaDialectElement from '../../../elements/JsonSchemaDialect.ts';
  * @public
  */
 export interface JsonSchemaDialectVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

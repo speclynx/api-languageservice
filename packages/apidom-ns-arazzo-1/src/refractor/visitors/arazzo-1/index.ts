@@ -13,8 +13,7 @@ import ArazzoSpecification1Element from '../../../elements/ArazzoSpecification1.
  * @public
  */
 export interface ArazzoSpecificationVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

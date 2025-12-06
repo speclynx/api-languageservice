@@ -9,8 +9,7 @@ import FallbackVisitor, { FallbackVisitorOptions } from '../FallbackVisitor.ts';
  * @public
  */
 export interface SwaggerVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

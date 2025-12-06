@@ -46,8 +46,10 @@ const visitAsync = visit[Symbol.for('nodejs.util.promisify.custom')];
 /**
  * @public
  */
-export interface AsyncAPI2DeferenceStrategyOptions
-  extends Omit<DereferenceStrategyOptions, 'name'> {}
+export interface AsyncAPI2DeferenceStrategyOptions extends Omit<
+  DereferenceStrategyOptions,
+  'name'
+> {}
 
 /**
  * @public

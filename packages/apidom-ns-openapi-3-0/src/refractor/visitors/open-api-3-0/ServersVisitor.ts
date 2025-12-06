@@ -10,8 +10,7 @@ import { isServerLikeElement } from '../../predicates.ts';
  * @public
  */
 export interface ServersVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

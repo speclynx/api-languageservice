@@ -15,8 +15,7 @@ import ReferenceElement from '../../../../elements/Reference.ts';
  * @public
  */
 export interface ParametersVisitorOptions
-  extends PatternedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends PatternedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

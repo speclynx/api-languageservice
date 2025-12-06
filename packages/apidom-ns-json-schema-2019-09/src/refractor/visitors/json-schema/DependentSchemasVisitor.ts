@@ -15,9 +15,7 @@ import {
  * @public
  */
 export interface DependentSchemasVisitorOptions
-  extends MapVisitorOptions,
-    ParentSchemaAwareVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MapVisitorOptions, ParentSchemaAwareVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

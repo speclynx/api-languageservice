@@ -8,8 +8,7 @@ import SpecificationVisitor, { SpecificationVisitorOptions } from '../../Specifi
  * @public
  */
 export interface PrinciplesVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

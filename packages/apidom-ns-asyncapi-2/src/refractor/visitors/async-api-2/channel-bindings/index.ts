@@ -12,8 +12,7 @@ import ChannelBindingsElement from '../../../../elements/ChannelBindings.ts';
  * @public
  */
 export interface ChannelBindingsVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

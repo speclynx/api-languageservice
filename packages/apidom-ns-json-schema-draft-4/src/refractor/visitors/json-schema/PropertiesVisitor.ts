@@ -12,9 +12,7 @@ import { isJSONReferenceLikeElement } from '../../predicates.ts';
  * @public
  */
 export interface PropertiesVisitorOptions
-  extends MapVisitorOptions,
-    ParentSchemaAwareVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MapVisitorOptions, ParentSchemaAwareVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

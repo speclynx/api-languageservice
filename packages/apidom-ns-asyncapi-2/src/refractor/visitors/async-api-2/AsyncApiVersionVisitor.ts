@@ -9,8 +9,7 @@ import AsyncApiVersionElement from '../../../elements/AsyncApiVersion.ts';
  * @public
  */
 export interface AsyncApiVersionVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

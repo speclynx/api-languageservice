@@ -20,9 +20,7 @@ import JsonSchemaDialectElement from '../../../../elements/JsonSchemaDialect.ts'
  * @public
  */
 export interface SchemaVisitorOptions
-  extends FixedFieldsVisitorOptions,
-    ParentSchemaAwareVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, ParentSchemaAwareVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

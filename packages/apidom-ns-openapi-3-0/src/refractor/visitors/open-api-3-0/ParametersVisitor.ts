@@ -10,8 +10,7 @@ import { isReferenceElement } from '../../../predicates.ts';
  * @public
  */
 export interface ParametersVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

@@ -11,8 +11,7 @@ import { isReusableElement } from '../../../../predicates.ts';
  * @public
  */
 export interface OnFailureVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

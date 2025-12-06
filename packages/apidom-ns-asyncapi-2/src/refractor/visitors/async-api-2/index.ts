@@ -12,8 +12,7 @@ import AsyncApi2Element from '../../../elements/AsyncApi2.ts';
  * @public
  */
 export interface AsyncApi2VisitorOptions
-  extends FixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends FixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

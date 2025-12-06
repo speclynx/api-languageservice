@@ -12,8 +12,7 @@ import { FallbackVisitorOptions } from '../../FallbackVisitor.ts';
  * @public
  */
 export interface RequestBodyVisitorOptions
-  extends AlternatingVisitorOptions,
-    FallbackVisitorOptions {}
+  extends AlternatingVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

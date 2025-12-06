@@ -11,8 +11,7 @@ import OperationMessageElement from '../../../../elements/nces/OperationMessage.
  * @public
  */
 export interface MessageVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

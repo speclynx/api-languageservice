@@ -9,8 +9,7 @@ import OperationSecurityElement from '../../../../elements/nces/OperationSecurit
  * @public
  */
 export interface SecurityVisitorOptions
-  extends SpecificationVisitorOptions,
-    FallbackVisitorOptions {}
+  extends SpecificationVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

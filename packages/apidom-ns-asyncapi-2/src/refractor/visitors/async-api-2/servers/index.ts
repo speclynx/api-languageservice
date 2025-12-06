@@ -16,8 +16,7 @@ import { isReferenceElement } from '../../../../predicates.ts';
  * @public
  */
 export interface ServersVisitorOptions
-  extends PatternedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends PatternedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public

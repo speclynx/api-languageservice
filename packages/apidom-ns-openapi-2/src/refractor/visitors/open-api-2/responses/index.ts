@@ -16,8 +16,7 @@ import { isReferenceElement, isResponseElement } from '../../../../predicates.ts
  * @public
  */
 export interface ResponsesVisitorOptions
-  extends MixedFieldsVisitorOptions,
-    FallbackVisitorOptions {}
+  extends MixedFieldsVisitorOptions, FallbackVisitorOptions {}
 
 /**
  * @public
