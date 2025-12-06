@@ -1,4 +1,4 @@
-import openapiSchemaJson20 from '../json-schema/open-api-20/openapi-schema-draft-2020-12-spectral.json';
+import openapiSchemaJson20 from '../json-schema/open-api-20/openapi-schema-draft-2020-12-spectral.json' with { type: 'json' };
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 

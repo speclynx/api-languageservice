@@ -6,12 +6,12 @@ import AjvErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
 
 import { debug } from '../../../utils/utils.ts';
-import openapiSchemaJson31 from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json';
-import openapiSchemaJson31Meta from '../json-schema/open-api-31/spectral/openapi-schema-meta-spectral.json';
-import openapiSchemaJson31Dialect from '../json-schema/open-api-31/spectral/openapi-schema-dialect-spectral.json';
-import draft202012Schema from '../json-schema/open-api-31/spectral/draft-2020-12/index.json';
-import draft202012SchemaValidation from '../json-schema/open-api-31/spectral/draft-2020-12/validation.json';
-import draft4Schema from '../json-schema/open-api-31/spectral/draft-04.json';
+import openapiSchemaJson31 from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json' with { type: 'json' };
+import openapiSchemaJson31Meta from '../json-schema/open-api-31/spectral/openapi-schema-meta-spectral.json' with { type: 'json' };
+import openapiSchemaJson31Dialect from '../json-schema/open-api-31/spectral/openapi-schema-dialect-spectral.json' with { type: 'json' };
+import draft202012Schema from '../json-schema/open-api-31/spectral/draft-2020-12/index.json' with { type: 'json' };
+import draft202012SchemaValidation from '../json-schema/open-api-31/spectral/draft-2020-12/validation.json' with { type: 'json' };
+import draft4Schema from '../json-schema/open-api-31/spectral/draft-04.json' with { type: 'json' };
 
 let ajvInstance: AjvType;
 let ajv2020Instance: Ajv2020Type;

@@ -1,4 +1,4 @@
-import openapiSchemaJson31Ajv from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json';
+import openapiSchemaJson31Ajv from '../json-schema/open-api-31/spectral/openapi-schema-2021-09-29-spectral.json' with { type: 'json' };
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
