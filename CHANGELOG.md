@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/speclynx/apidom/compare/v1.9.0...v1.10.0) (2025-12-13)
+
+### Bug Fixes
+
+- **deps:** add npm-run-all dependency at version 4.1.5 ([5ce5e55](https://github.com/speclynx/apidom/commit/5ce5e5538d7f0d41844c79a03ea9b893917fa481))
+
+### Features
+
+- **ns-arazzo-1:** add support for Arazzo 1.0.1 ([#91](https://github.com/speclynx/apidom/issues/91)) ([9fa6813](https://github.com/speclynx/apidom/commit/9fa681318db59e00537fbd7f1effb7bea141eb0a))
+
 # [1.9.0](https://github.com/speclynx/apidom/compare/v1.8.0...v1.9.0) (2025-09-28)
 
 ### Features
