@@ -928,7 +928,16 @@ export class DefaultValidationService implements ValidationService {
   ): void {
     if (
       meta.targetSpecs &&
-      !meta.targetSpecs.some((nsv) => nsv.namespace === docNs && nsv.version === specVersion)
+      !meta.targetSpecs.some((nsv) => {
+        if (!nsv.version || nsv.version === '') {
+          return nsv.namespace === docNs;
+        } else if (nsv.version.includes('x')) {
+          const prefix = nsv.version.split('x', 1)[0].trim();
+          return nsv.namespace === docNs && specVersion.startsWith(prefix);
+        } else {
+          return nsv.namespace === docNs && nsv.version === specVersion;
+        }
+      })
     ) {
       return;
     }

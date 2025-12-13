@@ -382,9 +382,16 @@ export class DefaultHoverService implements HoverService {
               ci.target === nodeKey &&
               (!ci.targetSpecs ||
                 (ci.targetSpecs &&
-                  ci.targetSpecs.some(
-                    (nsv) => nsv.namespace === ns && nsv.version === specVersion,
-                  )))
+                  ci.targetSpecs.some((nsv) => {
+                    if (!nsv.version || nsv.version === '') {
+                      return nsv.namespace === ns;
+                    } else if (nsv.version.includes('x')) {
+                      const prefix = nsv.version.split('x', 1)[0].trim();
+                      return nsv.namespace === ns && specVersion.startsWith(prefix);
+                    } else {
+                      return nsv.namespace === ns && nsv.version === specVersion;
+                    }
+                  })))
             );
           });
 

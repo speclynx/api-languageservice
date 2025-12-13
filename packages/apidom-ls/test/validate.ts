@@ -3727,4 +3727,71 @@ describe('apidom-ls-validate', function () {
 
     languageService.terminate();
   });
+
+  it('openapi / yaml - wrong openaapi version should raise an error ', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const spec = fs
+      .readFileSync(path.join(__dirname, 'fixtures', 'validation', 'oas', 'oas306.yaml'))
+      .toString();
+    const doc: TextDocument = TextDocument.create('foo://bar/oas306.yaml', 'yaml', 0, spec);
+
+    const languageService: LanguageService = getLanguageService(contextNoSchema);
+
+    const result = await languageService.doValidation(doc, validationContext);
+    const expected: Diagnostic[] = [
+      {
+        range: {
+          start: {
+            line: 0,
+            character: 9,
+          },
+          end: {
+            line: 0,
+            character: 14,
+          },
+        },
+        message: "'openapi' value must be one of 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4",
+        severity: 1,
+        code: 5000105,
+        source: 'apilint',
+        data: {
+          quickFix: [
+            {
+              message: "update to '3.0.0'",
+              action: 'updateValue',
+              functionParams: ['3.0.0'],
+            },
+            {
+              message: "update to '3.0.1'",
+              action: 'updateValue',
+              functionParams: ['3.0.1'],
+            },
+            {
+              message: "update to '3.0.2'",
+              action: 'updateValue',
+              functionParams: ['3.0.2'],
+            },
+            {
+              message: "update to '3.0.3'",
+              action: 'updateValue',
+              functionParams: ['3.0.3'],
+            },
+            {
+              message: "update to '3.0.4'",
+              action: 'updateValue',
+              functionParams: ['3.0.4'],
+            },
+          ],
+        },
+      },
+    ];
+    assert.deepEqual(result, expected as Diagnostic[]);
+
+    languageService.terminate();
+  });
 });

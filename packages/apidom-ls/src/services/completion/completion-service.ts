@@ -1130,7 +1130,16 @@ export class DefaultCompletionService implements CompletionService {
       (ci) =>
         !ci.targetSpecs ||
         (ci.targetSpecs &&
-          ci.targetSpecs.some((nsv) => nsv.namespace === docNs && nsv.version === specVersion)),
+          ci.targetSpecs.some((nsv) => {
+            if (!nsv.version || nsv.version === '') {
+              return nsv.namespace === docNs;
+            } else if (nsv.version.includes('x')) {
+              const prefix = nsv.version.split('x', 1)[0].trim();
+              return nsv.namespace === docNs && specVersion.startsWith(prefix);
+            } else {
+              return nsv.namespace === docNs && nsv.version === specVersion;
+            }
+          })),
     );
     // only keep the ones with satisfied condition
     // TODO single filter traverse
