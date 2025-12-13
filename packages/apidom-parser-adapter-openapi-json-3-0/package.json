@@ -42,8 +42,8 @@
     "@speclynx/apidom-ns-openapi-3-0": "^1.9.0",
     "@speclynx/apidom-parser-adapter-json": "^1.9.0",
     "@types/ramda": "~0.30.0",
-    "ramda": "~0.30.0",
-    "ramda-adjunct": "^5.0.0"
+    "ramda": "~0.32.0",
+    "ramda-adjunct": "^6.0.0"
   },
   "files": [
     "src/**/*.mjs",

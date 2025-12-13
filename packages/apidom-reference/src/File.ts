@@ -12,7 +12,7 @@ import * as url from './util/url.ts';
 export interface FileOptions {
   readonly uri: string;
   readonly mediaType?: string;
-  readonly data?: Buffer | DataView | ArrayBuffer | string;
+  readonly data?: Buffer | DataView | ArrayBuffer | Uint8Array | string;
   readonly parseResult?: ParseResultElement;
 }
 
@@ -24,7 +24,7 @@ class File {
 
   public mediaType: string;
 
-  public data?: Buffer | DataView | ArrayBuffer | string;
+  public data?: Buffer | DataView | ArrayBuffer | Uint8Array | string;
 
   public parseResult?: ParseResultElement;
 
