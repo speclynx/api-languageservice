@@ -8,12 +8,12 @@ import {
   ColorInformation,
   Color,
   ColorPresentation,
-  FormattingOptions,
   TextEdit,
   Position,
   CodeAction,
   Location,
   DocumentLink,
+  FormattingOptions,
 } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import {
@@ -158,6 +158,23 @@ export interface HoverProviderResult {
 export interface LinksProviderResult {
   links: DocumentLink[];
   mergeStrategy: MergeStrategy;
+}
+
+/**
+ * @public
+ */
+export interface ConversionResult {
+  success: boolean;
+  error?: string;
+  result?: string;
+}
+
+/**
+ * @public
+ */
+export interface ConversionOptions {
+  enhancedFormatting?: boolean;
+  formattingOptions?: FormattingOptions;
 }
 
 /**
@@ -633,6 +650,13 @@ export interface LanguageService {
 
   doDeref(document: TextDocument, context?: DerefContext): Promise<string>;
 
+  doConversion(
+    textDocument: TextDocument,
+    sourceFormat: Format,
+    targetFormat: Format,
+    conversionOptions?: ConversionOptions,
+  ): Promise<ConversionResult>;
+
   doLinks(document: TextDocument, context?: LinksContext): Promise<DocumentLink[]>;
 
   doProvideDefinition(
@@ -657,7 +681,8 @@ export interface LanguageService {
 
   getColorPresentations(document: TextDocument, color: Color, range: Range): ColorPresentation[];
 
-  format(document: TextDocument, range: Range, options: FormattingOptions): TextEdit[];
+  doFormatting(document: TextDocument, options?: FormattingOptions): Promise<TextEdit[]>;
+
   terminate(): void;
 
   registerValidationProvider(validationProvider: ValidationProvider): void;

@@ -68,6 +68,8 @@ export type {
   LinterFunction,
   LinterConditionTarget,
   DocumentationMeta,
+  ConversionResult,
+  ConversionOptions,
 } from './apidom-language-types.ts';
 
 export {

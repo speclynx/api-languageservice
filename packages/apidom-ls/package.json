@@ -121,15 +121,16 @@
     "ramda-adjunct": "^6.0.0",
     "vscode-languageserver-protocol": "=3.17.6-next.15",
     "vscode-languageserver-textdocument": "^1.0.12",
-    "vscode-languageserver-types": "=3.17.6-next.6"
+    "vscode-languageserver-types": "=3.17.6-next.6",
+    "yaml": "^2.8.2",
+    "prettier": "^3.7.4"
   },
   "optionalDependencies": {
     "@stoplight/better-ajv-errors": "^1.0.3",
     "ajv": "^8.17.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
-    "json-source-map": "^0.6.1",
-    "yaml": "^2.8.2"
+    "json-source-map": "^0.6.1"
   },
   "files": [
     "src/**/*.mjs",

@@ -3,8 +3,6 @@ import {
   ColorInformation,
   Color,
   ColorPresentation,
-  FormattingOptions,
-  TextEdit,
   Position,
 } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -24,12 +22,14 @@ import { DefaultSymbolsService } from './services/symbols/symbols-service.ts';
 import { DefaultSemanticTokensService } from './services/semantic-tokens/semantic-tokens-service.ts';
 import { DefaultHoverService } from './services/hover/hover-service.ts';
 import { DefaultDerefService } from './services/deref/deref-service.ts';
+import { DefaultConversionService } from './services/conversion/conversion-service.ts';
 import { DefaultDefinitionService } from './services/definition/definition-service.ts';
 import { getDocumentCache } from './document-cache.ts';
 import { parse } from './parser-factory.ts';
 import { config } from './config/config.ts';
 import { togglePerformanceLogs, toggleLogs, getSourceMap, debug } from './utils/utils.ts';
 import { DefaultLinksService } from './services/links/links-service.ts';
+import { DefaultFormattingService } from './services/formatting/formatting-service.ts';
 
 /**
  * @public
@@ -45,6 +45,8 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
   const semanticTokensService = new DefaultSemanticTokensService();
   const hoverService = new DefaultHoverService();
   const derefService = new DefaultDerefService();
+  const formattingService = new DefaultFormattingService();
+  const conversionService = new DefaultConversionService(formattingService);
   const definitionService = new DefaultDefinitionService();
   const linksService = new DefaultLinksService();
 
@@ -55,6 +57,8 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
     semanticTokensService.configure(languageSettings);
     hoverService.configure(languageSettings);
     derefService.configure(languageSettings);
+    conversionService.configure(languageSettings);
+    formattingService.configure(languageSettings);
     definitionService.configure(languageSettings);
     linksService.configure(languageSettings);
   }
@@ -99,9 +103,11 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
     doHover: hoverService.computeHover.bind(hoverService),
     doCodeActions: validationService.doCodeActions.bind(validationService),
     doDeref: derefService.doDeref.bind(derefService),
+    doConversion: conversionService.doConversion.bind(conversionService),
 
     doProvideDefinition: definitionService.doProvideDefinition.bind(definitionService),
     doProvideReferences: definitionService.doProvideReferences.bind(definitionService),
+    doFormatting: formattingService.doFormatting.bind(formattingService),
 
     getSemanticTokensLegend(): SemanticTokensLegend {
       return semanticTokensService.getLegend();
@@ -120,10 +126,6 @@ export default function getLanguageService(context: LanguageServiceContext): Lan
     ): Promise<ColorInformation[]> {
       // @ts-ignore
       return undefined;
-    },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    format(document: TextDocument, range: Range, options: FormattingOptions): TextEdit[] {
-      return [];
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getColorPresentations(document: TextDocument, color: Color, range: Range): ColorPresentation[] {
