@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/speclynx/apidom/compare/v1.10.0...v1.11.0) (2025-12-17)
+
+**Note:** Version bump only for package @speclynx/apidom-ns-json-schema-2020-12
+
 # [1.10.0](https://github.com/speclynx/apidom/compare/v1.9.0...v1.10.0) (2025-12-13)
 
 **Note:** Version bump only for package @speclynx/apidom-ns-json-schema-2020-12

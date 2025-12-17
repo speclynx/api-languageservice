@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/speclynx/apidom/compare/v1.10.0...v1.11.0) (2025-12-17)
+
+### Bug Fixes
+
+- **apidom-ls:** refs speclynx/vscode-openapi-toolkit/issues/14 - update common Schema documentation links ([914c5e1](https://github.com/speclynx/apidom/commit/914c5e1068cb652021ca074610785f82df14b0a8))
+
+### Features
+
+- **apidom-ls:** fix openapi version validation ([4afd2b7](https://github.com/speclynx/apidom/commit/4afd2b7faf4621251d69549ae250de37e60dea29))
+- implement formatting and conversion service for YAML and JSON formats ([87b7482](https://github.com/speclynx/apidom/commit/87b7482a800bbca2b1f1a8f1c325f2488d859bb4))
+
 # [1.10.0](https://github.com/speclynx/apidom/compare/v1.9.0...v1.10.0) (2025-12-13)
 
 ### Bug Fixes
