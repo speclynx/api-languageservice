@@ -1,5 +1,0 @@
-{
-  "externalParameter": {
-    "$ref": "./entry.json#/paths/~1/parameters/0"
-  }
-}

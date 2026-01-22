@@ -1,8 +1,0 @@
-{
-  "externalParameter": {
-    "description": "external parameter",
-    "schema": {
-      "type": "string"
-    }
-  }
-}

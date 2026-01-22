@@ -1,9 +1,0 @@
-[
-  {
-    "openapi": "3.0.4",
-    "paths": {
-      "/path1": { "description": "1" },
-      "/path2": { "description": "2" }
-    }
-  }
-]

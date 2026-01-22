@@ -1,5 +1,0 @@
-{
-  "externalParameter": {
-    "$ref": "./entry.json#/components/parameters/externalRef"
-  }
-}

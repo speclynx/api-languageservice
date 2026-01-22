@@ -1,5 +1,0 @@
-{
-  "indirection": {
-    "$ref": "./entry.json#/components/parameters/externalRef"
-  }
-}

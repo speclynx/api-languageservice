@@ -1,8 +1,0 @@
-{
-  "swagger": "2.0",
-  "definitions": {
-    "schema": {
-      "$ref": "#/definitions/schema"
-    }
-  }
-}

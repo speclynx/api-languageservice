@@ -1,7 +1,0 @@
-{
-  "definitions": {
-    "indirection": {
-      "$ref": "./ex2.json#/definitions/indirection"
-    }
-  },
-}

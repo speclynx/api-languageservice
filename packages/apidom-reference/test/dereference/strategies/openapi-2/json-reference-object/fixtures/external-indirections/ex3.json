@@ -1,8 +1,0 @@
-{
-  "definitions": {
-    "externalSchema": {
-      "type": "object",
-      "description": "external schema"
-    }
-  }
-}

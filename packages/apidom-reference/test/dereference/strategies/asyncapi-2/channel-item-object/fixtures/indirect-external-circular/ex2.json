@@ -1,6 +1,0 @@
-{
-  "channelItem2": {
-    "$ref": "./root.json#/channels/channelItem1",
-    "description": "ex2 desc"
-  }
-}

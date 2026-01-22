@@ -1,7 +1,0 @@
-{
-  "definitions": {
-    "indirection": {
-      "$ref": "./ex3.json#/definitions/externalSchema"
-    }
-  }
-}

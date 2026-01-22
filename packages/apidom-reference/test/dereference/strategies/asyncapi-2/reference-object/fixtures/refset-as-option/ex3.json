@@ -1,8 +1,0 @@
-{
-  "externalParameter": {
-    "description": "Id of the user.",
-    "schema": {
-      "type": "string"
-    }
-  }
-}

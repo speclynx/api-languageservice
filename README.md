@@ -1,12 +1,6 @@
-[comment]: <> (SPDX-FileCopyrightText: Copyright &#40;c&#41; 2015 refractproject)
-[comment]: <> (SPDX-License-Identifier: MIT)
-
-[comment]: <> (SPDX-FileCopyrightText: Copyright &#40;c&#41; 2015 Apiary Inc.)
-[comment]: <> (SPDX-License-Identifier: MIT)
-
 # ApiDOM
 
-[![Build Status](https://github.com/speclynx/apidom/actions/workflows/build.yml/badge.svg)](https://github.com/speclynx/apidom/actions)
+[![Build Status](https://github.com/speclynx/apidom-internal/actions/workflows/build.yml/badge.svg)](https://github.com/speclynx/apidom-internal/actions)
 [![Dependabot enabled](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
 
 
@@ -53,45 +47,8 @@ ApiDOM npm packages are installable and works with `Node.js >=16.14.2 <=24`.
 You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 
 ```sh
- $ npm install @speclynx/apidom-ast
- $ npm install @speclynx/apidom-converter
- $ npm install @speclynx/apidom-core
- $ npm install @speclynx/apidom-error
- $ npm install @speclynx/apidom-json-path
- $ npm install @speclynx/apidom-json-pointer
- $ npm install @speclynx/apidom-json-pointer-relative
- $ npm install @speclynx/apidom-logging
  $ npm install @speclynx/apidom-ls
- $ npm install @speclynx/apidom-ns-api-design-systems
- $ npm install @speclynx/apidom-ns-arazzo-1
- $ npm install @speclynx/apidom-ns-asyncapi-2
- $ npm install @speclynx/apidom-ns-json-schema-2019-09
- $ npm install @speclynx/apidom-ns-json-schema-2020-12
- $ npm install @speclynx/apidom-ns-json-schema-draft-4
- $ npm install @speclynx/apidom-ns-json-schema-draft-6
- $ npm install @speclynx/apidom-ns-json-schema-draft-7
- $ npm install @speclynx/apidom-ns-openapi-2
- $ npm install @speclynx/apidom-ns-openapi-3-0
- $ npm install @speclynx/apidom-ns-openapi-3-1
- $ npm install @speclynx/apidom-parser
- $ npm install @speclynx/apidom-parser-adapter-api-design-systems-json
- $ npm install @speclynx/apidom-parser-adapter-api-design-systems-yaml
- $ npm install @speclynx/apidom-parser-adapter-arazzo-json-1
- $ npm install @speclynx/apidom-parser-adapter-arazzo-yaml-1
- $ npm install @speclynx/apidom-parser-adapter-asyncapi-json-2
- $ npm install @speclynx/apidom-parser-adapter-asyncapi-yaml-2
- $ npm install @speclynx/apidom-parser-adapter-json
- $ npm install @speclynx/apidom-parser-adapter-json-schema-json-2020-12
- $ npm install @speclynx/apidom-parser-adapter-json-schema-yaml-2020-12
- $ npm install @speclynx/apidom-parser-adapter-openapi-json-2
- $ npm install @speclynx/apidom-parser-adapter-openapi-json-3-0
- $ npm install @speclynx/apidom-parser-adapter-openapi-json-3-1
- $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-2
- $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-3-0
- $ npm install @speclynx/apidom-parser-adapter-openapi-yaml-3-1
- $ npm install @speclynx/apidom-parser-adapter-yaml-1-2
- $ npm install @speclynx/apidom-reference
-```
+ ``
 
 ### Usage
 

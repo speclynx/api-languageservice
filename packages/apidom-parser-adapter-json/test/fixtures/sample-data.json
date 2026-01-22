@@ -1,5 +1,0 @@
-{
-  "prop": "val",
-  "boolean": true,
-  "$ref": "#/prop"
-}

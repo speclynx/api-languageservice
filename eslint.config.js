@@ -220,93 +220,15 @@ export default tseslint.config(
   },
 
   // Strategy files - relaxed class method rules
-  {
-    files: [
-      'packages/apidom-reference/src/bundle/strategies/**/*.ts',
-      'packages/apidom-reference/src/dereference/strategies/**/*.ts',
-      'packages/apidom-reference/src/resolve/strategies/**/*.ts',
-      'packages/apidom-converter/src/strategies/**/*.ts',
-    ],
-    rules: {
-      'class-methods-use-this': 'off',
-      '@typescript-eslint/naming-convention': 'off',
-    },
-  },
-
-  // Playground configuration (JavaScript/React)
-  {
-    files: ['packages/apidom-playground/**/*.js', 'packages/apidom-playground/**/*.jsx'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-      globals: {
-        ...globals.browser,
-        window: 'writable',
-        document: 'readonly',
-      },
-    },
-    plugins: {
-      import: eslintPluginImportX,
-      react: eslintPluginReact,
-      'jsx-a11y': eslintPluginJsxA11y,
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-    rules: {
-      // Import rules
-      'import/order': [
-        'error',
-        {
-          groups: [
-            ['builtin', 'external', 'internal'],
-            ['parent', 'sibling', 'index'],
-          ],
-          'newlines-between': 'always',
-        },
-      ],
-      'import/extensions': [
-        'error',
-        'always',
-        {
-          ignorePackages: true,
-        },
-      ],
-      'import/no-unresolved': 'off',
-
-      // React rules
-      ...eslintPluginReact.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off', // Not needed in React 17+
-      'react/prop-types': 'off', // Using TypeScript for prop validation
-      'react/jsx-props-no-spreading': 'off', // Allow prop spreading
-      'react/jsx-no-constructed-context-values': 'off',
-      'react/display-name': 'off', // Allow anonymous components
-      'react/function-component-definition': [
-        'warn',
-        {
-          namedComponents: ['arrow-function'],
-        },
-      ],
-      'react/require-default-props': 'off',
-
-      // Accessibility rules
-      ...eslintPluginJsxA11y.configs.recommended.rules,
-      'jsx-a11y/no-autofocus': [
-        'error',
-        {
-          ignoreNonDOM: true,
-        },
-      ],
-    },
-  },
-
+  // NOTE: Commented out because no strategy files currently exist in the monorepo
+  // Uncomment and add file patterns if strategy files are added in the future
+  // {
+  //   files: ['packages/*/src/**/strategies/**/*.ts'],
+  //   rules: {
+  //     'class-methods-use-this': 'off',
+  //     '@typescript-eslint/naming-convention': 'off',
+  //   },
+  // },
   // Prettier must be last to override other configs
   eslintPluginPrettierRecommended,
 );

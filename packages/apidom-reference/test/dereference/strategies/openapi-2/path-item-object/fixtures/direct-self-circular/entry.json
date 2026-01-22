@@ -1,8 +1,0 @@
-{
-  "openapi": "2.0",
-  "paths": {
-    "/path1": {
-      "$ref": "#/paths/~1path1"
-    }
-  }
-}
