@@ -1,14 +1,9 @@
-ApiDOM Internal
+Additional Notices for SpecLynx Distribution
 Copyright 2025 SpecLynx
-Copyright 2020 SmartBear Software Inc.
-ApiDOM Internal is licensed under Apache 2.0 license.
-Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
-
-ApiDOM
-Copyright 2025 SpecLynx
-Copyright 2020 SmartBear Software Inc.
-ApiDOM is licensed under Apache 2.0 license.
-Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
+This distribution is known as "SpecLynx ApiDOM". It is a fork of the ApiDOM project maintained by SmartBear.
+This distribution includes modifications by SpecLynx.
+All such modifications are licensed under the Apache License, Version 2.0.
+A copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt`.
 
 spectral
 Copyright 2018 Stoplight, Inc.
@@ -48,6 +43,11 @@ Copy of the Academic Free License v3.0 can be found in `LICENSES/AFL-3.0.txt` fi
 Arazzo Specification 1.x.y
 Copyright © 2025 the Linux Foundation
 Fragments of the specification text are embedded in packages/apidom-ls/src/config/arazzo.
+Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
+
+ApiDOM
+Copyright 2020 SmartBear Software Inc.
+ApiDOM is licensed under Apache 2.0 license.
 Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
 
 ---
