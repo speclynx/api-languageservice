@@ -11,7 +11,9 @@ import {
   Location,
   SymbolInformation,
 } from 'vscode-languageserver-types';
-import { Element, traverse, toValue } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';
@@ -849,7 +851,7 @@ describe('apidom-ls', function () {
 
     // calling with no baseURI, in this case deref service will try to use the first defined server URL as baseURI
     // const result = await languageService.doDeref(doc);
-    assert.match(result, /^\n"openapi": "3.1.0"/);
+    assert.match(result, /^openapi: 3.1.0/);
   });
 
   it('test definition', async function () {
@@ -907,8 +909,8 @@ describe('apidom-ls', function () {
       );
     }
 
-    // traverse(printSourceMap, api);
-    traverse(printContent, api);
+    // forEach(api, printSourceMap);
+    forEach(api, printContent);
 
     if (result.annotations) {
       for (const annotation of result.annotations) {

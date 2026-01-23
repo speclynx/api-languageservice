@@ -5,7 +5,8 @@ import betterAjvErrors from '@stoplight/better-ajv-errors';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import jsonSourceMap from 'json-source-map';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { toValue, Element } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { toValue } from '@speclynx/apidom-core';
 
 import { positionRangeForPath } from '../utils/ast.ts';
 import {

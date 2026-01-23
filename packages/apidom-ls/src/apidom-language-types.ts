@@ -26,7 +26,7 @@ import {
   DefinitionParams,
   ReferenceParams,
 } from 'vscode-languageserver-protocol';
-import { Element, ParseResultElement } from '@speclynx/apidom-core';
+import { Element, ParseResultElement } from '@speclynx/apidom-datamodel';
 
 /**
  * @public

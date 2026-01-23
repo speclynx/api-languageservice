@@ -1,6 +1,8 @@
 import { Range, DocumentLink } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { Element, traverse, toValue } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 
 import {
   LanguageSettings,
@@ -118,8 +120,8 @@ export class DefaultLinksService implements LinksService {
     debug('DefaultLinksService.doLinks ns', docNs, specVersion);
     const findLinks = (element: Element) => {
       const sm = getSourceMap(element);
-      const value = toValue(element);
-      const trivialWebUrl = DefaultLinksService.isWebUrl(value);
+      const value = toValue(element) as string | undefined;
+      const trivialWebUrl = DefaultLinksService.isWebUrl(value as string);
       if (element.element !== 'string') {
         return;
       }
@@ -128,7 +130,7 @@ export class DefaultLinksService implements LinksService {
         isMember(element.parent) &&
         toValue(element.parent.key) === '$ref' &&
         element.parent.key !== element &&
-        !value.startsWith('#')
+        !(value as string).startsWith('#')
       ) {
         const location = { offset: sm.offset, length: sm.length };
         const range = Range.create(
@@ -142,11 +144,11 @@ export class DefaultLinksService implements LinksService {
         trace('DefaultLinksService.doLinks pushing ref', link);
         refLinks.push(link);
       } else if (context?.enableTrivialLinkDiscovery && trivialWebUrl) {
-        const elementLinks = DefaultLinksService.getLinks(value, sm.offset, textDocument);
+        const elementLinks = DefaultLinksService.getLinks(value as string, sm.offset, textDocument);
         links.push(...elementLinks);
       }
     };
-    traverse(findLinks, api);
+    forEach(api, findLinks);
     if (context?.modifierFunction) {
       for (const link of refLinks) {
         if (link.target) {

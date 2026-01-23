@@ -3,14 +3,13 @@ import {
   Element,
   ArrayElement,
   MemberElement,
-  isStringElement,
-  filter,
-  toValue,
-  ArraySlice,
   ObjectElement,
+  isStringElement,
   isArrayElement,
   includesClasses,
-} from '@speclynx/apidom-core';
+} from '@speclynx/apidom-datamodel';
+import { filter } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
   test as testPathTemplate,
@@ -37,17 +36,19 @@ const root = (el: Element): Element => {
     node = node.parent;
   }
 
-  return node.parent;
+  return node.parent!;
 };
 
 const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
   if (element) {
     return (
       elementsOrClasses.includes(element.element) ||
-      (toValue(element.getMetaProperty('referenced-element', '')).length > 0 &&
-        elementsOrClasses.includes(toValue(element.getMetaProperty('referenced-element')))) ||
+      ((toValue(element.getMetaProperty('referenced-element', '')) as string).length > 0 &&
+        elementsOrClasses.includes(
+          toValue(element.getMetaProperty('referenced-element', '')) as string,
+        )) ||
       (element.classes &&
-        toValue(element.classes).some((v: string) => elementsOrClasses.includes(v)))
+        (toValue(element.classes) as string[]).some((v: string) => elementsOrClasses.includes(v)))
     );
   }
   return true;
@@ -201,12 +202,12 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (
           element.findElements(
             (e) => {
-              const included = keys.includes(toValue((e.parent as MemberElement).key));
+              const keyValue = toValue((e as MemberElement).key) as string | undefined;
+              const included = keyValue ? keys.includes(keyValue) : false;
               const isExtension =
                 allowExtensionPrefix !== undefined &&
-                toValue((e.parent as MemberElement).key as Element).startsWith(
-                  allowExtensionPrefix,
-                );
+                keyValue !== undefined &&
+                keyValue.startsWith(allowExtensionPrefix);
               return !included && (allowExtensionPrefix === undefined || !isExtension);
             },
             {
@@ -226,7 +227,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (element && isObject(element)) {
         if (element.get(key)) {
           const regex = new RegExp(regexString);
-          if (!regex.test(toValue(element.get(key)))) {
+          if (!regex.test(toValue(element.get(key)) as string)) {
             return false;
           }
         }
@@ -239,7 +240,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, regexString: string, elementType?: string): boolean => {
       if (element) {
         const regex = new RegExp(regexString);
-        if (!regex.test(toValue(element))) {
+        if (!regex.test(toValue(element) as string)) {
           return false;
         }
         if (elementType) {
@@ -255,7 +256,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintKeyRegex',
     function: (element: Element, regexString: string): boolean => {
       if (element && element.parent && isMember(element.parent)) {
-        const elKey = toValue(element.parent.key as Element);
+        const elKey = toValue(element.parent.key as Element) as string;
         const regex = new RegExp(regexString);
         if (!regex.test(elKey)) {
           return false;
@@ -277,16 +278,16 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
         if (integer) {
-          if (!Number.isInteger(toValue(element))) {
+          if (!Number.isInteger(toValue(element) as number)) {
             return false;
           }
         }
         if (positive && includesZero) {
-          if (toValue(element) < 0) {
+          if ((toValue(element) as number) < 0) {
             return false;
           }
         } else if (positive && !includesZero) {
-          if (toValue(element) <= 0) {
+          if ((toValue(element) as number) <= 0) {
             return false;
           }
         }
@@ -300,7 +301,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (element) {
         const elValue = toValue(element);
         const isArrayVal = Array.isArray(elValue);
-        if (!isArrayVal && !values.includes(elValue)) {
+        if (!isArrayVal && !values.includes(elValue as string)) {
           return false;
         }
         if (isArrayVal && !elValue.every((v) => values.includes(v))) {
@@ -349,7 +350,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (element.get(key)) {
           const elValue = toValue(element.get(key));
           const isArrayVal = Array.isArray(elValue);
-          if (!isArrayVal && !values.includes(elValue)) {
+          if (!isArrayVal && !values.includes(elValue as string)) {
             return false;
           }
           if (isArrayVal && !elValue.every((v) => values.includes(v))) {
@@ -409,9 +410,12 @@ export const standardLinterfunctions: FunctionItem[] = [
       }
       if (element && isObject(element)) {
         if (
-          element.findElements((e) => !apilintElementOrClass(e, elementsOrClasses), {
-            recursive: false,
-          }).length > 0
+          element.findElements(
+            (e) => !apilintElementOrClass((e as MemberElement).value!, elementsOrClasses),
+            {
+              recursive: false,
+            },
+          ).length > 0
         ) {
           return false;
         }
@@ -472,7 +476,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, type: string, nonEmpty?: boolean): boolean => {
       if (element && isObject(element)) {
         if (
-          element.findElements((e) => !isType(e, type), {
+          element.findElements((e) => !isType((e as MemberElement).value!, type), {
             recursive: false,
           }).length > 0
         ) {
@@ -489,7 +493,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintKeyIsRegex',
     function: (element: Element): boolean => {
       if (element && element.parent && isMember(element.parent)) {
-        const elKey = toValue(element.parent.key as Element);
+        const elKey = toValue(element.parent.key as Element) as string;
         try {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const regex = new RegExp(elKey);
@@ -508,7 +512,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
 
-        return toValue(element).length <= maxLength;
+        return (toValue(element) as string).length <= maxLength;
       }
 
       return true;
@@ -522,7 +526,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
 
-        return toValue(element) <= maximum;
+        return (toValue(element) as number) <= maximum;
       }
 
       return true;
@@ -536,7 +540,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
 
-        return toValue(element) <= minimum;
+        return (toValue(element) as number) <= minimum;
       }
 
       return true;
@@ -550,7 +554,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           return false;
         }
         try {
-          new URL(toValue(element), absolute ? undefined : 'http://example.com');
+          new URL(toValue(element) as string, absolute ? undefined : 'http://example.com');
         } catch {
           return false;
         }
@@ -565,7 +569,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (element?.parent?.parent && isObject(element.parent.parent)) {
         const elParent = element.parent.parent;
         const elRequired: string[] = elParent.get('required')
-          ? toValue(elParent.get('required'))
+          ? (toValue(elParent.get('required')) as string[])
           : [];
         for (const key of elRequired) {
           const item: CompletionItem = {
@@ -596,12 +600,13 @@ export const standardLinterfunctions: FunctionItem[] = [
       const result: CompletionItem[] = [];
       const existing: string[] = [];
       if (targetElement && Array.isArray(toValue(targetElement))) {
-        existing.push(...toValue(targetElement));
+        existing.push(...(toValue(targetElement) as string[]));
       }
       if (targetElement?.parent?.parent && isObject(targetElement.parent.parent)) {
         const elParent = targetElement.parent.parent;
-        if (elParent.get('properties')) {
-          for (const key of elParent.get('properties').keys()) {
+        const properties = elParent.get('properties') as ObjectElement | undefined;
+        if (properties) {
+          for (const key of properties.keys() as string[]) {
             if (!existing.includes(key)) {
               const item: CompletionItem = {
                 label: key,
@@ -631,17 +636,17 @@ export const standardLinterfunctions: FunctionItem[] = [
         }
         if (isArray(element.parent)) {
           const api = root(element);
-          const schemes: ArraySlice = filter((el: Element) => {
+          const schemes: Element[] = filter(api, (el: Element) => {
             return el.element === 'securityScheme';
-          }, api);
+          });
 
           for (const scheme of schemes) {
             const key = scheme.parent && isMember(scheme.parent) ? scheme.parent.key : undefined;
             if (key) {
-              if (!existing.includes(toValue(key))) {
+              if (!existing.includes(toValue(key) as string)) {
                 const item: CompletionItem = {
-                  label: toValue(key),
-                  insertText: toValue(key),
+                  label: toValue(key) as string,
+                  insertText: toValue(key) as string,
                   kind: 12,
                   documentation: '',
                   // detail: 'replace with',
@@ -668,9 +673,9 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (element?.parent?.parent && isObject(element.parent.parent)) {
         const elParent = element.parent.parent;
         const elRequired: string[] = elParent.get('required')
-          ? toValue(elParent.get('required'))
+          ? (toValue(elParent.get('required')) as string[])
           : [];
-        return elRequired.includes(toValue(element));
+        return elRequired.includes(toValue(element) as string);
       }
       return true;
     },
@@ -692,7 +697,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (isArray(element)) {
           return (
             element.findElements(
-              (e) => !(targetEl as ObjectElement).keys().includes(toValue(e)),
+              (e) => !(targetEl as ObjectElement).keys().includes(toValue(e) as string),
               {},
             ).length === 0
           );
@@ -707,12 +712,12 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (isObject(element) || isArray(element)) {
         const api = root(element);
 
-        const elements: ArraySlice = filter((el: Element) => {
+        const elements: Element[] = filter(api, (el: Element) => {
           return (
             el.element === elementOrClass ||
-            toValue(el.getMetaProperty('classes', [])).includes(elementOrClass)
+            (toValue(el.getMetaProperty('classes', [])) as string[]).includes(elementOrClass)
           );
-        }, api);
+        });
         const targetKeys: string[] = [];
         for (const targetEl of elements) {
           if (isObject(targetEl)) {
@@ -722,12 +727,12 @@ export const standardLinterfunctions: FunctionItem[] = [
         }
         if (isObject(element)) {
           // @ts-ignore
-          return element.keys().every((v) => targetKeys.includes(toValue(v)));
+          return element.keys().every((v) => targetKeys.includes(toValue(v) as string));
         }
         if (isArray(element)) {
           return (
             element.findElements((e) => {
-              return !targetKeys.includes(toValue(e));
+              return !targetKeys.includes(toValue(e) as string);
             }, {}).length === 0
           );
         }
@@ -745,17 +750,17 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (isArray(element.parent)) {
           existing.push(...(toValue(element.parent) as string[]));
           const api = root(element);
-          const servers: ArraySlice = filter((el: Element) => {
+          const servers: Element[] = filter(api, (el: Element) => {
             return el.element === 'server';
-          }, api);
+          });
 
           for (const server of servers) {
             const key = server.parent && isMember(server.parent) ? server.parent.key : undefined;
             if (key) {
-              if (!existing.includes(toValue(key))) {
+              if (!existing.includes(toValue(key) as string)) {
                 const item: CompletionItem = {
-                  label: toValue(key),
-                  insertText: toValue(key),
+                  label: toValue(key) as string,
+                  insertText: toValue(key) as string,
                   kind: 12,
                   documentation: '',
                   // detail: 'replace with',
@@ -776,8 +781,8 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, elementOrClasses: string[], key: string): boolean => {
       const api = root(element);
       const value = toValue(element);
-      const elements: ArraySlice = filter((el: Element) => {
-        const classes: string[] = toValue(el.getMetaProperty('classes', []));
+      const elements: Element[] = filter(api, (el: Element) => {
+        const classes: string[] = toValue(el.getMetaProperty('classes', [])) as string[];
         return (
           (elementOrClasses.includes(el.element) ||
             classes.every((v) => elementOrClasses.includes(v))) &&
@@ -785,7 +790,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           el.hasKey(key) &&
           toValue(el.get(key)) === value
         );
-      }, api);
+      });
       if (elements.length > 1) {
         return false;
       }
@@ -801,9 +806,12 @@ export const standardLinterfunctions: FunctionItem[] = [
         return true;
       }
       if (element.element === 'parameter' || referencedElement === 'parameter') {
-        const parameterName = toValue((element.parent as MemberElement)?.key as Element);
-        const channelEl: Element = element.parent?.parent?.parent?.parent;
-        const channelName: string = toValue((channelEl.parent as MemberElement)?.key as Element);
+        const parameterName = toValue((element.parent as MemberElement).key as Element) as string;
+        // We already verified element.parent.parent.parent.parent exists in the check above
+        const channelEl: Element = element.parent!.parent!.parent!.parent!;
+        const channelName: string = toValue(
+          (channelEl.parent as MemberElement)?.key as Element,
+        ) as string;
         if (channelName.indexOf(`{${parameterName}}`) === -1) {
           return false;
         }
@@ -833,9 +841,9 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (isObject(element)) {
           const regex = new RegExp(regexString);
           for (const key of element.keys() as string[]) {
-            if (isObject(element.get(key))) {
-              const member = element.get(key);
-              const ok = (member.keys() as string[]).every((v) => {
+            const member = element.get(key);
+            if (member && isObject(member)) {
+              const ok = ((member as ObjectElement).keys() as string[]).every((v) => {
                 return regex.test(v);
               });
               if (!ok) {
@@ -856,7 +864,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       }
       if (element && isObject(element)) {
         for (let i = 0; i++; i < keys.length) {
-          if (!apilintElementOrClass(element.get(keys[i]), elementsOrClasses[i])) {
+          if (!apilintElementOrClass(element.get(keys[i])!, elementsOrClasses[i])) {
             return false;
           }
         }
@@ -928,7 +936,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (element && isObject(element)) {
         return (element.keys() as string[]).every((k) =>
           casing(
-            toValue(element.get(k)),
+            toValue(element.get(k)) as string,
             casingStyle,
             noNumbers,
             separatorChar,
@@ -950,7 +958,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     ): boolean => {
       if (element) {
         return casing(
-          toValue(element),
+          toValue(element) as string,
           casingStyle,
           noNumbers,
           separatorChar,
@@ -973,7 +981,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         return true;
       }
       if (element && element.parent && isMember(element.parent)) {
-        const elKey = toValue(element.parent.key as Element);
+        const elKey = toValue(element.parent.key as Element) as string;
         return casing(elKey, casingStyle, noNumbers, separatorChar, separatorAsFirstChar);
       }
       return true;
@@ -986,7 +994,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (!operationNode || operationNode.element !== 'operation') {
         return true;
       }
-      const httpMethod = toValue(operationNode.getMetaProperty('http-method', ''));
+      const httpMethod = toValue(operationNode.getMetaProperty('http-method', '')) as string;
       if (httpMethod && !allowedHttpMethods.includes(httpMethod)) {
         return false;
       }
@@ -1017,7 +1025,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintOpenAPIPathTemplateWellFormed',
     function: (element: Element, strict = false) => {
       if (isStringElement(element)) {
-        const pathTemplate = toValue(element);
+        const pathTemplate = toValue(element) as string;
         return testPathTemplate(pathTemplate, { strict });
       }
       return true;
@@ -1070,12 +1078,12 @@ export const standardLinterfunctions: FunctionItem[] = [
 
         parameterElements.forEach((parameter) => {
           if (toValue((parameter as ObjectElement).get('in')) === 'path') {
-            pathTemplateResolveParams[toValue((parameter as ObjectElement).get('name'))] =
-              'placeholder';
+            const paramName = toValue((parameter as ObjectElement).get('name')) as string;
+            pathTemplateResolveParams[paramName] = 'placeholder';
           }
         });
 
-        const pathTemplate = toValue(element);
+        const pathTemplate = toValue(element) as string;
         const resolvedPathTemplate = resolvePathTemplate(pathTemplate, pathTemplateResolveParams);
         const includesTemplateExpression = testPathTemplate(resolvedPathTemplate, { strict: true });
 
@@ -1095,11 +1103,11 @@ export const standardLinterfunctions: FunctionItem[] = [
 
         const isInPathItemElement =
           isArrayElement(element.parent) &&
-          includesClasses(['path-item-parameters'], element.parent);
+          includesClasses(element.parent, ['path-item-parameters']);
 
         const isInOperationElement =
           isArrayElement(element.parent) &&
-          includesClasses(['operation-parameters'], element.parent);
+          includesClasses(element.parent, ['operation-parameters']);
 
         if (!isInPathItemElement && !isInOperationElement) return true;
 
@@ -1113,8 +1121,8 @@ export const standardLinterfunctions: FunctionItem[] = [
 
         if (!isPathItemPartOfPathTemplating) return true;
 
-        const pathTemplate = toValue(pathItemElement.meta.get('path'));
-        const parameterName = toValue((element as ObjectElement).get('name'));
+        const pathTemplate = toValue(pathItemElement.meta.get('path')) as string;
+        const parameterName = toValue((element as ObjectElement).get('name')) as string;
 
         const parseResult = parsePathTemplate(pathTemplate);
         if (!parseResult.result.success) return true;

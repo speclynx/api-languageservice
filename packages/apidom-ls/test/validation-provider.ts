@@ -4,7 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Diagnostic, DiagnosticSeverity, Range } from 'vscode-languageserver-types';
-import { toValue, Element } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { toValue } from '@speclynx/apidom-core';
 import { isOpenApi3_1Element, OpenApi3_1Element } from '@speclynx/apidom-ns-openapi-3-1';
 
 import getLanguageService from '../src/apidom-language-service.ts';

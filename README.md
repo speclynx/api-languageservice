@@ -20,7 +20,6 @@ and allows tool builders to consume one structure for all formats.
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [ApiDOM Playground](#apidom-playground)
 - [Development](#development)
   - [Setting up](#setting-up)
   - [Setting up via docker](#setting-up-via-docker)
@@ -28,13 +27,6 @@ and allows tool builders to consume one structure for all formats.
   - [npm scripts](#npm-scripts)
   - [Build artifacts](#build-artifacts)
   - [Using this monorepo as a local dev dependency](#using-this-monorepo-as-a-local-dev-dependency)
-- [Contributing](#contributing)
-- [Documentation](#documentation)
-  - [What is an Element ?](#what-is-an-element-)
-  - [As a way to annotate JSON](#as-a-way-to-annotate-json)
-  - [As a unifying structure](#as-a-unifying-structure)
-  - [As a queryable structure](#as-a-queryable-structure)
-  - [ApiDOM stages](#apidom-stages)
 - [License](#license)
 - [Software Bill Of Materials (SBOM)](#software-bill-of-materials-sbom)
 
@@ -87,9 +79,9 @@ Run the following commands to setup the repository for local development:
 
 There are situations when satisfying all setup requirements of this repository on your local
 development machine is just not possible. In that case, you can use **docker** to get around it.
-Repository directory is mounted as volume inside a running container called `apidom-dev`.
+Repository directory is mounted as volume inside a running container called `apidom-internal-dev`.
 That way you can edit code locally on your development machine and run **npm scripts**
-inside the `apidom-dev` docker container.
+inside the `apidom-internal-dev` docker container.
 
 **Build the ApiDOM docker image:**
 
@@ -102,14 +94,14 @@ inside the `apidom-dev` docker container.
 **Install dependencies and build ApiDOM inside the docker container:**
 
 ```sh
-$ docker exec -it apidom-dev npm i --verbose
-$ docker exec -it apidom-dev npm run build
+$ docker exec -it apidom-internal-dev npm i --verbose
+$ docker exec -it apidom-internal-dev npm run build
 ```
 
 **Run npm scripts inside the docker container:**
 
 ```sh
-$ docker exec -it apidom-dev npm run test
+$ docker exec -it apidom-internal-dev npm run test
 ```
 
 > Note: monorepo needs to be build in order for monorepo package topology to work correctly.
@@ -226,13 +218,12 @@ global `node_modules`.
 Now that we have monorepo packages globally linked we can use them in `dependent project`.
 Let's say `dependent project` needs to directly use following packages:
 
-- @speclynx/apidom-ast
-- @speclynx/apidom-core
+- @speclynx/apidom-ls
 
 Issuing following command from inside the `dependent project` will link these packages:
 
 ```sh
- $ npm link @speclynx/apidom-ast @speclynx/apidom-core
+ $ npm link @speclynx/apidom-ls
 ```
 
 If more packages (or all of them) need to be used in `dependent project`, they need to be explicitly
@@ -245,8 +236,7 @@ multiple package names as argument.
 **Don't ever do this!**
 
 ```sh
- $ npm link @speclynx/apidom-ast
- $ npm link @speclynx/apidom-core
+ $ npm link @speclynx/apidom-ls
 ```
 
 > Setting up npm script in `dependent project` can help keep things DRY.
@@ -269,7 +259,7 @@ but will leave the `dependent project` node_modules in corrupted state as there 
 installed anymore. Running `npm i` is always a prefered way to restore your node_modules to original state.
 
 
-##### ApiDOM monorepo
+##### ApiDOM Internal monorepo
 
 It is not necessary to unlink monorepo packages from global `node_modules`. But if you
 want to keep your global `node_modules` tidy you can run the following command in monorepo directory:
@@ -283,228 +273,8 @@ Running above npm script will unlink all monorepo packages from global `node_mod
 If you want to just unlink particular monorepo packages, you have to enumerate them explicitly:
 
 ```shell
- $ npm unlink --global @speclynx/apidom-ast @speclynx/apidom-core
+ $ npm unlink --global @speclynx/apidom-ls
 ```
-
-## Contributing
-
-You can obtain copy of this contributing guide at [https://github.com/speclynx/.github/blob/master/CONTRIBUTING.md](https://github.com/speclynx/.github/blob/master/CONTRIBUTING.md).
-Read our contributing guide to learn about our development process, how to propose bugfixes and improvements,
-and how to build and test your changes to ApiDOM.
-
-## Documentation
-
-If there is one thing API description languages have taught us, it is that a single contract provides
-the best and fastest way to design and iterate on an API. Developers building the API can move independently
-as they progress towards the defined contract found in the OpenAPI or RAML document.
-Conversely, API consumers can build tools for consuming the API based on the API definition document.
-
-This same pattern has proven to be just as valuable for building API description languages and tooling.
-ApiDOM is the contract for producing and consuming the many API description languages and serialization formats
-and allows everyone to move quickly and independently.
-
-### What is an Element ?
-
-ApiDOM is made up of many small elements that have a rich semantic meaning given their value and context.
-An element is an individual piece that makes up an API, and can range from defining a resource to providing
-an example of an HTTP request.
-
-The ApiDOM defines elements to be used for:
-
-Describing an API
-Describing data structures used within that API
-Describing parse results when parsing API-related documents
-These elements also seek to provide a way to decouple APIs and their semantics from the implementation details.
-
-The structure of an ApiDOM is recursive by nature. When looking for specific elements,
-it is best to traverse the ApiDOM tree to look for a match. Querying the ApiDOM tree will
-decouple our code from specific API description language. Also, it decouples our code from the
-specific structure of these documents as long as they are semantically equivalent.
-
-### As a way to annotate JSON
-
-ApiDOM provides the ability to take a normal JSON structure and add a layer on top of it for the purpose
-of annotating and adding semantic data. Instead of creating an entirely different structure to describe the data,
-ApiDOM's approach is to expand the existing structure (we call it "refracting" a structure).
-Here is an example to show our point.
-
-Take the following simple JSON object.
-
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-Using ApiDOM, we can expand this out and add some human-readable titles and descriptions.
-
-```json
-{
-  "element": "object",
-  "content": [
-    {
-      "element": "member",
-      "meta": {
-        "title": "Name",
-        "description": "Name of a person"
-      },
-      "content": {
-        "key": {
-          "element": "string",
-          "content": "name"
-        },
-        "value": {
-          "element": "string",
-          "content": "John Doe"
-        }
-      }
-    },
-    {
-      "element": "member",
-      "meta": {
-        "title": "Email",
-        "description": "Email address for the person"
-      },
-      "content": {
-        "key": {
-          "element": "string",
-          "content": "email"
-        },
-        "value": {
-          "element": "string",
-          "content": "john@example.com"
-        }
-      }
-    }
-  ]
-}
-```
-
-We added some semantic data to the existing data, but we did so while retaining the semantic structure of the data
-with the object and string elements. **This means there is no semantic difference in the ApiDOM structure and
-the original JSON structure**. It also means we can add extra semantics on top of these structural ones.
-
-### As a unifying structure
-
-You may have noticed the similarities between the JSON example above and XML.
-XML has elements, attributes, and content. It would be a good question to ask if we simply turned JSON into XML.
-
-ApiDOM is actually meant to provide these cross-format similarities. It means that a JSON structure
-may be refracted and converted to XML. It also means an XML document may be converted into ApiDOM.
-This also goes for YAML, HTML, CSV, and many other formats. ApiDOM is a way to use refracting to unify these structures.
-
-Let's look at another example, this time refacting XML with ApiDOM.
-
-```xml
-<person name="John Doe" email="john@example.com"></person>
-```
-
-This example in refracted form would look like the following snippet. Notice that we're using attributes in resulting ApiDOM structure.
-
-```json
-{
-  "element": "person",
-  "attributes": {
-    "name": {
-      "element": "string",
-      "content": "John Doe"
-    },
-    "email": {
-      "element": "string",
-      "content": "john@example.com"
-    }
-  }
-}
-```
-
-Since we can go back and forth between JSON, YAML, XML, and other formats, we are now able to use same toolset across the different formats.
-That means we could use XSLT to transform JSON documents.
-
-### As a queryable structure
-
-ApiDOM is meant to free us from the structure of our documents, similar to how XML does with things
-like XPATH or the DOM. It means we can now query JSON documents as if there was an underlying DOM,
-which decouples our SDK from our structure and our structure from our data.
-
-### ApiDOM stages
-
-There are three stages to ApiDOM
-
-- Parse stage
-- Refract stage
-- Generate stage
-
-
-#### Parse stage
-
-The parse stage takes JSON string and produces ApiDOM structure using the base ApiDOM namespace. There are two phases of parsing:
-
-- Lexical Analysis phase
-- Syntactic Analysis phase
-
-
-##### Lexical Analysis phase
-
-Lexical Analysis will take a JSON string and turn it into a stream of tokens. tree-sitter / web-tree-sitter is used
-as an underlying lexical analyzer.
-
-##### Syntactic Analysis
-
-Syntactic Analysis will take a stream of tokens and turn it into an ApiDOM representation.
-CST produced by lexical analysis is syntactically analyzed, and ApiDOM structure using base (generic) ApiDOM namespace is produced.
-Syntactic analysis can further be direct or indirect. JSON parser has both direct and indirect syntactical analyzers,
-but YAML parser only has an indirect one.
-
-###### Direct Syntactical analysis
-
-This analysis directly turns tree-sitter CST into ApiDOM. Single traversal is required, which makes it super performant,
-and it's the default analysis used.
-
-###### Indirect Syntactic analysis
-
-This analysis turns trees-sitter CST into JSON AST representation. Then JSON AST is turned into ApiDOM.
-Two traversals are required, which makes the indirect analysis less performant than the direct one.
-Though less performant, having JSON AST representation allows us to do further complex analysis.
-
-#### Refract stage
-
-The refract stage takes a generic ApiDOM structure (base namespace) and traverses through it, adding, updating,
-and removing nodes as it goes along and turning it into semantic ApiDOM structure (like OpenAPI or AsyncAPI).
-This is by far the most complex part of ApiDOM. This is where plugins operate.
-If plugins are used, additional traversal is currently needed.
-
-#### Generate stage
-
-We can currently only generate JSON documents from the ApiDOM structure.
-It doesn't matter if the original document was originally defined in JSON or YAML.
-Generated JSON documented will have exactly the same semantic information as the original one,
-but the style information from the original document is not preserved (white spaces/comments, etc..).
-
----
-
-Having said that, this is how JSON OpenAPI 3.1 document gets transformed into ApiDOM:
-
-
-**with direct syntactic analysis (requires 2 traversals)**
-```
-JSON string -> tree-sitter CST ->  generic ApiDOM -> OpenAPI 3.1 ApiDOM
-```
-
-**with indirect syntactic analysis (requires 3 traversals)**
-```
-JSON string -> tree-sitter CST -> JSON AST -> generic ApiDOM -> OpenAPI 3.1 ApiDOM
-```
-
-**with direct syntactic analysis and additional plugins (requires 3 traversal)**
-```
-JSON string -> tree-sitter CST -> generic ApiDOM -> OpenAPI 3.1 ApiDOM -> plugins -> OpenAPI 3.1 ApiDOM
-```
----
-
-This very closely reflects how [Babel](https://github.com/babel/babel) works ([Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)).
-Their transform phase is our refract phase. The only difference is that when plugins are involved, our transform phase
-requires 2 traversals instead of a single one. We can find a way in the future how to fold these 2 traversals into a single one.
 
 ## License
 

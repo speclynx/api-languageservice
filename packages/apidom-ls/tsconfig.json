@@ -7,6 +7,7 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "isolatedModules": false,
+    "skipLibCheck": true
   },
   "ts-node": {
     "files": true

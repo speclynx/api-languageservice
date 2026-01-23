@@ -1,12 +1,8 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Hover } from 'vscode-languageserver-protocol';
-import {
-  findAtOffset,
-  toValue,
-  ObjectElement,
-  MemberElement,
-  Element,
-} from '@speclynx/apidom-core';
+import { Element, ObjectElement, MemberElement } from '@speclynx/apidom-datamodel';
+import { findAtOffset } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { MarkupContent, Position, Range } from 'vscode-languageserver-types';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 import {
@@ -120,7 +116,7 @@ export class DefaultHoverService implements HoverService {
 
     api.freeze(); // !! freeze and add parent !!
 
-    const node = findAtOffset({ offset, includeRightBound: true }, api);
+    const node = findAtOffset(api, { offset, includeRightBound: true });
 
     if (node && node.parent && isMember(node.parent)) {
       const contents: string[] = [];
@@ -132,7 +128,7 @@ export class DefaultHoverService implements HoverService {
       }
       let elementValue = el.element;
 
-      const referencedElement = toValue(el.getMetaProperty('referenced-element', ''));
+      const referencedElement = toValue(el.getMetaProperty('referenced-element', '')) as string;
       if (referencedElement.length > 0) {
         elementValue = referencedElement;
       }
@@ -157,7 +153,7 @@ export class DefaultHoverService implements HoverService {
           docs = this.getMetadataPropertyDocs(el, docNs, el.element, specVersion);
         }
         if (!docs) {
-          const classes = toValue(el.classes);
+          const classes = toValue(el.classes) as string[];
           for (const c of classes) {
             docs = this.getMetadataPropertyDocs(el, docNs, c, specVersion);
             if (docs) {
@@ -176,7 +172,7 @@ export class DefaultHoverService implements HoverService {
           el = (<MemberElement>node.parent).key as ObjectElement;
         }
         if (toValue(el) === '$ref') {
-          const ref = toValue(node);
+          const ref = toValue(node) as string;
           // TODO (frantuma@yahoo.com): handle by URL parsing
           if (!ref.startsWith('#') && node.parent?.parent) {
             try {
@@ -224,7 +220,10 @@ export class DefaultHoverService implements HoverService {
           } else {
             try {
               // TODO (frantuma@yahoo.com): replace with fragment deref
-              const refTarget = jsonPointerEvaluate<Element>(api, URIFragmentIdentifier.from(ref));
+              const refTarget = jsonPointerEvaluate<Element>(
+                api,
+                URIFragmentIdentifier.from(ref as string),
+              );
               const nodeSourceMap = getSourceMap(refTarget);
 
               const linePosition = textDocument.positionAt(nodeSourceMap.offset);
@@ -286,7 +285,7 @@ export class DefaultHoverService implements HoverService {
           }
         } else if (this.settings?.hoverFollowLinkEntry) {
           // check if we have a "URL like" value, and add a link in case
-          const nodeValue = toValue(node);
+          const nodeValue = toValue(node) as string;
           // if (/^https?:\/\/[^\s]+.*/.test(nodeValue)) {
           if (WEB_LINK_REGEX.test(nodeValue)) {
             contents.push(`[follow link](${nodeValue})`);
@@ -364,11 +363,15 @@ export class DefaultHoverService implements HoverService {
   ): string | undefined {
     const map: MetadataMap = this.settings?.metadata?.metadataMaps[ns] || {};
     if (node.parent && isMember(node.parent)) {
-      const containerNode = node.parent.parent;
+      const containerNode = node.parent.parent!;
       const nodeKey = toValue(node.parent.key);
-      const containerNodeSet: string[] = Array.from(new Set(toValue(containerNode.classes)));
+      const containerNodeSet: string[] = Array.from(
+        new Set(toValue(containerNode.classes) as string[]),
+      );
       containerNodeSet.unshift(containerNode.element);
-      const referencedElement = toValue(containerNode.getMetaProperty('referenced-element', ''));
+      const referencedElement = toValue(
+        containerNode.getMetaProperty('referenced-element', ''),
+      ) as string;
       if (referencedElement.length > 0) {
         containerNodeSet.unshift(referencedElement);
       }

@@ -7,7 +7,7 @@ import {
 } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SemanticTokensLegend } from 'vscode-languageserver-protocol';
-import { Element, ParseResultElement } from '@speclynx/apidom-core';
+import { Element, ParseResultElement } from '@speclynx/apidom-datamodel';
 import { evaluate } from '@speclynx/apidom-json-pointer';
 
 import {

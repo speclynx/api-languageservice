@@ -3,7 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Diagnostic } from 'vscode-languageserver-types';
-import { Element, toValue, traverse } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';
@@ -35,7 +37,7 @@ describe('apidom-jsonschema-prototype-test', function () {
       foundElements.push(node.element);
     }
 
-    traverse(printAndCheckContent, api);
+    forEach(api, printAndCheckContent);
 
     expect(foundElements).to.include.members(['response', 'mediaType', 'schema']);
 

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-// @ts-ignore
-import { traverse, Element } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';
@@ -30,8 +30,8 @@ describe('apidom-ls-parse-empty', function () {
         console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);
       }
 
-      // traverse(printSourceMap, api);
-      traverse(printSourceMap, api);
+      // forEach(api, printSourceMap);
+      forEach(api, printSourceMap);
 
       // offset related
       /*

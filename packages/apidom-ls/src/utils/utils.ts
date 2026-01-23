@@ -6,29 +6,27 @@ import * as openapi31xAdapterJson from '@speclynx/apidom-parser-adapter-openapi-
 import * as openapi31xAdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
 import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
 import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
-import * as adsAdapterJson from '@speclynx/apidom-parser-adapter-api-design-systems-json';
-import * as adsAdapterYaml from '@speclynx/apidom-parser-adapter-api-design-systems-yaml';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
 import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
+import { toValue } from '@speclynx/apidom-core';
 import {
   ArrayElement,
   BooleanElement,
   Element,
-  find,
+  MemberElement,
+  NumberElement,
+  ObjectElement,
+  ParseResultElement,
+  StringElement,
   isArrayElement,
   isBooleanElement,
   isMemberElement,
   isNumberElement,
   isObjectElement,
   isStringElement,
-  MemberElement,
-  NumberElement,
-  ObjectElement,
-  ParseResultElement,
-  StringElement,
-  traverse,
-  toValue,
-} from '@speclynx/apidom-core';
+  hasElementSourceMap,
+} from '@speclynx/apidom-datamodel';
+import { find, forEach } from '@speclynx/apidom-traverse';
 import { compile, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range } from 'vscode-languageserver-types';
@@ -108,16 +106,16 @@ export class SourceMap {
 }
 
 export function getSourceMap(element: Element): SourceMap {
-  if (element && element.meta && element.meta.get('sourceMap')) {
-    const sourceMap: [][number] = toValue(element.meta.get('sourceMap')) as [][number];
-    const offset = sourceMap[0][2];
-    const length = sourceMap[1][2] - sourceMap[0][2];
-    const line = sourceMap[0][0];
-    const column = sourceMap[0][1];
-    const endLine = sourceMap[1][0];
-    const endColumn = sourceMap[1][1];
-    const endOffset = sourceMap[1][2];
-    return new SourceMap(offset, length, line, column, endLine, endColumn, endOffset); // TODO ???
+  if (hasElementSourceMap(element)) {
+    return new SourceMap(
+      element.startOffset!,
+      element.endOffset! - element.startOffset!,
+      element.startLine!,
+      element.startCharacter!,
+      element.endLine!,
+      element.endCharacter!,
+      element.endOffset!,
+    );
   }
   return new SourceMap(1, 2, 0, 1); // TODO ???
 }
@@ -166,8 +164,10 @@ export function setMetadataMap(
 }
 
 export function getSpecVersion(root: Element): string {
-  const el = find((e) => toValue(e.getMetaProperty('classes', []).includes('spec-version')), root);
-  return el ? toValue(el) : '';
+  const el = find(root, (e) =>
+    (toValue(e.getMetaProperty('classes', [])) as string[]).includes('spec-version'),
+  );
+  return el ? (toValue(el) as string) : '';
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -197,8 +197,10 @@ interface FoundNode {
 export function buildPointer(traverseNode: Element, nodePath: string[]): void {
   if (!traverseNode) return;
   if (traverseNode.parent && isMember(traverseNode.parent)) {
-    nodePath.unshift(toValue(traverseNode.parent.key as Element));
-    buildPointer(traverseNode.parent?.parent, nodePath);
+    nodePath.unshift(toValue(traverseNode.parent.key as Element) as string);
+    if (traverseNode.parent.parent) {
+      buildPointer(traverseNode.parent.parent, nodePath);
+    }
   }
 }
 
@@ -225,14 +227,14 @@ export function localReferencePointers(
         !(
           isObject(traversedNode) &&
           traversedNode.get('$ref') &&
-          toValue(traversedNode.get('$ref')).length > 0
+          (toValue(traversedNode.get('$ref')) as string).length > 0
         )
       ) {
         foundNodes.push({ element: traversedNode, isRef: false });
       }
     }
   }
-  traverse(findRefNodes, doc);
+  forEach(doc, findRefNodes);
   for (const foundNode of foundNodes) {
     nodePath = [];
     buildPointer(foundNode.element, nodePath);
@@ -261,7 +263,7 @@ export function findLocalReferences(doc: Element, targetJsonPointer: string): Po
       foundNodes.push({ element: traversedNode, isRef: true });
     }
   }
-  traverse(findRefNodes, doc);
+  forEach(doc, findRefNodes);
   for (const foundNode of foundNodes) {
     nodePath = [];
     buildPointer(foundNode.element, nodePath);
@@ -309,7 +311,7 @@ export function checkConditions(
               const pathAr = target.path.split('.');
               for (const pathSegment of pathAr) {
                 if (pathSegment === 'parent') {
-                  if (!conditionTargetEl.parent.parent) {
+                  if (!conditionTargetEl.parent?.parent) {
                     conditionsSuccess = false;
                     break;
                   }
@@ -322,7 +324,7 @@ export function checkConditions(
                     conditionsSuccess = false;
                     break;
                   }
-                  conditionTargetEl = conditionTargetEl.get(pathSegment);
+                  conditionTargetEl = conditionTargetEl.get(pathSegment) as Element;
                 }
               }
               if (!conditionsSuccess) {
@@ -371,7 +373,7 @@ export function processPath(element: Element, path: string, api: Element): Eleme
   const pathAr = path.split('.');
   for (const pathSegment of pathAr) {
     if (pathSegment === 'parent') {
-      if (!targetEl.parent.parent) {
+      if (!targetEl.parent?.parent) {
         return undefined;
       }
       targetEl = targetEl.parent.parent;
@@ -382,7 +384,7 @@ export function processPath(element: Element, path: string, api: Element): Eleme
       if (!isObject(targetEl) || !targetEl.hasKey(pathSegment)) {
         return undefined;
       }
-      targetEl = targetEl.get(pathSegment);
+      targetEl = targetEl.get(pathSegment) as Element;
     }
   }
   return targetEl;
@@ -393,7 +395,7 @@ export function buildPath(element: Element): string {
     const path: string[] = [];
     if (!element.parent) return '';
     let targetEl = element;
-    while (isArray(targetEl.parent)) {
+    while (isArray(targetEl.parent!)) {
       path.unshift('[]');
       targetEl = targetEl.parent;
     }
@@ -405,7 +407,7 @@ export function buildPath(element: Element): string {
 
     while (targetEl.parent?.parent) {
       targetEl = targetEl.parent.parent;
-      while (isArray(targetEl.parent)) {
+      while (isArray(targetEl.parent!)) {
         path.unshift('[]');
         targetEl = targetEl.parent;
       }
@@ -936,30 +938,6 @@ export async function findNamespace(
       format: 'YAML',
       admitsRefsSiblings: true,
       mediaType: openapi31xAdapterYaml.mediaTypes.findBy(version, 'yaml'),
-    };
-  }
-
-  if (await adsAdapterJson.detect(text)) {
-    const adsJsonMatch = text.match(adsAdapterJson.detectionRegExp)!;
-    const groups = adsJsonMatch.groups!;
-    const version = groups.version_json;
-
-    return {
-      namespace: 'ads',
-      format: 'JSON',
-      mediaType: adsAdapterJson.mediaTypes.findBy(version, 'json'),
-    };
-  }
-
-  if (await adsAdapterYaml.detect(text)) {
-    const adsYamlMatch = text.match(adsAdapterYaml.detectionRegExp)!;
-    const groups = adsYamlMatch.groups!;
-    const version = groups.version_json ?? groups.version_yaml;
-
-    return {
-      namespace: 'ads',
-      format: 'YAML',
-      mediaType: adsAdapterYaml.mediaTypes.findBy(version, 'yaml'),
     };
   }
 

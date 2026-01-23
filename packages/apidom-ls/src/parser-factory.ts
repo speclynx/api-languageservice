@@ -6,8 +6,6 @@ import * as openapi3_1AdapterJson from '@speclynx/apidom-parser-adapter-openapi-
 import * as openapi3_1AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
 import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
 import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
-import * as adsAdapterJson from '@speclynx/apidom-parser-adapter-api-design-systems-json';
-import * as adsAdapterYaml from '@speclynx/apidom-parser-adapter-api-design-systems-yaml';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
 import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementAsyncAPI2 } from '@speclynx/apidom-ns-asyncapi-2';
@@ -15,7 +13,7 @@ import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElemen
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_0 } from '@speclynx/apidom-ns-openapi-3-0';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_1 } from '@speclynx/apidom-ns-openapi-3-1';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { ParseResultElement } from '@speclynx/apidom-core';
+import { ParseResultElement } from '@speclynx/apidom-datamodel';
 
 import { setMetadataMap, findNamespace } from './utils/utils.ts';
 import { ContentLanguage, MetadataMaps } from './apidom-language-types.ts';
@@ -102,10 +100,6 @@ export async function parse(
       options.refractorOpts = { plugins: [refractorPluginReplaceEmptyElementOpenAPI3_1()] };
     }
     result = await openapi3_1AdapterYaml.parse(text, options);
-  } else if (contentLanguage.namespace === 'ads' && contentLanguage.format === 'JSON') {
-    result = await adsAdapterJson.parse(text, { sourceMap: true });
-  } else if (contentLanguage.namespace === 'ads' && contentLanguage.format === 'YAML') {
-    result = await adsAdapterYaml.parse(text, { sourceMap: true });
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'JSON') {
     result = await adapterJson.parse(text, { sourceMap: true });
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'YAML') {

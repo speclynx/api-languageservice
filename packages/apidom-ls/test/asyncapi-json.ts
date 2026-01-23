@@ -10,7 +10,9 @@ import {
   Position,
   SymbolInformation,
 } from 'vscode-languageserver-types';
-import { Element, traverse, toValue } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';
@@ -645,8 +647,8 @@ describe('apidom-ls-async', function () {
       );
     }
 
-    // traverse(printSourceMap, api);
-    traverse(printContent, api);
+    // forEach(api, printSourceMap);
+    forEach(api, printContent);
 
     if (result.annotations) {
       for (const annotation of result.annotations) {

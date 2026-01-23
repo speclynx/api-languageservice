@@ -3,7 +3,7 @@ import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { DocumentLink } from 'vscode-languageserver-types';
-import { Element } from 'minim';
+import { Element } from '@speclynx/apidom-datamodel';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';

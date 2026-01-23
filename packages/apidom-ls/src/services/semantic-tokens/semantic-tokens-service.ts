@@ -9,9 +9,9 @@ import {
   isBooleanElement,
   isNumberElement,
   isStringElement,
-  traverse,
-  toValue,
-} from '@speclynx/apidom-core';
+} from '@speclynx/apidom-datamodel';
+import { forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {
@@ -154,7 +154,7 @@ console.log(
       // TODO (frantuma@yahoo.com) De-duplicate code
       let set: string[] = [];
       if (element.classes) {
-        set = Array.from(new Set(toValue(element.classes)));
+        set = Array.from(new Set(toValue(element.classes) as string[]));
       }
       // add element value to the set (e.g. 'pathItem', 'operation')
       set.unshift(element.element);
@@ -311,7 +311,7 @@ console.log(
             const val = <Element>element.parent.value;
             let valueClasses: string[] = [];
             if (val.classes) {
-              valueClasses = Array.from(new Set(toValue(val.classes)));
+              valueClasses = Array.from(new Set(toValue(val.classes) as string[]));
             }
             // add element value to the set (e.g. 'pathItem', 'operation')
             valueClasses.unshift(val.element);
@@ -392,7 +392,7 @@ console.log(
       }
     };
 
-    traverse(buildTokens, api);
+    forEach(api, buildTokens);
     perfEnd(PerfLabels.START);
     return {
       data: tokens.flat(),

@@ -9,7 +9,7 @@ export {
   isElement,
   isNumberElement,
   isStringElement,
-} from '@speclynx/apidom-core';
+} from '@speclynx/apidom-datamodel';
 
 export type { JsonSchemaValidationProvider } from './services/validation/providers/json-schema-validation-provider.ts';
 export { OpenAPi20JsonSchemaValidationProvider } from './services/validation/providers/openapi-20-json-schema-validation-provider.ts';

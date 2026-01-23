@@ -1,15 +1,8 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { isString } from 'ramda-adjunct';
-import {
-  ArraySlice,
-  Element,
-  filter,
-  ObjectElement,
-  toJSON,
-  toString,
-  toYAML,
-  toValue,
-} from '@speclynx/apidom-core';
+import { Element, ObjectElement } from '@speclynx/apidom-datamodel';
+import { filter } from '@speclynx/apidom-traverse';
+import { toJSON, toString, toYAML, toValue } from '@speclynx/apidom-core';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 import { DerefContext, Format, LanguageSettings } from '../../apidom-language-types.ts';
@@ -55,22 +48,22 @@ export class DefaultDerefService implements DerefService {
 
     let baseURI: string | undefined = '/foo';
 
-    const servers: ArraySlice = filter((el: Element) => {
-      return toValue(el.classes).includes('servers');
-    }, api);
+    const servers: Element[] = filter(api, (el: Element) => {
+      return (toValue(el.classes) as string[]).includes('servers');
+    });
 
     // TODO (frantuma@yahoo.com): this needs to be replaced by good metadata ('serverURL' to URLS and/or adapter/plugin
-    if (servers && !servers.isEmpty) {
-      const serversValue = toValue(servers.first);
+    if (servers && servers.length > 0) {
+      const serversValue = toValue(servers[0]) as Record<string, unknown>;
       // OAS
       if (Array.isArray(serversValue)) {
-        if (!servers.isEmpty) {
-          const firstServer = serversValue[0];
+        if (servers.length > 0) {
+          const firstServer = serversValue[0] as Record<string, string>;
           baseURI = firstServer.url;
         }
         // ASYNC
       } else if (Object.keys(serversValue).length > 0) {
-        const firstServer = serversValue[Object.keys(serversValue)[0]];
+        const firstServer = serversValue[Object.keys(serversValue)[0]] as Record<string, string>;
         baseURI = firstServer.url;
       }
     }
@@ -89,7 +82,6 @@ export class DefaultDerefService implements DerefService {
         },
       },
     });
-
     return format === Format.JSON
       ? toJSON(dereferenced, undefined, 2)
       : format === Format.YAML

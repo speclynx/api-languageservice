@@ -3,20 +3,21 @@ import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Diagnostic, Position } from 'vscode-languageserver-types';
-// @ts-ignore
 import {
   Element,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  findAtOffset,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isMemberElement,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isObjectElement,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isStringElement,
-  traverse,
-  toValue,
-} from '@speclynx/apidom-core';
+} from '@speclynx/apidom-datamodel';
+import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  forEach,
+} from '@speclynx/apidom-traverse';
+
+import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';
@@ -103,8 +104,9 @@ describe('apidom-parse-test', function () {
         );
       }
 
-      // traverse(printSourceMap, api);
-      traverse(printContent, api);
+      // forEach(api, printSourceMap);
+      // printContent(api);
+      forEach(api, printContent);
 
       if (result.annotations) {
         for (const annotation of result.annotations) {

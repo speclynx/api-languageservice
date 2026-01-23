@@ -1,5 +1,5 @@
 {
-  "name": "ApiDOM Codespace",
+  "name": "ApiDOM Internal Codespace",
   "build": { "dockerfile": "Dockerfile" },
   "remoteEnv": {
     "CPU_CORES": "2"

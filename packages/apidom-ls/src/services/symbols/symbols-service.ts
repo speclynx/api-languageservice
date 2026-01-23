@@ -1,6 +1,8 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range, SymbolInformation } from 'vscode-languageserver-protocol';
-import { ArraySlice, Element, filter, toValue, MemberElement } from '@speclynx/apidom-core';
+import { Element, MemberElement } from '@speclynx/apidom-datamodel';
+import { filter } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { SymbolKind } from 'vscode-languageserver-types';
 
 import { buildPath, getSourceMap, isMember, SourceMap } from '../../utils/utils.ts';
@@ -45,16 +47,17 @@ export class DefaultSymbolsService implements SymbolsService {
 
     const symbols: SymbolInformation[] = [];
 
-    const res: ArraySlice = filter((el: Element) => {
+    const res: Element[] = filter(api, (el: Element) => {
       return (
-        toValue(el.classes).some((item: string) => this.isMeaningfulIdentifier(item)) ||
-        this.isMeaningfulIdentifier(el.element)
+        (toValue(el.classes) as string[]).some((item: string) =>
+          this.isMeaningfulIdentifier(item),
+        ) || this.isMeaningfulIdentifier(el.element)
       );
-    }, api);
+    });
 
     for (let index = 0; index < res.length; ++index) {
-      const e = res.get(index);
-      const set: string[] = Array.from(new Set(toValue(e.classes)));
+      const e = res[index];
+      const set: string[] = Array.from(new Set(toValue(e.classes) as string[]));
       // add element value to the set (e.g. 'pathItem', 'operation'
       if (!set.includes(e.element)) {
         set.unshift(e.element);
@@ -81,7 +84,7 @@ export class DefaultSymbolsService implements SymbolsService {
               textDocument.uri,
             );
             // TODO solve this
-            const superParent: MemberElement = e.parent.parent.parent as MemberElement;
+            const superParent: MemberElement = e.parent!.parent!.parent as MemberElement;
             const keySuper = superParent.key as Element;
             const keyValueSuper = toValue(keySuper) as string;
             const parent: MemberElement = e.parent as MemberElement;

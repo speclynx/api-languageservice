@@ -3,7 +3,8 @@ import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Position } from 'vscode-languageserver-types';
-import { toValue, Element } from '@speclynx/apidom-core';
+import { Element } from '@speclynx/apidom-datamodel';
+import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';

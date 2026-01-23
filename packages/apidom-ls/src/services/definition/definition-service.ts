@@ -1,11 +1,7 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import {
-  findAtOffset,
-  toValue,
-  Element,
-  ObjectElement,
-  MemberElement,
-} from '@speclynx/apidom-core';
+import { Element, ObjectElement, MemberElement } from '@speclynx/apidom-datamodel';
+import { findAtOffset } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { Location, Range } from 'vscode-languageserver-types';
 import { DefinitionParams, ReferenceParams } from 'vscode-languageserver-protocol';
 import {
@@ -62,7 +58,7 @@ export class DefaultDefinitionService implements DefinitionService {
     if (api === undefined) return null;
     // TODO (frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
-    const node = findAtOffset({ offset, includeRightBound: true }, api);
+    const node = findAtOffset(api, { offset, includeRightBound: true });
     if (node && node.parent && isMember(node.parent)) {
       let el: Element;
       if (!isObject(node) && isArray(node)) {
@@ -74,7 +70,7 @@ export class DefaultDefinitionService implements DefinitionService {
         return null;
       }
 
-      const ref = toValue(node);
+      const ref = toValue(node) as string;
       // TODO (frantuma@yahoo.com): handle by URL parsing
       if (!ref.startsWith('#') && node.parent?.parent) {
         try {
@@ -112,7 +108,7 @@ export class DefaultDefinitionService implements DefinitionService {
             'definitionService - go to external ref',
             `dereferenced value: ${toValue(dereferenced)}`,
           );
-          const newUri = toValue(dereferenced.meta.get('ref-origin'));
+          const newUri = toValue(dereferenced.meta.get('ref-origin')) as string;
           debug('definitionService - go to external ref', `dereferenced file URI: ${newUri}`);
           const nodeSourceMap = getSourceMap(dereferenced);
           const range = Range.create(
@@ -134,7 +130,10 @@ export class DefaultDefinitionService implements DefinitionService {
         }
       }
       // TODO (frantuma@yahoo.com): replace with fragment deref
-      const refTarget = jsonPointerEvaluate<Element>(api, URIFragmentIdentifier.from(ref));
+      const refTarget = jsonPointerEvaluate<Element>(
+        api,
+        URIFragmentIdentifier.from(ref as string),
+      );
       const nodeSourceMap = getSourceMap(refTarget);
       const range = Range.create(
         textDocument.positionAt(nodeSourceMap.offset),
@@ -163,7 +162,7 @@ export class DefaultDefinitionService implements DefinitionService {
 
     // TODO(frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
-    const node = findAtOffset({ offset, includeRightBound: true }, api);
+    const node = findAtOffset(api, { offset, includeRightBound: true });
     if (node && node.parent && isMember(node.parent)) {
       const nodePath: string[] = [];
       buildPointer(node, nodePath);

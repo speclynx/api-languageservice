@@ -1,16 +1,10 @@
 import { CodeAction, Diagnostic, DiagnosticSeverity, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import {
-  Element,
-  ObjectElement,
-  ParseResultElement,
-  findAtOffset,
-  traverse,
-  toValue,
-  cloneDeep,
-} from '@speclynx/apidom-core';
+import { Element, ObjectElement, ParseResultElement, cloneDeep } from '@speclynx/apidom-datamodel';
+import { findAtOffset, forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
-import { evaluate, evaluateMulti } from '@speclynx/apidom-json-path';
+import { evaluate } from '@speclynx/apidom-json-path';
 import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@speclynx/apidom-reference';
 
 import {
@@ -165,7 +159,9 @@ export class DefaultValidationService implements ValidationService {
     linting: boolean,
   ): LinterMeta[] {
     let meta: LinterMeta[] = [];
-    const elementMeta = toValue(doc.meta.get('metadataMap')?.get(symbol)?.get('lint'));
+    const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as ObjectElement | undefined;
+    const symbolMetadata = metadataMap?.get(symbol) as ObjectElement | undefined;
+    const elementMeta = toValue(symbolMetadata?.get('lint'));
     if (elementMeta) {
       meta = meta.concat(elementMeta);
       meta = meta.filter((r) => {
@@ -270,7 +266,7 @@ export class DefaultValidationService implements ValidationService {
         const promise = dereferenceApiDOM(refEl, {
           resolve: {
             baseURI: `${baseURI}#reference${fragmentId}`,
-            external: !toValue((refEl as ObjectElement).get('$ref')).startsWith('#'),
+            external: !(toValue((refEl as ObjectElement).get('$ref')) as string).startsWith('#'),
           },
           parse: {
             parsers: cachedParsers,
@@ -296,8 +292,10 @@ export class DefaultValidationService implements ValidationService {
           // @ts-ignore
           const refElement = derefResult.value?.refEl;
           if (refElement as Element) {
-            const refValueElement = refElement.get('$ref');
-            const referencedElement = toValue(refElement.getMetaProperty('referenced-element', ''));
+            const refValueElement = (refElement as ObjectElement).get('$ref')!;
+            const referencedElement = toValue(
+              refElement.getMetaProperty('referenced-element', ''),
+            ) as string;
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
@@ -372,7 +370,7 @@ export class DefaultValidationService implements ValidationService {
         await dereferenceApiDOM(refEl, {
           resolve: {
             baseURI: `${baseURI}#reference${fragmentId}`,
-            external: !toValue((refEl as ObjectElement).get('$ref')).startsWith('#'),
+            external: !(toValue((refEl as ObjectElement).get('$ref')) as string).startsWith('#'),
           },
           parse: {
             mediaType: nameSpace.mediaType,
@@ -389,14 +387,16 @@ export class DefaultValidationService implements ValidationService {
           // @ts-ignore
           if (refEl as Element) {
             const refValueElement = (refEl as ObjectElement).get('$ref');
-            const referencedElement = toValue(refEl.getMetaProperty('referenced-element', ''));
+            const referencedElement = toValue(
+              refEl.getMetaProperty('referenced-element', ''),
+            ) as string;
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
 
               pointersMap[referencedElement] = pointers;
             }
-            const lintSm = getSourceMap(refValueElement);
+            const lintSm = getSourceMap(refValueElement!);
             const location = { offset: lintSm.offset, length: lintSm.length };
             const range = Range.create(
               textDocument.positionAt(location.offset),
@@ -515,6 +515,7 @@ export class DefaultValidationService implements ValidationService {
     const diagnostics: Diagnostic[] = [];
     const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
     let docNs: string = nameSpace.namespace;
+    console.log('nameSpace', nameSpace);
 
     try {
       for (const provider of this.validationProviders) {
@@ -584,7 +585,7 @@ export class DefaultValidationService implements ValidationService {
           textDocument.positionAt(location.offset),
           textDocument.positionAt(location.offset + location.length),
         );
-        let message: string = toValue(annotation);
+        let message: string = toValue(annotation) as string;
         if (
           message.startsWith(text.substring(0, text.length > 10 ? 10 : text.length)) &&
           message.length > 70
@@ -640,14 +641,14 @@ export class DefaultValidationService implements ValidationService {
       const refDiagnostics: Diagnostic[] = [];
       if (
         refValidationMode === ReferenceValidationMode.LEGACY &&
-        toValue(refValueElement).startsWith('#')
+        (toValue(refValueElement) as string).startsWith('#')
       ) {
         let pointers = pointersMap[referencedElement];
         if (!pointers) {
           pointers = localReferencePointers(doc, referencedElement, true);
           pointersMap[referencedElement] = pointers;
         }
-        if (!pointers.some((p) => p.ref === toValue(refValueElement))) {
+        if (!pointers.some((p) => p.ref === (toValue(refValueElement) as string))) {
           // local ref not found
           const lintSm = getSourceMap(refValueElement);
           const location = { offset: lintSm.offset, length: lintSm.length };
@@ -699,7 +700,7 @@ export class DefaultValidationService implements ValidationService {
               api,
               refValueElement,
               referencedElement,
-              toValue(refValueElement),
+              toValue(refValueElement) as string,
               refDiagnostics,
               context,
             );
@@ -742,28 +743,30 @@ export class DefaultValidationService implements ValidationService {
     const refElements: Element[] = [];
 
     const lint = (element: Element) => {
+      const referencedElement = toValue(
+        element.getMetaProperty('referenced-element', ''),
+      ) as string;
       if (
-        toValue(element.getMetaProperty('referenced-element', '')).length > 0 &&
+        referencedElement.length > 0 &&
         isObject(element) &&
         element.hasKey('$ref') &&
         (refValidationMode === ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL ||
-          toValue(element.get('$ref')).startsWith('#'))
+          (toValue(element.get('$ref')) as string).startsWith('#'))
       ) {
         refElements.push(element);
       }
       const sm = getSourceMap(element);
-      const referencedElement = toValue(element.getMetaProperty('referenced-element', ''));
       if (referencedElement.length > 0) {
         // legacy lint local references
         if (isObject(element) && element.hasKey('$ref')) {
           if (semanticRefValidationEnabled) {
             // TODO get ref value from metadata or in adapter
-            diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')));
+            diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')!));
           }
         }
       }
       if (element.classes) {
-        const set: string[] = Array.from(new Set(toValue(element.classes)));
+        const set: string[] = Array.from(new Set(toValue(element.classes) as string[]));
         // add element value to the set (e.g. 'pathItem', 'operation'
         if (!set.includes(element.element)) {
           set.unshift(element.element);
@@ -802,7 +805,7 @@ export class DefaultValidationService implements ValidationService {
         });
       }
     };
-    traverse(lint, api);
+    forEach(api, lint);
     if (refValidationMode !== ReferenceValidationMode.LEGACY && semanticRefValidationEnabled) {
       if (refValidationSerialProcessing) {
         diagnostics.push(
@@ -844,32 +847,17 @@ export class DefaultValidationService implements ValidationService {
           ) {
             const matchesArray = r.given !== undefined && Array.isArray(r.given);
             if (matchesArray) {
-              const elementsTuples = evaluateMulti(r.given as string[], api);
-              if (elementsTuples && elementsTuples.length > 0) {
-                elementsTuples.forEach((tuple) => {
-                  // const tuplePath = tuple[0];
-                  const tupleElements = tuple[1];
-                  if (tupleElements) {
-                    tupleElements.forEach((el) => {
-                      const sm = getSourceMap(el);
-                      this.processRule(
-                        r,
-                        diagnostics,
-                        textDocument,
-                        api,
-                        el,
-                        sm,
-                        docNs,
-                        specVersion,
-                      );
-                    });
-                  }
+              for (const givenItem of r.given as string[]) {
+                const elements: Element[] = evaluate(api, givenItem);
+                elements.forEach((el) => {
+                  const sm = getSourceMap(el);
+                  this.processRule(r, diagnostics, textDocument, api, el, sm, docNs, specVersion);
                 });
               }
             }
             const matchesString = r.given !== undefined && typeof r.given === 'string';
             if (matchesString) {
-              const elements = evaluate(r.given as string, api);
+              const elements: Element[] = evaluate(api, r.given as string);
               if (elements && elements.length > 0) {
                 for (const ruleElement of elements) {
                   const sm = getSourceMap(ruleElement);
@@ -1001,16 +989,16 @@ export class DefaultValidationService implements ValidationService {
               if (meta.target) {
                 if (isObject(element) && element.hasKey(meta.target)) {
                   if (meta.marker === 'key') {
-                    lintSm = getSourceMap(element.getMember(meta.target).key as Element);
+                    lintSm = getSourceMap(element.getMember(meta.target)!.key as Element);
                   } else if (meta.marker === 'value') {
                     lintSm = getSourceMap(element.get(meta.target) as Element);
                   }
                 }
               }
-              let markerElement = element;
+              let markerElement: Element = element;
               if (meta.markerTarget && meta.markerTarget.length > 0) {
                 if (isObject(element) && element.hasKey(meta.markerTarget)) {
-                  markerElement = element.get(meta.markerTarget);
+                  markerElement = element.get(meta.markerTarget)!;
                 }
               }
               if (meta.marker === 'key') {
@@ -1233,7 +1221,7 @@ export class DefaultValidationService implements ValidationService {
                 // get element from range
                 const offset = textDocument.offsetAt(diag.range.start);
                 // find the current node
-                let node = findAtOffset({ offset: offset + 1, includeRightBound: true }, api);
+                let node = findAtOffset(api, { offset: offset + 1, includeRightBound: true });
                 if (quickFix.target && node) {
                   const targetEl = processPath(node, quickFix.target, api);
                   if (targetEl) {
@@ -1242,7 +1230,7 @@ export class DefaultValidationService implements ValidationService {
                 }
                 if (node && isObject(node) && node.hasKey(target)) {
                   // range of child value
-                  const targetSm = getSourceMap(node.getMember(target));
+                  const targetSm = getSourceMap(node.getMember(target)!);
                   const location = { offset: targetSm.offset, length: targetSm.length };
                   const targetRange = Range.create(
                     textDocument.positionAt(location.offset),
