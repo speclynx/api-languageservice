@@ -1,8 +1,17 @@
-# ApiDOM
+[comment]: <> (SPDX-FileCopyrightText: Copyright &#40;c&#41; 2015 refractproject)
+[comment]: <> (SPDX-License-Identifier: MIT)
+
+[comment]: <> (SPDX-FileCopyrightText: Copyright &#40;c&#41; 2015 Apiary Inc.)
+[comment]: <> (SPDX-License-Identifier: MIT)
+
+# SpecLynx ApiDOM Internal
 
 [![Build Status](https://github.com/speclynx/apidom-internal/actions/workflows/build.yml/badge.svg)](https://github.com/speclynx/apidom-internal/actions)
 [![Dependabot enabled](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
 
+<div align="center">
+    <a href="https://speclynx.com"><img width="636" height="407" alt="image" src="https://github.com/user-attachments/assets/1cfd6c8e-0206-4d53-9a2c-e4d10be84ca0" /></a>
+</div>
 
 The purpose of ApiDOM is to provide a single, unifying structure for describing APIs across
 API description language and serialization formats. There currently exists several API description languages one can choose
@@ -15,6 +24,8 @@ and requires each maintainer to stay in step with every format they support.
 ApiDOM solves this complex problem in a simple way. It allows parsers to parse to a single structure
 and allows tool builders to consume one structure for all formats.
 
+To learn more about SpecLynx ApiDOM, visit https://github.com/speclynx/apidom/tree/main?tab=readme-ov-file#speclynx-apidom.
+
 ## Table of Contents
 
 - [Getting started](#getting-started)
@@ -22,8 +33,6 @@ and allows tool builders to consume one structure for all formats.
   - [Usage](#usage)
 - [Development](#development)
   - [Setting up](#setting-up)
-  - [Setting up via docker](#setting-up-via-docker)
-  - [Setting up via GitHub Codespaces](#setting-up-via-github-codespaces)
   - [npm scripts](#npm-scripts)
   - [Build artifacts](#build-artifacts)
   - [Using this monorepo as a local dev dependency](#using-this-monorepo-as-a-local-dev-dependency)
@@ -40,21 +49,12 @@ You can install ApiDOM packages using [npm CLI](https://docs.npmjs.com/cli):
 
 ```sh
  $ npm install @speclynx/apidom-ls
- ``
+```
 
 ### Usage
 
 Every package of the monorepo has an associated README file demonstrating its purpose and containing
 usage examples.
-
-### ApiDOM Playground
-
-ApiDOM Playground is a React application that runs in a browser and can visually demonstrate capabilities
-of the ApiDOM. ApiDOM Playground is build and deployed whenever the new commit lands on `main` branch.
-
-![image](https://user-images.githubusercontent.com/193286/145010522-5d85e34b-8d28-4a07-9ee2-b28807a013cd.png)
-
-ApiDOM Playground is available at [https://speclynx.github.io/apidom/](https://speclynx.github.io/apidom/)
 
 ## Development
 
@@ -69,50 +69,8 @@ are the minimum required versions that this repo runs on, but we recommend using
 Run the following commands to setup the repository for local development:
 
 ```shell
- $ git clone https://github.com/speclynx/apidom.git
- $ cd apidom
- $ npm i
- $ npm run build
-```
-
-### Setting up via docker
-
-There are situations when satisfying all setup requirements of this repository on your local
-development machine is just not possible. In that case, you can use **docker** to get around it.
-Repository directory is mounted as volume inside a running container called `apidom-internal-dev`.
-That way you can edit code locally on your development machine and run **npm scripts**
-inside the `apidom-internal-dev` docker container.
-
-**Build the ApiDOM docker image:**
-
-```sh
- $ git clone https://github.com/speclynx/apidom.git
- $ cd apidom
- $ docker-compose up
-```
-
-**Install dependencies and build ApiDOM inside the docker container:**
-
-```sh
-$ docker exec -it apidom-internal-dev npm i --verbose
-$ docker exec -it apidom-internal-dev npm run build
-```
-
-**Run npm scripts inside the docker container:**
-
-```sh
-$ docker exec -it apidom-internal-dev npm run test
-```
-
-> Note: monorepo needs to be build in order for monorepo package topology to work correctly.
-
-### Setting up via GitHub Codespaces
-
-This repository is [configured](https://github.com/speclynx/apidom/tree/main/.devcontainer) to work with [GitHub Codespaces](https://github.com/codespaces).
-Create a new codespace by picking this repository from the list of available repositories.
-Once the codespace is created, run following commands inside the codespace terminal:
-
-```sh
+ $ git clone https://github.com/speclynx/apidom-internal.git
+ $ cd apidom-internal
  $ npm i
  $ npm run build
 ```
@@ -278,8 +236,8 @@ If you want to just unlink particular monorepo packages, you have to enumerate t
 
 ## License
 
-ApiDOM is licensed under [Apache 2.0 license](https://github.com/speclynx/apidom/blob/main/LICENSES/Apache-2.0.txt).
-ApiDOM comes with an explicit [NOTICE](https://github.com/speclynx/apidom/blob/main/NOTICE) file
+ApiDOM is licensed under [Apache 2.0 license](https://github.com/speclynx/apidom-internal/blob/main/LICENSES/Apache-2.0.txt).
+ApiDOM comes with an explicit [NOTICE](https://github.com/speclynx/apidom-internal/blob/main/NOTICE) file
 containing additional legal notices and information.
 
 This project uses [REUSE specification](https://reuse.software/spec/) that defines a standardized method
@@ -287,6 +245,6 @@ for declaring copyright and licensing for software projects.
 
 ## Software Bill Of Materials (SBOM)
 
-Software Bill Of materials is available in this repository [dependency graph](https://github.com/speclynx/apidom/network/dependencies).
+Software Bill Of materials is available in this repository [dependency graph](https://github.com/speclynx/apidom-internal/network/dependencies).
 Click on `Export SBOM` button to download the SBOM in [SPDX format](https://spdx.dev/).
 
