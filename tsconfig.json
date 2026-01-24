@@ -17,6 +17,7 @@
     "esModuleInterop": true,
     "typeRoots": ["./node_modules/@types"],
     "types": [
+      "emscripten",
       "node",
       "mocha"
     ]

@@ -64,7 +64,17 @@ export default tseslint.config(
           ignorePackages: true,
         },
       ],
-      'import/no-extraneous-dependencies': 'off',
+      'import/no-extraneous-dependencies': ['error', {
+        devDependencies: [
+          'packages/*/test/**/*.ts',
+          'packages/*/test/**/*.tsx',
+          '**/config/**',
+          '**/*.config.js',
+          '**/*.config.ts',
+        ],
+        peerDependencies: true,
+        optionalDependencies: false,
+      }],
       'import/no-mutable-exports': 'off',
       'import/order': [
         'error',
@@ -96,6 +106,21 @@ export default tseslint.config(
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-object-type': 'off', // Empty interfaces are intentional for type extension patterns
+    },
+  },
+
+  // apidom-ls validation providers - allow optionalDependencies imports
+  {
+    files: ['packages/apidom-ls/src/services/validation/providers/**/*.ts'],
+    plugins: {
+      import: eslintPluginImportX,
+    },
+    rules: {
+      'import/no-extraneous-dependencies': ['error', {
+        devDependencies: false,
+        peerDependencies: true,
+        optionalDependencies: true,
+      }],
     },
   },
 
@@ -219,16 +244,6 @@ export default tseslint.config(
     },
   },
 
-  // Strategy files - relaxed class method rules
-  // NOTE: Commented out because no strategy files currently exist in the monorepo
-  // Uncomment and add file patterns if strategy files are added in the future
-  // {
-  //   files: ['packages/*/src/**/strategies/**/*.ts'],
-  //   rules: {
-  //     'class-methods-use-this': 'off',
-  //     '@typescript-eslint/naming-convention': 'off',
-  //   },
-  // },
   // Prettier must be last to override other configs
   eslintPluginPrettierRecommended,
 );

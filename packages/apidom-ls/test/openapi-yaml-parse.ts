@@ -12,10 +12,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isStringElement,
 } from '@speclynx/apidom-datamodel';
-import {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  forEach,
-} from '@speclynx/apidom-traverse';
+import { forEach } from '@speclynx/apidom-traverse';
 
 import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';

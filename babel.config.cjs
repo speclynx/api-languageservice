@@ -40,9 +40,9 @@ module.exports = {
         path.join(__dirname, './scripts/babel-plugin-inline-wasm.cjs'),
         process.env.NODE_ENV !== 'test'
           ? [
-              path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
-              { extension: 'cjs' },
-            ]
+            path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
+            { extension: 'cjs' },
+          ]
           : false,
       ].filter(Boolean),
     },
