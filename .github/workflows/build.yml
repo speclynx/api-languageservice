@@ -11,6 +11,7 @@ on:
 
 env:
   CPU_CORES: 2
+  OBFUSCATE: true
 
 jobs:
 #  lint-commit-messages:

@@ -44,6 +44,9 @@ module.exports = {
             { extension: 'cjs' },
           ]
           : false,
+        process.env.OBFUSCATE === 'true'
+          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
+          : false,
       ].filter(Boolean),
     },
     es: {
@@ -84,7 +87,10 @@ module.exports = {
           path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
           { extension: 'mjs' },
         ],
-      ],
+        process.env.OBFUSCATE === 'true'
+          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
+          : false,
+      ].filter(Boolean),
     },
     browser: {
       browserslistEnv: 'browser-production',

@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
+import WebpackObfuscator from 'webpack-obfuscator';
 
 export const nonMinimizeTrait = {
   optimization: {
@@ -11,20 +12,24 @@ export const nonMinimizeTrait = {
 
 export const minimizeTrait = {
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
     }),
-  ],
+    process.env.OBFUSCATE === 'true' &&
+      new WebpackObfuscator({
+        target: 'browser',
+      }),
+  ].filter(Boolean),
   optimization: {
     minimizer: [
       new TerserPlugin({
+        extractComments: false,
         terserOptions: {
-          compress: {
-            warnings: false,
-          },
-          output: {
+          compress: true,
+          format: {
             comments: false,
           },
+          mangle: true,
         },
       }),
     ],
