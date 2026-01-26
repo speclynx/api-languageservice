@@ -2,14 +2,6 @@ import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import WebpackObfuscator from 'webpack-obfuscator';
 
-export const nonMinimizeTrait = {
-  optimization: {
-    minimize: false,
-    usedExports: false,
-    concatenateModules: false,
-  },
-};
-
 export const minimizeTrait = {
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
@@ -21,6 +13,7 @@ export const minimizeTrait = {
       }),
   ].filter(Boolean),
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: false,
