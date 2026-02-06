@@ -64,17 +64,20 @@ export default tseslint.config(
           ignorePackages: true,
         },
       ],
-      'import/no-extraneous-dependencies': ['error', {
-        devDependencies: [
-          'packages/*/test/**/*.ts',
-          'packages/*/test/**/*.tsx',
-          '**/config/**',
-          '**/*.config.js',
-          '**/*.config.ts',
-        ],
-        peerDependencies: true,
-        optionalDependencies: false,
-      }],
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: [
+            'packages/*/test/**/*.ts',
+            'packages/*/test/**/*.tsx',
+            '**/config/**',
+            '**/*.config.js',
+            '**/*.config.ts',
+          ],
+          peerDependencies: true,
+          optionalDependencies: false,
+        },
+      ],
       'import/no-mutable-exports': 'off',
       'import/order': [
         'error',
@@ -116,11 +119,14 @@ export default tseslint.config(
       import: eslintPluginImportX,
     },
     rules: {
-      'import/no-extraneous-dependencies': ['error', {
-        devDependencies: false,
-        peerDependencies: true,
-        optionalDependencies: true,
-      }],
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: false,
+          peerDependencies: true,
+          optionalDependencies: true,
+        },
+      ],
     },
   },
 
@@ -200,47 +206,6 @@ export default tseslint.config(
           },
         },
       ],
-    },
-  },
-
-  // Performance test files (same as test but in perf subdirectory)
-  {
-    files: ['packages/*/test/perf/**/*.ts'],
-    plugins: {
-      mocha: eslintPluginMocha,
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-      globals: {
-        ...globals.mocha,
-        document: true,
-      },
-    },
-    rules: {
-      'no-void': 'off',
-      'no-underscore-dangle': 'off',
-      'func-names': 'off',
-      'prefer-arrow-callback': 'off',
-      'no-array-constructor': 'off',
-      'prefer-rest-params': 'off',
-      'no-new-wrappers': 'off',
-      'max-classes-per-file': 'off',
-      'mocha/no-pending-tests': 'error',
-      'mocha/handle-done-callback': 'error',
-      'mocha/valid-suite-title': 'error',
-      'mocha/no-mocha-arrows': 'error',
-      'mocha/no-hooks-for-single-case': 'error',
-      'mocha/no-sibling-hooks': 'error',
-      'mocha/no-top-level-hooks': 'error',
-      'mocha/no-identical-title': 'error',
-      'mocha/no-nested-tests': 'error',
-      'mocha/no-exclusive-tests': 'error',
     },
   },
 

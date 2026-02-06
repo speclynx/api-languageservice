@@ -198,7 +198,7 @@ export class DefaultHoverService implements HoverService {
                 `parent value: ${JSON.stringify(toValue(node.parent.parent))}`,
               );
               const dereferenced = await dereferenceApiDOM(node.parent.parent, {
-                parse: { mediaType, parserOpts: { sourceMap: true } },
+                parse: { mediaType, parserOpts: { sourceMap: true, strict: false } },
                 resolve: {
                   baseURI: textDocument.uri,
                   resolverOpts: {
