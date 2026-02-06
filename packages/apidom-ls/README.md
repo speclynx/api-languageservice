@@ -10,7 +10,7 @@
 </p>
 
 <div align="center">
-    <a href="https://speclynx.com"><img alt="SpecLynx Logo" src="https://raw.githubusercontent.com/speclynx/apidom-internal/main/assets/speclynx-logo.png" /></a>
+    <a href="https://speclynx.com"><img alt="SpecLynx Logo" src="https://github.com/user-attachments/assets/1cfd6c8e-0206-4d53-9a2c-e4d10be84ca0" /></a>
 </div>
 
 ---
