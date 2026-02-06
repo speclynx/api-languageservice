@@ -1,33 +1,34 @@
-name: Release monorepo packages to GitHub Package Registry
+name: Release monorepo packages
 on:
   workflow_dispatch:
-    branches:
-      - main
 
 env:
   CPU_CORES: 2
+  HUSKY: 0
 
 jobs:
   release:
-    name: Release to GitHub Package Registry
+    name: Release
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    env:
-      HUSKY: 0 # disabled husky and lint staged; https://typicode.github.io/husky/#/?id=with-env-variables
+    environment:
+      name: npm-release
+      url: https://www.npmjs.com/org/speclynx
+    permissions:
+      contents: write
+      id-token: write
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24.10.0
-          registry-url: https://npm.pkg.github.com/
-          scope: "@speclynx"
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+          registry-url: https://registry.npmjs.org
       - name: Install monorepo dependencies
         run: npm ci --engine-strict=false
       - name: Build monorepo
@@ -42,9 +43,6 @@ jobs:
           git config user.name "Vladimir Gorej"
           npx lerna version --conventional-commits --no-private --yes --force-publish
         env:
-            GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-            NODE_AUTH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Publish monorepo npm packages
-        run: npx lerna publish from-package --no-private --yes --registry=https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: npx lerna publish from-package --no-private --yes
