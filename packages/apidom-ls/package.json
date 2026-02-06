@@ -12,10 +12,28 @@
   },
   "author": "Francesco Tumanischvili",
   "license": "Apache-2.0",
+  "keywords": [
+    "apidom",
+    "language-service",
+    "lsp",
+    "language-server-protocol",
+    "openapi",
+    "asyncapi",
+    "json-schema",
+    "swagger",
+    "validation",
+    "completion",
+    "hover",
+    "intellisense",
+    "api",
+    "rest",
+    "yaml",
+    "json"
+  ],
   "bugs": {
-    "url": "https://github.com/speclynx/apidom-internal/issues"
+    "url": "https://github.com/orgs/speclynx/discussions"
   },
-  "homepage": "https://github.com/speclynx/apidom-internal#readme",
+  "homepage": "https://speclynx.com",
   "type": "module",
   "unpkg": "./dist/apidom-ls.browser.min.js",
   "main": "./src/index.cjs",

@@ -20,7 +20,6 @@ const browserMin = {
     fallback: {
       fs: false,
       path: false,
-      util: false,
       module: false,
     },
   },
@@ -28,10 +27,8 @@ const browserMin = {
     rules: [
       {
         test: /\.wasm$/,
-        type: 'asset/inline',
-        generator: {
-          dataUrl: () => '',
-        },
+        type: 'javascript/auto',
+        use: 'null-loader',
       },
       {
         test: /\.(ts|js)?$/,
