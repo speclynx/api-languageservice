@@ -1,7 +1,7 @@
 <h1 align="center">SpecLynx ApiDOM Language Service</h1>
 
 <p align="center">
-  A comprehensive **Language Service Library** for API description languages, built on <a href="https://github.com/speclynx/apidom">SpecLynx ApiDOM</a>.
+  A comprehensive <strong>Language Service Library</strong> for API description languages, built on <a href="https://github.com/speclynx/apidom">SpecLynx ApiDOM</a>.
 </p>
 
 <p align="center">
