@@ -122,7 +122,10 @@ module.exports = {
             version: '^7.22.15',
           },
         ],
-      ],
+        process.env.OBFUSCATE === 'true'
+          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
+          : false,
+      ].filter(Boolean),
     },
   },
 };

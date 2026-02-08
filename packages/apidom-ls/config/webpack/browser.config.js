@@ -38,6 +38,7 @@ const browserMin = {
           options: {
             babelrc: true,
             rootMode: 'upward',
+            cacheDirectory: false,
           },
         },
       },
