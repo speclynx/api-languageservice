@@ -6,6 +6,8 @@ import * as openapi31xAdapterJson from '@speclynx/apidom-parser-adapter-openapi-
 import * as openapi31xAdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
 import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
 import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
+import * as arazzo1AdapterJson from '@speclynx/apidom-parser-adapter-arazzo-json-1';
+import * as arazzo1AdapterYaml from '@speclynx/apidom-parser-adapter-arazzo-yaml-1';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
 import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
 import { toValue } from '@speclynx/apidom-core';
@@ -938,6 +940,32 @@ export async function findNamespace(
       format: 'YAML',
       admitsRefsSiblings: true,
       mediaType: openapi31xAdapterYaml.mediaTypes.findBy(version, 'yaml'),
+    };
+  }
+
+  if (await arazzo1AdapterJson.detect(text)) {
+    const arazzo1JsonMatch = text.match(arazzo1AdapterJson.detectionRegExp)!;
+    const groups = arazzo1JsonMatch.groups!;
+    const version = groups.version_json;
+
+    return {
+      namespace: 'arazzo',
+      version,
+      format: 'JSON',
+      mediaType: arazzo1AdapterJson.mediaTypes.findBy(version, 'json'),
+    };
+  }
+
+  if (await arazzo1AdapterYaml.detect(text)) {
+    const arazzo1YamlMatch = text.match(arazzo1AdapterYaml.detectionRegExp)!;
+    const groups = arazzo1YamlMatch.groups!;
+    const version = groups.version_json ?? groups.version_yaml;
+
+    return {
+      namespace: 'arazzo',
+      version,
+      format: 'YAML',
+      mediaType: arazzo1AdapterYaml.mediaTypes.findBy(version, 'yaml'),
     };
   }
 

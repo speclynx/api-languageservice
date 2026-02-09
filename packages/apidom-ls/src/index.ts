@@ -70,6 +70,8 @@ export type {
   DocumentationMeta,
   ConversionResult,
   ConversionOptions,
+  ParseContext,
+  ArazzoParseContext,
 } from './apidom-language-types.ts';
 
 export {

@@ -106,6 +106,7 @@ export interface LanguageServiceContext {
   symbolsContext?: SymbolsContext;
   colorsContext?: ColorsContext;
   linksContext?: LinksContext;
+  parseContext?: ParseContext;
 }
 
 /**
@@ -339,6 +340,7 @@ export interface LanguageSettings {
   symbolsContext?: SymbolsContext;
   colorsContext?: ColorsContext;
   linksContext?: LinksContext;
+  parseContext?: ParseContext;
 }
 
 // export type SeverityLevel = 'error' | 'warning' | 'ignore';
@@ -414,6 +416,21 @@ export interface LinksContext {
   maxNumberOfLinks?: number;
   enableTrivialLinkDiscovery?: boolean;
   modifierFunction?: LinksModifierFunction;
+}
+
+/**
+ * @public
+ */
+export interface ArazzoParseContext {
+  sourceDescriptionsResolution?: boolean;
+}
+
+/**
+ * @public
+ */
+export interface ParseContext {
+  fileAllowList?: string[];
+  arazzo?: ArazzoParseContext;
 }
 
 /**

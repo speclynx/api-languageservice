@@ -6,17 +6,27 @@ import * as openapi3_1AdapterJson from '@speclynx/apidom-parser-adapter-openapi-
 import * as openapi3_1AdapterYaml from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
 import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-json-2';
 import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
+import * as arazzo1AdapterJson from '@speclynx/apidom-parser-adapter-arazzo-json-1';
+import * as arazzo1AdapterYaml from '@speclynx/apidom-parser-adapter-arazzo-yaml-1';
+import { parseSourceDescriptions as parseArazzoSourceDescriptionsJson } from '@speclynx/apidom-reference/parse/parsers/arazzo-json-1';
+import { parseSourceDescriptions as parseArazzoSourceDescriptionsYaml } from '@speclynx/apidom-reference/parse/parsers/arazzo-yaml-1';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
 import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementAsyncAPI2 } from '@speclynx/apidom-ns-asyncapi-2';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI2 } from '@speclynx/apidom-ns-openapi-2';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_0 } from '@speclynx/apidom-ns-openapi-3-0';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_1 } from '@speclynx/apidom-ns-openapi-3-1';
+import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementArazzo1 } from '@speclynx/apidom-ns-arazzo-1';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { ParseResultElement } from '@speclynx/apidom-datamodel';
+import {
+  options as referenceOptions,
+  mergeOptions as mergeReferenceOptions,
+  url as referenceUrl,
+} from '@speclynx/apidom-reference';
 
 import { setMetadataMap, findNamespace } from './utils/utils.ts';
-import { ContentLanguage, MetadataMaps } from './apidom-language-types.ts';
+import { ContentLanguage, MetadataMaps, ParseContext } from './apidom-language-types.ts';
 
 export interface ParserOptions {
   sourceMap?: boolean;
@@ -31,6 +41,7 @@ export async function parse(
   freeze = true,
   setMetadata = true,
   defaultContentLanguage?: ContentLanguage,
+  parseContext?: ParseContext,
 ): Promise<ParseResultElement> {
   // TODO improve detection mechanism
   const text: string = typeof textDocument === 'string' ? textDocument : textDocument.getText();
@@ -100,6 +111,70 @@ export async function parse(
       options.refractorOpts = { plugins: [refractorPluginReplaceEmptyElementOpenAPI3_1()] };
     }
     result = await openapi3_1AdapterYaml.parse(text, options);
+  } else if (
+    contentLanguage.namespace === 'arazzo' &&
+    contentLanguage.version?.startsWith('1.') &&
+    contentLanguage.format === 'JSON'
+  ) {
+    result = await arazzo1AdapterJson.parse(text, { sourceMap: true });
+    if (parseContext?.arazzo?.sourceDescriptionsResolution && parseContext?.fileAllowList?.length) {
+      const parseResultRetrievalURI =
+        typeof textDocument === 'string' ? referenceUrl.cwd() : textDocument.uri;
+      const sourceDescriptionsResults = await parseArazzoSourceDescriptionsJson(
+        result,
+        parseResultRetrievalURI,
+        mergeReferenceOptions(referenceOptions, {
+          parse: {
+            parserOpts: {
+              sourceMap: true,
+              strict: false,
+              sourceDescriptions: true,
+            },
+          },
+          resolve: {
+            resolverOpts: {
+              fileAllowList: parseContext.fileAllowList,
+            },
+          },
+        }),
+      );
+      result.push(...sourceDescriptionsResults);
+    }
+  } else if (
+    contentLanguage.namespace === 'arazzo' &&
+    contentLanguage.version?.startsWith('1.') &&
+    contentLanguage.format === 'YAML'
+  ) {
+    const options: Record<string, unknown> = {
+      sourceMap: true,
+    };
+    if (registerPlugins) {
+      options.refractorOpts = { plugins: [refractorPluginReplaceEmptyElementArazzo1()] };
+    }
+    result = await arazzo1AdapterYaml.parse(text, options);
+    if (parseContext?.arazzo?.sourceDescriptionsResolution && parseContext?.fileAllowList?.length) {
+      const parseResultRetrievalURI =
+        typeof textDocument === 'string' ? referenceUrl.cwd() : textDocument.uri;
+      const sourceDescriptionsResults = await parseArazzoSourceDescriptionsYaml(
+        result,
+        parseResultRetrievalURI,
+        mergeReferenceOptions(referenceOptions, {
+          parse: {
+            parserOpts: {
+              sourceMap: true,
+              strict: false,
+              sourceDescriptions: true,
+            },
+          },
+          resolve: {
+            resolverOpts: {
+              fileAllowList: parseContext.fileAllowList,
+            },
+          },
+        }),
+      );
+      result.push(...sourceDescriptionsResults);
+    }
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'JSON') {
     result = await adapterJson.parse(text, { sourceMap: true });
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'YAML') {

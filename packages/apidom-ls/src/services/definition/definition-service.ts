@@ -83,11 +83,16 @@ export class DefaultDefinitionService implements DefinitionService {
           const specVersion = getSpecVersion(api);
 
           const format = contentLanguage.format ? contentLanguage.format.toLowerCase() : 'json';
-          const mediaTypePrefix =
-            contentLanguage.namespace === 'openapi'
-              ? 'application/vnd.oai.openapi+'
-              : 'application/vnd.aai.asyncapi+';
-          const mediaType = `${mediaTypePrefix}${format};version=${specVersion}`;
+          let mediaType: string;
+          if (contentLanguage.namespace === 'openapi') {
+            mediaType = `application/vnd.oai.openapi+${format};version=${specVersion}`;
+          } else if (contentLanguage.namespace === 'arazzo') {
+            mediaType = `application/vnd.oai.workflows+${format};version=${specVersion}`;
+          } else if (contentLanguage.namespace === 'asyncapi') {
+            mediaType = `application/vnd.aai.asyncapi+${format};version=${specVersion}`;
+          } else {
+            mediaType = contentLanguage.mediaType;
+          }
           debug(
             'definitionService - go to external ref',
             `mediaType: ${mediaType}`,

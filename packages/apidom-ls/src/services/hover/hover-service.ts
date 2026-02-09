@@ -185,11 +185,16 @@ export class DefaultHoverService implements HoverService {
               const nonStrictSpecVersion = getSpecVersion(api);
 
               const format = contentLanguage.format ? contentLanguage.format.toLowerCase() : 'json';
-              const mediaTypePrefix =
-                contentLanguage.namespace === 'openapi'
-                  ? 'application/vnd.oai.openapi+'
-                  : 'application/vnd.aai.asyncapi+';
-              const mediaType = `${mediaTypePrefix}${format};version=${nonStrictSpecVersion}`;
+              let mediaType: string;
+              if (contentLanguage.namespace === 'openapi') {
+                mediaType = `application/vnd.oai.openapi+${format};version=${nonStrictSpecVersion}`;
+              } else if (contentLanguage.namespace === 'arazzo') {
+                mediaType = `application/vnd.oai.workflows+${format};version=${nonStrictSpecVersion}`;
+              } else if (contentLanguage.namespace === 'asyncapi') {
+                mediaType = `application/vnd.aai.asyncapi+${format};version=${nonStrictSpecVersion}`;
+              } else {
+                mediaType = contentLanguage.mediaType;
+              }
               debug(
                 'hoverService - computeHover',
                 `mediaType: ${mediaType}`,
