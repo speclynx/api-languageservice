@@ -15,6 +15,7 @@ export type { JsonSchemaValidationProvider } from './services/validation/provide
 export { OpenAPi20JsonSchemaValidationProvider } from './services/validation/providers/openapi-20-json-schema-validation-provider.ts';
 export { OpenAPi30JsonSchemaValidationProvider } from './services/validation/providers/openapi-30-json-schema-validation-provider.ts';
 export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/providers/openapi-31-json-schema-validation-provider.ts';
+export { Arazzo1JsonSchemaValidationProvider } from './services/validation/providers/arazzo-1-json-schema-validation-provider.ts';
 
 export { default as ApilintCodes } from './config/codes.ts';
 
