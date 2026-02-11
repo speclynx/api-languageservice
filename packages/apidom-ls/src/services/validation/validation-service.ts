@@ -515,7 +515,6 @@ export class DefaultValidationService implements ValidationService {
     const diagnostics: Diagnostic[] = [];
     const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
     let docNs: string = nameSpace.namespace;
-    console.log('nameSpace', nameSpace);
 
     try {
       for (const provider of this.validationProviders) {
