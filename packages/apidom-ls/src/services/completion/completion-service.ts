@@ -59,6 +59,7 @@ import {
   trace,
   error,
   findNamespace,
+  getReferencedElementValue,
 } from '../../utils/utils.ts';
 import { standardLinterfunctions } from '../validation/linter-functions.ts';
 
@@ -929,9 +930,7 @@ export class DefaultCompletionService implements CompletionService {
   ): Promise<CompletionItem[]> {
     const result: CompletionItem[] = [];
     // get type of node (element)
-    const refElementType = toValue(
-      node.parent?.parent?.getMetaProperty('referenced-element', ''),
-    ) as string;
+    const refElementType = getReferencedElementValue(node.parent?.parent);
     const nodeElement =
       refElementType && refElementType.length > 0 ? refElementType : node.parent?.parent?.element;
     if (!nodeElement) return result;
@@ -1030,7 +1029,7 @@ export class DefaultCompletionService implements CompletionService {
     if (node.classes) {
       set = Array.from(new Set(toValue(node.classes) as string[]));
     }
-    const referencedElement = toValue(node.getMetaProperty('referenced-element', '')) as string;
+    const referencedElement = getReferencedElementValue(node);
     // TODO maybe move to adapter
     if (referencedElement.length > 0 && referencedElement === 'schema') {
       set.unshift('schema');

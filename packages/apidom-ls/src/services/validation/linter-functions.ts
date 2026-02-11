@@ -25,6 +25,9 @@ import {
   isBoolean,
   isMember,
   processPath,
+  getStringMetaValue,
+  getClassesValue,
+  getReferencedElementValue,
 } from '../../utils/utils.ts';
 import { FunctionItem } from '../../apidom-language-types.ts';
 
@@ -41,12 +44,10 @@ const root = (el: Element): Element => {
 
 const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
   if (element) {
+    const referencedElement = getReferencedElementValue(element);
     return (
       elementsOrClasses.includes(element.element) ||
-      ((toValue(element.getMetaProperty('referenced-element', '')) as string).length > 0 &&
-        elementsOrClasses.includes(
-          toValue(element.getMetaProperty('referenced-element', '')) as string,
-        )) ||
+      (referencedElement.length > 0 && elementsOrClasses.includes(referencedElement)) ||
       (element.classes &&
         (toValue(element.classes) as string[]).some((v: string) => elementsOrClasses.includes(v)))
     );
@@ -713,10 +714,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         const api = root(element);
 
         const elements: Element[] = filter(api, (el: Element) => {
-          return (
-            el.element === elementOrClass ||
-            (toValue(el.getMetaProperty('classes', [])) as string[]).includes(elementOrClass)
-          );
+          return el.element === elementOrClass || includesClasses(el, [elementOrClass]);
         });
         const targetKeys: string[] = [];
         for (const targetEl of elements) {
@@ -782,7 +780,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       const api = root(element);
       const value = toValue(element);
       const elements: Element[] = filter(api, (el: Element) => {
-        const classes: string[] = toValue(el.getMetaProperty('classes', [])) as string[];
+        const classes: string[] = getClassesValue(el);
         return (
           (elementOrClasses.includes(el.element) ||
             classes.every((v) => elementOrClasses.includes(v))) &&
@@ -800,7 +798,7 @@ export const standardLinterfunctions: FunctionItem[] = [
   {
     functionName: 'apilintChannelParameterExist',
     function: (element: Element): boolean => {
-      const referencedElement = toValue(element.getMetaProperty('referenced-element', ''));
+      const referencedElement = getReferencedElementValue(element);
       // check ancestor to be a channelItem
       if (element.parent?.parent?.parent?.parent?.element !== 'channelItem') {
         return true;
@@ -994,7 +992,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (!operationNode || operationNode.element !== 'operation') {
         return true;
       }
-      const httpMethod = toValue(operationNode.getMetaProperty('http-method', '')) as string;
+      const httpMethod = getStringMetaValue(operationNode, 'http-method', '');
       if (httpMethod && !allowedHttpMethods.includes(httpMethod)) {
         return false;
       }

@@ -29,6 +29,7 @@ import {
   findNamespace,
   debug,
   error,
+  getReferencedElementValue,
 } from '../../utils/utils.ts';
 
 const CONTROL_CODES = '\\u0000-\\u0020\\u007f-\\u009f';
@@ -128,7 +129,7 @@ export class DefaultHoverService implements HoverService {
       }
       let elementValue = el.element;
 
-      const referencedElement = toValue(el.getMetaProperty('referenced-element', '')) as string;
+      const referencedElement = getReferencedElementValue(el);
       if (referencedElement.length > 0) {
         elementValue = referencedElement;
       }
@@ -374,9 +375,7 @@ export class DefaultHoverService implements HoverService {
         new Set(toValue(containerNode.classes) as string[]),
       );
       containerNodeSet.unshift(containerNode.element);
-      const referencedElement = toValue(
-        containerNode.getMetaProperty('referenced-element', ''),
-      ) as string;
+      const referencedElement = getReferencedElementValue(containerNode);
       if (referencedElement.length > 0) {
         containerNodeSet.unshift(referencedElement);
       }

@@ -40,6 +40,7 @@ import {
   error,
   info,
   SourceMap,
+  getReferencedElementValue,
 } from '../../utils/utils.ts';
 import { standardLinterfunctions } from './linter-functions.ts';
 
@@ -293,9 +294,7 @@ export class DefaultValidationService implements ValidationService {
           const refElement = derefResult.value?.refEl;
           if (refElement as Element) {
             const refValueElement = (refElement as ObjectElement).get('$ref')!;
-            const referencedElement = toValue(
-              refElement.getMetaProperty('referenced-element', ''),
-            ) as string;
+            const referencedElement = getReferencedElementValue(refElement);
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
@@ -387,9 +386,7 @@ export class DefaultValidationService implements ValidationService {
           // @ts-ignore
           if (refEl as Element) {
             const refValueElement = (refEl as ObjectElement).get('$ref');
-            const referencedElement = toValue(
-              refEl.getMetaProperty('referenced-element', ''),
-            ) as string;
+            const referencedElement = getReferencedElementValue(refEl);
             let pointers = pointersMap[referencedElement];
             if (!pointers) {
               pointers = localReferencePointers(doc, referencedElement, true);
@@ -742,9 +739,7 @@ export class DefaultValidationService implements ValidationService {
     const refElements: Element[] = [];
 
     const lint = (element: Element) => {
-      const referencedElement = toValue(
-        element.getMetaProperty('referenced-element', ''),
-      ) as string;
+      const referencedElement = getReferencedElementValue(element);
       if (
         referencedElement.length > 0 &&
         isObject(element) &&

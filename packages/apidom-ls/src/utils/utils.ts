@@ -27,6 +27,7 @@ import {
   isObjectElement,
   isStringElement,
   hasElementSourceMap,
+  includesClasses,
 } from '@speclynx/apidom-datamodel';
 import { find, forEach } from '@speclynx/apidom-traverse';
 import { compile, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
@@ -166,9 +167,7 @@ export function setMetadataMap(
 }
 
 export function getSpecVersion(root: Element): string {
-  const el = find(root, (e) =>
-    (toValue(e.getMetaProperty('classes', [])) as string[]).includes('spec-version'),
-  );
+  const el = find(root, (e) => includesClasses(e, ['spec-version']));
   return el ? (toValue(el) as string) : '';
 }
 
@@ -718,6 +717,31 @@ export function correctPartialKeys(
     }
   }
   return processedText;
+}
+
+/**
+ * @public
+ */
+export function getReferencedElementValue(element: Element | null | undefined): string {
+  return (toValue(element?.getMetaProperty('referenced-element')) ?? '') as string;
+}
+
+/**
+ * @public
+ */
+export function getClassesValue(element: Element | null | undefined): string[] {
+  return (toValue(element?.getMetaProperty('classes')) ?? []) as string[];
+}
+
+/**
+ * @public
+ */
+export function getStringMetaValue(
+  element: Element | null | undefined,
+  name: string,
+  defaultValue: string,
+): string {
+  return String(toValue(element?.getMetaProperty(name)) ?? defaultValue);
 }
 
 /**

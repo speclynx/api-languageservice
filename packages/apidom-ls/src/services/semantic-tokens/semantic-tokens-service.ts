@@ -22,6 +22,7 @@ import {
   perfEnd,
   perfStart,
   isJsonDoc,
+  getStringMetaValue,
 } from '../../utils/utils.ts';
 
 enum PerfLabels {
@@ -273,7 +274,7 @@ console.log(
               if (s === 'operation') {
                 // check for httpMethod
                 modifier = this.getTokenModifiers([
-                  `httpMethod-${toValue(element.getMetaProperty('http-method', 'GET'))}`,
+                  `httpMethod-${getStringMetaValue(element, 'http-method', 'GET')}`,
                 ]);
               }
               const token = [
