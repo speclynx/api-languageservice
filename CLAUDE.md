@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ApiDOM Internal is a TypeScript monorepo that currently provides a single `apidom-ls` package offering language service capabilitier for API description languages (OpenAPI, AsyncAPI, JSON Schema, Arazzo, etc.) and serialization formats (JSON, YAML) using ApiDOM (https://github.com/speclynx/apidom) as its foundation.
+ApiDOM Internal is a TypeScript monorepo that currently provides a single `apidom-ls` package offering language service capabilities for API description languages (OpenAPI, AsyncAPI, JSON Schema, Arazzo, etc.) and serialization formats (JSON, YAML) using ApiDOM (https://github.com/speclynx/apidom) as its foundation.
 
 ## Build & Development Commands
 
-**Prerequisites:** Node.js >=24.10.0, npm >=11.6.1
+**Prerequisites:** Node.js =24.10.0 (exact version, see `.nvmrc`), npm >=11.6.1
 
 **Important:** Always run nvm before executing any node/npm/npx commands to ensure the correct Node.js version is used:
 ```bash
@@ -37,6 +37,13 @@ npm run typescript:check-types
 
 # Clean build artifacts
 npm run clean
+
+# Additional useful commands
+npm run build:cjs       # Build CommonJS only
+npm run build:es:quick  # Fast ES build (skips config)
+npm run watch:es        # Watch mode for development
+npm run test:quick      # Quick test with limited build
+npm run typescript:declaration  # Generate type declarations via api-extractor
 ```
 
 ### Working with Individual Packages
@@ -51,41 +58,55 @@ cd packages/apidom-ls && npm test
 cd packages/apidom-ls && npm run build:es
 ```
 
-**Performance tip:** Set `CPU_CORES` environment variable to match your CPU cores for faster parallel builds:
+**Environment variables:**
 ```bash
-export CPU_CORES=8
-npm run build
+export CPU_CORES=8      # Parallelization for builds (defaults to 2)
+export OBFUSCATE=true   # Enable JavaScript obfuscation in builds
 ```
 
 ## Architecture
 
 ### Packages
 
-The monorepo contains 1 package `apidom-ls`
+The monorepo contains 1 package: `@speclynx/apidom-ls`
 
-The ApiDOM Language Service (apidom-ls) contains the language smarts powering ApiDOM supported languages processing, specifically editing experience.
+The ApiDOM Language Service provides LSP-compliant APIs for API description language editing. It's usable via an LSP Server wrapper in any editor or IDE.
 
-ApiDOM Language Service APIs adhere to [LSP Protocol](https://microsoft.github.io/language-server-protocol/) and are therefore usable via a LSP Server wrapper in a variety of editors and IDEs.
+### Service Architecture (`packages/apidom-ls/src/`)
 
+The `services/` directory contains the core functionality, organized by LSP capability: `completion/`, `validation/`, `hover/`, `definition/`, `links/`, `formatting/`, `symbols/`, `semantic-tokens/`, `conversion/`, and `deref/`. Supporting directories include `config/` (build configuration) and `utils/` (shared utilities).
 
-### Build Outputs
+### Build Pipeline
 
-Each package produces:
-- `*.mjs` - ES modules (in `src/`)
-- `*.cjs` - CommonJS modules (in `src/`)
-- `dist/` - UMD bundles for browsers
-- `types/` - TypeScript declarations
+Babel transpiles TypeScript to three output formats. Build artifacts are placed alongside source files in `src/` (not in a separate output directory):
+- `*.mjs` - ES modules (Babel `es` preset)
+- `*.cjs` - CommonJS modules (Babel `cjs` preset)
+- `dist/` - UMD browser bundles (Webpack)
+- `types/` - TypeScript declarations (api-extractor)
+
+### Testing
+
+Tests use Mocha (config in `packages/apidom-ls/.mocharc.json`). Tests must be built before running since Mocha runs the compiled `.mjs` output, not the TypeScript source. Always `npm run build` (or at least `npm run build:es`) before `npm test`.
+
+### Version Management
+
+Lerna manages versioning with the Angular conventional commits preset. Releases are automated via GitHub Actions on the `main` branch.
 
 
 ## Code Style
 
 - TypeScript with strict mode
-- ESLint + Prettier for formatting
-- Conventional Commits for commit messages
-- Branch naming: `feature/description` or `fix/issue-number-description`
+- ESLint (flat config) + Prettier: single quotes, trailing commas, 100 char print width, 2-space indent
+- Conventional Commits enforced by commitlint (max header: 69 chars) with husky hooks
+- Pre-commit hook runs lint-staged (ESLint on staged `.ts` files)
+- Branch naming: `username/description` (e.g. `frantuma/functions-contextual-return`)
 
 ## Dependencies
 
 Key libraries:
 
-* ApiDOM (https://github.com/speclynx/apidom)
+* ApiDOM ecosystem (https://github.com/speclynx/apidom) — core, namespaces, parsers, reference, traverse
+
+## CI/CD
+
+Five GitHub Actions workflows: `build.yml` (lint, types, test, build on PRs), `release.yml` (manual publish to npm via lerna), `nightly-build.yml` (daily at 04:30 UTC with obfuscation), `codeql.yml` (weekly security scan), and `dependabot-merge.yml` (auto-merge dependency updates).
