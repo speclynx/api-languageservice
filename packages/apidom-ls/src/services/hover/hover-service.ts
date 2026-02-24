@@ -187,8 +187,13 @@ export class DefaultHoverService implements HoverService {
 
               const format = contentLanguage.format ? contentLanguage.format.toLowerCase() : 'json';
               let mediaType: string;
-              if (contentLanguage.namespace === 'openapi') {
+              if (
+                contentLanguage.namespace === 'openapi' &&
+                nonStrictSpecVersion.startsWith('2.')
+              ) {
                 mediaType = `application/vnd.oai.openapi+${format};version=${nonStrictSpecVersion}`;
+              } else if (contentLanguage.namespace === 'openapi') {
+                mediaType = `application/openapi+${format};version=${nonStrictSpecVersion}`;
               } else if (contentLanguage.namespace === 'arazzo') {
                 mediaType = `application/vnd.oai.workflows+${format};version=${nonStrictSpecVersion}`;
               } else if (contentLanguage.namespace === 'asyncapi') {
