@@ -154,7 +154,7 @@ export class DefaultHoverService implements HoverService {
           docs = this.getMetadataPropertyDocs(el, docNs, el.element, specVersion);
         }
         if (!docs) {
-          const classes = toValue(el.classes) as string[];
+          const classes = el.classes as string[];
           for (const c of classes) {
             docs = this.getMetadataPropertyDocs(el, docNs, c, specVersion);
             if (docs) {
@@ -376,9 +376,7 @@ export class DefaultHoverService implements HoverService {
     if (node.parent && isMember(node.parent)) {
       const containerNode = node.parent.parent!;
       const nodeKey = toValue(node.parent.key);
-      const containerNodeSet: string[] = Array.from(
-        new Set(toValue(containerNode.classes) as string[]),
-      );
+      const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
       containerNodeSet.unshift(containerNode.element);
       const referencedElement = getReferencedElementValue(containerNode);
       if (referencedElement.length > 0) {

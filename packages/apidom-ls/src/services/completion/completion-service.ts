@@ -11,7 +11,6 @@ import { CompletionParams } from 'vscode-languageserver-protocol';
 import {
   Element,
   MemberElement,
-  ObjectElement,
   isArrayElement,
   isBooleanElement,
   isMemberElement,
@@ -31,6 +30,7 @@ import {
   CompletionType,
   LanguageSettings,
   MergeStrategy,
+  MetadataMap,
   ProviderMode,
 } from '../../apidom-language-types.ts';
 import {
@@ -1027,7 +1027,7 @@ export class DefaultCompletionService implements CompletionService {
     const apidomCompletions: ApidomCompletionItem[] = [];
     let set: string[] = [];
     if (node.classes) {
-      set = Array.from(new Set(toValue(node.classes) as string[]));
+      set = Array.from(new Set(node.classes as string[]));
     }
     const referencedElement = getReferencedElementValue(node);
     // TODO maybe move to adapter
@@ -1037,11 +1037,9 @@ export class DefaultCompletionService implements CompletionService {
     set.unshift(node.element);
     set.forEach((s) => {
       debug('getMetadataPropertyCompletions - class', s);
-      const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as
-        | ObjectElement
-        | undefined;
-      const classMetadata = metadataMap?.get(s) as ObjectElement | undefined;
-      const classCompletions = toValue(classMetadata?.get('completion')) as ApidomCompletionItem[];
+      const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
+      const classMetadata = metadataMap?.[s];
+      const classCompletions = classMetadata?.completion as ApidomCompletionItem[];
       if (classCompletions) {
         apidomCompletions.push(...classCompletions.filter((ci) => !ci.target));
       }
@@ -1052,18 +1050,13 @@ export class DefaultCompletionService implements CompletionService {
         const containerNode = node.parent.parent!;
         const key = toValue(node.parent.key) as string;
         // get metadata of parent with target
-        const containerNodeSet: string[] = Array.from(
-          new Set(toValue(containerNode.classes) as string[]),
-        );
+        const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
         containerNodeSet.unshift(containerNode.element);
         containerNodeSet.forEach((containerNodeSymbol) => {
-          const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as
-            | ObjectElement
-            | undefined;
-          const symbolMetadata = metadataMap?.get(containerNodeSymbol) as ObjectElement | undefined;
-          const containerNodeClassCompletions = toValue(
-            symbolMetadata?.get('completion'),
-          ) as ApidomCompletionItem[];
+          const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
+          const symbolMetadata = metadataMap?.[containerNodeSymbol];
+          const containerNodeClassCompletions =
+            symbolMetadata?.completion as ApidomCompletionItem[];
           if (containerNodeClassCompletions) {
             apidomCompletions.push(
               ...containerNodeClassCompletions.filter((ci) => ci.target === key && !ci.arrayMember),
@@ -1080,18 +1073,13 @@ export class DefaultCompletionService implements CompletionService {
         const containerNode = arrayParent.parent.parent!;
         const key = toValue(arrayParent.parent.key) as string;
         // get metadata of parent with target
-        const containerNodeSet: string[] = Array.from(
-          new Set(toValue(containerNode.classes) as string[]),
-        );
+        const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
         containerNodeSet.unshift(containerNode.element);
         containerNodeSet.forEach((containerNodeSymbol) => {
-          const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as
-            | ObjectElement
-            | undefined;
-          const symbolMetadata = metadataMap?.get(containerNodeSymbol) as ObjectElement | undefined;
-          const containerNodeClassCompletions = toValue(
-            symbolMetadata?.get('completion'),
-          ) as ApidomCompletionItem[];
+          const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
+          const symbolMetadata = metadataMap?.[containerNodeSymbol];
+          const containerNodeClassCompletions =
+            symbolMetadata?.completion as ApidomCompletionItem[];
           if (containerNodeClassCompletions) {
             apidomCompletions.push(
               ...containerNodeClassCompletions.filter((ci) => {
@@ -1124,18 +1112,13 @@ export class DefaultCompletionService implements CompletionService {
         const containerNode = node.parent.parent!;
         const key = toValue(node.parent.key) as string;
         // get metadata of parent with target
-        const containerNodeSet: string[] = Array.from(
-          new Set(toValue(containerNode.classes) as string[]),
-        );
+        const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
         containerNodeSet.unshift(containerNode.element);
         containerNodeSet.forEach((containerNodeSymbol) => {
-          const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as
-            | ObjectElement
-            | undefined;
-          const symbolMetadata = metadataMap?.get(containerNodeSymbol) as ObjectElement | undefined;
-          const containerNodeClassCompletions = toValue(
-            symbolMetadata?.get('completion'),
-          ) as ApidomCompletionItem[];
+          const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
+          const symbolMetadata = metadataMap?.[containerNodeSymbol];
+          const containerNodeClassCompletions =
+            symbolMetadata?.completion as ApidomCompletionItem[];
           if (containerNodeClassCompletions) {
             apidomCompletions.push(
               ...containerNodeClassCompletions.filter((ci) => {
@@ -1177,6 +1160,7 @@ export class DefaultCompletionService implements CompletionService {
     // TODO refactor code branches
     // TODO add flag as user preference for quotes for yaml, and use it
     const customCompletionItems: CompletionItem[] = [];
+    filteredCompletions = filteredCompletions.map((ci) => ({ ...ci }));
     for (const item of filteredCompletions) {
       if (item.function) {
         const funcName = item.function;

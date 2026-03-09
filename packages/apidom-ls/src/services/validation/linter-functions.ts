@@ -49,7 +49,7 @@ const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): b
       elementsOrClasses.includes(element.element) ||
       (referencedElement.length > 0 && elementsOrClasses.includes(referencedElement)) ||
       (element.classes &&
-        (toValue(element.classes) as string[]).some((v: string) => elementsOrClasses.includes(v)))
+        (element.classes as string[]).some((v: string) => elementsOrClasses.includes(v)))
     );
   }
   return true;
@@ -1115,11 +1115,12 @@ export const standardLinterfunctions: FunctionItem[] = [
 
         if (pathItemElement?.element !== 'pathItem') return true;
 
-        const isPathItemPartOfPathTemplating = isStringElement(pathItemElement.meta.get('path'));
+        const isPathItemPartOfPathTemplating = pathItemElement.meta.hasKey('path');
 
         if (!isPathItemPartOfPathTemplating) return true;
 
-        const pathTemplate = toValue(pathItemElement.meta.get('path')) as string;
+        const pathTemplate = pathItemElement.meta.get('path');
+        if (typeof pathTemplate !== 'string') return true;
         const parameterName = toValue((element as ObjectElement).get('name')) as string;
 
         const parseResult = parsePathTemplate(pathTemplate);

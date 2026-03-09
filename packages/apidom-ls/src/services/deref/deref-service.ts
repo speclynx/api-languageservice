@@ -49,7 +49,7 @@ export class DefaultDerefService implements DerefService {
     let baseURI: string | undefined = '/foo';
 
     const servers: Element[] = filter(api, (el: Element) => {
-      return (toValue(el.classes) as string[]).includes('servers');
+      return (el.classes as string[]).includes('servers');
     });
 
     // TODO (frantuma@yahoo.com): this needs to be replaced by good metadata ('serverURL' to URLS and/or adapter/plugin

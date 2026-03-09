@@ -1,5 +1,6 @@
 {
   "recursive": true,
   "spec": "test/**/*.mjs",
-  "timeout": 3000
+  "timeout": 3000,
+  "exit": true
 }

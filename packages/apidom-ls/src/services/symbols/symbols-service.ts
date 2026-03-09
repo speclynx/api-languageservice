@@ -49,15 +49,14 @@ export class DefaultSymbolsService implements SymbolsService {
 
     const res: Element[] = filter(api, (el: Element) => {
       return (
-        (toValue(el.classes) as string[]).some((item: string) =>
-          this.isMeaningfulIdentifier(item),
-        ) || this.isMeaningfulIdentifier(el.element)
+        (el.classes as string[]).some((item: string) => this.isMeaningfulIdentifier(item)) ||
+        this.isMeaningfulIdentifier(el.element)
       );
     });
 
     for (let index = 0; index < res.length; ++index) {
       const e = res[index];
-      const set: string[] = Array.from(new Set(toValue(e.classes) as string[]));
+      const set: string[] = Array.from(new Set(e.classes as string[]));
       // add element value to the set (e.g. 'pathItem', 'operation'
       if (!set.includes(e.element)) {
         set.unshift(e.element);

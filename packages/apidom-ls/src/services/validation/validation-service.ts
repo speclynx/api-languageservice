@@ -160,9 +160,9 @@ export class DefaultValidationService implements ValidationService {
     linting: boolean,
   ): LinterMeta[] {
     let meta: LinterMeta[] = [];
-    const metadataMap = (doc.meta as ObjectElement).get('metadataMap') as ObjectElement | undefined;
-    const symbolMetadata = metadataMap?.get(symbol) as ObjectElement | undefined;
-    const elementMeta = toValue(symbolMetadata?.get('lint'));
+    const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
+    const symbolMetadata = metadataMap?.[symbol];
+    const elementMeta = symbolMetadata?.lint;
     if (elementMeta) {
       meta = meta.concat(elementMeta);
       meta = meta.filter((r) => {
@@ -209,6 +209,10 @@ export class DefaultValidationService implements ValidationService {
   ): string | boolean {
     // @ts-ignore
     if (!result.value) {
+      return false;
+    }
+    // @ts-ignore
+    if (!result.value?.error) {
       return false;
     }
     // @ts-ignore
@@ -760,7 +764,7 @@ export class DefaultValidationService implements ValidationService {
         }
       }
       if (element.classes) {
-        const set: string[] = Array.from(new Set(toValue(element.classes) as string[]));
+        const set: string[] = Array.from(new Set(element.classes as string[]));
         // add element value to the set (e.g. 'pathItem', 'operation'
         if (!set.includes(element.element)) {
           set.unshift(element.element);

@@ -115,7 +115,7 @@ export class DefaultDefinitionService implements DefinitionService {
             'definitionService - go to external ref',
             `dereferenced value: ${toValue(dereferenced)}`,
           );
-          const newUri = toValue(dereferenced.meta.get('ref-origin')) as string;
+          const newUri = dereferenced.meta.get('ref-origin') as string;
           debug('definitionService - go to external ref', `dereferenced file URI: ${newUri}`);
           const nodeSourceMap = getSourceMap(dereferenced);
           const range = Range.create(
