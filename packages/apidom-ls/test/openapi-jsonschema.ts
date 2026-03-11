@@ -4,7 +4,7 @@ import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Diagnostic } from 'vscode-languageserver-types';
 import { Element } from '@speclynx/apidom-datamodel';
-import { forEach } from '@speclynx/apidom-traverse';
+import { type Path, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
@@ -32,7 +32,8 @@ describe('apidom-jsonschema-prototype-test', function () {
     api.freeze(); // !! freeze and add parent !!
 
     const foundElements: string[] = [];
-    function printAndCheckContent(node: Element): void {
+    function printAndCheckContent(path: Path<Element>): void {
+      const node = path.node;
       console.log(node.element, toValue(node));
       foundElements.push(node.element);
     }

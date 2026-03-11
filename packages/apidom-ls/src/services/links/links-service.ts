@@ -1,7 +1,7 @@
 import { Range, DocumentLink } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
-import { forEach } from '@speclynx/apidom-traverse';
+import { type Path, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 
 import {
@@ -118,7 +118,8 @@ export class DefaultLinksService implements LinksService {
     if (api === undefined) return links;
     const specVersion = getSpecVersion(api);
     debug('DefaultLinksService.doLinks ns', docNs, specVersion);
-    const findLinks = (element: Element) => {
+    const findLinks = (path: Path<Element>) => {
+      const element = path.node;
       const sm = getSourceMap(element);
       const value = toValue(element) as string | undefined;
       const trivialWebUrl = DefaultLinksService.isWebUrl(value as string);

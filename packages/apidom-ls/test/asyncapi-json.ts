@@ -11,7 +11,7 @@ import {
   SymbolInformation,
 } from 'vscode-languageserver-types';
 import { Element } from '@speclynx/apidom-datamodel';
-import { forEach } from '@speclynx/apidom-traverse';
+import { type Path, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { fileURLToPath } from 'node:url';
 
@@ -629,13 +629,15 @@ describe('apidom-ls-async', function () {
     api.freeze(); // !! freeze and add parent !!
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function printSourceMap(node: Element): void {
+    function printSourceMap(path: Path<Element>): void {
+      const node = path.node;
       const sm: SourceMap = getSourceMap(node);
 
       console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);
     }
 
-    function printContent(node: Element): void {
+    function printContent(path: Path<Element>): void {
+      const node = path.node;
       const sm: SourceMap = getSourceMap(node);
 
       console.log(

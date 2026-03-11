@@ -637,9 +637,9 @@ export const standardLinterfunctions: FunctionItem[] = [
         }
         if (isArray(element.parent)) {
           const api = root(element);
-          const schemes: Element[] = filter(api, (el: Element) => {
-            return el.element === 'securityScheme';
-          });
+          const schemes: Element[] = filter(api, (path) => {
+            return path.node.element === 'securityScheme';
+          }).map((path) => path.node);
 
           for (const scheme of schemes) {
             const key = scheme.parent && isMember(scheme.parent) ? scheme.parent.key : undefined;
@@ -713,9 +713,10 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (isObject(element) || isArray(element)) {
         const api = root(element);
 
-        const elements: Element[] = filter(api, (el: Element) => {
+        const elements: Element[] = filter(api, (path) => {
+          const el = path.node;
           return el.element === elementOrClass || includesClasses(el, [elementOrClass]);
-        });
+        }).map((path) => path.node);
         const targetKeys: string[] = [];
         for (const targetEl of elements) {
           if (isObject(targetEl)) {
@@ -748,9 +749,9 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (isArray(element.parent)) {
           existing.push(...(toValue(element.parent) as string[]));
           const api = root(element);
-          const servers: Element[] = filter(api, (el: Element) => {
-            return el.element === 'server';
-          });
+          const servers: Element[] = filter(api, (path) => {
+            return path.node.element === 'server';
+          }).map((path) => path.node);
 
           for (const server of servers) {
             const key = server.parent && isMember(server.parent) ? server.parent.key : undefined;
@@ -779,7 +780,8 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, elementOrClasses: string[], key: string): boolean => {
       const api = root(element);
       const value = toValue(element);
-      const elements: Element[] = filter(api, (el: Element) => {
+      const elements: Element[] = filter(api, (path) => {
+        const el = path.node;
         const classes: string[] = getClassesValue(el);
         return (
           (elementOrClasses.includes(el.element) ||
@@ -788,7 +790,7 @@ export const standardLinterfunctions: FunctionItem[] = [
           el.hasKey(key) &&
           toValue(el.get(key)) === value
         );
-      });
+      }).map((path) => path.node);
       if (elements.length > 1) {
         return false;
       }

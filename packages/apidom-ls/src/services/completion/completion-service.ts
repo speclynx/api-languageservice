@@ -586,7 +586,7 @@ export class DefaultCompletionService implements CompletionService {
     const node =
       endOfText || endOfTrimmedText
         ? api
-        : findAtOffset(api, { offset: targetOffset, includeRightBound: true });
+        : findAtOffset(api, { offset: targetOffset, includeRightBound: true })?.node;
     // only if we have a node
     let completionNode: Element | undefined;
     if (node) {

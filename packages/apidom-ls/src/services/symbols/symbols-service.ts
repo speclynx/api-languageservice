@@ -47,12 +47,13 @@ export class DefaultSymbolsService implements SymbolsService {
 
     const symbols: SymbolInformation[] = [];
 
-    const res: Element[] = filter(api, (el: Element) => {
+    const res: Element[] = filter(api, (path) => {
+      const el = path.node;
       return (
         (el.classes as string[]).some((item: string) => this.isMeaningfulIdentifier(item)) ||
         this.isMeaningfulIdentifier(el.element)
       );
-    });
+    }).map((path) => path.node);
 
     for (let index = 0; index < res.length; ++index) {
       const e = res[index];

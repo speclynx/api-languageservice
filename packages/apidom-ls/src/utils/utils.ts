@@ -29,7 +29,7 @@ import {
   hasElementSourceMap,
   includesClasses,
 } from '@speclynx/apidom-datamodel';
-import { find, forEach } from '@speclynx/apidom-traverse';
+import { type Path, find, forEach } from '@speclynx/apidom-traverse';
 import { compile, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range } from 'vscode-languageserver-types';
@@ -167,8 +167,8 @@ export function setMetadataMap(
 }
 
 export function getSpecVersion(root: Element): string {
-  const el = find(root, (e) => includesClasses(e, ['spec-version']));
-  return el ? (toValue(el) as string) : '';
+  const path = find(root, (p) => includesClasses(p.node, ['spec-version']));
+  return path ? (toValue(path.node) as string) : '';
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -216,7 +216,8 @@ export function localReferencePointers(
   let nodePath: string[] = [];
 
   // TODO check for reference-element class or type instead
-  function findRefNodes(traversedNode: Element): void {
+  function findRefNodes(path: Path<Element>): void {
+    const traversedNode = path.node;
     if (includeRefs) {
       const isRef =
         nodeElement === toValue(traversedNode.getMetaProperty('referenced-element', ''));
@@ -255,7 +256,8 @@ export function findLocalReferences(doc: Element, targetJsonPointer: string): Po
   const foundNodes: FoundNode[] = [];
   let nodePath: string[] = [];
 
-  function findRefNodes(traversedNode: Element): void {
+  function findRefNodes(path: Path<Element>): void {
+    const traversedNode = path.node;
     if (
       isObject(traversedNode) &&
       traversedNode.get('$ref') &&

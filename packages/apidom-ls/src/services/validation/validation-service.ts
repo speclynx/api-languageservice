@@ -1,7 +1,7 @@
 import { CodeAction, Diagnostic, DiagnosticSeverity, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element, ObjectElement, ParseResultElement, cloneDeep } from '@speclynx/apidom-datamodel';
-import { findAtOffset, forEach } from '@speclynx/apidom-traverse';
+import { type Path, findAtOffset, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
 import { evaluate } from '@speclynx/apidom-json-path';
@@ -742,7 +742,8 @@ export class DefaultValidationService implements ValidationService {
 
     const refElements: Element[] = [];
 
-    const lint = (element: Element) => {
+    const lint = (path: Path<Element>) => {
+      const element = path.node;
       const referencedElement = getReferencedElementValue(element);
       if (
         referencedElement.length > 0 &&
@@ -1219,7 +1220,7 @@ export class DefaultValidationService implements ValidationService {
                 // get element from range
                 const offset = textDocument.offsetAt(diag.range.start);
                 // find the current node
-                let node = findAtOffset(api, { offset: offset + 1, includeRightBound: true });
+                let node = findAtOffset(api, { offset: offset + 1, includeRightBound: true })?.node;
                 if (quickFix.target && node) {
                   const targetEl = processPath(node, quickFix.target, api);
                   if (targetEl) {

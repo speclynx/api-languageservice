@@ -10,7 +10,7 @@ import {
   isNumberElement,
   isStringElement,
 } from '@speclynx/apidom-datamodel';
-import { forEach } from '@speclynx/apidom-traverse';
+import { type Path, forEach } from '@speclynx/apidom-traverse';
 
 import { LanguageSettings } from '../../apidom-language-types.ts';
 import {
@@ -137,7 +137,8 @@ export class DefaultSemanticTokensService implements SemanticTokensService {
 
     const processed: Element[] = [];
 
-    const buildTokens = (element: Element) => {
+    const buildTokens = (path: Path<Element>) => {
+      const element = path.node;
       /*
 
 const smt = getSourceMap(element);

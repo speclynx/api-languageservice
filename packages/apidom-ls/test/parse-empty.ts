@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
-import { forEach } from '@speclynx/apidom-traverse';
+import { type Path, forEach } from '@speclynx/apidom-traverse';
 import { fileURLToPath } from 'node:url';
 
 import { parse } from '../src/parser-factory.ts';
@@ -24,7 +24,8 @@ describe('apidom-ls-parse-empty', function () {
       }
       api.freeze(); // !! freeze and add parent !!
 
-      function printSourceMap(node: Element): void {
+      function printSourceMap(path: Path<Element>): void {
+        const node = path.node;
         const sm: SourceMap = getSourceMap(node);
 
         console.log(node.element, `${sm.line}:${sm.column} - ${sm.endLine}:${sm.endColumn}`);

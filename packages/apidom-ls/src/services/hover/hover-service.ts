@@ -117,7 +117,8 @@ export class DefaultHoverService implements HoverService {
 
     api.freeze(); // !! freeze and add parent !!
 
-    const node = findAtOffset(api, { offset, includeRightBound: true });
+    const nodePath = findAtOffset(api, { offset, includeRightBound: true });
+    const node = nodePath?.node;
 
     if (node && node.parent && isMember(node.parent)) {
       const contents: string[] = [];

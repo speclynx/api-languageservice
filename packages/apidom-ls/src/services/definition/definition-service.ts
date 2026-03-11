@@ -58,7 +58,7 @@ export class DefaultDefinitionService implements DefinitionService {
     if (api === undefined) return null;
     // TODO (frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
-    const node = findAtOffset(api, { offset, includeRightBound: true });
+    const node = findAtOffset(api, { offset, includeRightBound: true })?.node;
     if (node && node.parent && isMember(node.parent)) {
       let el: Element;
       if (!isObject(node) && isArray(node)) {
@@ -169,7 +169,7 @@ export class DefaultDefinitionService implements DefinitionService {
 
     // TODO(frantuma@yahoo.com): handle by predicates and adapters, look for
     // refElements and/or metadata, replace current shaky handling by `$ref` key lookup
-    const node = findAtOffset(api, { offset, includeRightBound: true });
+    const node = findAtOffset(api, { offset, includeRightBound: true })?.node;
     if (node && node.parent && isMember(node.parent)) {
       const nodePath: string[] = [];
       buildPointer(node, nodePath);
