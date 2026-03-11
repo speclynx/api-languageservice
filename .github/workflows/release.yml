@@ -45,5 +45,7 @@ jobs:
           npx lerna version --conventional-commits --no-private --yes --force-publish
         env:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - name: Remove non-build artifacts from src before publishing
+        run: find packages/*/src -type f ! -name '*.cjs' ! -name '*.mjs' -delete
       - name: Publish monorepo npm packages
         run: npx lerna publish from-package --no-private --yes
