@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/speclynx/apidom-internal/compare/v2.4.0...v2.4.1) (2026-03-11)
+
+### Bug Fixes
+
+- **release:** avoid including \*.ts files in npm dist ([1211afa](https://github.com/speclynx/apidom-internal/commit/1211afa639d4eab1c82415a3807ddf85ebf298f2))
+
 # [2.4.0](https://github.com/speclynx/apidom-internal/compare/v2.3.0...v2.4.0) (2026-03-11)
 
 ### Features
