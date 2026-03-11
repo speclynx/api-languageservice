@@ -1,7 +1,7 @@
 {
   "name": "@speclynx/apidom-ls",
   "description": "SpecLynx ApiDOM Language Service.",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org",
