@@ -1,0 +1,67 @@
+# Arazzo 1.0.1 Linting Rules Documentation
+
+This document provides detailed documentation for all Arazzo linting rules implemented in Phase 1 of the Arazzo specification validation effort.
+
+## Overview
+
+Phase 1 rules focus on structural validation of Arazzo 1.0.1 documents. These rules verify that documents conform to the specification in terms of required fields, field types, allowed values, naming patterns, and structural constraints. The rules are organized by the Arazzo specification objects they target.
+
+All rules are implemented as `LinterMeta` definitions under `packages/apidom-ls/src/config/arazzo/` and follow the existing codebase patterns. Error codes use the `9XXYYZZ` numbering scheme where `XX` identifies the object category (04 for root spec, 05 for source description, 06 for workflow, etc.).
+
+## Arazzo Specification Object
+
+The root object of an Arazzo document must include the `arazzo` version string, an `info` object, a non-empty `sourceDescriptions` array, and a non-empty `workflows` array. An optional `components` object may be present. Specification extensions with the `x-` prefix are allowed.
+
+The `arazzo` field must match the pattern `^1\.0\.\d+(-.+)?$`, ensuring it is a valid 1.0.x version string. The `sourceDescriptions` and `workflows` arrays are validated both for correct element types (sourceDescription and workflow respectively) and for non-emptiness.
+
+## Info Object
+
+The Info Object provides metadata about the Arazzo document. The `title` and `version` fields are required. The optional `summary` and `description` fields, when present, must be strings. All four fields undergo type validation. Specification extensions are allowed.
+
+## Source Description Object
+
+Each Source Description identifies a referenced API document. The `name` and `url` fields are required. The `name` must match `[A-Za-z0-9_\-]+` to ensure it follows valid identifier conventions. When the optional `type` field is present, it must be either `"openapi"` or `"arazzo"`.
+
+## Workflow Object
+
+A Workflow describes a sequence of steps. The `workflowId` and `steps` fields are required. The `workflowId` must match `[A-Za-z0-9_\-]+` and the `steps` array must contain at least one entry. Optional fields include `summary`, `description`, `inputs` (a JSON Schema object), `dependsOn` (array of strings), `successActions` and `failureActions` (arrays of Success/Failure Action or Reusable Objects), `outputs` (an object whose keys must match `[a-zA-Z0-9.\-_]+`), and `parameters` (array of Parameter or Reusable Objects).
+
+## Step Object
+
+A Step represents a single operation within a workflow. The `stepId` is required and must match `[A-Za-z0-9_\-]+`. The step should reference an operation or workflow via `operationId`, `operationPath`, or `workflowId` (all string types when present). Optional fields include `description`, `parameters`, `requestBody` (a Request Body Object), `successCriteria` (array of Criterion Objects), `onSuccess` and `onFailure` (arrays of action/reusable objects), and `outputs`.
+
+## Parameter Object
+
+A Parameter specifies a value to pass to an operation or workflow. The `name` and `value` fields are required. When present, the `in` field must be one of `"path"`, `"query"`, `"header"`, `"cookie"`, or `"body"`. Only name, in, and value fields are allowed alongside extensions.
+
+## Success Action Object
+
+A Success Action defines behavior on step success. Both `name` and `type` are required. The `type` must be either `"end"` or `"goto"`. Optional fields include `workflowId` and `stepId` (both strings, mutually exclusive) and `criteria` (array of Criterion Objects).
+
+## Failure Action Object
+
+A Failure Action defines behavior on step failure. Both `name` and `type` are required. The `type` must be one of `"end"`, `"goto"`, or `"retry"`. In addition to the fields shared with Success Action (`workflowId`, `stepId`, `criteria`), Failure Actions support `retryAfter` (a non-negative number representing seconds) and `retryLimit` (a non-negative integer).
+
+## Components Object
+
+The Components Object holds reusable definitions. All four fields (`inputs`, `parameters`, `successActions`, `failureActions`) are optional objects. When present, their values are type-checked: `inputs` values must be JSON Schema Objects, `parameters` values must be Parameter Objects, `successActions` values must be Success Action Objects, and `failureActions` values must be Failure Action Objects.
+
+## Criterion Object
+
+A Criterion defines a condition for evaluating success. The `condition` field is required and must be a string. The optional `context` must be a string (Runtime Expression). The `type` field, when present as a string, must be one of `"simple"`, `"regex"`, `"jsonpath"`, or `"xpath"`. It may also be a Criterion Expression Type Object.
+
+## Criterion Expression Type Object
+
+This object specifies the expression language for criteria. Both `type` and `version` are required. The `type` must be `"jsonpath"` or `"xpath"`. The `version` must be a string identifying the specific language version.
+
+## Request Body Object
+
+The Request Body provides content for operations. The optional `contentType` must be a string (media type). The `payload` field accepts any value. The `replacements` field, when present, must be an array of Payload Replacement Objects.
+
+## Payload Replacement Object
+
+A Payload Replacement specifies a location and value to inject into a request body. Both `target` (a JSON Pointer or XPath expression string) and `value` are required.
+
+## Reusable Object
+
+The Reusable Object references components for reuse. The `reference` field (a Runtime Expression string) is required. The optional `value` must be a string. Unlike all other Arazzo objects, the Reusable Object does not allow specification extensions; only `reference` and `value` are permitted.
