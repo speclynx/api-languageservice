@@ -1,0 +1,35 @@
+const arazzoTokens = [
+  'arazzo',
+  'arazzo-version',
+  'criteria',
+  'criterion',
+  'failureAction',
+  'info',
+  'JSONSchema',
+  'parameter',
+  'parameters',
+  'requestBody',
+  'sourceDescription',
+  'source-descriptions',
+  'source-description-url',
+  'spec-version',
+  'step',
+  'step-on-failure',
+  'step-outputs',
+  'step-parameters',
+  'step-success-criteria',
+  'version',
+  'workflow',
+  'workflow-failure-actions',
+  'workflow-outputs',
+  'workflows',
+  'workflow-steps',
+  'parameter',
+  'reference',
+  'schema',
+  'operationId',
+];
+
+const tokens = [...arazzoTokens];
+
+export default tokens;
