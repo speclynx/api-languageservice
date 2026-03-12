@@ -1,0 +1,20 @@
+import { DiagnosticSeverity } from 'vscode-languageserver-types';
+
+import ApilintCodes from '../../../codes.ts';
+import { LinterMeta } from '../../../../apidom-language-types.ts';
+import { arazzo } from '../../target-specs.ts';
+
+const contentTypeTypeLint: LinterMeta = {
+  code: ApilintCodes.ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE,
+  source: 'apilint',
+  message: 'contentType must be a string',
+  severity: DiagnosticSeverity.Error,
+  linterFunction: 'apilintType',
+  linterParams: ['string'],
+  marker: 'value',
+  target: 'contentType',
+  data: {},
+  targetSpecs: [...arazzo],
+};
+
+export default contentTypeTypeLint;

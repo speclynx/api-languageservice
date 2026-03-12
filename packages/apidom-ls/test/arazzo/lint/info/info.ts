@@ -89,4 +89,232 @@ describe('test-arazzo-linting-info', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_INFO_FIELD_TITLE_TYPE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_TITLE_TYPE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_TITLE_TYPE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    assert(resultInvalid.length > 0);
+    assert(resultInvalid[0].code === codes.ARAZZO_INFO_FIELD_TITLE_TYPE);
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    assert(resultValid.length == 0);
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_INFO_FIELD_VERSION_REQUIRED', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_VERSION_REQUIRED',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_VERSION_REQUIRED',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    assert(resultInvalid.length > 0);
+    assert(resultInvalid[0].code === codes.ARAZZO_INFO_FIELD_VERSION_REQUIRED);
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    assert(resultValid.length == 0);
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_INFO_FIELD_VERSION_TYPE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_VERSION_TYPE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_VERSION_TYPE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    assert(resultInvalid.length > 0);
+    assert(resultInvalid[0].code === codes.ARAZZO_INFO_FIELD_VERSION_TYPE);
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    assert(resultValid.length == 0);
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_INFO_FIELD_SUMMARY_TYPE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_SUMMARY_TYPE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'info',
+          'ARAZZO_INFO_FIELD_SUMMARY_TYPE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    assert(resultInvalid.length > 0);
+    assert(resultInvalid[0].code === codes.ARAZZO_INFO_FIELD_SUMMARY_TYPE);
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    assert(resultValid.length == 0);
+
+    languageService.terminate();
+  });
 });
