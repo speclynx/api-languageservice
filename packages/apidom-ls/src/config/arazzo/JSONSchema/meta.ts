@@ -1,6 +1,7 @@
 import lint from './lint/index.ts';
+import { FormatMeta } from '../../../apidom-language-types.ts';
 
-const meta = {
+const meta: FormatMeta = {
   lint,
 };
 

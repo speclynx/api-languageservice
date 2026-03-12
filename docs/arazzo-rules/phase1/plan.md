@@ -28,264 +28,152 @@ Existing rules: `title--required`, `description--type`, `allowed-fields`
 Missing rules: `version--required`, `version--type`, `summary--type`, `title--type`
 
 - [x] Identify rules
-- [ ] Implement missing rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Implement missing rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 2: Arazzo Specification Object (root)
 
 Target element: `arazzoSpecification1`
 
-Rules needed:
-- `arazzo--required` (arazzo version field required)
-- `arazzo--type` (arazzo version field must be string)
-- `arazzo--pattern` (arazzo version must match `^1\.0\.\d+(-.+)?$`)
-- `info--required` (info field required)
-- `info--type` (info field must be object)
-- `source-descriptions--required` (sourceDescriptions required)
-- `source-descriptions--type` (sourceDescriptions must be array of sourceDescription elements)
-- `source-descriptions--non-empty` (sourceDescriptions must have at least one entry)
-- `workflows--required` (workflows required)
-- `workflows--type` (workflows must be array of workflow elements)
-- `workflows--non-empty` (workflows must have at least one entry)
-- `components--type` (components must be object if present)
-- `allowed-fields` (only allowed fields + extensions)
+Rules: `arazzo--required`, `arazzo--type`, `arazzo--pattern`, `info--required`, `info--type`, `source-descriptions--required`, `source-descriptions--type`, `source-descriptions--non-empty`, `workflows--required`, `workflows--type`, `workflows--non-empty`, `components--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 3: Source Description Object
 
 Target element: `sourceDescription`
 
-Rules needed:
-- `name--required`
-- `name--type` (string)
-- `name--pattern` (`^[A-Za-z0-9_\-]+$`)
-- `url--required`
-- `url--type` (string)
-- `type--type` (string)
-- `type--equals` (enum: openapi, arazzo)
-- `allowed-fields`
+Rules: `name--required`, `name--type`, `name--pattern`, `url--required`, `url--type`, `type--type`, `type--equals`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 4: Workflow Object
 
 Target element: `workflow`
 
-Rules needed:
-- `workflow-id--required`
-- `workflow-id--type` (string)
-- `workflow-id--pattern` (`^[A-Za-z0-9_\-]+$`)
-- `summary--type` (string)
-- `description--type` (string)
-- `inputs--type` (object / JSONSchema element)
-- `steps--required`
-- `steps--type` (array of step elements)
-- `steps--non-empty` (at least one entry)
-- `depends-on--type` (array of strings)
-- `success-actions--type` (array of successAction or reusable elements)
-- `failure-actions--type` (array of failureAction or reusable elements)
-- `outputs--type` (object)
-- `outputs--keys-pattern` (keys match `^[a-zA-Z0-9\.\-_]+$`)
-- `parameters--type` (array of parameter or reusable elements)
-- `allowed-fields`
+Rules: `workflow-id--required`, `workflow-id--type`, `workflow-id--pattern`, `summary--type`, `description--type`, `inputs--type`, `steps--required`, `steps--type`, `steps--non-empty`, `depends-on--type`, `success-actions--type`, `failure-actions--type`, `outputs--type`, `outputs--keys-pattern`, `parameters--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 5: Step Object
 
 Target element: `step`
 
-Rules needed:
-- `step-id--required`
-- `step-id--type` (string)
-- `step-id--pattern` (`^[A-Za-z0-9_\-]+$`)
-- `description--type` (string)
-- `operation-id--type` (string)
-- `operation-path--type` (string)
-- `workflow-id--type` (string)
-- `request-body--type` (object / requestBody element)
-- `success-criteria--type` (array of criterion elements)
-- `on-success--type` (array of successAction or reusable elements)
-- `on-failure--type` (array of failureAction or reusable elements)
-- `outputs--type` (object)
-- `outputs--keys-pattern` (keys match `^[a-zA-Z0-9\.\-_]+$`)
-- `parameters--type` (array of parameter or reusable elements)
-- `allowed-fields`
+Rules: `step-id--required`, `step-id--type`, `step-id--pattern`, `description--type`, `operation-id--type`, `operation-path--type`, `workflow-id--type`, `request-body--type`, `success-criteria--type`, `on-success--type`, `on-failure--type`, `outputs--type`, `outputs--keys-pattern`, `parameters--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 6: Parameter Object
 
 Target element: `parameter`
 
-Rules needed:
-- `name--required`
-- `name--type` (string)
-- `in--type` (string)
-- `in--equals` (enum: path, query, header, cookie, body)
-- `value--required`
-- `allowed-fields`
+Rules: `name--required`, `name--type`, `in--type`, `in--equals`, `value--required`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 7: Success Action Object
 
 Target element: `successAction`
 
-Rules needed:
-- `name--required`
-- `name--type` (string)
-- `type--required`
-- `type--type` (string)
-- `type--equals` (enum: end, goto)
-- `workflow-id--type` (string)
-- `step-id--type` (string)
-- `criteria--type` (array of criterion elements)
-- `allowed-fields`
+Rules: `name--required`, `name--type`, `type--required`, `type--type`, `type--equals`, `workflow-id--type`, `step-id--type`, `criteria--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 8: Failure Action Object
 
 Target element: `failureAction`
 
-Rules needed:
-- `name--required`
-- `name--type` (string)
-- `type--required`
-- `type--type` (string)
-- `type--equals` (enum: end, goto, retry)
-- `workflow-id--type` (string)
-- `step-id--type` (string)
-- `retry-after--type` (number)
-- `retry-after--non-negative` (>= 0)
-- `retry-limit--type` (number/integer)
-- `retry-limit--non-negative` (>= 0, integer)
-- `criteria--type` (array of criterion elements)
-- `allowed-fields`
+Rules: `name--required`, `name--type`, `type--required`, `type--type`, `type--equals`, `workflow-id--type`, `step-id--type`, `retry-after--type`, `retry-after--non-negative`, `retry-limit--type`, `retry-limit--non-negative`, `criteria--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 9: Components Object
 
 Target element: `components`
 
-Rules needed:
-- `inputs--type` (object)
-- `inputs--values-type` (values must be JSONSchema elements)
-- `parameters--type` (object)
-- `parameters--values-type` (values must be parameter elements)
-- `success-actions--type` (object)
-- `success-actions--values-type` (values must be successAction elements)
-- `failure-actions--type` (object)
-- `failure-actions--values-type` (values must be failureAction elements)
-- `allowed-fields`
+Rules: `inputs--type`, `inputs--values-type`, `parameters--type`, `parameters--values-type`, `success-actions--type`, `success-actions--values-type`, `failure-actions--type`, `failure-actions--values-type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 10: Criterion Object
 
 Target element: `criterion`
 
-Rules needed:
-- `condition--required`
-- `condition--type` (string)
-- `context--type` (string)
-- `type--type` (string or criterionExpressionType element)
-- `type--equals` (enum when string: simple, regex, jsonpath, xpath)
-- `allowed-fields`
+Rules: `condition--required`, `condition--type`, `context--type`, `type--equals`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 11: Criterion Expression Type Object
 
 Target element: `criterionExpressionType`
 
-Rules needed:
-- `type--required`
-- `type--type` (string)
-- `type--equals` (enum: jsonpath, xpath)
-- `version--required`
-- `version--type` (string)
-- `allowed-fields`
+Rules: `type--required`, `type--type`, `type--equals`, `version--required`, `version--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 12: Request Body Object
 
 Target element: `requestBody`
 
-Rules needed:
-- `content-type--type` (string)
-- `replacements--type` (array of payloadReplacement elements)
-- `allowed-fields`
+Rules: `content-type--type`, `replacements--type`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 13: Payload Replacement Object
 
 Target element: `payloadReplacement`
 
-Rules needed:
-- `target--required`
-- `target--type` (string)
-- `value--required`
-- `allowed-fields`
+Rules: `target--required`, `target--type`, `value--required`, `allowed-fields`
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 14: Reusable Object
 
 Target element: `reusable`
 
-Rules needed:
-- `reference--required`
-- `reference--type` (string)
-- `value--type` (string)
-- `allowed-fields` (NO extensions allowed for this object)
+Rules: `reference--required`, `reference--type`, `value--type`, `allowed-fields` (NO extensions)
 
-- [ ] Identify rules
-- [ ] Implement rules
-- [ ] Add tests and fixtures
-- [ ] Document rules
+- [x] Identify rules
+- [x] Implement rules
+- [x] Add tests and fixtures
+- [x] Document rules
 
 ### Batch 15: JSON Schema Rules (review and fix)
 
@@ -293,13 +181,13 @@ Target element: `JSONSchema`
 
 The JSON Schema rules are already implemented. This batch reviews them for correctness, adds any missing rules, fixes issues (especially around `discriminator`), and ensures test coverage.
 
-- [ ] Review existing rules
-- [ ] Fix any issues found
-- [ ] Add missing tests and fixtures
-- [ ] Document rules
+- [x] Review existing rules
+- [x] Fix any issues found
+- [x] Add missing tests and fixtures
+- [x] Document rules
 
 ### Batch 16: Final Integration and Documentation
 
-- [ ] Verify all rules work together with a comprehensive fixture
-- [ ] Create rules-docs.md documentation
-- [ ] Final test pass
+- [x] Verify all rules work together with a comprehensive fixture
+- [x] Create rules-docs.md documentation
+- [x] Final test pass

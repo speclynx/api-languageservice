@@ -1,8 +1,6 @@
-import allowedFieldsOpenAPI2_0Lint from './allowed-fields-openapi-2-0.ts';
-import allowedFieldsOpenAPI3_0Lint from './allowed-fields-openapi-3-0.ts';
+import allowedFieldsLint from './allowed-fields.ts';
 import $idFormatURILint from './$id--format-uri.ts';
 import $refValidLint from './$ref--valid.ts';
-import $refNoSiblingsLint from './$ref--no-siblings.ts';
 import additionalItemsNonArrayLint from './additional-items--non-array.ts';
 import additionalItemsTypeLint from './additional-items--type.ts';
 import additionalPropertiesNonObject from './additional-properties--non-object.ts';
@@ -11,8 +9,8 @@ import allOfTypeLint from './all-of--type.ts';
 import anyOfTypeLint from './any-of--type.ts';
 import containsNonArrayLint from './contains--non-array.ts';
 import containsTypeLint from './contains--type.ts';
+import deprecatedTypeLint from './deprecated--type.ts';
 import descriptionTypeLint from './description--type.ts';
-import discriminatorExistInRequiredLint from './discriminator--exist-in-required.ts';
 import elseNonIfLint from './else--non-if.ts';
 import elseTypeLint from './else--type.ts';
 import enumUniqueLint from './enum--unique.ts';
@@ -21,8 +19,6 @@ import exclusiveMaximumTypeNumberLint from './exclusive-maximum--type-number.ts'
 import exclusiveMaximumTypeBooleanLint from './exclusive-maximum--type-boolean.ts';
 import exclusiveMinimumTypeBooleanLint from './exclusive-minimum--type-boolean.ts';
 import exclusiveMinimumTypeNumberLint from './exclusive-minimum--type-number.ts';
-import xmlTypeLint from './xml--type.ts';
-import externalDocsTypeLint from './external-docs--type.ts';
 import formatTypeLint from './format--type.ts';
 import ifNonThenLint from './if--non-then.ts';
 import ifTypeLint from './if--type.ts';
@@ -43,8 +39,6 @@ import minimumTypeLint from './minimum--type.ts';
 import missingCoreFieldsLint from './missing-core-fields.ts';
 import multipleOfTypeLint from './multiple-of--type.ts';
 import notTypeLint from './not--type.ts';
-import nullableTypeLint from './nullable--type.ts';
-import nullableNotRecommendedLint from './nullable--not-recommended.ts';
 import oneOfTypeLint from './one-of--type.ts';
 import patternTypeLint from './pattern--type.ts';
 import patternPropertiesKeysRegexpLint from './pattern-properties--keys-regexp.ts';
@@ -70,11 +64,9 @@ import writeOnlyTypeLint from './write-only--type.ts';
 import exampleDeprecatedLint from './example--deprecated.ts';
 
 const schemaLints = [
-  allowedFieldsOpenAPI2_0Lint,
-  allowedFieldsOpenAPI3_0Lint,
+  allowedFieldsLint,
   $idFormatURILint,
   $refValidLint,
-  $refNoSiblingsLint,
   additionalItemsNonArrayLint,
   additionalItemsTypeLint,
   additionalPropertiesNonObject,
@@ -83,8 +75,8 @@ const schemaLints = [
   anyOfTypeLint,
   containsNonArrayLint,
   containsTypeLint,
+  deprecatedTypeLint,
   descriptionTypeLint,
-  discriminatorExistInRequiredLint,
   elseNonIfLint,
   elseTypeLint,
   enumUniqueLint,
@@ -93,8 +85,6 @@ const schemaLints = [
   exclusiveMaximumTypeBooleanLint,
   exclusiveMinimumTypeNumberLint,
   exclusiveMinimumTypeBooleanLint,
-  xmlTypeLint,
-  externalDocsTypeLint,
   formatTypeLint,
   ifNonThenLint,
   ifTypeLint,
@@ -115,8 +105,6 @@ const schemaLints = [
   missingCoreFieldsLint,
   multipleOfTypeLint,
   notTypeLint,
-  nullableTypeLint,
-  nullableNotRecommendedLint,
   oneOfTypeLint,
   patternTypeLint,
   patternPropertiesKeysRegexpLint,

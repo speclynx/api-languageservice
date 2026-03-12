@@ -4,26 +4,30 @@ import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
 import { arazzo } from '../../target-specs.ts';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const missingCoreFieldsLint: LinterMeta = {
-  code: ApilintCodes.SCHEMA_MISSING_CORE_FIELDS,
+// JSON Schema 2020-12 allowed fields for Arazzo inputs
+const allowedFieldsLint: LinterMeta = {
+  code: ApilintCodes.NOT_ALLOWED_FIELDS,
   source: 'apilint',
-  message: 'Schema does not include any Schema Object keywords',
-  severity: DiagnosticSeverity.Hint,
-  linterFunction: 'existAnyOfFields',
+  message: 'Object includes not allowed fields',
+  severity: DiagnosticSeverity.Warning,
+  linterFunction: 'allowedFields',
   linterParams: [
     [
       // Core vocabulary
-      '$ref',
-      '$schema',
       '$id',
-      '$vocabulary',
+      '$schema',
+      '$ref',
       '$anchor',
-      '$dynamicAnchor',
       '$dynamicRef',
-      '$defs',
+      '$dynamicAnchor',
+      '$vocabulary',
       '$comment',
+      '$defs',
       // Applicator vocabulary
+      'allOf',
+      'anyOf',
+      'oneOf',
+      'not',
       'if',
       'then',
       'else',
@@ -72,26 +76,15 @@ const missingCoreFieldsLint: LinterMeta = {
       'readOnly',
       'writeOnly',
       'examples',
-      // Compatibility
+      // Compatibility (draft-07 / OpenAPI)
       'definitions',
       'dependencies',
       'additionalItems',
       'example',
-      'allOf',
-      'anyOf',
-      'oneOf',
-      'not',
     ],
-    true,
   ],
   marker: 'key',
-  conditions: [
-    {
-      function: 'apilintElementOrClass',
-      params: [['JSONSchema']],
-    },
-  ],
-  targetSpecs: arazzo,
+  targetSpecs: [...arazzo],
 };
 
-export default missingCoreFieldsLint;
+export default allowedFieldsLint;

@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Comprehensive Arazzo Workflow
+  version: 1.0.0
+  summary: A comprehensive workflow testing all objects
+  description: This workflow exercises all Arazzo specification objects
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+  - name: anotherWorkflow
+    type: arazzo
+    url: ./other-arazzo.yaml
+workflows:
+  - workflowId: create-and-get-pet
+    summary: Create then retrieve a pet
+    description: Demonstrates a multi-step workflow
+    inputs:
+      type: object
+      required:
+        - petName
+      properties:
+        petName:
+          type: string
+          maxLength: 100
+          description: Name of the pet
+        petTag:
+          type: string
+          deprecated: true
+    dependsOn:
+      - other-workflow
+    parameters:
+      - name: apiKey
+        in: header
+        value: abc123
+    steps:
+      - stepId: create-pet
+        operationId: $sourceDescriptions.petStore.createPet
+        description: Create a new pet
+        requestBody:
+          contentType: application/json
+          replacements:
+            - target: /name
+              value: $inputs.petName
+        parameters:
+          - name: apiKey
+            in: header
+            value: $inputs.apiKey
+        successCriteria:
+          - condition: $statusCode == 201
+        onSuccess:
+          - name: logSuccess
+            type: goto
+            stepId: get-pet
+        onFailure:
+          - name: retryCreate
+            type: retry
+            retryAfter: 1.5
+            retryLimit: 3
+            criteria:
+              - condition: $statusCode == 503
+        outputs:
+          petId: $response.body.id
+      - stepId: get-pet
+        operationId: $sourceDescriptions.petStore.getPetById
+        description: Get the created pet
+        parameters:
+          - name: petId
+            in: path
+            value: $steps.create-pet.outputs.petId
+        successCriteria:
+          - condition: $statusCode == 200
+            context: $response.body
+            type:
+              type: jsonpath
+              version: draft-goessner-dispatch-jsonpath-00
+        outputs:
+          petName: $response.body.name
+    successActions:
+      - name: logResult
+        type: goto
+        stepId: create-pet
+    failureActions:
+      - name: handleFailure
+        type: end
+    outputs:
+      createdPetName: $steps.get-pet.outputs.petName
+  - workflowId: other-workflow
+    summary: Another workflow
+    steps:
+      - stepId: simple-step
+        operationId: $sourceDescriptions.petStore.listPets
+        successCriteria:
+          - condition: $statusCode == 200
+components:
+  inputs:
+    PetInput:
+      type: object
+      properties:
+        name:
+          type: string
+  parameters:
+    ApiKey:
+      name: apiKey
+      in: header
+      value: default-key
+  successActions:
+    LogSuccess:
+      name: logSuccess
+      type: goto
+      stepId: create-pet
+  failureActions:
+    HandleError:
+      name: handleError
+      type: end

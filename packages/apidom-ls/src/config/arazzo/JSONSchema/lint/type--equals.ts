@@ -39,7 +39,7 @@ const typeEquals: LinterMeta = {
       {
         message: "update to 'number'",
         action: 'updateValue',
-        functionParams: ['null'],
+        functionParams: ['number'],
       },
       {
         message: "update to 'string'",

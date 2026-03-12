@@ -65,3 +65,13 @@ A Payload Replacement specifies a location and value to inject into a request bo
 ## Reusable Object
 
 The Reusable Object references components for reuse. The `reference` field (a Runtime Expression string) is required. The optional `value` must be a string. Unlike all other Arazzo objects, the Reusable Object does not allow specification extensions; only `reference` and `value` are permitted.
+
+## JSON Schema (inputs)
+
+Arazzo uses JSON Schema 2020-12 for the `inputs` field of Workflow Objects and the `inputs` values in Components. The JSON Schema rules validate type correctness for all standard JSON Schema keywords across the Core, Applicator, Validation, Format, Content, and Meta-Data vocabularies.
+
+Key validations include type checking for numeric keywords (`maxLength`, `minLength`, `maximum`, `minimum`, `maxItems`, `minItems`, `maxProperties`, `minProperties`, `multipleOf` must be non-negative integers or numbers as appropriate), boolean keywords (`deprecated`, `readOnly`, `writeOnly`, `uniqueItems` must be booleans), string keywords (`title`, `description`, `pattern`, `format` must be strings), and structural keywords (`properties`, `patternProperties` must be objects with schema values, `allOf`/`anyOf`/`oneOf` must be arrays of schemas, `not`/`if`/`then`/`else`/`items`/`contains`/`additionalProperties`/`propertyNames` must be schema objects).
+
+Contextual warnings flag `properties`/`patternProperties`/`propertyNames` on non-object schemas, `items`/`maxItems`/`minItems`/`uniqueItems`/`contains` on non-array schemas, and `maxLength`/`minLength` on non-string schemas. The `required` keyword warns when used without `properties`. The `example` keyword triggers a deprecation warning recommending `examples` instead.
+
+OpenAPI-specific keywords (`discriminator`, `nullable`, `xml`, `externalDocs`) are not validated in the Arazzo context since Arazzo uses pure JSON Schema 2020-12 rather than the OpenAPI Schema Object dialect. Similarly, `$ref` is allowed to have sibling keywords per JSON Schema 2020-12 semantics.

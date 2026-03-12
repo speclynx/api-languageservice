@@ -192,4 +192,89 @@ This document lists all linting rules implemented in Phase 1 for the Arazzo 1.0.
 
 ## JSON Schema Rules (target: `JSONSchema`)
 
-JSON Schema rules are inherited from the existing implementation and cover type validation, constraints, pattern properties, and structural checks for JSON Schema 2020-12 used within Arazzo workflow inputs and components.
+JSON Schema rules validate the `inputs` field of Workflow Objects and the `inputs` values in Components against JSON Schema 2020-12. The rules were reviewed and corrected to remove OpenAPI-specific validations that do not apply to the pure JSON Schema 2020-12 dialect used by Arazzo.
+
+Removed rules (OpenAPI-specific, not applicable to Arazzo):
+
+| Removed Rule | Reason |
+|-------------|--------|
+| allowed-fields-openapi-2-0 | OpenAPI 2.0 Schema Object fields, not JSON Schema 2020-12 |
+| allowed-fields-openapi-3-0 | OpenAPI 3.0 Schema Object fields, not JSON Schema 2020-12 |
+| discriminator--exist-in-required | discriminator is OpenAPI-specific |
+| $ref--no-siblings | JSON Schema 2020-12 allows $ref siblings |
+| nullable--type | nullable is OpenAPI 3.0 extension |
+| nullable--not-recommended | nullable is OpenAPI 3.0 extension |
+| xml--type | xml is OpenAPI-specific |
+| external-docs--type | externalDocs is OpenAPI-specific |
+
+Active rules (64 total):
+
+| Code | Rule File | Description |
+|------|-----------|-------------|
+| NOT_ALLOWED_FIELDS | allowed-fields | JSON Schema 2020-12 keyword allowlist |
+| SCHEMA_ID | $id--format-uri | $id must be a valid URI |
+| SCHEMA_REF | $ref--valid | $ref must be a valid URI-reference |
+| SCHEMA_ADDITIONALITEMS | additional-items--type | additionalItems must be a schema object |
+| SCHEMA_ADDITIONALITEMS_NONARRAY | additional-items--non-array | additionalItems warns on non-array type |
+| SCHEMA_ADDITIONALPROPERTIES | additional-properties--type | additionalProperties must be a schema object |
+| SCHEMA_ADDITIONALPROPERTIES_NONOBJECT | additional-properties--non-object | additionalProperties warns on non-object type |
+| SCHEMA_ALLOF | all-of--type | allOf must be an array of schemas |
+| SCHEMA_ANYOF | any-of--type | anyOf must be an array of schemas |
+| SCHEMA_CONTAINS | contains--type | contains must be a schema object |
+| SCHEMA_CONTAINS_NONARRAY | contains--non-array | contains warns on non-array type |
+| SCHEMA_DEPRECATED | deprecated--type | deprecated must be a boolean |
+| SCHEMA_DESCRIPTION | description--type | description must be a string |
+| SCHEMA_ELSE | else--type | else must be a schema object |
+| SCHEMA_ELSE_NONIF | else--non-if | else warns without if |
+| SCHEMA_ENUM | enum--unique | enum values must be unique |
+| SCHEMA_EXAMPLES | examples--type | examples must be an array |
+| SCHEMA_EXCLUSIVEMAXIMUM | exclusive-maximum--type-number | exclusiveMaximum must be a number (2020-12) |
+| SCHEMA_EXCLUSIVEMAXIMUM | exclusive-maximum--type-boolean | exclusiveMaximum boolean (draft-04 compat) |
+| SCHEMA_EXCLUSIVEMINUMUM | exclusive-minimum--type-number | exclusiveMinimum must be a number (2020-12) |
+| SCHEMA_EXCLUSIVEMINUMUM | exclusive-minimum--type-boolean | exclusiveMinimum boolean (draft-04 compat) |
+| SCHEMA_FORMAT | format--type | format must be a string |
+| SCHEMA_IF | if--type | if must be a schema object |
+| SCHEMA_IF_NONTHEN | if--non-then | if warns without then |
+| SCHEMA_ITEMS | items--type | items must be a schema object |
+| SCHEMA_ITEMS_NONARRAY | items--non-array | items warns on non-array type |
+| SCHEMA_MAXITEMS | max-items--type | maxItems must be a non-negative integer |
+| SCHEMA_MAXITEMS_NONARRAY | max-items--non-array | maxItems warns on non-array type |
+| SCHEMA_MAXLENGTH | max-length--type | maxLength must be a non-negative integer |
+| SCHEMA_MAXLENGTH_NONSTRING | max-length--non-string | maxLength warns on non-string type |
+| SCHEMA_MAXIMUM | maximum--type | maximum must be a number |
+| SCHEMA_MINITEMS | min-items--type | minItems must be a non-negative integer |
+| SCHEMA_MINITEMS_NONARRAY | min-items--non-array | minItems warns on non-array type |
+| SCHEMA_MINLENGTH | min-length--type | minLength must be a non-negative integer |
+| SCHEMA_MINLENGTH_NONSTRING | min-length--non-string | minLength warns on non-string type |
+| SCHEMA_MINPROPERTIES | min-properties--type | minProperties must be a non-negative integer |
+| SCHEMA_MINPROPERTIES_NONOBJECT | min-properties--non-object | minProperties warns on non-object type |
+| SCHEMA_MAXPROPERTIES | max-properties--type | maxProperties must be a non-negative integer |
+| SCHEMA_MAXPROPERTIES_NONOBJECT | max-properties--non-object | maxProperties warns on non-object type |
+| SCHEMA_MINUMUM | minimum--type | minimum must be a number |
+| SCHEMA_MISSING_CORE_FIELDS | missing-core-fields | Hint when object has no schema keywords |
+| SCHEMA_MULTIPLEOF | multiple-of--type | multipleOf must be a number > 0 |
+| SCHEMA_NOT | not--type | not must be a schema object |
+| SCHEMA_ONEOF | one-of--type | oneOf must be an array of schemas |
+| SCHEMA_PATTERN | pattern--type | pattern must be a string |
+| SCHEMA_PATTERNPROPERTIES_KEY | pattern-properties--keys-regexp | patternProperties keys must be valid regexps |
+| SCHEMA_PATTERNPROPERTIES_NONOBJECT | pattern-properties--non-object | patternProperties warns on non-object type |
+| SCHEMA_PATTERNPROPERTIES | pattern-properties--type | patternProperties must be an object |
+| SCHEMA_PATTERNPROPERTIES_OBJECT | pattern-properties--values-type | patternProperties values must be schemas |
+| SCHEMA_PROPERTIES | properties--type | properties must be an object |
+| SCHEMA_PROPERTIES_OBJECT | properties--values-type | properties values must be schemas |
+| SCHEMA_PROPERTIES_NONOBJECT | properties--non-object | properties warns on non-object type |
+| SCHEMA_PROPERTYNAMES | property-names--type | propertyNames must be a schema object |
+| SCHEMA_PROPERTYNAMES_NONOBJECT | property-names--non-object | propertyNames warns on non-object type |
+| SCHEMA_READONLY | read-only--type | readOnly must be a boolean |
+| SCHEMA_REQUIRED | required--type | required must be an array |
+| SCHEMA_REQUIRED_NONOBJECT | required--non-object | required warns on non-object type |
+| SCHEMA_REQUIRED_WITHOUT_PROPERTIES | required--defined | required warns without properties |
+| SCHEMA_THEN | then--type | then must be a schema object |
+| SCHEMA_THEN_NONIF | then--non-if | then warns without if |
+| SCHEMA_TITLE | title--type | title must be a string |
+| SCHEMA_TYPE | type--type | type must be a string |
+| SCHEMA_TYPE | type--equals | type must be a valid JSON Schema type |
+| SCHEMA_UNIQUEITEMS | unique-items--type | uniqueItems must be a boolean |
+| SCHEMA_UNIQUEITEMS_NONARRAY | unique-items--non-array | uniqueItems warns on non-array type |
+| SCHEMA_WRITEONLY | write-only--type | writeOnly must be a boolean |
+| SCHEMA_EXAMPLE_DEPRECATED | example--deprecated | example deprecated in favor of examples |
