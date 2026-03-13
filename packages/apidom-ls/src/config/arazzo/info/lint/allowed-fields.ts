@@ -4,8 +4,7 @@ import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
 import { arazzo } from '../../target-specs.ts';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const allowedFields2_0__3_0Lint: LinterMeta = {
+const allowedFieldsLint: LinterMeta = {
   code: ApilintCodes.NOT_ALLOWED_FIELDS,
   source: 'apilint',
   message: 'Object includes not allowed fields',
@@ -16,4 +15,4 @@ const allowedFields2_0__3_0Lint: LinterMeta = {
   targetSpecs: [...arazzo],
 };
 
-export default allowedFields2_0__3_0Lint;
+export default allowedFieldsLint;

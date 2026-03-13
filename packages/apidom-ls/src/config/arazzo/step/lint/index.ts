@@ -11,6 +11,7 @@ import onSuccessTypeLint from './on-success--type.ts';
 import onFailureTypeLint from './on-failure--type.ts';
 import outputsTypeLint from './outputs--type.ts';
 import outputsKeysPatternLint from './outputs--keys-pattern.ts';
+import outputsValuesTypeLint from './outputs--values-type.ts';
 import parametersTypeLint from './parameters--type.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
@@ -28,6 +29,7 @@ const lints = [
   onFailureTypeLint,
   outputsTypeLint,
   outputsKeysPatternLint,
+  outputsValuesTypeLint,
   parametersTypeLint,
   allowedFieldsLint,
 ];

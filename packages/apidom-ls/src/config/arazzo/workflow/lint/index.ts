@@ -12,6 +12,7 @@ import successActionsTypeLint from './success-actions--type.ts';
 import failureActionsTypeLint from './failure-actions--type.ts';
 import outputsTypeLint from './outputs--type.ts';
 import outputsKeysPatternLint from './outputs--keys-pattern.ts';
+import outputsValuesTypeLint from './outputs--values-type.ts';
 import parametersTypeLint from './parameters--type.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
@@ -30,6 +31,7 @@ const lints = [
   failureActionsTypeLint,
   outputsTypeLint,
   outputsKeysPatternLint,
+  outputsValuesTypeLint,
   parametersTypeLint,
   allowedFieldsLint,
 ];

@@ -1,4 +1,4 @@
-import allowedFields2_0__3_0Lint from './allowed-fields-2-0--3-0.ts';
+import allowedFieldsLint from './allowed-fields.ts';
 import titleRequiredLint from './title--required.ts';
 import titleTypeLint from './title--type.ts';
 import descriptionTypeLint from './description--type.ts';
@@ -13,7 +13,7 @@ const lints = [
   summaryTypeLint,
   versionRequiredLint,
   versionTypeLint,
-  allowedFields2_0__3_0Lint,
+  allowedFieldsLint,
 ];
 
 export default lints;
