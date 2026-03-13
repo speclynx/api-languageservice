@@ -165,7 +165,7 @@ All fields covered. Tests: 0. MISSING.
 - [x] Batch 2: Rename info/allowed-fields, delete dead JSONSchema files
 - [x] Batch 3: Add tests for arazzoSpecification1, components, criterion
 - [x] Batch 4: Add tests for criterionExpressionType, requestBody, payloadReplacement, reusable
-- [ ] Batch 5: Final verification and documentation update
+- [x] Batch 5: Final verification and documentation update
 
 ### Notes on Untestable Rules
 

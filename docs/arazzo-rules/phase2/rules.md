@@ -63,6 +63,7 @@ This document lists all linting rules implemented in Phase 1 for the Arazzo 1.0.
 | ARAZZO_WORKFLOW_FIELD_FAILURE_ACTIONS_TYPE | failure-actions--type | failureActions array of failureAction/reusable |
 | ARAZZO_WORKFLOW_FIELD_OUTPUTS_TYPE | outputs--type | outputs must be an object |
 | ARAZZO_WORKFLOW_FIELD_OUTPUTS_KEYS_PATTERN | outputs--keys-pattern | output keys match [a-zA-Z0-9.\-_]+ |
+| ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE | outputs--values-type | output values must be strings (Runtime Expressions) |
 | ARAZZO_WORKFLOW_FIELD_PARAMETERS_TYPE | parameters--type | parameters array of parameter/reusable |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields list + x- |
 
@@ -83,6 +84,7 @@ This document lists all linting rules implemented in Phase 1 for the Arazzo 1.0.
 | ARAZZO_STEP_FIELD_ON_FAILURE_TYPE | on-failure--type | onFailure array of failureAction/reusable |
 | ARAZZO_STEP_FIELD_OUTPUTS_TYPE | outputs--type | outputs must be an object |
 | ARAZZO_STEP_FIELD_OUTPUTS_KEYS_PATTERN | outputs--keys-pattern | output keys match [a-zA-Z0-9.\-_]+ |
+| ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE | outputs--values-type | output values must be strings (Runtime Expressions) |
 | ARAZZO_STEP_FIELD_PARAMETERS_TYPE | parameters--type | parameters array of parameter/reusable |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields list + x- |
 
@@ -135,12 +137,16 @@ This document lists all linting rules implemented in Phase 1 for the Arazzo 1.0.
 |------|-----------|-------------|
 | ARAZZO_COMPONENTS_FIELD_INPUTS_TYPE | inputs--type | inputs must be an object |
 | ARAZZO_COMPONENTS_FIELD_INPUTS_VALUES_TYPE | inputs--values-type | inputs values must be JSONSchema |
+| ARAZZO_COMPONENTS_FIELD_INPUTS_KEYS_PATTERN | inputs--keys-pattern | inputs keys match [a-zA-Z0-9.\-_]+ |
 | ARAZZO_COMPONENTS_FIELD_PARAMETERS_TYPE | parameters--type | parameters must be an object |
 | ARAZZO_COMPONENTS_FIELD_PARAMETERS_VALUES_TYPE | parameters--values-type | parameters values must be parameter |
+| ARAZZO_COMPONENTS_FIELD_PARAMETERS_KEYS_PATTERN | parameters--keys-pattern | parameters keys match [a-zA-Z0-9.\-_]+ |
 | ARAZZO_COMPONENTS_FIELD_SUCCESS_ACTIONS_TYPE | success-actions--type | successActions must be an object |
 | ARAZZO_COMPONENTS_FIELD_SUCCESS_ACTIONS_VALUES_TYPE | success-actions--values-type | successActions values must be successAction |
+| ARAZZO_COMPONENTS_FIELD_SUCCESS_ACTIONS_KEYS_PATTERN | success-actions--keys-pattern | successActions keys match [a-zA-Z0-9.\-_]+ |
 | ARAZZO_COMPONENTS_FIELD_FAILURE_ACTIONS_TYPE | failure-actions--type | failureActions must be an object |
 | ARAZZO_COMPONENTS_FIELD_FAILURE_ACTIONS_VALUES_TYPE | failure-actions--values-type | failureActions values must be failureAction |
+| ARAZZO_COMPONENTS_FIELD_FAILURE_ACTIONS_KEYS_PATTERN | failure-actions--keys-pattern | failureActions keys match [a-zA-Z0-9.\-_]+ |
 | NOT_ALLOWED_FIELDS | allowed-fields | Only inputs, parameters, successActions, failureActions + x- |
 
 ## Criterion Object (target: `criterion`)

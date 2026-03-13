@@ -1,10 +1,10 @@
 # Arazzo 1.0.1 Linting Rules Documentation
 
-This document provides detailed documentation for all Arazzo linting rules implemented in Phase 1 of the Arazzo specification validation effort.
+This document provides detailed documentation for all Arazzo linting rules after Phase 2 validation and refinement.
 
 ## Overview
 
-Phase 1 rules focus on structural validation of Arazzo 1.0.1 documents. These rules verify that documents conform to the specification in terms of required fields, field types, allowed values, naming patterns, and structural constraints. The rules are organized by the Arazzo specification objects they target.
+The rules provide structural validation of Arazzo 1.0.1 documents, verifying conformance to the specification in terms of required fields, field types, allowed values, naming patterns, and structural constraints. The rules are organized by the Arazzo specification objects they target.
 
 All rules are implemented as `LinterMeta` definitions under `packages/apidom-ls/src/config/arazzo/` and follow the existing codebase patterns. Error codes use the `9XXYYZZ` numbering scheme where `XX` identifies the object category (04 for root spec, 05 for source description, 06 for workflow, etc.).
 
@@ -24,11 +24,11 @@ Each Source Description identifies a referenced API document. The `name` and `ur
 
 ## Workflow Object
 
-A Workflow describes a sequence of steps. The `workflowId` and `steps` fields are required. The `workflowId` must match `[A-Za-z0-9_\-]+` and the `steps` array must contain at least one entry. Optional fields include `summary`, `description`, `inputs` (a JSON Schema object), `dependsOn` (array of strings), `successActions` and `failureActions` (arrays of Success/Failure Action or Reusable Objects), `outputs` (an object whose keys must match `[a-zA-Z0-9.\-_]+`), and `parameters` (array of Parameter or Reusable Objects).
+A Workflow describes a sequence of steps. The `workflowId` and `steps` fields are required. The `workflowId` must match `[A-Za-z0-9_\-]+` and the `steps` array must contain at least one entry. Optional fields include `summary`, `description`, `inputs` (a JSON Schema object), `dependsOn` (array of strings), `successActions` and `failureActions` (arrays of Success/Failure Action or Reusable Objects), `outputs` (an object whose keys must match `[a-zA-Z0-9.\-_]+` and whose values must be strings representing Runtime Expressions), and `parameters` (array of Parameter or Reusable Objects).
 
 ## Step Object
 
-A Step represents a single operation within a workflow. The `stepId` is required and must match `[A-Za-z0-9_\-]+`. The step should reference an operation or workflow via `operationId`, `operationPath`, or `workflowId` (all string types when present). Optional fields include `description`, `parameters`, `requestBody` (a Request Body Object), `successCriteria` (array of Criterion Objects), `onSuccess` and `onFailure` (arrays of action/reusable objects), and `outputs`.
+A Step represents a single operation within a workflow. The `stepId` is required and must match `[A-Za-z0-9_\-]+`. The step should reference an operation or workflow via `operationId`, `operationPath`, or `workflowId` (all string types when present). Optional fields include `description`, `parameters`, `requestBody` (a Request Body Object), `successCriteria` (array of Criterion Objects), `onSuccess` and `onFailure` (arrays of action/reusable objects), and `outputs` (an object whose keys must match `[a-zA-Z0-9.\-_]+` and whose values must be strings representing Runtime Expressions).
 
 ## Parameter Object
 
@@ -44,7 +44,7 @@ A Failure Action defines behavior on step failure. Both `name` and `type` are re
 
 ## Components Object
 
-The Components Object holds reusable definitions. All four fields (`inputs`, `parameters`, `successActions`, `failureActions`) are optional objects. When present, their values are type-checked: `inputs` values must be JSON Schema Objects, `parameters` values must be Parameter Objects, `successActions` values must be Success Action Objects, and `failureActions` values must be Failure Action Objects.
+The Components Object holds reusable definitions. All four fields (`inputs`, `parameters`, `successActions`, `failureActions`) are optional objects. When present, their values are type-checked: `inputs` values must be JSON Schema Objects, `parameters` values must be Parameter Objects, `successActions` values must be Success Action Objects, and `failureActions` values must be Failure Action Objects. All component map keys must match the pattern `^[a-zA-Z0-9.\-_]+$`.
 
 ## Criterion Object
 
