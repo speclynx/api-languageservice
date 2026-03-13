@@ -15,6 +15,8 @@ You will perform this task in the following steps:
 1. Understand the rules engine mechanism and the format of the rules, looking at existing arazzo rules in draft status and to openapi and asyncapi rules in `packages/apidom-ls/src/config`.
 Take your time to understand the rules engine mechanism and the format of the rules.
 
+The "target" possible values are identified in section below titled `Defined "element" and "classes" values usable as "target" of rules ("main target and/or target field in the rule definition")`
+
 2. Produce an overall plan to achieve the goal and store it in a Markdown file in `/docs/arazzo-rules/phase1`.
 
 The plan must include checkboxes for each step in the plan, to be updated while proceeding.
@@ -52,6 +54,59 @@ Adapt this procedure if you see evident issues with the current approach, ask fi
 * JSON Schema rules are already implemented and in fairly good shape. For these just integrate or fix what missing/wrong (pay attention to the `discriminator` property) and add the markdown files and tests
 * under the hood this makes use of ApiDOM project, providing the `element` and `meta.classes` properties of the node used by the rules engine
 * Each final rules definition must be comprehensive and valid according expected structure and content.
+
+### Defined "element" and "classes" values usable as "target" of rules ("main target and/or `target` field in the rule definition")
+
+api
+arazzo
+arazzo-reference
+arazzo-version
+arazzoSpecification1
+components
+components-failure-actions
+components-inputs
+components-parameters
+components-success-actions
+criteria
+criterion
+criterionExpressionType
+failure-action-criteria
+failureAction
+info
+JSONSchema
+parameter
+parameters
+patterned-field
+payloadReplacement
+reference-element
+reference-value
+request-body-replacements
+requestBody
+reusable
+source-description-url
+source-descriptions
+sourceDescription
+spec-version
+specification-extension
+step
+step-depends-on
+step-on-failure
+step-on-success
+step-outputs
+step-parameters
+step-success-criteria
+success-action-criteria
+successAction
+version
+workflow
+workflow-depends-on
+workflow-failure-actions
+workflow-outputs
+workflow-parameters
+workflow-steps
+workflow-success-actions
+workflows
+
 
 ### Sources and links
 
