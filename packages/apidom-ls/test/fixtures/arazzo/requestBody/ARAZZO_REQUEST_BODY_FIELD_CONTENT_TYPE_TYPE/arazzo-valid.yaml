@@ -1,0 +1,19 @@
+arazzo: 1.0.1
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.1
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+workflows:
+  - workflowId: create-pet-workflow
+    steps:
+      - stepId: create-pet
+        operationId: $sourceDescriptions.petStore.createPet
+        requestBody:
+          contentType: application/json
+          payload:
+            name: Fido
+        successCriteria:
+          - condition: $statusCode == 201

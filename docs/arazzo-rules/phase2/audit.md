@@ -161,8 +161,20 @@ All fields covered. Tests: 0. MISSING.
 
 ## Fix Plan
 
-- [ ] Batch 1: Add missing rules (outputs--values-type for workflow/step, keys-pattern for components)
-- [ ] Batch 2: Rename info/allowed-fields, delete dead JSONSchema files
-- [ ] Batch 3: Add tests for arazzoSpecification1, components, criterion
-- [ ] Batch 4: Add tests for criterionExpressionType, requestBody, payloadReplacement, reusable
+- [x] Batch 1: Add missing rules (outputs--values-type for workflow/step, keys-pattern for components)
+- [x] Batch 2: Rename info/allowed-fields, delete dead JSONSchema files
+- [x] Batch 3: Add tests for arazzoSpecification1, components, criterion
+- [x] Batch 4: Add tests for criterionExpressionType, requestBody, payloadReplacement, reusable
 - [ ] Batch 5: Final verification and documentation update
+
+### Notes on Untestable Rules
+
+Some rules cannot be tested in isolation due to ApiDOM parser behavior:
+
+The `arazzo--required` and `arazzo--pattern` rules on the arazzoSpecification1 element are untestable because the `arazzo` field value is what the parser uses to identify the document as an Arazzo spec. Without it (or with a non-matching version), the parser doesn't create arazzo elements, so rules never fire.
+
+The `criterionExpressionType` rules for `type--required` and `type--equals` are similarly untestable because the parser relies on the `type` field's value to identify the element as a CriterionExpressionType. Invalid values cause the parser to not create the element at all.
+
+The `reusable` `reference--required` rule is untestable because the `reference` field is what the parser uses to distinguish Reusable Objects from Parameter Objects. Without it, the parser creates a Parameter instead.
+
+These rules are structurally correct and provide value in the metadata. They would fire in contexts where the parser creates these elements through different pathways (e.g., custom configurations).

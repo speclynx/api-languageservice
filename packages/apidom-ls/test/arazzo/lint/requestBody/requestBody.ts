@@ -17,7 +17,7 @@ import codes from '../../../../src/config/codes.ts';
 
 const fixturesDir = fileURLToPath(new URL('../../../fixtures', import.meta.url));
 
-describe('test-arazzo-linting-step', function () {
+describe('test-arazzo-linting-requestBody', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {
@@ -30,7 +30,7 @@ describe('test-arazzo-linting-step', function () {
     logLevel,
   };
 
-  it('test ARAZZO_STEP_FIELD_STEP_ID_REQUIRED', async function () {
+  it('test ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE', async function () {
     const validationContext: ValidationContext = {
       comments: DiagnosticSeverity.Error,
       maxNumberOfProblems: 100,
@@ -42,122 +42,8 @@ describe('test-arazzo-linting-step', function () {
         path.join(
           fixturesDir,
           'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_STEP_ID_REQUIRED',
-          'arazzo-invalid.yaml',
-        ),
-      )
-      .toString();
-
-    const docInvalid: TextDocument = TextDocument.create(
-      'foo://bar/arazzo-invalid.yaml',
-      'yaml',
-      0,
-      specInvalid,
-    );
-
-    const specValid = fs
-      .readFileSync(
-        path.join(
-          fixturesDir,
-          'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_STEP_ID_REQUIRED',
-          'arazzo-valid.yaml',
-        ),
-      )
-      .toString();
-
-    const docValid: TextDocument = TextDocument.create(
-      'foo://bar/arazzo-valid.yaml',
-      'yaml',
-      0,
-      specValid,
-    );
-
-    const languageService: LanguageService = getLanguageService(context);
-
-    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
-    assert(resultInvalid.length > 0);
-    assert(resultInvalid[0].code === codes.ARAZZO_STEP_FIELD_STEP_ID_REQUIRED);
-
-    const resultValid = await languageService.doValidation(docValid, validationContext);
-    assert(resultValid.length == 0);
-
-    languageService.terminate();
-  });
-
-  it('test ARAZZO_STEP_FIELD_DESCRIPTION_TYPE', async function () {
-    const validationContext: ValidationContext = {
-      comments: DiagnosticSeverity.Error,
-      maxNumberOfProblems: 100,
-      relatedInformation: false,
-    };
-
-    const specInvalid = fs
-      .readFileSync(
-        path.join(
-          fixturesDir,
-          'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_DESCRIPTION_TYPE',
-          'arazzo-invalid.yaml',
-        ),
-      )
-      .toString();
-
-    const docInvalid: TextDocument = TextDocument.create(
-      'foo://bar/arazzo-invalid.yaml',
-      'yaml',
-      0,
-      specInvalid,
-    );
-
-    const specValid = fs
-      .readFileSync(
-        path.join(
-          fixturesDir,
-          'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_DESCRIPTION_TYPE',
-          'arazzo-valid.yaml',
-        ),
-      )
-      .toString();
-
-    const docValid: TextDocument = TextDocument.create(
-      'foo://bar/arazzo-valid.yaml',
-      'yaml',
-      0,
-      specValid,
-    );
-
-    const languageService: LanguageService = getLanguageService(context);
-
-    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
-    assert(resultInvalid.length > 0);
-    assert(resultInvalid[0].code === codes.ARAZZO_STEP_FIELD_DESCRIPTION_TYPE);
-
-    const resultValid = await languageService.doValidation(docValid, validationContext);
-    assert(resultValid.length == 0);
-
-    languageService.terminate();
-  });
-
-  it('test ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE', async function () {
-    const validationContext: ValidationContext = {
-      comments: DiagnosticSeverity.Error,
-      maxNumberOfProblems: 100,
-      relatedInformation: false,
-    };
-
-    const specInvalid = fs
-      .readFileSync(
-        path.join(
-          fixturesDir,
-          'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE',
+          'requestBody',
+          'ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE',
           'arazzo-invalid.yaml',
         ),
       )
@@ -169,8 +55,8 @@ describe('test-arazzo-linting-step', function () {
         path.join(
           fixturesDir,
           'arazzo',
-          'step',
-          'ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE',
+          'requestBody',
+          'ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE',
           'arazzo-valid.yaml',
         ),
       )
@@ -181,17 +67,70 @@ describe('test-arazzo-linting-step', function () {
 
     const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
     const errors = resultInvalid.filter(
-      (d) => d.code === codes.ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE,
+      (d) => d.code === codes.ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE,
     );
-    assert(errors.length > 0, 'Expected ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE error');
+    assert(errors.length > 0, 'Expected ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE error');
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const validErrors = resultValid.filter(
-      (d) => d.code === codes.ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE,
+      (d) => d.code === codes.ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE,
     );
     assert(
       validErrors.length === 0,
-      'Expected no ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE errors',
+      'Expected no ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE errors',
+    );
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'requestBody',
+          'ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid = TextDocument.create('foo://bar/invalid.yaml', 'yaml', 0, specInvalid);
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'requestBody',
+          'ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid = TextDocument.create('foo://bar/valid.yaml', 'yaml', 0, specValid);
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const errors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE,
+    );
+    assert(errors.length > 0, 'Expected ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE error');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const validErrors = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE,
+    );
+    assert(
+      validErrors.length === 0,
+      'Expected no ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE errors',
     );
 
     languageService.terminate();

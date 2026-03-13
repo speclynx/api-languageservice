@@ -200,4 +200,57 @@ describe('test-arazzo-linting-workflow', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid = TextDocument.create('foo://bar/invalid.yaml', 'yaml', 0, specInvalid);
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid = TextDocument.create('foo://bar/valid.yaml', 'yaml', 0, specValid);
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const errors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE,
+    );
+    assert(errors.length > 0, 'Expected ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE error');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const validErrors = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE,
+    );
+    assert(
+      validErrors.length === 0,
+      'Expected no ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE errors',
+    );
+
+    languageService.terminate();
+  });
 });
