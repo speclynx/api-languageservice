@@ -1,6 +1,6 @@
 # Arazzo 1.0.1 Linting Rules Documentation
 
-This document provides detailed documentation for all Arazzo linting rules after Phase 2 validation and refinement.
+This document provides detailed documentation for all Arazzo linting rules after Phase 3 validation, refinement, and enhancement.
 
 ## Overview
 
