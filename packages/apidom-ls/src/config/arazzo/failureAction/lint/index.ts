@@ -10,6 +10,10 @@ import retryAfterNonNegativeLint from './retry-after--non-negative.ts';
 import retryLimitTypeLint from './retry-limit--type.ts';
 import retryLimitNonNegativeLint from './retry-limit--non-negative.ts';
 import criteriaTypeLint from './criteria--type.ts';
+import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
+import stepIdMutuallyExclusiveLint from './step-id--mutually-exclusive.ts';
+import retryAfterOnlyRetryLint from './retry-after--only-retry.ts';
+import retryLimitOnlyRetryLint from './retry-limit--only-retry.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -20,10 +24,14 @@ const lints = [
   typeEqualsLint,
   workflowIdTypeLint,
   stepIdTypeLint,
+  workflowIdMutuallyExclusiveLint,
+  stepIdMutuallyExclusiveLint,
   retryAfterTypeLint,
   retryAfterNonNegativeLint,
   retryLimitTypeLint,
   retryLimitNonNegativeLint,
+  retryAfterOnlyRetryLint,
+  retryLimitOnlyRetryLint,
   criteriaTypeLint,
   allowedFieldsLint,
 ];

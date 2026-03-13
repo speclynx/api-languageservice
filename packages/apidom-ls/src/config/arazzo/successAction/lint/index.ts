@@ -6,6 +6,8 @@ import typeEqualsLint from './type--equals.ts';
 import workflowIdTypeLint from './workflow-id--type.ts';
 import stepIdTypeLint from './step-id--type.ts';
 import criteriaTypeLint from './criteria--type.ts';
+import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
+import stepIdMutuallyExclusiveLint from './step-id--mutually-exclusive.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -16,6 +18,8 @@ const lints = [
   typeEqualsLint,
   workflowIdTypeLint,
   stepIdTypeLint,
+  workflowIdMutuallyExclusiveLint,
+  stepIdMutuallyExclusiveLint,
   criteriaTypeLint,
   allowedFieldsLint,
 ];

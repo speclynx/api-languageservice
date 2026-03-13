@@ -196,4 +196,57 @@ describe('test-arazzo-linting-step', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid = TextDocument.create('foo://bar/invalid.yaml', 'yaml', 0, specInvalid);
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid = TextDocument.create('foo://bar/valid.yaml', 'yaml', 0, specValid);
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const errors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE,
+    );
+    assert(errors.length > 0, 'Expected ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE error');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const validErrors = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE,
+    );
+    assert(
+      validErrors.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_OPERATION_ID_MUTUALLY_EXCLUSIVE errors',
+    );
+
+    languageService.terminate();
+  });
 });

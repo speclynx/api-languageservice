@@ -149,4 +149,58 @@ describe('test-arazzo-linting-successAction', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'successAction',
+          'ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid = TextDocument.create('foo://bar/invalid.yaml', 'yaml', 0, specInvalid);
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'successAction',
+          'ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid = TextDocument.create('foo://bar/valid.yaml', 'yaml', 0, specValid);
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const errors = resultInvalid.filter(
+      (d) =>
+        d.code === codes.ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE ||
+        d.code === codes.ARAZZO_SUCCESS_ACTION_FIELD_STEP_ID_MUTUALLY_EXCLUSIVE,
+    );
+    assert(errors.length > 0, 'Expected mutual exclusivity error for workflowId and stepId');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const validErrors = resultValid.filter(
+      (d) =>
+        d.code === codes.ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE ||
+        d.code === codes.ARAZZO_SUCCESS_ACTION_FIELD_STEP_ID_MUTUALLY_EXCLUSIVE,
+    );
+    assert(validErrors.length === 0, 'Expected no mutual exclusivity errors');
+
+    languageService.terminate();
+  });
 });

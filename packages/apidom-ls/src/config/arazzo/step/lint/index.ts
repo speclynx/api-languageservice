@@ -13,6 +13,9 @@ import outputsTypeLint from './outputs--type.ts';
 import outputsKeysPatternLint from './outputs--keys-pattern.ts';
 import outputsValuesTypeLint from './outputs--values-type.ts';
 import parametersTypeLint from './parameters--type.ts';
+import operationIdMutuallyExclusiveLint from './operation-id--mutually-exclusive.ts';
+import operationPathMutuallyExclusiveLint from './operation-path--mutually-exclusive.ts';
+import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -23,6 +26,9 @@ const lints = [
   operationIdTypeLint,
   operationPathTypeLint,
   workflowIdTypeLint,
+  operationIdMutuallyExclusiveLint,
+  operationPathMutuallyExclusiveLint,
+  workflowIdMutuallyExclusiveLint,
   requestBodyTypeLint,
   successCriteriaTypeLint,
   onSuccessTypeLint,
