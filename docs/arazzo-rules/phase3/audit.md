@@ -56,6 +56,16 @@ For the "only applies when type is X" rules, the condition checks that the field
 
 All 182 tests pass (43 Arazzo-specific tests).
 
+## Investigated But Not Implementable
+
+### Uniqueness Rules (workflowId, sourceDescription name)
+
+The specification requires `workflowId` to be unique across all workflows and `sourceDescription.name` to be unique. The `apilintPropertyUniqueValue` function exists in the linter functions library but it calls `root(element)` and then traverses the element tree using `filter()`. When applied to Arazzo elements, this causes `ApiDOMStructuredError: Invalid AST Node: undefined` because the Arazzo element tree structure differs from OpenAPI's. The traversal encounters undefined nodes when navigating from a field value back to the root.
+
+Similarly, `stepId` uniqueness ("MUST be unique amongst all steps described in the workflow") would require scoping to the parent workflow, which `apilintPropertyUniqueValue` doesn't support since it always searches from the root.
+
+These uniqueness constraints are better handled by reference validation rather than structural linting rules.
+
 ## Fix Plan
 
 - [x] Batch 1: Step mutual exclusivity rules
@@ -63,4 +73,4 @@ All 182 tests pass (43 Arazzo-specific tests).
 - [x] Batch 3: Failure Action mutual exclusivity and retry-only rules
 - [x] Batch 4: Criterion context-required-when-type rule
 - [x] Batch 5: Parameter in--equals bug fix
-- [ ] Batch 6: Additional targets analysis and documentation
+- [x] Batch 6: Remaining targets analysis and documentation
