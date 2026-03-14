@@ -31,6 +31,18 @@ import {
 } from '../../utils/utils.ts';
 import { FunctionItem } from '../../apidom-language-types.ts';
 
+const regexCache = new Map<string, RegExp>();
+
+const getCachedRegex = (pattern: string, flags?: string): RegExp => {
+  const cacheKey = flags ? `${pattern}|||${flags}` : pattern;
+  let regex = regexCache.get(cacheKey);
+  if (!regex) {
+    regex = new RegExp(pattern, flags);
+    regexCache.set(cacheKey, regex);
+  }
+  return regex;
+};
+
 const root = (el: Element): Element => {
   const rootElementTypes = ['swagger', 'openApi3_0', 'openApi3_1', 'asyncApi2'];
   let node = el;
@@ -89,19 +101,13 @@ const casing = (
   if (!casingRegexString) {
     return true;
   }
-  let regex = new RegExp(`^${casingRegexString}$`);
+  let pattern = `^${casingRegexString}$`;
   if (separatorChar) {
     const separatorRegexString = `[${escapeRegExp(separatorChar)}]`;
     const separatorFirstCharString = separatorAsFirstChar ? `${separatorRegexString}?` : '';
-    regex = new RegExp(
-      `^${separatorFirstCharString}${casingRegexString}(?:${separatorRegexString}${casingRegexString})*$`,
-    );
+    pattern = `^${separatorFirstCharString}${casingRegexString}(?:${separatorRegexString}${casingRegexString})*$`;
   }
-  if (!regex.test(value)) {
-    return false;
-  }
-
-  return true;
+  return getCachedRegex(pattern).test(value);
 };
 
 const isType = (element: Element, elementType: string): boolean => {
@@ -200,23 +206,13 @@ export const standardLinterfunctions: FunctionItem[] = [
       allowExtensionPrefix: string | undefined,
     ): boolean => {
       if (element && isObject(element)) {
-        if (
-          element.findElements(
-            (e) => {
-              const keyValue = toValue((e as MemberElement).key) as string | undefined;
-              const included = keyValue ? keys.includes(keyValue) : false;
-              const isExtension =
-                allowExtensionPrefix !== undefined &&
-                keyValue !== undefined &&
-                keyValue.startsWith(allowExtensionPrefix);
-              return !included && (allowExtensionPrefix === undefined || !isExtension);
-            },
-            {
-              recursive: false,
-            },
-          ).length > 0
-        ) {
-          return false;
+        const allowedSet = new Set(keys);
+        for (const keyValue of element.keys() as string[]) {
+          if (!allowedSet.has(keyValue)) {
+            if (allowExtensionPrefix === undefined || !keyValue.startsWith(allowExtensionPrefix)) {
+              return false;
+            }
+          }
         }
       }
       return true;
@@ -227,8 +223,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, key: string, regexString: string): boolean => {
       if (element && isObject(element)) {
         if (element.get(key)) {
-          const regex = new RegExp(regexString);
-          if (!regex.test(toValue(element.get(key)) as string)) {
+          if (!getCachedRegex(regexString).test(toValue(element.get(key)) as string)) {
             return false;
           }
         }
@@ -240,8 +235,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintValueRegex',
     function: (element: Element, regexString: string, elementType?: string): boolean => {
       if (element) {
-        const regex = new RegExp(regexString);
-        if (!regex.test(toValue(element) as string)) {
+        if (!getCachedRegex(regexString).test(toValue(element) as string)) {
           return false;
         }
         if (elementType) {
@@ -258,8 +252,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, regexString: string): boolean => {
       if (element && element.parent && isMember(element.parent)) {
         const elKey = toValue(element.parent.key as Element) as string;
-        const regex = new RegExp(regexString);
-        if (!regex.test(elKey)) {
+        if (!getCachedRegex(regexString).test(elKey)) {
           return false;
         }
       }
@@ -381,22 +374,15 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintArrayOfElementsOrClasses',
     function: (element: Element, elementsOrClasses: string[], nonEmpty?: boolean): boolean => {
       if (element) {
-        const elValue = toValue(element);
-        const isArrayVal = Array.isArray(elValue);
-        if (!isArrayVal) {
+        if (!isArray(element)) {
           return false;
         }
-        if (
-          (element as ArrayElement).findElements(
-            (e) => !apilintElementOrClass(e, elementsOrClasses),
-            {
-              recursive: false,
-            },
-          ).length > 0
-        ) {
-          return false;
+        for (const item of element as ArrayElement) {
+          if (!apilintElementOrClass(item as Element, elementsOrClasses)) {
+            return false;
+          }
         }
-        if (nonEmpty && elValue.length === 0) {
+        if (nonEmpty && (element as ArrayElement).length === 0) {
           return false;
         }
       }
@@ -410,15 +396,10 @@ export const standardLinterfunctions: FunctionItem[] = [
         return false;
       }
       if (element && isObject(element)) {
-        if (
-          element.findElements(
-            (e) => !apilintElementOrClass((e as MemberElement).value!, elementsOrClasses),
-            {
-              recursive: false,
-            },
-          ).length > 0
-        ) {
-          return false;
+        for (const member of element as ObjectElement) {
+          if (!apilintElementOrClass((member as MemberElement).value!, elementsOrClasses)) {
+            return false;
+          }
         }
       }
       return true;
@@ -441,19 +422,15 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintArrayOfType',
     function: (element: Element, type: string, nonEmpty?: boolean): boolean => {
       if (element) {
-        const elValue = toValue(element);
-        const isArrayVal = Array.isArray(elValue);
-        if (!isArrayVal) {
+        if (!isArray(element)) {
           return false;
         }
-        if (
-          (element as ArrayElement).findElements((e) => !isType(e, type), {
-            recursive: false,
-          }).length > 0
-        ) {
-          return false;
+        for (const item of element as ArrayElement) {
+          if (!isType(item as Element, type)) {
+            return false;
+          }
         }
-        if (nonEmpty && elValue.length === 0) {
+        if (nonEmpty && (element as ArrayElement).length === 0) {
           return false;
         }
       }
@@ -476,14 +453,12 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintChildrenOfType',
     function: (element: Element, type: string, nonEmpty?: boolean): boolean => {
       if (element && isObject(element)) {
-        if (
-          element.findElements((e) => !isType((e as MemberElement).value!, type), {
-            recursive: false,
-          }).length > 0
-        ) {
-          return false;
+        for (const member of element as ObjectElement) {
+          if (!isType((member as MemberElement).value!, type)) {
+            return false;
+          }
         }
-        if (nonEmpty && element.keys().length === 0) {
+        if (nonEmpty && (element as ObjectElement).length === 0) {
           return false;
         }
       }
@@ -696,12 +671,12 @@ export const standardLinterfunctions: FunctionItem[] = [
           return element.keys().every((v) => (targetEl as ObjectElement).keys().includes(v));
         }
         if (isArray(element)) {
-          return (
-            element.findElements(
-              (e) => !(targetEl as ObjectElement).keys().includes(toValue(e) as string),
-              {},
-            ).length === 0
-          );
+          const targetKeys = (targetEl as ObjectElement).keys() as string[];
+          for (const item of element as ArrayElement) {
+            if (!targetKeys.includes(toValue(item as Element) as string)) {
+              return false;
+            }
+          }
         }
       }
       return true;
@@ -729,11 +704,11 @@ export const standardLinterfunctions: FunctionItem[] = [
           return element.keys().every((v) => targetKeys.includes(toValue(v) as string));
         }
         if (isArray(element)) {
-          return (
-            element.findElements((e) => {
-              return !targetKeys.includes(toValue(e) as string);
-            }, {}).length === 0
-          );
+          for (const item of element as ArrayElement) {
+            if (!targetKeys.includes(toValue(item as Element) as string)) {
+              return false;
+            }
+          }
         }
       }
       return true;
@@ -823,13 +798,8 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintKeysRegex',
     function: (element: Element, regexString: string): boolean => {
       if (element && isObject(element)) {
-        if (isObject(element)) {
-          const regex = new RegExp(regexString);
-
-          return (element.keys() as string[]).every((v) => {
-            return regex.test(v);
-          });
-        }
+        const regex = getCachedRegex(regexString);
+        return (element.keys() as string[]).every((v) => regex.test(v));
       }
       return true;
     },
@@ -838,17 +808,12 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintMembersKeysRegex',
     function: (element: Element, regexString: string): boolean => {
       if (element && isObject(element)) {
-        if (isObject(element)) {
-          const regex = new RegExp(regexString);
-          for (const key of element.keys() as string[]) {
-            const member = element.get(key);
-            if (member && isObject(member)) {
-              const ok = ((member as ObjectElement).keys() as string[]).every((v) => {
-                return regex.test(v);
-              });
-              if (!ok) {
-                return ok;
-              }
+        const regex = getCachedRegex(regexString);
+        for (const key of element.keys() as string[]) {
+          const member = element.get(key);
+          if (member && isObject(member)) {
+            if (!((member as ObjectElement).keys() as string[]).every((v) => regex.test(v))) {
+              return false;
             }
           }
         }
@@ -1012,11 +977,13 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (!targetEl) {
           return !arrayMustExist;
         }
-        const isIncluded =
-          (targetEl as ArrayElement).findElements((e) => toValue(e) === toValue(element), {
-            recursive: false,
-          }).length > 0;
-        return isIncluded;
+        const elementValue = toValue(element);
+        for (const item of targetEl as ArrayElement) {
+          if (toValue(item as Element) === elementValue) {
+            return true;
+          }
+        }
+        return false;
       }
       return true;
     },
@@ -1139,3 +1106,7 @@ export const standardLinterfunctions: FunctionItem[] = [
     },
   },
 ];
+
+export const standardLinterfunctionsMap: Map<string, FunctionItem['function']> = new Map(
+  standardLinterfunctions.map((item) => [item.functionName, item.function]),
+);

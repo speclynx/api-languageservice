@@ -39,10 +39,9 @@ import {
   processPath,
   error,
   info,
-  SourceMap,
   getReferencedElementValue,
 } from '../../utils/utils.ts';
-import { standardLinterfunctions } from './linter-functions.ts';
+import { standardLinterfunctionsMap } from './linter-functions.ts';
 
 enum PerfLabels {
   START = 'doValidation',
@@ -152,13 +151,32 @@ export class DefaultValidationService implements ValidationService {
     }
   }
 
+  private static matchesTargetSpecs(rule: LinterMeta, docNs: string, specVersion: string): boolean {
+    if (!rule.targetSpecs) return true;
+    return rule.targetSpecs.some((nsv) => {
+      if (!nsv.version || nsv.version === '') {
+        return nsv.namespace === docNs;
+      } else if (nsv.version.includes('x')) {
+        const prefix = nsv.version.split('x', 1)[0].trim();
+        return nsv.namespace === docNs && specVersion.startsWith(prefix);
+      } else {
+        return nsv.namespace === docNs && nsv.version === specVersion;
+      }
+    });
+  }
+
   private getLintingRulesSemantic(
     doc: Element,
     symbol: string,
     docNs: string,
+    specVersion: string,
     validation: boolean,
     linting: boolean,
+    rulesCache: Map<string, LinterMeta[]>,
   ): LinterMeta[] {
+    const cached = rulesCache.get(symbol);
+    if (cached) return cached;
+
     let meta: LinterMeta[] = [];
     const metadataMap = doc.meta.get('metadataMap') as MetadataMap | undefined;
     const symbolMetadata = metadataMap?.[symbol];
@@ -167,27 +185,35 @@ export class DefaultValidationService implements ValidationService {
       meta = meta.concat(elementMeta);
       meta = meta.filter((r) => {
         const matchesCategory = DefaultValidationService.matchesCategory(validation, linting, r);
-        return !r.given && matchesCategory;
+        return (
+          !r.given &&
+          matchesCategory &&
+          DefaultValidationService.matchesTargetSpecs(r, docNs, specVersion)
+        );
       });
     }
     // get namespace rules with `given` populated as array
     try {
       if (!this.settings?.metadata?.rules) {
+        rulesCache.set(symbol, meta);
         return meta;
       }
       const rules = this.settings?.metadata?.rules;
       if (!rules[docNs]?.lint) {
+        rulesCache.set(symbol, meta);
         return meta;
       }
       meta = meta.concat(
         rules[docNs]!.lint!.filter((r) => {
           const matchesCategory = DefaultValidationService.matchesCategory(validation, linting, r);
+          if (!matchesCategory) return false;
+          if (!DefaultValidationService.matchesTargetSpecs(r, docNs, specVersion)) return false;
           const matchesArray =
             r.given !== undefined &&
             Array.isArray(r.given) &&
             r.given.includes(symbol) &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
-          if (matchesArray && matchesCategory) {
+          if (matchesArray) {
             return true;
           }
           const matchesString =
@@ -195,12 +221,13 @@ export class DefaultValidationService implements ValidationService {
             typeof r.given === 'string' &&
             r.given === symbol &&
             (!r.givenFormat || r.givenFormat === LinterGivenFormat.SEMANTIC);
-          return matchesString && matchesCategory;
+          return matchesString;
         }),
       );
     } catch (e) {
       error('error in retrieving semantic rules', e);
     }
+    rulesCache.set(symbol, meta);
     return meta;
   }
 
@@ -741,6 +768,7 @@ export class DefaultValidationService implements ValidationService {
     };
 
     const refElements: Element[] = [];
+    const rulesCache = new Map<string, LinterMeta[]>();
 
     const lint = (path: Path<Element>) => {
       const element = path.node;
@@ -754,7 +782,6 @@ export class DefaultValidationService implements ValidationService {
       ) {
         refElements.push(element);
       }
-      const sm = getSourceMap(element);
       if (referencedElement.length > 0) {
         // legacy lint local references
         if (isObject(element) && element.hasKey('$ref')) {
@@ -765,43 +792,42 @@ export class DefaultValidationService implements ValidationService {
         }
       }
       if (element.classes) {
-        const set: string[] = Array.from(new Set(element.classes as string[]));
-        // add element value to the set (e.g. 'pathItem', 'operation'
-        if (!set.includes(element.element)) {
-          set.unshift(element.element);
+        // Build deduplicated symbol set for rule lookup
+        const seen = new Set<string>();
+        const symbols: string[] = ['*'];
+        seen.add('*');
+
+        if (referencedElement.length > 0 && !seen.has(referencedElement)) {
+          symbols.push(referencedElement);
+          seen.add(referencedElement);
         }
-        if (referencedElement.length > 0) {
-          if (!set.includes(referencedElement)) {
-            set.unshift(referencedElement);
+        if (!seen.has(element.element)) {
+          symbols.push(element.element);
+          seen.add(element.element);
+        }
+        for (const cls of element.classes as string[]) {
+          if (!seen.has(cls)) {
+            symbols.push(cls);
+            seen.add(cls);
           }
         }
-        set.unshift('*');
 
-        set.forEach((s) => {
-          if (semanticValidationEnabled || semanticLintingEnabled) {
+        if (semanticValidationEnabled || semanticLintingEnabled) {
+          for (const s of symbols) {
             const semanticLintingRules = this.getLintingRulesSemantic(
               api,
               s,
               docNs,
+              specVersion,
               semanticValidationEnabled,
               semanticLintingEnabled,
+              rulesCache,
             );
-            if (semanticLintingRules && semanticLintingRules.length > 0) {
-              for (const meta of semanticLintingRules) {
-                this.processRule(
-                  meta,
-                  diagnostics,
-                  textDocument,
-                  api,
-                  element,
-                  sm,
-                  docNs,
-                  specVersion,
-                );
-              }
+            for (const meta of semanticLintingRules) {
+              this.processRule(meta, diagnostics, textDocument, api, element, docNs, specVersion);
             }
           }
-        });
+        }
       }
     };
     forEach(api, lint);
@@ -849,8 +875,7 @@ export class DefaultValidationService implements ValidationService {
               for (const givenItem of r.given as string[]) {
                 const elements: Element[] = evaluate(api, givenItem);
                 elements.forEach((el) => {
-                  const sm = getSourceMap(el);
-                  this.processRule(r, diagnostics, textDocument, api, el, sm, docNs, specVersion);
+                  this.processRule(r, diagnostics, textDocument, api, el, docNs, specVersion);
                 });
               }
             }
@@ -859,14 +884,12 @@ export class DefaultValidationService implements ValidationService {
               const elements: Element[] = evaluate(api, r.given as string);
               if (elements && elements.length > 0) {
                 for (const ruleElement of elements) {
-                  const sm = getSourceMap(ruleElement);
                   this.processRule(
                     r,
                     diagnostics,
                     textDocument,
                     api,
                     ruleElement,
-                    sm,
                     docNs,
                     specVersion,
                   );
@@ -909,31 +932,16 @@ export class DefaultValidationService implements ValidationService {
     textDocument: TextDocument,
     api: Element,
     element: Element,
-    sm: SourceMap,
     docNs: string,
     specVersion: string,
   ): void {
-    if (
-      meta.targetSpecs &&
-      !meta.targetSpecs.some((nsv) => {
-        if (!nsv.version || nsv.version === '') {
-          return nsv.namespace === docNs;
-        } else if (nsv.version.includes('x')) {
-          const prefix = nsv.version.split('x', 1)[0].trim();
-          return nsv.namespace === docNs && specVersion.startsWith(prefix);
-        } else {
-          return nsv.namespace === docNs && nsv.version === specVersion;
-        }
-      })
-    ) {
+    if (!DefaultValidationService.matchesTargetSpecs(meta, docNs, specVersion)) {
       return;
     }
     const linterFuncName = meta.linterFunction;
     if (linterFuncName) {
       // first check if it is a standard function and exists.
-      let lintFunc = standardLinterfunctions.find(
-        (e) => e.functionName === linterFuncName,
-      )?.function;
+      let lintFunc = standardLinterfunctionsMap.get(linterFuncName);
       // else get it from configuration
       if (!lintFunc) {
         lintFunc = this.settings?.metadata?.linterFunctions[docNs][linterFuncName];
@@ -970,8 +978,8 @@ export class DefaultValidationService implements ValidationService {
             }
             if (meta.negate) lintRes = !lintRes;
             if (!lintRes) {
-              // add to diagnostics
-              let lintSm = sm;
+              // add to diagnostics - compute source map lazily (only on failure)
+              let lintSm = getSourceMap(element);
               // check if root
               if (!element.parent || element.parent.element === 'parseResult') {
                 // TODO use create

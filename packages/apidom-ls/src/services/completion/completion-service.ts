@@ -61,7 +61,7 @@ import {
   findNamespace,
   getReferencedElementValue,
 } from '../../utils/utils.ts';
-import { standardLinterfunctions } from '../validation/linter-functions.ts';
+import { standardLinterfunctionsMap } from '../validation/linter-functions.ts';
 
 export interface CompletionsCollector {
   add(suggestion: unknown): void;
@@ -1165,7 +1165,7 @@ export class DefaultCompletionService implements CompletionService {
       if (item.function) {
         const funcName = item.function;
         // first check if it is a standard function and exists.
-        let func = standardLinterfunctions.find((e) => e.functionName === funcName)?.function;
+        let func = standardLinterfunctionsMap.get(funcName);
         // else get it from configuration
         if (!func) {
           func = this.settings?.metadata?.linterFunctions[docNs][funcName];

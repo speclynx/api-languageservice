@@ -44,7 +44,7 @@ import {
   MetadataMaps,
   Pointer,
 } from '../apidom-language-types.ts';
-import { standardLinterfunctions } from '../services/validation/linter-functions.ts';
+import { standardLinterfunctionsMap } from '../services/validation/linter-functions.ts';
 
 let performanceLogs = false;
 let logLevel = LogLevel.WARN;
@@ -297,9 +297,7 @@ export function checkConditions(
       }
       const conditionFuncName = condition.function;
       // first check if it is a standard function and exists.
-      let conditionFunc = standardLinterfunctions.find(
-        (e) => e.functionName === conditionFuncName,
-      )?.function;
+      let conditionFunc = standardLinterfunctionsMap.get(conditionFuncName);
       // else get it from configuration
       if (!conditionFunc) {
         conditionFunc = settings?.metadata?.linterFunctions[docNs][conditionFuncName];
