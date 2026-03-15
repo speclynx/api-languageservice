@@ -38,6 +38,7 @@ import {
   perfStart,
   processPath,
   debug,
+  isDebugEnabled,
   error,
   info,
   getReferencedElementValue,
@@ -784,16 +785,19 @@ export class DefaultValidationService implements ValidationService {
 
     const refElements: Element[] = [];
     const rulesCache = new Map<string, LinterMeta[]>();
+    const profiling = isDebugEnabled();
     let elemCount = 0;
     let rulesEvalCount = 0;
     let processRuleCount = 0;
     let processRuleTotalMs = 0;
     let getLintRulesTotalMs = 0;
-    const perfStats = { conditionsMs: 0, lintFuncMs: 0, sourceMapMs: 0 };
-    const funcTimings = new Map<string, { calls: number; totalMs: number }>();
+    const perfStats = profiling ? { conditionsMs: 0, lintFuncMs: 0, sourceMapMs: 0 } : undefined;
+    const funcTimings = profiling
+      ? new Map<string, { calls: number; totalMs: number }>()
+      : undefined;
 
     const lint = (path: Path<Element>) => {
-      elemCount++;
+      if (profiling) elemCount++;
       const element = path.node;
       const referencedElement = getReferencedElementValue(element);
       if (
@@ -837,7 +841,7 @@ export class DefaultValidationService implements ValidationService {
 
         if (semanticValidationEnabled || semanticLintingEnabled) {
           for (const s of symbols) {
-            const tGetRules = performance.now();
+            const tGetRules = profiling ? performance.now() : 0;
             const semanticLintingRules = this.getLintingRulesSemantic(
               api,
               s,
@@ -847,11 +851,13 @@ export class DefaultValidationService implements ValidationService {
               semanticLintingEnabled,
               rulesCache,
             );
-            getLintRulesTotalMs += performance.now() - tGetRules;
-            rulesEvalCount += semanticLintingRules.length;
+            if (profiling) {
+              getLintRulesTotalMs += performance.now() - tGetRules;
+              rulesEvalCount += semanticLintingRules.length;
+            }
             for (const meta of semanticLintingRules) {
-              processRuleCount++;
-              const tRule = performance.now();
+              if (profiling) processRuleCount++;
+              const tRule = profiling ? performance.now() : 0;
               this.processRule(
                 meta,
                 diagnostics,
@@ -863,34 +869,36 @@ export class DefaultValidationService implements ValidationService {
                 perfStats,
                 funcTimings,
               );
-              processRuleTotalMs += performance.now() - tRule;
+              if (profiling) processRuleTotalMs += performance.now() - tRule;
             }
           }
         }
       }
     };
-    const tForEach = performance.now();
+    const tForEach = profiling ? performance.now() : 0;
     forEach(api, lint);
-    const forEachDuration = performance.now() - tForEach;
-    debug(
-      `[perf] doValidation: forEach traversal took ${forEachDuration.toFixed(2)}ms`,
-      `| elements: ${elemCount}`,
-      `| rulesEvaluated: ${rulesEvalCount}`,
-      `| processRuleCalls: ${processRuleCount}`,
-      `| processRuleTotal: ${processRuleTotalMs.toFixed(2)}ms`,
-      `| getLintRulesTotal: ${getLintRulesTotalMs.toFixed(2)}ms`,
-      `| conditionsTotal: ${perfStats.conditionsMs.toFixed(2)}ms`,
-      `| lintFuncTotal: ${perfStats.lintFuncMs.toFixed(2)}ms`,
-      `| sourceMapTotal: ${perfStats.sourceMapMs.toFixed(2)}ms`,
-      `| diagnostics: ${diagnostics.length}`,
-      `| rulesCached: ${rulesCache.size}`,
-    );
-    // Log per-function timing breakdown sorted by total time
-    const sortedFuncs = [...funcTimings.entries()].sort((a, b) => b[1].totalMs - a[1].totalMs);
-    for (const [name, stats] of sortedFuncs) {
+    if (profiling) {
+      const forEachDuration = performance.now() - tForEach;
       debug(
-        `[perf]   func ${name}: ${stats.totalMs.toFixed(2)}ms (${stats.calls} calls, ${((stats.totalMs / stats.calls) * 1000).toFixed(1)}us/call)`,
+        `[perf] doValidation: forEach traversal took ${forEachDuration.toFixed(2)}ms`,
+        `| elements: ${elemCount}`,
+        `| rulesEvaluated: ${rulesEvalCount}`,
+        `| processRuleCalls: ${processRuleCount}`,
+        `| processRuleTotal: ${processRuleTotalMs.toFixed(2)}ms`,
+        `| getLintRulesTotal: ${getLintRulesTotalMs.toFixed(2)}ms`,
+        `| conditionsTotal: ${perfStats!.conditionsMs.toFixed(2)}ms`,
+        `| lintFuncTotal: ${perfStats!.lintFuncMs.toFixed(2)}ms`,
+        `| sourceMapTotal: ${perfStats!.sourceMapMs.toFixed(2)}ms`,
+        `| diagnostics: ${diagnostics.length}`,
+        `| rulesCached: ${rulesCache.size}`,
       );
+      // Log per-function timing breakdown sorted by total time
+      const sortedFuncs = [...funcTimings!.entries()].sort((a, b) => b[1].totalMs - a[1].totalMs);
+      for (const [name, stats] of sortedFuncs) {
+        debug(
+          `[perf]   func ${name}: ${stats.totalMs.toFixed(2)}ms (${stats.calls} calls, ${((stats.totalMs / stats.calls) * 1000).toFixed(1)}us/call)`,
+        );
+      }
     }
     const tRefValidation = performance.now();
     if (refValidationMode !== ReferenceValidationMode.LEGACY && semanticRefValidationEnabled) {
@@ -1042,12 +1050,39 @@ export class DefaultValidationService implements ValidationService {
                 : element
               : element;
 
-          const tCond = performance.now();
-          const conditionsSuccess = checkConditions(meta, docNs, element, api, this.settings);
-          if (perfStats) perfStats.conditionsMs += performance.now() - tCond;
+          let conditionsSuccess: boolean;
+          if (perfStats) {
+            const tCond = performance.now();
+            conditionsSuccess = checkConditions(meta, docNs, element, api, this.settings);
+            perfStats.conditionsMs += performance.now() - tCond;
+          } else {
+            conditionsSuccess = checkConditions(meta, docNs, element, api, this.settings);
+          }
           if (conditionsSuccess) {
-            const tFunc = performance.now();
-            if (
+            if (perfStats) {
+              const tFunc = performance.now();
+              if (
+                meta.linterParams &&
+                Array.isArray(meta.linterParams) &&
+                meta.linterParams.length > 0
+              ) {
+                const params = [targetElement].concat(meta.linterParams);
+                lintRes = lintFunc(...params) as boolean;
+              } else {
+                lintRes = lintFunc(targetElement) as boolean;
+              }
+              const funcDuration = performance.now() - tFunc;
+              perfStats.lintFuncMs += funcDuration;
+              if (funcTimings && linterFuncName) {
+                const entry = funcTimings.get(linterFuncName);
+                if (entry) {
+                  entry.calls++;
+                  entry.totalMs += funcDuration;
+                } else {
+                  funcTimings.set(linterFuncName, { calls: 1, totalMs: funcDuration });
+                }
+              }
+            } else if (
               meta.linterParams &&
               Array.isArray(meta.linterParams) &&
               meta.linterParams.length > 0
@@ -1057,21 +1092,10 @@ export class DefaultValidationService implements ValidationService {
             } else {
               lintRes = lintFunc(targetElement) as boolean;
             }
-            const funcDuration = performance.now() - tFunc;
-            if (perfStats) perfStats.lintFuncMs += funcDuration;
-            if (funcTimings && linterFuncName) {
-              const entry = funcTimings.get(linterFuncName);
-              if (entry) {
-                entry.calls++;
-                entry.totalMs += funcDuration;
-              } else {
-                funcTimings.set(linterFuncName, { calls: 1, totalMs: funcDuration });
-              }
-            }
             if (meta.negate) lintRes = !lintRes;
             if (!lintRes) {
               // add to diagnostics - compute source map lazily (only on failure)
-              const tSm = performance.now();
+              const tSm = perfStats ? performance.now() : 0;
               let lintSm = getSourceMap(element);
               // check if root
               if (!element.parent || element.parent.element === 'parseResult') {

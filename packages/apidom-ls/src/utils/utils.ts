@@ -58,6 +58,10 @@ export function toggleLogs(level: LogLevel) {
   logLevel = level;
 }
 
+export function isDebugEnabled(): boolean {
+  return logLevel <= LogLevel.DEBUG;
+}
+
 export function trace(...args: unknown[]) {
   if (logLevel <= LogLevel.TRACE) console.log.apply(null, args);
 }

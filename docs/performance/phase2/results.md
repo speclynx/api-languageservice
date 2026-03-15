@@ -53,7 +53,7 @@ The replacement uses a `WeakMap<Element, Map<string, Map<unknown, number>>>` to 
 
 Files changed: `validation-service.ts`, `test/validate-big.ts`
 
-Comprehensive `debug()` timing was added to every significant phase of `doValidation`, including a per-lint-function timing aggregation that logs function name, total time, call count, and per-call average in descending order of total time. This instrumentation is gated behind `LogLevel.DEBUG` and has negligible overhead in production (the `debug()` function returns immediately when log level is above DEBUG).
+Comprehensive `debug()` timing was added to every significant phase of `doValidation`, including a per-lint-function timing aggregation that logs function name, total time, call count, and per-call average in descending order of total time. All timing work (`performance.now()` calls, counter updates, and Map accumulations) is fully gated behind an `isDebugEnabled()` check evaluated once at the start of `doValidation`, so there is zero profiling overhead when the log level is above DEBUG.
 
 ## Test Results
 

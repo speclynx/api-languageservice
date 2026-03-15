@@ -8,7 +8,7 @@ import { OpenAPI3 } from '../../../openapi/target-specs.ts';
 const typeArrayNonItemsLint: LinterMeta = {
   code: ApilintCodes.SCHEMA_TYPE_ARRAY_NON_ITEMS,
   source: 'apilint',
-  message: 'Schemas with "type: array", require a sibling "items" field',
+  message: 'Schemas with "type: array" require a sibling "items" field',
   severity: DiagnosticSeverity.Error,
   linterFunction: 'hasRequiredField',
   linterParams: ['items'],

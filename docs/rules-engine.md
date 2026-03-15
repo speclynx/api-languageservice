@@ -61,7 +61,7 @@ Every rule is defined as an object conforming to the `LinterMeta` interface from
 
 ### Function and parameters
 
-`linterFunction` (string): The name of the function to execute for this rule. The service first looks for it in `standardLinterfunctions` from `linter-functions.ts`, then in custom functions registered in `metadata.linterFunctions[namespace]`. The function must return `true` if validation passes and `false` if it fails.
+`linterFunction` (string): The name of the function to execute for this rule. The service looks it up via `standardLinterfunctionsMap` (an O(1) Map) from `linter-functions.ts`, then falls back to custom functions registered in `metadata.linterFunctions[namespace]`. The function must return `true` if validation passes and `false` if it fails.
 
 `linterParams` (unknown[]): An array of parameters passed to the linter function after the target element. For example, `linterFunction: 'hasRequiredField'` with `linterParams: ['url']` calls `hasRequiredField(element, 'url')`.
 

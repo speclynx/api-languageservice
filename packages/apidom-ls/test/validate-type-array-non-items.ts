@@ -81,7 +81,7 @@ describe('apidom-ls-validate-type-array-non-items', function () {
       assert.lengthOf(typeArrayDiags, 1, 'expected exactly one type-array-non-items diagnostic');
       assert.strictEqual(
         typeArrayDiags[0].message,
-        'Schemas with "type: array", require a sibling "items" field',
+        'Schemas with "type: array" require a sibling "items" field',
       );
       assert.strictEqual(typeArrayDiags[0].severity, DiagnosticSeverity.Error);
       assert.strictEqual(typeArrayDiags[0].source, 'apilint');
@@ -110,7 +110,7 @@ describe('apidom-ls-validate-type-array-non-items', function () {
       assert.lengthOf(typeArrayDiags, 1, 'expected exactly one type-array-non-items diagnostic');
       assert.strictEqual(
         typeArrayDiags[0].message,
-        'Schemas with "type: array", require a sibling "items" field',
+        'Schemas with "type: array" require a sibling "items" field',
       );
       assert.strictEqual(typeArrayDiags[0].severity, DiagnosticSeverity.Error);
       assert.strictEqual(typeArrayDiags[0].source, 'apilint');
