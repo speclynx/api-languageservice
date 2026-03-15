@@ -511,8 +511,9 @@ export class DefaultValidationService implements ValidationService {
     validationContext?: ValidationContext,
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
-    const t0 = performance.now();
-    debug('[perf] doValidation: start');
+    const profiling = isDebugEnabled();
+    const t0 = profiling ? performance.now() : 0;
+    if (profiling) debug('[perf] doValidation: start');
     const context = !validationContext ? this.settings?.validationContext : validationContext;
     const {
       semanticValidationEnabled,
@@ -545,9 +546,12 @@ export class DefaultValidationService implements ValidationService {
         : context.referenceValidationSequentialProcessing;
     const text: string = textDocument.getText();
     const diagnostics: Diagnostic[] = [];
-    const tFindNs = performance.now();
+    const tFindNs = profiling ? performance.now() : 0;
     const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
-    debug(`[perf] doValidation: findNamespace took ${(performance.now() - tFindNs).toFixed(2)}ms`);
+    if (profiling)
+      debug(
+        `[perf] doValidation: findNamespace took ${(performance.now() - tFindNs).toFixed(2)}ms`,
+      );
     let docNs: string = nameSpace.namespace;
 
     try {
@@ -581,19 +585,20 @@ export class DefaultValidationService implements ValidationService {
       return diagnostics;
     }
     this.quickFixesMap = {};
-    const tParse1 = performance.now();
+    const tParse1 = profiling ? performance.now() : 0;
     let result = await this.settings!.documentCache?.get(
       textDocument,
       undefined,
       'doValidation-parse-first',
     );
-    debug(
-      `[perf] doValidation: first parse/cache took ${(performance.now() - tParse1).toFixed(2)}ms`,
-    );
+    if (profiling)
+      debug(
+        `[perf] doValidation: first parse/cache took ${(performance.now() - tParse1).toFixed(2)}ms`,
+      );
     if (!result) return diagnostics;
 
     let processedText;
-    const tAnnotations = performance.now();
+    const tAnnotations = profiling ? performance.now() : 0;
     // no API document has been parsed
     if (result.annotations) {
       for (const annotation of result.annotations) {
@@ -655,18 +660,22 @@ export class DefaultValidationService implements ValidationService {
       }
       processedText = correctPartialKeys(result, textDocument, await isJsonDoc(textDocument));
     }
-    debug(
-      `[perf] doValidation: annotations processing took ${(performance.now() - tAnnotations).toFixed(2)}ms`,
-    );
+    if (profiling)
+      debug(
+        `[perf] doValidation: annotations processing took ${(performance.now() - tAnnotations).toFixed(2)}ms`,
+      );
     if (processedText) {
-      const tParse2 = performance.now();
+      const tParse2 = profiling ? performance.now() : 0;
       docNs = (await findNamespace(processedText, this.settings?.defaultContentLanguage)).namespace;
       result = await this.settings!.documentCache?.get(
         textDocument,
         processedText,
         'doValidation-parse-second',
       );
-      debug(`[perf] doValidation: second parse took ${(performance.now() - tParse2).toFixed(2)}ms`);
+      if (profiling)
+        debug(
+          `[perf] doValidation: second parse took ${(performance.now() - tParse2).toFixed(2)}ms`,
+        );
     }
     if (!result) return diagnostics;
     const { api } = result;
@@ -785,7 +794,6 @@ export class DefaultValidationService implements ValidationService {
 
     const refElements: Element[] = [];
     const rulesCache = new Map<string, LinterMeta[]>();
-    const profiling = isDebugEnabled();
     let elemCount = 0;
     let rulesEvalCount = 0;
     let processRuleCount = 0;
@@ -900,7 +908,7 @@ export class DefaultValidationService implements ValidationService {
         );
       }
     }
-    const tRefValidation = performance.now();
+    const tRefValidation = profiling ? performance.now() : 0;
     if (refValidationMode !== ReferenceValidationMode.LEGACY && semanticRefValidationEnabled) {
       if (refValidationSerialProcessing) {
         diagnostics.push(
@@ -926,10 +934,11 @@ export class DefaultValidationService implements ValidationService {
         );
       }
     }
-    debug(
-      `[perf] doValidation: reference validation took ${(performance.now() - tRefValidation).toFixed(2)}ms | refElements: ${refElements.length}`,
-    );
-    const tJsonPath = performance.now();
+    if (profiling)
+      debug(
+        `[perf] doValidation: reference validation took ${(performance.now() - tRefValidation).toFixed(2)}ms | refElements: ${refElements.length}`,
+      );
+    const tJsonPath = profiling ? performance.now() : 0;
     try {
       const rules = this.settings?.metadata?.rules;
       if (rules && rules[docNs]?.lint) {
@@ -976,11 +985,12 @@ export class DefaultValidationService implements ValidationService {
     } catch (e) {
       error('error in retrieving jsonpath rules', e);
     }
-    debug(
-      `[perf] doValidation: jsonpath rules took ${(performance.now() - tJsonPath).toFixed(2)}ms`,
-    );
+    if (profiling)
+      debug(
+        `[perf] doValidation: jsonpath rules took ${(performance.now() - tJsonPath).toFixed(2)}ms`,
+      );
     perfEnd(PerfLabels.START);
-    const tProviders = performance.now();
+    const tProviders = profiling ? performance.now() : 0;
     if (!hasSyntaxErrors) {
       // TODO try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.validationProviders) {
@@ -1000,12 +1010,14 @@ export class DefaultValidationService implements ValidationService {
         }
       }
     }
-    debug(
-      `[perf] doValidation: validation providers took ${(performance.now() - tProviders).toFixed(2)}ms`,
-    );
-    debug(
-      `[perf] doValidation: TOTAL ${(performance.now() - t0).toFixed(2)}ms | diagnostics: ${diagnostics.length}`,
-    );
+    if (profiling) {
+      debug(
+        `[perf] doValidation: validation providers took ${(performance.now() - tProviders).toFixed(2)}ms`,
+      );
+      debug(
+        `[perf] doValidation: TOTAL ${(performance.now() - t0).toFixed(2)}ms | diagnostics: ${diagnostics.length}`,
+      );
+    }
 
     return diagnostics;
   }
