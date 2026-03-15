@@ -1,0 +1,17 @@
+asyncapi: 2.2.0
+info:
+  title: Test
+  description: Test API
+  version: 1.0.0
+channels: {}
+components:
+  schemas:
+    ValidArray:
+      type: array
+      items:
+        type: string
+    InvalidArray:
+      type: array
+      description: an array without items
+    NotArray:
+      type: object

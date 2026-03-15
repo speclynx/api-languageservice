@@ -1,0 +1,40 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Test",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/a": {
+      "get": {
+        "operationId": "aget",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "an array without items"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ValidArray": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "NotArray": {
+        "type": "object"
+      }
+    }
+  }
+}
