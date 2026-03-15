@@ -8,7 +8,7 @@ import {
   isArrayElement,
   includesClasses,
 } from '@speclynx/apidom-datamodel';
-import { filter, forEach } from '@speclynx/apidom-traverse';
+import { forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
@@ -80,6 +80,31 @@ function getUniquenessIndex(
   });
   apiIndex.set(compositeKey, valueCountMap);
   return valueCountMap;
+}
+
+// Cache for getElementsByTypeOrClass: avoids repeated full-tree traversals.
+// Key: API root element -> Map<typeOrClass, Element[]>
+const elementsByTypeCache = new WeakMap<Element, Map<string, Element[]>>();
+
+function getElementsByTypeOrClass(api: Element, typeOrClass: string): Element[] {
+  let apiCache = elementsByTypeCache.get(api);
+  if (!apiCache) {
+    apiCache = new Map();
+    elementsByTypeCache.set(api, apiCache);
+  }
+
+  let elements = apiCache.get(typeOrClass);
+  if (elements) return elements;
+
+  elements = [];
+  forEach(api, (path) => {
+    const el = path.node;
+    if (el.element === typeOrClass || includesClasses(el, [typeOrClass])) {
+      elements!.push(el);
+    }
+  });
+  apiCache.set(typeOrClass, elements);
+  return elements;
 }
 
 const root = (el: Element): Element => {
@@ -651,9 +676,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         }
         if (isArray(element.parent)) {
           const api = root(element);
-          const schemes: Element[] = filter(api, (path) => {
-            return path.node.element === 'securityScheme';
-          }).map((path) => path.node);
+          const schemes = getElementsByTypeOrClass(api, 'securityScheme');
 
           for (const scheme of schemes) {
             const key = scheme.parent && isMember(scheme.parent) ? scheme.parent.key : undefined;
@@ -727,10 +750,7 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (isObject(element) || isArray(element)) {
         const api = root(element);
 
-        const elements: Element[] = filter(api, (path) => {
-          const el = path.node;
-          return el.element === elementOrClass || includesClasses(el, [elementOrClass]);
-        }).map((path) => path.node);
+        const elements = getElementsByTypeOrClass(api, elementOrClass);
         const targetKeys: string[] = [];
         for (const targetEl of elements) {
           if (isObject(targetEl)) {
@@ -763,9 +783,7 @@ export const standardLinterfunctions: FunctionItem[] = [
         if (isArray(element.parent)) {
           existing.push(...(toValue(element.parent) as string[]));
           const api = root(element);
-          const servers: Element[] = filter(api, (path) => {
-            return path.node.element === 'server';
-          }).map((path) => path.node);
+          const servers = getElementsByTypeOrClass(api, 'server');
 
           for (const server of servers) {
             const key = server.parent && isMember(server.parent) ? server.parent.key : undefined;
