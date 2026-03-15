@@ -8,7 +8,7 @@ import {
   isArrayElement,
   includesClasses,
 } from '@speclynx/apidom-datamodel';
-import { filter } from '@speclynx/apidom-traverse';
+import { filter, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
@@ -42,6 +42,45 @@ const getCachedRegex = (pattern: string, flags?: string): RegExp => {
   }
   return regex;
 };
+
+// Index for uniqueness checks: avoids O(n) full-tree traversal per element.
+// Key: API root element -> Map<compositeKey, Map<value, count>>
+// compositeKey encodes (elementOrClasses, key) as a string.
+const uniquenessIndexCache = new WeakMap<Element, Map<string, Map<unknown, number>>>();
+
+function getUniquenessIndex(
+  api: Element,
+  elementOrClasses: string[],
+  key: string,
+): Map<unknown, number> {
+  let apiIndex = uniquenessIndexCache.get(api);
+  if (!apiIndex) {
+    apiIndex = new Map();
+    uniquenessIndexCache.set(api, apiIndex);
+  }
+
+  const compositeKey = `${elementOrClasses.join(',')}|${key}`;
+  let valueCountMap = apiIndex.get(compositeKey);
+  if (valueCountMap) return valueCountMap;
+
+  // Build index by traversing the full tree once
+  valueCountMap = new Map();
+  const classesSet = new Set(elementOrClasses);
+  forEach(api, (path) => {
+    const el = path.node;
+    const matchesElement = classesSet.has(el.element);
+    const matchesClasses =
+      !matchesElement &&
+      el.classes &&
+      (getClassesValue(el) as string[]).every((v) => classesSet.has(v));
+    if ((matchesElement || matchesClasses) && isObject(el) && el.hasKey(key)) {
+      const val = toValue(el.get(key));
+      valueCountMap!.set(val, (valueCountMap!.get(val) || 0) + 1);
+    }
+  });
+  apiIndex.set(compositeKey, valueCountMap);
+  return valueCountMap;
+}
 
 const root = (el: Element): Element => {
   const rootElementTypes = ['swagger', 'openApi3_0', 'openApi3_1', 'asyncApi2'];
@@ -755,21 +794,9 @@ export const standardLinterfunctions: FunctionItem[] = [
     function: (element: Element, elementOrClasses: string[], key: string): boolean => {
       const api = root(element);
       const value = toValue(element);
-      const elements: Element[] = filter(api, (path) => {
-        const el = path.node;
-        const classes: string[] = getClassesValue(el);
-        return (
-          (elementOrClasses.includes(el.element) ||
-            classes.every((v) => elementOrClasses.includes(v))) &&
-          isObject(el) &&
-          el.hasKey(key) &&
-          toValue(el.get(key)) === value
-        );
-      }).map((path) => path.node);
-      if (elements.length > 1) {
-        return false;
-      }
-      return true;
+      const valueCountMap = getUniquenessIndex(api, elementOrClasses, key);
+      const count = valueCountMap.get(value) || 0;
+      return count <= 1;
     },
   },
   {

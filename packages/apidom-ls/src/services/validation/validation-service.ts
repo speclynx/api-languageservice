@@ -37,6 +37,7 @@ import {
   perfEnd,
   perfStart,
   processPath,
+  debug,
   error,
   info,
   getReferencedElementValue,
@@ -509,6 +510,8 @@ export class DefaultValidationService implements ValidationService {
     validationContext?: ValidationContext,
   ): Promise<Diagnostic[]> {
     perfStart(PerfLabels.START);
+    const t0 = performance.now();
+    debug('[perf] doValidation: start');
     const context = !validationContext ? this.settings?.validationContext : validationContext;
     const {
       semanticValidationEnabled,
@@ -541,7 +544,9 @@ export class DefaultValidationService implements ValidationService {
         : context.referenceValidationSequentialProcessing;
     const text: string = textDocument.getText();
     const diagnostics: Diagnostic[] = [];
+    const tFindNs = performance.now();
     const nameSpace = await findNamespace(text, this.settings?.defaultContentLanguage);
+    debug(`[perf] doValidation: findNamespace took ${(performance.now() - tFindNs).toFixed(2)}ms`);
     let docNs: string = nameSpace.namespace;
 
     try {
@@ -575,14 +580,19 @@ export class DefaultValidationService implements ValidationService {
       return diagnostics;
     }
     this.quickFixesMap = {};
+    const tParse1 = performance.now();
     let result = await this.settings!.documentCache?.get(
       textDocument,
       undefined,
       'doValidation-parse-first',
     );
+    debug(
+      `[perf] doValidation: first parse/cache took ${(performance.now() - tParse1).toFixed(2)}ms`,
+    );
     if (!result) return diagnostics;
 
     let processedText;
+    const tAnnotations = performance.now();
     // no API document has been parsed
     if (result.annotations) {
       for (const annotation of result.annotations) {
@@ -644,13 +654,18 @@ export class DefaultValidationService implements ValidationService {
       }
       processedText = correctPartialKeys(result, textDocument, await isJsonDoc(textDocument));
     }
+    debug(
+      `[perf] doValidation: annotations processing took ${(performance.now() - tAnnotations).toFixed(2)}ms`,
+    );
     if (processedText) {
+      const tParse2 = performance.now();
       docNs = (await findNamespace(processedText, this.settings?.defaultContentLanguage)).namespace;
       result = await this.settings!.documentCache?.get(
         textDocument,
         processedText,
         'doValidation-parse-second',
       );
+      debug(`[perf] doValidation: second parse took ${(performance.now() - tParse2).toFixed(2)}ms`);
     }
     if (!result) return diagnostics;
     const { api } = result;
@@ -769,8 +784,16 @@ export class DefaultValidationService implements ValidationService {
 
     const refElements: Element[] = [];
     const rulesCache = new Map<string, LinterMeta[]>();
+    let elemCount = 0;
+    let rulesEvalCount = 0;
+    let processRuleCount = 0;
+    let processRuleTotalMs = 0;
+    let getLintRulesTotalMs = 0;
+    const perfStats = { conditionsMs: 0, lintFuncMs: 0, sourceMapMs: 0 };
+    const funcTimings = new Map<string, { calls: number; totalMs: number }>();
 
     const lint = (path: Path<Element>) => {
+      elemCount++;
       const element = path.node;
       const referencedElement = getReferencedElementValue(element);
       if (
@@ -814,6 +837,7 @@ export class DefaultValidationService implements ValidationService {
 
         if (semanticValidationEnabled || semanticLintingEnabled) {
           for (const s of symbols) {
+            const tGetRules = performance.now();
             const semanticLintingRules = this.getLintingRulesSemantic(
               api,
               s,
@@ -823,14 +847,52 @@ export class DefaultValidationService implements ValidationService {
               semanticLintingEnabled,
               rulesCache,
             );
+            getLintRulesTotalMs += performance.now() - tGetRules;
+            rulesEvalCount += semanticLintingRules.length;
             for (const meta of semanticLintingRules) {
-              this.processRule(meta, diagnostics, textDocument, api, element, docNs, specVersion);
+              processRuleCount++;
+              const tRule = performance.now();
+              this.processRule(
+                meta,
+                diagnostics,
+                textDocument,
+                api,
+                element,
+                docNs,
+                specVersion,
+                perfStats,
+                funcTimings,
+              );
+              processRuleTotalMs += performance.now() - tRule;
             }
           }
         }
       }
     };
+    const tForEach = performance.now();
     forEach(api, lint);
+    const forEachDuration = performance.now() - tForEach;
+    debug(
+      `[perf] doValidation: forEach traversal took ${forEachDuration.toFixed(2)}ms`,
+      `| elements: ${elemCount}`,
+      `| rulesEvaluated: ${rulesEvalCount}`,
+      `| processRuleCalls: ${processRuleCount}`,
+      `| processRuleTotal: ${processRuleTotalMs.toFixed(2)}ms`,
+      `| getLintRulesTotal: ${getLintRulesTotalMs.toFixed(2)}ms`,
+      `| conditionsTotal: ${perfStats.conditionsMs.toFixed(2)}ms`,
+      `| lintFuncTotal: ${perfStats.lintFuncMs.toFixed(2)}ms`,
+      `| sourceMapTotal: ${perfStats.sourceMapMs.toFixed(2)}ms`,
+      `| diagnostics: ${diagnostics.length}`,
+      `| rulesCached: ${rulesCache.size}`,
+    );
+    // Log per-function timing breakdown sorted by total time
+    const sortedFuncs = [...funcTimings.entries()].sort((a, b) => b[1].totalMs - a[1].totalMs);
+    for (const [name, stats] of sortedFuncs) {
+      debug(
+        `[perf]   func ${name}: ${stats.totalMs.toFixed(2)}ms (${stats.calls} calls, ${((stats.totalMs / stats.calls) * 1000).toFixed(1)}us/call)`,
+      );
+    }
+    const tRefValidation = performance.now();
     if (refValidationMode !== ReferenceValidationMode.LEGACY && semanticRefValidationEnabled) {
       if (refValidationSerialProcessing) {
         diagnostics.push(
@@ -856,6 +918,10 @@ export class DefaultValidationService implements ValidationService {
         );
       }
     }
+    debug(
+      `[perf] doValidation: reference validation took ${(performance.now() - tRefValidation).toFixed(2)}ms | refElements: ${refElements.length}`,
+    );
+    const tJsonPath = performance.now();
     try {
       const rules = this.settings?.metadata?.rules;
       if (rules && rules[docNs]?.lint) {
@@ -902,7 +968,11 @@ export class DefaultValidationService implements ValidationService {
     } catch (e) {
       error('error in retrieving jsonpath rules', e);
     }
+    debug(
+      `[perf] doValidation: jsonpath rules took ${(performance.now() - tJsonPath).toFixed(2)}ms`,
+    );
     perfEnd(PerfLabels.START);
+    const tProviders = performance.now();
     if (!hasSyntaxErrors) {
       // TODO try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.validationProviders) {
@@ -922,6 +992,12 @@ export class DefaultValidationService implements ValidationService {
         }
       }
     }
+    debug(
+      `[perf] doValidation: validation providers took ${(performance.now() - tProviders).toFixed(2)}ms`,
+    );
+    debug(
+      `[perf] doValidation: TOTAL ${(performance.now() - t0).toFixed(2)}ms | diagnostics: ${diagnostics.length}`,
+    );
 
     return diagnostics;
   }
@@ -934,6 +1010,8 @@ export class DefaultValidationService implements ValidationService {
     element: Element,
     docNs: string,
     specVersion: string,
+    perfStats?: { conditionsMs: number; lintFuncMs: number; sourceMapMs: number },
+    funcTimings?: Map<string, { calls: number; totalMs: number }>,
   ): void {
     if (!DefaultValidationService.matchesTargetSpecs(meta, docNs, specVersion)) {
       return;
@@ -964,8 +1042,11 @@ export class DefaultValidationService implements ValidationService {
                 : element
               : element;
 
+          const tCond = performance.now();
           const conditionsSuccess = checkConditions(meta, docNs, element, api, this.settings);
+          if (perfStats) perfStats.conditionsMs += performance.now() - tCond;
           if (conditionsSuccess) {
+            const tFunc = performance.now();
             if (
               meta.linterParams &&
               Array.isArray(meta.linterParams) &&
@@ -976,9 +1057,21 @@ export class DefaultValidationService implements ValidationService {
             } else {
               lintRes = lintFunc(targetElement) as boolean;
             }
+            const funcDuration = performance.now() - tFunc;
+            if (perfStats) perfStats.lintFuncMs += funcDuration;
+            if (funcTimings && linterFuncName) {
+              const entry = funcTimings.get(linterFuncName);
+              if (entry) {
+                entry.calls++;
+                entry.totalMs += funcDuration;
+              } else {
+                funcTimings.set(linterFuncName, { calls: 1, totalMs: funcDuration });
+              }
+            }
             if (meta.negate) lintRes = !lintRes;
             if (!lintRes) {
               // add to diagnostics - compute source map lazily (only on failure)
+              const tSm = performance.now();
               let lintSm = getSourceMap(element);
               // check if root
               if (!element.parent || element.parent.element === 'parseResult') {
@@ -1030,6 +1123,7 @@ export class DefaultValidationService implements ValidationService {
               if (meta.data) {
                 diagnostic.data = meta.data;
               }
+              if (perfStats) perfStats.sourceMapMs += performance.now() - tSm;
               diagnostics.push(diagnostic);
             }
           }
