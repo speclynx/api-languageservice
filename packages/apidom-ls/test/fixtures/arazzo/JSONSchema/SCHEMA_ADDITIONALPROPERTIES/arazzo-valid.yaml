@@ -15,7 +15,8 @@ workflows:
       properties:
         name:
           type: string
-      additionalProperties: false
+      additionalProperties:
+        type: string
     steps:
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById

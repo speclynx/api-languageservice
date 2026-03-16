@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Schema Fields Test
+  version: 1.0.0
+  summary: Testing all nested schema fields for parser element typing
+sourceDescriptions:
+  - name: petStore
+    url: https://petstore3.swagger.io/api/v3/openapi.json
+    type: openapi
+workflows:
+  - workflowId: schemaTest
+    summary: Test workflow with comprehensive JSON Schema inputs
+    inputs:
+      type: object
+      properties:
+        username:
+          type: string
+          description: A simple string property
+        tags:
+          type: array
+          items:
+            type: string
+          additionalItems:
+            type: number
+          contains:
+            type: integer
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          propertyNames:
+            pattern: "^[a-z]"
+          patternProperties:
+            "^x-":
+              type: string
+        conditional:
+          if:
+            properties:
+              kind:
+                type: string
+                const: admin
+          then:
+            required:
+              - adminLevel
+          else:
+            required:
+              - guestId
+        negation:
+          not:
+            type: string
+        composed:
+          allOf:
+            - type: object
+              properties:
+                id:
+                  type: integer
+            - type: object
+              properties:
+                name:
+                  type: string
+          anyOf:
+            - type: string
+            - type: integer
+          oneOf:
+            - type: string
+            - type: number
+      required:
+        - username
+    steps:
+      - stepId: doSomething
+        operationId: getUser
+        successCriteria:
+          - condition: $statusCode == 200
+  - workflowId: componentsSchemaTest
+    summary: Test workflow referencing component inputs
+    inputs:
+      $ref: "#/components/inputs/testSchema"
+    steps:
+      - stepId: doAnother
+        operationId: listUsers
+        successCriteria:
+          - condition: $statusCode == 200
+components:
+  inputs:
+    testSchema:
+      type: object
+      properties:
+        name:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+          contains:
+            type: object
+            properties:
+              status:
+                type: string
+        config:
+          if:
+            properties:
+              mode:
+                const: advanced
+          then:
+            required:
+              - advancedSettings
+          else:
+            properties:
+              basic:
+                type: boolean
+          not:
+            type: "null"
+          additionalProperties:
+            type: string
+          propertyNames:
+            minLength: 1

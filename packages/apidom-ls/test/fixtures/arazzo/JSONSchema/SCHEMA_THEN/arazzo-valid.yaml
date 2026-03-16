@@ -12,8 +12,13 @@ workflows:
     summary: Get a pet by ID
     inputs:
       type: object
-      if: true
-      then: false
+      if:
+        properties:
+          mode:
+            type: string
+      then:
+        required:
+          - mode
     steps:
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById

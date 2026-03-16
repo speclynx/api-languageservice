@@ -11,7 +11,9 @@ workflows:
   - workflowId: get-pet-workflow
     summary: Get a pet by ID
     inputs:
-      type: object
+      type: array
+      items:
+        type: string
     steps:
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById

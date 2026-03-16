@@ -12,7 +12,8 @@ workflows:
     summary: Get a pet by ID
     inputs:
       type: object
-      propertyNames: true
+      propertyNames:
+        pattern: "^[a-z]"
     steps:
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById

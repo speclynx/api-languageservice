@@ -12,7 +12,8 @@ workflows:
     summary: Get a pet by ID
     inputs:
       type: array
-      contains: true
+      contains:
+        type: integer
     steps:
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById
