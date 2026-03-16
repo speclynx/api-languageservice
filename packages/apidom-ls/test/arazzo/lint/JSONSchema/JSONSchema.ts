@@ -167,9 +167,11 @@ describe('test-arazzo-linting-JSONSchema', function () {
     'SCHEMA_PATTERNPROPERTIES',
     'SCHEMA_PATTERNPROPERTIES',
   );
-  // SCHEMA_PATTERNPROPERTIES_KEY: skipped - apilintKeyIsRegex does not fire for patternProperties
-  // children within Arazzo JSONSchema context (parser does not create proper member elements
-  // within nested schema objects for key-level iteration)
+  testSchemaRule(
+    codes.SCHEMA_PATTERNPROPERTIES_KEY,
+    'SCHEMA_PATTERNPROPERTIES_KEY',
+    'SCHEMA_PATTERNPROPERTIES_KEY',
+  );
 
   // ---- "non-X" condition-based warnings (field on wrong type) ----
 

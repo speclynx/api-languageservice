@@ -304,4 +304,4 @@ Active rules (64 total):
 
 All JSON Schema rules with Arazzo in their targetSpecs are tested in `test/arazzo/lint/JSONSchema/JSONSchema.ts`. Each test validates both a valid and invalid YAML fixture.
 
-63 out of 64 Arazzo-applicable JSON Schema rules have passing tests. The SCHEMA_PATTERNPROPERTIES_KEY rule is documented as untestable in the Arazzo context due to parser limitations with key-level element iteration within nested schema objects.
+All 64 Arazzo-applicable JSON Schema rules have passing tests. The SCHEMA_PATTERNPROPERTIES_KEY rule was fixed by replacing the non-functional `apilintKeyIsRegex` with a new `apilintChildrenKeysAreRegex` function.

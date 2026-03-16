@@ -15,7 +15,7 @@ Of the 80 total imported rules, 64 have Arazzo in their targetSpecs and fire for
 JSON Schema objects appear in Arazzo documents at `workflows[].inputs` and `components.inputs[key]`.
 
 
-## Rules with Arazzo targetSpecs (64 rules, 63 tested)
+## Rules with Arazzo targetSpecs (64 rules, 64 tested)
 
 ### Simple Type Validation Rules
 
@@ -96,9 +96,9 @@ Note: The Arazzo parser creates `JSONSchema202012` elements for nested schema fi
 |------|-----------|--------|-------|--------|
 | SCHEMA_PROPERTIES | properties--values-type-openapi-3-1--asyncapi-2 | properties | Members must be schemas | Yes |
 | SCHEMA_PATTERNPROPERTIES | pattern-properties--values-type | patternProperties | Members must be schemas | Yes |
-| SCHEMA_PATTERNPROPERTIES_KEY | pattern-properties--keys-regexp | patternProperties | Keys must be valid regex | Skipped |
+| SCHEMA_PATTERNPROPERTIES_KEY | pattern-properties--keys-regexp | patternProperties | Keys must be valid regex | Yes |
 
-Note: SCHEMA_PATTERNPROPERTIES_KEY is skipped because the `apilintKeyIsRegex` linter function does not work correctly with the `target: 'patternProperties'` rule configuration. The function receives the entire `patternProperties` ObjectElement and checks its parent MemberElement's key (the string `"patternProperties"`) rather than iterating each child member's key. This is a pre-existing bug that affects all namespaces (OpenAPI 3.1 included), not just Arazzo.
+Note: SCHEMA_PATTERNPROPERTIES_KEY was previously non-functional because the `apilintKeyIsRegex` linter function checked the parent MemberElement's key (the literal string `"patternProperties"`) instead of iterating each child member's key. This was fixed by creating a new `apilintChildrenKeysAreRegex` function that iterates the ObjectElement's children and validates each key as a valid regular expression. The rule now uses this new function and works correctly across all namespaces.
 
 ### "Non-X" Warning Rules
 
@@ -192,4 +192,4 @@ Investigation using element traversal revealed that the Arazzo parser DOES creat
 
 The original claim that "the parser does not create typed elements for inline YAML objects" was incorrect. The actual issue was that the 14 lint rules checking `apilintElementOrClass` only included `schema`, `JSONSchema`, and `boolean` in their allowed types, missing `JSONSchema202012`. This has been fixed by adding `JSONSchema202012` to all affected rules.
 
-The `SCHEMA_PATTERNPROPERTIES_KEY` rule (`apilintKeyIsRegex`) remains non-functional. This is a rule/function mismatch: the function receives the entire `patternProperties` ObjectElement and checks its parent MemberElement's key (the literal string `"patternProperties"`), rather than iterating each child member's key for regex validity. This bug affects all namespaces (confirmed in OpenAPI 3.1), not just Arazzo.
+The `SCHEMA_PATTERNPROPERTIES_KEY` rule previously used `apilintKeyIsRegex`, which was non-functional due to a rule/function mismatch: the function received the entire `patternProperties` ObjectElement and checked its parent MemberElement's key (the literal string `"patternProperties"`), rather than iterating each child member's key. This was fixed by creating a new `apilintChildrenKeysAreRegex` function in `linter-functions.ts` that iterates the ObjectElement's children and validates each key as a valid regular expression. The rule in `pattern-properties--keys-regexp.ts` now uses this new function, and the fix applies across all namespaces (Arazzo, OpenAPI 3.1, AsyncAPI 2).

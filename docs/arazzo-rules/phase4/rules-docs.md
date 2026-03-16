@@ -80,7 +80,7 @@ JSON Schema 2020-12 identifier keywords (`$id`, `$schema`, `$ref`, `$comment`) a
 
 ## Phase 4: JSON Schema Test Coverage
 
-Phase 4 added comprehensive tests for all 64 JSON Schema rules that include Arazzo in their targetSpecs. Of these, 63 rules are fully tested with valid and invalid YAML fixture pairs. One rule (`SCHEMA_PATTERNPROPERTIES_KEY`) cannot be tested due to a rule/function mismatch in `apilintKeyIsRegex` that affects all namespaces (not just Arazzo).
+Phase 4 added comprehensive tests for all 64 JSON Schema rules that include Arazzo in their targetSpecs. All 64 rules are fully tested with valid and invalid YAML fixture pairs. The `SCHEMA_PATTERNPROPERTIES_KEY` rule was fixed by replacing the non-functional `apilintKeyIsRegex` with a new `apilintChildrenKeysAreRegex` function that correctly iterates child member keys for regex validation.
 
 The test file is at `test/arazzo/lint/JSONSchema/JSONSchema.ts` and fixtures are under `test/fixtures/arazzo/JSONSchema/<CODE>/`. Each test validates that the invalid fixture produces at least one diagnostic with the expected error code, and the valid fixture produces no diagnostics with that code.
 
