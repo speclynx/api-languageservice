@@ -72,7 +72,7 @@ These rules validate that values expected to be JSON Schemas are proper schema o
 | SCHEMA_PROPERTYNAMES | property-names--type | propertyNames | Must be schema or boolean | Yes |
 | SCHEMA_ITEMS | items--type | items | Must be schema or array of schemas | Yes |
 
-Note: In the Arazzo namespace, the parser does not create typed Schema/JSONSchema elements for inline YAML objects within nested schema fields. Boolean JSON schema values (true/false) are used for the valid test fixtures of these rules.
+Note: The Arazzo parser creates `JSONSchema202012` elements for nested schema fields (`items`, `contains`, `if`, `then`, `else`, `not`, `additionalProperties`, `propertyNames`). The 14 rules above have been updated to include `JSONSchema202012` in their `linterParams` so they correctly recognize these inline schema objects. The only exception is `additionalItems`, which produces a plain `object` element because JSON Schema 2020-12 removed this keyword. Test fixtures use proper inline schema objects (not boolean workarounds) for the rules where the parser produces typed elements.
 
 ### Composition Rules
 
@@ -98,7 +98,7 @@ Note: In the Arazzo namespace, the parser does not create typed Schema/JSONSchem
 | SCHEMA_PATTERNPROPERTIES | pattern-properties--values-type | patternProperties | Members must be schemas | Yes |
 | SCHEMA_PATTERNPROPERTIES_KEY | pattern-properties--keys-regexp | patternProperties | Keys must be valid regex | Skipped |
 
-Note: SCHEMA_PATTERNPROPERTIES_KEY is skipped because the `apilintKeyIsRegex` linter function does not fire for patternProperties children within the Arazzo JSONSchema context. The Arazzo parser does not create proper member elements within nested schema objects that support key-level iteration.
+Note: SCHEMA_PATTERNPROPERTIES_KEY is skipped because the `apilintKeyIsRegex` linter function does not work correctly with the `target: 'patternProperties'` rule configuration. The function receives the entire `patternProperties` ObjectElement and checks its parent MemberElement's key (the string `"patternProperties"`) rather than iterating each child member's key. This is a pre-existing bug that affects all namespaces (OpenAPI 3.1 included), not just Arazzo.
 
 ### "Non-X" Warning Rules
 
@@ -186,12 +186,10 @@ Three rules (`max-properties--type`, `max-properties--non-object`, `properties--
 
 Additionally, the `missing-core-fields-openapi-3-1` rule's condition was updated to include `JSONSchema` alongside `schema` in the `apilintElementOrClass` check, so it fires correctly in the Arazzo context where elements use the `JSONSchema` class rather than `schema`.
 
-### Parser limitations
+### Parser and rule engine findings
 
-The Arazzo parser does not create typed Schema/JSONSchema elements for inline YAML objects within nested schema fields (e.g., objects under `items`, `contains`, `if`, `then`, `else`, `not`, `propertyNames`, `additionalItems`). This means:
+Investigation using element traversal revealed that the Arazzo parser DOES create typed elements for nested schema fields. Fields like `items`, `contains`, `if`, `then`, `else`, `not`, `additionalProperties`, and `propertyNames` produce `JSONSchema202012` elements. The `allOf`/`anyOf`/`oneOf` items and `properties`/`patternProperties` children produce `JSONSchema` elements. The only untyped field is `additionalItems`, which produces a plain `object` because JSON Schema 2020-12 removed this keyword via `dissocPath`.
 
-1. Rules using `apilintElementOrClass` cannot validate inline schema objects. Valid fixtures for these rules use boolean JSON schema values (true/false) instead.
+The original claim that "the parser does not create typed elements for inline YAML objects" was incorrect. The actual issue was that the 14 lint rules checking `apilintElementOrClass` only included `schema`, `JSONSchema`, and `boolean` in their allowed types, missing `JSONSchema202012`. This has been fixed by adding `JSONSchema202012` to all affected rules.
 
-2. The `apilintKeyIsRegex` function for `patternProperties` keys does not fire because the parser does not create proper member elements within nested schema objects.
-
-These are existing parser behaviors and do not require changes for phase 4.
+The `SCHEMA_PATTERNPROPERTIES_KEY` rule (`apilintKeyIsRegex`) remains non-functional. This is a rule/function mismatch: the function receives the entire `patternProperties` ObjectElement and checks its parent MemberElement's key (the literal string `"patternProperties"`), rather than iterating each child member's key for regex validity. This bug affects all namespaces (confirmed in OpenAPI 3.1), not just Arazzo.

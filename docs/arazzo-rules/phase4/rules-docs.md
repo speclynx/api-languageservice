@@ -80,8 +80,10 @@ JSON Schema 2020-12 identifier keywords (`$id`, `$schema`, `$ref`, `$comment`) a
 
 ## Phase 4: JSON Schema Test Coverage
 
-Phase 4 added comprehensive tests for all 64 JSON Schema rules that include Arazzo in their targetSpecs. Of these, 63 rules are fully tested with valid and invalid YAML fixture pairs. One rule (`SCHEMA_PATTERNPROPERTIES_KEY`) cannot be tested in the Arazzo context due to parser limitations with key-level iteration within nested schema objects.
+Phase 4 added comprehensive tests for all 64 JSON Schema rules that include Arazzo in their targetSpecs. Of these, 63 rules are fully tested with valid and invalid YAML fixture pairs. One rule (`SCHEMA_PATTERNPROPERTIES_KEY`) cannot be tested due to a rule/function mismatch in `apilintKeyIsRegex` that affects all namespaces (not just Arazzo).
 
 The test file is at `test/arazzo/lint/JSONSchema/JSONSchema.ts` and fixtures are under `test/fixtures/arazzo/JSONSchema/<CODE>/`. Each test validates that the invalid fixture produces at least one diagnostic with the expected error code, and the valid fixture produces no diagnostics with that code.
 
 Phase 4 also identified and resolved three import gaps: `max-properties--type`, `max-properties--non-object`, and `properties--non-object` had Arazzo in their targetSpecs but were missing from the Arazzo JSONSchema lint configuration. These were added to the Arazzo, OpenAPI, and common lint configurations and are now fully tested. The `missing-core-fields-openapi-3-1` rule condition was updated to check for both `schema` and `JSONSchema` element classes.
+
+Investigation revealed that the Arazzo parser correctly creates `JSONSchema202012` elements for nested schema fields (`items`, `contains`, `if`/`then`/`else`, `not`, `additionalProperties`, `propertyNames`). The 14 lint rules using `apilintElementOrClass` were updated to include `JSONSchema202012` in their allowed types, and test fixtures were updated from boolean workarounds to proper inline schema objects.
