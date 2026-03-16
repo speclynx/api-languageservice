@@ -189,10 +189,7 @@ describe('test-arazzo-linting-step', function () {
     const validErrors = resultValid.filter(
       (d) => d.code === codes.ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE,
     );
-    assert(
-      validErrors.length === 0,
-      'Expected no ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE errors',
-    );
+    assert(validErrors.length === 0, 'Expected no ARAZZO_STEP_FIELD_OUTPUTS_VALUES_TYPE errors');
 
     languageService.terminate();
   });
@@ -299,13 +296,19 @@ describe('test-arazzo-linting-step', function () {
     const matchingErrors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED,
     );
-    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostic');
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostic',
+    );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const matchingErrorsValid = resultValid.filter(
       (d) => d.code === codes.ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED,
     );
-    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture');
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture',
+    );
 
     languageService.terminate();
   });
@@ -359,13 +362,19 @@ describe('test-arazzo-linting-step', function () {
     const matchingErrors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID,
     );
-    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostic');
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostic',
+    );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const matchingErrorsValid = resultValid.filter(
       (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID,
     );
-    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostics for valid fixture');
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostics for valid fixture',
+    );
 
     languageService.terminate();
   });

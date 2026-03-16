@@ -66,15 +66,11 @@ describe('test-arazzo-linting-arazzoSpecification1', function () {
     const languageService: LanguageService = getLanguageService(context);
 
     const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
-    const errors = resultInvalid.filter(
-      (d) => d.code === codes.ARAZZO_SPEC_FIELD_INFO_REQUIRED,
-    );
+    const errors = resultInvalid.filter((d) => d.code === codes.ARAZZO_SPEC_FIELD_INFO_REQUIRED);
     assert(errors.length > 0, 'Expected ARAZZO_SPEC_FIELD_INFO_REQUIRED error');
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
-    const validErrors = resultValid.filter(
-      (d) => d.code === codes.ARAZZO_SPEC_FIELD_INFO_REQUIRED,
-    );
+    const validErrors = resultValid.filter((d) => d.code === codes.ARAZZO_SPEC_FIELD_INFO_REQUIRED);
     assert(validErrors.length === 0, 'Expected no ARAZZO_SPEC_FIELD_INFO_REQUIRED errors');
 
     languageService.terminate();
@@ -126,16 +122,20 @@ describe('test-arazzo-linting-arazzoSpecification1', function () {
     const languageService: LanguageService = getLanguageService(context);
 
     const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
-    const matchingErrors = resultInvalid.filter(
-      (d) => d.code === codes.ARAZZO_SPEC_NO_SCRIPT_TAGS,
+    const matchingErrors = resultInvalid.filter((d) => d.code === codes.ARAZZO_SPEC_NO_SCRIPT_TAGS);
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostic',
     );
-    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostic');
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const matchingErrorsValid = resultValid.filter(
       (d) => d.code === codes.ARAZZO_SPEC_NO_SCRIPT_TAGS,
     );
-    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostics for valid fixture');
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostics for valid fixture',
+    );
 
     languageService.terminate();
   });

@@ -243,7 +243,10 @@ describe('test-arazzo-linting-failureAction', function () {
     const errors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_ONLY_RETRY,
     );
-    assert(errors.length > 0, 'Expected ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_ONLY_RETRY warning');
+    assert(
+      errors.length > 0,
+      'Expected ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_ONLY_RETRY warning',
+    );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const validErrors = resultValid.filter(

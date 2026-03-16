@@ -69,10 +69,7 @@ describe('test-arazzo-linting-payloadReplacement', function () {
     const errors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_PAYLOAD_REPLACEMENT_FIELD_TARGET_REQUIRED,
     );
-    assert(
-      errors.length > 0,
-      'Expected ARAZZO_PAYLOAD_REPLACEMENT_FIELD_TARGET_REQUIRED error',
-    );
+    assert(errors.length > 0, 'Expected ARAZZO_PAYLOAD_REPLACEMENT_FIELD_TARGET_REQUIRED error');
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const validErrors = resultValid.filter(
@@ -125,10 +122,7 @@ describe('test-arazzo-linting-payloadReplacement', function () {
     const errors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_PAYLOAD_REPLACEMENT_FIELD_VALUE_REQUIRED,
     );
-    assert(
-      errors.length > 0,
-      'Expected ARAZZO_PAYLOAD_REPLACEMENT_FIELD_VALUE_REQUIRED error',
-    );
+    assert(errors.length > 0, 'Expected ARAZZO_PAYLOAD_REPLACEMENT_FIELD_VALUE_REQUIRED error');
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const validErrors = resultValid.filter(

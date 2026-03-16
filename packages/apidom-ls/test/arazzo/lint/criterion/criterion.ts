@@ -75,7 +75,10 @@ describe('test-arazzo-linting-criterion', function () {
     const validErrors = resultValid.filter(
       (d) => d.code === codes.ARAZZO_CRITERION_FIELD_CONDITION_REQUIRED,
     );
-    assert(validErrors.length === 0, 'Expected no ARAZZO_CRITERION_FIELD_CONDITION_REQUIRED errors');
+    assert(
+      validErrors.length === 0,
+      'Expected no ARAZZO_CRITERION_FIELD_CONDITION_REQUIRED errors',
+    );
 
     languageService.terminate();
   });

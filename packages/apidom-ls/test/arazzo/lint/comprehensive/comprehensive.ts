@@ -47,7 +47,10 @@ describe('test-arazzo-linting-comprehensive', function () {
 
     const result = await languageService.doValidation(doc, validationContext);
     const errors = result.filter((d) => d.severity === DiagnosticSeverity.Error);
-    assert(errors.length === 0, `Expected no errors but got ${errors.length}: ${JSON.stringify(errors.map((e) => ({ code: e.code, message: e.message })))}`);
+    assert(
+      errors.length === 0,
+      `Expected no errors but got ${errors.length}: ${JSON.stringify(errors.map((e) => ({ code: e.code, message: e.message })))}`,
+    );
 
     languageService.terminate();
   });
@@ -63,12 +66,7 @@ describe('test-arazzo-linting-comprehensive', function () {
       .readFileSync(path.join(fixturesDir, 'arazzo', 'comprehensive', 'arazzo-invalid.yaml'))
       .toString();
 
-    const doc: TextDocument = TextDocument.create(
-      'foo://bar/arazzo-invalid.yaml',
-      'yaml',
-      0,
-      spec,
-    );
+    const doc: TextDocument = TextDocument.create('foo://bar/arazzo-invalid.yaml', 'yaml', 0, spec);
 
     const languageService: LanguageService = getLanguageService(context);
 

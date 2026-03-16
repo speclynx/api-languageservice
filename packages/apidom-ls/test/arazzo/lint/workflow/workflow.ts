@@ -303,13 +303,19 @@ describe('test-arazzo-linting-workflow', function () {
     const matchingErrors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED,
     );
-    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostic');
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostic',
+    );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const matchingErrorsValid = resultValid.filter(
       (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED,
     );
-    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture');
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture',
+    );
 
     languageService.terminate();
   });
@@ -363,13 +369,19 @@ describe('test-arazzo-linting-workflow', function () {
     const matchingErrors = resultInvalid.filter(
       (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED,
     );
-    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostic');
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostic',
+    );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
     const matchingErrorsValid = resultValid.filter(
       (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED,
     );
-    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostics for valid fixture');
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostics for valid fixture',
+    );
 
     languageService.terminate();
   });
