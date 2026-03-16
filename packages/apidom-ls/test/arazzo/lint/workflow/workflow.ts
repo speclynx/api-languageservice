@@ -253,4 +253,124 @@ describe('test-arazzo-linting-workflow', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED,
+    );
+    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostic');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED,
+    );
+    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture');
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'workflow',
+          'ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED,
+    );
+    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostic');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED,
+    );
+    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED diagnostics for valid fixture');
+
+    languageService.terminate();
+  });
 });

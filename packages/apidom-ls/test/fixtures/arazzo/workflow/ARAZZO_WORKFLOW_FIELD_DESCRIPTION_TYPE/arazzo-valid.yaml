@@ -2,6 +2,7 @@ arazzo: 1.0.1
 info:
   title: Sample Arazzo Workflow
   version: 1.0.1
+  description: A detailed description
   summary: A sample workflow for testing
 sourceDescriptions:
   - name: petStore
@@ -13,6 +14,7 @@ workflows:
     description: This workflow retrieves a pet by ID
     steps:
       - stepId: get-pet
+        description: A step description
         operationId: $sourceDescriptions.petStore.getPetById
         parameters:
           - name: petId

@@ -1,11 +1,13 @@
 arazzo: 1.0.1
 info:
   summary: Missing required title and version
+  description: A detailed description
 sourceDescriptions:
   - type: openapi
     url: ./petstore-openapi.yaml
 workflows:
   - summary: Missing required workflowId
+    description: A workflow description
     inputs:
       type: foo
       properties:

@@ -249,4 +249,124 @@ describe('test-arazzo-linting-step', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED,
+    );
+    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostic');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED,
+    );
+    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED diagnostics for valid fixture');
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID,
+    );
+    assert(matchingErrors.length > 0, 'Expected at least one ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostic');
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID,
+    );
+    assert(matchingErrorsValid.length === 0, 'Expected no ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID diagnostics for valid fixture');
+
+    languageService.terminate();
+  });
 });

@@ -14,6 +14,8 @@ import outputsTypeLint from './outputs--type.ts';
 import outputsKeysPatternLint from './outputs--keys-pattern.ts';
 import outputsValuesTypeLint from './outputs--values-type.ts';
 import parametersTypeLint from './parameters--type.ts';
+import descriptionRecommendedLint from './description--recommended.ts';
+import summaryRecommendedLint from './summary--recommended.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -21,7 +23,9 @@ const lints = [
   workflowIdTypeLint,
   workflowIdPatternLint,
   summaryTypeLint,
+  summaryRecommendedLint,
   descriptionTypeLint,
+  descriptionRecommendedLint,
   inputsTypeLint,
   stepsRequiredLint,
   stepsTypeLint,

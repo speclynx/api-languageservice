@@ -16,6 +16,8 @@ import parametersTypeLint from './parameters--type.ts';
 import operationIdMutuallyExclusiveLint from './operation-id--mutually-exclusive.ts';
 import operationPathMutuallyExclusiveLint from './operation-path--mutually-exclusive.ts';
 import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
+import descriptionRecommendedLint from './description--recommended.ts';
+import operationPathPreferOperationIdLint from './operation-path--prefer-operation-id.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -23,12 +25,14 @@ const lints = [
   stepIdTypeLint,
   stepIdPatternLint,
   descriptionTypeLint,
+  descriptionRecommendedLint,
   operationIdTypeLint,
   operationPathTypeLint,
   workflowIdTypeLint,
   operationIdMutuallyExclusiveLint,
   operationPathMutuallyExclusiveLint,
   workflowIdMutuallyExclusiveLint,
+  operationPathPreferOperationIdLint,
   requestBodyTypeLint,
   successCriteriaTypeLint,
   onSuccessTypeLint,

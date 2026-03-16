@@ -86,9 +86,11 @@ workflows:
     outputs:
       createdPetName: $steps.get-pet.outputs.petName
   - workflowId: other-workflow
+    description: A workflow description
     summary: Another workflow
     steps:
       - stepId: simple-step
+        description: A step description
         operationId: $sourceDescriptions.petStore.listPets
         successCriteria:
           - condition: $statusCode == 200

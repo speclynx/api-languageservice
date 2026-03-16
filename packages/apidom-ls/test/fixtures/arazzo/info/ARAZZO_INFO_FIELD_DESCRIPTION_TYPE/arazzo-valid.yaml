@@ -10,9 +10,11 @@ sourceDescriptions:
     url: ./petstore-openapi.yaml
 workflows:
   - workflowId: get-pet-workflow
+    description: A workflow description
     summary: Get a pet by ID
     steps:
       - stepId: get-pet
+        description: A step description
         operationId: $sourceDescriptions.petStore.getPetById
         parameters:
           - name: petId
