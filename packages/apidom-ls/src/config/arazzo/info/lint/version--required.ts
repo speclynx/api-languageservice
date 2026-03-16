@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const versionRequiredLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_INFO_FIELD_VERSION_REQUIRED,
@@ -22,7 +22,7 @@ const versionRequiredLint: LinterMeta = {
       },
     ],
   },
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default versionRequiredLint;

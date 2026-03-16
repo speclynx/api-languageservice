@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const targetTypeLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_PAYLOAD_REPLACEMENT_FIELD_TARGET_TYPE,
@@ -14,7 +14,7 @@ const targetTypeLint: LinterMeta = {
   marker: 'value',
   target: 'target',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default targetTypeLint;

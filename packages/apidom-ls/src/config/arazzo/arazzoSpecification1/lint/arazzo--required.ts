@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const arazzoRequiredLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_SPEC_FIELD_ARAZZO_REQUIRED,
@@ -22,7 +22,7 @@ const arazzoRequiredLint: LinterMeta = {
       },
     ],
   },
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default arazzoRequiredLint;

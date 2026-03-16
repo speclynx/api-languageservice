@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const retryAfterNonNegativeLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_NON_NEGATIVE,
@@ -14,7 +14,7 @@ const retryAfterNonNegativeLint: LinterMeta = {
   marker: 'value',
   target: 'retryAfter',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default retryAfterNonNegativeLint;

@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const successCriteriaTypeLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_STEP_FIELD_SUCCESS_CRITERIA_TYPE,
@@ -14,7 +14,7 @@ const successCriteriaTypeLint: LinterMeta = {
   marker: 'key',
   target: 'successCriteria',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default successCriteriaTypeLint;

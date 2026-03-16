@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const ifTypeLint: LinterMeta = {
   code: ApilintCodes.SCHEMA_IF,
@@ -14,7 +14,7 @@ const ifTypeLint: LinterMeta = {
   marker: 'value',
   target: 'if',
   data: {},
-  targetSpecs: arazzo,
+  targetSpecs: Arazzo,
 };
 
 export default ifTypeLint;

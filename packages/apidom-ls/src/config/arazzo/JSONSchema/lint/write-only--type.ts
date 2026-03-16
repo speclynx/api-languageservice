@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const writeOnlyTypeLint: LinterMeta = {
   code: ApilintCodes.SCHEMA_WRITEONLY,
@@ -14,7 +14,7 @@ const writeOnlyTypeLint: LinterMeta = {
   marker: 'value',
   target: 'writeOnly',
   data: {},
-  targetSpecs: arazzo,
+  targetSpecs: Arazzo,
 };
 
 export default writeOnlyTypeLint;

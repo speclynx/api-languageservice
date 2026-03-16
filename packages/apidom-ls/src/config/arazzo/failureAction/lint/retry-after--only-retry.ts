@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const retryAfterOnlyRetryLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_ONLY_RETRY,
@@ -22,7 +22,7 @@ const retryAfterOnlyRetryLint: LinterMeta = {
     },
   ],
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default retryAfterOnlyRetryLint;

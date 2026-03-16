@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const maximumTypeLint: LinterMeta = {
   code: ApilintCodes.SCHEMA_MAXIMUM,
@@ -14,7 +14,7 @@ const maximumTypeLint: LinterMeta = {
   marker: 'value',
   target: 'maximum',
   data: {},
-  targetSpecs: arazzo,
+  targetSpecs: Arazzo,
 };
 
 export default maximumTypeLint;

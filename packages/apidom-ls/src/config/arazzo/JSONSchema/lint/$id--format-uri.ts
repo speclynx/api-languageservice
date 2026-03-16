@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const $idFormatURILint: LinterMeta = {
   code: ApilintCodes.SCHEMA_ID,
@@ -13,7 +13,7 @@ const $idFormatURILint: LinterMeta = {
   marker: 'value',
   target: '$id',
   data: {},
-  targetSpecs: arazzo,
+  targetSpecs: Arazzo,
 };
 
 export default $idFormatURILint;

@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const failureActionsValuesTypeLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_COMPONENTS_FIELD_FAILURE_ACTIONS_VALUES_TYPE,
@@ -14,7 +14,7 @@ const failureActionsValuesTypeLint: LinterMeta = {
   marker: 'key',
   target: 'failureActions',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default failureActionsValuesTypeLint;

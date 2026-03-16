@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const workflowIdRequiredLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_WORKFLOW_FIELD_WORKFLOW_ID_REQUIRED,
@@ -22,7 +22,7 @@ const workflowIdRequiredLint: LinterMeta = {
       },
     ],
   },
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default workflowIdRequiredLint;

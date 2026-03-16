@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const descriptionTypeLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_WORKFLOW_FIELD_DESCRIPTION_TYPE,
@@ -14,7 +14,7 @@ const descriptionTypeLint: LinterMeta = {
   marker: 'value',
   target: 'description',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default descriptionTypeLint;

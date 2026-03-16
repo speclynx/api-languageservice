@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const ifNonThenLint: LinterMeta = {
   code: ApilintCodes.SCHEMA_IF_NONTHEN,
@@ -29,7 +29,7 @@ const ifNonThenLint: LinterMeta = {
       },
     ],
   },
-  targetSpecs: arazzo,
+  targetSpecs: Arazzo,
 };
 
 export default ifNonThenLint;

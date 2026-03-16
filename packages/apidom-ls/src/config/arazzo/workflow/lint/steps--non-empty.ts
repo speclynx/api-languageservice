@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { arazzo } from '../../target-specs.ts';
+import { Arazzo } from '../../target-specs.ts';
 
 const stepsNonEmptyLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_WORKFLOW_FIELD_STEPS_NON_EMPTY,
@@ -13,7 +13,7 @@ const stepsNonEmptyLint: LinterMeta = {
   marker: 'key',
   target: 'steps',
   data: {},
-  targetSpecs: [...arazzo],
+  targetSpecs: [...Arazzo],
 };
 
 export default stepsNonEmptyLint;
