@@ -22,3 +22,6 @@ workflows:
           - name: triggerNonexistent
             type: goto
             workflowId: nonexistent-workflow
+          - name: triggerBadSourceRef
+            type: goto
+            workflowId: $sourceDescriptions.

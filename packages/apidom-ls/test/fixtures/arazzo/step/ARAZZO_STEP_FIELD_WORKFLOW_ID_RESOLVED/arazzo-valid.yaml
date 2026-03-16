@@ -8,6 +8,9 @@ sourceDescriptions:
   - name: petStore
     type: openapi
     url: ./petstore.yaml
+  - name: externalArazzo
+    type: arazzo
+    url: ./external-arazzo.yaml
 workflows:
   - workflowId: helper-workflow
     description: A helper workflow
@@ -25,5 +28,10 @@ workflows:
       - stepId: call-helper
         description: Calls the helper workflow
         workflowId: helper-workflow
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: call-external
+        description: Calls an external workflow via sourceDescriptions
+        workflowId: $sourceDescriptions.externalArazzo.some-workflow
         successCriteria:
           - condition: $statusCode == 200

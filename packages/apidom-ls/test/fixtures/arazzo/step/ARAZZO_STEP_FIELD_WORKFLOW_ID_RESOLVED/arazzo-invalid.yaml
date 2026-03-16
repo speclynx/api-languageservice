@@ -18,3 +18,8 @@ workflows:
         workflowId: nonexistent-workflow
         successCriteria:
           - condition: $statusCode == 200
+      - stepId: call-bad-source-ref
+        description: Invalid sourceDescriptions runtime expression
+        workflowId: $sourceDescriptions.
+        successCriteria:
+          - condition: $statusCode == 200

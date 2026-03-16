@@ -8,6 +8,9 @@ sourceDescriptions:
   - name: petStore
     type: openapi
     url: ./petstore.yaml
+  - name: externalArazzo
+    type: arazzo
+    url: ./external-arazzo.yaml
 workflows:
   - workflowId: recovery-workflow
     description: Recovery workflow
@@ -31,3 +34,6 @@ workflows:
           - name: triggerRecovery
             type: goto
             workflowId: recovery-workflow
+          - name: triggerExternal
+            type: goto
+            workflowId: $sourceDescriptions.externalArazzo.external-workflow

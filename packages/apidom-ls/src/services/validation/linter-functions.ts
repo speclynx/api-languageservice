@@ -665,7 +665,8 @@ export const standardLinterfunctions: FunctionItem[] = [
   {
     functionName: 'apilintArazzoArrayValuesResolveToWorkflows',
     function: (element: Element): boolean => {
-      // Validate each string in an array resolves to an existing workflow's workflowId
+      // Validate each string in an array resolves to an existing workflow's workflowId.
+      // Values starting with $sourceDescriptions are external refs validated as runtime expressions.
       if (!element || !isArray(element)) return true;
       const api = root(element);
       const workflows = getElementsByTypeOrClass(api, 'workflow');
@@ -676,8 +677,12 @@ export const standardLinterfunctions: FunctionItem[] = [
       );
       for (const item of element as ArrayElement) {
         const val = toValue(item as Element);
-        if (typeof val === 'string' && !workflowIds.has(val)) {
-          return false;
+        if (typeof val === 'string') {
+          if (val.startsWith('$sourceDescriptions.')) {
+            if (!testRuntimeExpression(val)) return false;
+          } else if (!workflowIds.has(val)) {
+            return false;
+          }
         }
       }
       return true;
@@ -687,11 +692,11 @@ export const standardLinterfunctions: FunctionItem[] = [
     functionName: 'apilintArazzoWorkflowIdResolved',
     function: (element: Element): boolean => {
       // Validate that a workflowId reference resolves to an existing workflow.
-      // $sourceDescriptions references are external and skipped.
+      // $sourceDescriptions references are external and validated as runtime expressions.
       if (!element || !isString(element)) return true;
       const value = toValue(element) as string;
       if (value.length === 0) return true;
-      if (value.startsWith('$sourceDescriptions.')) return true;
+      if (value.startsWith('$sourceDescriptions.')) return testRuntimeExpression(value);
       const api = root(element);
       const workflows = getElementsByTypeOrClass(api, 'workflow');
       return workflows.some(
