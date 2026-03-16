@@ -60,7 +60,7 @@ workflows:
             criteria:
               - condition: $statusCode == 503
         outputs:
-          petId: $response.body.id
+          petId: $response.body#/id
       - stepId: get-pet
         operationId: $sourceDescriptions.petStore.getPetById
         description: Get the created pet
@@ -75,7 +75,7 @@ workflows:
               type: jsonpath
               version: draft-goessner-dispatch-jsonpath-00
         outputs:
-          petName: $response.body.name
+          petName: $response.body#/name
     successActions:
       - name: logResult
         type: goto

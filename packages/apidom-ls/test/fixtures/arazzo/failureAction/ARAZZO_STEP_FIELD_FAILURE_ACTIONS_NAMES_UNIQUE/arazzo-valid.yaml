@@ -30,4 +30,4 @@ workflows:
             retryAfter: 1
             retryLimit: 3
         outputs:
-          petName: $response.body.name
+          petName: $response.body#/name

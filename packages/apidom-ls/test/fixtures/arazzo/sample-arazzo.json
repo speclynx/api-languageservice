@@ -33,7 +33,7 @@
             }
           ],
           "outputs": {
-            "petName": "$response.body.name"
+            "petName": "$response.body#/name"
           }
         }
       ]

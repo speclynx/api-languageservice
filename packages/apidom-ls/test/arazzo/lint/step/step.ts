@@ -501,4 +501,136 @@ describe('test-arazzo-linting-step', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION,
+    );
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION diagnostic',
+    );
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION,
+    );
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION diagnostics for valid fixture',
+    );
+
+    languageService.terminate();
+  });
+
+  it('test ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'step',
+          'ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED,
+    );
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED diagnostic',
+    );
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED,
+    );
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED diagnostics for valid fixture',
+    );
+
+    languageService.terminate();
+  });
 });

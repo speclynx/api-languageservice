@@ -1,0 +1,23 @@
+arazzo: 1.0.1
+info:
+  title: Test Arazzo Workflow
+  version: 1.0.0
+  description: A test document
+  summary: Testing step outputs runtime expressions
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore.yaml
+workflows:
+  - workflowId: test-workflow
+    description: A test workflow
+    summary: Test workflow
+    steps:
+      - stepId: get-pet
+        description: Get a pet
+        operationId: $sourceDescriptions.petStore.getPetById
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          petName: invalid-expression
+          petId: $response.body#/id

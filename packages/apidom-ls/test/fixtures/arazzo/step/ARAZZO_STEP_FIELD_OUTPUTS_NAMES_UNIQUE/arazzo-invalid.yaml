@@ -23,5 +23,5 @@ workflows:
         successCriteria:
           - condition: $statusCode == 200
         outputs:
-          petName: $response.body.name
-          petName: $response.body.age
+          petName: $response.body#/name
+          petName: $response.body#/age

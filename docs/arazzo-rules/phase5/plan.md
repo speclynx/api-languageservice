@@ -21,41 +21,41 @@ The Spectral rules below represent new validation logic not yet covered. They ar
 
 These are simple "field should be present" or preference rules with no cross-referencing logic. They use existing linter functions (`apilintFieldTruthy`, `apilintValueRegex`, pattern matching).
 
-- [ ] 1.1: `arazzo-info-description` — Info description should be present (warning)
-- [ ] 1.2: `arazzo-info-summary` — Info summary is recommended (hint)
-- [ ] 1.3: `arazzo-workflow-description` — Workflow description should be present (warning)
-- [ ] 1.4: `arazzo-workflow-summary` — Workflow summary is recommended (hint)
-- [ ] 1.5: `arazzo-step-description` — Step description should be present (warning)
-- [ ] 1.6: `arazzo-step-operationPath` — Prefer operationId over operationPath (hint)
-- [ ] 1.7: `arazzo-no-script-tags-in-markdown` — No `<script>` tags in description/title fields (error)
+- [x] 1.1: `arazzo-info-description` — Info description should be present (warning)
+- [x] 1.2: `arazzo-info-summary` — Info summary is recommended (hint)
+- [x] 1.3: `arazzo-workflow-description` — Workflow description should be present (warning)
+- [x] 1.4: `arazzo-workflow-summary` — Workflow summary is recommended (hint)
+- [x] 1.5: `arazzo-step-description` — Step description should be present (warning)
+- [x] 1.6: `arazzo-step-operationPath` — Prefer operationId over operationPath (hint)
+- [x] 1.7: `arazzo-no-script-tags-in-markdown` — No `<script>` tags in description/title fields (error)
 
 ## Batch 2: Uniqueness Validation Rules
 
 These rules validate uniqueness of identifiers within their scope. They require tree traversal (via the existing `getElementsByTypeOrClass` cache) or element-local iteration.
 
-- [ ] 2.1: `arazzo-workflowId-unique` — Unique workflowId across all workflows
-- [ ] 2.2: `arazzo-workflow-stepId-unique` — Unique stepId within each workflow
-- [ ] 2.3: `arazzo-workflow-output-names-unique` — Unique output names per workflow
-- [ ] 2.4: `arazzo-step-output-names-unique` — Unique output names per step
-- [ ] 2.5: `arazzo-step-parameters-unique` — Unique parameters by name+in combination per step
-- [ ] 2.6: `arazzo-step-success-actions-names-unique` — Unique success action names per step (after merging workflow+step actions)
-- [ ] 2.7: `arazzo-step-failure-actions-names-unique` — Unique failure action names per step (after merging workflow+step actions)
-- [ ] 2.8: `arazzo-workflow-depends-on-unique` — Unique entries in workflow dependsOn array
+- [x] 2.1: `arazzo-workflowId-unique` — Unique workflowId across all workflows
+- [x] 2.2: `arazzo-workflow-stepId-unique` — Unique stepId within each workflow
+- [x] 2.3: `arazzo-workflow-output-names-unique` — Unique output names per workflow
+- [x] 2.4: `arazzo-step-output-names-unique` — Unique output names per step
+- [x] 2.5: `arazzo-step-parameters-unique` — Unique parameters by name+in combination per step
+- [x] 2.6: `arazzo-step-success-actions-names-unique` — Unique success action names per step
+- [x] 2.7: `arazzo-step-failure-actions-names-unique` — Unique failure action names per step
+- [x] 2.8: `arazzo-workflow-depends-on-unique` — Unique entries in workflow dependsOn array
 
 ## Batch 3: Cross-Reference and Semantic Validation Rules
 
 These rules validate that references resolve to existing definitions, runtime expressions are well-formed, and cross-object relationships are correct. They are the most complex rules, requiring document-level traversal and context awareness.
 
-- [ ] 3.1: `arazzo-runtime-expression-validation` — Runtime expression syntax validation (shared function)
-- [ ] 3.2: `arazzo-workflow-output-expression` — Workflow output values are valid runtime expressions
-- [ ] 3.3: `arazzo-step-output-expression` — Step output values are valid runtime expressions
-- [ ] 3.4: `arazzo-workflow-depends-on-resolved` — dependsOn entries resolve to existing workflows
-- [ ] 3.5: `arazzo-step-validation` — Step operationId/operationPath/workflowId references resolve correctly (source description cross-refs)
-- [ ] 3.6: `arazzo-step-success-criteria-validation` — Criterion context/type/condition validation (regex validity, context runtime expr)
-- [ ] 3.7: `arazzo-step-request-body-validation` — Request body contentType format and runtime expression usage
-- [ ] 3.8: `arazzo-step-parameters-expression` — Parameter value runtime expression validation and reusable reference resolution
-- [ ] 3.9: `arazzo-step-success-actions-refs` — Success action workflowId/stepId cross-reference validation
-- [ ] 3.10: `arazzo-step-failure-actions-refs` — Failure action workflowId/stepId cross-reference validation
+- [x] 3.1: `arazzo-runtime-expression-validation` — Runtime expression syntax validation (shared function)
+- [x] 3.2: `arazzo-workflow-output-expression` — Workflow output values are valid runtime expressions
+- [x] 3.3: `arazzo-step-output-expression` — Step output values are valid runtime expressions
+- [x] 3.4: `arazzo-workflow-depends-on-resolved` — dependsOn entries resolve to existing workflows
+- [x] 3.5: `arazzo-step-validation` — Step workflowId references resolve to existing workflows (local refs only; $sourceDescriptions refs skipped)
+- [x] 3.6: `arazzo-step-success-criteria-validation` — Criterion context/type/condition validation (regex validity, context runtime expr)
+- [x] 3.7: `arazzo-step-request-body-validation` — Request body contentType format validation (MIME type check)
+- [x] 3.8: `arazzo-step-parameters-expression` — Parameter value runtime expression validation (values starting with $ validated as runtime expressions)
+- [x] 3.9: `arazzo-step-success-actions-refs` — Success action workflowId/stepId cross-reference validation
+- [x] 3.10: `arazzo-step-failure-actions-refs` — Failure action workflowId/stepId cross-reference validation
 
 
 ## Implementation Approach

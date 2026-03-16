@@ -1,0 +1,20 @@
+arazzo: 1.0.1
+info:
+  title: Test Arazzo Workflow
+  version: 1.0.0
+  description: A test document
+  summary: Testing step workflowId resolution
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore.yaml
+workflows:
+  - workflowId: main-workflow
+    description: Main workflow
+    summary: Main
+    steps:
+      - stepId: call-nonexistent
+        description: Calls a nonexistent workflow
+        workflowId: nonexistent-workflow
+        successCriteria:
+          - condition: $statusCode == 200

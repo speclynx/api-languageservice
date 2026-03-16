@@ -12,6 +12,8 @@ import retryLimitNonNegativeLint from './retry-limit--non-negative.ts';
 import criteriaTypeLint from './criteria--type.ts';
 import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
 import stepIdMutuallyExclusiveLint from './step-id--mutually-exclusive.ts';
+import workflowIdResolvedLint from './workflow-id--resolved.ts';
+import stepIdResolvedLint from './step-id--resolved.ts';
 import retryAfterOnlyRetryLint from './retry-after--only-retry.ts';
 import retryLimitOnlyRetryLint from './retry-limit--only-retry.ts';
 import nameUniqueLint from './name--unique.ts';
@@ -28,6 +30,8 @@ const lints = [
   stepIdTypeLint,
   workflowIdMutuallyExclusiveLint,
   stepIdMutuallyExclusiveLint,
+  workflowIdResolvedLint,
+  stepIdResolvedLint,
   retryAfterTypeLint,
   retryAfterNonNegativeLint,
   retryLimitTypeLint,

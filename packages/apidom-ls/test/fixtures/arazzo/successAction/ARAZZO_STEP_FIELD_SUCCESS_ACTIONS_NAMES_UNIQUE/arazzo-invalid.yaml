@@ -28,4 +28,4 @@ workflows:
           - name: logSuccess
             type: end
         outputs:
-          petName: $response.body.name
+          petName: $response.body#/name

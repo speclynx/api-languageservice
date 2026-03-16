@@ -23,7 +23,7 @@ workflows:
         successCriteria:
           - condition: $statusCode == 200
         outputs:
-          petName: $response.body.name
+          petName: $response.body#/name
   - workflowId: delete-pet-workflow
     description: Deletes a pet from the store
     summary: Delete a pet by ID

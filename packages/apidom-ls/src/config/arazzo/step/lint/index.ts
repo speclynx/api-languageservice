@@ -20,6 +20,8 @@ import descriptionRecommendedLint from './description--recommended.ts';
 import operationPathPreferOperationIdLint from './operation-path--prefer-operation-id.ts';
 import stepIdUniqueLint from './step-id--unique.ts';
 import outputsNamesUniqueLint from './outputs--names-unique.ts';
+import outputsValuesRuntimeExpressionLint from './outputs--values-runtime-expression.ts';
+import workflowIdResolvedLint from './workflow-id--resolved.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
@@ -36,12 +38,14 @@ const lints = [
   operationPathMutuallyExclusiveLint,
   workflowIdMutuallyExclusiveLint,
   operationPathPreferOperationIdLint,
+  workflowIdResolvedLint,
   requestBodyTypeLint,
   successCriteriaTypeLint,
   onSuccessTypeLint,
   onFailureTypeLint,
   outputsTypeLint,
   outputsNamesUniqueLint,
+  outputsValuesRuntimeExpressionLint,
   outputsKeysPatternLint,
   outputsValuesTypeLint,
   parametersTypeLint,

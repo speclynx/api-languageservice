@@ -23,7 +23,7 @@ workflows:
         successCriteria:
           - condition: $statusCode == 200
         outputs:
-          petName: $response.body.name
+          petName: $response.body#/name
       - stepId: validate-pet
         description: Validate the pet data
         operationId: $sourceDescriptions.petStore.validatePet
