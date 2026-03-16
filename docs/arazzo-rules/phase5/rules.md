@@ -1,6 +1,6 @@
-# Arazzo Linting Rules Reference (Phase 4)
+# Arazzo Linting Rules Reference (Phase 5)
 
-This document lists all linting rules implemented for the Arazzo 1.0.1 specification, including JSON Schema rules tested in Phase 4. Rules are organized by target element. Each rule includes its error code, linter function, and a brief description.
+This document lists all linting rules implemented for the Arazzo 1.0.1 specification, including structural rules (Phases 1-3), JSON Schema rules (Phase 4), and Spectral-inspired best-practice, uniqueness, and cross-reference rules (Phase 5). Rules are organized by target element. Each rule includes its error code, linter function, and a brief description.
 
 ## Info Object (target: `info`)
 
@@ -13,6 +13,8 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_INFO_FIELD_VERSION_REQUIRED | version--required | version field is required |
 | ARAZZO_INFO_FIELD_VERSION_TYPE | version--type | version must be a string |
 | NOT_ALLOWED_FIELDS | allowed-fields-2-0--3-0 | Only title, description, summary, version + x- allowed |
+| ARAZZO_INFO_FIELD_DESCRIPTION_RECOMMENDED | description--recommended | description should be present (warning) |
+| ARAZZO_INFO_FIELD_SUMMARY_RECOMMENDED | summary--recommended | summary is recommended (hint) |
 
 ## Arazzo Specification Object (target: `arazzoSpecification1`)
 
@@ -31,6 +33,7 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_SPEC_FIELD_WORKFLOWS_NON_EMPTY | workflows--non-empty | workflows must have at least one entry |
 | ARAZZO_SPEC_FIELD_COMPONENTS_TYPE | components--type | components must be a components object |
 | NOT_ALLOWED_FIELDS | allowed-fields | Only arazzo, info, sourceDescriptions, workflows, components + x- |
+| ARAZZO_SPEC_NO_SCRIPT_TAGS | no-script-tags | No `<script>` tags in description/title fields (error) |
 
 ## Source Description Object (target: `sourceDescription`)
 
@@ -66,6 +69,14 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_TYPE | outputs--values-type | output values must be strings (Runtime Expressions) |
 | ARAZZO_WORKFLOW_FIELD_PARAMETERS_TYPE | parameters--type | parameters array of parameter/reusable |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields list + x- |
+| ARAZZO_WORKFLOW_FIELD_DESCRIPTION_RECOMMENDED | description--recommended | description should be present (warning) |
+| ARAZZO_WORKFLOW_FIELD_SUMMARY_RECOMMENDED | summary--recommended | summary is recommended (hint) |
+| ARAZZO_WORKFLOW_FIELD_WORKFLOW_ID_UNIQUE | workflow-id--unique | workflowId must be unique across all workflows |
+| ARAZZO_WORKFLOW_FIELD_STEP_ID_UNIQUE | step-id--unique | stepId must be unique within each workflow |
+| ARAZZO_WORKFLOW_FIELD_OUTPUTS_NAMES_UNIQUE | outputs--names-unique | output names must be unique per workflow |
+| ARAZZO_WORKFLOW_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION | outputs--values-runtime-expression | output values must be valid Runtime Expressions |
+| ARAZZO_WORKFLOW_FIELD_DEPENDS_ON_UNIQUE | depends-on--unique | dependsOn entries must be unique |
+| ARAZZO_WORKFLOW_FIELD_DEPENDS_ON_RESOLVED | depends-on--resolved | dependsOn entries must resolve to existing workflows |
 
 ## Step Object (target: `step`)
 
@@ -90,6 +101,14 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_STEP_FIELD_OPERATION_PATH_MUTUALLY_EXCLUSIVE | operation-path--mutually-exclusive | operationPath is mutually exclusive with operationId and workflowId |
 | ARAZZO_STEP_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE | workflow-id--mutually-exclusive | workflowId is mutually exclusive with operationId and operationPath |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields list + x- |
+| ARAZZO_STEP_FIELD_DESCRIPTION_RECOMMENDED | description--recommended | description should be present (warning) |
+| ARAZZO_STEP_FIELD_OPERATION_PATH_PREFER_OPERATION_ID | operation-path--prefer-operation-id | operationPath hint: prefer operationId |
+| ARAZZO_STEP_FIELD_OUTPUTS_NAMES_UNIQUE | outputs--names-unique | output names must be unique per step |
+| ARAZZO_STEP_FIELD_OUTPUTS_VALUES_RUNTIME_EXPRESSION | outputs--values-runtime-expression | output values must be valid Runtime Expressions |
+| ARAZZO_STEP_FIELD_PARAMETERS_UNIQUE | parameters--unique | parameters must be unique by name+in per step |
+| ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE | success-actions--names-unique | success action names must be unique per step |
+| ARAZZO_STEP_FIELD_FAILURE_ACTIONS_NAMES_UNIQUE | failure-actions--names-unique | failure action names must be unique per step |
+| ARAZZO_STEP_FIELD_WORKFLOW_ID_RESOLVED | workflow-id--resolved | workflowId must reference existing workflow |
 
 ## Parameter Object (target: `parameter`)
 
@@ -101,6 +120,7 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_PARAMETER_FIELD_IN_EQUALS | in--equals | in must be path/query/header/cookie |
 | ARAZZO_PARAMETER_FIELD_VALUE_REQUIRED | value--required | value required |
 | NOT_ALLOWED_FIELDS | allowed-fields | Only name, in, value + x- |
+| ARAZZO_PARAMETER_FIELD_VALUE_RUNTIME_EXPRESSION | value--runtime-expression | value starting with $ must be valid Runtime Expression |
 
 ## Success Action Object (target: `successAction`)
 
@@ -117,6 +137,8 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_MUTUALLY_EXCLUSIVE | workflow-id--mutually-exclusive | workflowId is mutually exclusive with stepId |
 | ARAZZO_SUCCESS_ACTION_FIELD_STEP_ID_MUTUALLY_EXCLUSIVE | step-id--mutually-exclusive | stepId is mutually exclusive with workflowId |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields + x- |
+| ARAZZO_SUCCESS_ACTION_FIELD_WORKFLOW_ID_RESOLVED | workflow-id--resolved | workflowId must reference existing workflow |
+| ARAZZO_SUCCESS_ACTION_FIELD_STEP_ID_RESOLVED | step-id--resolved | stepId must reference existing step in same workflow |
 
 ## Failure Action Object (target: `failureAction`)
 
@@ -139,6 +161,8 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_FAILURE_ACTION_FIELD_RETRY_AFTER_ONLY_RETRY | retry-after--only-retry | retryAfter only applies when type is "retry" |
 | ARAZZO_FAILURE_ACTION_FIELD_RETRY_LIMIT_ONLY_RETRY | retry-limit--only-retry | retryLimit only applies when type is "retry" |
 | NOT_ALLOWED_FIELDS | allowed-fields | Allowed fields + x- |
+| ARAZZO_FAILURE_ACTION_FIELD_WORKFLOW_ID_RESOLVED | workflow-id--resolved | workflowId must reference existing workflow |
+| ARAZZO_FAILURE_ACTION_FIELD_STEP_ID_RESOLVED | step-id--resolved | stepId must reference existing step in same workflow |
 
 ## Components Object (target: `components`)
 
@@ -168,6 +192,8 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_CRITERION_FIELD_TYPE_EQUALS | type--equals | type must be simple/regex/jsonpath/xpath (when string) |
 | ARAZZO_CRITERION_FIELD_CONTEXT_REQUIRED_WHEN_TYPE | context--required-when-type | context MUST be provided when type is specified |
 | NOT_ALLOWED_FIELDS | allowed-fields | Only context, condition, type + x- |
+| ARAZZO_CRITERION_FIELD_CONTEXT_RUNTIME_EXPRESSION | context--runtime-expression | context must be a valid Runtime Expression |
+| ARAZZO_CRITERION_FIELD_CONDITION_REGEX_VALID | condition--regex-valid | condition must be valid regex when type is "regex" |
 
 ## Criterion Expression Type Object (target: `criterionExpressionType`)
 
@@ -187,6 +213,7 @@ This document lists all linting rules implemented for the Arazzo 1.0.1 specifica
 | ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_TYPE | content-type--type | contentType must be a string |
 | ARAZZO_REQUEST_BODY_FIELD_REPLACEMENTS_TYPE | replacements--type | replacements array of payloadReplacement |
 | NOT_ALLOWED_FIELDS | allowed-fields | Only contentType, payload, replacements + x- |
+| ARAZZO_REQUEST_BODY_FIELD_CONTENT_TYPE_FORMAT | content-type--format | contentType should be a valid MIME type (warning) |
 
 ## Payload Replacement Object (target: `payloadReplacement`)
 
@@ -305,3 +332,15 @@ Active rules (64 total):
 All JSON Schema rules with Arazzo in their targetSpecs are tested in `test/arazzo/lint/JSONSchema/JSONSchema.ts`. Each test validates both a valid and invalid YAML fixture.
 
 All 64 Arazzo-applicable JSON Schema rules have passing tests. The SCHEMA_PATTERNPROPERTIES_KEY rule was fixed by replacing the non-functional `apilintKeyIsRegex` with a new `apilintChildrenKeysAreRegex` function.
+
+## Phase 5: Spectral Arazzo Rules
+
+Phase 5 added 27 rules inspired by the Spectral Arazzo ruleset, organized into three batches.
+
+Batch 1 (7 rules): Best-practice hints and warnings for missing description/summary fields, operationPath preference, and script tag prevention.
+
+Batch 2 (8 rules): Uniqueness validation for workflowId, stepId, output names, parameter name+in combinations, action names, and dependsOn entries. These use `apilintPropertyUniqueValue`, `apilintSiblingUniqueValue`, `apilintSiblingUniqueCompositeValue`, `apilintArrayUniqueValues`, and `apilintNoDuplicateKeys` linter functions.
+
+Batch 3 (12 rules): Cross-reference and semantic validation using `@swaggerexpert/arazzo-runtime-expression` (v2.0.3) for runtime expression validation per the Arazzo ABNF grammar. Includes workflow/step output expression validation, dependsOn resolution, workflowId/stepId cross-reference resolution, criterion context/condition validation, request body contentType format checking, and parameter value expression validation.
+
+All Phase 5 rules have passing tests with valid/invalid YAML fixture pairs. Total Arazzo test count: 131 tests.
