@@ -16,12 +16,16 @@ import outputsValuesTypeLint from './outputs--values-type.ts';
 import parametersTypeLint from './parameters--type.ts';
 import descriptionRecommendedLint from './description--recommended.ts';
 import summaryRecommendedLint from './summary--recommended.ts';
+import workflowIdUniqueLint from './workflow-id--unique.ts';
+import dependsOnUniqueLint from './depends-on--unique.ts';
+import outputsNamesUniqueLint from './outputs--names-unique.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
   workflowIdRequiredLint,
   workflowIdTypeLint,
   workflowIdPatternLint,
+  workflowIdUniqueLint,
   summaryTypeLint,
   summaryRecommendedLint,
   descriptionTypeLint,
@@ -31,9 +35,11 @@ const lints = [
   stepsTypeLint,
   stepsNonEmptyLint,
   dependsOnTypeLint,
+  dependsOnUniqueLint,
   successActionsTypeLint,
   failureActionsTypeLint,
   outputsTypeLint,
+  outputsNamesUniqueLint,
   outputsKeysPatternLint,
   outputsValuesTypeLint,
   parametersTypeLint,

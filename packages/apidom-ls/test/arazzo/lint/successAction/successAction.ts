@@ -203,4 +203,70 @@ describe('test-arazzo-linting-successAction', function () {
 
     languageService.terminate();
   });
+
+  it('test ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const specInvalid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'successAction',
+          'ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE',
+          'arazzo-invalid.yaml',
+        ),
+      )
+      .toString();
+    const docInvalid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-invalid.yaml',
+      'yaml',
+      0,
+      specInvalid,
+    );
+
+    const specValid = fs
+      .readFileSync(
+        path.join(
+          fixturesDir,
+          'arazzo',
+          'successAction',
+          'ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE',
+          'arazzo-valid.yaml',
+        ),
+      )
+      .toString();
+    const docValid: TextDocument = TextDocument.create(
+      'foo://bar/arazzo-valid.yaml',
+      'yaml',
+      0,
+      specValid,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
+    const matchingErrors = resultInvalid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE,
+    );
+    assert(
+      matchingErrors.length > 0,
+      'Expected at least one ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE diagnostic',
+    );
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    const matchingErrorsValid = resultValid.filter(
+      (d) => d.code === codes.ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE,
+    );
+    assert(
+      matchingErrorsValid.length === 0,
+      'Expected no ARAZZO_STEP_FIELD_SUCCESS_ACTIONS_NAMES_UNIQUE diagnostics for valid fixture',
+    );
+
+    languageService.terminate();
+  });
 });

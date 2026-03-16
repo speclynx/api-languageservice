@@ -1,0 +1,47 @@
+arazzo: 1.0.1
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.1
+  description: A detailed description
+  summary: A sample workflow for testing
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+workflows:
+  - workflowId: setup-workflow
+    description: Sets up prerequisite data
+    summary: Setup workflow
+    steps:
+      - stepId: setup-step
+        description: Perform setup
+        operationId: $sourceDescriptions.petStore.setup
+        successCriteria:
+          - condition: $statusCode == 200
+  - workflowId: cleanup-workflow
+    description: Cleans up resources
+    summary: Cleanup workflow
+    steps:
+      - stepId: cleanup-step
+        description: Perform cleanup
+        operationId: $sourceDescriptions.petStore.cleanup
+        successCriteria:
+          - condition: $statusCode == 200
+  - workflowId: get-pet-workflow
+    description: Retrieves a pet from the store
+    summary: Get a pet by ID
+    dependsOn:
+      - setup-workflow
+      - cleanup-workflow
+    steps:
+      - stepId: get-pet
+        description: Fetch the pet resource
+        operationId: $sourceDescriptions.petStore.getPetById
+        parameters:
+          - name: petId
+            in: path
+            value: 1
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          petName: $response.body.name

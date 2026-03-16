@@ -14,11 +14,13 @@ import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.t
 import stepIdMutuallyExclusiveLint from './step-id--mutually-exclusive.ts';
 import retryAfterOnlyRetryLint from './retry-after--only-retry.ts';
 import retryLimitOnlyRetryLint from './retry-limit--only-retry.ts';
+import nameUniqueLint from './name--unique.ts';
 import allowedFieldsLint from './allowed-fields.ts';
 
 const lints = [
   nameRequiredLint,
   nameTypeLint,
+  nameUniqueLint,
   typeRequiredLint,
   typeTypeLint,
   typeEqualsLint,
