@@ -1,0 +1,29 @@
+arazzo: 1.0.1
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.1
+  summary: A sample workflow for testing
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+workflows:
+  - workflowId: get-pet-workflow
+    summary: Get a pet by ID
+    inputs:
+      type: object
+      properties:
+        petName:
+          type: string
+          minLength: 1
+    steps:
+      - stepId: get-pet
+        operationId: $sourceDescriptions.petStore.getPetById
+        parameters:
+          - name: petId
+            in: path
+            value: 1
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          petName: $response.body.name

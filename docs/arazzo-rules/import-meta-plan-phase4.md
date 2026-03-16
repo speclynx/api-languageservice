@@ -17,7 +17,7 @@ In this fourth phase you will add comprehensive tests for the rules defined in `
 ### Procedure
 
 You will keep status and output in a series of markdown files in the `docs/arazzo-rules/phase4` folder, updating them while progressing.
-You will first copy into the `docs/arazzo-rules/phase3` folder the `docs/arazzo-rules/phase2/rules-docs.md` and `docs/arazzo-rules/phase2/rules.md` files, and then update them accordingly while progressing.
+You will first copy into the `docs/arazzo-rules/phase4` folder the `docs/arazzo-rules/phase3/rules-docs.md` and `docs/arazzo-rules/phase3/rules.md` files, and then update them accordingly while progressing.
 
 You will perform this task in the following steps:
 
