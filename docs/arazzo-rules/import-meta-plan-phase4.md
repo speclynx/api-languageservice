@@ -9,7 +9,7 @@ If there are discrepancies between the specification and the JSON Schema, the sp
 
 The first phase was implemented according to the "meta plan" defined in `docs/arazzo-rules/import-meta-plan.md`, this has been documented in `docs/arazzo-rules/phase1/` files.
 The second phase was implemented according to the "meta plan" defined in `docs/arazzo-rules/import-meta-plan-phase2.md`, this has been documented in `docs/arazzo-rules/phase2/` files.
-The second phase was implemented according to the "meta plan" defined in `docs/arazzo-rules/import-meta-plan-phase3.md`, this has been documented in `docs/arazzo-rules/phase3/` files.
+The third phase was implemented according to the "meta plan" defined in `docs/arazzo-rules/import-meta-plan-phase3.md`, this has been documented in `docs/arazzo-rules/phase3/` files.
 
 In this fourth phase you will add comprehensive tests for the rules defined in `packages/apidom-ls/src/config/arazzo/JSONSchema/lint.ts` (all defined in `packages/apidom-ls/src/config/common/schema/lint`) and verify that they are adherent to the specification.
 
