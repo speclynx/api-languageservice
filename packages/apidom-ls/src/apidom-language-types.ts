@@ -626,9 +626,18 @@ export interface LinterFunctionsMap {
  * @public
  */
 export type LinterFunction = ((...args: any[]) => boolean) | undefined;
+/**
+ * @public
+ */
 export type CompletionFunction = ((...args: any[]) => CompletionItem[]) | undefined;
+/**
+ * @public
+ */
 export type ConditionFunction = ((...args: any[]) => boolean) | undefined;
 
+/**
+ * @public
+ */
 export interface FunctionItem {
   functionName: string;
   function: LinterFunction | CompletionFunction | ConditionFunction;
