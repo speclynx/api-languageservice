@@ -93,18 +93,18 @@ export function getElementsByTypeOrClass(api: Element, typeOrClass: string): Ele
     elementsByTypeCache.set(api, apiCache);
   }
 
-  let elements = apiCache.get(typeOrClass);
-  if (elements) return elements;
+  const cached = apiCache.get(typeOrClass);
+  if (cached) return [...cached];
 
-  elements = [];
+  const elements: Element[] = [];
   forEach(api, (path) => {
     const el = path.node;
     if (el.element === typeOrClass || includesClasses(el, [typeOrClass])) {
-      elements!.push(el);
+      elements.push(el);
     }
   });
   apiCache.set(typeOrClass, elements);
-  return elements;
+  return [...elements];
 }
 
 export const root = (el: Element): Element => {
