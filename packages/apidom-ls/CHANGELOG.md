@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/speclynx/apidom-internal/compare/v2.5.0...v2.6.0) (2026-03-21)
+
+### Bug Fixes
+
+- **apidom-ls:** add [@public](https://github.com/public) JSDoc tags to exported type aliases ([87f7a21](https://github.com/speclynx/apidom-internal/commit/87f7a21fa5849263d5f0839a0fb25955c108bdbb))
+- **apidom-ls:** add missing [@public](https://github.com/public) JSDoc tags to exported symbols ([1239c2f](https://github.com/speclynx/apidom-internal/commit/1239c2f7bbfd81457ed632d9978b8e7baf100b16))
+- **apidom-ls:** harden root() and apilintSiblingUniqueCompositeValue ([03350bc](https://github.com/speclynx/apidom-internal/commit/03350bc187bfd1d16d8a5ac19d40b80bd58c0226))
+- **apidom-ls:** return defensive copy from getElementsByTypeOrClass ([aa50b31](https://github.com/speclynx/apidom-internal/commit/aa50b31402de1303b1bb67c045b0542b539ade29))
+
+### Features
+
+- **apidom-ls:** integrate Arazzo namespace support in linter rules ([0c7e1b2](https://github.com/speclynx/apidom-internal/commit/0c7e1b2b19fd711422ba70ae720ad6263dd8d09a))
+
 # [2.5.0](https://github.com/speclynx/apidom-internal/compare/v2.4.3...v2.5.0) (2026-03-16)
 
 ### Bug Fixes
