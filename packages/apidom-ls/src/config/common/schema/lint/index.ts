@@ -178,4 +178,5 @@ const schemaLints = [
   typeArrayNonItemsLint,
 ];
 
+/** @public */
 export default schemaLints;

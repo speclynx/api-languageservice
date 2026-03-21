@@ -86,6 +86,7 @@ function getUniquenessIndex(
 // Key: API root element -> Map<typeOrClass, Element[]>
 const elementsByTypeCache = new WeakMap<Element, Map<string, Element[]>>();
 
+/** @public */
 export function getElementsByTypeOrClass(api: Element, typeOrClass: string): Element[] {
   let apiCache = elementsByTypeCache.get(api);
   if (!apiCache) {
@@ -107,6 +108,7 @@ export function getElementsByTypeOrClass(api: Element, typeOrClass: string): Ele
   return [...elements];
 }
 
+/** @public */
 export const root = (el: Element): Element => {
   const rootElementTypes = [
     'swagger',
@@ -124,6 +126,7 @@ export const root = (el: Element): Element => {
   return node.parent ?? node;
 };
 
+/** @public */
 export const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
   if (element) {
     const referencedElement = getReferencedElementValue(element);

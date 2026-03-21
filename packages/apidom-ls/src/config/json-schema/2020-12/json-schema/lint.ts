@@ -7,4 +7,5 @@ import { compose } from '../target-specs.ts';
 
 const lints: LinterMeta[] = compose([$idLint, $schemaLint, $refLint, $commentLint]);
 
+/** @public */
 export default lints;
