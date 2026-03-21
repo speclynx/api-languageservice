@@ -93,6 +93,16 @@ Tests use Mocha (config in `packages/apidom-ls/.mocharc.json`). Tests must be bu
 Lerna manages versioning with the Angular conventional commits preset. Releases are automated via GitHub Actions on the `main` branch.
 
 
+## Rules Engine
+
+The validation service (`packages/apidom-ls/src/services/validation/validation-service.ts`) implements a declarative rules engine that evaluates `LinterMeta` rule definitions against the parsed ApiDOM element tree. Each rule specifies a `linterFunction` (looked up by name from the standard library in `linter-functions.ts` or from custom metadata), parameters, target element/field, applicable spec versions (`targetSpecs`), optional `conditions`, and the diagnostic to produce on failure. Rules also support `negate` to invert function results, `marker`/`markerTarget` to control diagnostic positioning, and `data.quickFix` for automated code actions.
+
+Rules are organized under `packages/apidom-ls/src/config/` in a hierarchy of `{namespace}/{element}/lint/{field}--{check}.ts` files, aggregated through `lint/index.ts` and `meta.ts` files into the `Metadata.metadataMaps` structure keyed by namespace (`openapi`, `asyncapi`, `ads`, `json-schema-2020-12`). A `'*'` key applies rules to all elements within a namespace. Custom rules can be added at runtime by extending `metadataMaps` for element-level rules, or by populating `metadata.rules[namespace].lint` with a `given` field for namespace-level rules using either semantic element names or JSONPath expressions (`givenFormat: 'JSONPATH'`). Custom linter functions are registered in `metadata.linterFunctions[namespace]`.
+
+Standard linter functions in `linter-functions.ts` include field existence checks (`hasRequiredField`, `missingField`, `existFields`), type validation (`apilintType`, `apilintNumber`), pattern matching (`apilintValueRegex`, `apilintKeyRegex`), structural validation (`allowedFields`, `apilintElementOrClass`, `apilintNoDuplicateKeys`), casing enforcement (`apilintValueCasing`, `apilintKeyCasing` supporting camel/kebab/snake/pascal/flat/cobol/macro), and OpenAPI-specific validators for path templates and parameter validation.
+
+For detailed documentation including the full `LinterMeta` field reference, all built-in functions, condition evaluation, custom rule examples, and testing patterns, see `docs/rules-engine.md`.
+
 ## Code Style
 
 - TypeScript with strict mode

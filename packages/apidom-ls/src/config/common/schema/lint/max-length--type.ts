@@ -2,6 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
+import { Arazzo } from '../../../arazzo/target-specs.ts';
 import { AsyncAPI2 } from '../../../asyncapi/target-specs.ts';
 import { OpenAPI2, OpenAPI3 } from '../../../openapi/target-specs.ts';
 
@@ -15,7 +16,7 @@ const maxLengthTypeLint: LinterMeta = {
   marker: 'value',
   target: 'maxLength',
   data: {},
-  targetSpecs: [...AsyncAPI2, ...OpenAPI2, ...OpenAPI3],
+  targetSpecs: [...AsyncAPI2, ...OpenAPI2, ...OpenAPI3, ...Arazzo],
 };
 
 export default maxLengthTypeLint;

@@ -207,6 +207,8 @@ Supported casing styles are: `'camel'`, `'cobol'`, `'flat'`, `'kebab'`, `'macro'
 
 `apilintKeyIsRegex(element)` validates the element's parent key is a valid regular expression.
 
+`apilintChildrenKeysAreRegex(element)` validates that all child member keys of an ObjectElement are valid regular expressions. Used by the `patternProperties` key validation rule.
+
 ### Constraints
 
 `apilintMaxLength(element, maxLength)` validates a string element's length is at most `maxLength`.

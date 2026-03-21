@@ -22,6 +22,8 @@
     "typescript:declaration": "lerna run typescript:declaration",
     "clean": "lerna run clean",
     "test": "lerna run test",
+    "test:quick": "lerna run test:quick",
+    "test:only": "lerna run test:only",
     "link": "npm link --workspaces",
     "unlink": "npm unlink --global @speclynx/apidom-ls"
   },

@@ -67,6 +67,7 @@ export type {
   LinterGivenFormat,
   FormatMeta,
   LinterFunction,
+  FunctionItem,
   LinterConditionTarget,
   DocumentationMeta,
   ConversionResult,
@@ -87,9 +88,25 @@ export {
 } from './apidom-language-types.ts';
 
 export { config } from './config/config.ts';
+
+export {
+  root,
+  apilintElementOrClass,
+  getElementsByTypeOrClass,
+} from './services/validation/linter-functions.ts';
+
 export {
   AsyncAPI as AsyncAPITargetSpecs,
   OpenAPI as OpenAPITargetSpecs,
   JSONSchema202012 as JSONSchema202012TargetSpecs,
 } from './config/target-specs.ts';
 export { default as isValidLinterMeta } from './utils/guards.ts';
+
+// Rule composition utilities for building custom rule sets
+export { Arazzo as ArazzoTargetSpecs } from './config/target-specs.ts';
+export { default as commonSchemaLints } from './config/common/schema/lint/index.ts';
+export { default as jsonSchema202012SchemaLints } from './config/json-schema/2020-12/json-schema/lint.ts';
+export {
+  compose as composeRules,
+  assoc as assocTargetSpecs,
+} from './config/json-schema/2020-12/target-specs.ts';

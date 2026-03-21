@@ -35,6 +35,8 @@ import maxItemsNonArrayLint from '../../common/schema/lint/max-items--non-array.
 import maxItemsTypeLint from '../../common/schema/lint/max-items--type.ts';
 import maxLengthNonStringLint from '../../common/schema/lint/max-length--non-string.ts';
 import maxLengthTypeLint from '../../common/schema/lint/max-length--type.ts';
+import maxPropertiesNonObjectLint from '../../common/schema/lint/max-properties--non-object.ts';
+import maxPropertiesTypeLint from '../../common/schema/lint/max-properties--type.ts';
 import maximumTypeLint from '../../common/schema/lint/maximum--type.ts';
 import minItemsNonArrayLint from '../../common/schema/lint/min-items--non-array.ts';
 import minItemsTypeLint from '../../common/schema/lint/min-items--type.ts';
@@ -56,6 +58,7 @@ import patternPropertiesKeysRegexpLint from '../../common/schema/lint/pattern-pr
 import patternPropertiesNonObjectLint from '../../common/schema/lint/pattern-properties--non-object.ts';
 import patternPropertiesTypeLint from '../../common/schema/lint/pattern-properties--type.ts';
 import patternPropertiesValuesTypeLint from '../../common/schema/lint/pattern-properties--values-type.ts';
+import propertiesNonObjectLint from '../../common/schema/lint/properties--non-object.ts';
 import propertiesTypeLint from '../../common/schema/lint/properties--type.ts';
 import propertiesValuesTypeLint from '../../common/schema/lint/properties--values-type.ts';
 import propertiesValuesTypeOpenAPI3_1__AsyncAPI2Lint from '../../common/schema/lint/properties--values-type-openapi-3-1--asyncapi-2.ts';
@@ -115,6 +118,8 @@ const schemaLints = [
   maxItemsTypeLint,
   maxLengthNonStringLint,
   maxLengthTypeLint,
+  maxPropertiesNonObjectLint,
+  maxPropertiesTypeLint,
   maximumTypeLint,
   minItemsNonArrayLint,
   minItemsTypeLint,
@@ -136,6 +141,7 @@ const schemaLints = [
   patternPropertiesNonObjectLint,
   patternPropertiesTypeLint,
   patternPropertiesValuesTypeLint,
+  propertiesNonObjectLint,
   propertiesTypeLint,
   propertiesValuesTypeLint,
   propertiesValuesTypeOpenAPI3_1__AsyncAPI2Lint,

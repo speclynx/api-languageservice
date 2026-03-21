@@ -2,6 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
+import { Arazzo } from '../../../arazzo/target-specs.ts';
 import { OpenAPI31 } from '../../../openapi/target-specs.ts';
 import { AsyncAPI2 } from '../../../asyncapi/target-specs.ts';
 
@@ -30,7 +31,7 @@ const ifNonThenLint: LinterMeta = {
       },
     ],
   },
-  targetSpecs: [...AsyncAPI2, ...OpenAPI31],
+  targetSpecs: [...AsyncAPI2, ...OpenAPI31, ...Arazzo],
 };
 
 export default ifNonThenLint;

@@ -2,6 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
+import { Arazzo } from '../../../arazzo/target-specs.ts';
 import { AsyncAPI2 } from '../../../asyncapi/target-specs.ts';
 import { OpenAPI31 } from '../../../openapi/target-specs.ts';
 
@@ -11,12 +12,12 @@ const patternPropertiesValuesTypeLint: LinterMeta = {
   message: 'patternProperties members must be schema objects or boolean JSON schemas',
   severity: DiagnosticSeverity.Error,
   linterFunction: 'apilintChildrenOfElementsOrClasses',
-  linterParams: [['schema', 'boolean']],
+  linterParams: [['schema', 'JSONSchema', 'JSONSchema202012', 'boolean']],
   marker: 'key',
   markerTarget: 'patternProperties',
   target: 'patternProperties',
   data: {},
-  targetSpecs: [...AsyncAPI2, ...OpenAPI31],
+  targetSpecs: [...AsyncAPI2, ...OpenAPI31, ...Arazzo],
 };
 
 export default patternPropertiesValuesTypeLint;

@@ -3,6 +3,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
 import { OpenAPI31 } from '../../../openapi/target-specs.ts';
+import { Arazzo } from '../../../arazzo/target-specs.ts';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const missingCoreFieldsOpenAPI3_1Lint: LinterMeta = {
@@ -83,10 +84,10 @@ const missingCoreFieldsOpenAPI3_1Lint: LinterMeta = {
   conditions: [
     {
       function: 'apilintElementOrClass',
-      params: [['schema']],
+      params: [['schema', 'JSONSchema', 'JSONSchema202012']],
     },
   ],
-  targetSpecs: OpenAPI31,
+  targetSpecs: [...OpenAPI31, ...Arazzo],
 };
 
 export default missingCoreFieldsOpenAPI3_1Lint;

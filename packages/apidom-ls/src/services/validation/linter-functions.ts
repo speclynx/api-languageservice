@@ -86,7 +86,7 @@ function getUniquenessIndex(
 // Key: API root element -> Map<typeOrClass, Element[]>
 const elementsByTypeCache = new WeakMap<Element, Map<string, Element[]>>();
 
-function getElementsByTypeOrClass(api: Element, typeOrClass: string): Element[] {
+export function getElementsByTypeOrClass(api: Element, typeOrClass: string): Element[] {
   let apiCache = elementsByTypeCache.get(api);
   if (!apiCache) {
     apiCache = new Map();
@@ -107,8 +107,14 @@ function getElementsByTypeOrClass(api: Element, typeOrClass: string): Element[] 
   return elements;
 }
 
-const root = (el: Element): Element => {
-  const rootElementTypes = ['swagger', 'openApi3_0', 'openApi3_1', 'asyncApi2'];
+export const root = (el: Element): Element => {
+  const rootElementTypes = [
+    'swagger',
+    'openApi3_0',
+    'openApi3_1',
+    'asyncApi2',
+    'arazzoSpecification1',
+  ];
   let node = el;
 
   while (node.parent && !rootElementTypes.includes(node.parent.element)) {
@@ -118,7 +124,7 @@ const root = (el: Element): Element => {
   return node.parent!;
 };
 
-const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
+export const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
   if (element) {
     const referencedElement = getReferencedElementValue(element);
     return (
@@ -542,6 +548,82 @@ export const standardLinterfunctions: FunctionItem[] = [
         }
       }
       return true;
+    },
+  },
+  {
+    functionName: 'apilintChildrenKeysAreRegex',
+    function: (element: Element): boolean => {
+      if (element && isObject(element)) {
+        for (const member of element as ObjectElement) {
+          const key = toValue((member as MemberElement).key as Element) as string;
+          try {
+            new RegExp(key);
+          } catch {
+            return false;
+          }
+        }
+      }
+      return true;
+    },
+  },
+  {
+    functionName: 'apilintSiblingUniqueValue',
+    function: (element: Element, key: string): boolean => {
+      // Check if the value of `key` on this element is unique among sibling elements
+      // in the parent array. The element is expected to be a child of an ArrayElement.
+      if (!element || !isObject(element) || !element.parent) return true;
+      const parent = element.parent;
+      if (!isArray(parent)) return true;
+      const myValue =
+        isObject(element) && element.hasKey(key) ? toValue(element.get(key)) : undefined;
+      if (myValue === undefined) return true;
+      let count = 0;
+      for (const sibling of parent as ArrayElement) {
+        if (isObject(sibling) && sibling.hasKey(key)) {
+          if (toValue(sibling.get(key)) === myValue) {
+            count++;
+            if (count > 1) return false;
+          }
+        }
+      }
+      return true;
+    },
+  },
+  {
+    functionName: 'apilintSiblingUniqueCompositeValue',
+    function: (element: Element, keys: string[]): boolean => {
+      // Check uniqueness of composite key (multiple fields) among siblings in parent array
+      if (!element || !isObject(element) || !element.parent) return true;
+      const parent = element.parent;
+      if (!isArray(parent)) return true;
+      const myValues = keys.map((k) =>
+        isObject(element) && element.hasKey(k) ? toValue(element.get(k)) : undefined,
+      );
+      const myComposite = JSON.stringify(myValues);
+      let count = 0;
+      for (const sibling of parent as ArrayElement) {
+        if (isObject(sibling)) {
+          const sibValues = keys.map((k) =>
+            (sibling as ObjectElement).hasKey(k)
+              ? toValue((sibling as ObjectElement).get(k))
+              : undefined,
+          );
+          if (JSON.stringify(sibValues) === myComposite) {
+            count++;
+            if (count > 1) return false;
+          }
+        }
+      }
+      return true;
+    },
+  },
+  {
+    functionName: 'apilintArrayUniqueValues',
+    function: (element: Element): boolean => {
+      // Check that all values in an array are unique (e.g. dependsOn: [string, ...])
+      if (!element || !isArray(element)) return true;
+      const values = [...(element as ArrayElement)].map((el) => toValue(el));
+      return values.length === new Set(values).size;
     },
   },
   {

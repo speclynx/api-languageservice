@@ -38,6 +38,8 @@ import maxItemsNonArrayLint from './max-items--non-array.ts';
 import maxItemsTypeLint from './max-items--type.ts';
 import maxLengthNonStringLint from './max-length--non-string.ts';
 import maxLengthTypeLint from './max-length--type.ts';
+import maxPropertiesNonObjectLint from './max-properties--non-object.ts';
+import maxPropertiesTypeLint from './max-properties--type.ts';
 import maximumTypeLint from './maximum--type.ts';
 import minItemsNonArrayLint from './min-items--non-array.ts';
 import minItemsTypeLint from './min-items--type.ts';
@@ -62,6 +64,7 @@ import patternPropertiesKeysRegexpLint from './pattern-properties--keys-regexp.t
 import patternPropertiesNonObjectLint from './pattern-properties--non-object.ts';
 import patternPropertiesTypeLint from './pattern-properties--type.ts';
 import patternPropertiesValuesTypeLint from './pattern-properties--values-type.ts';
+import propertiesNonObjectLint from './properties--non-object.ts';
 import propertiesTypeLint from './properties--type.ts';
 import propertiesValuesTypeLint from './properties--values-type.ts';
 import propertiesValuesTypeOpenAPI3_1__AsyncAPI2Lint from './properties--values-type-openapi-3-1--asyncapi-2.ts';
@@ -81,6 +84,7 @@ import uniqueItemsNonArrayLint from './unique-items--non-array.ts';
 import uniqueItemsTypeLint from './unique-items--type.ts';
 import writeOnlyTypeLint from './write-only--type.ts';
 import exampleDeprecatedLint from './example--deprecated.ts';
+import deprecatedTypeLint from './deprecated--type.ts';
 import typeArrayNonItemsLint from './type--array-non-items.ts';
 
 const schemaLints = [
@@ -124,6 +128,8 @@ const schemaLints = [
   maxItemsTypeLint,
   maxLengthNonStringLint,
   maxLengthTypeLint,
+  maxPropertiesNonObjectLint,
+  maxPropertiesTypeLint,
   maximumTypeLint,
   minItemsNonArrayLint,
   minItemsTypeLint,
@@ -148,6 +154,7 @@ const schemaLints = [
   patternPropertiesNonObjectLint,
   patternPropertiesTypeLint,
   patternPropertiesValuesTypeLint,
+  propertiesNonObjectLint,
   propertiesTypeLint,
   propertiesValuesTypeLint,
   propertiesValuesTypeOpenAPI3_1__AsyncAPI2Lint,
@@ -167,6 +174,7 @@ const schemaLints = [
   uniqueItemsTypeLint,
   writeOnlyTypeLint,
   exampleDeprecatedLint,
+  deprecatedTypeLint,
   typeArrayNonItemsLint,
 ];
 
