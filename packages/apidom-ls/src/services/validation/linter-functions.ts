@@ -121,7 +121,7 @@ export const root = (el: Element): Element => {
     node = node.parent;
   }
 
-  return node.parent!;
+  return node.parent ?? node;
 };
 
 export const apilintElementOrClass = (element: Element, elementsOrClasses: string[]): boolean => {
@@ -596,18 +596,13 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (!element || !isObject(element) || !element.parent) return true;
       const parent = element.parent;
       if (!isArray(parent)) return true;
-      const myValues = keys.map((k) =>
-        isObject(element) && element.hasKey(k) ? toValue(element.get(k)) : undefined,
-      );
+      if (!keys.every((k) => isObject(element) && element.hasKey(k))) return true;
+      const myValues = keys.map((k) => toValue(element.get(k)));
       const myComposite = JSON.stringify(myValues);
       let count = 0;
       for (const sibling of parent as ArrayElement) {
-        if (isObject(sibling)) {
-          const sibValues = keys.map((k) =>
-            (sibling as ObjectElement).hasKey(k)
-              ? toValue((sibling as ObjectElement).get(k))
-              : undefined,
-          );
+        if (isObject(sibling) && keys.every((k) => (sibling as ObjectElement).hasKey(k))) {
+          const sibValues = keys.map((k) => toValue((sibling as ObjectElement).get(k)));
           if (JSON.stringify(sibValues) === myComposite) {
             count++;
             if (count > 1) return false;
