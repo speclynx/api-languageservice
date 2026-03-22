@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/speclynx/apidom-internal/compare/v2.6.0...v2.7.0) (2026-03-22)
+
+### Features
+
+- **apidom-ls:** upgrade @speclynx/apidom-\* dependencies to v4.2.0 ([126383e](https://github.com/speclynx/apidom-internal/commit/126383ec96b27fc4ae519c2c6a457a2d54a01e18))
+
 # [2.6.0](https://github.com/speclynx/apidom-internal/compare/v2.5.0...v2.6.0) (2026-03-21)
 
 ### Bug Fixes
