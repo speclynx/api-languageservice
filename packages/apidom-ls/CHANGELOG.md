@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/speclynx/apidom-internal/compare/v2.7.0...v2.8.0) (2026-04-15)
+
+### Bug Fixes
+
+- **apidom-ls:** add JSONSchema202012 to apilintElementOrClass checks ([82819ec](https://github.com/speclynx/apidom-internal/commit/82819ec42fa271a9241dd3a57db35624ea1fc4f2))
+- **apidom-ls:** fix JSON Schema rules for Arazzo ([6842d9d](https://github.com/speclynx/apidom-internal/commit/6842d9d7d64edba149f13ccd43ff94dc8d941e6b))
+- **apidom-ls:** fix SCHEMA_PATTERNPROPERTIES_KEY ([dbb6111](https://github.com/speclynx/apidom-internal/commit/dbb6111971342cb41fe198803eab9e7a4a1b54aa))
+- **apidom-ls:** resolve api-extractor warnings ([#155](https://github.com/speclynx/apidom-internal/issues/155)) ([9c3e41e](https://github.com/speclynx/apidom-internal/commit/9c3e41e482e90ff47a9051c2c76fcc056d433c5f))
+- **apidom-ls:** support MIME type params in regex ([0e3e037](https://github.com/speclynx/apidom-internal/commit/0e3e037908f0a92ecc65a0145cf6461ea08724fd))
+- **apidom-ls:** validate sourceDescription refs ([12d5181](https://github.com/speclynx/apidom-internal/commit/12d5181e1ad9d3b88dbae115331ba8a6d7c6da89))
+- **arazzo-rules:** improve script tag detection ([b99ea3a](https://github.com/speclynx/apidom-internal/commit/b99ea3a53e8f4c7d9e10134662c163ff3828151d))
+- **build:** align obfuscation with vscode-openapi-toolkit ([#153](https://github.com/speclynx/apidom-internal/issues/153)) ([4329702](https://github.com/speclynx/apidom-internal/commit/432970265525ae37e3fda6eae61b19815a95cd13))
+- **deps:** bump [@speclynx](https://github.com/speclynx) deps to 4.7.0 and yaml to 2.8.3 ([#152](https://github.com/speclynx/apidom-internal/issues/152)) ([5e1fe69](https://github.com/speclynx/apidom-internal/commit/5e1fe69e07e9ee4ea4406fc5e86c606bc288fa52))
+- fix code linting errors ([c17aa69](https://github.com/speclynx/apidom-internal/commit/c17aa69237c13004bb9338245d075e20ff3453a9))
+
+### Features
+
+- **apidom-ls:** add Arazzo and JSON Schema rules ([86bcbd6](https://github.com/speclynx/apidom-internal/commit/86bcbd615fc411980cd8ec6bb75a5906ca01afee))
+- **apidom-ls:** add Arazzo element rule tests ([36769aa](https://github.com/speclynx/apidom-internal/commit/36769aac43b7b66900e7ff4f2e23f2b40c75ce11))
+- **apidom-ls:** add Arazzo JSON Schema tests ([0254d12](https://github.com/speclynx/apidom-internal/commit/0254d129454dd9a538cbfad9446b610103610629))
+- **apidom-ls:** add Arazzo linting rules ([374b13b](https://github.com/speclynx/apidom-internal/commit/374b13ba0bcc4302cb43db19cefa73b0778e0206))
+- **apidom-ls:** add Arazzo mutual exclusivity rules ([6d5431f](https://github.com/speclynx/apidom-internal/commit/6d5431f75c92ef8ac598b2b39bbc4a822921ed85))
+- **apidom-ls:** add Arazzo to JSON Schema rules ([89ca722](https://github.com/speclynx/apidom-internal/commit/89ca722d56db8ac987f4b19c519eb73be3ae96f6))
+- **apidom-ls:** add missing Arazzo rules ([01f4342](https://github.com/speclynx/apidom-internal/commit/01f43425c0a32f0f07a95781fc3228847b0ce21f))
+- **apidom-ls:** add Phase 5 Batch 1 best-practice Arazzo lint rules ([a85970f](https://github.com/speclynx/apidom-internal/commit/a85970f105838d9d585bfac05a3dacfe97566174))
+- **apidom-ls:** add Phase 5 Batch 2 uniqueness Arazzo lint rules ([4c54eac](https://github.com/speclynx/apidom-internal/commit/4c54eac45decc9653767cffb50a02a3ccfe67bcc))
+- **apidom-ls:** add Phase 5 Batch 3 cross-ref rules ([aa24d59](https://github.com/speclynx/apidom-internal/commit/aa24d59b93d7e37c599ed3fdbfd1f40ee4bc2a57))
+- **apidom-ls:** add tests and documentation for Arazzo linting rules ([1142dff](https://github.com/speclynx/apidom-internal/commit/1142dff2e77ce092129a4aba49ed786a520e2b54))
+
 # [2.7.0](https://github.com/speclynx/apidom-internal/compare/v2.6.0...v2.7.0) (2026-03-22)
 
 ### Features
