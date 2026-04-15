@@ -3,7 +3,8 @@ const JavaScriptObfuscator = require('javascript-obfuscator');
 
 const defaultObfuscatorOptions = {
   stringArray: true,
-  stringArrayThreshold: 0.5,
+  stringArrayEncoding: ['base64'],
+  stringArrayThreshold: 1,
   splitStrings: true,
   splitStringsChunkLength: 10,
 };
