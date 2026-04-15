@@ -5,7 +5,7 @@ import $commentLint from './$comment/lint/index.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
 import { compose } from '../target-specs.ts';
 
+/** @public */
 const lints: LinterMeta[] = compose([$idLint, $schemaLint, $refLint, $commentLint]);
 
-/** @public */
 export default lints;

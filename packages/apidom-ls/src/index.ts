@@ -67,6 +67,8 @@ export type {
   LinterGivenFormat,
   FormatMeta,
   LinterFunction,
+  CompletionFunction,
+  ConditionFunction,
   FunctionItem,
   LinterConditionTarget,
   DocumentationMeta,

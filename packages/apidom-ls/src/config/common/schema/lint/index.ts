@@ -87,6 +87,7 @@ import exampleDeprecatedLint from './example--deprecated.ts';
 import deprecatedTypeLint from './deprecated--type.ts';
 import typeArrayNonItemsLint from './type--array-non-items.ts';
 
+/** @public */
 const schemaLints = [
   allowedFieldsOpenAPI2_0Lint,
   allowedFieldsOpenAPI3_0Lint,
