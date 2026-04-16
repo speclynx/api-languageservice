@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/speclynx/apidom-internal/compare/v2.8.0...v2.9.0) (2026-04-16)
+
+### Features
+
+- **apidom-ls:** add Overlay 1.x parsing and JSON Schema validation ([#156](https://github.com/speclynx/apidom-internal/issues/156)) ([9cabb2b](https://github.com/speclynx/apidom-internal/commit/9cabb2bade33611a3ffb81db87b13fe47a260b6d))
+
 # [2.8.0](https://github.com/speclynx/apidom-internal/compare/v2.7.0...v2.8.0) (2026-04-15)
 
 ### Bug Fixes
