@@ -8,6 +8,8 @@ import * as asyncapi2AdapterJson from '@speclynx/apidom-parser-adapter-asyncapi-
 import * as asyncapi2AdapterYaml from '@speclynx/apidom-parser-adapter-asyncapi-yaml-2';
 import * as arazzo1AdapterJson from '@speclynx/apidom-parser-adapter-arazzo-json-1';
 import * as arazzo1AdapterYaml from '@speclynx/apidom-parser-adapter-arazzo-yaml-1';
+import * as overlay1AdapterJson from '@speclynx/apidom-parser-adapter-overlay-json-1';
+import * as overlay1AdapterYaml from '@speclynx/apidom-parser-adapter-overlay-yaml-1';
 import { parseSourceDescriptions as parseArazzoSourceDescriptionsJson } from '@speclynx/apidom-reference/parse/parsers/arazzo-json-1';
 import { parseSourceDescriptions as parseArazzoSourceDescriptionsYaml } from '@speclynx/apidom-reference/parse/parsers/arazzo-yaml-1';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
@@ -17,6 +19,7 @@ import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElemen
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_0 } from '@speclynx/apidom-ns-openapi-3-0';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOpenAPI3_1 } from '@speclynx/apidom-ns-openapi-3-1';
 import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementArazzo1 } from '@speclynx/apidom-ns-arazzo-1';
+import { refractorPluginReplaceEmptyElement as refractorPluginReplaceEmptyElementOverlay1 } from '@speclynx/apidom-ns-overlay-1';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { ParseResultElement } from '@speclynx/apidom-datamodel';
 import {
@@ -175,6 +178,24 @@ export async function parse(
       );
       result.push(...sourceDescriptionsResults);
     }
+  } else if (
+    contentLanguage.namespace === 'overlay' &&
+    contentLanguage.version?.startsWith('1.') &&
+    contentLanguage.format === 'JSON'
+  ) {
+    result = await overlay1AdapterJson.parse(text, { sourceMap: true });
+  } else if (
+    contentLanguage.namespace === 'overlay' &&
+    contentLanguage.version?.startsWith('1.') &&
+    contentLanguage.format === 'YAML'
+  ) {
+    const options: Record<string, unknown> = {
+      sourceMap: true,
+    };
+    if (registerPlugins) {
+      options.refractorOpts = { plugins: [refractorPluginReplaceEmptyElementOverlay1()] };
+    }
+    result = await overlay1AdapterYaml.parse(text, options);
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'JSON') {
     result = await adapterJson.parse(text, { sourceMap: true });
   } else if (contentLanguage.namespace === 'apidom' && contentLanguage.format === 'YAML') {

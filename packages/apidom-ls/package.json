@@ -93,6 +93,11 @@
       "import": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.mjs",
       "require": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.cjs",
       "types": "./types/services/validation/providers/arazzo-1-json-schema-validation-provider.d.ts"
+    },
+    "./services/validation/providers/overlay-1-json-schema": {
+      "import": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.mjs",
+      "require": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.cjs",
+      "types": "./types/services/validation/providers/overlay-1-json-schema-validation-provider.d.ts"
     }
   },
   "types": "./types/",
@@ -122,6 +127,7 @@
     "@speclynx/apidom-json-pointer": "^4.7.0",
     "@speclynx/apidom-ns-arazzo-1": "^4.7.0",
     "@speclynx/apidom-ns-asyncapi-2": "^4.7.0",
+    "@speclynx/apidom-ns-overlay-1": "^4.7.0",
     "@speclynx/apidom-ns-openapi-2": "^4.7.0",
     "@speclynx/apidom-ns-openapi-3-0": "^4.7.0",
     "@speclynx/apidom-ns-openapi-3-1": "^4.7.0",
@@ -130,6 +136,8 @@
     "@speclynx/apidom-parser-adapter-arazzo-yaml-1": "^4.7.0",
     "@speclynx/apidom-parser-adapter-asyncapi-json-2": "^4.7.0",
     "@speclynx/apidom-parser-adapter-asyncapi-yaml-2": "^4.7.0",
+    "@speclynx/apidom-parser-adapter-overlay-json-1": "^4.7.0",
+    "@speclynx/apidom-parser-adapter-overlay-yaml-1": "^4.7.0",
     "@speclynx/apidom-parser-adapter-json": "^4.7.0",
     "@speclynx/apidom-parser-adapter-openapi-json-2": "^4.7.0",
     "@speclynx/apidom-parser-adapter-openapi-json-3-0": "^4.7.0",
