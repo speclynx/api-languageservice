@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/speclynx/apidom-internal/compare/v2.9.0...v2.10.0) (2026-04-20)
+
+### Bug Fixes
+
+- **apidom-ls:** scope Arazzo no-script-tags per field ([#158](https://github.com/speclynx/apidom-internal/issues/158)) ([06f57f0](https://github.com/speclynx/apidom-internal/commit/06f57f0cf3ead25663bfe214eed96117c007bd93))
+
+### Features
+
+- **ls:** add semantic linting rules for Overlay 1.x ([#157](https://github.com/speclynx/apidom-internal/issues/157)) ([0cbe437](https://github.com/speclynx/apidom-internal/commit/0cbe437506c9469eee5b86045a8b178063eb5606))
+
 # [2.9.0](https://github.com/speclynx/apidom-internal/compare/v2.8.0...v2.9.0) (2026-04-16)
 
 ### Features
