@@ -149,6 +149,7 @@
     "@speclynx/apidom-reference": "^4.7.0",
     "@speclynx/apidom-traverse": "^4.7.0",
     "@swaggerexpert/arazzo-runtime-expression": "^2.0.3",
+    "@swaggerexpert/jsonpath": "^4.0.4",
     "@types/ramda": "~0.30.0",
     "openapi-path-templating": "^2.2.1",
     "prettier": "^3.7.4",

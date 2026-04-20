@@ -1,5 +1,8 @@
 import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
+import overlay1Meta from './overlay1/meta.ts';
+import infoMeta from './info/meta.ts';
+import actionMeta from './action/meta.ts';
 import ApilintCodes from '../codes.ts';
 
 export default {
@@ -15,4 +18,7 @@ export default {
       },
     ],
   },
+  overlay1: overlay1Meta,
+  info: infoMeta,
+  action: actionMeta,
 };
