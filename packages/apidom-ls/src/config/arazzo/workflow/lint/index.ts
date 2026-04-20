@@ -2,7 +2,9 @@ import workflowIdRequiredLint from './workflow-id--required.ts';
 import workflowIdTypeLint from './workflow-id--type.ts';
 import workflowIdPatternLint from './workflow-id--pattern.ts';
 import summaryTypeLint from './summary--type.ts';
+import summaryNoScriptTagsLint from './summary--no-script-tags.ts';
 import descriptionTypeLint from './description--type.ts';
+import descriptionNoScriptTagsLint from './description--no-script-tags.ts';
 import inputsTypeLint from './inputs--type.ts';
 import stepsRequiredLint from './steps--required.ts';
 import stepsTypeLint from './steps--type.ts';
@@ -29,8 +31,10 @@ const lints = [
   workflowIdPatternLint,
   workflowIdUniqueLint,
   summaryTypeLint,
+  summaryNoScriptTagsLint,
   summaryRecommendedLint,
   descriptionTypeLint,
+  descriptionNoScriptTagsLint,
   descriptionRecommendedLint,
   inputsTypeLint,
   stepsRequiredLint,

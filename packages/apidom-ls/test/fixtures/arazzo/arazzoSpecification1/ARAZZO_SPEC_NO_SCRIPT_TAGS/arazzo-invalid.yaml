@@ -1,8 +1,8 @@
 arazzo: 1.0.1
 info:
-  title: Sample Arazzo Workflow
+  title: "Sample Arazzo Workflow <script>alert('t')</script>"
   version: 1.0.1
-  summary: A sample workflow for testing
+  summary: "A sample workflow <script>alert('s')</script>"
   description: "A detailed description <script>alert('xss')</script>"
 sourceDescriptions:
   - name: petStore
@@ -10,11 +10,18 @@ sourceDescriptions:
     url: ./petstore-openapi.yaml
 workflows:
   - workflowId: get-pet-workflow
-    summary: Get a pet by ID
-    description: Retrieves a pet from the store by its ID
+    summary: "Get a pet by ID <script>alert('ws')</script>"
+    description: "Retrieves a pet <script>alert('wd')</script>"
+    inputs:
+      type: object
+      title: "Inputs <script>alert('it')</script>"
+      description: "Inputs schema <script>alert('id')</script>"
+      properties:
+        petId:
+          type: integer
     steps:
       - stepId: get-pet
-        description: Fetch the pet resource
+        description: "Fetch the pet <script>alert('sd')</script>"
         operationId: $sourceDescriptions.petStore.getPetById
         parameters:
           - name: petId

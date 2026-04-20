@@ -2,6 +2,7 @@ import stepIdRequiredLint from './step-id--required.ts';
 import stepIdTypeLint from './step-id--type.ts';
 import stepIdPatternLint from './step-id--pattern.ts';
 import descriptionTypeLint from './description--type.ts';
+import descriptionNoScriptTagsLint from './description--no-script-tags.ts';
 import operationIdTypeLint from './operation-id--type.ts';
 import operationPathTypeLint from './operation-path--type.ts';
 import workflowIdTypeLint from './workflow-id--type.ts';
@@ -30,6 +31,7 @@ const lints = [
   stepIdPatternLint,
   stepIdUniqueLint,
   descriptionTypeLint,
+  descriptionNoScriptTagsLint,
   descriptionRecommendedLint,
   operationIdTypeLint,
   operationPathTypeLint,

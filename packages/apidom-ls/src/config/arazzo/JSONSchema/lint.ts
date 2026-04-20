@@ -62,6 +62,8 @@ import uniqueItemsNonArrayLint from '../../common/schema/lint/unique-items--non-
 import uniqueItemsTypeLint from '../../common/schema/lint/unique-items--type.ts';
 import writeOnlyTypeLint from '../../common/schema/lint/write-only--type.ts';
 import typeArrayNonItemsLint from '../../common/schema/lint/type--array-non-items.ts';
+import titleNoScriptTagsLint from './title--no-script-tags.ts';
+import descriptionNoScriptTagsLint from './description--no-script-tags.ts';
 import { Arazzo } from '../target-specs.ts';
 
 const schemaLints = [
@@ -128,6 +130,8 @@ const schemaLints = [
   uniqueItemsTypeLint,
   writeOnlyTypeLint,
   typeArrayNonItemsLint,
+  titleNoScriptTagsLint,
+  descriptionNoScriptTagsLint,
 ];
 
 export default schemaLints;

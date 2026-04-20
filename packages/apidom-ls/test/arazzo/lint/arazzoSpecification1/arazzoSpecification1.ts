@@ -123,9 +123,11 @@ describe('test-arazzo-linting-arazzoSpecification1', function () {
 
     const resultInvalid = await languageService.doValidation(docInvalid, validationContext);
     const matchingErrors = resultInvalid.filter((d) => d.code === codes.ARAZZO_SPEC_NO_SCRIPT_TAGS);
-    assert(
-      matchingErrors.length > 0,
-      'Expected at least one ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostic',
+    // One diagnostic per violating field — 3 in info, 2 in workflow, 2 in workflow.inputs schema, 1 in step
+    assert.strictEqual(
+      matchingErrors.length,
+      8,
+      `Expected exactly 8 ARAZZO_SPEC_NO_SCRIPT_TAGS diagnostics, got ${matchingErrors.length}`,
     );
 
     const resultValid = await languageService.doValidation(docValid, validationContext);
