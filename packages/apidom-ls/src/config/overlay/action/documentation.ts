@@ -23,7 +23,7 @@ const documentation = [
   },
   {
     target: 'remove',
-    docs: 'A boolean value that indicates that each of the target nodes MUST be removed from the map or array it is contained in. The default value is `false`.',
+    docs: '`boolean`\n\\\n\\\nA boolean value that indicates that each of the target nodes MUST be removed from the map or array it is contained in. The default value is `false`.',
     targetSpecs: Overlay11,
   },
   {
