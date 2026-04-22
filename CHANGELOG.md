@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/speclynx/apidom-internal/compare/v2.10.0...v2.11.0) (2026-04-22)
+
+### Features
+
+- **apidom-ls:** add completion rules for Overlay 1.1.0 ([#160](https://github.com/speclynx/apidom-internal/issues/160)) ([4810a34](https://github.com/speclynx/apidom-internal/commit/4810a3430ea52bb924a80c5102bfeedfeaeb86df))
+- **apidom-ls:** add documentation rules for Overlay 1.1.0 ([#159](https://github.com/speclynx/apidom-internal/issues/159)) ([95fd548](https://github.com/speclynx/apidom-internal/commit/95fd548010711640709b4893847862f93ff9672c))
+
 # [2.10.0](https://github.com/speclynx/apidom-internal/compare/v2.9.0...v2.10.0) (2026-04-20)
 
 ### Bug Fixes
