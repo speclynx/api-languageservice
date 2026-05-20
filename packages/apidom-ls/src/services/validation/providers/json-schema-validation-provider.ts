@@ -72,7 +72,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
 
   protected ajv: Ajv2020 | Ajv;
 
-  private jsonSchema: Record<string, unknown>;
+  protected jsonSchema: Record<string, unknown>;
 
   protected ajv2020: boolean;
 

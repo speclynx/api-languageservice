@@ -111,6 +111,166 @@ describe('apidom-ls-overlay-json', function () {
     languageService.terminate();
   });
 
+  it('test validation for overlay 1.0.0 json produces no errors', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const overlay10Json = JSON.stringify({
+      overlay: '1.0.0',
+      info: {
+        title: 'Overlay for 1.0',
+        version: '1.0.0',
+      },
+      actions: [
+        {
+          target: "$.paths['/users'].get",
+          update: {
+            description: 'Returns a list of users',
+          },
+        },
+      ],
+    });
+
+    const docOverlayJson: TextDocument = TextDocument.create(
+      'foo://bar/overlay10.json',
+      'json',
+      0,
+      overlay10Json,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const result = await languageService.doValidation(docOverlayJson, validationContext);
+
+    const errors = result.filter((d) => d.severity === DiagnosticSeverity.Error);
+    assert.strictEqual(errors.length, 0, `Expected no errors but got: ${JSON.stringify(errors)}`);
+
+    languageService.terminate();
+  });
+
+  it('test JSON Schema validation for overlay 1.0.0 json produces no errors', async function () {
+    const overlayJsonSchemaValidationProvider = new Overlay1JsonSchemaValidationProvider();
+
+    const contextWithJsonSchema: LanguageServiceContext = {
+      metadata: metadata(),
+      validatorProviders: [overlayJsonSchemaValidationProvider],
+      validationContext: {
+        jsonSchemaValidation: true,
+        semanticValidation: true,
+        referenceValidation: false,
+        semanticLinting: true,
+      },
+      performanceLogs: logPerformance,
+      logLevel,
+    };
+
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const overlay10Json = JSON.stringify({
+      overlay: '1.0.0',
+      info: {
+        title: 'Overlay for 1.0',
+        version: '1.0.0',
+      },
+      actions: [
+        {
+          target: "$.paths['/users'].get",
+          update: {
+            description: 'Returns a list of users',
+          },
+        },
+      ],
+    });
+
+    const docOverlayJson: TextDocument = TextDocument.create(
+      'foo://bar/overlay10.json',
+      'json',
+      0,
+      overlay10Json,
+    );
+
+    const languageService: LanguageService = getLanguageService(contextWithJsonSchema);
+
+    const result = await languageService.doValidation(docOverlayJson, validationContext);
+
+    const errors = result.filter((d) => d.severity === DiagnosticSeverity.Error);
+    assert.strictEqual(
+      errors.length,
+      0,
+      `Expected no errors but got: ${JSON.stringify(errors, null, 2)}`,
+    );
+
+    languageService.terminate();
+  });
+
+  it('test JSON Schema validation for overlay 1.0.0 json does not apply 1.1 pattern', async function () {
+    const overlayJsonSchemaValidationProvider = new Overlay1JsonSchemaValidationProvider();
+
+    const contextWithJsonSchema: LanguageServiceContext = {
+      metadata: metadata(),
+      validatorProviders: [overlayJsonSchemaValidationProvider],
+      validationContext: {
+        jsonSchemaValidation: true,
+        semanticValidation: false,
+        referenceValidation: false,
+        semanticLinting: false,
+      },
+      performanceLogs: logPerformance,
+      logLevel,
+    };
+
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+
+    const overlay10Json = JSON.stringify({
+      overlay: '1.0.0',
+      info: {
+        title: 'Overlay for 1.0',
+        version: '1.0.0',
+      },
+      actions: [
+        {
+          target: "$.paths['/users'].get",
+          update: {
+            description: 'Returns a list of users',
+          },
+        },
+      ],
+    });
+
+    const docOverlayJson: TextDocument = TextDocument.create(
+      'foo://bar/overlay10.json',
+      'json',
+      0,
+      overlay10Json,
+    );
+
+    const languageService: LanguageService = getLanguageService(contextWithJsonSchema);
+
+    const result = await languageService.doValidation(docOverlayJson, validationContext);
+
+    const patternErrors = result.filter(
+      (d) => d.source === 'Overlay 1 Schema' && d.message.includes('pattern'),
+    );
+    assert.strictEqual(
+      patternErrors.length,
+      0,
+      `Expected no pattern errors for overlay 1.0.0 but got: ${JSON.stringify(patternErrors, null, 2)}`,
+    );
+
+    languageService.terminate();
+  });
+
   it('test JSON Schema validation catches missing required field (JSON)', async function () {
     const overlayJsonSchemaValidationProvider = new Overlay1JsonSchemaValidationProvider();
 
