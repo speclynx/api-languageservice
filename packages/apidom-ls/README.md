@@ -28,6 +28,7 @@
 | [**OpenAPI**](https://spec.openapis.org/oas/) | 2.0, 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4, 3.1.0, 3.1.1, 3.1.2 | JSON, YAML |
 | [**AsyncAPI**](https://v2.asyncapi.com/docs/reference/specification/v2.6.0) | 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 | JSON, YAML |
 | [**Arazzo**](https://spec.openapis.org/arazzo/latest.html) | 1.0.0, 1.0.1 | JSON, YAML |
+| [**Overlay**](https://spec.openapis.org/overlay/latest.html) | 1.0.0, 1.1.0 | JSON, YAML |
 | [**JSON Schema**](https://json-schema.org/specification-links) | Draft 4/5, 6, 7, 2019-09, 2020-12 | JSON, YAML |
 
 ## Features
