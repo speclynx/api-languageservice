@@ -3,7 +3,7 @@ import {
   CompletionFormat,
   CompletionType,
 } from '../../../apidom-language-types.ts';
-import { Overlay11 } from '../target-specs.ts';
+import { Overlay1, Overlay11 } from '../target-specs.ts';
 
 const completion: ApidomCompletionItem[] = [
   {
@@ -17,7 +17,7 @@ const completion: ApidomCompletionItem[] = [
       kind: 'markdown',
       value: '**REQUIRED**. A human readable description of the purpose of the overlay.',
     },
-    targetSpecs: Overlay11,
+    targetSpecs: Overlay1,
   },
   {
     label: 'version',
@@ -30,7 +30,7 @@ const completion: ApidomCompletionItem[] = [
       kind: 'markdown',
       value: '**REQUIRED**. A version identifier for indicating changes to the Overlay document.',
     },
-    targetSpecs: Overlay11,
+    targetSpecs: Overlay1,
   },
   {
     label: 'description',

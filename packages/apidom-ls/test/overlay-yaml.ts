@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { DiagnosticSeverity } from 'vscode-languageserver-types';
+import { DiagnosticSeverity, Position } from 'vscode-languageserver-types';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';
@@ -285,6 +285,56 @@ actions:
       1,
       `Expected error from JSON Schema provider but got: ${JSON.stringify(errors, null, 2)}`,
     );
+
+    languageService.terminate();
+  });
+
+  it('test hover for overlay 1.0.0 provides documentation on info key', async function () {
+    const docOverlayYaml: TextDocument = TextDocument.create(
+      'foo://bar/overlay10.yaml',
+      'yaml',
+      0,
+      specOverlay10Yaml,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const hoverResult = await languageService.doHover(docOverlayYaml, Position.create(1, 0));
+
+    assert.isNotNull(hoverResult, 'Expected hover result for info key');
+    const contents = hoverResult!.contents;
+    const value =
+      typeof contents === 'string' ? contents : 'value' in contents ? contents.value : '';
+    assert.include(value, 'Info Object', 'Expected hover to contain Info Object documentation');
+
+    languageService.terminate();
+  });
+
+  it('test completion for overlay 1.0.0 provides action fields without copy', async function () {
+    const overlay10WithCursor = `overlay: "1.0.0"
+info:
+  title: Overlay for 1.0
+  version: "1.0.0"
+actions:
+  - target: "$.paths['/users'].get"
+    `;
+
+    const docOverlayYaml: TextDocument = TextDocument.create(
+      'foo://bar/overlay10.yaml',
+      'yaml',
+      0,
+      overlay10WithCursor,
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    const completions = await languageService.doCompletion(docOverlayYaml, Position.create(6, 4));
+
+    const labels = completions?.items?.map((i) => i.label) ?? [];
+    assert.include(labels, 'description', 'Expected description completion');
+    assert.include(labels, 'update', 'Expected update completion');
+    assert.include(labels, 'remove', 'Expected remove completion');
+    assert.notInclude(labels, 'copy', 'copy should not be offered in Overlay 1.0');
 
     languageService.terminate();
   });
