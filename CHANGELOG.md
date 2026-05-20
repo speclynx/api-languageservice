@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/speclynx/apidom-internal/compare/v2.11.3...v2.11.4) (2026-05-20)
+
+### Bug Fixes
+
+- **apidom-ls:** enable hover docs and completion for Overlay 1.0 ([#166](https://github.com/speclynx/apidom-internal/issues/166)) ([8d6069e](https://github.com/speclynx/apidom-internal/commit/8d6069ebf5aac455541839f0a736ff8fb909efd1))
+
 ## [2.11.3](https://github.com/speclynx/apidom-internal/compare/v2.11.2...v2.11.3) (2026-05-20)
 
 ### Bug Fixes
