@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/speclynx/apidom-internal/compare/v2.11.2...v2.11.3) (2026-05-20)
+
+### Bug Fixes
+
+- **apidom-ls:** use correct JSON Schema for Overlay 1.0 validation ([#165](https://github.com/speclynx/apidom-internal/issues/165)) ([f334135](https://github.com/speclynx/apidom-internal/commit/f3341356c6dfbceb1467f30775aa3a0423e43ff2))
+
 ## [2.11.2](https://github.com/speclynx/apidom-internal/compare/v2.11.1...v2.11.2) (2026-05-20)
 
 ### Bug Fixes
