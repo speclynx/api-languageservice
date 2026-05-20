@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/speclynx/apidom-internal/compare/v2.11.1...v2.11.2) (2026-05-20)
+
+### Bug Fixes
+
+- **docs:** claim Olverlay support in README ([8864dbd](https://github.com/speclynx/apidom-internal/commit/8864dbd755c5272195d5e2ab79622f08af01efb6))
+
 ## [2.11.1](https://github.com/speclynx/apidom-internal/compare/v2.11.0...v2.11.1) (2026-05-13)
 
 ### Bug Fixes
