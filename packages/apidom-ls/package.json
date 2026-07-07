@@ -120,7 +120,7 @@
     "postpack": "rimraf NOTICE LICENSES"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.28.4",
+    "@babel/runtime-corejs3": "^8.0.0",
     "@speclynx/apidom-core": "^4.10.0",
     "@speclynx/apidom-datamodel": "^4.10.0",
     "@speclynx/apidom-json-path": "^4.10.0",
