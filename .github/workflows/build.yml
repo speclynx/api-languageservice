@@ -23,9 +23,9 @@ jobs:
           fetch-depth: 0 # necessary for linting commit messages
           ref: ${{ github.event.pull_request.head.sha }} # necessary to check out pull request HEAD commit instead of merge commit
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24.10.0
+          node-version: 26.3.1
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - name: Install dependencies
@@ -43,7 +43,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24.10.0
+          node-version: 26.3.1
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - name: Install dependencies
@@ -61,7 +61,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24.10.0
+          node-version: 26.3.1
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - name: Install dependencies
@@ -78,9 +78,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24.10.0
+          node-version: 26.3.1
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - name: Install dependencies
@@ -98,7 +98,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v6
       with:
-        node-version: 24.10.0
+        node-version: 26.3.1
         cache: 'npm'
         cache-dependency-path: 'package-lock.json'
     - name: Install dependencies

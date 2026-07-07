@@ -8,7 +8,7 @@ ApiDOM Internal is a TypeScript monorepo that currently provides a single `apido
 
 ## Build & Development Commands
 
-**Prerequisites:** Node.js =24.10.0 (exact version, see `.nvmrc`), npm >=11.6.1
+**Prerequisites:** Node.js =26.3.1 (exact version, see `.nvmrc`), npm >=11.16.0
 
 **Important:** Always run nvm before executing any node/npm/npx commands to ensure the correct Node.js version is used:
 ```bash
