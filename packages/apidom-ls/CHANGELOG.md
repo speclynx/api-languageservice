@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.6](https://github.com/speclynx/apidom-internal/compare/v2.11.5...v2.11.6) (2026-07-20)
+
+### Bug Fixes
+
+- remove JavaScript obfuscation from build ([#181](https://github.com/speclynx/apidom-internal/issues/181)) ([a1c9506](https://github.com/speclynx/apidom-internal/commit/a1c9506cc44505a4897367af744d6535f4cc488d))
+
 ## [2.11.5](https://github.com/speclynx/apidom-internal/compare/v2.11.4...v2.11.5) (2026-07-07)
 
 **Note:** Version bump only for package @speclynx/apidom-ls
