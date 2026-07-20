@@ -7,7 +7,6 @@ on:
 
 env:
   CPU_CORES: 2
-  OBFUSCATE: true
 
 jobs:
   nightly-build:

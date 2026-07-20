@@ -30,12 +30,9 @@ module.exports = {
         ],
         process.env.NODE_ENV !== 'test'
           ? [
-            path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
-            { extension: 'cjs' },
-          ]
-          : false,
-        process.env.OBFUSCATE === 'true'
-          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
+              path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
+              { extension: 'cjs' },
+            ]
           : false,
       ].filter(Boolean),
     },
@@ -67,10 +64,7 @@ module.exports = {
           path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'),
           { extension: 'mjs' },
         ],
-        process.env.OBFUSCATE === 'true'
-          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
-          : false,
-      ].filter(Boolean),
+      ],
     },
     browser: {
       browserslistEnv: 'browser-production',
@@ -96,10 +90,7 @@ module.exports = {
             version: '^8.0.0',
           },
         ],
-        process.env.OBFUSCATE === 'true'
-          ? path.join(__dirname, './scripts/babel-plugin-javascript-obfuscator.cjs')
-          : false,
-      ].filter(Boolean),
+      ],
     },
   },
 };

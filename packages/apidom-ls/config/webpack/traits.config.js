@@ -13,11 +13,10 @@ export const minimizeTrait = {
       new TerserPlugin({
         extractComments: false,
         terserOptions: {
+          compress: true,
           format: {
             comments: false,
           },
-          mangle: true,
-          keep_classnames: true,
         },
       }),
     ],

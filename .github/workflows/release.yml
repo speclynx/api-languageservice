@@ -5,7 +5,6 @@ on:
 env:
   CPU_CORES: 2
   HUSKY: 0
-  OBFUSCATE: true
 
 jobs:
   release:

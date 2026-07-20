@@ -68,7 +68,6 @@ cd packages/apidom-ls && npx mocha --grep 'should validate'
 **Environment variables:**
 ```bash
 export CPU_CORES=8      # Parallelization for builds (defaults to 2)
-export OBFUSCATE=true   # Enable JavaScript obfuscation in builds
 ```
 
 ## Architecture
@@ -136,4 +135,4 @@ Key libraries:
 
 ## CI/CD
 
-Five GitHub Actions workflows: `build.yml` (lint, types, test, build on PRs), `release.yml` (manual publish to npm via lerna), `nightly-build.yml` (daily at 04:30 UTC with obfuscation), `codeql.yml` (weekly security scan), and `dependabot-merge.yml` (auto-merge dependency updates).
+Five GitHub Actions workflows: `build.yml` (lint, types, test, build on PRs), `release.yml` (manual publish to npm via lerna), `nightly-build.yml` (daily at 04:30 UTC), `codeql.yml` (weekly security scan), and `dependabot-merge.yml` (auto-merge dependency updates).
