@@ -1,6 +1,10 @@
 import jsonSchema202012Lint from '../../json-schema/2020-12/json-schema/lint.ts';
 import { compose, assoc } from '../../json-schema/2020-12/target-specs.ts';
-// below are older rule variants that need to be replaced
+// below are older rule variants that need to be replaced.
+// $id and $ref are deliberately absent: the composed JSON Schema 2020-12 rules
+// above already cover them (codes 8030100 / 8030300). importing the
+// common/schema equivalents ($id--format-uri, $ref--valid) adds functionally
+// identical rules and yields duplicate diagnostics on the same range.
 import additionalItemsNonArrayLint from '../../common/schema/lint/additional-items--non-array.ts';
 import additionalItemsTypeLint from '../../common/schema/lint/additional-items--type.ts';
 import additionalItemsTypeOpenAPI3_1__AsyncAPI2Lint from '../../common/schema/lint/additional-items--type-openapi-3-1--asyncapi-2.ts';
