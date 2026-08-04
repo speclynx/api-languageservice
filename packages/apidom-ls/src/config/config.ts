@@ -1,6 +1,5 @@
 import configAsyncAPI from './asyncapi/config.ts';
 import configOpenAPI from './openapi/config.ts';
-import configADS from './ads/config.ts';
 import configJSONSchema202012 from './json-schema/2020-12/config.ts';
 import configArazzo from './arazzo/config.ts';
 import configOverlay from './overlay/config.ts';
@@ -18,7 +17,6 @@ export function config(): Metadata {
     metadataMaps: {
       openapi: configOpenAPI,
       asyncapi: configAsyncAPI,
-      ads: configADS,
       arazzo: configArazzo,
       overlay: configOverlay,
       'json-schema-2020-12': configJSONSchema202012,

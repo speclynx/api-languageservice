@@ -1,4 +1,3 @@
-import adsTokens from './ads/tokens.ts';
 import arazzoTokens from './arazzo/tokens.ts';
 import asyncapiTokens from './asyncapi/tokens.ts';
 import openapiTokens from './openapi/tokens.ts';
@@ -11,7 +10,6 @@ const tokens = Array.from(
     'string',
     'number',
     'key',
-    ...adsTokens,
     ...asyncapiTokens,
     ...openapiTokens,
     ...arazzoTokens,

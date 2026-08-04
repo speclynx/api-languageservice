@@ -18,8 +18,6 @@ const asyncJson = fs
 const asyncYaml = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'detect', 'async.yaml'))
   .toString();
-// const adsJson = fs.readFileSync(path.join(__dirname, 'fixtures', 'detect', 'ads.json')).toString();
-// const adsYaml = fs.readFileSync(path.join(__dirname, 'fixtures', 'detect', 'ads.yaml')).toString();
 const apidomJson = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'detect', 'apidom.json'))
   .toString();
