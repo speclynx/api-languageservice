@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.7](https://github.com/speclynx/apidom-internal/compare/v2.11.6...v2.11.7) (2026-08-04)
+
+### Bug Fixes
+
+- **apidom-ls:** bump apidom to 5.0.2 for Arazzo $ref fix ([#196](https://github.com/speclynx/apidom-internal/issues/196)) ([e9671ca](https://github.com/speclynx/apidom-internal/commit/e9671ca93d2abb22bf6ddab83a6fd74f948bd5ea)), closes [#194](https://github.com/speclynx/apidom-internal/issues/194)
+- **apidom-ls:** guard metadata.linterFunctions/metadataMaps lookups ([#195](https://github.com/speclynx/apidom-internal/issues/195)) ([e2e24d9](https://github.com/speclynx/apidom-internal/commit/e2e24d9d710c103be02a1b5a569d40d337363a52)), closes [#191](https://github.com/speclynx/apidom-internal/issues/191)
+- **arazzo:** skip param/action rules on Reusable Objects ([#193](https://github.com/speclynx/apidom-internal/issues/193)) ([071542f](https://github.com/speclynx/apidom-internal/commit/071542ff77fb4abf85450390dac3ffeae98cc540)), closes [#192](https://github.com/speclynx/apidom-internal/issues/192)
+
 ## [2.11.6](https://github.com/speclynx/apidom-internal/compare/v2.11.5...v2.11.6) (2026-07-20)
 
 ### Bug Fixes
