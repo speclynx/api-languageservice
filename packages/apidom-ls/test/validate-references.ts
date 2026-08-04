@@ -26,6 +26,24 @@ const specValidAsync = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'deref', 'valid-async.yaml'))
   .toString();
 
+// Arazzo's workflow.inputs is JSON-Schema-shaped, but refracts to a `JSONSchema` element rather
+// than `schema` (unlike OpenAPI) - see https://github.com/speclynx/apidom-internal/issues/194.
+function arazzoWithLocalSchemaRef(valid: boolean): string {
+  const target = valid ? 'pet' : 'nonexistent';
+  return `arazzo: '1.0.1'
+info: {title: t, version: '1.0.0'}
+sourceDescriptions: [{name: a, type: openapi, url: 'https://e.com/o.json'}]
+components:
+  inputs:
+    pet: {type: object}
+workflows:
+  - workflowId: wf
+    inputs:
+      $ref: '#/components/inputs/${target}'
+    steps: [{stepId: s1, operationId: a.op}]
+`;
+}
+
 describe('reference validation', function () {
   const lsContext: LanguageServiceContext = {
     metadata: metadata(),
@@ -353,6 +371,62 @@ describe('reference validation', function () {
         }) as Diagnostic[],
       );
     });
+    specify(
+      'should validate arazzo doc with valid local $ref to a JSONSchema-shaped element',
+      async function () {
+        this.timeout(10000);
+        const validationContext: ValidationContext = {
+          comments: DiagnosticSeverity.Error,
+          maxNumberOfProblems: 100,
+          relatedInformation: false,
+        };
+
+        const doc: TextDocument = TextDocument.create(
+          'foo://bar/arazzo-valid-local-ref.yaml',
+          'yaml',
+          0,
+          arazzoWithLocalSchemaRef(true),
+        );
+
+        const valRes = await languageService.doValidation(doc, validationContext);
+        const refNotFound = valRes.filter((d) => d.message === 'local reference not found');
+
+        assert.strictEqual(
+          refNotFound.length,
+          0,
+          `Expected no "local reference not found" diagnostics but got: ${JSON.stringify(refNotFound)}`,
+        );
+      },
+    );
+
+    specify(
+      'should validate arazzo doc with broken local $ref to a JSONSchema-shaped element',
+      async function () {
+        this.timeout(10000);
+        const validationContext: ValidationContext = {
+          comments: DiagnosticSeverity.Error,
+          maxNumberOfProblems: 100,
+          relatedInformation: false,
+        };
+
+        const doc: TextDocument = TextDocument.create(
+          'foo://bar/arazzo-broken-local-ref.yaml',
+          'yaml',
+          0,
+          arazzoWithLocalSchemaRef(false),
+        );
+
+        const valRes = await languageService.doValidation(doc, validationContext);
+        const refNotFound = valRes.filter((d) => d.message === 'local reference not found');
+
+        assert.strictEqual(
+          refNotFound.length,
+          1,
+          `Expected exactly one "local reference not found" diagnostic but got: ${JSON.stringify(refNotFound)}`,
+        );
+      },
+    );
+
     specify('should validate valid async spec with apidom-reference', async function () {
       this.timeout(10000);
       const validationContext: ValidationContext = {
