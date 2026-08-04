@@ -1,0 +1,46 @@
+arazzo: 1.0.0
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.0
+  description: A detailed description
+  summary: A sample 1.0.0 workflow exercising Reusable Objects
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+components:
+  parameters:
+    ApiKey:
+      name: apiKey
+      in: header
+      value: default-key
+  successActions:
+    Finish:
+      name: finish
+      type: end
+  failureActions:
+    Abort:
+      name: abort
+      type: end
+workflows:
+  - workflowId: get-pet-workflow
+    summary: A workflow summary
+    description: A workflow description
+    parameters:
+      - reference: $components.parameters.ApiKey
+    successActions:
+      - reference: $components.successActions.Finish
+    failureActions:
+      - reference: $components.failureActions.Abort
+    steps:
+      - stepId: get-pet
+        description: A step description
+        operationId: $sourceDescriptions.petStore.getPetById
+        successCriteria:
+          - condition: $statusCode == 200
+        parameters:
+          - reference: $components.parameters.ApiKey
+        onSuccess:
+          - reference: $components.successActions.Finish
+        onFailure:
+          - reference: $components.failureActions.Abort

@@ -12,6 +12,12 @@ const allowedFieldsLint: LinterMeta = {
   linterFunction: 'allowedFields',
   linterParams: [['name', 'type', 'workflowId', 'stepId', 'criteria'], 'x-'],
   marker: 'key',
+  conditions: [
+    {
+      function: 'missingField',
+      params: ['reference'],
+    },
+  ],
   targetSpecs: [...Arazzo],
 };
 

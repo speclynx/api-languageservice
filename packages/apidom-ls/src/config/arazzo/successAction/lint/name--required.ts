@@ -22,6 +22,12 @@ const nameRequiredLint: LinterMeta = {
       },
     ],
   },
+  conditions: [
+    {
+      function: 'missingField',
+      params: ['reference'],
+    },
+  ],
   targetSpecs: [...Arazzo],
 };
 

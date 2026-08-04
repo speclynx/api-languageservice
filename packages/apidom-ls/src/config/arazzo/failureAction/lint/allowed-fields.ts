@@ -15,6 +15,12 @@ const allowedFieldsLint: LinterMeta = {
     'x-',
   ],
   marker: 'key',
+  conditions: [
+    {
+      function: 'missingField',
+      params: ['reference'],
+    },
+  ],
   targetSpecs: [...Arazzo],
 };
 
