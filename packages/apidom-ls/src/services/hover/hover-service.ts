@@ -373,7 +373,7 @@ export class DefaultHoverService implements HoverService {
     key: string,
     specVersion: string,
   ): string | undefined {
-    const map: MetadataMap = this.settings?.metadata?.metadataMaps[ns] || {};
+    const map: MetadataMap = this.settings?.metadata?.metadataMaps?.[ns] || {};
     if (node.parent && isMember(node.parent)) {
       const containerNode = node.parent.parent!;
       const nodeKey = toValue(node.parent.key);

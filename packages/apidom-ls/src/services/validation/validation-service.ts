@@ -1042,7 +1042,7 @@ export class DefaultValidationService implements ValidationService {
       let lintFunc = standardLinterfunctionsMap.get(linterFuncName);
       // else get it from configuration
       if (!lintFunc) {
-        lintFunc = this.settings?.metadata?.linterFunctions[docNs][linterFuncName];
+        lintFunc = this.settings?.metadata?.linterFunctions?.[docNs]?.[linterFuncName];
       }
       if (lintFunc) {
         try {
@@ -1232,8 +1232,10 @@ export class DefaultValidationService implements ValidationService {
     }
 
     if (diagnostic.source === APIDOM_LINTER) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-      const map: MetadataMap = this.settings?.metadata?.metadataMaps[lang]!;
+      const map: MetadataMap | undefined = this.settings?.metadata?.metadataMaps?.[lang];
+      if (!map) {
+        return undefined;
+      }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       for (const [symbolKey, symbolValue] of Object.entries(map)) {
         if (symbolValue.lint) {

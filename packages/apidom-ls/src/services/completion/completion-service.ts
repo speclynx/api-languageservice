@@ -1168,7 +1168,7 @@ export class DefaultCompletionService implements CompletionService {
         let func = standardLinterfunctionsMap.get(funcName);
         // else get it from configuration
         if (!func) {
-          func = this.settings?.metadata?.linterFunctions[docNs][funcName];
+          func = this.settings?.metadata?.linterFunctions?.[docNs]?.[funcName];
         }
         if (func) {
           try {

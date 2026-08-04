@@ -306,7 +306,7 @@ export function checkConditions(
       let conditionFunc = standardLinterfunctionsMap.get(conditionFuncName);
       // else get it from configuration
       if (!conditionFunc) {
-        conditionFunc = settings?.metadata?.linterFunctions[docNs][conditionFuncName];
+        conditionFunc = settings?.metadata?.linterFunctions?.[docNs]?.[conditionFuncName];
       }
       if (conditionFunc) {
         let conditionTargetEl = element;
@@ -369,6 +369,10 @@ export function checkConditions(
             break;
           }
         }
+      } else {
+        // condition function could not be resolved (neither standard nor from metadata);
+        // treat the condition as failed rather than silently passing it
+        conditionsSuccess = false;
       }
     }
   }
