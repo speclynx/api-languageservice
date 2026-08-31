@@ -16,7 +16,10 @@ import {
   resolve as resolvePathTemplate,
   parse as parsePathTemplate,
 } from 'openapi-path-templating';
-import { test as testRuntimeExpression } from '@swaggerexpert/arazzo-runtime-expression';
+import {
+  test as testRuntimeExpression,
+  parse as parseRuntimeExpression,
+} from '@swaggerexpert/arazzo-runtime-expression';
 
 import {
   isObject,
@@ -183,6 +186,59 @@ const casing = (
   }
   return getCachedRegex(pattern).test(value);
 };
+
+/**
+ * Looks up a Source Description Object by `name` and returns its declared `type`, or `undefined`
+ * when the source doesn't exist locally or omits `type` (it's optional per spec).
+ */
+const resolveArazzoSourceDescriptionType = (
+  api: Element,
+  sourceName: string,
+): string | undefined => {
+  const sourceDescriptions = getElementsByTypeOrClass(api, 'sourceDescription');
+  const matchingSource = sourceDescriptions.find(
+    (sd) => isObject(sd) && sd.hasKey('name') && toValue(sd.get('name')) === sourceName,
+  );
+  if (!matchingSource || !isObject(matchingSource) || !matchingSource.hasKey('type')) {
+    return undefined;
+  }
+  const declaredType = toValue(matchingSource.get('type'));
+  return typeof declaredType === 'string' ? declaredType : undefined;
+};
+
+/**
+ * Shared by apilintArazzoSourceDescriptionTypeConsistency and its array variant. Non-string,
+ * non-`$sourceDescriptions.`-prefixed, or unparseable values are treated as "not this check's
+ * concern" (true) - other rules cover type/shape. Explicitly checks `=== undefined` rather than
+ * a falsy check, so a source with `type: ''` (already invalid on its own) doesn't get treated the
+ * same as a source that simply omits `type`.
+ */
+const isArazzoSourceDescriptionTypeConsistent = (
+  value: unknown,
+  expectedTypes: string[],
+  api: Element,
+): boolean => {
+  if (typeof value !== 'string' || !value.startsWith('$sourceDescriptions.')) return true;
+  const { result, tree } = parseRuntimeExpression(value);
+  if (!result.success || !tree || tree.type !== 'SourceDescriptionsExpression') return true;
+  const declaredType = resolveArazzoSourceDescriptionType(api, tree.sourceName);
+  if (declaredType === undefined) return true;
+  return expectedTypes.includes(declaredType);
+};
+
+/**
+ * Shared by apilintArazzoWorkflowIdResolved and apilintArazzoStepDependsOnResolved: finds a
+ * `workflow` element by its `workflowId` field within an already-collected list of workflows.
+ * Takes the list rather than `api` so callers that check multiple ids (e.g. across a `dependsOn`
+ * array) can collect it once and reuse it, instead of re-walking the tree per id.
+ */
+const findArazzoWorkflowByWorkflowId = (
+  workflows: readonly Element[],
+  workflowId: string,
+): Element | undefined =>
+  workflows.find(
+    (w) => isObject(w) && w.hasKey('workflowId') && toValue(w.get('workflowId')) === workflowId,
+  );
 
 const isType = (element: Element, elementType: string): boolean => {
   switch (elementType) {
@@ -540,6 +596,28 @@ export const standardLinterfunctions: FunctionItem[] = [
     },
   },
   {
+    functionName: 'apilintChildrenOfTypeOrElementClass',
+    function: (
+      element: Element,
+      type: string,
+      elementsOrClasses: string[],
+      nonEmpty?: boolean,
+    ): boolean => {
+      if (element && isObject(element)) {
+        for (const member of element as ObjectElement) {
+          const value = (member as MemberElement).value!;
+          if (!isType(value, type) && !apilintElementOrClass(value, elementsOrClasses)) {
+            return false;
+          }
+        }
+        if (nonEmpty && (element as ObjectElement).length === 0) {
+          return false;
+        }
+      }
+      return true;
+    },
+  },
+  {
     functionName: 'apilintKeyIsRegex',
     function: (element: Element): boolean => {
       if (element && element.parent && isMember(element.parent)) {
@@ -689,6 +767,78 @@ export const standardLinterfunctions: FunctionItem[] = [
     },
   },
   {
+    functionName: 'apilintArazzoStepDependsOnResolved',
+    function: (element: Element): boolean => {
+      // `element` is expected to be the step object (no `target` set), so its parent is the
+      // `steps` array of the workflow it belongs to. Unlike workflowId, stepId is only unique
+      // within a workflow, so a plain entry must resolve against that workflow's own steps
+      // rather than a document-wide search.
+      //
+      // `$workflows.<workflowId>.steps.<stepId>` and the `$sourceDescriptions.<name>.<reference>`
+      // form's optional `stepsReference` are both parsed by
+      // @swaggerexpert/arazzo-runtime-expression >=3.2.0, which added grammar support for exactly
+      // this dependsOn-specific syntax (previously `$workflows.` rejected it outright, and
+      // `$sourceDescriptions.` only saw it as an opaque string). Parsing is left entirely to the
+      // grammar here rather than re-implemented locally, so this always matches whatever that
+      // shared parser considers valid - including its documented limitation that a workflowId
+      // containing a literal dot won't be recognized (its `workflow-id` production is
+      // `identifier-strict`, which excludes dots). Only document-local existence resolution
+      // happens here; a `$sourceDescriptions.` reference stays unresolved beyond its shape, since
+      // it points at an external document.
+      if (!element || !isObject(element) || !element.hasKey('dependsOn')) return true;
+      const dependsOn = element.get('dependsOn');
+      if (!dependsOn || !isArray(dependsOn)) return true;
+      const steps = element.parent;
+      if (!steps || !isArray(steps)) return true;
+      // Excludes the current step itself: a step depending on its own stepId is never
+      // meaningful, and would otherwise silently "resolve" since it's a member of its own
+      // `steps` sibling array.
+      const stepIds = new Set(
+        (steps as ArrayElement)
+          .filter((s) => s !== element && isObject(s) && s.hasKey('stepId'))
+          .map((s) => toValue((s as ObjectElement).get('stepId'))),
+      );
+      let workflows: readonly Element[] | undefined;
+      const resolvesToWorkflowStep = (workflowId: string, stepId: string): boolean => {
+        workflows ??= getElementsByTypeOrClass(root(element), 'workflow');
+        const targetWorkflow = findArazzoWorkflowByWorkflowId(workflows, workflowId);
+        if (!targetWorkflow || !isObject(targetWorkflow) || !targetWorkflow.hasKey('steps')) {
+          return false;
+        }
+        const targetSteps = targetWorkflow.get('steps');
+        if (!targetSteps || !isArray(targetSteps)) return false;
+        const targetStepIds = (targetSteps as ArrayElement)
+          .filter((s) => isObject(s) && s.hasKey('stepId'))
+          .map((s) => toValue((s as ObjectElement).get('stepId')));
+        return targetStepIds.includes(stepId);
+      };
+      for (const item of dependsOn as ArrayElement) {
+        const val = toValue(item as Element);
+        if (typeof val !== 'string') continue;
+        if (val.startsWith('$workflows.')) {
+          const { result, tree } = parseRuntimeExpression(val);
+          if (!result.success || !tree || tree.type !== 'WorkflowsStepsExpression') return false;
+          if (!resolvesToWorkflowStep(tree.workflowId, tree.stepId)) return false;
+        } else if (val.startsWith('$sourceDescriptions.')) {
+          const { result, tree } = parseRuntimeExpression(val);
+          if (
+            !result.success ||
+            !tree ||
+            tree.type !== 'SourceDescriptionsExpression' ||
+            !tree.stepsReference
+          ) {
+            return false;
+          }
+        } else if (val.startsWith('$')) {
+          return false;
+        } else if (!stepIds.has(val)) {
+          return false;
+        }
+      }
+      return true;
+    },
+  },
+  {
     functionName: 'apilintArazzoWorkflowIdResolved',
     function: (element: Element): boolean => {
       // Validate that a workflowId reference resolves to an existing workflow.
@@ -699,12 +849,41 @@ export const standardLinterfunctions: FunctionItem[] = [
       if (value.startsWith('$sourceDescriptions.')) return testRuntimeExpression(value);
       const api = root(element);
       const workflows = getElementsByTypeOrClass(api, 'workflow');
-      return workflows.some(
-        (w) =>
-          isObject(w) &&
-          w.hasKey('workflowId') &&
-          toValue((w as ObjectElement).get('workflowId')) === value,
+      return findArazzoWorkflowByWorkflowId(workflows, value) !== undefined;
+    },
+  },
+  {
+    functionName: 'apilintArazzoSourceDescriptionTypeConsistency',
+    function: (element: Element, expectedTypes: string[]): boolean => {
+      // Best-effort cross-check: a $sourceDescriptions.<name>.<reference> value should point at
+      // a source whose declared `type` matches how the reference is being used (e.g. a
+      // workflowId reference should point at a `type: arazzo` source, not `type: openapi`). Only
+      // fires when the named source exists locally AND declares a `type` - that field is
+      // optional per spec, so a source without one gives no local signal to check against, and
+      // is silently skipped rather than guessed at.
+      if (!element || !isString(element)) return true;
+      return isArazzoSourceDescriptionTypeConsistent(
+        toValue(element),
+        expectedTypes,
+        root(element),
       );
+    },
+  },
+  {
+    functionName: 'apilintArazzoArraySourceDescriptionTypeConsistency',
+    function: (element: Element, expectedTypes: string[]): boolean => {
+      // Same check as apilintArazzoSourceDescriptionTypeConsistency, applied to each
+      // $sourceDescriptions.-prefixed string in an array (e.g. Workflow/Step `dependsOn`).
+      if (!element || !isArray(element)) return true;
+      const api = root(element);
+      for (const item of element as ArrayElement) {
+        if (
+          !isArazzoSourceDescriptionTypeConsistent(toValue(item as Element), expectedTypes, api)
+        ) {
+          return false;
+        }
+      }
+      return true;
     },
   },
   {

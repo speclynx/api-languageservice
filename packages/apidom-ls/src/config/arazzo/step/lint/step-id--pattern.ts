@@ -7,8 +7,8 @@ import { Arazzo } from '../../target-specs.ts';
 const stepIdPatternLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_STEP_FIELD_STEP_ID_PATTERN,
   source: 'apilint',
-  message: 'stepId must match the pattern [A-Za-z0-9_\\-]+',
-  severity: DiagnosticSeverity.Error,
+  message: 'stepId SHOULD match the pattern [A-Za-z0-9_\\-]+',
+  severity: DiagnosticSeverity.Warning,
   linterFunction: 'apilintValueRegex',
   linterParams: ['^[A-Za-z0-9_\\-]+$'],
   marker: 'value',

@@ -77,7 +77,7 @@ Every rule is defined as an object conforming to the `LinterMeta` interface from
 
 ### Specification scoping
 
-`targetSpecs` (NamespaceVersion[]): An array of namespace/version pairs that this rule applies to. The service matches against the document's detected namespace and version. Version strings can use `x` as a wildcard suffix (e.g., `'3.0.x'` matches any 3.0.* version). Predefined constants are available in `config/openapi/target-specs.ts` and `config/asyncapi/target-specs.ts`, such as `OpenAPI3`, `OpenAPI30`, `OpenAPI31`, `AsyncAPI2`.
+`targetSpecs` (NamespaceVersion[]): An array of namespace/version pairs that this rule applies to. The service matches against the document's detected namespace and version. Version strings can use `x` as a wildcard suffix (e.g., `'3.0.x'` matches any 3.0.* version). Predefined constants are available in `config/openapi/target-specs.ts` and `config/asyncapi/target-specs.ts`, such as `OpenAPI3`, `OpenAPI30`, `OpenAPI31`, `AsyncAPI2`. `config/arazzo/target-specs.ts` follows the same pattern: `Arazzo100`/`Arazzo101`/`Arazzo110` (individual exact versions, exported for API compatibility but not used to build the aggregates below, since the wildcard they'd add to already subsumes them), `Arazzo10`/`Arazzo10X` (the 1.0 line - `1.0.x` prefix-matches every 1.0 patch version), `Arazzo11`/`Arazzo11X` (the 1.1 line), and `Arazzo`/`Arazzo1` (everything). Always target a wildcard-inclusive constant like `Arazzo10`/`Arazzo11`/`Arazzo` rather than an exact-version-only one - omitting the wildcard means the rule silently stops matching any future patch version that isn't explicitly enumerated.
 
 When `targetSpecs` is omitted, the rule applies to all specs within its namespace.
 
@@ -243,6 +243,32 @@ Supported casing styles are: `'camel'`, `'cobol'`, `'flat'`, `'kebab'`, `'macro'
 
 `apilintOpenAPIParameterInPathTemplate(element)` validates a path parameter's name appears as a template expression in the corresponding path template.
 
+### Arazzo-specific
+
+`apilintChildrenOfTypeOrElementClass(element, type, elementsOrClasses[], nonEmpty?)` validates all children of an object element are either of the given primitive type or match one of the given element types/classes. Used for `outputs` maps from Arazzo 1.1 onward, where a value may be a Runtime Expression string or a Selector Object.
+
+`apilintArazzoRuntimeExpression(element)` validates a string element is a syntactically valid [Arazzo Runtime Expression](https://spec.openapis.org/arazzo/latest.html#runtime-expressions), via `@swaggerexpert/arazzo-runtime-expression`.
+
+`apilintObjectValuesArazzoRuntimeExpression(element)` validates every string value in an object map is a valid Runtime Expression. Non-string values are skipped, not flagged.
+
+`apilintArazzoValueRuntimeExpression(element)` validates a string element is a valid Runtime Expression, but only when it starts with `$` (used for fields, like Parameter `value`, that mix literal values with expressions).
+
+`apilintArazzoArrayValuesResolveToWorkflows(element)` validates each string in an array (`Workflow.dependsOn`) resolves to an existing `workflowId` in the current document. A `$sourceDescriptions.`-prefixed entry (external reference) is validated as a Runtime Expression instead, since its target can't be resolved locally.
+
+`apilintArazzoStepDependsOnResolved(element)` — the `Step.dependsOn` equivalent. Expects `element` to be the step object itself (no `target` set on the rule), since resolving a plain entry requires the step's *own* workflow's sibling steps (`stepId` is workflow-scoped, unlike `workflowId`). A `$workflows.<workflowId>.steps.<stepId>` entry is resolved against the document's own workflows/steps (parsed via the `WorkflowsStepsExpression` AST node from `@swaggerexpert/arazzo-runtime-expression` >=3.2.0); a `$sourceDescriptions.<name>.<workflowId>.steps.<stepId>` entry is only shape-validated (its optional `stepsReference` AST field), since it points at an external document.
+
+`apilintArazzoWorkflowIdResolved(element)` validates a single `workflowId` reference resolves to an existing workflow, with the same `$sourceDescriptions.` external-reference handling as above.
+
+`apilintArazzoSourceDescriptionTypeConsistency(element, expectedTypes[])` cross-checks a `$sourceDescriptions.<name>.<reference>` value against the named source's declared `type` (e.g. a `workflowId` reference should point at `type: arazzo`, not `type: openapi`). Since `type` is optional on a Source Description Object, the check is silently skipped when it's absent or the named source isn't found - it never guesses.
+
+`apilintArazzoArraySourceDescriptionTypeConsistency(element, expectedTypes[])` is the array form of the above, applied to each `$sourceDescriptions.`-prefixed entry (used for `dependsOn`).
+
+`apilintArazzoActionStepIdResolved(element)` validates a success/failure action's `stepId` resolves to an existing step within the same workflow.
+
+`apilintArazzoContentTypeFormat(element)` validates a `contentType` value looks like a MIME type (`type/subtype`, with optional parameters).
+
+`apilintArazzoConditionRegexValid(element)` validates a Criterion `condition` is a syntactically valid regular expression, but only when the sibling `type` field is `'regex'` (or an Expression Type Object with `type: 'regex'`).
+
 ### Completion helpers
 
 Some functions in `linter-functions.ts` are completion helpers rather than validators:
@@ -285,6 +311,16 @@ config/
     target-specs.ts
     server/
       ...
+  arazzo/
+    config.ts
+    target-specs.ts                  # Arazzo10, Arazzo10X, Arazzo11, Arazzo11X, etc.
+    step/
+      lint/
+        allowed-fields-1-0.ts        # Version-split rule: Arazzo 1.0.x field list
+        allowed-fields-1-1.ts        # Version-split rule: Arazzo 1.1+ field list (superset)
+        ...
+    selector/                        # New in Arazzo 1.1 (no "required" rules - apidom only
+      ...                            # recognizes the element once all fields are present)
   common/
     schema/                          # Shared schema rules reused across specs
       ...
@@ -296,6 +332,10 @@ config/
 Each element type (server, operation, parameter, etc.) has its own directory containing a `meta.ts` file that bundles lint rules, completion items, and documentation. The lint rules for that element are collected in a `lint/index.ts` file that imports and exports all individual rule files.
 
 The naming convention for rule files describes the field and check being performed. For example, `url--required.ts` validates the `url` field is required, `description--type.ts` validates the `description` field's type, and `allowed-fields.ts` validates no extra fields are present.
+
+When a check's correct behavior differs across spec versions within the same namespace (a field is new, an enum grows, a pattern changes), split the rule into separate `-1-0.ts`/`-1-1.ts` (etc.) files rather than writing one version-agnostic file - each variant gets its own `targetSpecs` (e.g. `Arazzo10`, `Arazzo11`) but can reuse the same `ApilintCodes` entry, since it's the same logical check. See `config/arazzo/step/lint/allowed-fields-1-0.ts` / `allowed-fields-1-1.ts`, or `config/arazzo/sourceDescription/lint/type--equals-1-0.ts` / `type--equals-1-1.ts`, for examples. A rule with no version-specific behavior stays a single file with the broadest applicable `targetSpecs` (e.g. `Arazzo`, which spans every Arazzo version).
+
+This file-per-version-line convention is a workaround, not a first-class per-field version-condition mechanism in the rules engine itself - there's no built-in way to express "this one field within a rule behaves differently by version" other than duplicating the whole `LinterMeta` object with a narrower `targetSpecs`. It scales fine to two lines (`-1-0.ts`/`-1-1.ts`), and a genuine three-way split (e.g. a hypothetical 1.2 introducing yet another variant of the same check) follows the same pattern - add a `-1-2.ts` file with its own `targetSpecs` (e.g. `Arazzo12`), and narrow whichever existing file(s) no longer apply to 1.2. If a check's version-conditional logic gets complex enough that this starts producing many near-duplicate files, that's a signal the rules engine itself may need an actual per-version-branch primitive rather than more file-splitting.
 
 The `'*'` key in the namespace config applies rules to all element types within that namespace. The built-in wildcard rule checks for duplicate keys in all objects.
 

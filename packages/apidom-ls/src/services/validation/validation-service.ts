@@ -995,15 +995,21 @@ export class DefaultValidationService implements ValidationService {
       // TODO try using the "repaired" version of the doc (serialize apidom skipping errors and missing)
       for (const provider of this.validationProviders) {
         if (!(provider.jsonSchemaValidation() && !jsonSchemaValidationEnabled)) {
-          await this.executeValidationProvider(
-            provider,
-            docNs,
-            specVersion,
-            textDocument,
-            diagnostics,
-            context,
-            api,
-          );
+          try {
+            await this.executeValidationProvider(
+              provider,
+              docNs,
+              specVersion,
+              textDocument,
+              diagnostics,
+              context,
+              api,
+            );
+          } catch (e) {
+            // A single misbehaving provider (e.g. a JSON schema that throws while compiling)
+            // must not discard every diagnostic already collected for this document.
+            error('error in validation provider', e);
+          }
           if (provider.break()) {
             break;
           }

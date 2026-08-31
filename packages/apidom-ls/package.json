@@ -94,6 +94,11 @@
       "require": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.cjs",
       "types": "./types/services/validation/providers/arazzo-1-json-schema-validation-provider.d.ts"
     },
+    "./services/validation/providers/arazzo-11-json-schema": {
+      "import": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.mjs",
+      "require": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.cjs",
+      "types": "./types/services/validation/providers/arazzo-11-json-schema-validation-provider.d.ts"
+    },
     "./services/validation/providers/overlay-1-json-schema": {
       "import": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.mjs",
       "require": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.cjs",
@@ -148,7 +153,7 @@
     "@speclynx/apidom-parser-adapter-yaml-1-2": "^5.2.1",
     "@speclynx/apidom-reference": "^5.2.1",
     "@speclynx/apidom-traverse": "^5.2.1",
-    "@swaggerexpert/arazzo-runtime-expression": "^3.0.0",
+    "@swaggerexpert/arazzo-runtime-expression": "^3.2.0",
     "@swaggerexpert/jsonpath": "^4.0.4",
     "@types/ramda": "~0.30.0",
     "openapi-path-templating": "^2.2.1",

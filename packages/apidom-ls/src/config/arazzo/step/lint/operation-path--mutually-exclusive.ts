@@ -7,10 +7,10 @@ import { Arazzo } from '../../target-specs.ts';
 const operationPathMutuallyExclusiveLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_STEP_FIELD_OPERATION_PATH_MUTUALLY_EXCLUSIVE,
   source: 'apilint',
-  message: 'operationPath is mutually exclusive with operationId and workflowId',
+  message: 'operationPath is mutually exclusive with operationId, channelPath and workflowId',
   severity: DiagnosticSeverity.Error,
   linterFunction: 'missingFields',
-  linterParams: [['operationId', 'workflowId']],
+  linterParams: [['operationId', 'channelPath', 'workflowId']],
   marker: 'key',
   markerTarget: 'operationPath',
   conditions: [

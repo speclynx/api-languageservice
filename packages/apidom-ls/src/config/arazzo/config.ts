@@ -10,10 +10,11 @@ import successActionMeta from './successAction/meta.ts';
 import failureActionMeta from './failureAction/meta.ts';
 import componentsMeta from './components/meta.ts';
 import criterionMeta from './criterion/meta.ts';
-import criterionExpressionTypeMeta from './criterionExpressionType/meta.ts';
+import expressionTypeMeta from './expressionType/meta.ts';
 import requestBodyMeta from './requestBody/meta.ts';
 import payloadReplacementMeta from './payloadReplacement/meta.ts';
 import reusableMeta from './reusable/meta.ts';
+import selectorMeta from './selector/meta.ts';
 import schemaMeta from './JSONSchema/meta.ts';
 import ApilintCodes from '../codes.ts';
 
@@ -40,9 +41,10 @@ export default {
   failureAction: failureActionMeta,
   components: componentsMeta,
   criterion: criterionMeta,
-  criterionExpressionType: criterionExpressionTypeMeta,
+  expressionType: expressionTypeMeta,
   requestBody: requestBodyMeta,
   payloadReplacement: payloadReplacementMeta,
   reusable: reusableMeta,
+  selector: selectorMeta,
   JSONSchema: schemaMeta,
 };

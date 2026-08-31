@@ -7,7 +7,7 @@ import { Arazzo } from '../../target-specs.ts';
 const typeEqualsLint: LinterMeta = {
   code: ApilintCodes.ARAZZO_CRITERION_FIELD_TYPE_EQUALS,
   source: 'apilint',
-  message: "type must be one of: 'simple', 'regex', 'jsonpath', 'xpath', or a Criterion Expression Type Object",
+  message: "type must be one of: 'simple', 'regex', 'jsonpath', 'xpath', or an Expression Type Object",
   severity: DiagnosticSeverity.Warning,
   linterFunction: 'apilintValueOrArray',
   linterParams: [['simple', 'regex', 'jsonpath', 'xpath']],

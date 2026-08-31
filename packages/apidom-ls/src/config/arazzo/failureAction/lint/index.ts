@@ -4,7 +4,10 @@ import typeRequiredLint from './type--required.ts';
 import typeTypeLint from './type--type.ts';
 import typeEqualsLint from './type--equals.ts';
 import workflowIdTypeLint from './workflow-id--type.ts';
+import workflowIdPatternLint from './workflow-id--pattern.ts';
+import workflowIdSourceTypeConsistencyLint from './workflow-id--source-type-consistency.ts';
 import stepIdTypeLint from './step-id--type.ts';
+import stepIdPatternLint from './step-id--pattern.ts';
 import retryAfterTypeLint from './retry-after--type.ts';
 import retryAfterNonNegativeLint from './retry-after--non-negative.ts';
 import retryLimitTypeLint from './retry-limit--type.ts';
@@ -17,7 +20,10 @@ import stepIdResolvedLint from './step-id--resolved.ts';
 import retryAfterOnlyRetryLint from './retry-after--only-retry.ts';
 import retryLimitOnlyRetryLint from './retry-limit--only-retry.ts';
 import nameUniqueLint from './name--unique.ts';
-import allowedFieldsLint from './allowed-fields.ts';
+import parametersTypeLint from './parameters--type.ts';
+import parametersOnlyWorkflowIdLint from './parameters--only-workflow-id.ts';
+import allowedFields10Lint from './allowed-fields-1-0.ts';
+import allowedFields11Lint from './allowed-fields-1-1.ts';
 
 const lints = [
   nameRequiredLint,
@@ -27,7 +33,10 @@ const lints = [
   typeTypeLint,
   typeEqualsLint,
   workflowIdTypeLint,
+  workflowIdPatternLint,
+  workflowIdSourceTypeConsistencyLint,
   stepIdTypeLint,
+  stepIdPatternLint,
   workflowIdMutuallyExclusiveLint,
   stepIdMutuallyExclusiveLint,
   workflowIdResolvedLint,
@@ -39,7 +48,10 @@ const lints = [
   retryAfterOnlyRetryLint,
   retryLimitOnlyRetryLint,
   criteriaTypeLint,
-  allowedFieldsLint,
+  parametersTypeLint,
+  parametersOnlyWorkflowIdLint,
+  allowedFields10Lint,
+  allowedFields11Lint,
 ];
 
 export default lints;
