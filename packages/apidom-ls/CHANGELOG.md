@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/speclynx/apidom-internal/compare/v2.11.7...v2.12.0) (2026-08-31)
+
+### Features
+
+- **ls:** add Arazzo 1.1 validation rules ([#201](https://github.com/speclynx/apidom-internal/issues/201)) ([99c965e](https://github.com/speclynx/apidom-internal/commit/99c965eb072568f6b586a87a7adba10581dfed64)), closes [#297](https://github.com/speclynx/apidom-internal/issues/297)
+
 ## [2.11.7](https://github.com/speclynx/apidom-internal/compare/v2.11.6...v2.11.7) (2026-08-04)
 
 ### Bug Fixes
