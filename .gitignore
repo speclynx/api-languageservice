@@ -6,3 +6,10 @@ node_modules/
 isolate-*.log
 .log*
 .claude/
+
+# Editor and assistant tool directories that live in the working tree. They
+# belong here rather than in one contributor's global ignore file: a directory
+# ignored only there is one `git add -A` away from being committed by whoever
+# runs the next command.
+.codex/
+.junie/
