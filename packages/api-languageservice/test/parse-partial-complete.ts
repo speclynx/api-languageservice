@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const spec = fs.readFileSync(path.join(__dirname, 'fixtures', 'async-info.yaml')).toString();
 
-describe('apidom-ls-parse-partial', function () {
+describe('api-languageservice-parse-partial', function () {
   it('test parse partial complete async', async function () {
     const doc: TextDocument = TextDocument.create('foo://bar/spec.json', 'yaml', 0, spec);
 

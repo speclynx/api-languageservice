@@ -15,7 +15,7 @@ const specAsyncYaml = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'sample-api-async-validation-yaml.yaml'))
   .toString();
 
-describe('apidom-ls-jsonpointer', function () {
+describe('api-languageservice-jsonpointer', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     performanceLogs: logPerformance,

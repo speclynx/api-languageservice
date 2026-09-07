@@ -410,7 +410,7 @@ class FullHoverProvider implements HoverProvider {
   }
 }
 
-describe('apidom-ls-hover-provider', function () {
+describe('api-languageservice-hover-provider', function () {
   const refHoverProvider = new RefHoverProvider();
   const fullHoverProvider = new FullHoverProvider();
   const asyncRefHoverProvider = new AsyncRefHoverProvider();

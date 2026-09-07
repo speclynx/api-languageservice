@@ -12,8 +12,8 @@ import {
 } from '../src/apidom-language-types.ts';
 import { logPerformance, logLevel } from './test-utils.ts';
 
-// https://github.com/speclynx/apidom-internal/issues/191
-describe('apidom-ls-metadata-guards', function () {
+// Issue #191 in the predecessor private repository speclynx/apidom-internal.
+describe('api-languageservice-metadata-guards', function () {
   const validationContext: ValidationContext = {
     comments: DiagnosticSeverity.Error,
     maxNumberOfProblems: 100,

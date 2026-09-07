@@ -365,7 +365,7 @@ returning `true` makes this validation override default one
   }
 }
 
-describe('apidom-ls-validation-provider-ref', function () {
+describe('api-languageservice-validation-provider-ref', function () {
   const refValidationProvider = new RefValidationProvider();
   const fullValidationProvider = new FullValidationProvider();
 

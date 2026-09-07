@@ -439,7 +439,7 @@ const defTestInput = [
   ],
 ];
 
-describe('apidom-ls', function () {
+describe('api-languageservice', function () {
   const metadataOas = JSON.parse(JSON.stringify(metadata()));
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
   const context: LanguageServiceContext = {

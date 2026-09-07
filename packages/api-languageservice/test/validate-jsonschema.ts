@@ -39,7 +39,7 @@ const specOpenapiSimple20 = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'ajv-simple-api-20.json'))
   .toString();
 
-describe('apidom-ls-validate-jsonschema', function () {
+describe('api-languageservice-validate-jsonschema', function () {
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
   const oasJsonSchemavalidationProvider30 = new OpenAPi30JsonSchemaValidationProvider();
   const oasJsonSchemavalidationProvider20 = new OpenAPi20JsonSchemaValidationProvider();

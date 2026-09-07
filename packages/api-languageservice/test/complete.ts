@@ -62,7 +62,7 @@ const specCompletionEmptyLineYamlError = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'async-info-newline.yaml'))
   .toString();
 
-describe('apidom-ls-complete', function () {
+describe('api-languageservice-complete', function () {
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
 
   const context: LanguageServiceContext = {

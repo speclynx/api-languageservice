@@ -293,7 +293,7 @@ const hoverTestInput = [
   ],
 ];
 
-describe('apidom-ls-async-yaml', function () {
+describe('api-languageservice-async-yaml', function () {
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
 
   const context: LanguageServiceContext = {

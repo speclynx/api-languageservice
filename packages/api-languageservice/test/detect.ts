@@ -29,7 +29,7 @@ const asyncYamlInvalid = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'async-info.yaml'))
   .toString();
 
-describe('apidom-ls-detect', function () {
+describe('api-languageservice-detect', function () {
   it('test detect', async function () {
     const contentLanguage: ContentLanguage = {
       namespace: 'asyncapi',

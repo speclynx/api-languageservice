@@ -41,7 +41,7 @@ const specValidationExpected = fs
       __dirname,
       'fixtures',
       'expected',
-      'apidom-ls-async',
+      'api-languageservice-async',
       'sample-api-async-validation-2.0.0.json',
     ),
   )
@@ -374,7 +374,7 @@ const hoverTestInput = [
   ],
 ];
 
-describe('apidom-ls-async', function () {
+describe('api-languageservice-async', function () {
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
 
   const context: LanguageServiceContext = {

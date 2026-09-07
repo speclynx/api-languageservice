@@ -27,7 +27,8 @@ const specValidAsync = fs
   .toString();
 
 // Arazzo's workflow.inputs is JSON-Schema-shaped, but refracts to a `JSONSchema` element rather
-// than `schema` (unlike OpenAPI) - see https://github.com/speclynx/apidom-internal/issues/194.
+// than `schema` (unlike OpenAPI) - see issue #194 in the predecessor private repository
+// speclynx/apidom-internal.
 function arazzoWithLocalSchemaRef(valid: boolean): string {
   const target = valid ? 'pet' : 'nonexistent';
   return `arazzo: '1.0.1'

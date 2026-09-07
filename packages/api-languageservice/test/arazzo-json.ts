@@ -24,7 +24,7 @@ const specArazzoJson101 = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'arazzo', 'sample-arazzo.json'))
   .toString();
 
-describe('apidom-ls-arazzo-json', function () {
+describe('api-languageservice-arazzo-json', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

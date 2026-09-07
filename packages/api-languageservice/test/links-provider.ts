@@ -115,7 +115,7 @@ class RefLinksProvider implements LinksProvider {
   }
 }
 
-describe('apidom-ls-links', function () {
+describe('api-languageservice-links', function () {
   const func: LinksModifierFunction = (value) => {
     if (value.startsWith('https://github.com')) {
       return value.replace('github.com', 'onprem.com');

@@ -28,7 +28,7 @@ const specArazzoYaml100 = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'arazzo', 'sample-arazzo-1.0.0.yaml'))
   .toString();
 
-describe('apidom-ls-arazzo-yaml', function () {
+describe('api-languageservice-arazzo-yaml', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

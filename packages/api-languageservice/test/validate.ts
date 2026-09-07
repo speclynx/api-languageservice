@@ -51,7 +51,7 @@ const specAsyncYamlAdditionalItems = fs
   )
   .toString();
 
-describe('apidom-ls-validate', function () {
+describe('api-languageservice-validate', function () {
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
   const async21JsonSchemavalidationProvider = new Asyncapi21JsonSchemaValidationProvider();

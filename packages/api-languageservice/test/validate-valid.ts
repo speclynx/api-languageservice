@@ -16,7 +16,7 @@ import { logPerformance, logLevel } from './test-utils.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-describe('apidom-ls-validate', function () {
+describe('api-languageservice-validate', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     performanceLogs: logPerformance,

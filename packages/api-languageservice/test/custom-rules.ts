@@ -25,7 +25,7 @@ const specOpenapiJsonpath = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'custom-rules-jsonpath.yaml'))
   .toString();
 
-describe('apidom-ls-validate-custom-rules', function () {
+describe('api-languageservice-validate-custom-rules', function () {
   // const metadataNoTitle = JSON.parse(JSON.stringify(metadata()));
   // metadataNoTitle.metadataMaps.asyncapi.info.lint.splice(3, 1);
 

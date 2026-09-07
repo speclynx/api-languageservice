@@ -22,7 +22,7 @@ const specOverlayJson = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'overlay', 'sample-overlay.json'))
   .toString();
 
-describe('apidom-ls-overlay-json', function () {
+describe('api-languageservice-overlay-json', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

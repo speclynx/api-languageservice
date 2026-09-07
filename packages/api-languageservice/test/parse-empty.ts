@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const spec = fs.readFileSync(path.join(__dirname, 'fixtures', 'async-empty.yaml')).toString();
 
-describe('apidom-ls-parse-empty', function () {
+describe('api-languageservice-parse-empty', function () {
   it('test parse empty lines async', async function () {
     // valid spec
     const doc: TextDocument = TextDocument.create('foo://bar/spec.json', 'json', 0, spec);

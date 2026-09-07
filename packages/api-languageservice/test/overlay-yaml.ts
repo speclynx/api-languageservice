@@ -32,7 +32,7 @@ actions:
       description: Returns a list of users
 `;
 
-describe('apidom-ls-overlay-yaml', function () {
+describe('api-languageservice-overlay-yaml', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

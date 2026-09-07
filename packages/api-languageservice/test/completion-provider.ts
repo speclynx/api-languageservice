@@ -387,7 +387,7 @@ class FullCompletionProvider implements CompletionProvider {
   }
 }
 
-describe('apidom-ls-completion-provider', function () {
+describe('api-languageservice-completion-provider', function () {
   const refCompletionProvider = new RefCompletionProvider();
   const fullCompletionProvider = new FullCompletionProvider();
   const asyncRefCompletionProvider = new AsyncRefCompletionProvider();

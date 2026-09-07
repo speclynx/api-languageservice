@@ -388,7 +388,7 @@ const hoverTestInput = [
   ],
 ];
 
-describe('apidom-ls-yaml', function () {
+describe('api-languageservice-yaml', function () {
   const metadataOas = JSON.parse(JSON.stringify(metadata()));
   const oasJsonSchemavalidationProvider = new OpenAPi31JsonSchemaValidationProvider();
   const context: LanguageServiceContext = {

@@ -4,7 +4,7 @@ The ApiDOM Language Service includes a declarative rules engine that validates A
 
 ## Architecture overview
 
-The rules engine operates within the validation service (`packages/apidom-ls/src/services/validation/validation-service.ts`). When a document is validated, the service parses the text into an ApiDOM element tree, then traverses that tree evaluating applicable rules against each element. Each rule that fails produces an LSP `Diagnostic` with a message, severity, source location, and optional quick-fix data.
+The rules engine operates within the validation service (`packages/api-languageservice/src/services/validation/validation-service.ts`). When a document is validated, the service parses the text into an ApiDOM element tree, then traverses that tree evaluating applicable rules against each element. Each rule that fails produces an LSP `Diagnostic` with a message, severity, source location, and optional quick-fix data.
 
 The main components are:
 
@@ -127,7 +127,7 @@ When `targetSpecs` is omitted, the rule applies to all specs within its namespac
 
 ## Built-in linter functions
 
-All standard linter functions are defined in `packages/apidom-ls/src/services/validation/linter-functions.ts` and exported as the `standardLinterfunctions` array. Each function takes an element as its first argument and returns a boolean (true = passes, false = fails).
+All standard linter functions are defined in `packages/api-languageservice/src/services/validation/linter-functions.ts` and exported as the `standardLinterfunctions` array. Each function takes an element as its first argument and returns a boolean (true = passes, false = fails).
 
 ### Field existence
 
@@ -283,7 +283,7 @@ Some functions in `linter-functions.ts` are completion helpers rather than valid
 
 ## Rule organization in config/
 
-Built-in rules are organized in a directory hierarchy under `packages/apidom-ls/src/config/` that mirrors the API specification structure:
+Built-in rules are organized in a directory hierarchy under `packages/api-languageservice/src/config/` that mirrors the API specification structure:
 
 ```
 config/
@@ -439,9 +439,9 @@ Custom rules can be added at runtime by extending the metadata object before pas
 To add a rule that applies to a specific ApiDOM element type, push it into the appropriate entry in `metadataMaps`:
 
 ```typescript
-import { config } from '@speclynx/apidom-ls/config/config';
-import { LinterMeta, Metadata } from '@speclynx/apidom-ls';
-import { deepCopyMetadata } from '@speclynx/apidom-ls/utils/utils';
+import { config } from '@speclynx/api-languageservice/config/config';
+import { LinterMeta, Metadata } from '@speclynx/api-languageservice';
+import { deepCopyMetadata } from '@speclynx/api-languageservice/utils/utils';
 
 const customConfig = deepCopyMetadata(config() as Metadata);
 
@@ -551,7 +551,7 @@ These functions follow the same contract as standard functions: the first argume
 
 Validation rules are tested through the language service's `doValidation` method. The test setup creates a `LanguageServiceContext` with the desired metadata and validation providers, then validates fixture documents and asserts the expected diagnostics.
 
-Here is the typical test pattern used in `packages/apidom-ls/test/`:
+Here is the typical test pattern used in `packages/api-languageservice/test/`:
 
 ```typescript
 import getLanguageService from '../src/apidom-language-service.ts';
@@ -584,7 +584,7 @@ assert.deepEqual(diagnostics[0].message, "should always have a 'url'");
 assert.equal(diagnostics[0].severity, DiagnosticSeverity.Error);
 ```
 
-Test fixtures are stored in `packages/apidom-ls/test/fixtures/` as JSON and YAML files. Custom rule tests (e.g., `test/custom-metadata.ts`, `test/custom-metadata-jsonpath.ts`) demonstrate how to extend the default metadata with additional rules and validate they produce the expected diagnostics.
+Test fixtures are stored in `packages/api-languageservice/test/fixtures/` as JSON and YAML files. Custom rule tests (e.g., `test/custom-metadata.ts`, `test/custom-metadata-jsonpath.ts`) demonstrate how to extend the default metadata with additional rules and validate they produce the expected diagnostics.
 
 To run the tests:
 
@@ -598,9 +598,9 @@ npm test
 
 To add a new built-in rule to the codebase:
 
-1. Determine which element type the rule applies to and find its directory under `packages/apidom-ls/src/config/{namespace}/{element}/lint/`.
+1. Determine which element type the rule applies to and find its directory under `packages/api-languageservice/src/config/{namespace}/{element}/lint/`.
 
-2. Add an error code to `packages/apidom-ls/src/config/codes.ts` in the appropriate enum range.
+2. Add an error code to `packages/api-languageservice/src/config/codes.ts` in the appropriate enum range.
 
 3. Create a new file following the naming convention `{field}--{check}.ts` (e.g., `description--required.ts`, `name--type.ts`, `allowed-fields-3-1.ts`).
 
@@ -608,7 +608,7 @@ To add a new built-in rule to the codebase:
 
 5. Import the new rule in the element's `lint/index.ts` and add it to the exported array.
 
-6. Add or update test fixtures and assertions in the appropriate test file under `packages/apidom-ls/test/`.
+6. Add or update test fixtures and assertions in the appropriate test file under `packages/api-languageservice/test/`.
 
 7. Build and run tests to verify:
    ```bash

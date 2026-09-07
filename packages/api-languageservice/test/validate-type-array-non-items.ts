@@ -43,7 +43,7 @@ const specAsync22 = fs
   )
   .toString();
 
-describe('apidom-ls-validate-type-array-non-items', function () {
+describe('api-languageservice-validate-type-array-non-items', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

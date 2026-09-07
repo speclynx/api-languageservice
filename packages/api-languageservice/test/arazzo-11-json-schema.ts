@@ -48,7 +48,7 @@ workflows:
           - condition: $statusCode == 200
 `;
 
-describe('apidom-ls-arazzo-11-json-schema', function () {
+describe('api-languageservice-arazzo-11-json-schema', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
     validationContext: {

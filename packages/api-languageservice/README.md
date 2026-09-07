@@ -1,11 +1,11 @@
-<h1 align="center">SpecLynx ApiDOM Language Service</h1>
+<h1 align="center">SpecLynx API Language Service</h1>
 
 <p align="center">
   A comprehensive <strong>Language Service Library</strong> for API description languages, built on <a href="https://github.com/speclynx/apidom">SpecLynx ApiDOM</a>.
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@speclynx/apidom-ls"><img src="https://img.shields.io/npm/v/@speclynx/apidom-ls.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@speclynx/api-languageservice"><img src="https://img.shields.io/npm/v/@speclynx/api-languageservice.svg" alt="npm version"></a>
   <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0">
 </p>
 
@@ -17,9 +17,14 @@
 
 ## Overview
 
-**SpecLynx ApiDOM Language Service** (`@speclynx/apidom-ls`) is a language service library that provides intelligent editing features for API description languages. It implements programmatic language features following the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) specification, making it easy to integrate into any LSP-compatible editor or IDE through a server wrapper.
+**SpecLynx API Language Service** (`@speclynx/api-languageservice`) is a language service library that provides intelligent editing features for API description languages. It implements programmatic language features following the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) specification, making it easy to integrate into any LSP-compatible editor or IDE through a server wrapper.
 
 > **Note:** This is a *language service*, not a language server. A language service is a library that implements language features, while a language server is a separate process that communicates via LSP. This library can be wrapped by an LSP server to expose its features to editors.
+
+> **Renamed:** this package was published as `@speclynx/apidom-ls` up to version 2.12.0. From
+> 2.13.0 it is published under the name above. `@speclynx/apidom-ls@2.13.0` is a compatibility
+> release that forwards to it, receives security fixes and nothing else until **2027-03-21**, and
+> receives nothing at all after that date.
 
 ## Supported Languages
 
@@ -54,7 +59,7 @@ The language service provides the following LSP-compatible features:
 ## Installation
 
 ```sh
-npm install @speclynx/apidom-ls
+npm install @speclynx/api-languageservice
 ```
 
 ## Quick Start
@@ -62,7 +67,7 @@ npm install @speclynx/apidom-ls
 ### Basic Setup
 
 ```typescript
-import { getLanguageService } from '@speclynx/apidom-ls';
+import { getLanguageService } from '@speclynx/api-languageservice';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
 // Create the language service
@@ -144,7 +149,7 @@ languageService.terminate();
 The language service can be configured with custom providers and settings:
 
 ```typescript
-import { getLanguageService, LogLevel } from '@speclynx/apidom-ls';
+import { getLanguageService, LogLevel } from '@speclynx/api-languageservice';
 
 const languageService = getLanguageService({
   // Logging configuration
@@ -182,7 +187,7 @@ const languageService = getLanguageService({
                           ▼
   ╔═══════════════════════════════════════════════╗
   ║                                               ║
-  ║       SpecLynx ApiDOM Language Service        ║
+  ║        SpecLynx API Language Service          ║
   ║            (this language service)            ║
   ║                                               ║
   ╚═══════════════════════╤═══════════════════════╝
@@ -200,9 +205,10 @@ For full documentation and **enterprise support** please contact: **info@speclyn
 
 ## License
 
-ApiDOM Language Service is licensed under [Apache 2.0 license](https://github.com/speclynx/apidom/blob/main/LICENSES/Apache-2.0.txt).
-ApiDOM Language Service comes with an explicit **NOTICE** file inside npm distribution package
-containing additional legal notices and information.
+The SpecLynx API Language Service is licensed under the [Apache 2.0 license](https://github.com/speclynx/api-languageservice/blob/main/LICENSE).
+It comes with an explicit **NOTICE** file inside the npm distribution package containing additional
+legal notices and information, and a **dist/THIRD-PARTY-NOTICES.txt** listing the licence of every
+dependency embedded in its browser bundle.
 
 This project uses [REUSE specification](https://reuse.software/spec/) that defines a standardized method
 for declaring copyright and licensing for software projects.

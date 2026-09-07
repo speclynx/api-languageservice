@@ -53,7 +53,7 @@ const defTestInputYaml = [
   ],
 ];
 
-describe('apidom-ls-definition', function () {
+describe('api-languageservice-definition', function () {
   const context: LanguageServiceContext = {
     performanceLogs: logPerformance,
     logLevel,

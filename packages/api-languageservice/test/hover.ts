@@ -57,7 +57,7 @@ const defTestInputInternalYaml = [
   ],
 ];
 
-describe('apidom-ls-hover', function () {
+describe('api-languageservice-hover', function () {
   const context: LanguageServiceContext = {
     performanceLogs: logPerformance,
     logLevel,
