@@ -1,6 +1,6 @@
 # Rules Engine
 
-The ApiDOM Language Service includes a declarative rules engine that validates API description documents (OpenAPI, AsyncAPI, JSON Schema, etc.) by evaluating a set of rules against a parsed ApiDOM tree. This document describes the architecture, rule format, built-in linter functions, and how to create custom rules.
+The SpecLynx API Language Service includes a declarative rules engine that validates API description documents (OpenAPI, AsyncAPI, JSON Schema, etc.) by evaluating a set of rules against a parsed ApiDOM tree. This document describes the architecture, rule format, built-in linter functions, and how to create custom rules.
 
 ## Architecture overview
 

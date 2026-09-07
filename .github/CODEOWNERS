@@ -1,0 +1,12 @@
+# Individuals rather than a team: the speclynx organisation has no teams, and
+# creating one for two people would be indirection without a reader.
+#
+# Both members are listed because one owner deadlocks. GitHub does not let a
+# pull request author satisfy the code-owner review requirement themselves, so a
+# single owner cannot merge their own change to the files below and nobody else
+# can approve it either.
+#
+# .github/ as a whole rather than .github/workflows/ alone: owning the workflows
+# but not this file would let a contributor change who owns the workflows and
+# then change the workflows.
+/.github/ @char0n @frantuma

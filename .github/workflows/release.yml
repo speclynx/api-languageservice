@@ -1,34 +1,91 @@
-name: Release monorepo packages
+name: Release
+
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: >-
+          Exact version to release, e.g. 2.13.0. Leave empty to derive it from the
+          conventional commits since the last release.
+        required: false
+        type: string
+
+# Two dispatches of the same version must not both pass preflight against the
+# same registry state and then race. Cancellation is off because the second half
+# of a release is worse to interrupt than to queue.
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 env:
   CPU_CORES: 2
   HUSKY: 0
 
+permissions:
+  contents: read
+
 jobs:
-  release:
-    name: Release
+  preflight:
+    name: Preflight
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: npm-release
-      url: https://www.npmjs.com/org/speclynx
-    permissions:
-      contents: write
-      id-token: write
+    outputs:
+      version: ${{ steps.resolve.outputs.version }}
+      source-version: ${{ steps.resolve.outputs.source-version }}
+      latest-api-languageservice: ${{ steps.resolve.outputs.latest-api-languageservice }}
+      latest-apidom-ls: ${{ steps.resolve.outputs.latest-apidom-ls }}
+      sha: ${{ steps.resolve.outputs.sha }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26.3.1
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - name: Install monorepo dependencies
+        run: npm ci --engine-strict=false
+      - name: Resolve and validate the version
+        id: resolve
+        # The requested value reaches the shell through the environment rather
+        # than through an expression the runner expands before it executes.
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          ./scripts/release-preflight.sh
+
+  version:
+    name: Version
+    needs: preflight
+    runs-on: ubuntu-latest
+    environment:
+      name: npm-release
+      url: https://www.npmjs.com/org/speclynx
+    permissions:
+      contents: write
+
+    steps:
+      # main by name rather than by SHA: lerna.json restricts versioning to that
+      # branch and the version commit has to be pushed to it, neither of which
+      # works from a detached HEAD. The re-check below is what ties this back to
+      # the commit the preflight approved.
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: main
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 26.3.1
-          registry-url: https://registry.npmjs.org
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
       - name: Install monorepo dependencies
         run: npm ci --engine-strict=false
       - name: Build monorepo
@@ -37,12 +94,65 @@ jobs:
         run: npm run typescript:check-types
       - name: Execute tests in monorepo
         run: npm run test
-      - name: Version bump & GitHub release
+      - name: Re-check the approved state
+        env:
+          APPROVED_VERSION: ${{ needs.preflight.outputs.version }}
+          APPROVED_SOURCE_VERSION: ${{ needs.preflight.outputs.source-version }}
+          APPROVED_SHA: ${{ needs.preflight.outputs.sha }}
+          APPROVED_LATEST_api_languageservice: ${{ needs.preflight.outputs.latest-api-languageservice }}
+          APPROVED_LATEST_apidom_ls: ${{ needs.preflight.outputs.latest-apidom-ls }}
+        run: ./scripts/release-recheck.sh
+      - name: Version bump, tag and GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
         run: |
           git config user.email "vladimir.gorej@gmail.com"
           git config user.name "Vladimir Gorej"
-          npx lerna version --conventional-commits --no-private --yes --force-publish
+          npx lerna version "$RELEASE_VERSION" --no-private --yes --force-publish
+
+  publish:
+    name: Publish
+    needs: [preflight, version]
+    runs-on: ubuntu-latest
+    environment:
+      name: npm-release
+      url: https://www.npmjs.com/org/speclynx
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      # The immutable tag the version job produced, by name. Re-running this job
+      # therefore builds the same commit rather than the pre-versioning one a
+      # re-run of a combined job would check out.
+      - name: Checkout the release tag
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: v${{ needs.preflight.outputs.version }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26.3.1
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+          registry-url: https://registry.npmjs.org
+      - name: Install monorepo dependencies
+        run: npm ci --engine-strict=false
+      - name: Build monorepo
+        run: npm run build
+      - name: Check the manifests moved only as approved
         env:
-          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          SOURCE_VERSION: ${{ needs.preflight.outputs.source-version }}
+          TARGET_VERSION: ${{ needs.preflight.outputs.version }}
+          BASE_REF: v${{ needs.preflight.outputs.version }}~1
+          HEAD_REF: v${{ needs.preflight.outputs.version }}
+        run: ./scripts/check-release-transformation.sh
+      # Packs both packages, resolves every advertised export against those exact
+      # archives, asserts the compliance files are inside them, and records their
+      # checksums as the publication candidates.
+      - name: Check the package contract against the release tarballs
+        run: ./scripts/check-package-contract.sh
       - name: Publish monorepo npm packages
         run: npx lerna publish from-package --no-private --yes

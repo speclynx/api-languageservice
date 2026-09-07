@@ -135,4 +135,4 @@ Key libraries:
 
 ## CI/CD
 
-Five GitHub Actions workflows: `build.yml` (lint, types, test, build on PRs), `release.yml` (manual publish to npm via lerna), `nightly-build.yml` (daily at 04:30 UTC), `codeql.yml` (weekly security scan), and `dependabot-merge.yml` (auto-merge dependency updates).
+Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search and package-contract check on PRs), `release.yml` (manual publish to npm via lerna, split into an unprivileged preflight that resolves and validates the version, a version job and an independently re-runnable publish job), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.

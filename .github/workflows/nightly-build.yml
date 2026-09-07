@@ -1,9 +1,12 @@
-name: ApiDOM Internal Monorepo full nightly build
+name: Full nightly build
 
 on:
   workflow_dispatch:
   schedule:
     - cron:  '30 4 * * *'
+
+permissions:
+  contents: read
 
 env:
   CPU_CORES: 2
@@ -13,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:

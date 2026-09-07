@@ -3,12 +3,12 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
       time: "23:00"
     commit-message:
       prefix: "chore"
       include: "scope"
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 3
     groups:
       deps-dev:
         dependency-type: "development"
@@ -19,11 +19,9 @@ updates:
     target-branch: "main"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
       time: "23:00"
     commit-message:
       prefix: "chore"
       include: "scope"
-    open-pull-requests-limit: 0
-
-
+    open-pull-requests-limit: 3
