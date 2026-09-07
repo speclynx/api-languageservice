@@ -1,7 +1,7 @@
 /src/**/*.mjs
 /src/**/*.cjs
-/test/**/*.mjs
 /dist
 /types
 /NOTICE
 /speclynx-apidom-ls-*.tgz
+/THIRD-PARTY-INVENTORY.tsv

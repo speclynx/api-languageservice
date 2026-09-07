@@ -1,10 +1,11 @@
 {
-  "name": "apidom-internal-monorepo",
+  "name": "speclynx-api-languageservice",
   "version": "0.0.0-ignore",
-  "description": "ApiDOM Internal Monorepo",
+  "description": "Speclynx API Language Service (OpenAPI, AsyncAPI, JSON Schema, Arazzo)",
   "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org",
+    "provenance": true
   },
   "private": true,
   "type": "module",
@@ -25,18 +26,18 @@
     "test:quick": "lerna run test:quick",
     "test:only": "lerna run test:only",
     "link": "npm link --workspaces",
-    "unlink": "npm unlink --global @speclynx/apidom-ls"
+    "unlink": "npm unlink --global @speclynx/api-languageservice @speclynx/apidom-ls"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/speclynx/apidom-internal.git"
+    "url": "git+https://github.com/speclynx/api-languageservice.git"
   },
   "author": "Vladimir Gorej",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/speclynx/apidom-internal/issues"
+    "url": "https://github.com/speclynx/api-languageservice/issues"
   },
-  "homepage": "https://github.com/speclynx-internal/apidom#readme",
+  "homepage": "https://github.com/speclynx/api-languageservice#readme",
   "workspaces": [
     "./packages/*"
   ],
@@ -70,6 +71,7 @@
     "globals": "^16.2.0",
     "husky": "=9.1.7",
     "lerna": "=9.0.7",
+    "license-webpack-plugin": "^4.0.2",
     "lint-staged": "=16.2.7",
     "microtime": "=3.1.1",
     "mocha": "=11.7.5",

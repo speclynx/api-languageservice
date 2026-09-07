@@ -112,9 +112,9 @@ export default tseslint.config(
     },
   },
 
-  // apidom-ls validation providers - allow optionalDependencies imports
+  // api-languageservice validation providers - allow optionalDependencies imports
   {
-    files: ['packages/apidom-ls/src/services/validation/providers/**/*.ts'],
+    files: ['packages/api-languageservice/src/services/validation/providers/**/*.ts'],
     plugins: {
       import: eslintPluginImportX,
     },

@@ -1,15 +1,15 @@
 {
-  "name": "@speclynx/apidom-ls",
-  "description": "SpecLynx ApiDOM Language Service.",
+  "name": "@speclynx/api-languageservice",
+  "description": "SpecLynx API Language Service (OpenAPI, AsyncAPI, JSON Schema, Arazzo).",
   "version": "2.12.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org",
-    "provenance": false
+    "provenance": true
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/speclynx/apidom-internal.git"
+    "url": "git+https://github.com/speclynx/api-languageservice.git"
   },
   "author": "Francesco Tumanischvili",
   "license": "Apache-2.0",
@@ -32,20 +32,20 @@
     "json"
   ],
   "bugs": {
-    "url": "https://github.com/orgs/speclynx/discussions"
+    "url": "https://github.com/speclynx/api-languageservice/issues"
   },
   "homepage": "https://speclynx.com",
   "type": "module",
-  "unpkg": "./dist/apidom-ls.browser.min.js",
+  "unpkg": "./dist/api-languageservice.browser.min.js",
   "main": "./src/index.cjs",
   "exports": {
     ".": {
-      "types": "./types/apidom-ls.d.ts",
+      "types": "./types/api-languageservice.d.ts",
       "import": "./src/index.mjs",
       "require": "./src/index.cjs"
     },
     "./services/validation/providers/json-schema": {
-      "import": "./srcservices/validation/providers/json-schema-validation-provider.mjs",
+      "import": "./src/services/validation/providers/json-schema-validation-provider.mjs",
       "require": "./src/services/validation/providers/json-schema-validation-provider.cjs",
       "types": "./types/services/validation/providers/json-schema-validation-provider.d.ts"
     },
@@ -57,7 +57,7 @@
     "./services/validation/providers/asyncapi-21-json-schema": {
       "import": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.mjs",
       "require": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-22-json-schema-validation-provider.d.ts"
+      "types": "./types/services/validation/providers/asyncapi-21-json-schema-validation-provider.d.ts"
     },
     "./services/validation/providers/asyncapi-22-json-schema": {
       "import": "./src/services/validation/providers/asyncapi-22-json-schema-validation-provider.mjs",
@@ -114,7 +114,7 @@
     "build:umd:browser": "cross-env BABEL_ENV=browser webpack --config config/webpack/browser.config.js",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
-    "clean": "rimraf --glob 'src/**/*.mjs' 'src/**/*.cjs' 'test/**/*.mjs' ./dist ./types",
+    "clean": "rimraf --glob 'src/**/*.mjs' 'src/**/*.cjs' 'test/**/*.mjs' ./dist ./types ./THIRD-PARTY-INVENTORY.tsv",
     "test": "npm run build:es && cross-env BABEL_ENV=es babel test --out-dir test --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward' && cross-env NODE_ENV=test mocha",
     "test:quick": "npm run build:es:quick && cross-env BABEL_ENV=es babel test --out-dir test --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward' && cross-env NODE_ENV=test mocha",
     "test:only": "cross-env NODE_ENV=test mocha",
@@ -179,7 +179,7 @@
     "src/**/*.mjs",
     "src/**/*.cjs",
     "dist/",
-    "types/apidom-ls.d.ts",
+    "types/",
     "LICENSES",
     "NOTICE",
     "README.md",

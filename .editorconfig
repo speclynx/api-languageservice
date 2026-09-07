@@ -29,8 +29,8 @@ trim_trailing_whitespace = true
 # Possible values - true, false
 insert_final_newline = true
 
-[packages/apidom-ls/test/fixtures/**/*.json]
+[packages/api-languageservice/test/fixtures/**/*.json]
 trim_trailing_whitespace = false
 
-[packages/apidom-ls/test/fixtures/**/*.yaml]
+[packages/api-languageservice/test/fixtures/**/*.yaml]
 trim_trailing_whitespace = false
