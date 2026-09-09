@@ -22,9 +22,9 @@
 > **Note:** This is a *language service*, not a language server. A language service is a library that implements language features, while a language server is a separate process that communicates via LSP. This library can be wrapped by an LSP server to expose its features to editors.
 
 > **Renamed:** this package was published as `@speclynx/apidom-ls` up to version 2.12.0. From
-> 2.13.0 it is published under the name above. `@speclynx/apidom-ls@2.13.0` is a compatibility
-> release that forwards to it, receives security fixes and nothing else until **2027-03-21**, and
-> receives nothing at all after that date.
+> 2.13.0 it is published under the name above. `@speclynx/apidom-ls@2.13.0` is a final
+> compatibility release that forwards to it and is deprecated; there will be no further releases
+> under the old name.
 
 ## Supported Languages
 

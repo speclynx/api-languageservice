@@ -84,4 +84,18 @@ if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
   sha256sum "${archives[@]}" | sed "s|$work/||" >> "$GITHUB_STEP_SUMMARY"
 fi
 
+# The archives are packed into a temporary directory that goes away with this
+# script, which is fine when the release publishes them itself. It is not fine
+# when a human has to: @speclynx/apidom-ls disallows bypass-2FA tokens, so the
+# first publish of a name that does not exist yet cannot run on a credential at
+# all, and the operator must publish the exact bytes CI built and these checks
+# approved rather than rebuild anything locally. Set KEEP_ARCHIVES_IN and they
+# survive the run.
+if [ -n "${KEEP_ARCHIVES_IN:-}" ]; then
+  mkdir -p "$KEEP_ARCHIVES_IN"
+  cp "${archives[@]}" "$KEEP_ARCHIVES_IN/"
+  sha256sum "${archives[@]}" | sed "s|$work/||" > "$KEEP_ARCHIVES_IN/SHA256SUMS"
+  echo "check-package-contract: archives kept in $KEEP_ARCHIVES_IN"
+fi
+
 echo "check-package-contract: passed"

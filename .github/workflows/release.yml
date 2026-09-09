@@ -153,6 +153,20 @@ jobs:
       # archives, asserts the compliance files are inside them, and records their
       # checksums as the publication candidates.
       - name: Check the package contract against the release tarballs
+        env:
+          KEEP_ARCHIVES_IN: ${{ runner.temp }}/release-archives
         run: ./scripts/check-package-contract.sh
+      # The exact archives these checks approved, kept so that a publish which
+      # cannot run on a credential can still publish the bytes CI built. The
+      # first publish of @speclynx/api-languageservice is such a publish: the
+      # scope disallows bypass-2FA tokens, and a package that does not exist yet
+      # cannot have a trusted publisher.
+      - name: Upload the verified archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-archives-${{ needs.preflight.outputs.version }}
+          path: ${{ runner.temp }}/release-archives/
+          retention-days: 30
+          if-no-files-found: error
       - name: Publish monorepo npm packages
         run: npx lerna publish from-package --no-private --yes

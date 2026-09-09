@@ -14,7 +14,9 @@ We'll acknowledge receipt of your report ASAP, and set expectations on how we pl
 
 Security fixes are made to the latest release of `@speclynx/api-languageservice`.
 
-`@speclynx/apidom-ls`, the name this package was published under up to 2.12.0, receives
-security fixes and nothing else until 2027-03-21. It is a compatibility release depending
-on `@speclynx/api-languageservice@^2.13.0`, so a fix published there reaches it through
-that range without a release of its own.
+`@speclynx/apidom-ls`, the name this package was published under up to 2.12.0, is deprecated.
+Its last release, 2.13.0, contains no code of its own: it depends on
+`@speclynx/api-languageservice@^2.13.0` and forwards to it, so whatever is published there
+continues to reach an existing install. That is how npm resolves ranges, not a support
+commitment — there will be no further releases under the old name. Migrate to
+`@speclynx/api-languageservice` to stay supported.
