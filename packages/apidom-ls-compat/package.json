@@ -1,7 +1,7 @@
 {
   "name": "@speclynx/apidom-ls",
   "description": "Compatibility release of @speclynx/apidom-ls: forwards to @speclynx/api-languageservice, which supersedes it.",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org",
@@ -110,7 +110,7 @@
     "postpack": "rimraf NOTICE LICENSES"
   },
   "dependencies": {
-    "@speclynx/api-languageservice": "^2.12.0"
+    "@speclynx/api-languageservice": "^2.13.0"
   },
   "files": [
     "src/**/*.mjs",
