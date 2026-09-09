@@ -3,10 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.13.0](https://github.com/speclynx/api-languageservice/compare/v2.12.0...v2.13.0) (2026-09-09)
-
-**Note:** Version bump only for package @speclynx/api-languageservice
-
 Entries up to and including 2.12.0 were made while this project was developed privately as
 `speclynx/apidom-internal` under the package name `@speclynx/apidom-ls`. The `#NNN` issue and
 pull request numbers and the commit SHAs they cite refer to that repository, which is not
