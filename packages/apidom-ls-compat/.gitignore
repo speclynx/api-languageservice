@@ -1,7 +1,0 @@
-/src/**/*.mjs
-/src/**/*.cjs
-/dist
-/types
-/NOTICE
-/speclynx-apidom-ls-*.tgz
-/THIRD-PARTY-INVENTORY.tsv

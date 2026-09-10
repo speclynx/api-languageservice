@@ -33,7 +33,6 @@ jobs:
       version: ${{ steps.resolve.outputs.version }}
       source-version: ${{ steps.resolve.outputs.source-version }}
       latest-api-languageservice: ${{ steps.resolve.outputs.latest-api-languageservice }}
-      latest-apidom-ls: ${{ steps.resolve.outputs.latest-apidom-ls }}
       sha: ${{ steps.resolve.outputs.sha }}
 
     steps:
@@ -100,7 +99,6 @@ jobs:
           APPROVED_SOURCE_VERSION: ${{ needs.preflight.outputs.source-version }}
           APPROVED_SHA: ${{ needs.preflight.outputs.sha }}
           APPROVED_LATEST_api_languageservice: ${{ needs.preflight.outputs.latest-api-languageservice }}
-          APPROVED_LATEST_apidom_ls: ${{ needs.preflight.outputs.latest-apidom-ls }}
         run: ./scripts/release-recheck.sh
       - name: Version bump, tag and GitHub release
         env:
@@ -149,9 +147,9 @@ jobs:
           BASE_REF: v${{ needs.preflight.outputs.version }}~1
           HEAD_REF: v${{ needs.preflight.outputs.version }}
         run: ./scripts/check-release-transformation.sh
-      # Packs both packages, resolves every advertised export against those exact
-      # archives, asserts the compliance files are inside them, and records their
-      # checksums as the publication candidates.
+      # Packs the package, resolves every advertised export against that exact
+      # archive, asserts the compliance files are inside it, and records its
+      # checksum as the publication candidate.
       - name: Check the package contract against the release tarballs
         env:
           KEEP_ARCHIVES_IN: ${{ runner.temp }}/release-archives

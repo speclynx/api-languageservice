@@ -74,7 +74,7 @@ export CPU_CORES=8      # Parallelization for builds (defaults to 2)
 
 ### Packages
 
-The monorepo contains 2 packages: `@speclynx/api-languageservice`, the language service, and `@speclynx/apidom-ls` in `packages/apidom-ls-compat`, a compatibility release that forwards to it under the name the service was published under before it was renamed.
+The monorepo contains 1 package: `@speclynx/api-languageservice`. It was published as `@speclynx/apidom-ls` up to 2.12.0; that name received one final forwarding release, 2.13.0, and is deprecated.
 
 The API Language Service provides LSP-compliant APIs for API description language editing. It's usable via an LSP Server wrapper in any editor or IDE.
 

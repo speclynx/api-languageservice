@@ -3,13 +3,16 @@
 # Asserts that versioning changed the published manifests in exactly the way the
 # copyright review was told it would, and in no other way.
 #
-# The approval taken at the end of Phase 1 covers one named transformation: both
-# manifests and lerna.json move from the source version to the target version,
-# and the compatibility package's dependency on the renamed package moves from
-# ^source to ^target. Calling that "version-only" would be wrong — lerna rewrites
-# the dependency range too — and calling any dependency change an invalidation
-# would invalidate the approval it had just granted. Naming the expected
-# transformation is what resolves it.
+# The approval covers one named transformation: the manifest and lerna.json move
+# from the source version to the target version, and nothing else.
+#
+# While the compatibility wrapper was in the workspace this also had to allow
+# lerna rewriting its dependency range on the renamed package. That allowance is
+# gone with the wrapper. It was tempting to keep it against a future second
+# package, but it is not free: the rule is line-oriented, so it would accept an
+# added or removed dependency line as readily as a rewritten one, in a gate whose
+# entire promise is that only approved version movement passes. Design it again
+# when a second package actually exists.
 #
 # Anything else — code, bundled dependencies, recovered licence text, package
 # contents — invalidates the approval, which means regenerating and re-approving
@@ -36,16 +39,15 @@ if [ -z "$changed" ]; then
 fi
 
 allowed='^[-+][[:space:]]*"version": "('"$SOURCE_VERSION"'|'"$TARGET_VERSION"')",?$'
-allowed_dependency='^[-+][[:space:]]*"@speclynx/api-languageservice": "\^('"$SOURCE_VERSION"'|'"$TARGET_VERSION"')"$'
 
-unexpected="$(printf '%s\n' "$changed" | grep -vE "$allowed" | grep -vE "$allowed_dependency" || true)"
+unexpected="$(printf '%s\n' "$changed" | grep -vE "$allowed" || true)"
 
 if [ -n "$unexpected" ]; then
   echo "Versioning changed the published manifests beyond the approved transformation:" >&2
   printf '%s\n' "$unexpected" >&2
   echo >&2
   echo "The Phase 1 copyright approval covers $SOURCE_VERSION -> $TARGET_VERSION in the" >&2
-  echo "manifests and in the compatibility package's dependency range, and nothing else." >&2
+  echo "manifest, and nothing else." >&2
   exit 1
 fi
 

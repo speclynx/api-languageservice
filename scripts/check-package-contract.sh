@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Packs both published packages and proves that what comes out of npm pack
+# Packs the published package and proves that what comes out of npm pack
 # actually delivers what its manifest advertises.
 #
 # Comparing a file list against a previous release cannot be the gate here,
@@ -13,9 +13,8 @@
 # tree through the workspace symlink and quietly passes on files the tarball
 # never contained.
 #
-# Both tarballs are installed together because the compatibility package depends
-# on a version of the renamed package that the registry will not have until the
-# release publishes it.
+# The archive is installed rather than inspected, because the point is what a
+# consumer receives.
 
 set -euo pipefail
 
@@ -25,10 +24,9 @@ cd "$root"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
-echo "check-package-contract: packing both packages"
+echo "check-package-contract: packing the package"
 npm pack --json --pack-destination "$work" \
   --workspace @speclynx/api-languageservice \
-  --workspace @speclynx/apidom-ls \
   > "$work/pack.json"
 
 consumer="$work/consumer"
@@ -49,7 +47,7 @@ done < <(node -e '
   for (const entry of report) console.log(entry.filename);
 ' "$work/pack.json")
 
-echo "check-package-contract: installing ${#archives[@]} archives into a scratch consumer"
+echo "check-package-contract: installing ${#archives[@]} archive(s) into a scratch consumer"
 npm install --prefix "$consumer" --engine-strict=false --no-audit --no-fund "${archives[@]}"
 
 cp scripts/package-contract-probe.mjs "$consumer/probe.mjs"
@@ -86,9 +84,9 @@ fi
 
 # The archives are packed into a temporary directory that goes away with this
 # script, which is fine when the release publishes them itself. It is not fine
-# when a human has to: @speclynx/apidom-ls disallows bypass-2FA tokens, so the
-# first publish of a name that does not exist yet cannot run on a credential at
-# all, and the operator must publish the exact bytes CI built and these checks
+# when a human has to. The scope disallows bypass-2FA tokens, so the first
+# publish of a name that does not exist yet cannot run on a credential at all,
+# and the operator must publish the exact bytes CI built and these checks
 # approved rather than rebuild anything locally. Set KEEP_ARCHIVES_IN and they
 # survive the run.
 if [ -n "${KEEP_ARCHIVES_IN:-}" ]; then

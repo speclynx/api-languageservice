@@ -5,10 +5,10 @@ import TerserPlugin from 'terser-webpack-plugin';
 import { thirdPartyNotices } from './third-party-notices.js';
 
 /**
- * The UMD browser bundle both published packages ship. They differ only in what
- * they bundle and in the filename and global they expose: the compatibility
- * wrapper keeps the names the old package advertised, because a CDN consumer
- * following `unpkg.com/@speclynx/apidom-ls` has never heard of the new ones.
+ * The UMD browser bundle this package ships. It is a factory because the
+ * compatibility wrapper published as @speclynx/apidom-ls@2.13.0 used the same
+ * build with a different filename and global, keeping the names a CDN consumer
+ * already followed; that package has since left the workspace.
  *
  * The bundle declares no `externals`, so it embeds every production dependency
  * and carries their licences with it; see `third-party-notices.js`.

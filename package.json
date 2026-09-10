@@ -28,7 +28,7 @@
     "check:contract": "./scripts/check-package-contract.sh",
     "check:identifiers": "./scripts/check-retired-identifiers.sh",
     "link": "npm link --workspaces",
-    "unlink": "npm unlink --global @speclynx/api-languageservice @speclynx/apidom-ls"
+    "unlink": "npm unlink --global @speclynx/api-languageservice"
   },
   "repository": {
     "type": "git",

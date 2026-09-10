@@ -1,8 +1,0 @@
-{
-  "short-unique-id": {
-    "version": "5.3.2",
-    "license": "Apache-2.0",
-    "file": "short-unique-id.txt",
-    "source": "This version publishes no licence file, and neither does the project's repository at https://github.com/jeanlescure/short-unique-id. The copyright lines below are the header carried in the project's own source and the statement in README.md in the tarball bundled here; the Apache 2.0 text follows because Apache-2.0 section 4(a) requires a copy of the License to travel with the distribution."
-  }
-}

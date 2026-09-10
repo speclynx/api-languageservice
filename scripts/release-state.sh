@@ -5,7 +5,7 @@
 # immediately before it mutates anything. Sourced, not run.
 
 # The published packages, in the order the release publishes them.
-RELEASE_PACKAGES=('@speclynx/api-languageservice' '@speclynx/apidom-ls')
+RELEASE_PACKAGES=('@speclynx/api-languageservice')
 
 # The version the workspace sits at, asserted to be one value rather than three.
 # lerna computes its conventional-commits bump from lerna.json, so a manifest

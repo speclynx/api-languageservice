@@ -111,10 +111,9 @@ To make the review process as efficient as possible, please try to keep your pul
 
 ## Development
 
-The repository is a small [Lerna](https://lerna.js.org/) monorepo holding two packages:
-`@speclynx/api-languageservice`, which is the language service itself, and
-`@speclynx/apidom-ls`, a compatibility release that forwards to it under the name the
-service was published under before it was renamed. All the code is written in
+The repository is a small [Lerna](https://lerna.js.org/) monorepo holding one package,
+`@speclynx/api-languageservice`. It was published as `@speclynx/apidom-ls` up to 2.12.0; that
+name received one final forwarding release and is deprecated. All the code is written in
 [TypeScript](https://www.typescriptlang.org/).
 
 [Node.js](https://nodejs.org/) `26.3.1` exactly — the version in `.nvmrc` — and `npm >=11.16.0`
@@ -142,7 +141,7 @@ On a machine with more cores, set `CPU_CORES` to speed the build up:
 
 | Script | What it does |
 | --- | --- |
-| `npm run build` | Builds every artifact of both packages |
+| `npm run build` | Builds every artifact of the package |
 | `npm run build:es` | ES modules only; the fastest useful build |
 | `npm test` | Builds, then runs the test suite |
 | `npm run test:only` | Re-runs the tests against an existing build |
@@ -150,15 +149,15 @@ On a machine with more cores, set `CPU_CORES` to speed the build up:
 | `npm run typescript:check-types` | Type-checks without emitting |
 | `npm run typescript:declaration` | Generates the declaration files and rollups |
 | `npm run clean` | Removes every build artifact |
-| `npm run check:contract` | Packs both packages and resolves every advertised export |
+| `npm run check:contract` | Packs the package and resolves every advertised export |
 | `npm run check:identifiers` | Searches the tree for the repository's retired names |
 
 The tests need the artifacts, so `npm run build` comes before `npm test` on a clean checkout.
 
 ### Build artifacts
 
-Both packages build the same four artifacts, alongside the sources rather than into a separate
-output directory.
+The package builds four artifacts, alongside the sources rather than into a separate output
+directory.
 
 `src/**/*.mjs` are ES modules, ideal for modern Node.js and for bundling.
 `src/**/*.cjs` are the CommonJS equivalents, for Node.js and similar environments that need them.
@@ -183,12 +182,8 @@ Then, from inside the dependent project, link the packages you need — all of t
  $ npm link @speclynx/api-languageservice
 ```
 
-**Don't ever do this!** Linking one package at a time leaves the earlier links broken:
-
-```sh
- $ npm link @speclynx/api-languageservice
- $ npm link @speclynx/apidom-ls
-```
+With one package that is a single name, but the rule matters as soon as there are two: link
+them in one invocation rather than one at a time, or the earlier links are left broken.
 
 To undo it, run `npm i` in the dependent project; that removes the links and reinstalls the
 packages from the registry. Running `npm unlink <package-name>` there instead leaves
