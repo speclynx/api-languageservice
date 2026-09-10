@@ -19,9 +19,9 @@ const { LicenseWebpackPlugin } = licenseWebpackPlugin;
  * its own needs a reviewed copy held beside the build and recorded with where it
  * came from.
  *
- * Both published packages need this treatment: the compatibility wrapper
- * re-exports the language service and therefore embeds it, and everything it
- * embeds, a second time.
+ * The compatibility wrapper published as @speclynx/apidom-ls@2.13.0 needed the
+ * same treatment, since it embedded this package and everything this package
+ * embeds; it has since left the workspace.
  */
 
 /**

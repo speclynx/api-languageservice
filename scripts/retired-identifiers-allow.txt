@@ -14,10 +14,8 @@
 # excuse the retired package name wherever it appeared.
 
 ^scripts/(check-retired-identifiers\.sh|retired-identifiers-allow\.txt):	The search itself and this table. Both have to name the retired identifiers to look for them.
-^packages/apidom-ls-compat/	The compatibility package, which exists to carry the retired package name and reproduce what it advertised.
 ^(CHANGELOG|packages/api-languageservice/CHANGELOG)\.md:	Released history. The entries say what the commits said, and the note at the top of each file records that the identifiers in them refer to the predecessor private repository.
 @speclynx/apidom-ls	The retired package name, named as retired in the rename notices, the end-of-life policy, the unlink script and the wrapper's build.
-packages/apidom-ls-compat	The directory of the compatibility package, referenced from the documentation.
 speclynx/apidom-internal	The predecessor private repository, named as the predecessor.
 apidom-ls package of the ApiDOM project	NOTICE recording which upstream package this distribution was seeded from.
 @speclynx/apidom-(core|datamodel|error|json-path|json-pointer|ns-|parser|reference|traverse)	The published names of the upstream ApiDOM packages this project depends on.
@@ -28,4 +26,3 @@ SpecLynx ApiDOM	The upstream project, named in full.
 ApiDOM (tree|ecosystem|element|elem)	The upstream document model, as a domain term.
 apidom only	A parenthetical about upstream ApiDOM behaviour in the rules documentation.
 ^NOTICE:(55|57):	The NOTICE attribution for the upstream ApiDOM project.
-latest-apidom-ls|APPROVED_LATEST_apidom_ls	The release workflow carries the compatibility package's registry state under a name derived from its own, which is the retired one.

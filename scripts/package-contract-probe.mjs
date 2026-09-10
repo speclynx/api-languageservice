@@ -176,7 +176,7 @@ const writeTypeProbe = (names) => {
   fs.writeFileSync('types-probe.ts', `${lines.join('\n')}\n`);
 };
 
-const packages = ['@speclynx/api-languageservice', '@speclynx/apidom-ls'];
+const packages = ['@speclynx/api-languageservice'];
 
 for (const entry of packReport) {
   checkTarball(entry);
@@ -187,7 +187,6 @@ for (const name of packages) {
 }
 
 checkBrowserGlobal('@speclynx/api-languageservice', 'apiLanguageService');
-checkBrowserGlobal('@speclynx/apidom-ls', 'apidomLs');
 
 writeTypeProbe(packages);
 
@@ -198,6 +197,6 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `check-package-contract: ${packages.length} packages, every advertised export resolves ` +
-    'through import, require and tsc, and both browser bundles define their global.',
+  `check-package-contract: ${packages.length} package(s), every advertised export resolves ` +
+    'through import, require and tsc, and every browser bundle defines its global.',
 );

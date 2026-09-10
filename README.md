@@ -46,10 +46,15 @@ The full feature list, the API reference and worked examples are in the package'
 This project was published as `@speclynx/apidom-ls` up to version 2.12.0, from a private
 repository. From 2.13.0 it is published as `@speclynx/api-languageservice` from this one.
 
-`@speclynx/apidom-ls@2.13.0` is a final compatibility release that forwards every entry point to
-the renamed package, so upgrading to it changes nothing. It is the last release under the old
-name and is deprecated on publication. The migration is a change of name and no more; see
-[`packages/apidom-ls-compat/README.md`](packages/apidom-ls-compat/README.md).
+[`@speclynx/apidom-ls@2.13.0`](https://www.npmjs.com/package/@speclynx/apidom-ls) is a final
+compatibility release that forwards every entry point to the renamed package, so upgrading to it
+changes nothing. It is the last release under the old name and every version of it is deprecated.
+The migration is a change of dependency and import specifier and no more:
+
+```diff
+-import { getLanguageService } from '@speclynx/apidom-ls';
++import { getLanguageService } from '@speclynx/api-languageservice';
+```
 
 ## Contributing
 
