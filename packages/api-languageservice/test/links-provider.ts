@@ -28,6 +28,19 @@ const specOpenapi = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'oas31-petstore.yaml'))
   .toString();
 
+const GITHUB_LINK_PREFIX = 'https://github.com/';
+const ONPREM_LINK_PREFIX = 'https://onprem.com/';
+
+/*
+The trailing slash terminates the host: without it `https://github.com.example.org/x` would
+match too, and an unanchored `replace('github.com', ...)` would rewrite the substring wherever
+it first occurs rather than the origin.
+ */
+const rewriteGithubLinkTarget: NonNullable<LinksModifierFunction> = (target) =>
+  target.startsWith(GITHUB_LINK_PREFIX)
+    ? ONPREM_LINK_PREFIX + target.slice(GITHUB_LINK_PREFIX.length)
+    : target;
+
 class RefLinksProvider implements LinksProvider {
   /*
   returning `true` skips execution of any subsequent defined providers
@@ -83,8 +96,8 @@ class RefLinksProvider implements LinksProvider {
     linksContext?: LinksContext,
   ): Promise<LinksProviderResult> {
     for (const link of currentRefLinks) {
-      if (link.target && link.target.startsWith('https://github.com')) {
-        link.target = link.target.replace('github.com', 'onprem.com');
+      if (link.target) {
+        link.target = rewriteGithubLinkTarget(link.target);
       }
     }
     return {
@@ -115,18 +128,38 @@ class RefLinksProvider implements LinksProvider {
   }
 }
 
-describe('api-languageservice-links', function () {
-  const func: LinksModifierFunction = (value) => {
-    if (value.startsWith('https://github.com')) {
-      return value.replace('github.com', 'onprem.com');
-    }
-    return value;
-  };
+describe('links host rewrite', function () {
+  /*
+  The fixture below is the only URL the surrounding suites exercise, and it rewrote correctly
+  under the previous substring check too. These rows are what separate the two: an unterminated
+  prefix matches the spoofed host, and an unanchored replace rewrites `github.com` wherever it
+  first occurs.
+   */
+  const cases: [string, string][] = [
+    [
+      'https://github.com/foo.json#/components/schemas/Pet',
+      'https://onprem.com/foo.json#/components/schemas/Pet',
+    ],
+    ['https://github.com.example.org/evil.json', 'https://github.com.example.org/evil.json'],
+    ['https://gist.github.com/x.json', 'https://gist.github.com/x.json'],
+    ['https://example.org/github.com/x.json', 'https://example.org/github.com/x.json'],
+    ['#/components/schemas/Pet', '#/components/schemas/Pet'],
+  ];
 
+  for (const [target, expected] of cases) {
+    const title = target === expected ? `should leave ${target} alone` : `should rewrite ${target}`;
+
+    specify(title, function () {
+      assert.strictEqual(rewriteGithubLinkTarget(target), expected);
+    });
+  }
+});
+
+describe('api-languageservice-links', function () {
   const linksContext: LinksContext = {
     maxNumberOfLinks: 100,
     // enableTrivialLinkDiscovery: true,
-    modifierFunction: func,
+    modifierFunction: rewriteGithubLinkTarget,
   };
 
   const context: LanguageServiceContext = {
