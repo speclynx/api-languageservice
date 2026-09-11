@@ -3,8 +3,6 @@ import tseslint from 'typescript-eslint';
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginMocha from 'eslint-plugin-mocha';
-import eslintPluginReact from 'eslint-plugin-react';
-import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
 
 export default tseslint.config(
