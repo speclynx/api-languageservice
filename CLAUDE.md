@@ -123,8 +123,9 @@ For detailed documentation including the full `LinterMeta` field reference, all 
 
 - TypeScript with strict mode
 - ESLint (flat config) + Prettier: single quotes, trailing commas, 100 char print width, 2-space indent
-- Conventional Commits enforced by commitlint (max header: 69 chars) with husky hooks
-- Pre-commit hook runs lint-staged (ESLint on staged `.ts` files)
+- Conventional Commits enforced by commitlint (`commitlint.config.mjs`; max header: 69 chars)
+- Git hooks are active: the root `prepare` script installs husky on `npm i`, so `commit-msg` runs commitlint and `pre-commit` runs lint-staged (ESLint on staged `.ts` files)
+- The custom `no-assistant-session-metadata` commitlint rule rejects commit messages that name an assistant session (`Claude-Session:` trailers, `claude.ai` session URLs, `Co-Authored-By: Claude`, "Generated with Claude"). It matches the message text, so these strings cannot appear in a commit message even to describe the rule — put that explanation in the pull request description instead
 - Branch naming: `username/description` (e.g. `frantuma/functions-contextual-return`)
 
 ## Dependencies
