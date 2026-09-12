@@ -473,7 +473,7 @@ describe('api-languageservice', function () {
     // valid spec
     let doc: TextDocument = TextDocument.create('foo://bar/spec.json', 'json', 0, spec);
 
-    let result = await languageService.doValidation(doc, validationContext);
+    await languageService.doValidation(doc, validationContext);
 
     const expected = [
       {
@@ -563,7 +563,7 @@ describe('api-languageservice', function () {
       },
     ];
     doc = TextDocument.create('foo://bar/specError.json', 'json', 0, specError);
-    result = await languageService.doValidation(doc, validationContext);
+    const result = await languageService.doValidation(doc, validationContext);
     assert.deepEqual(result, expected as Diagnostic[]);
   });
 

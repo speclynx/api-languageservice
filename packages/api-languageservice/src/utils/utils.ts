@@ -219,7 +219,6 @@ export function localReferencePointers(
   const pointers: Pointer[] = [];
   // traverse all doc to find nodes of the same type which are not a ref
   const foundNodes: FoundNode[] = [];
-  let nodePath: string[] = [];
 
   // TODO check for reference-element class or type instead
   function findRefNodes(path: Path<Element>): void {
@@ -242,7 +241,7 @@ export function localReferencePointers(
   }
   forEach(doc, findRefNodes);
   for (const foundNode of foundNodes) {
-    nodePath = [];
+    const nodePath: string[] = [];
     buildPointer(foundNode.element, nodePath);
     pointers.push({
       node: foundNode.element,
@@ -258,7 +257,6 @@ export function localReferencePointers(
 export function findLocalReferences(doc: Element, targetJsonPointer: string): Pointer[] {
   const pointers: Pointer[] = [];
   const foundNodes: FoundNode[] = [];
-  let nodePath: string[] = [];
 
   function findRefNodes(path: Path<Element>): void {
     const traversedNode = path.node;
@@ -272,7 +270,7 @@ export function findLocalReferences(doc: Element, targetJsonPointer: string): Po
   }
   forEach(doc, findRefNodes);
   for (const foundNode of foundNodes) {
-    nodePath = [];
+    const nodePath: string[] = [];
     buildPointer(foundNode.element, nodePath);
     pointers.push({
       node: foundNode.element,
@@ -335,7 +333,7 @@ export function checkConditions(
               if (!conditionsSuccess) {
                 break;
               }
-              let conditionRes = true;
+              let conditionRes: boolean;
               if (
                 condition.params &&
                 Array.isArray(condition.params) &&
@@ -354,7 +352,7 @@ export function checkConditions(
             }
           }
         } else {
-          let conditionRes = true;
+          let conditionRes: boolean;
           if (condition.params && Array.isArray(condition.params) && condition.params.length > 0) {
             const params = [conditionTargetEl].concat(condition.params);
             conditionRes = conditionFunc(...params) as boolean;
@@ -825,12 +823,7 @@ export interface RegexMap {
  * @public
  */
 export function getText(document: TextDocument | string, trim = false): string {
-  let text = '';
-  if (typeof document === 'string') {
-    text = document;
-  } else {
-    text = document.getText();
-  }
+  let text = typeof document === 'string' ? document : document.getText();
   if (trim) text = text.trim();
   return text;
 }
