@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Setup Node.js
@@ -74,7 +74,7 @@ jobs:
       # works from a detached HEAD. The re-check below is what ties this back to
       # the commit the preflight approved.
       - name: Checkout main
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: main
@@ -125,7 +125,7 @@ jobs:
       # therefore builds the same commit rather than the pre-versioning one a
       # re-run of a combined job would check out.
       - name: Checkout the release tag
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: v${{ needs.preflight.outputs.version }}
