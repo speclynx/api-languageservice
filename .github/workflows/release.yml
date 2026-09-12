@@ -160,7 +160,7 @@ jobs:
       # scope disallows bypass-2FA tokens, and a package that does not exist yet
       # cannot have a trusted publisher.
       - name: Upload the verified archives
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-archives-${{ needs.preflight.outputs.version }}
           path: ${{ runner.temp }}/release-archives/
