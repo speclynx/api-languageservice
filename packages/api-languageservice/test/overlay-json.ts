@@ -14,7 +14,7 @@ import {
 import { findNamespace } from '../src/utils/utils.ts';
 import { Overlay1JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-1-json-schema-validation-provider.ts';
 import { metadata } from './metadata.ts';
-import { logPerformance, logLevel } from './test-utils.ts';
+import { logPerformance, logLevel, diagnosticText } from './test-utils.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -260,7 +260,7 @@ describe('api-languageservice-overlay-json', function () {
     const result = await languageService.doValidation(docOverlayJson, validationContext);
 
     const patternErrors = result.filter(
-      (d) => d.source === 'Overlay 1 Schema' && d.message.includes('pattern'),
+      (d) => d.source === 'Overlay 1 Schema' && diagnosticText(d.message).includes('pattern'),
     );
     assert.strictEqual(
       patternErrors.length,

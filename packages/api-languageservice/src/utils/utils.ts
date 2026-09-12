@@ -231,13 +231,11 @@ export function localReferencePointers(
         foundNodes.push({ element: traversedNode, isRef });
       }
     } else if (traversedNode.element === nodeElement) {
-      if (
-        !(
-          isObject(traversedNode) &&
-          traversedNode.get('$ref') &&
-          (toValue(traversedNode.get('$ref')) as string).length > 0
-        )
-      ) {
+      if (!(
+        isObject(traversedNode) &&
+        traversedNode.get('$ref') &&
+        (toValue(traversedNode.get('$ref')) as string).length > 0
+      )) {
         foundNodes.push({ element: traversedNode, isRef: false });
       }
     }
