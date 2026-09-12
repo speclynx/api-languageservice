@@ -134,6 +134,21 @@ Key libraries:
 
 * ApiDOM ecosystem (https://github.com/speclynx/apidom) — core, namespaces, parsers, reference, traverse
 
+Two upgrades Dependabot proposes are declined on purpose, so a passing PR title is not
+enough reason to take them:
+
+* `typescript` is held below 7. TypeScript 7.0.x is the current release, but `typescript-eslint`
+  declares a `typescript` peer of `>=4.8.4 <6.1.0` on every published version including its
+  canary, so linting cannot run against it. Take the bump once that peer range moves.
+* `eslint-plugin-mocha` is held on 11. Version 12 removes `no-sibling-hooks` with no successor
+  and renames `no-hooks-for-single-case` and `no-top-level-hooks`, all three configured in
+  `eslint.config.js`. It buys nothing, because the 11 line accepts `eslint >=9` and so works
+  with eslint 10 already.
+
+`overrides` in the root `package.json` pins transitives away from advisories — `smol-toml` is
+there because no released nx carries a patched version. Entries are exact and stay on the major
+the tree expects, so a newer advisory raises a fresh alert rather than being silently absorbed.
+
 ## CI/CD
 
 Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search and package-contract check on PRs), `release.yml` (manual publish to npm via lerna, split into an unprivileged preflight that resolves and validates the version, a version job and an independently re-runnable publish job), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.
