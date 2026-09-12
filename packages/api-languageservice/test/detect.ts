@@ -96,6 +96,7 @@ describe('api-languageservice-detect', function () {
     doc = TextDocument.create('foo://bar/apidomJson.json', 'apidomJson', 0, apidomJson);
 
     result = await parse(doc, undefined);
+    assert.isUndefined(result.api, 'an apidom document needs a content language to resolve');
     result = await parse(doc, undefined, true, true, true, contentLanguage);
     assert.deepEqual(result.api?.element, 'asyncApi2');
 
@@ -109,6 +110,7 @@ describe('api-languageservice-detect', function () {
     doc = TextDocument.create('foo://bar/apidomYaml.yaml', 'apidomYaml', 0, apidomYaml);
 
     result = await parse(doc, undefined);
+    assert.isUndefined(result.api, 'an apidom document needs a content language to resolve');
     result = await parse(doc, undefined, true, true, true, contentLanguage);
     assert.deepEqual(result.api?.element, 'asyncApi2');
 

@@ -31,10 +31,9 @@ export class DefaultFormattingService implements FormattingService {
     const indent = formattingOptions?.tabSize ?? 2;
     const useTabs = formattingOptions?.insertSpaces === false;
 
-    let result: string = textDocument.getText();
     // format
     try {
-      result = await prettier.format(textDocument.getText(), {
+      let result = await prettier.format(textDocument.getText(), {
         parser: textFormat === Format.JSON ? 'json' : 'yaml',
         // @ts-ignore
         plugins:
@@ -76,7 +75,7 @@ export class DefaultFormattingService implements FormattingService {
         e instanceof Error
           ? `Error formatting ${textFormat === Format.YAML ? 'YAML' : 'JSON'}\n Details: ${e.message}`
           : `Error formatting ${textFormat === Format.YAML ? 'YAML' : 'JSON'}.`;
-      throw new Error(error);
+      throw new Error(error, { cause: e });
     }
   }
 }
