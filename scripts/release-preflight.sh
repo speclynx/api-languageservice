@@ -29,20 +29,44 @@ if [ -n "$requested" ]; then
   resolved="$requested"
   echo "Releasing the requested version $resolved."
 else
-  # lerna computes its bump from lerna.json, so the only trustworthy source for
-  # the derived version is lerna itself.
-  echo "No version requested; asking lerna what the conventional commits imply."
-  resolved="$(
-    npx lerna version --conventional-commits --no-private --yes --force-publish --dry-run 2>&1 |
-      sed -n 's/^ - .*: .* => \([0-9][0-9.]*\)$/\1/p' | sort -u
-  )"
+  # lerna 10 dropped --dry-run from `lerna version`, so the bump can no longer be
+  # read back out of lerna. conventional-recommended-bump is the library lerna
+  # drives to compute it, so asking it directly, with the preset lerna.json
+  # names, reaches the answer lerna would have reached. The binary is invoked by
+  # path rather than through npx so that a missing dependency fails here instead
+  # of being fetched from the network in the middle of a release.
+  #
+  # Nothing recomputes this later: the version job is handed the resolved number
+  # and passes it to `lerna version` explicitly, so the two cannot diverge.
+  echo "No version requested; deriving the bump from the conventional commits."
+  preset="$(node -p 'require("./lerna.json").changelogPreset || "angular"')"
+  release_type="$(./node_modules/.bin/conventional-recommended-bump -p "$preset" | tr -d '[:space:]')"
+
+  case "$release_type" in
+    major | minor | patch) ;;
+    *)
+      echo "Could not derive a release type from the commits since the last tag." >&2
+      echo "conventional-recommended-bump produced: '$release_type'" >&2
+      exit 1
+      ;;
+  esac
+
+  resolved="$(node -e '
+    const [major, minor, patch] = process.argv[1].split(".").map(Number);
+    const bumped = {
+      major: [major + 1, 0, 0],
+      minor: [major, minor + 1, 0],
+      patch: [major, minor, patch + 1],
+    }[process.argv[2]];
+    process.stdout.write(bumped.every(Number.isInteger) ? bumped.join(".") : "");
+  ' "$current" "$release_type")"
 
   if ! is_stable_semver "$resolved"; then
-    echo "Could not read a single stable version out of lerna's dry run." >&2
+    echo "Applying a $release_type bump to $current did not produce a release version." >&2
     echo "It produced: '$resolved'" >&2
     exit 1
   fi
-  echo "Conventional commits imply $resolved."
+  echo "Conventional commits imply a $release_type bump: $resolved."
 fi
 
 if ! is_greater_version "$resolved" "$current"; then
