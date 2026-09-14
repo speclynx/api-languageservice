@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/speclynx/api-languageservice/compare/v2.13.0...v2.13.1) (2026-09-14)
+
+### Bug Fixes
+
+- **lint:** clear latent dead stores and a dropped assertion ([#31](https://github.com/speclynx/api-languageservice/issues/31)) ([278104e](https://github.com/speclynx/api-languageservice/commit/278104e9b5fdbc55be80df1331b1d0abd98acfac))
+- **test:** anchor the links fixture host rewrite ([#23](https://github.com/speclynx/api-languageservice/issues/23)) ([9ce6993](https://github.com/speclynx/api-languageservice/commit/9ce6993c253636b012fbc75858ccbca05ceefdd3))
+- **test:** confine the fixture HTTP server to its own cwd ([#22](https://github.com/speclynx/api-languageservice/issues/22)) ([100b6ee](https://github.com/speclynx/api-languageservice/commit/100b6ee715de0b962d4a2c2ac23a0841a08ec992))
+
 # [2.13.0](https://github.com/speclynx/api-languageservice/compare/v2.12.0...v2.13.0) (2026-09-09)
 
 ### Bug Fixes
