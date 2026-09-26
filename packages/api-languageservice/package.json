@@ -1,7 +1,7 @@
 {
   "name": "@speclynx/api-languageservice",
   "description": "SpecLynx API Language Service (OpenAPI, AsyncAPI, JSON Schema, Arazzo).",
-  "version": "2.13.1",
+  "version": "2.13.2",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org",

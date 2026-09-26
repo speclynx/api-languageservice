@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.2](https://github.com/speclynx/api-languageservice/compare/v2.13.1...v2.13.2) (2026-09-26)
+
+### Bug Fixes
+
+- **deps:** bump the dependencies to latest ([#45](https://github.com/speclynx/api-languageservice/issues/45)) ([05710eb](https://github.com/speclynx/api-languageservice/commit/05710eb53a61a42b80dddfab441ee8da6e4df344)), closes [#41](https://github.com/speclynx/api-languageservice/issues/41) [#42](https://github.com/speclynx/api-languageservice/issues/42)
+- **docs:** list Arazzo 1.1.0 among the supported versions ([e5eb0a8](https://github.com/speclynx/api-languageservice/commit/e5eb0a851681852b8cab67041535218d2b3c606c))
+
 ## [2.13.1](https://github.com/speclynx/api-languageservice/compare/v2.13.0...v2.13.1) (2026-09-14)
 
 ### Bug Fixes
