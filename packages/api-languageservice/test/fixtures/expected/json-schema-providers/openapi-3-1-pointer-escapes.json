@@ -14,7 +14,17 @@
     ]
   },
   "yaml": {
-    "default": [],
-    "betterAjvErrors": []
+    "default": [
+      {"range":{"start":{"line":5,"character":2},"end":{"line":5,"character":13}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":6,"character":2},"end":{"line":6,"character":14}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":7,"character":2},"end":{"line":7,"character":16}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":10,"character":6},"end":{"line":10,"character":10}},"message":"must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ],
+    "betterAjvErrors": [
+      {"range":{"start":{"line":5,"character":2},"end":{"line":5,"character":13}},"message":"\"~1home~1~0user\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":6,"character":2},"end":{"line":6,"character":14}},"message":"\"~1files~1~01tmp\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":7,"character":2},"end":{"line":7,"character":16}},"message":"\"~1notes~1~00draft\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":10,"character":6},"end":{"line":10,"character":10}},"message":"\"0\" property type must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ]
   }
 }

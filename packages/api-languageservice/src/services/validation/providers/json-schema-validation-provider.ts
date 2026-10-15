@@ -3,12 +3,11 @@ import type { Ajv } from 'ajv';
 import YAML from 'yaml';
 import betterAjvErrors from '@stoplight/better-ajv-errors';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
-import jsonSourceMap from 'json-source-map';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
 import { toValue } from '@speclynx/apidom-core';
 
-import { positionRangeForPath } from '../utils/ast.ts';
+import { createPathPositionResolver, PathPositionResolver } from '../utils/ast.ts';
 import {
   LanguageSettings,
   MergeStrategy,
@@ -129,7 +128,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     path: string,
     isYaml: boolean,
     diagnostics: Diagnostic[],
-    errorPointer: any,
+    positionForPath: PathPositionResolver,
     keyword?: string,
   ): void {
     let range: Range;
@@ -142,8 +141,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     }
     // TODO fix and solve with consistent YAML / JSON / Adapter
     else if (isYaml) {
-      const position = positionRangeForPath(
-        originalDocument,
+      const position = positionForPath(
         path.replace(/\/$/, '').replace(/^"/, '').replace(/^\//, '').split('/'),
       );
       if (errorOnValue || !position.key_start) {
@@ -158,15 +156,17 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
         );
       }
     } else {
-      if (errorOnValue || !errorPointer.key) {
+      const position = positionForPath(path.split('/').slice(1));
+      // an array item has no key of its own, so its value is marked
+      if (errorOnValue || !position.object_member) {
         range = Range.create(
-          Position.create(errorPointer.value.line, errorPointer.value.column),
-          Position.create(errorPointer.valueEnd.line, errorPointer.valueEnd.column),
+          Position.create(position.start.line, position.start.column),
+          Position.create(position.end.line, position.end.column),
         );
       } else {
         range = Range.create(
-          Position.create(errorPointer.key.line, errorPointer.key.column),
-          Position.create(errorPointer.keyEnd.line, errorPointer.keyEnd.column),
+          Position.create(position.key_start.line, position.key_start.column),
+          Position.create(position.key_end.line, position.key_end.column),
         );
       }
     }
@@ -200,7 +200,9 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     const jsonDoc = JSON.parse(jsonDocument);
     const valid = validateFunction(jsonDoc);
     if (!valid) {
-      const sourceMap = jsonSourceMap.parse(jsonDocument, null, 2);
+      const positionForPath = createPathPositionResolver(originalDocument, {
+        lastDuplicateKey: !isYaml,
+      });
       let betterErrors: betterAjvErrors.IOutputError[];
       if (validateFunction.errors) {
         const validationErrors = validateFunction.errors.filter(
@@ -225,7 +227,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
               error.path,
               isYaml,
               diagnostics,
-              sourceMap.pointers[error.path],
+              positionForPath,
             );
           });
         } else {
@@ -243,7 +245,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
               error.instancePath,
               isYaml,
               diagnostics,
-              sourceMap.pointers[error.instancePath],
+              positionForPath,
               error.keyword,
             );
           });

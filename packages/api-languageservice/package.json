@@ -184,8 +184,7 @@
     "@stoplight/better-ajv-errors": "^1.0.3",
     "ajv": "^8.17.0",
     "ajv-errors": "^3.0.0",
-    "ajv-formats": "^3.0.1",
-    "json-source-map": "^0.6.1"
+    "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
     "@types/emscripten": "^1.41.6"
