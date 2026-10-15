@@ -522,11 +522,11 @@ actions:
       const languageService: LanguageService = getLanguageService(contextWithJsonSchema);
       try {
         const result = await languageService.doValidation(doc, validationContext);
-        const schemaErrors = result.filter((d) => d.source === 'Overlay 1.2 Schema');
-        assert.isAtLeast(
-          schemaErrors.length,
-          1,
-          `Expected error from JSON Schema provider but got: ${JSON.stringify(result, null, 2)}`,
+        const fieldsLine = invalid.split('\n').indexOf('      fields:');
+        // `target` is not an evaluated property of the Reusable Action `fields` object
+        assert.deepEqual(
+          result.map((d) => [d.source, diagnosticText(d.message), d.range.start.line]),
+          [['Overlay 1.2 Schema', 'must NOT have unevaluated properties', fieldsLine]],
         );
       } finally {
         languageService.terminate();

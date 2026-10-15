@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { DiagnosticSeverity } from 'vscode-languageserver-types';
+import { DiagnosticSeverity, Position } from 'vscode-languageserver-types';
 import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';
@@ -16,6 +16,7 @@ import { Overlay1JsonSchemaValidationProvider } from '../src/services/validation
 import { Overlay10JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-10-json-schema-validation-provider.ts';
 import { Overlay11JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-11-json-schema-validation-provider.ts';
 import { Overlay12JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-12-json-schema-validation-provider.ts';
+import codes from '../src/config/codes.ts';
 import { metadata } from './metadata.ts';
 import { logPerformance, logLevel, diagnosticText } from './test-utils.ts';
 
@@ -359,6 +360,82 @@ describe('api-languageservice-overlay-json', function () {
     try {
       const result = await languageService.doValidation(doc, validationContext);
       assert.deepEqual(result, [], `Expected no diagnostics but got: ${JSON.stringify(result)}`);
+    } finally {
+      languageService.terminate();
+    }
+  });
+
+  it('test completion of $self and components for overlay 1.2.0 json', async function () {
+    const text =
+      '{\n  "overlay": "1.2.0",\n  \n  "info": {"title": "t", "version": "1.0.0"},\n  "actions": [{"target": "$.info", "remove": true}]\n}\n';
+    const doc = TextDocument.create('foo://bar/overlay12-completion.json', 'json', 0, text);
+    const languageService: LanguageService = getLanguageService(context);
+    try {
+      const completions = await languageService.doCompletion(
+        doc,
+        { textDocument: doc, position: Position.create(2, 2) },
+        { maxNumberOfItems: 100 },
+      );
+      const labels = completions?.items?.map((i) => i.label) ?? [];
+      assert.includeMembers(labels, ['$self', 'components']);
+    } finally {
+      languageService.terminate();
+    }
+  });
+
+  it('test hover of Reusable Action Reference description for overlay 1.2.0 json', async function () {
+    const lines = specOverlay12Json.split('\n');
+    const line = lines.findIndex((l) => l.includes('"description": "Adds a 404'));
+    const doc = TextDocument.create('foo://bar/overlay12-hover.json', 'json', 0, specOverlay12Json);
+    const languageService: LanguageService = getLanguageService(context);
+    try {
+      const hover = await languageService.doHover(
+        doc,
+        Position.create(line, lines[line].indexOf('"description"') + 2),
+      );
+      const contents = hover?.contents;
+      const value =
+        contents && typeof contents !== 'string' && 'value' in contents ? contents.value : '';
+      assert.include(value, 'A description of the action.');
+      assert.notInclude(value, 'A description of the reusable action.');
+    } finally {
+      languageService.terminate();
+    }
+  });
+
+  it('test validation reports Overlay 1.2.0 errors for invalid json', async function () {
+    const spec = JSON.parse(specOverlay12Json);
+    spec.$self = 'https://example.com/overlay.json#main';
+    spec.actions[0] = { $ref: 'other.json#/components/actions/errorResponse' };
+    const doc = TextDocument.create(
+      'foo://bar/overlay12-invalid.json',
+      'json',
+      0,
+      JSON.stringify(spec, null, 2),
+    );
+    const languageService: LanguageService = getLanguageService({
+      ...context,
+      validatorProviders: [new Overlay12JsonSchemaValidationProvider()],
+    });
+    try {
+      const result = await languageService.doValidation(doc, {
+        comments: DiagnosticSeverity.Error,
+        maxNumberOfProblems: 100,
+        relatedInformation: false,
+      });
+      assert.includeMembers(
+        result.map((d) => d.code),
+        [
+          codes.OVERLAY_SPEC_FIELD_$SELF_NO_FRAGMENT,
+          codes.OVERLAY_REUSABLE_ACTION_REFERENCE_FIELD_$REF_FORMAT,
+          codes.OVERLAY_REUSABLE_ACTION_REFERENCE_FIELD_TARGET_REQUIRED,
+        ],
+      );
+      assert.isAtLeast(
+        result.filter((d) => d.source === 'Overlay 1.2 Schema').length,
+        1,
+        'Expected errors from the Overlay 1.2 JSON Schema provider',
+      );
     } finally {
       languageService.terminate();
     }
