@@ -16,8 +16,9 @@ const descriptionTypeLint: LinterMeta = {
   data: {},
   conditions: [
     {
-      function: 'missingField',
-      params: ['$ref'],
+      function: 'apilintElementOrClass',
+      params: [['reusableActionReference']],
+      negate: true,
     },
   ],
   targetSpecs: [...Overlay12],

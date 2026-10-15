@@ -5,7 +5,8 @@ import { LinterMeta } from '../../../../apidom-language-types.ts';
 import { Overlay12 } from '../../target-specs.ts';
 
 // Reusable Action References carry `referenced-element: reusableAction`, so rules of the
-// referenced type also run on them - skip elements that are references, like Arazzo does.
+// referenced type also run on them. Skip actual references only: a definition in
+// `components.actions` with an illegal `$ref` is still a Reusable Action and must be linted.
 const allowedFieldsLint: LinterMeta = {
   code: ApilintCodes.NOT_ALLOWED_FIELDS,
   source: 'apilint',
@@ -16,8 +17,9 @@ const allowedFieldsLint: LinterMeta = {
   marker: 'key',
   conditions: [
     {
-      function: 'missingField',
-      params: ['$ref'],
+      function: 'apilintElementOrClass',
+      params: [['reusableActionReference']],
+      negate: true,
     },
   ],
   targetSpecs: [...Overlay12],

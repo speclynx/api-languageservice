@@ -1,0 +1,13 @@
+overlay: 1.2.0
+info:
+  title: Sample Overlay
+  version: 1.0.0
+components:
+  actions:
+    errorResponse:
+      $ref: '#/components/actions/other'
+      description: 1
+      fields: foo
+actions:
+  - $ref: '#/components/actions/errorResponse'
+    target: $.paths.*.get.responses

@@ -108,4 +108,25 @@ describe('test-overlay-linting-reusable-action', function () {
   it('test OVERLAY_REUSABLE_ACTION NOT_ALLOWED_FIELDS', async function () {
     await testRule('OVERLAY_REUSABLE_ACTION_NOT_ALLOWED_FIELDS', codes.NOT_ALLOWED_FIELDS, context);
   });
+
+  it('test Reusable Action with an illegal $ref is still linted', async function () {
+    const spec = readFixture('OVERLAY_REUSABLE_ACTION_ILLEGAL_REF', 'overlay-invalid.yaml');
+    const doc = TextDocument.create('foo://bar/overlay-invalid.yaml', 'yaml', 0, spec);
+    const languageService: LanguageService = getLanguageService(context);
+    try {
+      const result = await languageService.doValidation(doc, {
+        comments: DiagnosticSeverity.Error,
+        maxNumberOfProblems: 100,
+        relatedInformation: false,
+      });
+      const resultCodes = result.map((d) => d.code);
+      assert.includeMembers(resultCodes, [
+        codes.NOT_ALLOWED_FIELDS,
+        codes.OVERLAY_REUSABLE_ACTION_FIELD_DESCRIPTION_TYPE,
+        codes.OVERLAY_REUSABLE_ACTION_FIELD_FIELDS_TYPE,
+      ]);
+    } finally {
+      languageService.terminate();
+    }
+  });
 });
