@@ -13,6 +13,13 @@ const selfFormatURILint: LinterMeta = {
   linterParams: [false],
   marker: 'value',
   target: '$self',
+  conditions: [
+    {
+      targets: [{ path: '$self' }],
+      function: 'apilintType',
+      params: ['string'],
+    },
+  ],
   data: {},
   targetSpecs: [...Overlay12],
 };

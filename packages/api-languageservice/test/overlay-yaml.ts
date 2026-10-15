@@ -363,6 +363,31 @@ actions:
     });
   });
 
+  it('test deprecated Overlay 1 JSON Schema provider validates versions concurrently', async function () {
+    const provider = new Overlay1JsonSchemaValidationProvider();
+    const versions = ['1.0.0', '1.1.0', '1.2.0'];
+    const results = await Promise.all(
+      versions.map((version) =>
+        provider.doValidation(
+          TextDocument.create(
+            `foo://bar/overlay-${version}.yaml`,
+            'yaml',
+            0,
+            `overlay: ${version}\ninfo:\n  title: t\n  version: 1.0.0\nactions:\n  - target: $.info\n    remove: true\n`,
+          ),
+          [],
+        ),
+      ),
+    );
+    results.forEach((result, i) => {
+      assert.deepEqual(
+        result.diagnostics.map((d) => d.message),
+        [],
+        `Expected no schema errors for overlay ${versions[i]}`,
+      );
+    });
+  });
+
   it('test deprecated Overlay 1 JSON Schema provider uses a custom schema', async function () {
     const customSchema = {
       $id: 'urn:test:overlay-custom-schema',
@@ -650,6 +675,56 @@ actions:
         '#/components/actions/errorResponse',
         '#/components/actions/other',
       ]);
+    });
+
+    it('should document description of a Reusable Action Reference with its own docs', async function () {
+      const referenceDescription = await hoverValue(specOverlay12Yaml, Position.create(19, 6));
+      assert.include(referenceDescription, 'A description of the action.');
+      assert.include(
+        referenceDescription,
+        'the description from the Reusable Action Reference Object MUST be used',
+      );
+      assert.notInclude(referenceDescription, 'A description of the reusable action.');
+
+      const reusableActionDescription = await hoverValue(specOverlay12Yaml, Position.create(9, 8));
+      assert.include(reusableActionDescription, 'A description of the reusable action.');
+    });
+
+    const nonStringCases: [string, RegExp, string, number[]][] = [
+      ['$self', /^\$self: .*$/m, '$self:\n  uri: https://example.com/o.yaml', [10010600]],
+      ['extends', /^extends: .*$/m, 'extends: 5', [10010300]],
+      [
+        '$ref',
+        /^ {2}- \$ref: '#\/components\/actions\/errorResponse'\n(?= {4}target: "\$\.paths\['\/items'\])/m,
+        '  - $ref: 5\n',
+        [10060101],
+      ],
+    ];
+    nonStringCases.forEach(([field, pattern, replacement, expectedCodes]) => {
+      it(`should report only the type of a non-string ${field}`, async function () {
+        const text = specOverlay12Yaml.replace(pattern, replacement);
+        assert.notStrictEqual(text, specOverlay12Yaml);
+        const doc = TextDocument.create(`foo://bar/non-string-${field}.yaml`, 'yaml', 0, text);
+        const languageService: LanguageService = getLanguageService(context);
+        try {
+          const result = await languageService.doValidation(doc, validationContext);
+          assert.deepEqual(
+            result.map((d) => d.code),
+            expectedCodes,
+          );
+        } finally {
+          languageService.terminate();
+        }
+      });
+    });
+
+    it('should not complete $ref on an Action Object with a modifier', async function () {
+      const labels = await completionLabels(
+        'overlay: 1.2.0\ninfo:\n  title: t\n  version: 1.0.0\nactions:\n  - target: $.info\n    update: {}\n    ',
+        Position.create(7, 4),
+      );
+      assert.notInclude(labels, '$ref');
+      assert.include(labels, 'description');
     });
 
     it('should dereference Reusable Action References', async function () {

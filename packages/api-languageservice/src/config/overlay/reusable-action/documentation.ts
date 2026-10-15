@@ -14,6 +14,15 @@ const documentation = [
   {
     target: 'description',
     docs: 'A description of the reusable action. This description is independent of the `description` field on the contained [Action Object](https://spec.openapis.org/overlay/v1.2.0.html#action-object) and is intended to document the reusable action itself (for example, its purpose or usage). [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.',
+    // Reusable Action References carry `referenced-element: reusableAction`; their own
+    // `description` documentation must win, as the reference description takes precedence
+    conditions: [
+      {
+        function: 'apilintElementOrClass',
+        params: [['reusableActionReference']],
+        negate: true,
+      },
+    ],
     targetSpecs: Overlay12,
   },
   {

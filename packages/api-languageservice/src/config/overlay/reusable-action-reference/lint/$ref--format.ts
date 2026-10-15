@@ -10,9 +10,16 @@ const refFormatLint: LinterMeta = {
   message: "$ref must be a same-document reference in the form '#/components/actions/{name}'",
   severity: DiagnosticSeverity.Error,
   linterFunction: 'apilintValueRegex',
-  linterParams: ['^#/components/actions/(?:[^~/]|~0|~1)+$', 'string'],
+  linterParams: ['^#/components/actions/(?:[^~/]|~0|~1)+$'],
   marker: 'value',
   target: '$ref',
+  conditions: [
+    {
+      targets: [{ path: '$ref' }],
+      function: 'apilintType',
+      params: ['string'],
+    },
+  ],
   data: {},
   targetSpecs: [...Overlay12],
 };

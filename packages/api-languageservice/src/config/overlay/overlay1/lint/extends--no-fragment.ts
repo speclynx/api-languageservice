@@ -10,9 +10,16 @@ const extendsNoFragmentLint: LinterMeta = {
   message: 'extends must not contain a fragment identifier',
   severity: DiagnosticSeverity.Error,
   linterFunction: 'apilintValueRegex',
-  linterParams: ['^[^#]*$', 'string'],
+  linterParams: ['^[^#]*$'],
   marker: 'value',
   target: 'extends',
+  conditions: [
+    {
+      targets: [{ path: 'extends' }],
+      function: 'apilintType',
+      params: ['string'],
+    },
+  ],
   data: {},
   targetSpecs: [...Overlay12],
 };

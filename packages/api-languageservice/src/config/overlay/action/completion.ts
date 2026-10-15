@@ -38,14 +38,20 @@ const completion: ApidomCompletionItem[] = [
     documentation: {
       kind: 'markdown',
       value:
-        '**REQUIRED** A [same-document](https://www.rfc-editor.org/rfc/rfc3986.html#section-4.4) (or fragment-only) relative URI reference, per RFC3986 §4.4, where the fragment syntax is JSON Pointer with the pointer prefix restricted to `/components/actions/`. Component action keys in this pointer MUST be encoded according to [RFC6901, Section 3](https://www.rfc-editor.org/rfc/rfc6901#section-3).\n\\\n\\\nTurns this action into a [Reusable Action Reference Object](https://spec.openapis.org/overlay/v1.2.0.html#reusable-action-reference-object) applying a [Reusable Action Object](https://spec.openapis.org/overlay/v1.2.0.html#reusable-action-object) defined in `components.actions`.',
+        '**REQUIRED** A [same-document](https://www.rfc-editor.org/rfc/rfc3986.html#section-4.4) (or fragment-only) relative URI reference, per RFC3986 §4.4, where the fragment syntax is JSON Pointer with the pointer prefix restricted to `/components/actions/`. Component action keys in this pointer MUST be encoded according to [RFC6901, Section 3](https://www.rfc-editor.org/rfc/rfc6901#section-3).',
     },
+    // only a plain action can become a Reusable Action Reference: update/copy/remove
+    // are not allowed next to $ref, and `fields` of a Reusable Action cannot be a reference
     conditions: [
       {
         targets: [{ path: 'parent' }],
         function: 'apilintElementOrClass',
         params: [['reusableAction']],
         negate: true,
+      },
+      {
+        function: 'missingFields',
+        params: [['update', 'copy', 'remove']],
       },
     ],
     targetSpecs: Overlay12,

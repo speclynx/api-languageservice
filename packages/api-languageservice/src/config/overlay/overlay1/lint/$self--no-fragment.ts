@@ -10,9 +10,16 @@ const selfNoFragmentLint: LinterMeta = {
   message: '$self must not contain a fragment identifier',
   severity: DiagnosticSeverity.Error,
   linterFunction: 'apilintValueRegex',
-  linterParams: ['^[^#]*$', 'string'],
+  linterParams: ['^[^#]*$'],
   marker: 'value',
   target: '$self',
+  conditions: [
+    {
+      targets: [{ path: '$self' }],
+      function: 'apilintType',
+      params: ['string'],
+    },
+  ],
   data: {},
   targetSpecs: [...Overlay12],
 };
