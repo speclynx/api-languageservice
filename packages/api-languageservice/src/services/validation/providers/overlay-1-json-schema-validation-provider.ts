@@ -5,6 +5,7 @@ import { detectionRegExp } from '@speclynx/apidom-parser-adapter-overlay-yaml-1'
 
 import overlay10Schema from '../json-schema/overlay-1/overlay-1.0-schema.json' with { type: 'json' };
 import overlay11Schema from '../json-schema/overlay-1/overlay-1.1-schema.json' with { type: 'json' };
+import overlay12Schema from '../json-schema/overlay-1/overlay-1.2-schema.json' with { type: 'json' };
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import {
   NamespaceVersion,
@@ -60,21 +61,54 @@ export type {
 } from '../../../apidom-language-types.ts';
 
 /**
+ * Validates with one fixed schema under the deprecated provider's name. Each schema gets its own
+ * instance, so concurrent validations never share a mutable schema.
+ */
+class Overlay1SchemaDelegate extends JsonSchemaValidationProvider {
+  public constructor(ajv2020: boolean, jsonSchema: Record<string, unknown>) {
+    super(ajv2020, jsonSchema);
+  }
+
+  break(): boolean {
+    return false;
+  }
+
+  namespaces(): NamespaceVersion[] {
+    return [];
+  }
+
+  name(): string {
+    return 'Overlay 1 Schema';
+  }
+}
+
+/**
+ * Validates Overlay 1.0, 1.1 and 1.2 documents, picking the OAI provided schema matching the
+ * document's `overlay` version. A schema passed to the constructor is used for every version.
+ *
+ * @deprecated Use the version specific `Overlay10JsonSchemaValidationProvider`,
+ * `Overlay11JsonSchemaValidationProvider` or `Overlay12JsonSchemaValidationProvider` instead.
+ * Do not register this provider together with them: both would validate the same document.
+ *
  * @public
  */
 export class Overlay1JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
-  private overlay10Schema: Record<string, unknown>;
+  private readonly customSchemaDelegate?: Overlay1SchemaDelegate;
 
-  private overlay11Schema: Record<string, unknown>;
+  private readonly versionDelegates: Record<'1.0' | '1.1' | '1.2', Overlay1SchemaDelegate>;
 
   public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
     if (!jsonSchema) {
-      super(true, overlay11Schema);
+      super(true, overlay12Schema);
     } else {
       super(ajv2020, jsonSchema);
+      this.customSchemaDelegate = new Overlay1SchemaDelegate(ajv2020, jsonSchema);
     }
-    this.overlay10Schema = overlay10Schema;
-    this.overlay11Schema = overlay11Schema;
+    this.versionDelegates = {
+      '1.0': new Overlay1SchemaDelegate(true, overlay10Schema),
+      '1.1': new Overlay1SchemaDelegate(true, overlay11Schema),
+      '1.2': new Overlay1SchemaDelegate(true, overlay12Schema),
+    };
   }
 
   public async doValidation(
@@ -83,22 +117,22 @@ export class Overlay1JsonSchemaValidationProvider extends JsonSchemaValidationPr
     validationContext?: ValidationContext,
     api?: Element,
   ): Promise<ValidationProviderResult> {
-    let specVersion: string | undefined;
-    if (api) {
-      specVersion = getSpecVersion(api);
-    } else {
-      const text = textDocument.getText();
-      const match = text.match(detectionRegExp);
-      if (match?.groups) {
-        specVersion = match.groups.version_json ?? match.groups.version_yaml;
-      }
-    }
-    if (specVersion?.startsWith('1.0')) {
-      this.jsonSchema = this.overlay10Schema;
-    } else {
-      this.jsonSchema = this.overlay11Schema;
-    }
-    return super.doValidation(textDocument, currentDiagnostics, validationContext, api);
+    const delegate =
+      this.customSchemaDelegate ??
+      this.versionDelegate(Overlay1JsonSchemaValidationProvider.specVersion(textDocument, api));
+    return delegate.doValidation(textDocument, currentDiagnostics, validationContext, api);
+  }
+
+  private static specVersion(textDocument: TextDocument, api?: Element): string | undefined {
+    if (api) return getSpecVersion(api);
+    const match = textDocument.getText().match(detectionRegExp);
+    return match?.groups?.version_json ?? match?.groups?.version_yaml;
+  }
+
+  private versionDelegate(specVersion: string | undefined): Overlay1SchemaDelegate {
+    if (specVersion?.startsWith('1.0')) return this.versionDelegates['1.0'];
+    if (specVersion?.startsWith('1.1')) return this.versionDelegates['1.1'];
+    return this.versionDelegates['1.2'];
   }
 
   break(): boolean {
@@ -109,6 +143,7 @@ export class Overlay1JsonSchemaValidationProvider extends JsonSchemaValidationPr
     return [
       { namespace: 'overlay', version: '1.0.0' },
       { namespace: 'overlay', version: '1.1.0' },
+      { namespace: 'overlay', version: '1.2.0' },
     ];
   }
 

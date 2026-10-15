@@ -13,6 +13,13 @@ const extendsFormatURILint: LinterMeta = {
   linterParams: [false],
   marker: 'value',
   target: 'extends',
+  conditions: [
+    {
+      targets: [{ path: 'extends' }],
+      function: 'apilintType',
+      params: ['string'],
+    },
+  ],
   data: {},
   targetSpecs: [...Overlay],
 };

@@ -12,6 +12,14 @@ const targetRequiredLint: LinterMeta = {
   linterFunction: 'hasRequiredField',
   linterParams: ['target'],
   marker: 'key',
+  conditions: [
+    {
+      targets: [{ path: 'parent' }],
+      function: 'apilintElementOrClass',
+      params: [['reusableAction']],
+      negate: true,
+    },
+  ],
   data: {
     quickFix: [
       {

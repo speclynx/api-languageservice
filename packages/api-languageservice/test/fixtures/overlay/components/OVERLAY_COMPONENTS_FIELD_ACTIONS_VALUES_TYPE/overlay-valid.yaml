@@ -1,0 +1,16 @@
+overlay: 1.2.0
+info:
+  title: Sample Overlay
+  version: 1.0.0
+components:
+  actions:
+    errorResponse:
+      description: Adds an error response
+      fields:
+        update:
+          404:
+            description: Not Found
+actions:
+  - target: $.info
+    update:
+      description: Updated description

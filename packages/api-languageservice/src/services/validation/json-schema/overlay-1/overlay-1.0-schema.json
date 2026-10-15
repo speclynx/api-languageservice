@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/overlay/1.0/schema/2025-04-15",
+  "$id": "https://spec.openapis.org/overlay/1.0/schema/2026-04-01",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "The description of Overlay v1.0.x documents",
   "type": "object",

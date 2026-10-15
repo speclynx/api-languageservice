@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { Overlay11 } from '../../target-specs.ts';
+import { Overlay11, Overlay12 } from '../../target-specs.ts';
 
 const descriptionNoScriptTagsLint: LinterMeta = {
   code: ApilintCodes.OVERLAY_SPEC_NO_SCRIPT_TAGS,
@@ -16,7 +16,7 @@ const descriptionNoScriptTagsLint: LinterMeta = {
   marker: 'value',
   markerTarget: 'description',
   data: {},
-  targetSpecs: [...Overlay11],
+  targetSpecs: [...Overlay11, ...Overlay12],
 };
 
 export default descriptionNoScriptTagsLint;

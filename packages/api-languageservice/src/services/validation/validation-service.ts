@@ -1,6 +1,12 @@
 import { CodeAction, Diagnostic, DiagnosticSeverity, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { Element, ObjectElement, ParseResultElement, cloneDeep } from '@speclynx/apidom-datamodel';
+import {
+  Element,
+  ObjectElement,
+  ParseResultElement,
+  cloneDeep,
+  isStringElement,
+} from '@speclynx/apidom-datamodel';
 import { type Path, findAtOffset, forEach } from '@speclynx/apidom-traverse';
 import { toValue } from '@speclynx/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
@@ -685,6 +691,10 @@ export class DefaultValidationService implements ValidationService {
     const hasSyntaxErrors = !!diagnostics.length;
 
     const pointersMap: Record<string, Pointer[]> = {};
+    // Overlay only allows same-document references (Reusable Action References), so they are
+    // resolved by pointer lookup in every mode; ApiDOM cannot dereference them in isolation
+    // (speclynx/apidom#605)
+    const sameDocumentRefsOnly = docNs === 'overlay';
     const lintReference = (
       doc: Element,
       referencedElement: string,
@@ -692,7 +702,7 @@ export class DefaultValidationService implements ValidationService {
     ): Diagnostic[] => {
       const refDiagnostics: Diagnostic[] = [];
       if (
-        refValidationMode === ReferenceValidationMode.LEGACY &&
+        (refValidationMode === ReferenceValidationMode.LEGACY || sameDocumentRefsOnly) &&
         (toValue(refValueElement) as string).startsWith('#')
       ) {
         let pointers = pointersMap[referencedElement];
@@ -808,10 +818,12 @@ export class DefaultValidationService implements ValidationService {
       if (profiling) elemCount++;
       const element = path.node;
       const referencedElement = getReferencedElementValue(element);
+      // a non-string `$ref` is not a reference; type rules report it
       if (
         referencedElement.length > 0 &&
         isObject(element) &&
-        element.hasKey('$ref') &&
+        isStringElement(element.get('$ref')) &&
+        !sameDocumentRefsOnly &&
         (refValidationMode === ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL ||
           (toValue(element.get('$ref')) as string).startsWith('#'))
       ) {
@@ -819,7 +831,7 @@ export class DefaultValidationService implements ValidationService {
       }
       if (referencedElement.length > 0) {
         // legacy lint local references
-        if (isObject(element) && element.hasKey('$ref')) {
+        if (isObject(element) && isStringElement(element.get('$ref'))) {
           if (semanticRefValidationEnabled) {
             // TODO get ref value from metadata or in adapter
             diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')!));

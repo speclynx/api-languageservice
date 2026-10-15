@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { Overlay } from '../../target-specs.ts';
+import { Overlay10, Overlay11 } from '../../target-specs.ts';
 
 const allowedFieldsLint: LinterMeta = {
   code: ApilintCodes.NOT_ALLOWED_FIELDS,
@@ -12,7 +12,7 @@ const allowedFieldsLint: LinterMeta = {
   linterFunction: 'allowedFields',
   linterParams: [['overlay', 'info', 'extends', 'actions'], 'x-'],
   marker: 'key',
-  targetSpecs: [...Overlay],
+  targetSpecs: [...Overlay10, ...Overlay11],
 };
 
 export default allowedFieldsLint;

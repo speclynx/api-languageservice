@@ -1,4 +1,5 @@
 import targetRequiredLint from './target--required.ts';
+import targetNotAllowedInReusableActionLint from './target--not-allowed-in-reusable-action.ts';
 import targetTypeLint from './target--type.ts';
 import targetJSONPathValidLint from './target--jsonpath-valid.ts';
 import descriptionTypeLint from './description--type.ts';
@@ -15,6 +16,7 @@ import allowedFields11Lint from './allowed-fields-1-1.ts';
 
 const lints = [
   targetRequiredLint,
+  targetNotAllowedInReusableActionLint,
   targetTypeLint,
   targetJSONPathValidLint,
   descriptionTypeLint,

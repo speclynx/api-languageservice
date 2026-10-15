@@ -379,9 +379,16 @@ export class DefaultHoverService implements HoverService {
       const nodeKey = toValue(node.parent.key);
       const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
       containerNodeSet.unshift(containerNode.element);
+      // A reference documents its own fields (e.g. `description` on a Reference Object), so they
+      // win over the referenced element's docs. `$ref` is the exception: referenced elements
+      // document it for references to them (e.g. "A reference to a Parameter.").
       const referencedElement = getReferencedElementValue(containerNode);
       if (referencedElement.length > 0) {
-        containerNodeSet.unshift(referencedElement);
+        if (nodeKey === '$ref') {
+          containerNodeSet.unshift(referencedElement);
+        } else {
+          containerNodeSet.push(referencedElement);
+        }
       }
 
       for (const containerNodeSymbol of containerNodeSet) {
