@@ -45,7 +45,6 @@ import {
   Metadata,
   MetadataMaps,
   Pointer,
-  DocumentationMeta,
 } from '../apidom-language-types.ts';
 import { standardLinterfunctionsMap } from '../services/validation/linter-functions.ts';
 
@@ -285,7 +284,7 @@ export function findLocalReferences(doc: Element, targetJsonPointer: string): Po
 }
 
 export function checkConditions(
-  meta: ApidomCompletionItem | LinterMeta | DocumentationMeta,
+  meta: ApidomCompletionItem | LinterMeta,
   docNs: string,
   element: Element,
   api: Element,

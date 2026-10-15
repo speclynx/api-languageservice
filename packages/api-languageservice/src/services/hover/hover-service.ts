@@ -30,7 +30,6 @@ import {
   debug,
   error,
   getReferencedElementValue,
-  checkConditions,
 } from '../../utils/utils.ts';
 
 const CONTROL_CODES = '\\u0000-\\u0020\\u007f-\\u009f';
@@ -380,12 +379,17 @@ export class DefaultHoverService implements HoverService {
       const nodeKey = toValue(node.parent.key);
       const containerNodeSet: string[] = Array.from(new Set(containerNode.classes as string[]));
       containerNodeSet.unshift(containerNode.element);
+      // A reference documents its own fields (e.g. `description` on a Reference Object), so they
+      // win over the referenced element's docs. `$ref` is the exception: referenced elements
+      // document it for references to them (e.g. "A reference to a Parameter.").
       const referencedElement = getReferencedElementValue(containerNode);
       if (referencedElement.length > 0) {
-        containerNodeSet.unshift(referencedElement);
+        if (nodeKey === '$ref') {
+          containerNodeSet.unshift(referencedElement);
+        } else {
+          containerNodeSet.push(referencedElement);
+        }
       }
-      let root: Element = containerNode;
-      while (root.parent && root.parent.element !== 'parseResult') root = root.parent;
 
       for (const containerNodeSymbol of containerNodeSet) {
         const containerNodeDocs: DocumentationMeta[] = map[containerNodeSymbol]
@@ -405,8 +409,7 @@ export class DefaultHoverService implements HoverService {
                     } else {
                       return nsv.namespace === ns && nsv.version === specVersion;
                     }
-                  }))) &&
-              (!ci.conditions || checkConditions(ci, ns, containerNode, root, this.settings))
+                  })))
             );
           });
 

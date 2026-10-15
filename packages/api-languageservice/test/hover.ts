@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 import getLanguageService from '../src/apidom-language-service.ts';
 import { LanguageService, LanguageServiceContext } from '../src/apidom-language-types.ts';
+import { metadata } from './metadata.ts';
 import { logPerformance, logLevel } from './test-utils.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -102,5 +103,62 @@ describe('api-languageservice-hover', function () {
       const val = result!.contents!.value as string;
       assert.isTrue(val.includes('ID of the user'));
     }
+  });
+});
+
+describe('api-languageservice-hover-reference-fields', function () {
+  const context: LanguageServiceContext = {
+    metadata: metadata(),
+    performanceLogs: logPerformance,
+    logLevel,
+  };
+
+  const languageService: LanguageService = getLanguageService(context);
+
+  after(function () {
+    languageService.terminate();
+  });
+
+  const spec = `openapi: 3.1.0
+info:
+  title: t
+  version: 1.0.0
+paths:
+  /a:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/p'
+          description: ref description
+          summary: ref summary
+      responses: {}
+components:
+  parameters:
+    p:
+      name: p
+      in: query
+      description: parameter description
+`;
+
+  const hover = async (line: number, character: number): Promise<string> => {
+    const doc = TextDocument.create('foo://bar/reference-fields.yaml', 'yaml', 0, spec);
+    const result = await languageService.doHover(doc, Position.create(line, character));
+    // @ts-ignore
+    return (result?.contents?.value ?? '') as string;
+  };
+
+  it('documents a Reference Object field with the Reference Object docs', async function () {
+    const value = await hover(9, 12);
+    assert.include(value, 'SHOULD override that of the referenced component');
+    assert.notInclude(value, 'A brief description of the parameter');
+  });
+
+  it('falls back to the referenced element docs for fields the reference does not document', async function () {
+    const value = await hover(8, 12);
+    assert.include(value, 'A reference to a Parameter.');
+  });
+
+  it('keeps documenting the referenced element itself', async function () {
+    const value = await hover(17, 7);
+    assert.include(value, 'A brief description of the parameter');
   });
 });
