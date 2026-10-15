@@ -198,4 +198,20 @@ describe('test-overlay-linting-action', function () {
   it('test copy NOT_ALLOWED_FIELDS in Overlay 1.0.0', async function () {
     await testRule('OVERLAY_ACTION_COPY_NOT_ALLOWED_1_0', codes.NOT_ALLOWED_FIELDS, context);
   });
+
+  it('test OVERLAY_ACTION_FIELD_TARGET_REQUIRED not reported for Reusable Action fields', async function () {
+    await runValid(
+      'OVERLAY_ACTION_FIELD_TARGET_REQUIRED_1_2_REUSABLE_ACTION',
+      codes.OVERLAY_ACTION_FIELD_TARGET_REQUIRED,
+      context,
+    );
+  });
+
+  it('test OVERLAY_REUSABLE_ACTION_FIELD_FIELDS_TARGET_NOT_ALLOWED', async function () {
+    await testRule(
+      'OVERLAY_REUSABLE_ACTION_FIELD_FIELDS_TARGET_NOT_ALLOWED',
+      codes.OVERLAY_REUSABLE_ACTION_FIELD_FIELDS_TARGET_NOT_ALLOWED,
+      context,
+    );
+  });
 });

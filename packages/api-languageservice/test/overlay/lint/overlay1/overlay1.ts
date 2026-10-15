@@ -133,4 +133,56 @@ describe('test-overlay-linting-overlay1', function () {
   it('test OVERLAY_SPEC NOT_ALLOWED_FIELDS', async function () {
     await testRule('OVERLAY_SPEC_NOT_ALLOWED_FIELDS', codes.NOT_ALLOWED_FIELDS, context);
   });
+
+  it('test OVERLAY_SPEC_FIELD_$SELF_TYPE', async function () {
+    await testRule('OVERLAY_SPEC_FIELD_$SELF_TYPE', codes.OVERLAY_SPEC_FIELD_$SELF_TYPE, context);
+  });
+
+  it('test OVERLAY_SPEC_FIELD_$SELF_FORMAT_URI', async function () {
+    await testRule(
+      'OVERLAY_SPEC_FIELD_$SELF_FORMAT_URI',
+      codes.OVERLAY_SPEC_FIELD_$SELF_FORMAT_URI,
+      context,
+    );
+  });
+
+  it('test OVERLAY_SPEC_FIELD_$SELF_NO_FRAGMENT', async function () {
+    await testRule(
+      'OVERLAY_SPEC_FIELD_$SELF_NO_FRAGMENT',
+      codes.OVERLAY_SPEC_FIELD_$SELF_NO_FRAGMENT,
+      context,
+    );
+  });
+
+  it('test OVERLAY_SPEC_FIELD_EXTENDS_NO_FRAGMENT', async function () {
+    await testRule(
+      'OVERLAY_SPEC_FIELD_EXTENDS_NO_FRAGMENT',
+      codes.OVERLAY_SPEC_FIELD_EXTENDS_NO_FRAGMENT,
+      context,
+    );
+  });
+
+  it('test OVERLAY_SPEC_FIELD_COMPONENTS_TYPE', async function () {
+    await testRule(
+      'OVERLAY_SPEC_FIELD_COMPONENTS_TYPE',
+      codes.OVERLAY_SPEC_FIELD_COMPONENTS_TYPE,
+      context,
+    );
+  });
+
+  it('test OVERLAY_SPEC_FIELD_ACTIONS_TYPE (1.2.0)', async function () {
+    await testRule(
+      'OVERLAY_SPEC_FIELD_ACTIONS_TYPE_1_2',
+      codes.OVERLAY_SPEC_FIELD_ACTIONS_TYPE,
+      context,
+    );
+  });
+
+  it('test OVERLAY_SPEC NOT_ALLOWED_FIELDS (1.2.0)', async function () {
+    await testRule('OVERLAY_SPEC_NOT_ALLOWED_FIELDS_1_2', codes.NOT_ALLOWED_FIELDS, context);
+  });
+
+  it('test $self NOT_ALLOWED_FIELDS in Overlay 1.1.0', async function () {
+    await testRule('OVERLAY_SPEC_NOT_ALLOWED_FIELDS_1_1_SELF', codes.NOT_ALLOWED_FIELDS, context);
+  });
 });

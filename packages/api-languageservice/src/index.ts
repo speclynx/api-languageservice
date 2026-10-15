@@ -18,6 +18,9 @@ export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/pro
 export { Arazzo1JsonSchemaValidationProvider } from './services/validation/providers/arazzo-1-json-schema-validation-provider.ts';
 export { Arazzo11JsonSchemaValidationProvider } from './services/validation/providers/arazzo-11-json-schema-validation-provider.ts';
 export { Overlay1JsonSchemaValidationProvider } from './services/validation/providers/overlay-1-json-schema-validation-provider.ts';
+export { Overlay10JsonSchemaValidationProvider } from './services/validation/providers/overlay-10-json-schema-validation-provider.ts';
+export { Overlay11JsonSchemaValidationProvider } from './services/validation/providers/overlay-11-json-schema-validation-provider.ts';
+export { Overlay12JsonSchemaValidationProvider } from './services/validation/providers/overlay-12-json-schema-validation-provider.ts';
 
 export { default as ApilintCodes } from './config/codes.ts';
 

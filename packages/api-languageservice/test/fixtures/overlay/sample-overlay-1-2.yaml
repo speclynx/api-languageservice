@@ -1,0 +1,23 @@
+overlay: 1.2.0
+$self: https://example.com/overlays/errors.overlay.yaml
+info:
+  title: Use reusable actions to insert error responses
+  version: 1.0.0
+extends: ../openapi/petstore.yaml
+components:
+  actions:
+    errorResponse:
+      description: Adds an error response to the operation
+      fields:
+        update:
+          '404':
+            description: Not Found
+actions:
+  - $ref: '#/components/actions/errorResponse'
+    target: "$.paths['/items'].get.responses"
+  - $ref: '#/components/actions/errorResponse'
+    target: "$.paths['/some-items'].delete.responses"
+    description: Adds a 404 to the delete operation
+  - target: $.info
+    update:
+      x-overlay-applied: errors

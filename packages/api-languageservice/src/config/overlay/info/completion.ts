@@ -3,7 +3,7 @@ import {
   CompletionFormat,
   CompletionType,
 } from '../../../apidom-language-types.ts';
-import { Overlay1, Overlay11 } from '../target-specs.ts';
+import { Overlay1, Overlay11, Overlay12 } from '../target-specs.ts';
 
 const completion: ApidomCompletionItem[] = [
   {
@@ -44,7 +44,7 @@ const completion: ApidomCompletionItem[] = [
       value:
         'A description of the Overlay Document. [CommonMark](https://spec.commonmark.org/) syntax MAY be used for rich text representation.',
     },
-    targetSpecs: Overlay11,
+    targetSpecs: [...Overlay11, ...Overlay12],
   },
 ];
 

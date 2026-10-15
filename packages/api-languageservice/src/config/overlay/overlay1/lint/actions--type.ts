@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { Overlay } from '../../target-specs.ts';
+import { Overlay10, Overlay11 } from '../../target-specs.ts';
 
 const actionsTypeLint: LinterMeta = {
   code: ApilintCodes.OVERLAY_SPEC_FIELD_ACTIONS_TYPE,
@@ -14,7 +14,7 @@ const actionsTypeLint: LinterMeta = {
   marker: 'key',
   target: 'actions',
   data: {},
-  targetSpecs: [...Overlay],
+  targetSpecs: [...Overlay10, ...Overlay11],
 };
 
 export default actionsTypeLint;
