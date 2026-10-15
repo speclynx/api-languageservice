@@ -1,0 +1,6 @@
+openapi: 3.1.0
+info:
+  title: Golden fixture
+  version: 1.0.0
+tags:
+  - description: tag without a name

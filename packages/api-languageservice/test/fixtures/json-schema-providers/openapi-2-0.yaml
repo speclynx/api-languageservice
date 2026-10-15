@@ -1,0 +1,29 @@
+swagger: '2.0'
+info:
+  title: Golden fixture
+  version: 1
+  contakt: {}
+host: example.com
+schemes:
+  - htps
+paths:
+  /pets:
+    get:
+      parameters:
+        - name: limit
+          in: querry
+          type: integer
+      responses:
+        '200':
+          description: ok
+          schema:
+            type: object
+            additionalProperties: 5
+    post:
+      summary: operation without responses
+  pets: {}
+securityDefinitions:
+  basicAuth:
+    type: basic
+    flow: implicit
+x-golden: true

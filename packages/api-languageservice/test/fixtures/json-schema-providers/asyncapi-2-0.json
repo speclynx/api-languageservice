@@ -1,0 +1,47 @@
+{
+  "asyncapi": "2.0.0",
+  "id": "urn:example:golden",
+  "info": {
+    "title": "Golden fixture",
+    "version": 1,
+    "licence": "MIT",
+    "contact": {
+      "email": 42
+    }
+  },
+  "servers": {
+    "production": {
+      "url": "broker.example.com",
+      "variabels": {}
+    }
+  },
+  "channels": {
+    "user/signedup": {
+      "subscribe": {
+        "operationId": 7,
+        "message": {
+          "payload": {
+            "type": "strng"
+          }
+        }
+      },
+      "publisher": {}
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "strng"
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "usr"
+      }
+    }
+  },
+  "tags": "notalist",
+  "x-golden": true,
+  "y-unknown": true
+}

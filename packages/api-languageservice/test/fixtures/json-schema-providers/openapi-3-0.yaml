@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: Golden fixture
+  version: 1
+  contakt: {}
+servers:
+  - url: https://example.com
+    variables:
+      region:
+        enum:
+          - eu
+          - us
+paths:
+  /pets:
+    get:
+      parameters:
+        - name: limit
+          in: querry
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          content:
+            application/json: {}
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: 5
+    post:
+      summary: operation without responses
+  pets: {}
+components:
+  securitySchemes:
+    key:
+      type: apiKeyy
+      name: key
+      in: header
+x-golden: true
