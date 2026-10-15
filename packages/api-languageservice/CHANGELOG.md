@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/speclynx/api-languageservice/compare/v2.13.2...v2.14.0) (2026-10-15)
+
+### Features
+
+- **overlay:** add Overlay 1.2.0 support ([#66](https://github.com/speclynx/api-languageservice/issues/66)) ([85e5331](https://github.com/speclynx/api-languageservice/commit/85e533104e0c566c578284127bf15ad0d3105538)), closes [#68](https://github.com/speclynx/api-languageservice/issues/68)
+
 ## [2.13.2](https://github.com/speclynx/api-languageservice/compare/v2.13.1...v2.13.2) (2026-09-26)
 
 ### Bug Fixes
