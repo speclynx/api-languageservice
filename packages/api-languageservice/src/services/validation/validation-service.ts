@@ -685,6 +685,9 @@ export class DefaultValidationService implements ValidationService {
     const hasSyntaxErrors = !!diagnostics.length;
 
     const pointersMap: Record<string, Pointer[]> = {};
+    // Overlay only allows same-document references (Reusable Action References), so they are
+    // resolved by pointer lookup in every mode; ApiDOM cannot dereference them in isolation
+    const sameDocumentRefsOnly = docNs === 'overlay';
     const lintReference = (
       doc: Element,
       referencedElement: string,
@@ -692,7 +695,7 @@ export class DefaultValidationService implements ValidationService {
     ): Diagnostic[] => {
       const refDiagnostics: Diagnostic[] = [];
       if (
-        refValidationMode === ReferenceValidationMode.LEGACY &&
+        (refValidationMode === ReferenceValidationMode.LEGACY || sameDocumentRefsOnly) &&
         (toValue(refValueElement) as string).startsWith('#')
       ) {
         let pointers = pointersMap[referencedElement];
@@ -815,6 +818,7 @@ export class DefaultValidationService implements ValidationService {
           : undefined;
       if (
         typeof refValue === 'string' &&
+        !sameDocumentRefsOnly &&
         (refValidationMode === ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL ||
           refValue.startsWith('#'))
       ) {

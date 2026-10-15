@@ -10,6 +10,7 @@ import {
   Format,
   LanguageService,
   LanguageServiceContext,
+  ReferenceValidationMode,
   ValidationContext,
 } from '../src/apidom-language-types.ts';
 import { findNamespace } from '../src/utils/utils.ts';
@@ -586,6 +587,58 @@ actions:
       } finally {
         languageService.terminate();
       }
+    });
+
+    [
+      ReferenceValidationMode.LEGACY,
+      ReferenceValidationMode.APIDOM_INDIRECT,
+      ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL,
+    ].forEach((referenceValidationMode) => {
+      [false, true].forEach((referenceValidationSequentialProcessing) => {
+        it(`should validate Reusable Action References by pointer lookup (mode ${referenceValidationMode}, sequential ${referenceValidationSequentialProcessing})`, async function () {
+          const text = (ref: string) =>
+            `overlay: 1.2.0\ninfo:\n  title: t\n  version: 1.0.0\ncomponents:\n  actions:\n    errorResponse:\n      fields:\n        remove: true\nactions:\n  - $ref: '${ref}'\n    target: $.info\n`;
+          const languageService: LanguageService = getLanguageService(context);
+          try {
+            const refContext = {
+              ...validationContext,
+              referenceValidation: true,
+              referenceValidationMode,
+              referenceValidationSequentialProcessing,
+            };
+            const valid = await languageService.doValidation(
+              TextDocument.create(
+                'foo://bar/valid.yaml',
+                'yaml',
+                0,
+                text('#/components/actions/errorResponse'),
+              ),
+              refContext,
+            );
+            assert.deepEqual(
+              valid,
+              [],
+              `Expected no diagnostics but got: ${JSON.stringify(valid)}`,
+            );
+
+            const missing = await languageService.doValidation(
+              TextDocument.create(
+                'foo://bar/missing.yaml',
+                'yaml',
+                0,
+                text('#/components/actions/missing'),
+              ),
+              refContext,
+            );
+            assert.deepEqual(
+              missing.map((d) => d.message),
+              ['local reference not found'],
+            );
+          } finally {
+            languageService.terminate();
+          }
+        });
+      });
     });
 
     it('should complete Reusable Action Reference $ref values', async function () {
