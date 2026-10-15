@@ -14,7 +14,47 @@ import draft202012SchemaValidation from '../json-schema/open-api-31/spectral/dra
 import draft4Schema from '../json-schema/open-api-31/spectral/draft-04.json' with { type: 'json' };
 
 let ajvInstance: AjvType;
+let ajvEmbeddedDraft07Instance: AjvType;
 let ajv2020Instance: Ajv2020Type;
+
+const draft07MetaSchemaId = 'http://json-schema.org/draft-07/schema';
+
+/*
+The AsyncAPI 2.3 to 2.6 schemas bundle their own copy of the draft-07 meta-schema, under the `$id`
+the draft-07 instance registers for its built-in copy. Ajv then rejects every reference to it as
+resolving to more than one schema, so such schemas are compiled on an instance without the
+built-in copy, where references resolve to the bundled one.
+ */
+const embedsDraft07MetaSchema = (jsonSchema: Record<string, unknown>): boolean =>
+  [jsonSchema.definitions, jsonSchema.$defs].some(
+    (definitions) =>
+      typeof definitions === 'object' &&
+      definitions !== null &&
+      Object.values(definitions).some((definition) => {
+        const definitionId = (definition as { $id?: unknown } | null)?.$id;
+        return (
+          typeof definitionId === 'string' && definitionId.replace(/#$/, '') === draft07MetaSchemaId
+        );
+      }),
+  );
+
+function embeddedDraft07Ajv(): AjvType {
+  if (!ajvEmbeddedDraft07Instance) {
+    debug('Creating new AJV instance without the built-in draft-07 meta-schema');
+    // @ts-ignore
+    ajvEmbeddedDraft07Instance = new Ajv({
+      strict: false,
+      meta: false,
+      validateSchema: false,
+      allErrors: true,
+      validateFormats: false,
+      unicodeRegExp: false,
+    });
+    // @ts-ignore
+    AjvErrors(ajvEmbeddedDraft07Instance);
+  }
+  return ajvEmbeddedDraft07Instance;
+}
 
 export function ajv(ajv2020: boolean): Ajv2020Type | AjvType {
   if (!ajv2020Instance && ajv2020) {
@@ -64,11 +104,17 @@ export function ajv(ajv2020: boolean): Ajv2020Type | AjvType {
   return ajvInstance;
 }
 
+function instanceFor(jsonSchema: Record<string, unknown>, ajv2020: boolean): Ajv2020Type | AjvType {
+  if (ajv2020) {
+    return ajv2020Instance;
+  }
+  return embedsDraft07MetaSchema(jsonSchema) ? embeddedDraft07Ajv() : ajvInstance;
+}
+
 function getOrCompile(
   jsonSchema: Record<string, unknown>,
-  ajv2020: boolean,
+  ajvInst: Ajv2020Type | AjvType,
 ): Ajv2020Ns.ValidateFunction | AjvNs.ValidateFunction {
-  const ajvInst = ajv2020 ? ajv2020Instance : ajvInstance;
   const schemaId = jsonSchema.$id || jsonSchema.id;
   if (schemaId && ajvInst.getSchema(schemaId as string)) {
     // @ts-ignore
@@ -90,7 +136,7 @@ export function compileAjv(
     debug('Creating new AJV instance');
     ajv(ajv2020);
   }
-  const ajvInst = ajv2020 ? ajv2020Instance : ajvInstance;
+  const ajvInst = instanceFor(jsonSchema, ajv2020);
   const schemaId = jsonSchema.$id || jsonSchema.id;
   if (schemaId && ajvInst.getSchema(schemaId as string)) {
     // @ts-ignore
@@ -98,8 +144,8 @@ export function compileAjv(
   }
   if (relatedSchemas) {
     relatedSchemas.forEach((schema) => {
-      getOrCompile(schema, ajv2020);
+      getOrCompile(schema, ajvInst);
     });
   }
-  return getOrCompile(jsonSchema, ajv2020);
+  return getOrCompile(jsonSchema, ajvInst);
 }
