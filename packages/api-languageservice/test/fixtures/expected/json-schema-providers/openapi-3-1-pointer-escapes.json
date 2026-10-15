@@ -1,0 +1,20 @@
+{
+  "json": {
+    "default": [
+      {"range":{"start":{"line":7,"character":4},"end":{"line":7,"character":17}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":8,"character":4},"end":{"line":8,"character":18}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":20}},"message":"must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":13,"character":10},"end":{"line":13,"character":11}},"message":"must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ],
+    "betterAjvErrors": [
+      {"range":{"start":{"line":7,"character":4},"end":{"line":7,"character":17}},"message":"\"~1home~1~0user\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":8,"character":4},"end":{"line":8,"character":18}},"message":"\"~1files~1~01tmp\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":20}},"message":"\"~1notes~1~00draft\" property type must be object","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"},
+      {"range":{"start":{"line":13,"character":10},"end":{"line":13,"character":11}},"message":"\"0\" property type must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ]
+  },
+  "yaml": {
+    "default": [],
+    "betterAjvErrors": []
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Golden fixture",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/home/~user": 5,
+    "/files/~1tmp": 5,
+    "/notes/~0draft": 5,
+    "/tags": {
+      "get": {
+        "tags": [
+          5
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
+      }
+    }
+  }
+}
