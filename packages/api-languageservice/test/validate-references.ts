@@ -458,4 +458,40 @@ describe('reference validation', function () {
       );
     });
   });
+
+  context('given a Reference Object with a non-string $ref', function () {
+    [ReferenceValidationMode.LEGACY, ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL].forEach(
+      (referenceValidationMode) => {
+        specify(
+          `should keep validating the document (mode ${referenceValidationMode})`,
+          async function () {
+            const doc: TextDocument = TextDocument.create(
+              'foo://bar/non-string-ref.yaml',
+              'yaml',
+              0,
+              'openapi: 3.1.0\ninfo:\n  title: t\n  version: 1.0.0\npaths:\n  /a:\n    get:\n      parameters:\n        - $ref: 1\n      responses: {}\n',
+            );
+
+            let valRes: Diagnostic[];
+            try {
+              valRes = await languageService.doValidation(doc, {
+                comments: DiagnosticSeverity.Error,
+                maxNumberOfProblems: 100,
+                relatedInformation: false,
+                referenceValidationMode,
+              });
+            } finally {
+              languageService.terminate();
+            }
+
+            assert.isAbove(valRes.length, 0, 'Expected the non-string $ref to be reported');
+            assert.notInclude(
+              valRes.map((d) => d.message),
+              'local reference not found',
+            );
+          },
+        );
+      },
+    );
+  });
 });

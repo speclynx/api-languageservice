@@ -808,23 +808,22 @@ export class DefaultValidationService implements ValidationService {
       if (profiling) elemCount++;
       const element = path.node;
       const referencedElement = getReferencedElementValue(element);
+      // a non-string `$ref` is not a reference; type rules report it
+      const refValue =
+        referencedElement.length > 0 && isObject(element) && element.hasKey('$ref')
+          ? toValue(element.get('$ref'))
+          : undefined;
       if (
-        referencedElement.length > 0 &&
-        isObject(element) &&
-        element.hasKey('$ref') &&
+        typeof refValue === 'string' &&
         (refValidationMode === ReferenceValidationMode.APIDOM_INDIRECT_EXTERNAL ||
-          (toValue(element.get('$ref')) as string).startsWith('#'))
+          refValue.startsWith('#'))
       ) {
         refElements.push(element);
       }
-      if (referencedElement.length > 0) {
-        // legacy lint local references
-        if (isObject(element) && element.hasKey('$ref')) {
-          if (semanticRefValidationEnabled) {
-            // TODO get ref value from metadata or in adapter
-            diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')!));
-          }
-        }
+      // legacy lint local references
+      if (typeof refValue === 'string' && isObject(element) && semanticRefValidationEnabled) {
+        // TODO get ref value from metadata or in adapter
+        diagnostics.push(...lintReference(api, referencedElement, element.get('$ref')!));
       }
       if (element.classes) {
         // Build deduplicated symbol set for rule lookup
