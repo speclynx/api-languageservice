@@ -1,0 +1,17 @@
+overlay: 1.2.0
+info:
+  title: Golden fixture
+  version: 1
+  sumary: typo
+extends: 5
+actions:
+  - target: $.info
+    description: 7
+    update: {}
+    remove: maybe
+  - description: action without a target
+  - target: $.paths
+    remove: true
+    extra: field
+x-golden: true
+y-unknown: true

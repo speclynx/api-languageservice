@@ -1,0 +1,25 @@
+arazzo: 1.0.1
+info:
+  title: Golden fixture
+  version: 1
+  sumary: typo
+sourceDescriptions:
+  - name: pets api
+    url: https://example.com/openapi.yaml
+    type: openap
+workflows:
+  - workflowId: list-pets
+    steps:
+      - stepId: list
+        operationId: listPets
+        workflowId: other
+        parameters:
+          - name: limit
+            in: querry
+            value: 10
+        successCriteria:
+          - condition: $statusCode == 200
+            type: simpel
+      - description: step without an id
+        operationId: listPets
+x-golden: true
