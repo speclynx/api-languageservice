@@ -1,0 +1,18 @@
+{
+  "json": {
+    "default": [
+      {"range":{"start":{"line":5,"character":4},"end":{"line":5,"character":13}},"message":"must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ],
+    "betterAjvErrors": [
+      {"range":{"start":{"line":5,"character":4},"end":{"line":5,"character":13}},"message":"\"version\" property type must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ]
+  },
+  "yaml": {
+    "default": [
+      {"range":{"start":{"line":3,"character":2},"end":{"line":3,"character":9}},"message":"must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ],
+    "betterAjvErrors": [
+      {"range":{"start":{"line":3,"character":2},"end":{"line":3,"character":9}},"message":"\"version\" property type must be string","severity":1,"code":0,"source":"OpenAPI 3.1 Schema"}
+    ]
+  }
+}

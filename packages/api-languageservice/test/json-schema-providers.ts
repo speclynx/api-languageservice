@@ -66,6 +66,21 @@ const providerCases: ProviderCase[] = [
     'openapi-3-1-without-paths',
     () => new OpenAPi31JsonSchemaValidationProvider(),
   ),
+  // keys holding `~` and `/` (escaped as `~0` and `~1` in JSON Pointers), and an array item
+  versionSpecificCase(
+    'openapi-3-1-pointer-escapes',
+    () => new OpenAPi31JsonSchemaValidationProvider(),
+  ),
+  // the openapi-3-1 document with its JSON indented by tabs, which ranges count as one character
+  versionSpecificCase(
+    'openapi-3-1-tab-indented',
+    () => new OpenAPi31JsonSchemaValidationProvider(),
+  ),
+  // a duplicated key: Ajv validates the occurrence `JSON.parse` keeps, the last one
+  versionSpecificCase(
+    'openapi-3-1-duplicate-keys',
+    () => new OpenAPi31JsonSchemaValidationProvider(),
+  ),
   versionSpecificCase('asyncapi-2-0', () => new Asyncapi20JsonSchemaValidationProvider()),
   versionSpecificCase('asyncapi-2-1', () => new Asyncapi21JsonSchemaValidationProvider()),
   versionSpecificCase('asyncapi-2-2', () => new Asyncapi22JsonSchemaValidationProvider()),
