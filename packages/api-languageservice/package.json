@@ -125,7 +125,7 @@
     "postpack": "rimraf NOTICE LICENSES"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^8.0.6",
+    "@babel/runtime-corejs3": "^8.0.7",
     "@speclynx/apidom-core": "^5.2.6",
     "@speclynx/apidom-datamodel": "^5.2.6",
     "@speclynx/apidom-json-path": "^5.2.6",
@@ -153,16 +153,16 @@
     "@speclynx/apidom-parser-adapter-yaml-1-2": "^5.2.6",
     "@speclynx/apidom-reference": "^5.2.6",
     "@speclynx/apidom-traverse": "^5.2.6",
-    "@swaggerexpert/arazzo-runtime-expression": "^3.2.0",
+    "@swaggerexpert/arazzo-runtime-expression": "^3.3.0",
     "@swaggerexpert/jsonpath": "^4.0.4",
     "@types/ramda": "~0.32.0",
     "openapi-path-templating": "^2.2.1",
     "prettier": "^3.9.6",
     "ramda": "~0.32.0",
     "ramda-adjunct": "^6.0.0",
-    "vscode-languageserver-protocol": "=3.18.3",
-    "vscode-languageserver-textdocument": "^1.0.14",
-    "vscode-languageserver-types": "=3.18.3",
+    "vscode-languageserver-protocol": "=3.18.4",
+    "vscode-languageserver-textdocument": "^1.0.15",
+    "vscode-languageserver-types": "=3.18.4",
     "yaml": "^2.9.1"
   },
   "optionalDependencies": {
