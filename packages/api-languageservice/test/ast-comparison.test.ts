@@ -39,7 +39,7 @@ items:
       - 6
 `;
 
-  describe('positionRangeForPath', () => {
+  describe('createPathPositionResolver', () => {
     it('should return the same position range for complex paths', () => {
       const paths = [
         ['openapi'],
@@ -62,7 +62,7 @@ items:
       ];
 
       paths.forEach((path) => {
-        const yamlResult = astYaml.positionRangeForPath(complexYaml, [...path]);
+        const yamlResult = astYaml.createPathPositionResolver(complexYaml)([...path]);
         const originalResult = astOriginal.positionRangeForPath(complexYaml, [...path]);
 
         // Compare start positions
@@ -92,7 +92,7 @@ items:
 
       paths.forEach((path) => {
         const originalResult = astOriginal.positionRangeForPath(nestedArraysYaml, [...path]);
-        const yamlResult = astYaml.positionRangeForPath(nestedArraysYaml, [...path]);
+        const yamlResult = astYaml.createPathPositionResolver(nestedArraysYaml)([...path]);
 
         // Compare start positions
         expect(yamlResult.start.line).to.equal(
