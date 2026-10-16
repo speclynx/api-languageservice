@@ -1,5 +1,3 @@
-import type { Ajv2020 } from 'ajv/dist/2020.d.ts';
-import type { Ajv } from 'ajv';
 import YAML from 'yaml';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -15,8 +13,7 @@ import {
   ValidationProvider,
   ValidationProviderResult,
 } from '../../../apidom-language-types.ts';
-import * as AjvUtils from './ajv-utils.ts';
-import { betterAjvErrors, BetterError } from './better-errors/index.ts';
+import { AjvErrorObject, betterAjvErrors, BetterError } from './better-errors/index.ts';
 import { isJsonDoc } from '../../../utils/utils.ts';
 
 export type {
@@ -63,25 +60,36 @@ export type {
   LinterConditionTarget,
 } from '../../../apidom-language-types.ts';
 
+export type { AjvErrorObject } from './better-errors/index.ts';
+
 /**
+ * A function validating data against a JSON Schema, reporting what it finds in `errors` as Ajv
+ * does. The providers of this package use functions Ajv generated at build time; a function
+ * `Ajv.compile` returns fits as well.
+ *
+ * @public
+ */
+export interface JsonSchemaValidateFunction {
+  (data: unknown): boolean;
+  errors?: AjvErrorObject[] | null;
+}
+
+/**
+ * Validates documents with a JSON Schema validation function. To validate against a schema of
+ * your own, extend it and pass a function compiled with your own Ajv instance.
+ *
  * @public
  */
 export abstract class JsonSchemaValidationProvider implements ValidationProvider {
   private validationEnabled: boolean | undefined;
 
-  protected ajv: Ajv2020 | Ajv;
-
-  protected jsonSchema: Record<string, unknown>;
-
-  protected ajv2020: boolean;
+  private readonly validateFunction: JsonSchemaValidateFunction;
 
   protected override = false;
 
-  protected constructor(ajv2020: boolean, jsonSchema: Record<string, unknown>) {
+  protected constructor(validateFunction: JsonSchemaValidateFunction) {
     this.validationEnabled = true;
-    this.jsonSchema = jsonSchema;
-    this.ajv2020 = ajv2020;
-    this.ajv = AjvUtils.ajv(ajv2020);
+    this.validateFunction = validateFunction;
   }
 
   public setOverrideDefaultValidation(override: boolean): void {
@@ -196,7 +204,7 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     if (!this.validationEnabled) {
       return;
     }
-    const validateFunction = AjvUtils.compileAjv(this.jsonSchema, this.ajv2020);
+    const { validateFunction } = this;
     const jsonDoc = JSON.parse(jsonDocument);
     const valid = validateFunction(jsonDoc);
     if (!valid) {

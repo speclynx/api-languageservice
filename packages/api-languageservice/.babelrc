@@ -1,5 +1,11 @@
 {
   "plugins": [
     ["inline-json-import", {}]
+  ],
+  "overrides": [
+    {
+      "test": "./src/services/validation/json-schema/validators",
+      "compact": true
+    }
   ]
 }

@@ -170,6 +170,43 @@ const languageService = getLanguageService({
 });
 ```
 
+## Migrating to 3.0
+
+From 3.0 the JSON Schema validation providers check documents with validation functions that Ajv generated when the package was built, so the package no longer installs Ajv and compiles no schema at runtime. The diagnostics are unchanged. The providers no longer accept a schema of your own: `OpenAPi20JsonSchemaValidationProvider`, `OpenAPi30JsonSchemaValidationProvider`, `OpenAPi31JsonSchemaValidationProvider`, `Arazzo1JsonSchemaValidationProvider`, `Arazzo11JsonSchemaValidationProvider` and the Overlay providers, the deprecated `Overlay1JsonSchemaValidationProvider` included, take no constructor arguments, and `JsonSchemaValidationProvider` no longer gives subclasses its `ajv`, `ajv2020` and `jsonSchema` fields.
+
+To keep validating against a schema of your own, compile it with your own Ajv and pass the function to a subclass of `JsonSchemaValidationProvider`. The options below are the ones this package compiles its schemas with: every error is reported, and `format` is not checked. Add the schemas yours references by `$id` with `addSchema` before compiling it, and register `ajv-errors` if it uses `errorMessage`.
+
+```typescript
+import { Ajv2020 } from 'ajv/dist/2020.js';
+import type { NamespaceVersion } from '@speclynx/api-languageservice';
+import { JsonSchemaValidationProvider } from '@speclynx/api-languageservice/services/validation/providers/json-schema';
+
+import schema from './my-openapi-3.1-schema.json' with { type: 'json' };
+
+class MyOpenApi31SchemaValidationProvider extends JsonSchemaValidationProvider {
+  constructor() {
+    super(new Ajv2020({ allErrors: true, strict: false, validateFormats: false }).compile(schema));
+  }
+
+  break(): boolean {
+    return false;
+  }
+
+  namespaces(): NamespaceVersion[] {
+    return [
+      { namespace: 'openapi', version: '3.1.0' },
+      { namespace: 'openapi', version: '3.1.1' },
+    ];
+  }
+
+  name(): string {
+    return 'My OpenAPI 3.1 Schema';
+  }
+}
+```
+
+Register it in `validatorProviders` in place of the provider it replaces. If your schema only added checks to the standard one, such as a required `operationId` or an `x-owner` extension, a linting rule is usually simpler: it keeps the embedded schema and needs no Ajv. The [rules engine documentation](https://github.com/speclynx/api-languageservice/blob/main/docs/rules-engine.md) shows how to add one.
+
 ## Architecture
 
 ```

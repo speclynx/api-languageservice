@@ -1,4 +1,4 @@
-import overlaySchema from '../json-schema/overlay-1/overlay-1.1-schema.json' with { type: 'json' };
+import validateOverlay11 from '../json-schema/validators/overlay-1-1.ts';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -52,13 +52,8 @@ export type {
  * @public
  */
 export class Overlay11JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
-  public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
-    // default to OAI provided Overlay 1.1 schema
-    if (!jsonSchema) {
-      super(true, overlaySchema);
-    } else {
-      super(ajv2020, jsonSchema);
-    }
+  public constructor() {
+    super(validateOverlay11);
   }
 
   break(): boolean {

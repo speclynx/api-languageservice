@@ -1,4 +1,4 @@
-import openapiSchemaJson30 from '../json-schema/open-api-30/openapi-schema-2019-04-02-draft-2020-12-spectral.json' with { type: 'json' };
+import validateOpenapi30 from '../json-schema/validators/openapi-3-0.ts';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -52,13 +52,8 @@ export type {
  * @public
  */
 export class OpenAPi30JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
-  public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
-    // default to OAI provided 3.1 schema
-    if (!jsonSchema) {
-      super(true, openapiSchemaJson30);
-    } else {
-      super(ajv2020, jsonSchema);
-    }
+  public constructor() {
+    super(validateOpenapi30);
   }
 
   break(): boolean {

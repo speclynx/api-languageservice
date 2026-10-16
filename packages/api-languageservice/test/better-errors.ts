@@ -3,28 +3,29 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert } from 'chai';
 import YAML from 'yaml';
+import type { ErrorObject } from 'ajv';
 import originalBetterAjvErrors from '@stoplight/better-ajv-errors';
 
 import { betterAjvErrors } from '../src/services/validation/providers/better-errors/index.ts';
 import { getByPointer } from '../src/services/validation/providers/better-errors/json-pointer.ts';
 import { levenshtein } from '../src/services/validation/providers/better-errors/levenshtein.ts';
-import { compileAjv } from '../src/services/validation/providers/ajv-utils.ts';
-import { JsonSchemaValidationProvider } from '../src/services/validation/providers/json-schema-validation-provider.ts';
-import { OpenAPi20JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-20-json-schema-validation-provider.ts';
-import { OpenAPi30JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-30-json-schema-validation-provider.ts';
-import { OpenAPi31JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-31-json-schema-validation-provider.ts';
-import { Asyncapi20JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-20-json-schema-validation-provider.ts';
-import { Asyncapi21JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-21-json-schema-validation-provider.ts';
-import { Asyncapi22JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-22-json-schema-validation-provider.ts';
-import { Asyncapi23JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-23-json-schema-validation-provider.ts';
-import { Asyncapi24JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-24-json-schema-validation-provider.ts';
-import { Asyncapi25JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-25-json-schema-validation-provider.ts';
-import { Asyncapi26JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-26-json-schema-validation-provider.ts';
-import { Arazzo1JsonSchemaValidationProvider } from '../src/services/validation/providers/arazzo-1-json-schema-validation-provider.ts';
-import { Arazzo11JsonSchemaValidationProvider } from '../src/services/validation/providers/arazzo-11-json-schema-validation-provider.ts';
-import { Overlay10JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-10-json-schema-validation-provider.ts';
-import { Overlay11JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-11-json-schema-validation-provider.ts';
-import { Overlay12JsonSchemaValidationProvider } from '../src/services/validation/providers/overlay-12-json-schema-validation-provider.ts';
+import { JsonSchemaValidateFunction } from '../src/services/validation/providers/json-schema-validation-provider.ts';
+import validateOpenapi20 from '../src/services/validation/json-schema/validators/openapi-2-0.ts';
+import validateOpenapi30 from '../src/services/validation/json-schema/validators/openapi-3-0.ts';
+import validateOpenapi31 from '../src/services/validation/json-schema/validators/openapi-3-1.ts';
+import validateAsyncapi20 from '../src/services/validation/json-schema/validators/asyncapi-2-0.ts';
+import validateAsyncapi21 from '../src/services/validation/json-schema/validators/asyncapi-2-1.ts';
+import validateAsyncapi22 from '../src/services/validation/json-schema/validators/asyncapi-2-2.ts';
+import validateAsyncapi23 from '../src/services/validation/json-schema/validators/asyncapi-2-3.ts';
+import validateAsyncapi24 from '../src/services/validation/json-schema/validators/asyncapi-2-4.ts';
+import validateAsyncapi25 from '../src/services/validation/json-schema/validators/asyncapi-2-5.ts';
+import validateAsyncapi26 from '../src/services/validation/json-schema/validators/asyncapi-2-6.ts';
+import validateArazzo10 from '../src/services/validation/json-schema/validators/arazzo-1-0.ts';
+import validateArazzo11 from '../src/services/validation/json-schema/validators/arazzo-1-1.ts';
+import validateOverlay10 from '../src/services/validation/json-schema/validators/overlay-1-0.ts';
+import validateOverlay11 from '../src/services/validation/json-schema/validators/overlay-1-1.ts';
+import validateOverlay12 from '../src/services/validation/json-schema/validators/overlay-1-2.ts';
+import { parsedFixtureDocuments } from './test-utils.ts';
 
 /*
 The formatter in `src/services/validation/providers/better-errors` is a port of
@@ -38,71 +39,47 @@ original returns, `suggestion` included.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturesDirectory = path.join(__dirname, 'fixtures');
 
-// the parsed data the provider validates; documents that do not parse are skipped
-const fixtureDocuments = fs
-  .readdirSync(fixturesDirectory, { recursive: true, encoding: 'utf8' })
-  .filter((file) => /\.(json|ya?ml)$/.test(file))
-  .flatMap((file) => {
-    const text = fs.readFileSync(path.join(fixturesDirectory, file), 'utf8');
-    try {
-      const data = file.endsWith('.json')
-        ? JSON.parse(text)
-        : JSON.parse(JSON.stringify(YAML.parse(text, { logLevel: 'silent' })));
-      return [{ file, data }];
-    } catch {
-      return [];
-    }
-  });
+const fixtureDocuments = parsedFixtureDocuments();
 
-const embeddedSchemaProviders: [string, JsonSchemaValidationProvider][] = [
-  ['openapi-2-0', new OpenAPi20JsonSchemaValidationProvider()],
-  ['openapi-3-0', new OpenAPi30JsonSchemaValidationProvider()],
-  ['openapi-3-1', new OpenAPi31JsonSchemaValidationProvider()],
-  ['asyncapi-2-0', new Asyncapi20JsonSchemaValidationProvider()],
-  ['asyncapi-2-1', new Asyncapi21JsonSchemaValidationProvider()],
-  ['asyncapi-2-2', new Asyncapi22JsonSchemaValidationProvider()],
-  ['asyncapi-2-3', new Asyncapi23JsonSchemaValidationProvider()],
-  ['asyncapi-2-4', new Asyncapi24JsonSchemaValidationProvider()],
-  ['asyncapi-2-5', new Asyncapi25JsonSchemaValidationProvider()],
-  ['asyncapi-2-6', new Asyncapi26JsonSchemaValidationProvider()],
-  ['arazzo-1-0', new Arazzo1JsonSchemaValidationProvider()],
-  ['arazzo-1-1', new Arazzo11JsonSchemaValidationProvider()],
-  ['overlay-1-0', new Overlay10JsonSchemaValidationProvider()],
-  ['overlay-1-1', new Overlay11JsonSchemaValidationProvider()],
-  ['overlay-1-2', new Overlay12JsonSchemaValidationProvider()],
+const embeddedSchemaValidators: [string, JsonSchemaValidateFunction][] = [
+  ['openapi-2-0', validateOpenapi20],
+  ['openapi-3-0', validateOpenapi30],
+  ['openapi-3-1', validateOpenapi31],
+  ['asyncapi-2-0', validateAsyncapi20],
+  ['asyncapi-2-1', validateAsyncapi21],
+  ['asyncapi-2-2', validateAsyncapi22],
+  ['asyncapi-2-3', validateAsyncapi23],
+  ['asyncapi-2-4', validateAsyncapi24],
+  ['asyncapi-2-5', validateAsyncapi25],
+  ['asyncapi-2-6', validateAsyncapi26],
+  ['arazzo-1-0', validateArazzo10],
+  ['arazzo-1-1', validateArazzo11],
+  ['overlay-1-0', validateOverlay10],
+  ['overlay-1-1', validateOverlay11],
+  ['overlay-1-2', validateOverlay12],
 ];
 
-// the schema a provider embeds, and the errors the provider formats for a document
-const providerValidation = (provider: JsonSchemaValidationProvider) => {
-  const { jsonSchema, ajv2020 } = provider as unknown as {
-    jsonSchema: Record<string, unknown>;
-    ajv2020: boolean;
-  };
-  const validateFunction = compileAjv(jsonSchema, ajv2020);
-  return {
-    jsonSchema,
-    relevantErrors: (data: unknown) =>
-      validateFunction(data)
-        ? []
-        : (validateFunction.errors ?? []).filter((error) => error.keyword !== 'if'),
-  };
-};
+// the errors the provider formats
+const relevantErrors = (validateFunction: JsonSchemaValidateFunction, data: unknown) =>
+  validateFunction(data)
+    ? []
+    : (validateFunction.errors ?? []).filter((error) => error.keyword !== 'if');
 
 describe('api-languageservice-better-errors', function () {
   describe('betterAjvErrors', function () {
-    embeddedSchemaProviders.forEach(([schemaName, provider]) => {
+    embeddedSchemaValidators.forEach(([schemaName, validateFunction]) => {
       it(`formats the ${schemaName} errors of every fixture as the original does`, function () {
         this.timeout(20000);
-        const { jsonSchema, relevantErrors } = providerValidation(provider);
         let formattedErrors = 0;
         fixtureDocuments.forEach(({ file, data }) => {
-          const ajvErrors = relevantErrors(data);
+          const ajvErrors = relevantErrors(validateFunction, data);
           const ported = betterAjvErrors(ajvErrors, data);
-          assert.deepEqual(
-            ported,
-            originalBetterAjvErrors(jsonSchema, ajvErrors, { propertyPath: [], targetValue: data }),
-            file,
-          );
+          // the original ignores its first argument, the schema, and types the errors as Ajv's
+          const original = originalBetterAjvErrors({}, ajvErrors as ErrorObject[], {
+            propertyPath: [],
+            targetValue: data,
+          });
+          assert.deepEqual(ported, original, file);
           formattedErrors += ported.length;
         });
         assert.isAbove(formattedErrors, 0);
@@ -110,10 +87,9 @@ describe('api-languageservice-better-errors', function () {
     });
 
     it('suggests the closest allowed value for a mistyped enum string', function () {
-      const { relevantErrors } = providerValidation(new OpenAPi30JsonSchemaValidationProvider());
       const fixturePath = path.join(fixturesDirectory, 'json-schema-providers', 'openapi-3-0.yaml');
       const data = YAML.parse(fs.readFileSync(fixturePath, 'utf8'));
-      const suggestions = betterAjvErrors(relevantErrors(data), data)
+      const suggestions = betterAjvErrors(relevantErrors(validateOpenapi30, data), data)
         .filter((error) => error.suggestion !== undefined)
         .map(({ path: instancePath, suggestion }) => ({ instancePath, suggestion }));
       // the first pointer holds an escaped `/`

@@ -1,0 +1,20 @@
+asyncapi: 2.3.0
+info:
+  title: Streetlights API
+  version: 1.0.0
+servers:
+  production:
+    url: mqtt://test.mosquitto.org
+    protocol: mqtt
+channels:
+  light/measured:
+    subscribe:
+      operationId: receiveLightMeasurement
+      message:
+        name: lightMeasured
+        payload:
+          type: object
+          properties:
+            lumens:
+              type: integer
+              minimum: 0

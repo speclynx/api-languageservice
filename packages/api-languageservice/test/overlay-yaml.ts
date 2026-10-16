@@ -388,45 +388,6 @@ actions:
     });
   });
 
-  it('test deprecated Overlay 1 JSON Schema provider uses a custom schema', async function () {
-    const customSchema = {
-      $id: 'urn:test:overlay-custom-schema',
-      type: 'object',
-      required: ['x-custom'],
-    };
-    const contextWithJsonSchema: LanguageServiceContext = {
-      metadata: metadata(),
-      validatorProviders: [new Overlay1JsonSchemaValidationProvider(customSchema, true)],
-      validationContext: {
-        jsonSchemaValidation: true,
-        semanticValidation: false,
-        referenceValidation: false,
-        semanticLinting: false,
-      },
-      performanceLogs: logPerformance,
-      logLevel,
-    };
-    const doc = TextDocument.create('foo://bar/overlay.yaml', 'yaml', 0, specOverlayYaml);
-    const languageService: LanguageService = getLanguageService(contextWithJsonSchema);
-    try {
-      const result = await languageService.doValidation(doc, {
-        comments: DiagnosticSeverity.Error,
-        maxNumberOfProblems: 100,
-        relatedInformation: false,
-      });
-      const schemaErrors = result.filter(
-        (d) => d.source === 'Overlay 1 Schema' && diagnosticText(d.message).includes('x-custom'),
-      );
-      assert.isAtLeast(
-        schemaErrors.length,
-        1,
-        `Expected the custom schema to be applied but got: ${JSON.stringify(result, null, 2)}`,
-      );
-    } finally {
-      languageService.terminate();
-    }
-  });
-
   describe('given Overlay 1.2.0', function () {
     const validationContext: ValidationContext = {
       comments: DiagnosticSeverity.Error,
