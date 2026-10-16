@@ -134,13 +134,35 @@ const writeInventory = (modules, packageName, inventoryPath) => {
 };
 
 /**
+ * The directory `moduleName` is installed in, looked up the way Node looks up a
+ * bare specifier but without going through the package's `exports`, which need
+ * not expose its package.json.
+ */
+const installedDirectory = (moduleName) => {
+  for (let directory = process.cwd(); ; directory = path.dirname(directory)) {
+    const candidate = path.join(directory, 'node_modules', moduleName);
+    if (fs.existsSync(path.join(candidate, 'package.json'))) {
+      return candidate;
+    }
+    if (path.dirname(directory) === directory) {
+      throw new Error(
+        `${moduleName} is credited as the origin of inlined code but is not installed. ` +
+          'Install it as a devDependency of the package that inlines it.',
+      );
+    }
+  }
+};
+
+/**
  * The plugin and the warning filter that belongs with it, for one bundle.
  *
  * `packageName` names the distributable in the generated file's header,
  * `recoveredDirectory` holds the reviewed notices and their recovered.json,
  * `licenseTextOverrides` supplies the licence of a package that does not carry
  * one where the plugin looks, and `additionalModules` names packages whose code
- * another package inlines and webpack therefore never resolves.
+ * is inlined, by another package or by this repository, and which webpack
+ * therefore never resolves. Those are credited from their installed copy, so
+ * they must be installed, as devDependencies when nothing else needs them.
  */
 export const thirdPartyNotices = ({
   packageName,
@@ -165,7 +187,10 @@ export const thirdPartyNotices = ({
     perChunkOutput: false,
     unacceptableLicenseTest: (type) => /^(?:GPL|AGPL|LGPL|SSPL)/i.test(type),
     licenseTextOverrides,
-    additionalModules,
+    additionalModules: additionalModules.map((name) => ({
+      name,
+      directory: installedDirectory(name),
+    })),
     handleMissingLicenseText: (missingPackageName, licenseType) =>
       recoverNotice(missingPackageName, licenseType, context),
     renderLicenses: (modules) => {

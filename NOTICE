@@ -21,6 +21,14 @@ were originally created under Apache 2.0 license in https://github.com/stoplight
 The files have been copied into this project and modified. All modifications are licensed under Apache 2.0 License.
 Copy of the Apache 2.0 license can be found in `LICENSE` file.
 
+better-ajv-errors
+Copyright 2018 Atlassian Pty Ltd
+The file packages/api-languageservice/src/services/validation/providers/better-errors/index.ts
+was ported from version 1.0.3 of the @stoplight/better-ajv-errors package, created under Apache 2.0
+license in https://github.com/stoplightio/better-ajv-errors repository.
+The file has been modified. All modifications are licensed under Apache 2.0 License.
+Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
+
 OpenAPI Specification 2.0
 Copyright The Linux Foundation
 Fragments of the specification text are embedded in packages/api-languageservice/src/config/openapi.
