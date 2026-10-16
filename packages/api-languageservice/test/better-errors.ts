@@ -196,6 +196,13 @@ describe('api-languageservice-better-errors', function () {
         ['htps', 'https', 1],
         ['apiKeyy', 'apiKey', 1],
         ['oauth2', 'openIdConnect', 12],
+        // shared prefixes and suffixes, which are trimmed before the row is computed
+        ['prefix-abc-suffix', 'prefix-axc-suffix', 1],
+        ['abc', 'abcdef', 3],
+        ['def', 'abcdef', 3],
+        ['ab', 'aXb', 1],
+        ['aab', 'ab', 1],
+        ['aaaa', 'aa', 2],
       ].forEach(([source, target, distance]) => {
         assert.strictEqual(levenshtein(source as string, target as string), distance);
         assert.strictEqual(levenshtein(target as string, source as string), distance);
@@ -205,6 +212,44 @@ describe('api-languageservice-better-errors', function () {
     it('counts UTF-16 code units, as JavaScript strings do', function () {
       assert.strictEqual(levenshtein('a😀', 'a'), 2);
       assert.strictEqual(levenshtein('😀', '😁'), 1);
+    });
+
+    it('agrees with the full table of edit distances on random strings', function () {
+      // the definition, one table cell per pair of prefixes
+      const tableDistance = (source: string, target: string): number => {
+        const table = Array.from({ length: source.length + 1 }, (_, sourceIndex) =>
+          Array.from({ length: target.length + 1 }, (__, targetIndex) =>
+            sourceIndex === 0 ? targetIndex : sourceIndex,
+          ),
+        );
+        for (let sourceIndex = 1; sourceIndex <= source.length; sourceIndex += 1) {
+          for (let targetIndex = 1; targetIndex <= target.length; targetIndex += 1) {
+            table[sourceIndex][targetIndex] = Math.min(
+              table[sourceIndex - 1][targetIndex] + 1,
+              table[sourceIndex][targetIndex - 1] + 1,
+              table[sourceIndex - 1][targetIndex - 1] +
+                (source[sourceIndex - 1] === target[targetIndex - 1] ? 0 : 1),
+            );
+          }
+        }
+        return table[source.length][target.length];
+      };
+      // a fixed-seed generator, so a failure reproduces
+      let seed = 42;
+      const randomBelow = (bound: number) => {
+        seed = (seed * 1103515245 + 12345) % 2147483648;
+        return Math.floor((seed / 2147483648) * bound);
+      };
+      // code units of 'ab😀', so lone surrogate halves come up too
+      const randomString = (maxLength: number) =>
+        Array.from({ length: randomBelow(maxLength + 1) }, () => 'ab😀'[randomBelow(4)]).join('');
+      for (let pair = 0; pair < 2000; pair += 1) {
+        const [prefix, suffix] = [randomString(3), randomString(3)];
+        const source = prefix + randomString(6) + suffix;
+        const target = prefix + randomString(6) + suffix;
+        assert.strictEqual(levenshtein(source, target), tableDistance(source, target), source);
+        assert.strictEqual(levenshtein(target, source), tableDistance(source, target), target);
+      }
     });
   });
 });
