@@ -59,7 +59,11 @@ export function createPathPositionResolver(
   if (typeof src !== 'string') {
     throw new TypeError('yaml should be a string');
   }
-  const { doc, lc } = parseDoc(src);
+  /*
+   * `yaml` breaks lines only at LF and CRLF. A lone CR is whitespace in JSON and a line break in
+   * YAML 1.2 and in LSP positions, so it is read as LF, which keeps every offset.
+   */
+  const { doc, lc } = parseDoc(src.replace(/\r(?!\n)/g, '\n'));
 
   return (path: string[]) => {
     if (!isArray(path)) {
