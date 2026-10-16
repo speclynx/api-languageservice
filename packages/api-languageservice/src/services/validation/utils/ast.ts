@@ -5,7 +5,6 @@ function parseDoc(src: string) {
   const lc = new LineCounter();
   // the resolver picks among duplicate keys itself; yaml's report of them rescans a mapping per key
   const doc = YAML.parseDocument(src, {
-    keepSourceTokens: true,
     uniqueKeys: false,
     lineCounter: lc,
   });
