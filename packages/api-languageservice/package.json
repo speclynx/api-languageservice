@@ -170,7 +170,6 @@
     "@speclynx/apidom-traverse": "^6.0.6",
     "@swaggerexpert/arazzo-runtime-expression": "^3.3.0",
     "@swaggerexpert/jsonpath": "^4.0.4",
-    "@types/ramda": "~0.32.0",
     "openapi-path-templating": "^2.2.1",
     "prettier": "^3.9.6",
     "ramda": "~0.32.0",
@@ -188,7 +187,8 @@
     "json-source-map": "^0.6.1"
   },
   "devDependencies": {
-    "@types/emscripten": "^1.41.6"
+    "@types/emscripten": "^1.41.6",
+    "@types/ramda": "~0.32.0"
   },
   "files": [
     "src/**/*.mjs",
