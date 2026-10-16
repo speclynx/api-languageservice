@@ -37,6 +37,10 @@ runtime Ajv implementation; any change to how the embedded schemas are compiled 
 errors are reported must leave them untouched unless the change is meant to alter diagnostics.
 To re-record after an intended change, run the suite with `RECORD_EXPECTED=true` and review the
 diff of `fixtures/expected/json-schema-providers`.
+
+A lone CR breaks lines in LSP positions and in YAML 1.2 and is whitespace in JSON, so every case is
+also validated with its line breaks turned into lone CRs, and into a mix of CR, LF and CRLF, and has
+to produce the diagnostics recorded for its LF fixtures.
  */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -52,6 +56,15 @@ interface ProviderCase {
 
 type FormatDiagnostics = Record<'default' | 'betterAjvErrors', Diagnostic[]>;
 type CaseDiagnostics = Record<'json' | 'yaml', FormatDiagnostics>;
+type LineBreakConversion = (text: string) => string;
+
+const lineBreakVariants: Record<string, LineBreakConversion> = {
+  CR: (text) => text.replace(/\r?\n/g, '\r'),
+  'mixed CR, LF and CRLF': (text) => {
+    let lineBreaks = 0;
+    return text.replace(/\r?\n/g, () => ['\r', '\n', '\r\n'][lineBreaks++ % 3]);
+  },
+};
 
 const versionSpecificCase = (
   fixture: string,
@@ -123,6 +136,7 @@ const validateWithProvider = async (
   provider: ValidationProvider,
   format: 'json' | 'yaml',
   fixture: string,
+  convertLineBreaks: LineBreakConversion,
 ): Promise<FormatDiagnostics> => {
   const context: LanguageServiceContext = {
     metadata: metadata(),
@@ -137,7 +151,9 @@ const validateWithProvider = async (
     logLevel,
   };
   const languageService = getLanguageService(context);
-  const text = fs.readFileSync(path.join(fixturesDirectory, `${fixture}.${format}`), 'utf8');
+  const text = convertLineBreaks(
+    fs.readFileSync(path.join(fixturesDirectory, `${fixture}.${format}`), 'utf8'),
+  );
   const document = TextDocument.create(`foo://bar/${fixture}.${format}`, format, 0, text);
   // only the provider's own diagnostics; the semantic rules have their own tests
   const providerDiagnostics = async (betterAjvErrors: boolean): Promise<Diagnostic[]> => {
@@ -155,20 +171,38 @@ const validateWithProvider = async (
   }
 };
 
+const validateCase = async (
+  { fixture, createProvider }: ProviderCase,
+  convertLineBreaks: LineBreakConversion = (text) => text,
+): Promise<CaseDiagnostics> => {
+  const provider = createProvider();
+  return {
+    json: await validateWithProvider(provider, 'json', fixture, convertLineBreaks),
+    yaml: await validateWithProvider(provider, 'yaml', fixture, convertLineBreaks),
+  };
+};
+
 describe('api-languageservice-json-schema-providers', function () {
-  providerCases.forEach(({ fixture, expected, createProvider }) => {
+  providerCases.forEach((providerCase) => {
+    const { expected } = providerCase;
+    const expectedPath = path.join(expectedDirectory, `${expected}.json`);
+
     it(`${expected} diagnostics match the recorded baseline`, async function () {
-      const provider = createProvider();
-      const actual: CaseDiagnostics = {
-        json: await validateWithProvider(provider, 'json', fixture),
-        yaml: await validateWithProvider(provider, 'yaml', fixture),
-      };
-      const expectedPath = path.join(expectedDirectory, `${expected}.json`);
+      const actual = await validateCase(providerCase);
       if (recordExpected) {
         fs.mkdirSync(expectedDirectory, { recursive: true });
         fs.writeFileSync(expectedPath, serializeExpected(actual));
       }
       assert.deepEqual(actual, JSON.parse(fs.readFileSync(expectedPath, 'utf8')));
+    });
+
+    Object.entries(lineBreakVariants).forEach(([lineBreaks, convertLineBreaks]) => {
+      it(`${expected} diagnostics are the same with ${lineBreaks} line breaks`, async function () {
+        assert.deepEqual(
+          await validateCase(providerCase, convertLineBreaks),
+          JSON.parse(fs.readFileSync(expectedPath, 'utf8')),
+        );
+      });
     });
   });
 });
