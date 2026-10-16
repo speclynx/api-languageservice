@@ -1,21 +1,25 @@
-import YAML, { LineCounter, isMap, isSeq, Pair, Scalar } from 'yaml';
+import YAML, { LineCounter, isMap, isSeq, Pair, Scalar, YAMLMap } from 'yaml';
 import { isArray } from 'ramda-adjunct';
 
 function parseDoc(src: string) {
   const lc = new LineCounter();
+  // the resolver picks among duplicate keys itself; yaml's report of them rescans a mapping per key
   const doc = YAML.parseDocument(src, {
     keepSourceTokens: true,
+    uniqueKeys: false,
     lineCounter: lc,
   });
   return { doc, lc };
 }
+
+type PairForKey = (map: YAMLMap, key: string) => Pair | undefined;
 
 function nodeForPath(
   node: any,
   curkey: any,
   objectMember: boolean,
   p: string[],
-  lastDuplicateKey: boolean,
+  pairForKey: PairForKey,
 ): any {
   if (!p.length) {
     return {
@@ -26,15 +30,12 @@ function nodeForPath(
   }
   const key = p.shift()!.replace(/~1/g, '/').replace(/~0/g, '~');
   if (isMap(node)) {
-    const pairs = node.items.filter((it: Pair) => String((it.key as Scalar).value) === key);
-    const pair = lastDuplicateKey ? pairs[pairs.length - 1] : pairs[0];
-    return pair ? nodeForPath(pair.value, pair.key, true, p, lastDuplicateKey) : undefined;
+    const pair = pairForKey(node, key);
+    return pair ? nodeForPath(pair.value, pair.key, true, p, pairForKey) : undefined;
   }
   if (isSeq(node)) {
     const idx = Number(key);
-    return node.items[idx]
-      ? nodeForPath(node.items[idx], curkey, false, p, lastDuplicateKey)
-      : undefined;
+    return node.items[idx] ? nodeForPath(node.items[idx], curkey, false, p, pairForKey) : undefined;
   }
   return undefined;
 }
@@ -65,11 +66,28 @@ export function createPathPositionResolver(
    */
   const { doc, lc } = parseDoc(src.replace(/\r(?!\n)/g, '\n'));
 
+  // a mapping's keys are indexed when first looked up, so errors in a large mapping cost no rescans
+  const pairIndexes = new Map<YAMLMap, Map<string, Pair>>();
+  const pairForKey: PairForKey = (map, key) => {
+    let pairsByKey = pairIndexes.get(map);
+    if (!pairsByKey) {
+      pairsByKey = new Map();
+      for (const pair of map.items as Pair[]) {
+        const pairKey = String((pair.key as Scalar).value);
+        if (lastDuplicateKey || !pairsByKey.has(pairKey)) {
+          pairsByKey.set(pairKey, pair);
+        }
+      }
+      pairIndexes.set(map, pairsByKey);
+    }
+    return pairsByKey.get(key);
+  };
+
   return (path: string[]) => {
     if (!isArray(path)) {
       throw new TypeError('path should be an array of strings');
     }
-    const node = nodeForPath(doc.contents, null, false, [...path], lastDuplicateKey);
+    const node = nodeForPath(doc.contents, null, false, [...path], pairForKey);
     if (!node) {
       return invalid();
     }
