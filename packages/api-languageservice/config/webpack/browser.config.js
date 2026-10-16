@@ -12,5 +12,7 @@ export default [
     library: 'apiLanguageService',
     recoveredDirectory: path.join(here, '..', 'licenses'),
     inventoryPath: path.resolve('./THIRD-PARTY-INVENTORY.tsv'),
+    // ported into src/services/validation/providers/better-errors
+    additionalModules: ['@stoplight/better-ajv-errors'],
   }),
 ];

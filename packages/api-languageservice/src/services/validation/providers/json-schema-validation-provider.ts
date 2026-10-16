@@ -1,7 +1,6 @@
 import type { Ajv2020 } from 'ajv/dist/2020.d.ts';
 import type { Ajv } from 'ajv';
 import YAML from 'yaml';
-import betterAjvErrors from '@stoplight/better-ajv-errors';
 import { Diagnostic, DiagnosticSeverity, Position, Range } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
@@ -17,6 +16,7 @@ import {
   ValidationProviderResult,
 } from '../../../apidom-language-types.ts';
 import * as AjvUtils from './ajv-utils.ts';
+import { betterAjvErrors, BetterError } from './better-errors/index.ts';
 import { isJsonDoc } from '../../../utils/utils.ts';
 
 export type {
@@ -203,16 +203,13 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
       const positionForPath = createPathPositionResolver(originalDocument, {
         lastDuplicateKey: !isYaml,
       });
-      let betterErrors: betterAjvErrors.IOutputError[];
+      let betterErrors: BetterError[];
       if (validateFunction.errors) {
         const validationErrors = validateFunction.errors.filter(
           JsonSchemaValidationProvider.isRelevantError,
         );
         if (validationContext?.betterAjvErrors) {
-          betterErrors = betterAjvErrors(this.jsonSchema, validationErrors, {
-            propertyPath: [],
-            targetValue: jsonDoc,
-          });
+          betterErrors = betterAjvErrors(validationErrors, jsonDoc);
           betterErrors.forEach((error) => {
             if (
               validationContext &&

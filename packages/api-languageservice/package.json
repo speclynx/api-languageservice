@@ -169,6 +169,7 @@
     "@speclynx/apidom-reference": "^6.0.6",
     "@speclynx/apidom-traverse": "^6.0.6",
     "@swaggerexpert/arazzo-runtime-expression": "^3.3.0",
+    "@swaggerexpert/json-pointer": "^3.0.2",
     "@swaggerexpert/jsonpath": "^4.0.4",
     "@types/ramda": "~0.32.0",
     "openapi-path-templating": "^2.2.1",
@@ -181,12 +182,12 @@
     "yaml": "^2.9.1"
   },
   "optionalDependencies": {
-    "@stoplight/better-ajv-errors": "^1.0.3",
     "ajv": "^8.17.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
+    "@stoplight/better-ajv-errors": "1.0.3",
     "@types/emscripten": "^1.41.6"
   },
   "files": [
