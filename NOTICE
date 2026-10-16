@@ -29,6 +29,22 @@ license in https://github.com/stoplightio/better-ajv-errors repository.
 The file has been modified. All modifications are licensed under Apache 2.0 License.
 Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
 
+Ajv
+Copyright (c) 2015-2021 Evgeny Poberezkin
+The files in packages/api-languageservice/src/services/validation/json-schema/validators are generated
+by Ajv, created under MIT license in https://github.com/ajv-validator/ajv repository, from the JSON
+Schemas in packages/api-languageservice/src/services/validation/json-schema.
+The file packages/api-languageservice/src/services/validation/json-schema/runtime/ucs2length.ts
+was copied from version 8.20.0 of Ajv.
+Copy of the MIT license can be found in `LICENSES/MIT.txt` file.
+
+fast-deep-equal
+Copyright (c) 2017 Evgeny Poberezkin
+The file packages/api-languageservice/src/services/validation/json-schema/runtime/equal.ts
+was copied from version 3.1.3 of the fast-deep-equal package, created under MIT license in
+https://github.com/epoberezkin/fast-deep-equal repository.
+Copy of the MIT license can be found in `LICENSES/MIT.txt` file.
+
 OpenAPI Specification 2.0
 Copyright The Linux Foundation
 Fragments of the specification text are embedded in packages/api-languageservice/src/config/openapi.

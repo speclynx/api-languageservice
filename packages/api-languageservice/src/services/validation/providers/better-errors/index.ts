@@ -13,7 +13,11 @@
 import { getByPointer } from './json-pointer.ts';
 import { levenshtein } from './levenshtein.ts';
 
-/** The fields of an Ajv error object the formatter reads. */
+/**
+ * The fields of an Ajv error object the formatter reads.
+ *
+ * @public
+ */
 export interface AjvErrorObject {
   keyword: string;
   instancePath: string;

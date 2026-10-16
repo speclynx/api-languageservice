@@ -11,7 +11,11 @@ export {
   isStringElement,
 } from '@speclynx/apidom-datamodel';
 
-export type { JsonSchemaValidationProvider } from './services/validation/providers/json-schema-validation-provider.ts';
+export type {
+  AjvErrorObject,
+  JsonSchemaValidateFunction,
+  JsonSchemaValidationProvider,
+} from './services/validation/providers/json-schema-validation-provider.ts';
 export { OpenAPi20JsonSchemaValidationProvider } from './services/validation/providers/openapi-20-json-schema-validation-provider.ts';
 export { OpenAPi30JsonSchemaValidationProvider } from './services/validation/providers/openapi-30-json-schema-validation-provider.ts';
 export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/providers/openapi-31-json-schema-validation-provider.ts';

@@ -1,4 +1,4 @@
-import arazzoSchema from '../json-schema/arazzo-1/arazzo-schema-2025-10-15.json' with { type: 'json' };
+import validateArazzo10 from '../json-schema/validators/arazzo-1-0.ts';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -52,13 +52,8 @@ export type {
  * @public
  */
 export class Arazzo1JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
-  public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
-    // default to OAI provided Arazzo 1.0 schema
-    if (!jsonSchema) {
-      super(true, arazzoSchema);
-    } else {
-      super(ajv2020, jsonSchema);
-    }
+  public constructor() {
+    super(validateArazzo10);
   }
 
   break(): boolean {

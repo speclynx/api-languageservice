@@ -1,4 +1,4 @@
-import asyncapiSchemaJson from '../json-schema/async-api-20/asyncapi-schema.json' with { type: 'json' };
+import validateAsyncapi20 from '../json-schema/validators/asyncapi-2-0.ts';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -54,7 +54,7 @@ export type {
 // TODO separate providers for OAS 3.1 and 3.0
 export class Asyncapi20JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
   public constructor() {
-    super(false, asyncapiSchemaJson);
+    super(validateAsyncapi20);
   }
 
   break(): boolean {

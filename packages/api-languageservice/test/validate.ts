@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { assert } from 'chai';
+import { Ajv } from 'ajv';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Diagnostic, DiagnosticSeverity, CodeAction } from 'vscode-languageserver-types';
 import { fileURLToPath } from 'node:url';
@@ -9,9 +10,11 @@ import getLanguageService from '../src/apidom-language-service.ts';
 import {
   LanguageService,
   LanguageServiceContext,
+  NamespaceVersion,
   ValidationContext,
 } from '../src/apidom-language-types.ts';
 import { metadata } from './metadata.ts';
+import { JsonSchemaValidationProvider } from '../src/services/validation/providers/json-schema-validation-provider.ts';
 import { OpenAPi31JsonSchemaValidationProvider } from '../src/services/validation/providers/openapi-31-json-schema-validation-provider.ts';
 import { Asyncapi20JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-20-json-schema-validation-provider.ts';
 import { Asyncapi21JsonSchemaValidationProvider } from '../src/services/validation/providers/asyncapi-21-json-schema-validation-provider.ts';
@@ -20,6 +23,30 @@ import openapiSchemaJson30 from '../src/services/validation/json-schema/open-api
 import { logPerformance, logLevel } from './test-utils.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// a schema of your own, compiled with your own Ajv, as the README's "Migrating to 3.0" shows
+class ModifiedSchemaValidationProvider extends JsonSchemaValidationProvider {
+  public constructor() {
+    super(
+      new Ajv({ allErrors: true, strict: false, validateFormats: false }).compile(
+        openapiSchemaJson30,
+      ),
+    );
+  }
+
+  break(): boolean {
+    return false;
+  }
+
+  namespaces(): NamespaceVersion[] {
+    return [{ namespace: 'openapi', version: '3.1.0' }];
+  }
+
+  // the name of the provider it stands in for, so its diagnostics read the same
+  name(): string {
+    return 'OpenAPI 3.1 Schema';
+  }
+}
 
 const specOpenapiSimple = fs
   .readFileSync(path.join(__dirname, 'fixtures', 'ajv-simple-api.json'))
@@ -56,10 +83,7 @@ describe('api-languageservice-validate', function () {
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
   const async21JsonSchemavalidationProvider = new Asyncapi21JsonSchemaValidationProvider();
   const async22JsonSchemavalidationProvider = new Asyncapi22JsonSchemaValidationProvider();
-  const oasJsonSchemavalidationProvider30 = new OpenAPi31JsonSchemaValidationProvider(
-    openapiSchemaJson30,
-    false,
-  );
+  const oasJsonSchemavalidationProvider30 = new ModifiedSchemaValidationProvider();
 
   const context: LanguageServiceContext = {
     metadata: metadata(),
