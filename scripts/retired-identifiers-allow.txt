@@ -25,4 +25,4 @@ speclynx/apidom\)	Links to the upstream ApiDOM repository.
 SpecLynx ApiDOM	The upstream project, named in full.
 ApiDOM (tree|ecosystem|element|elem)	The upstream document model, as a domain term.
 apidom only	A parenthetical about upstream ApiDOM behaviour in the rules documentation.
-^NOTICE:(55|57):	The NOTICE attribution for the upstream ApiDOM project.
+^NOTICE:(63|65):	The NOTICE attribution for the upstream ApiDOM project.
