@@ -1,4 +1,4 @@
-import asyncapiSchemaJson from '../json-schema/async-api-26/asyncapi-schema.json' with { type: 'json' };
+import validateAsyncapi26 from '../json-schema/validators/asyncapi-2-6.ts';
 import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
 import { NamespaceVersion } from '../../../apidom-language-types.ts';
 
@@ -53,7 +53,7 @@ export type {
  */
 export class Asyncapi26JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
   public constructor() {
-    super(false, asyncapiSchemaJson);
+    super(validateAsyncapi26);
   }
 
   break(): boolean {

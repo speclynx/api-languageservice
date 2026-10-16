@@ -135,3 +135,25 @@ jobs:
         run: npm run build
       - name: Resolve every advertised export against the packed tarballs
         run: ./scripts/check-package-contract.sh
+
+  check-generated-validators:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26.3.1
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - name: Install dependencies
+        run: npm ci --engine-strict=false
+      - name: Generate the JSON Schema validators
+        run: npm run generate:validators --workspace @speclynx/api-languageservice
+      # intent-to-add makes a validator that was never committed show up in the diff
+      - name: Fail when the committed validators differ from the generated ones
+        run: |
+          validators=packages/api-languageservice/src/services/validation/json-schema/validators
+          git add --intent-to-add "$validators"
+          git diff --exit-code --stat -- "$validators"

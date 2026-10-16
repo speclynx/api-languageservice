@@ -3,10 +3,13 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
 import { detectionRegExp } from '@speclynx/apidom-parser-adapter-overlay-yaml-1';
 
-import overlay10Schema from '../json-schema/overlay-1/overlay-1.0-schema.json' with { type: 'json' };
-import overlay11Schema from '../json-schema/overlay-1/overlay-1.1-schema.json' with { type: 'json' };
-import overlay12Schema from '../json-schema/overlay-1/overlay-1.2-schema.json' with { type: 'json' };
-import { JsonSchemaValidationProvider } from './json-schema-validation-provider.ts';
+import validateOverlay10 from '../json-schema/validators/overlay-1-0.ts';
+import validateOverlay11 from '../json-schema/validators/overlay-1-1.ts';
+import validateOverlay12 from '../json-schema/validators/overlay-1-2.ts';
+import {
+  JsonSchemaValidateFunction,
+  JsonSchemaValidationProvider,
+} from './json-schema-validation-provider.ts';
 import {
   NamespaceVersion,
   ValidationContext,
@@ -61,12 +64,13 @@ export type {
 } from '../../../apidom-language-types.ts';
 
 /**
- * Validates with one fixed schema under the deprecated provider's name. Each schema gets its own
- * instance, so concurrent validations never share a mutable schema.
+ * Validates with one fixed validation function under the deprecated provider's name. Each Overlay
+ * version gets its own instance rather than one instance switching functions per document, so
+ * concurrent validations cannot interfere.
  */
 class Overlay1SchemaDelegate extends JsonSchemaValidationProvider {
-  public constructor(ajv2020: boolean, jsonSchema: Record<string, unknown>) {
-    super(ajv2020, jsonSchema);
+  public constructor(validateFunction: JsonSchemaValidateFunction) {
+    super(validateFunction);
   }
 
   break(): boolean {
@@ -84,7 +88,7 @@ class Overlay1SchemaDelegate extends JsonSchemaValidationProvider {
 
 /**
  * Validates Overlay 1.0, 1.1 and 1.2 documents, picking the OAI provided schema matching the
- * document's `overlay` version. A schema passed to the constructor is used for every version.
+ * document's `overlay` version.
  *
  * @deprecated Use the version specific `Overlay10JsonSchemaValidationProvider`,
  * `Overlay11JsonSchemaValidationProvider` or `Overlay12JsonSchemaValidationProvider` instead.
@@ -93,21 +97,14 @@ class Overlay1SchemaDelegate extends JsonSchemaValidationProvider {
  * @public
  */
 export class Overlay1JsonSchemaValidationProvider extends JsonSchemaValidationProvider {
-  private readonly customSchemaDelegate?: Overlay1SchemaDelegate;
-
   private readonly versionDelegates: Record<'1.0' | '1.1' | '1.2', Overlay1SchemaDelegate>;
 
-  public constructor(jsonSchema?: Record<string, unknown>, ajv2020 = false) {
-    if (!jsonSchema) {
-      super(true, overlay12Schema);
-    } else {
-      super(ajv2020, jsonSchema);
-      this.customSchemaDelegate = new Overlay1SchemaDelegate(ajv2020, jsonSchema);
-    }
+  public constructor() {
+    super(validateOverlay12);
     this.versionDelegates = {
-      '1.0': new Overlay1SchemaDelegate(true, overlay10Schema),
-      '1.1': new Overlay1SchemaDelegate(true, overlay11Schema),
-      '1.2': new Overlay1SchemaDelegate(true, overlay12Schema),
+      '1.0': new Overlay1SchemaDelegate(validateOverlay10),
+      '1.1': new Overlay1SchemaDelegate(validateOverlay11),
+      '1.2': new Overlay1SchemaDelegate(validateOverlay12),
     };
   }
 
@@ -117,9 +114,9 @@ export class Overlay1JsonSchemaValidationProvider extends JsonSchemaValidationPr
     validationContext?: ValidationContext,
     api?: Element,
   ): Promise<ValidationProviderResult> {
-    const delegate =
-      this.customSchemaDelegate ??
-      this.versionDelegate(Overlay1JsonSchemaValidationProvider.specVersion(textDocument, api));
+    const delegate = this.versionDelegate(
+      Overlay1JsonSchemaValidationProvider.specVersion(textDocument, api),
+    );
     return delegate.doValidation(textDocument, currentDiagnostics, validationContext, api);
   }
 

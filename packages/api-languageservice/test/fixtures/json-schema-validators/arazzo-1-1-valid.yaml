@@ -1,0 +1,33 @@
+arazzo: 1.1.0
+$self: https://example.com/arazzo/pet-workflow.yaml
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.0
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+  - name: petEvents
+    type: asyncapi
+    url: ./pet-events-asyncapi.yaml
+workflows:
+  - workflowId: get-pet-workflow
+    steps:
+      - stepId: get-pet
+        operationId: $sourceDescriptions.petStore.getPetById
+        timeout: 5000
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          petName:
+            context: $response.body
+            selector: $.name
+            type: jsonpath
+      - stepId: watch-pet
+        channelPath: $sourceDescriptions.petEvents.channels.petUpdated
+        action: receive
+        correlationId: $response.header.correlation-id
+        dependsOn:
+          - get-pet
+        successCriteria:
+          - condition: $statusCode == 200

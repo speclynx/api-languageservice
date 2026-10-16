@@ -145,10 +145,20 @@ enough reason to take them:
   `eslint.config.js`. It buys nothing, because the 11 line accepts `eslint >=9` and so works
   with eslint 10 already.
 
+The JSON Schema validators in `src/services/validation/json-schema/validators/` are generated, not
+written: `npm run generate:validators` in the package compiles the embedded schemas with Ajv's
+standalone code generator (`scripts/generate-json-schema-validators.mjs`). `ajv`, `ajv-errors` and
+`ajv-formats` are exact-pinned devDependencies for the generator, and `fast-deep-equal` for the
+notices; the package installs none of them. Changing a schema or bumping `ajv`, `ajv-errors` or
+`ajv-formats` needs the validators regenerated and committed in the same PR, or the
+`check-generated-validators` CI job fails. The generated code imports two helpers copied into
+`json-schema/runtime/` from `ajv` and `fast-deep-equal`; a bump of either means comparing the copies
+with the new release, and updating the versions NOTICE names.
+
 `overrides` in the root `package.json` pins transitives away from advisories — `smol-toml` is
 there because no released nx carries a patched version. Entries are exact and stay on the major
 the tree expects, so a newer advisory raises a fresh alert rather than being silently absorbed.
 
 ## CI/CD
 
-Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search and package-contract check on PRs), `release.yml` (manual publish to npm via lerna, which derives the version from conventional commits; same shape as the SpecLynx ApiDOM release workflow), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.
+Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search, package-contract check and generated-validator drift check on PRs), `release.yml` (manual publish to npm via lerna, which derives the version from conventional commits; same shape as the SpecLynx ApiDOM release workflow), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.
