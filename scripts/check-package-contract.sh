@@ -26,10 +26,21 @@ cd "$root"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
-echo "check-package-contract: packing the package"
-npm pack --json --pack-destination "$work" \
-  --workspace @speclynx/api-languageservice \
-  > "$work/pack.json"
+# Set PUBLISHED_VERSION and the check runs on the archive the registry serves
+# for that version instead of a fresh pack. That is how a release checks what
+# it published, which is not what npm pack makes here: Lerna writes the release
+# commit into the manifest as gitHead before it packs.
+if [ -n "${PUBLISHED_VERSION:-}" ]; then
+  echo "check-package-contract: fetching version $PUBLISHED_VERSION from the registry"
+  npm pack --json --pack-destination "$work" \
+    "@speclynx/api-languageservice@$PUBLISHED_VERSION" \
+    > "$work/pack.json"
+else
+  echo "check-package-contract: packing the package"
+  npm pack --json --pack-destination "$work" \
+    --workspace @speclynx/api-languageservice \
+    > "$work/pack.json"
+fi
 
 consumer="$work/consumer"
 mkdir "$consumer"
@@ -49,8 +60,17 @@ done < <(node -e '
   for (const entry of report) console.log(entry.filename);
 ' "$work/pack.json")
 
+# A published version is installed from the registry, which npm checks against
+# the integrity of the archive fetched above, so that the consumer's tree, and
+# the SBOM read from it, record where the archive is served.
+if [ -n "${PUBLISHED_VERSION:-}" ]; then
+  install_targets=("@speclynx/api-languageservice@$PUBLISHED_VERSION")
+else
+  install_targets=("${archives[@]}")
+fi
+
 echo "check-package-contract: installing ${#archives[@]} archive(s) into a scratch consumer"
-npm install --prefix "$consumer" --engine-strict=false --no-audit --no-fund "${archives[@]}"
+npm install --prefix "$consumer" --engine-strict=false --no-audit --no-fund "${install_targets[@]}"
 
 cp scripts/package-contract-probe.mjs "$consumer/probe.mjs"
 ( cd "$consumer" && node probe.mjs "$work/pack.json" )
@@ -81,7 +101,7 @@ echo "check-package-contract: type-checking every advertised subpath"
 # the workspace lockfile resolved. Set SBOM_TO to a file and it is written there.
 if [ -n "${SBOM_TO:-}" ]; then
   ( cd "$consumer" && npm sbom --sbom-format cyclonedx ) > "$work/consumer-sbom.json"
-  node scripts/complete-sbom.mjs "$work/consumer-sbom.json" "$SBOM_TO"
+  node scripts/complete-sbom.mjs "$work/consumer-sbom.json" "$consumer" "$work/pack.json" "$SBOM_TO"
 fi
 
 # The checksums of the archives this run verified, rather than of a second pack

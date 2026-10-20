@@ -86,11 +86,14 @@ standardized method for declaring copyright and licensing for software projects.
 
 Every release attaches a [CycloneDX](https://cyclonedx.org/) SBOM of
 `@speclynx/api-languageservice` to its
-[GitHub release](https://github.com/speclynx/api-languageservice/releases). It is generated from
-the packed package installed the way a consumer installs it, so it lists the dependency tree that
-installing the release brought in when it was published. The files the package copied or ported
-from other packages are components of their own in it, and their pedigree names the package and
-version each came from.
+[GitHub release](https://github.com/speclynx/api-languageservice/releases). It is generated after
+publishing, from the published package installed from the registry the way a consumer installs
+it, so its subject carries the URL and hash the registry serves for that version, and it lists
+the dependency tree that installing the release brought in at that moment. The code the package
+contains, rather than installs, is listed inside the package. That covers the files it copied or
+ported from other packages, whose pedigree names the package and version each came from. It also
+covers the packages embedded in its browser bundle, `dist/api-languageservice.browser.min.js`, at
+the versions the bundle was built with, which can differ from the ones a consumer installs.
 
 An SBOM of the whole repository, development dependencies included, is available from its
 [dependency graph](https://github.com/speclynx/api-languageservice/network/dependencies): click
