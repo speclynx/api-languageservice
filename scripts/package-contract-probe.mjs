@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 
 /**
@@ -154,6 +155,69 @@ const checkBrowserGlobal = (name, globalName) => {
 };
 
 /**
+ * The components a dependency policy scan flagged and the package stopped
+ * depending on: Ajv, which needs the end-of-life require-from-string, and
+ * components older than five years. A consumer's install must not contain any
+ * of them again, whichever dependency would bring one back.
+ */
+const deniedDependencies = [
+  'ajv',
+  'require-from-string',
+  '@stoplight/better-ajv-errors',
+  'json-source-map',
+  'leven',
+  'jsonpointer',
+  'process',
+];
+
+const checkDeniedDependencies = () => {
+  // npm ls exits non-zero on tree problems such as an unmet optional peer, and
+  // still prints the tree
+  let tree;
+  try {
+    tree = execFileSync('npm', ['ls', '--all', '--json'], { encoding: 'utf8' });
+  } catch (error) {
+    tree = error.stdout;
+  }
+
+  const visit = (dependencies, trail) => {
+    for (const [dependencyName, node] of Object.entries(dependencies ?? {})) {
+      // a peer or optional dependency npm did not install
+      if (node.missing || node.version === undefined) continue;
+      const dependencyPath = [...trail, `${dependencyName}@${node.version}`];
+      check(
+        !deniedDependencies.includes(dependencyName),
+        `the install contains ${dependencyName}, which the dependency policy denies: ${dependencyPath.join(' > ')}`,
+      );
+      visit(node.dependencies, dependencyPath);
+    }
+  };
+  visit(JSON.parse(tree).dependencies, []);
+};
+
+/**
+ * The packages whose code the package contains without depending on them:
+ * Ajv generated the JSON Schema validators, its runtime helpers and
+ * fast-deep-equal are copied beside them, and the error formatter is ported
+ * from @stoplight/better-ajv-errors. The notices shipped with the package must
+ * keep crediting them.
+ */
+const creditedOrigins = ['ajv', 'fast-deep-equal', '@stoplight/better-ajv-errors'];
+
+const checkNotices = (name) => {
+  const noticesLines = fs
+    .readFileSync(path.join('node_modules', name, 'dist', 'THIRD-PARTY-NOTICES.txt'), 'utf8')
+    .split('\n');
+
+  for (const origin of creditedOrigins) {
+    check(
+      noticesLines.some((line) => line.startsWith(`${origin}@`)),
+      `${name}: dist/THIRD-PARTY-NOTICES.txt does not credit ${origin}, whose code the package contains`,
+    );
+  }
+};
+
+/**
  * A TypeScript source importing every advertised subpath, for tsc to resolve
  * and check against the declarations in the installed packages.
  */
@@ -188,6 +252,12 @@ for (const name of packages) {
 
 checkBrowserGlobal('@speclynx/api-languageservice', 'apiLanguageService');
 
+for (const name of packages) {
+  checkNotices(name);
+}
+
+checkDeniedDependencies();
+
 writeTypeProbe(packages);
 
 if (failures.length > 0) {
@@ -198,5 +268,6 @@ if (failures.length > 0) {
 
 console.log(
   `check-package-contract: ${packages.length} package(s), every advertised export resolves ` +
-    'through import, require and tsc, and every browser bundle defines its global.',
+    'through import, require and tsc, every browser bundle defines its global, the notices ' +
+    'credit the code copied in, and the install contains no denied dependency.',
 );

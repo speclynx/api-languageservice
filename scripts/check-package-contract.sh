@@ -14,7 +14,9 @@
 # never contained.
 #
 # The archive is installed rather than inspected, because the point is what a
-# consumer receives.
+# consumer receives. That includes the dependency tree: the install must not
+# contain a component the dependency policy denies, and the notices must credit
+# the code copied in from packages it no longer contains.
 
 set -euo pipefail
 
