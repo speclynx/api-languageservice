@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/speclynx/api-languageservice/compare/v2.14.0...v3.0.0) (2026-10-20)
+
+- feat(validation)!: ship precompiled JSON Schema validators ([d0fb667](https://github.com/speclynx/api-languageservice/commit/d0fb667e0ba24eade26b8d98c618847ca71c3777))
+
+### Bug Fixes
+
+- **deps:** move @types/ramda to devDependencies ([4cb4981](https://github.com/speclynx/api-languageservice/commit/4cb4981cba2f968677d74f221bf31740a20ca877))
+- **validation:** compile the AsyncAPI 2.3 to 2.6 schemas ([66d537f](https://github.com/speclynx/api-languageservice/commit/66d537f0e02fd6412a510589a1f82071e44f7aef))
+- **validation:** resolve JSON positions without json-source-map ([cd8c54d](https://github.com/speclynx/api-languageservice/commit/cd8c54d8b6b5ae99902c2b11d23f8b636645f1b9))
+- **validation:** resolve positions in documents with lone CR breaks ([4d50431](https://github.com/speclynx/api-languageservice/commit/4d50431d7f520cc8076910d190ca4437e5d865c0))
+
+### Performance Improvements
+
+- **validation:** look up mapping keys in linear time ([c117d13](https://github.com/speclynx/api-languageservice/commit/c117d13767e7004c2a7b525da5d59ae04a9e2090))
+- **validation:** stop keeping yaml source tokens for positions ([a25b8af](https://github.com/speclynx/api-languageservice/commit/a25b8af525aa83169706534f99a9e7a553b7d064))
+- **validation:** trim and size the edit distance like leven did ([0836e64](https://github.com/speclynx/api-languageservice/commit/0836e64d680884e2d13cf9f19e49bb274026aef8))
+
+### BREAKING CHANGES
+
+- the JSON Schema validation providers no longer accept
+  a schema of their own. The OpenAPI 2.0, 3.0 and 3.1, Arazzo 1.0 and 1.1
+  and Overlay providers take no constructor arguments, and
+  JsonSchemaValidationProvider takes a validation function instead of a
+  schema and no longer exposes its ajv, ajv2020 and jsonSchema fields. To
+  validate against a schema of your own, compile it with your own Ajv and
+  pass the function to a subclass of JsonSchemaValidationProvider, as the
+  README's "Migrating to 3.0" section shows.
+
 # [2.14.0](https://github.com/speclynx/api-languageservice/compare/v2.13.2...v2.14.0) (2026-10-15)
 
 ### Features
