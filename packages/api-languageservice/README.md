@@ -174,7 +174,7 @@ const languageService = getLanguageService({
 
 From 3.0 the JSON Schema validation providers check documents with validation functions that Ajv generated when the package was built, so the package no longer installs Ajv and compiles no schema at runtime. The diagnostics are unchanged. The providers no longer accept a schema of your own: `OpenAPi20JsonSchemaValidationProvider`, `OpenAPi30JsonSchemaValidationProvider`, `OpenAPi31JsonSchemaValidationProvider`, `Arazzo1JsonSchemaValidationProvider`, `Arazzo11JsonSchemaValidationProvider` and the Overlay providers, the deprecated `Overlay1JsonSchemaValidationProvider` included, take no constructor arguments, and `JsonSchemaValidationProvider` no longer gives subclasses its `ajv`, `ajv2020` and `jsonSchema` fields.
 
-To keep validating against a schema of your own, compile it with your own Ajv and pass the function to a subclass of `JsonSchemaValidationProvider`. The options below are the ones this package compiles its schemas with: every error is reported, and `format` is not checked. Add the schemas yours references by `$id` with `addSchema` before compiling it, and register `ajv-errors` if it uses `errorMessage`.
+To keep validating against a schema of your own, compile it with your own Ajv and pass the function to a subclass of `JsonSchemaValidationProvider`. With the options below, Ajv checks documents as the package's own validators do, and as the providers checked a schema of your own before 3.0: every error is reported, `format` is not checked, and the regular expressions of `pattern` and `patternProperties` are compiled without Unicode mode. Keep `unicodeRegExp: false` in particular. Without it, Ajv rejects patterns with escapes such as `\_`, which JavaScript otherwise reads as the plain character, and `.` matches a character outside the Basic Multilingual Plane, such as an emoji, where it matched only half of one before. Add the schemas yours references by `$id` with `addSchema` before compiling it, and register `ajv-errors` if it uses `errorMessage`.
 
 ```typescript
 import { Ajv2020 } from 'ajv/dist/2020.js';
@@ -185,7 +185,14 @@ import schema from './my-openapi-3.1-schema.json' with { type: 'json' };
 
 class MyOpenApi31SchemaValidationProvider extends JsonSchemaValidationProvider {
   constructor() {
-    super(new Ajv2020({ allErrors: true, strict: false, validateFormats: false }).compile(schema));
+    super(
+      new Ajv2020({
+        allErrors: true,
+        strict: false,
+        validateFormats: false,
+        unicodeRegExp: false,
+      }).compile(schema),
+    );
   }
 
   break(): boolean {
