@@ -95,3 +95,37 @@ version each came from.
 An SBOM of the whole repository, development dependencies included, is available from its
 [dependency graph](https://github.com/speclynx/api-languageservice/network/dependencies): click
 `Export SBOM` to download it in [SPDX format](https://spdx.dev/).
+
+## Dependency policy and supply chain
+
+`@speclynx/api-languageservice` does not depend at runtime on components that are end-of-life or
+unmaintained, and it has no optional dependencies: an integration that not every consumer needs
+would be an optional peer dependency, which npm does not install unless asked. Code taken from
+another package is copied with its licence header and credited in [NOTICE](NOTICE), in
+`dist/THIRD-PARTY-NOTICES.txt` and in the SBOM. At present that is Ajv's `ucs2length` and
+`fast-deep-equal`, which the JSON Schema validators Ajv generates at build time use, and the error
+formatter ported from `@stoplight/better-ajv-errors`.
+
+On every pull request, CI installs the packed package into a scratch project and fails if its tree
+contains a component that a dependency policy scan has flagged before, Ajv among them; the list is
+in [`scripts/package-contract-probe.mjs`](scripts/package-contract-probe.mjs). Policy findings are
+triaged for every release.
+
+Releases are published from GitHub Actions with npm provenance. To verify the registry signatures
+and provenance attestations of the packages installed in a project, run:
+
+```sh
+npm audit signatures
+```
+
+### Accepted finding: Axios
+
+`@speclynx/apidom-reference` resolves HTTP references with Axios, which supports the HTTP proxies
+and custom agents enterprise networks need, so Axios stays. Policy scans that flag components
+older than five years report some of its dependencies; the finding concerns their age, not a
+known vulnerability. As of October 2026 these are `asynckit@0.4.0`, `combined-stream@1.0.8` and
+`delayed-stream@1.0.0`, through `form-data@4.0.6`, and `agent-base@6.0.2` and `ms@2.1.3`, through
+`https-proxy-agent@5.0.1`. `mime-db@1.52.0`, `mime-types@2.1.35` and `https-proxy-agent@5.0.1`
+itself reach five years between February and April 2027. A waiver for this finding should name
+the components as the scan report lists them, which can be these dependencies rather than `axios`
+itself.
