@@ -170,29 +170,48 @@ const deniedDependencies = [
   'process',
 ];
 
-const checkDeniedDependencies = () => {
-  // npm ls exits non-zero on tree problems such as an unmet optional peer, and
-  // still prints the tree
-  let tree;
+const checkDeniedDependencies = (names) => {
+  // npm ls exits non-zero on problems in the tree, such as an invalid version,
+  // and still prints the tree. --long adds the name from each package's own
+  // manifest, which differs from the name it is installed under when a
+  // dependency is an npm alias. Without a current hidden lockfile npm prints
+  // every manifest whole, which can exceed the default buffer of 1 MB.
+  let listing;
   try {
-    tree = execFileSync('npm', ['ls', '--all', '--json'], { encoding: 'utf8' });
+    listing = execFileSync('npm', ['ls', '--all', '--long', '--json'], {
+      encoding: 'utf8',
+      maxBuffer: Infinity,
+    });
   } catch (error) {
-    tree = error.stdout;
+    listing = error.stdout;
   }
+  const tree = JSON.parse(listing);
+
+  // an error that keeps npm from reading the tree prints no tree, which would
+  // otherwise pass as one without denied dependencies
+  const unlisted = names.filter((name) => tree.dependencies?.[name] === undefined);
+  check(
+    unlisted.length === 0,
+    `npm ls does not list ${unlisted.join(', ')}, so the dependency policy could not be checked: ${tree.error?.summary ?? 'npm reported no error'}`,
+  );
 
   const visit = (dependencies, trail) => {
     for (const [dependencyName, node] of Object.entries(dependencies ?? {})) {
       // a peer or optional dependency npm did not install
       if (node.missing || node.version === undefined) continue;
-      const dependencyPath = [...trail, `${dependencyName}@${node.version}`];
+      const installed = `${node.name}@${node.version}`;
+      const dependencyPath = [
+        ...trail,
+        dependencyName === node.name ? installed : `${dependencyName}@npm:${installed}`,
+      ];
       check(
-        !deniedDependencies.includes(dependencyName),
-        `the install contains ${dependencyName}, which the dependency policy denies: ${dependencyPath.join(' > ')}`,
+        !deniedDependencies.includes(node.name),
+        `the install contains ${node.name}, which the dependency policy denies: ${dependencyPath.join(' > ')}`,
       );
       visit(node.dependencies, dependencyPath);
     }
   };
-  visit(JSON.parse(tree).dependencies, []);
+  visit(tree.dependencies, []);
 };
 
 /**
@@ -256,7 +275,7 @@ for (const name of packages) {
   checkNotices(name);
 }
 
-checkDeniedDependencies();
+checkDeniedDependencies(packages);
 
 writeTypeProbe(packages);
 
