@@ -156,9 +156,10 @@ const checkBrowserGlobal = (name, globalName) => {
 
 /**
  * The components a dependency policy scan flagged and the package stopped
- * depending on: Ajv, which needs the end-of-life require-from-string, and
- * components older than five years. A consumer's install must not contain any
- * of them again, whichever dependency would bring one back.
+ * depending on: Ajv, which needs the end-of-life require-from-string,
+ * components older than five years, and the Ramda types, which consumers never
+ * needed. A consumer's install must not contain any of them again, whichever
+ * dependency would bring one back.
  */
 const deniedDependencies = [
   'ajv',
@@ -168,6 +169,9 @@ const deniedDependencies = [
   'leven',
   'jsonpointer',
   'process',
+  '@types/ramda',
+  'types-ramda',
+  'ts-toolbelt',
 ];
 
 const checkDeniedDependencies = (names) => {
