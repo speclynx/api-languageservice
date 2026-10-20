@@ -25,13 +25,19 @@ import { logPerformance, logLevel } from './test-utils.ts';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // a schema of your own, compiled with your own Ajv, as the README's "Migrating to 3.0" shows
-class ModifiedSchemaValidationProvider extends JsonSchemaValidationProvider {
-  public constructor() {
+class OwnSchemaValidationProvider extends JsonSchemaValidationProvider {
+  private readonly providerName: string;
+
+  public constructor(jsonSchema: Record<string, unknown>, providerName: string) {
     super(
-      new Ajv({ allErrors: true, strict: false, validateFormats: false }).compile(
-        openapiSchemaJson30,
-      ),
+      new Ajv({
+        allErrors: true,
+        strict: false,
+        validateFormats: false,
+        unicodeRegExp: false,
+      }).compile(jsonSchema),
     );
+    this.providerName = providerName;
   }
 
   break(): boolean {
@@ -42,9 +48,8 @@ class ModifiedSchemaValidationProvider extends JsonSchemaValidationProvider {
     return [{ namespace: 'openapi', version: '3.1.0' }];
   }
 
-  // the name of the provider it stands in for, so its diagnostics read the same
   name(): string {
-    return 'OpenAPI 3.1 Schema';
+    return this.providerName;
   }
 }
 
@@ -83,7 +88,11 @@ describe('api-languageservice-validate', function () {
   const asyncJsonSchemavalidationProvider = new Asyncapi20JsonSchemaValidationProvider();
   const async21JsonSchemavalidationProvider = new Asyncapi21JsonSchemaValidationProvider();
   const async22JsonSchemavalidationProvider = new Asyncapi22JsonSchemaValidationProvider();
-  const oasJsonSchemavalidationProvider30 = new ModifiedSchemaValidationProvider();
+  // named after the provider it stands in for, so its diagnostics read the same
+  const oasJsonSchemavalidationProvider30 = new OwnSchemaValidationProvider(
+    openapiSchemaJson30,
+    'OpenAPI 3.1 Schema',
+  );
 
   const context: LanguageServiceContext = {
     metadata: metadata(),
@@ -899,6 +908,85 @@ describe('api-languageservice-validate', function () {
     assert.deepEqual(result, expected as Diagnostic[]);
     languageService.terminate();
   });
+
+  it('test validation for openapi with own schema keeps 2.x patterns', async function () {
+    /*
+    Before 3.0 the providers compiled a schema of your own without Unicode mode, which the README's
+    options keep: `\_` is a valid escape, and `.` matches one UTF-16 code unit, half of an emoji.
+    In Unicode mode the schema would not compile, and the emoji would match `^.$`.
+     */
+    const ownSchemaProvider = new OwnSchemaValidationProvider(
+      {
+        type: 'object',
+        properties: {
+          info: {
+            type: 'object',
+            properties: {
+              'x-icon': { type: 'string', pattern: '^.$' },
+              'x-owners': { type: 'array', items: { type: 'string', pattern: '^[a-z\\_]+$' } },
+            },
+          },
+        },
+      },
+      'Own OpenAPI 3.1 Schema',
+    );
+    const languageService: LanguageService = getLanguageService({
+      ...context,
+      validatorProviders: [ownSchemaProvider],
+    });
+    const docOpenapi = TextDocument.create(
+      'foo://bar/own-schema.json',
+      'json',
+      0,
+      JSON.stringify(
+        {
+          openapi: '3.1.0',
+          info: {
+            title: 'Pets',
+            version: '1.0.0',
+            'x-icon': '😀',
+            'x-owners': ['pets_team', 'pets team'],
+          },
+          paths: {},
+        },
+        null,
+        2,
+      ),
+    );
+
+    for (const betterAjvErrors of [false, true]) {
+      const result = await languageService.doValidation(docOpenapi, { betterAjvErrors });
+      const ownSchemaDiagnostics = result.filter(
+        (diagnostic) => diagnostic.source === 'Own OpenAPI 3.1 Schema',
+      );
+      const expected = [
+        {
+          // a pattern error marks the value, but better-errors does not pass the keyword on
+          range: betterAjvErrors
+            ? { start: { line: 5, character: 4 }, end: { line: 5, character: 12 } }
+            : { start: { line: 5, character: 14 }, end: { line: 5, character: 18 } },
+          message: betterAjvErrors
+            ? '"x-icon" property must match pattern "^.$"'
+            : 'must match pattern "^.$"',
+          severity: 1,
+          code: 0,
+          source: 'Own OpenAPI 3.1 Schema',
+        },
+        {
+          range: { start: { line: 8, character: 6 }, end: { line: 8, character: 17 } },
+          message: betterAjvErrors
+            ? '"1" property must match pattern "^[a-z\\_]+$"'
+            : 'must match pattern "^[a-z\\_]+$"',
+          severity: 1,
+          code: 0,
+          source: 'Own OpenAPI 3.1 Schema',
+        },
+      ];
+      assert.deepEqual(ownSchemaDiagnostics, expected as Diagnostic[], `${betterAjvErrors}`);
+    }
+    languageService.terminate();
+  });
+
   it('test asyncapi validation parsed and cached', async function () {
     const validationContext: ValidationContext = {
       comments: DiagnosticSeverity.Error,
