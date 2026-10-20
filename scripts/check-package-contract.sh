@@ -76,6 +76,14 @@ JSON
 echo "check-package-contract: type-checking every advertised subpath"
 "$root/node_modules/.bin/tsc" -p "$consumer/tsconfig.json"
 
+# The CycloneDX SBOM a release attaches, read from this consumer because it
+# lists what installing the package brings in at this moment, rather than what
+# the workspace lockfile resolved. Set SBOM_TO to a file and it is written there.
+if [ -n "${SBOM_TO:-}" ]; then
+  ( cd "$consumer" && npm sbom --sbom-format cyclonedx ) > "$work/consumer-sbom.json"
+  node scripts/complete-sbom.mjs "$work/consumer-sbom.json" "$SBOM_TO"
+fi
+
 # The checksums of the archives this run verified, rather than of a second pack
 # produced afterwards: what was checked and what is recorded are the same bytes.
 echo "check-package-contract: verified archives"

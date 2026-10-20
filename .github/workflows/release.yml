@@ -17,6 +17,8 @@ jobs:
     permissions:
       contents: write
       id-token: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - name: Checkout
@@ -44,5 +46,62 @@ jobs:
           npx lerna version --conventional-commits --no-private --yes --force-publish
         env:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - name: Read the released version
+        id: version
+        run: echo "version=$(node -p "require('./lerna.json').version")" >> "$GITHUB_OUTPUT"
       - name: Publish monorepo npm packages
         run: npx lerna publish from-package --no-private --yes
+
+  # The SBOM is read from a scratch project that installs the packed package and
+  # resolves its dependencies afresh, which runs code no lockfile pins. That
+  # happens here, with a read-only token and no secrets, and not in the job
+  # that can publish.
+  sbom:
+    name: SBOM
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout the release
+        uses: actions/checkout@v7
+        with:
+          ref: v${{ needs.release.outputs.version }}
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26.3.1
+      - name: Install monorepo dependencies
+        run: npm ci --engine-strict=false
+      - name: Build monorepo
+        run: npm run build
+      - name: Check the package contract and write the SBOM
+        run: ./scripts/check-package-contract.sh
+        env:
+          SBOM_TO: ${{ runner.temp }}/speclynx-api-languageservice-${{ needs.release.outputs.version }}.cdx.json
+      - name: Keep the SBOM for the release
+        uses: actions/upload-artifact@v7
+        with:
+          name: sbom
+          path: ${{ runner.temp }}/speclynx-api-languageservice-${{ needs.release.outputs.version }}.cdx.json
+          if-no-files-found: error
+
+  attach-sbom:
+    name: Attach the SBOM
+    needs: [release, sbom]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Fetch the SBOM
+        uses: actions/download-artifact@v8
+        with:
+          name: sbom
+      - name: Attach the SBOM to the GitHub release
+        run: gh release upload "v$VERSION" "speclynx-api-languageservice-$VERSION.cdx.json" --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.release.outputs.version }}
