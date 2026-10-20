@@ -52,10 +52,10 @@ jobs:
       - name: Publish monorepo npm packages
         run: npx lerna publish from-package --no-private --yes
 
-  # The SBOM is read from a scratch project that installs the packed package and
-  # resolves its dependencies afresh, which runs code no lockfile pins. That
-  # happens here, with a read-only token and no secrets, and not in the job
-  # that can publish.
+  # The SBOM is read from a scratch project that installs the version just
+  # published from the registry and resolves its dependencies afresh, which runs
+  # code no lockfile pins. That happens here, with a read-only token and no
+  # secrets, and not in the job that can publish.
   sbom:
     name: SBOM
     needs: release
@@ -75,11 +75,10 @@ jobs:
           node-version: 26.3.1
       - name: Install monorepo dependencies
         run: npm ci --engine-strict=false
-      - name: Build monorepo
-        run: npm run build
-      - name: Check the package contract and write the SBOM
+      - name: Check the published package and write its SBOM
         run: ./scripts/check-package-contract.sh
         env:
+          PUBLISHED_VERSION: ${{ needs.release.outputs.version }}
           SBOM_TO: ${{ runner.temp }}/speclynx-api-languageservice-${{ needs.release.outputs.version }}.cdx.json
       - name: Keep the SBOM for the release
         uses: actions/upload-artifact@v7
