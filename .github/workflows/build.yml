@@ -135,6 +135,9 @@ jobs:
         run: npm run build
       - name: Resolve every advertised export against the packed tarballs
         run: ./scripts/check-package-contract.sh
+        # writes the SBOM a release attaches, so that its generation is checked too
+        env:
+          SBOM_TO: ${{ runner.temp }}/sbom.cdx.json
 
   check-generated-validators:
     runs-on: ubuntu-latest

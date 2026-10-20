@@ -84,6 +84,14 @@ standardized method for declaring copyright and licensing for software projects.
 
 ## Software Bill of Materials (SBOM)
 
-An SBOM is available from this repository's
+Every release attaches a [CycloneDX](https://cyclonedx.org/) SBOM of
+`@speclynx/api-languageservice` to its
+[GitHub release](https://github.com/speclynx/api-languageservice/releases). It is generated from
+the packed package installed the way a consumer installs it, so it lists the dependency tree that
+installing the release brought in when it was published. The files the package copied or ported
+from other packages are components of their own in it, and their pedigree names the package and
+version each came from.
+
+An SBOM of the whole repository, development dependencies included, is available from its
 [dependency graph](https://github.com/speclynx/api-languageservice/network/dependencies): click
 `Export SBOM` to download it in [SPDX format](https://spdx.dev/).
