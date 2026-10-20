@@ -75,6 +75,20 @@ jobs:
           node-version: 26.3.1
       - name: Install monorepo dependencies
         run: npm ci --engine-strict=false
+      # npm can serve a version some time after accepting its publish: it listed
+      # 3.0.0 about 15 minutes after Lerna published it. This asks for the version
+      # as the check does, bypassing npm's cache, until the registry has it.
+      - name: Wait until the registry serves the release
+        run: |
+          for _ in $(seq 60); do
+            npm pack --dry-run --prefer-online "@speclynx/api-languageservice@$VERSION" > /dev/null 2>&1 && exit 0
+            echo "the registry does not serve $VERSION yet, asking again in 30 seconds"
+            sleep 30
+          done
+          echo "::error::the registry did not serve $VERSION within 30 minutes"
+          exit 1
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
       - name: Check the published package and write its SBOM
         run: ./scripts/check-package-contract.sh
         env:
