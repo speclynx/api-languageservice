@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
 import getLanguageService from '../src/apidom-language-service.ts';
-import { LanguageService, LanguageServiceContext } from '../src/apidom-language-types.ts';
+import { Format, LanguageService, LanguageServiceContext } from '../src/apidom-language-types.ts';
 import { metadata } from './metadata.ts';
 import { logPerformance, logLevel } from './test-utils.ts';
 
@@ -29,6 +29,30 @@ describe('api-languageservice-empty-yaml-values', function () {
     assert.deepEqual(await languageService.doLinks(document), [
       { target: '', range: { start: { line: 9, character: 15 }, end: { line: 9, character: 15 } } },
     ]);
+
+    languageService.terminate();
+  });
+
+  it('dereferences a document whose first server has no url', async function () {
+    const languageService: LanguageService = getLanguageService(context);
+    const components =
+      "components:\n  schemas:\n    A:\n      $ref: '#/components/schemas/B'\n    B:\n      type: string\n";
+    const documents = {
+      'asyncapi-empty-url': `asyncapi: 2.6.0\ninfo:\n  title: Pets\n  version: 1.0.0\nservers:\n  prod:\n    url: \n    protocol: mqtt\nchannels: {}\n${components}`,
+      'asyncapi-empty-server': `asyncapi: 2.6.0\ninfo:\n  title: Pets\n  version: 1.0.0\nservers:\n  prod: \nchannels: {}\n${components}`,
+      'openapi-empty-url': `openapi: 3.0.3\ninfo:\n  title: Pets\n  version: 1.0.0\nservers:\n  - url: \npaths: {}\n${components}`,
+      'openapi-empty-server': `openapi: 3.0.3\ninfo:\n  title: Pets\n  version: 1.0.0\nservers:\n  - \npaths: {}\n${components}`,
+      'openapi-no-url': `openapi: 3.0.3\ninfo:\n  title: Pets\n  version: 1.0.0\nservers:\n  - description: Production\npaths: {}\n${components}`,
+    };
+
+    for (const [name, text] of Object.entries(documents)) {
+      const document = TextDocument.create(`foo://bar/${name}.yaml`, 'yaml', 0, text);
+      const dereferenced = JSON.parse(
+        await languageService.doDeref(document, { format: Format.JSON }),
+      );
+
+      assert.deepEqual(dereferenced.components.schemas.A, { type: 'string' }, name);
+    }
 
     languageService.terminate();
   });
