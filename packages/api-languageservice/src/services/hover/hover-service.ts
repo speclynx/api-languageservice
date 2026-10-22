@@ -2,7 +2,6 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Hover } from 'vscode-languageserver-protocol';
 import { Element, ObjectElement, MemberElement } from '@speclynx/apidom-datamodel';
 import { findAtOffset } from '@speclynx/apidom-traverse';
-import { toValue } from '@speclynx/apidom-core';
 import { MarkupContent, Position, Range } from 'vscode-languageserver-types';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 import {
@@ -30,6 +29,7 @@ import {
   debug,
   error,
   getReferencedElementValue,
+  toValue,
 } from '../../utils/utils.ts';
 
 const CONTROL_CODES = '\\u0000-\\u0020\\u007f-\\u009f';

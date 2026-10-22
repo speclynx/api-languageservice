@@ -9,7 +9,6 @@ import {
   includesClasses,
 } from '@speclynx/apidom-datamodel';
 import { forEach } from '@speclynx/apidom-traverse';
-import { toValue } from '@speclynx/apidom-core';
 import { CompletionItem } from 'vscode-languageserver-types';
 import {
   test as testPathTemplate,
@@ -32,6 +31,7 @@ import {
   getStringMetaValue,
   getClassesValue,
   getReferencedElementValue,
+  toValue,
 } from '../../utils/utils.ts';
 import { FunctionItem } from '../../apidom-language-types.ts';
 

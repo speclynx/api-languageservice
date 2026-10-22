@@ -1,6 +1,7 @@
 import { test } from '@swaggerexpert/jsonpath';
-import { toValue } from '@speclynx/apidom-core';
 import { Element, isStringElement } from '@speclynx/apidom-datamodel';
+
+import { toValue } from '../../utils/utils.ts';
 
 /**
  * Validates that a string element contains a syntactically valid

@@ -1,13 +1,18 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { isString } from 'ramda-adjunct';
-import { Element, ObjectElement } from '@speclynx/apidom-datamodel';
+import {
+  Element,
+  ObjectElement,
+  isArrayElement,
+  isObjectElement,
+} from '@speclynx/apidom-datamodel';
 import { filter } from '@speclynx/apidom-traverse';
-import { toJSON, toString, toYAML, toValue } from '@speclynx/apidom-core';
+import { toJSON, toString, toYAML } from '@speclynx/apidom-core';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 import { DerefContext, Format, LanguageSettings } from '../../apidom-language-types.ts';
 import { parse } from '../../parser-factory.ts';
-import { isJsonDoc } from '../../utils/utils.ts';
+import { isJsonDoc, toValue } from '../../utils/utils.ts';
 
 export interface DerefService {
   doDeref(textDocument: TextDocument, derefContext: DerefContext): Promise<string>;
@@ -53,19 +58,18 @@ export class DefaultDerefService implements DerefService {
     }).map((path) => path.node);
 
     // TODO (frantuma@yahoo.com): this needs to be replaced by good metadata ('serverURL' to URLS and/or adapter/plugin
-    if (servers && servers.length > 0) {
-      const serversValue = toValue(servers[0]) as Record<string, unknown>;
-      // OAS
-      if (Array.isArray(serversValue)) {
-        if (servers.length > 0) {
-          const firstServer = serversValue[0] as Record<string, string>;
-          baseURI = firstServer.url;
-        }
-        // ASYNC
-      } else if (Object.keys(serversValue).length > 0) {
-        const firstServer = serversValue[Object.keys(serversValue)[0]] as Record<string, string>;
-        baseURI = firstServer.url;
-      }
+    let firstServer: Element | undefined;
+    // OAS
+    if (isArrayElement(servers[0])) {
+      firstServer = servers[0].first;
+      // ASYNC
+    } else if (isObjectElement(servers[0])) {
+      firstServer = servers[0].first?.value;
+    }
+    // a server without a url, or with one that is not a string, leaves the default
+    const url = isObjectElement(firstServer) ? toValue(firstServer.get('url')) : undefined;
+    if (isString(url)) {
+      baseURI = url;
     }
     baseURI = isString(context?.baseURI) ? context?.baseURI : baseURI;
     const format =

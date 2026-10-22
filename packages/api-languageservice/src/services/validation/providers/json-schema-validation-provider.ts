@@ -109,7 +109,8 @@ export abstract class JsonSchemaValidationProvider implements ValidationProvider
     return new Promise<ValidationProviderResult>((resolve, reject) => {
       const diagnostics: Diagnostic[] = [];
 
-      // get the serialized apidom JSON if doc is yaml
+      // get the serialized apidom JSON if doc is yaml; ApiDOM's toValue, like
+      // YAML.parse, reads an empty YAML node as null, the value it has in YAML
       let jsonText = text;
       if (isYaml) {
         jsonText = JSON.stringify(api ? toValue(api) : YAML.parse(text));
