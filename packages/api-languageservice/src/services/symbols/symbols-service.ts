@@ -2,10 +2,9 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range, SymbolInformation } from 'vscode-languageserver-protocol';
 import { Element, MemberElement } from '@speclynx/apidom-datamodel';
 import { filter } from '@speclynx/apidom-traverse';
-import { toValue } from '@speclynx/apidom-core';
 import { SymbolKind } from 'vscode-languageserver-types';
 
-import { buildPath, getSourceMap, isMember, SourceMap } from '../../utils/utils.ts';
+import { buildPath, getSourceMap, isMember, SourceMap, toValue } from '../../utils/utils.ts';
 import { LanguageSettings, SymbolsContext } from '../../apidom-language-types.ts';
 
 export interface SymbolsService {

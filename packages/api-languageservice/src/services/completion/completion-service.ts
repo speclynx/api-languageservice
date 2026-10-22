@@ -20,7 +20,6 @@ import {
   isStringElement,
 } from '@speclynx/apidom-datamodel';
 import { findAtOffset } from '@speclynx/apidom-traverse';
-import { toValue } from '@speclynx/apidom-core';
 
 import {
   ApidomCompletionItem,
@@ -60,6 +59,7 @@ import {
   error,
   findNamespace,
   getReferencedElementValue,
+  toValue,
 } from '../../utils/utils.ts';
 import { standardLinterfunctionsMap } from '../validation/linter-functions.ts';
 

@@ -1,7 +1,6 @@
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element, ObjectElement, MemberElement } from '@speclynx/apidom-datamodel';
 import { findAtOffset } from '@speclynx/apidom-traverse';
-import { toValue } from '@speclynx/apidom-core';
 import { Location, Range } from 'vscode-languageserver-types';
 import { DefinitionParams, ReferenceParams } from 'vscode-languageserver-protocol';
 import {
@@ -22,6 +21,7 @@ import {
   buildPointer,
   buildJsonPointer,
   findLocalReferences,
+  toValue,
 } from '../../utils/utils.ts';
 
 export interface DefinitionService {
