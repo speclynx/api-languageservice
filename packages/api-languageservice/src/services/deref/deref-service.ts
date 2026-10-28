@@ -7,12 +7,12 @@ import {
   isObjectElement,
 } from '@speclynx/apidom-datamodel';
 import { filter } from '@speclynx/apidom-traverse';
-import { toJSON, toString, toYAML } from '@speclynx/apidom-core';
+import { toJSON, toString, toYAML, toValue } from '@speclynx/apidom-core';
 import { dereferenceApiDOM } from '@speclynx/apidom-reference';
 
 import { DerefContext, Format, LanguageSettings } from '../../apidom-language-types.ts';
 import { parse } from '../../parser-factory.ts';
-import { isJsonDoc, toValue } from '../../utils/utils.ts';
+import { isJsonDoc } from '../../utils/utils.ts';
 
 export interface DerefService {
   doDeref(textDocument: TextDocument, derefContext: DerefContext): Promise<string>;

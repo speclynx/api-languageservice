@@ -2,6 +2,7 @@ import { Range, DocumentLink } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Element } from '@speclynx/apidom-datamodel';
 import { type Path, forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 
 import {
   LanguageSettings,
@@ -20,7 +21,6 @@ import {
   perfEnd,
   perfStart,
   error,
-  toValue,
 } from '../../utils/utils.ts';
 
 enum PerfLabels {

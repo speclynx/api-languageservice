@@ -12,7 +12,7 @@ import * as overlay1AdapterJson from '@speclynx/apidom-parser-adapter-overlay-js
 import * as overlay1AdapterYaml from '@speclynx/apidom-parser-adapter-overlay-yaml-1';
 import * as adapterJson from '@speclynx/apidom-parser-adapter-json';
 import * as adapterYaml from '@speclynx/apidom-parser-adapter-yaml-1-2';
-import { toValue as serializeValue } from '@speclynx/apidom-core';
+import { toValue } from '@speclynx/apidom-core';
 import {
   ArrayElement,
   BooleanElement,
@@ -161,17 +161,6 @@ export const isNumber = (element: Element): element is NumberElement => {
 export const isBoolean = (element: Element): element is BooleanElement => {
   return isBooleanElement(element);
 };
-
-/**
- * The value of an element as the services and linter functions read it: a
- * string element's own value, and what ApiDOM serializes for anything else.
- * Since ApiDOM 6.1.0 the serialization of an empty YAML node, such as the value
- * of `key:` while it is being typed, is null, its YAML value. The element stays
- * a string element, and the empty string is what it is read as here.
- */
-export function toValue(element: unknown): unknown {
-  return isStringElement(element) ? element.toValue() : serializeValue(element);
-}
 
 export function setMetadataMap(
   root: Element,

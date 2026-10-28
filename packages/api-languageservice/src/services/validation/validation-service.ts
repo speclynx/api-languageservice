@@ -8,6 +8,7 @@ import {
   isStringElement,
 } from '@speclynx/apidom-datamodel';
 import { type Path, findAtOffset, forEach } from '@speclynx/apidom-traverse';
+import { toValue } from '@speclynx/apidom-core';
 import { CodeActionKind, CodeActionParams } from 'vscode-languageserver-protocol';
 import { evaluate } from '@speclynx/apidom-json-path';
 import { dereferenceApiDOM, Reference, ReferenceSet, options } from '@speclynx/apidom-reference';
@@ -47,7 +48,6 @@ import {
   error,
   info,
   getReferencedElementValue,
-  toValue,
 } from '../../utils/utils.ts';
 import { standardLinterfunctionsMap } from './linter-functions.ts';
 
