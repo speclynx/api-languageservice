@@ -35,6 +35,7 @@ import { type Path, find, forEach } from '@speclynx/apidom-traverse';
 import { compile, URIFragmentIdentifier } from '@speclynx/apidom-json-pointer';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Range } from 'vscode-languageserver-types';
+import { isNonEmptyString } from 'ramda-adjunct';
 
 import {
   ApidomCompletionItem,
@@ -244,7 +245,7 @@ export function localReferencePointers(
       if (!(
         isObject(traversedNode) &&
         traversedNode.get('$ref') &&
-        (toValue(traversedNode.get('$ref')) as string).length > 0
+        isNonEmptyString(toValue(traversedNode.get('$ref')))
       )) {
         foundNodes.push({ element: traversedNode, isRef: false });
       }
