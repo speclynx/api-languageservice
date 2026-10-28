@@ -6,9 +6,9 @@ import { Format, LanguageService, LanguageServiceContext } from '../src/apidom-l
 import { metadata } from './metadata.ts';
 import { logPerformance, logLevel } from './test-utils.ts';
 
-// Since ApiDOM 6.1.0 the serialized value of an empty YAML node, such as `key:`
-// while its value is being typed, is null, while the element stays an empty
-// string element. The services read it as the empty string it is typed as.
+// ApiDOM parses an empty YAML node, such as `key:` while its value is being
+// typed, as a null element, whose value is null. The services read it as null:
+// it is no reference and no string, and completion proposes every value at it.
 describe('api-languageservice-empty-yaml-values', function () {
   const context: LanguageServiceContext = {
     metadata: metadata(),
@@ -16,7 +16,7 @@ describe('api-languageservice-empty-yaml-values', function () {
     logLevel,
   };
 
-  it('validates and links a document with an empty $ref', async function () {
+  it('reports an empty $ref and gives it no link', async function () {
     const languageService: LanguageService = getLanguageService(context);
     const document = TextDocument.create(
       'foo://bar/empty-ref.yaml',
@@ -25,10 +25,18 @@ describe('api-languageservice-empty-yaml-values', function () {
       "openapi: 3.1.0\ninfo:\n  title: Pets\n  version: 1.0.0\npaths:\n  /pets:\n    get:\n      responses:\n        '200':\n          $ref: \n",
     );
 
-    assert.deepEqual(await languageService.doValidation(document), []);
-    assert.deepEqual(await languageService.doLinks(document), [
-      { target: '', range: { start: { line: 9, character: 15 }, end: { line: 9, character: 15 } } },
-    ]);
+    const diagnostics = await languageService.doValidation(document);
+
+    assert.deepEqual(
+      diagnostics.map(({ message, range }) => ({ message, start: range.start })),
+      [
+        {
+          message: "'$ref' value must be a valid URI-reference",
+          start: { line: 9, character: 15 },
+        },
+      ],
+    );
+    assert.deepEqual(await languageService.doLinks(document), []);
 
     languageService.terminate();
   });
@@ -57,7 +65,7 @@ describe('api-languageservice-empty-yaml-values', function () {
     languageService.terminate();
   });
 
-  it('checks the pattern of an empty value', async function () {
+  it('reports an empty value where a string is expected', async function () {
     const languageService: LanguageService = getLanguageService(context);
     const document = TextDocument.create(
       'foo://bar/empty-step-id.yaml',
@@ -71,7 +79,7 @@ describe('api-languageservice-empty-yaml-values', function () {
     assert.deepInclude(
       diagnostics.map(({ message, range }) => ({ message, start: range.start })),
       {
-        message: 'stepId SHOULD match the pattern [A-Za-z0-9_\\-]+',
+        message: 'stepId must be a string',
         start: { line: 11, character: 15 },
       },
     );
