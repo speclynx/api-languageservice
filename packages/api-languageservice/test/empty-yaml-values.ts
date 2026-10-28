@@ -78,4 +78,23 @@ describe('api-languageservice-empty-yaml-values', function () {
 
     languageService.terminate();
   });
+
+  it('proposes null at an empty value', async function () {
+    const languageService: LanguageService = getLanguageService(context);
+    const document = TextDocument.create(
+      'foo://bar/empty-type.yaml',
+      'yaml',
+      0,
+      'asyncapi: 2.6.0\ninfo:\n  title: Pets\n  version: 1.0.0\nchannels: {}\ncomponents:\n  schemas:\n    Pet:\n      type: \n',
+    );
+
+    const completion = await languageService.doCompletion(document, { line: 8, character: 12 });
+
+    assert.include(
+      (completion?.items ?? []).map(({ label }) => label),
+      'null',
+    );
+
+    languageService.terminate();
+  });
 });
