@@ -2,9 +2,9 @@ import { DiagnosticSeverity } from 'vscode-languageserver-types';
 
 import ApilintCodes from '../../../codes.ts';
 import { LinterMeta } from '../../../../apidom-language-types.ts';
-import { Arazzo } from '../../target-specs.ts';
+import { Arazzo10 } from '../../target-specs.ts';
 
-const inEqualsLint: LinterMeta = {
+const inEquals10Lint: LinterMeta = {
   code: ApilintCodes.ARAZZO_PARAMETER_FIELD_IN_EQUALS,
   source: 'apilint',
   message: "in must be one of: 'path', 'query', 'header', 'cookie'",
@@ -14,7 +14,7 @@ const inEqualsLint: LinterMeta = {
   marker: 'value',
   target: 'in',
   data: {},
-  targetSpecs: [...Arazzo],
+  targetSpecs: [...Arazzo10],
 };
 
-export default inEqualsLint;
+export default inEquals10Lint;
