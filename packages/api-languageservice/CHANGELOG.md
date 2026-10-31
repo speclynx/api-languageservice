@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/speclynx/api-languageservice/compare/v3.0.1...v3.0.2) (2026-10-31)
+
+### Bug Fixes
+
+- **arazzo:** accept querystring as a 1.1 parameter location ([#97](https://github.com/speclynx/api-languageservice/issues/97)) ([7a0005f](https://github.com/speclynx/api-languageservice/commit/7a0005f70a2bbdb76e9668c574b5444ec2ad6acc))
+
 ## [3.0.1](https://github.com/speclynx/api-languageservice/compare/v3.0.0...v3.0.1) (2026-10-31)
 
 ### Bug Fixes
