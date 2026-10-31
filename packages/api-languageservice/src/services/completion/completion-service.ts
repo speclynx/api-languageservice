@@ -779,10 +779,11 @@ export class DefaultCompletionService implements CompletionService {
           nodeValueFromText.charAt(0) === '"' || nodeValueFromText.charAt(0) === "'"
             ? nodeValueFromText.charAt(0)
             : undefined;
-        proposed[toValue(completionNode) as string] = CompletionItem.create('__');
         proposed[nodeValueFromText] = CompletionItem.create('__');
         // if node is not empty we must replace text
         if (nodeValueFromText.length > 0) {
+          // the value without its quotes; an empty value reads as null, which would hide `null`
+          proposed[toValue(completionNode) as string] = CompletionItem.create('__');
           overwriteRange = Range.create(
             textDocument.positionAt(nodeSourceMap.offset),
             textDocument.positionAt(nodeSourceMap.endOffset!),
