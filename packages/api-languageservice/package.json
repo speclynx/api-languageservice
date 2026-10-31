@@ -172,13 +172,13 @@
     "@swaggerexpert/arazzo-runtime-expression": "^3.3.0",
     "@swaggerexpert/json-pointer": "^3.0.2",
     "@swaggerexpert/jsonpath": "^4.0.4",
-    "openapi-path-templating": "^2.2.1",
+    "openapi-path-templating": "^2.3.0",
     "prettier": "^3.9.6",
     "ramda": "~0.32.0",
     "ramda-adjunct": "^6.0.0",
-    "vscode-languageserver-protocol": "=3.18.4",
-    "vscode-languageserver-textdocument": "^1.0.15",
-    "vscode-languageserver-types": "=3.18.4",
+    "vscode-languageserver-protocol": "=3.18.5",
+    "vscode-languageserver-textdocument": "^1.0.16",
+    "vscode-languageserver-types": "=3.18.5",
     "yaml": "^2.9.1"
   },
   "devDependencies": {
