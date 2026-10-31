@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/speclynx/api-languageservice/compare/v3.0.0...v3.0.1) (2026-10-31)
+
+### Bug Fixes
+
+- **deps:** update ApiDOM to 6.1.2 ([#85](https://github.com/speclynx/api-languageservice/issues/85)) ([bd7a366](https://github.com/speclynx/api-languageservice/commit/bd7a366ba651b08f7b4e97573cc8b6369b424655)), closes [speclynx/apidom#646](https://github.com/speclynx/apidom/issues/646) [speclynx/apidom#694](https://github.com/speclynx/apidom/issues/694)
+
 # [3.0.0](https://github.com/speclynx/api-languageservice/compare/v2.14.0...v3.0.0) (2026-10-20)
 
 - feat(validation)!: ship precompiled JSON Schema validators ([d0fb667](https://github.com/speclynx/api-languageservice/commit/d0fb667e0ba24eade26b8d98c618847ca71c3777))
