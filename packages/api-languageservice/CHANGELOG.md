@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/speclynx/api-languageservice/compare/v3.0.3...v3.0.4) (2026-11-08)
+
+### Bug Fixes
+
+- **arazzo:** report the in field on action parameters ([#107](https://github.com/speclynx/api-languageservice/issues/107)) ([d06e145](https://github.com/speclynx/api-languageservice/commit/d06e145d15d7281d2b79cc032f19a6797ba22dc9)), closes [#106](https://github.com/speclynx/api-languageservice/issues/106)
+- **deps:** update ApiDOM to 7.0.1 ([#109](https://github.com/speclynx/api-languageservice/issues/109)) ([a616988](https://github.com/speclynx/api-languageservice/commit/a61698820635d53892f08bf44ed787bd7e138112)), closes [speclynx/apidom#769](https://github.com/speclynx/apidom/issues/769)
+
 ## [3.0.3](https://github.com/speclynx/api-languageservice/compare/v3.0.2...v3.0.3) (2026-11-08)
 
 ### Bug Fixes
