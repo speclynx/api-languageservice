@@ -11,6 +11,7 @@ import stepIdPatternLint from './step-id--pattern.ts';
 import criteriaTypeLint from './criteria--type.ts';
 import parametersTypeLint from './parameters--type.ts';
 import parametersOnlyWorkflowIdLint from './parameters--only-workflow-id.ts';
+import parametersNoInLint from './parameters--no-in.ts';
 import workflowIdMutuallyExclusiveLint from './workflow-id--mutually-exclusive.ts';
 import stepIdMutuallyExclusiveLint from './step-id--mutually-exclusive.ts';
 import workflowIdResolvedLint from './workflow-id--resolved.ts';
@@ -38,6 +39,7 @@ const lints = [
   criteriaTypeLint,
   parametersTypeLint,
   parametersOnlyWorkflowIdLint,
+  parametersNoInLint,
   allowedFields10Lint,
   allowedFields11Lint,
 ];

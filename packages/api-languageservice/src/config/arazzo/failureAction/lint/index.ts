@@ -22,6 +22,7 @@ import retryLimitOnlyRetryLint from './retry-limit--only-retry.ts';
 import nameUniqueLint from './name--unique.ts';
 import parametersTypeLint from './parameters--type.ts';
 import parametersOnlyWorkflowIdLint from './parameters--only-workflow-id.ts';
+import parametersNoInLint from './parameters--no-in.ts';
 import allowedFields10Lint from './allowed-fields-1-0.ts';
 import allowedFields11Lint from './allowed-fields-1-1.ts';
 
@@ -50,6 +51,7 @@ const lints = [
   criteriaTypeLint,
   parametersTypeLint,
   parametersOnlyWorkflowIdLint,
+  parametersNoInLint,
   allowedFields10Lint,
   allowedFields11Lint,
 ];
