@@ -1,0 +1,13 @@
+arazzo: 1.0.1
+info:
+  title: chain-a
+  version: 1.0.0
+sourceDescriptions:
+  - name: chain-b
+    url: ./chain-b.arazzo.yaml
+    type: arazzo
+workflows:
+  - workflowId: chain-a-workflow
+    steps:
+      - stepId: call-chain-b
+        workflowId: $sourceDescriptions.chain-b.chain-b-workflow
