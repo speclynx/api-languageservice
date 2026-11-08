@@ -1,0 +1,13 @@
+arazzo: 1.0.1
+info:
+  title: chain-c
+  version: 1.0.0
+sourceDescriptions:
+  - name: chain-a
+    url: ./missing.arazzo.yaml
+    type: arazzo
+workflows:
+  - workflowId: chain-c-workflow
+    steps:
+      - stepId: noop
+        workflowId: $sourceDescriptions.chain-a.missing-workflow

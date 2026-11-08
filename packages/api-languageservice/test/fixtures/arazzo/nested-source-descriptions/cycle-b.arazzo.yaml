@@ -1,0 +1,13 @@
+arazzo: 1.0.1
+info:
+  title: cycle-b
+  version: 1.0.0
+sourceDescriptions:
+  - name: cycle-a
+    url: ./cycle-a.arazzo.yaml
+    type: arazzo
+workflows:
+  - workflowId: cycle-b-workflow
+    steps:
+      - stepId: call-cycle-a
+        workflowId: $sourceDescriptions.cycle-a.cycle-a-workflow
