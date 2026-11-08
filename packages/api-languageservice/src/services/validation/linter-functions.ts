@@ -520,6 +520,20 @@ export const standardLinterfunctions: FunctionItem[] = [
     },
   },
   {
+    functionName: 'apilintArrayElementsMissingField',
+    function: (element: Element, elementType: string, key: string): boolean => {
+      if (!element || !isArray(element)) {
+        return true;
+      }
+      for (const item of element as ArrayElement) {
+        if (item.element === elementType && isObject(item) && item.hasKey(key)) {
+          return false;
+        }
+      }
+      return true;
+    },
+  },
+  {
     functionName: 'apilintChildrenOfElementsOrClasses',
     function: (element: Element, elementsOrClasses: string[]): boolean => {
       if (element && !isObject(element)) {

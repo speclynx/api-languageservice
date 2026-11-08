@@ -108,6 +108,108 @@ describe('test-arazzo-linting-failureAction-parameters', function () {
     languageService.terminate();
   });
 
+  it('test ARAZZO_FAILURE_ACTION_FIELD_PARAMETERS_NO_IN', async function () {
+    const validationContext: ValidationContext = {
+      comments: DiagnosticSeverity.Error,
+      maxNumberOfProblems: 100,
+      relatedInformation: false,
+    };
+    const code = codes.ARAZZO_FAILURE_ACTION_FIELD_PARAMETERS_NO_IN;
+    const spec = (actionLines: string[]): string => `
+arazzo: 1.1.0
+info:
+  title: Sample Arazzo Workflow
+  version: 1.0.1
+sourceDescriptions:
+  - name: petStore
+    type: openapi
+    url: ./petstore-openapi.yaml
+workflows:
+  - workflowId: get-pet-workflow
+    steps:
+      - stepId: get-pet
+        operationId: $sourceDescriptions.petStore.getPetById
+        parameters:
+          - name: petId
+            in: path
+            value: 1
+        successCriteria:
+          - condition: $statusCode == 200
+        onFailure:
+${actionLines.join('\n')}
+  - workflowId: other-workflow
+    steps:
+      - stepId: noop
+        operationId: $sourceDescriptions.petStore.getPetById
+components:
+  parameters:
+    petIdQuery:
+      name: petId
+      in: query
+      value: 1
+`;
+    const docWorkflowId = TextDocument.create(
+      'foo://bar/invalid-workflow-id.yaml',
+      'yaml',
+      0,
+      spec([
+        '          - name: gotoAction',
+        '            type: goto',
+        '            workflowId: other-workflow',
+        '            parameters:',
+        '              - name: petId',
+        '                in: query',
+        '                value: 1',
+      ]),
+    );
+    const docStepId = TextDocument.create(
+      'foo://bar/invalid-step-id.yaml',
+      'yaml',
+      0,
+      spec([
+        '          - name: gotoAction',
+        '            type: goto',
+        '            stepId: get-pet',
+        '            parameters:',
+        '              - name: petId',
+        '                in: query',
+        '                value: 1',
+      ]),
+    );
+    const docValid = TextDocument.create(
+      'foo://bar/valid.yaml',
+      'yaml',
+      0,
+      spec([
+        '          - name: gotoAction',
+        '            type: goto',
+        '            workflowId: other-workflow',
+        '            parameters:',
+        '              - reference: $components.parameters.petIdQuery',
+        '              - name: other',
+        '                value: 2',
+      ]),
+    );
+
+    const languageService: LanguageService = getLanguageService(context);
+
+    for (const doc of [docWorkflowId, docStepId]) {
+      const result = await languageService.doValidation(doc, validationContext);
+      assert(
+        result.some((d) => d.code === code && d.severity === DiagnosticSeverity.Error),
+        `Expected ARAZZO_FAILURE_ACTION_FIELD_PARAMETERS_NO_IN error in ${doc.uri}, got: ${JSON.stringify(result)}`,
+      );
+    }
+
+    const resultValid = await languageService.doValidation(docValid, validationContext);
+    assert(
+      resultValid.every((d) => d.code !== code),
+      `Expected no ARAZZO_FAILURE_ACTION_FIELD_PARAMETERS_NO_IN errors, got: ${JSON.stringify(resultValid)}`,
+    );
+
+    languageService.terminate();
+  });
+
   it('test ARAZZO_FAILURE_ACTION_FIELD_PARAMETERS_TYPE', async function () {
     const validationContext: ValidationContext = {
       comments: DiagnosticSeverity.Error,
