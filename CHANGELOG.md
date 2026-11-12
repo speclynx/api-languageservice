@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/speclynx/api-languageservice/compare/v3.0.4...v3.0.5) (2026-11-12)
+
+### Bug Fixes
+
+- **deps:** update ApiDOM to 7.0.2 ([51b3cd8](https://github.com/speclynx/api-languageservice/commit/51b3cd8908451ed8bc63466b168b881433fcda3d)), closes [speclynx/apidom#776](https://github.com/speclynx/apidom/issues/776)
+
 ## [3.0.4](https://github.com/speclynx/api-languageservice/compare/v3.0.3...v3.0.4) (2026-11-08)
 
 ### Bug Fixes
