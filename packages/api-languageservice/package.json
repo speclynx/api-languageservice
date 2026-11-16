@@ -141,7 +141,7 @@
     "postpack": "rimraf NOTICE LICENSES"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^8.0.10",
+    "@babel/runtime-corejs3": "^8.1.2",
     "@speclynx/apidom-core": "^7.0.2",
     "@speclynx/apidom-datamodel": "^7.0.2",
     "@speclynx/apidom-json-path": "^7.0.2",
