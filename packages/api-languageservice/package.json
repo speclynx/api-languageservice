@@ -141,7 +141,7 @@
     "postpack": "rimraf NOTICE LICENSES"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^8.0.10",
+    "@babel/runtime-corejs3": "^8.1.2",
     "@speclynx/apidom-core": "^7.0.2",
     "@speclynx/apidom-datamodel": "^7.0.2",
     "@speclynx/apidom-json-path": "^7.0.2",
@@ -169,7 +169,7 @@
     "@speclynx/apidom-parser-adapter-yaml-1-2": "^7.0.2",
     "@speclynx/apidom-reference": "^7.0.2",
     "@speclynx/apidom-traverse": "^7.0.2",
-    "@swaggerexpert/arazzo-runtime-expression": "^3.3.0",
+    "@swaggerexpert/arazzo-runtime-expression": "^3.4.0",
     "@swaggerexpert/json-pointer": "^3.0.2",
     "@swaggerexpert/jsonpath": "^4.0.4",
     "openapi-path-templating": "^2.3.0",
