@@ -139,7 +139,12 @@ enough reason to take them:
 
 * `typescript` is held below 7. TypeScript 7.0.x is the current release, but `typescript-eslint`
   declares a `typescript` peer of `>=4.8.4 <6.1.0` on every published version including its
-  canary, so linting cannot run against it. Take the bump once that peer range moves.
+  canary, so linting cannot run against it. Take the bump once that peer range moves, and in
+  step with ApiDOM: this repo stays on the same `typescript` major as the SpecLynx ApiDOM
+  monorepo (both pin `=5.9.3` today), so a major moves here when it moves there. The
+  bump also needs `packages/api-languageservice/scripts/declarations.mjs` ported: it uses the
+  compiler API (`ts.createProgram`, the type checker, `ts.preProcessFile`), and TypeScript 7's
+  main export is only its version, with the API under `typescript/unstable/*`.
 * `eslint-plugin-mocha` is held on 11. Version 12 removes `no-sibling-hooks` with no successor
   and renames `no-hooks-for-single-case` and `no-top-level-hooks`, all three configured in
   `eslint.config.js`. It buys nothing, because the 11 line accepts `eslint >=9` and so works
