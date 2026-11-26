@@ -96,7 +96,7 @@ Babel transpiles TypeScript to three output formats. Build artifacts are placed 
 - `*.mjs` - ES modules (Babel `es` preset)
 - `*.cjs` - CommonJS modules (Babel `cjs` preset)
 - `dist/` - UMD browser bundles (Webpack)
-- `types/` - TypeScript declarations (api-extractor)
+- `types/` - TypeScript declarations (api-extractor), plus `.d.cts` copies for the `require` condition written by `scripts/declarations-cts.mjs` (in a `"type": "module"` package TypeScript reads a `.d.ts` as ESM, so CommonJS consumers on `node16` need their own). Each export nests `types` under both `import` and `require`; `npm run typescript:check-published-types` runs arethetypeswrong over the packed package with `--profile node16` (node10 resolution is not supported)
 
 `build:es:quick` skips `src/config/` which contains the bulk of the source (thousands of rule/completion/documentation definition files). Use it when working on service code, not rules.
 
@@ -164,4 +164,4 @@ the tree expects, so a newer advisory raises a fresh alert rather than being sil
 
 ## CI/CD
 
-Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search, package-contract check with its dependency deny-list and SBOM generation, and generated-validator drift check on PRs), `release.yml` (manual publish to npm via lerna, which derives the version from conventional commits, and attaches the package's CycloneDX SBOM to the GitHub release; same shape as the SpecLynx ApiDOM release workflow), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.
+Four GitHub Actions workflows: `build.yml` (commit-message lint, lint, types, test, build, retired-identifier search, arethetypeswrong check of the packed declarations, package-contract check (which type-checks an ESM and a CommonJS consumer under `nodenext` and `node16`) with its dependency deny-list and SBOM generation, and generated-validator drift check on PRs), `release.yml` (manual publish to npm via lerna, which derives the version from conventional commits, and attaches the package's CycloneDX SBOM to the GitHub release; same shape as the SpecLynx ApiDOM release workflow), `nightly-build.yml` (daily at 04:30 UTC) and `codeql.yml` (weekly security scan, also dispatchable). Unattended Dependabot merging was removed: it handed a personal access token to third-party actions on a `pull_request_target` trigger.
