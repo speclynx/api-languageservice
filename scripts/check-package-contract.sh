@@ -110,7 +110,8 @@ JSON
   echo "check-package-contract: type-checking every advertised subpath under $module"
   tsc_output="$work/tsc.$module.log"
   # run from the consumer, so tsc prints each file relative to it
-  if ( cd "$consumer" && "$root/node_modules/.bin/tsc" -p "tsconfig.$module.json" --pretty false ) > "$tsc_output"; then
+  # stderr is kept too: a tsc that crashes or is missing reports only there
+  if ( cd "$consumer" && "$root/node_modules/.bin/tsc" -p "tsconfig.$module.json" --pretty false ) > "$tsc_output" 2>&1; then
     continue
   fi
   # an error line begins with the file it is in; indented continuation lines
@@ -124,6 +125,13 @@ JSON
     | { grep -vE "$own" || true; } ; printf '%s\n' "$errors" | grep -E "$nested" || true)"
   ours="$(printf '%s\n' "$errors" | grep -vE '^node_modules/' | grep -vE '^$' || true)"
   ours+="$(printf '%s\n' "$errors" | grep -E "$own" | grep -vE "$nested" || true)"
+  # tsc failed, so it must have reported an error somewhere; failing without
+  # one, it checked nothing
+  if [ -z "$theirs" ] && [ -z "$ours" ]; then
+    echo "check-package-contract: tsc failed under $module without reporting an error:"
+    cat "$tsc_output"
+    exit 1
+  fi
   if [ -n "$theirs" ]; then
     echo "check-package-contract: warning: tsc reports errors in dependencies' declarations under $module:"
     printf '%s\n' "$theirs"
