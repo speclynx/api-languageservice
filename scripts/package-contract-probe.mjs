@@ -21,6 +21,19 @@ const packReport = JSON.parse(fs.readFileSync(packReportPath, 'utf8'));
 const failures = [];
 // the names each entry point exports at runtime, by format, for the type probe
 const runtimeKeys = { import: new Map(), require: new Map() };
+// the validation provider classes each entry point exports, by format: every
+// export whose prototype extends the main entry's JsonSchemaValidationProvider
+const providerClasses = { import: new Map(), require: new Map() };
+const recordProviders = (format, specifier, module, main) => {
+  const base = main?.JsonSchemaValidationProvider;
+  if (typeof base !== 'function') return;
+  providerClasses[format].set(
+    specifier,
+    Object.keys(module).filter(
+      (key) => typeof module[key] === 'function' && module[key].prototype instanceof base,
+    ),
+  );
+};
 
 const check = (condition, message) => {
   if (!condition) failures.push(message);
@@ -89,7 +102,10 @@ const checkTarball = (entry) => {
         file.endsWith('.json'),
         `${name}: ${subpath} names ${file} directly, so it has no types and no CommonJS condition`,
       );
-      check(packed.has(file), `${name}: ${subpath} resolves to ${file}, which is missing from ${filename}`);
+      check(
+        packed.has(file),
+        `${name}: ${subpath} resolves to ${file}, which is missing from ${filename}`,
+      );
       continue;
     }
     for (const condition of ['import', 'require']) {
@@ -134,6 +150,7 @@ const checkExports = async (name) => {
     try {
       const module = await import(specifier);
       runtimeKeys.import.set(specifier, Object.keys(module));
+      recordProviders('import', specifier, module, await import(name));
       check(
         Object.keys(module).length > 0,
         `${name}: import("${specifier}") resolved but exported nothing`,
@@ -145,6 +162,7 @@ const checkExports = async (name) => {
     try {
       const module = require(specifier);
       runtimeKeys.require.set(specifier, Object.keys(module));
+      recordProviders('require', specifier, module, require(name));
       check(
         Object.keys(module).length > 0,
         `${name}: require("${specifier}") resolved but exported nothing`,
@@ -324,20 +342,31 @@ const writeTypeProbe = (names) => {
             `? true : Missing${counter} = true;`,
         );
         if (subpath === '.') main = counter;
-        else others.push(counter);
+        else others.push({ index: counter, specifier });
       }
       // A class a subpath shares with the main entry must be the same
       // declaration: TypeScript treats a class with private members declared
       // twice as two unrelated classes, so a subpath's provider would not be
-      // usable where the main entry's type is expected. Only the runtime
-      // exports the two have in common are compared; Partial<> would trip
-      // TypeScript's weak-type check for a subpath that shares none.
+      // usable where the main entry's type is expected. Only the value
+      // exports the two declare in common are compared; Partial<> would trip
+      // TypeScript's weak-type check for a subpath that shares none. A
+      // provider a subpath declares itself, which the main entry lacks, must
+      // still be usable as the main entry's JsonSchemaValidationProvider.
       if (main !== undefined) {
-        for (const index of others) {
+        for (const { index, specifier } of others) {
           const shared = `Extract<keyof typeof probe${index}, keyof typeof probe${main}>`;
           lines.push(
             `export const shared${index}: Pick<typeof probe${main}, ${shared}> = probe${index};`,
           );
+          for (const provider of providerClasses[format].get(specifier) ?? []) {
+            lines.push(
+              `export const provider${index}${provider}: ` +
+                // the instance type; the base's constructor is protected, so
+                // InstanceType<> does not accept it
+                `(typeof probe${main}.JsonSchemaValidationProvider)['prototype'] = ` +
+                `new probe${index}.${provider}();`,
+            );
+          }
         }
       }
     }
