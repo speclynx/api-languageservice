@@ -96,7 +96,7 @@ Babel transpiles TypeScript to three output formats. Build artifacts are placed 
 - `*.mjs` - ES modules (Babel `es` preset)
 - `*.cjs` - CommonJS modules (Babel `cjs` preset)
 - `dist/` - UMD browser bundles (Webpack)
-- `types/` - TypeScript declarations (api-extractor), plus `.d.cts` copies for the `require` condition written by `scripts/declarations-cts.mjs` (in a `"type": "module"` package TypeScript reads a `.d.ts` as ESM, so CommonJS consumers on `node16` need their own). Each export nests `types` under both `import` and `require`; `npm run typescript:check-published-types` runs arethetypeswrong over the packed package with `--profile node16` (node10 resolution is not supported)
+- `types/` - TypeScript declarations: the api-extractor rollup for the main entry, and tsc's per-file tree for the validation-provider subpaths. `scripts/declarations.mjs` then rewrites each subpath entry to re-export from the rollup (so a class is declared once and a subpath's provider is usable as the main entry's type; only what the rollup lacks, the AsyncAPI providers, stays declared there) and writes `.d.cts` copies for the `require` condition, because in a `"type": "module"` package TypeScript reads a `.d.ts` as ESM. It reads specifiers with TypeScript's scanner and fails the build on anything a `.d.cts` cannot represent. Each export nests `types` under both `import` and `require`; `npm run typescript:check-published-types` runs arethetypeswrong over the packed package with `--profile node16` (node10 resolution is not supported)
 
 `build:es:quick` skips `src/config/` which contains the bulk of the source (thousands of rule/completion/documentation definition files). Use it when working on service code, not rules.
 

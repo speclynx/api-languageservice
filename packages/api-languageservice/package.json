@@ -216,7 +216,7 @@
     "test:only": "cross-env NODE_ENV=test mocha",
     "watch:es": "cross-env BABEL_ENV=es babel src test --out-dir . --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward' --ignore 'src/config/**' --watch",
     "typescript:check-types": "tsc --noEmit",
-    "typescript:declaration": "tsc -p tsconfig.declaration.json && api-extractor run -l -c ./config/api-extractor/api-extractor.json && node scripts/declarations-cts.mjs",
+    "typescript:declaration": "tsc -p tsconfig.declaration.json && api-extractor run -l -c ./config/api-extractor/api-extractor.json && node scripts/declarations.mjs",
     "typescript:check-published-types": "attw --pack . --profile node16",
     "prepack": "copyfiles -u 3 ../../LICENSES/* LICENSES && copyfiles -u 2 ../../NOTICE .",
     "postpack": "rimraf NOTICE LICENSES"
