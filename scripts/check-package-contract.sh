@@ -80,9 +80,17 @@ cp scripts/package-contract-probe.mjs "$consumer/probe.mjs"
 # targets of both conditions exist and describe something tsc can read, in the
 # module format the condition promises. Both resolution modes are checked:
 # nodenext lets CommonJS import ESM declarations, so only node16 catches a
-# require condition that hands out ESM ones. skipLibCheck stays on, so the
-# check is of what this package advertises, not of its dependencies' own
-# declarations.
+# require condition that hands out ESM ones. skipLibCheck is off, because tsc
+# reports an error inside a declaration file only then: a .d.cts of this
+# package that reaches an ESM declaration through its own imports passes with
+# it on, and attw does not report that case either.
+#
+# With it off tsc also checks the declarations of every dependency, as the
+# fresh install resolves them. An error there is reported as a warning rather
+# than failing the check: nothing in this package causes it, and failing would
+# block the nightly build and the check of a version already published. An
+# error in this package's own declarations, in the probes, or in no file at all
+# fails it.
 for module in nodenext node16; do
   cat > "$consumer/tsconfig.$module.json" <<JSON
 {
@@ -92,7 +100,7 @@ for module in nodenext node16; do
     "moduleResolution": "$module",
     "strict": true,
     "noEmit": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "types": []
   },
   "files": ["types-probe.mts", "types-probe.cts"]
@@ -100,7 +108,31 @@ for module in nodenext node16; do
 JSON
 
   echo "check-package-contract: type-checking every advertised subpath under $module"
-  "$root/node_modules/.bin/tsc" -p "$consumer/tsconfig.$module.json"
+  tsc_output="$work/tsc.$module.log"
+  # run from the consumer, so tsc prints each file relative to it
+  if ( cd "$consumer" && "$root/node_modules/.bin/tsc" -p "tsconfig.$module.json" --pretty false ) > "$tsc_output"; then
+    continue
+  fi
+  # an error line begins with the file it is in; indented continuation lines
+  # belong to the error before them
+  errors="$(grep -vE '^[[:space:]]' "$tsc_output" || true)"
+  # a dependency npm nests under this package's own directory is still a
+  # dependency
+  own='^node_modules/@speclynx/api-languageservice/'
+  nested='^node_modules/@speclynx/api-languageservice/node_modules/'
+  theirs="$(printf '%s\n' "$errors" | grep -E '^node_modules/' \
+    | { grep -vE "$own" || true; } ; printf '%s\n' "$errors" | grep -E "$nested" || true)"
+  ours="$(printf '%s\n' "$errors" | grep -vE '^node_modules/' | grep -vE '^$' || true)"
+  ours+="$(printf '%s\n' "$errors" | grep -E "$own" | grep -vE "$nested" || true)"
+  if [ -n "$theirs" ]; then
+    echo "check-package-contract: warning: tsc reports errors in dependencies' declarations under $module:"
+    printf '%s\n' "$theirs"
+  fi
+  if [ -n "$ours" ]; then
+    echo "check-package-contract: tsc reports errors in this package's declarations or the probes under $module:"
+    cat "$tsc_output"
+    exit 1
+  fi
 done
 
 # The CycloneDX SBOM a release attaches, read from this consumer because it
