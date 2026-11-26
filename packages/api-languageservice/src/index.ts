@@ -14,8 +14,8 @@ export {
 export type {
   AjvErrorObject,
   JsonSchemaValidateFunction,
-  JsonSchemaValidationProvider,
 } from './services/validation/providers/json-schema-validation-provider.ts';
+export { JsonSchemaValidationProvider } from './services/validation/providers/json-schema-validation-provider.ts';
 export { OpenAPi20JsonSchemaValidationProvider } from './services/validation/providers/openapi-20-json-schema-validation-provider.ts';
 export { OpenAPi30JsonSchemaValidationProvider } from './services/validation/providers/openapi-30-json-schema-validation-provider.ts';
 export { OpenAPi31JsonSchemaValidationProvider } from './services/validation/providers/openapi-31-json-schema-validation-provider.ts';
@@ -73,7 +73,6 @@ export type {
   NamespaceVersion,
   LinterCondition,
   LinterMetaData,
-  LinterGivenFormat,
   FormatMeta,
   LinterFunction,
   CompletionFunction,
@@ -96,6 +95,7 @@ export {
   MergeStrategy,
   ProviderMode,
   DiagnosticCategory,
+  LinterGivenFormat,
 } from './apidom-language-types.ts';
 
 export { config } from './config/config.ts';
