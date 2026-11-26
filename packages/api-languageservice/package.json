@@ -40,84 +40,164 @@
   "main": "./src/index.cjs",
   "exports": {
     ".": {
-      "types": "./types/api-languageservice.d.ts",
-      "import": "./src/index.mjs",
-      "require": "./src/index.cjs"
+      "import": {
+        "types": "./types/api-languageservice.d.ts",
+        "default": "./src/index.mjs"
+      },
+      "require": {
+        "types": "./types/api-languageservice.d.cts",
+        "default": "./src/index.cjs"
+      }
     },
     "./services/validation/providers/json-schema": {
-      "import": "./src/services/validation/providers/json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-20-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-20-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-20-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-20-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-20-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-20-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-20-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-20-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-21-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-21-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-21-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-21-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-21-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-22-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-22-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-22-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-22-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-22-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-22-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-22-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-22-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-23-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-23-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-23-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-23-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-23-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-23-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-23-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-23-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-24-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-24-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-24-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-24-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-24-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-24-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-24-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-24-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-25-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-25-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-25-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-25-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-25-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-25-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-25-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-25-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/asyncapi-26-json-schema": {
-      "import": "./src/services/validation/providers/asyncapi-26-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/asyncapi-26-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/asyncapi-26-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/asyncapi-26-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/asyncapi-26-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/asyncapi-26-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/asyncapi-26-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/openapi-31-json-schema": {
-      "import": "./src/services/validation/providers/openapi-31-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/openapi-31-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/openapi-31-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/openapi-31-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/openapi-31-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/openapi-31-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/openapi-31-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/arazzo-1-json-schema": {
-      "import": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/arazzo-1-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/arazzo-1-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/arazzo-1-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/arazzo-1-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/arazzo-11-json-schema": {
-      "import": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/arazzo-11-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/arazzo-11-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/arazzo-11-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/arazzo-11-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/overlay-1-json-schema": {
-      "import": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/overlay-1-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/overlay-1-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/overlay-1-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/overlay-1-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/overlay-10-json-schema": {
-      "import": "./src/services/validation/providers/overlay-10-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/overlay-10-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/overlay-10-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/overlay-10-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/overlay-10-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/overlay-10-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/overlay-10-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/overlay-11-json-schema": {
-      "import": "./src/services/validation/providers/overlay-11-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/overlay-11-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/overlay-11-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/overlay-11-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/overlay-11-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/overlay-11-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/overlay-11-json-schema-validation-provider.cjs"
+      }
     },
     "./services/validation/providers/overlay-12-json-schema": {
-      "import": "./src/services/validation/providers/overlay-12-json-schema-validation-provider.mjs",
-      "require": "./src/services/validation/providers/overlay-12-json-schema-validation-provider.cjs",
-      "types": "./types/services/validation/providers/overlay-12-json-schema-validation-provider.d.ts"
+      "import": {
+        "types": "./types/services/validation/providers/overlay-12-json-schema-validation-provider.d.ts",
+        "default": "./src/services/validation/providers/overlay-12-json-schema-validation-provider.mjs"
+      },
+      "require": {
+        "types": "./types/services/validation/providers/overlay-12-json-schema-validation-provider.d.cts",
+        "default": "./src/services/validation/providers/overlay-12-json-schema-validation-provider.cjs"
+      }
     }
   },
   "types": "./types/",
@@ -136,7 +216,8 @@
     "test:only": "cross-env NODE_ENV=test mocha",
     "watch:es": "cross-env BABEL_ENV=es babel src test --out-dir . --extensions '.ts' --out-file-extension '.mjs' --root-mode 'upward' --ignore 'src/config/**' --watch",
     "typescript:check-types": "tsc --noEmit",
-    "typescript:declaration": "tsc -p tsconfig.declaration.json && api-extractor run -l -c ./config/api-extractor/api-extractor.json",
+    "typescript:declaration": "tsc -p tsconfig.declaration.json && api-extractor run -l -c ./config/api-extractor/api-extractor.json && node scripts/declarations-cts.mjs",
+    "typescript:check-published-types": "attw --pack . --profile node16",
     "prepack": "copyfiles -u 3 ../../LICENSES/* LICENSES && copyfiles -u 2 ../../NOTICE .",
     "postpack": "rimraf NOTICE LICENSES"
   },

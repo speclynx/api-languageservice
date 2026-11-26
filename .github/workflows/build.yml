@@ -133,6 +133,8 @@ jobs:
         run: npm ci --engine-strict=false
       - name: Build monorepo
         run: npm run build
+      - name: Check the published declarations with arethetypeswrong
+        run: npm run typescript:check-published-types
       - name: Resolve every advertised export against the packed tarballs
         run: ./scripts/check-package-contract.sh
         # writes the SBOM a release attaches, so that its generation is checked too

@@ -75,26 +75,33 @@ npm install --prefix "$consumer" --engine-strict=false --no-audit --no-fund "${i
 cp scripts/package-contract-probe.mjs "$consumer/probe.mjs"
 ( cd "$consumer" && node probe.mjs "$work/pack.json" )
 
-# The probe leaves behind a TypeScript source importing every advertised
-# subpath. Type-checking it is what proves the `types` targets both exist and
-# describe something tsc can read.
-cat > "$consumer/tsconfig.json" <<'JSON'
+# The probe leaves behind an ES module and a CommonJS module, each importing
+# every advertised subpath. Type-checking them is what proves the `types`
+# targets of both conditions exist and describe something tsc can read, in the
+# module format the condition promises. Both resolution modes are checked:
+# nodenext lets CommonJS import ESM declarations, so only node16 catches a
+# require condition that hands out ESM ones. skipLibCheck stays on, so the
+# check is of what this package advertises, not of its dependencies' own
+# declarations.
+for module in nodenext node16; do
+  cat > "$consumer/tsconfig.$module.json" <<JSON
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "$module",
+    "moduleResolution": "$module",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
     "types": []
   },
-  "files": ["types-probe.ts"]
+  "files": ["types-probe.mts", "types-probe.cts"]
 }
 JSON
 
-echo "check-package-contract: type-checking every advertised subpath"
-"$root/node_modules/.bin/tsc" -p "$consumer/tsconfig.json"
+  echo "check-package-contract: type-checking every advertised subpath under $module"
+  "$root/node_modules/.bin/tsc" -p "$consumer/tsconfig.$module.json"
+done
 
 # The CycloneDX SBOM a release attaches, read from this consumer because it
 # lists what installing the package brings in at this moment, rather than what
