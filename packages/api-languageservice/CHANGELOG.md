@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/speclynx/api-languageservice/compare/v3.0.6...v3.0.7) (2026-11-26)
+
+### Bug Fixes
+
+- export JsonSchemaValidationProvider and LinterGivenFormat ([c20aed9](https://github.com/speclynx/api-languageservice/commit/c20aed9f2f8df840389de9c1efd7cc7e10163859))
+- share the rollup's declarations with the subpath entries ([660ccfd](https://github.com/speclynx/api-languageservice/commit/660ccfdaba632c5049a39f1173354fa67683226c))
+
 ## [3.0.6](https://github.com/speclynx/api-languageservice/compare/v3.0.5...v3.0.6) (2026-11-26)
 
 ### Bug Fixes
