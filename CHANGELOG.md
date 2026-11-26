@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/speclynx/api-languageservice/compare/v3.0.5...v3.0.6) (2026-11-26)
+
+### Bug Fixes
+
+- **deps:** update ApiDOM to 7.1.1 ([686ee58](https://github.com/speclynx/api-languageservice/commit/686ee58178dd88676e9cb9792f59b50b008c1854))
+- point top-level types at the published rollup ([35916c5](https://github.com/speclynx/api-languageservice/commit/35916c5216656c6b076e6978f9fb7f82468e60a1))
+- ship .d.cts declarations for CommonJS consumers ([0d7a7ba](https://github.com/speclynx/api-languageservice/commit/0d7a7ba58a649c85e4f8100b96cf135908e610cb)), closes [speclynx/apidom#807](https://github.com/speclynx/apidom/issues/807)
+
 ## [3.0.5](https://github.com/speclynx/api-languageservice/compare/v3.0.4...v3.0.5) (2026-11-12)
 
 ### Bug Fixes
